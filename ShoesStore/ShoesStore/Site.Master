@@ -354,36 +354,6 @@
                                                 class="mobile-links__item-link">Blog Classic</a>
                                         </div>
                                     </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="blog-grid.html"
-                                                class="mobile-links__item-link">Blog Grid</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="blog-list.html"
-                                                class="mobile-links__item-link">Blog List</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="blog-left-sidebar.html"
-                                                class="mobile-links__item-link">Blog Left Sidebar</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="post.html"
-                                                class="mobile-links__item-link">Post Page</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="post-without-sidebar.html"
-                                                class="mobile-links__item-link">Post Without Sidebar</a>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -800,8 +770,7 @@
                                                 <div class="nav-links__menu">
                                                     <!-- .menu -->
                                                     <ul class="menu menu--layout--classic">
-                                                        <li><a href="index.html">Home 1</a></li>
-                                                        <li><a href="index-2.html">Home 2</a></li>
+                                                        <li><a href="#">Home 2</a></li>
                                                     </ul>
                                                     <!-- .menu / end -->
                                                 </div>
