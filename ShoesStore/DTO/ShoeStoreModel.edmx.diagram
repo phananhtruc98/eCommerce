@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e73e19a1dddc490faaff7f3ed2f4dee3" Name="Diagram1">
+        <EntityTypeShape EntityType="ShoeStoreModel.Cart" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.CartDet" Width="1.5" PointX="9.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.Cu" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.Mer" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.MstrRole" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.Pro" Width="1.5" PointX="12.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.ProBrand" Width="1.5" PointX="10.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.ProCat" Width="1.5" PointX="10.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.ProColor" Width="1.5" PointX="12.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.ProDet" Width="1.5" PointX="15" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.ProSize" Width="1.5" PointX="12.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.Rcpt" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.RcptBuy" Width="1.5" PointX="10.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.RcptBuySta" Width="1.5" PointX="12.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.RcptBuyStaDet" Width="1.5" PointX="15" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.RcptBuyStaStep" Width="1.5" PointX="12.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.RcptSub" Width="1.5" PointX="7.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.Shp" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.Sub" Width="1.5" PointX="7.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.SubDet" Width="1.5" PointX="9.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoeStoreModel.Usr" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="ShoeStoreModel.FK_UsersCustomersCarts_UsersCustomers" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_RcptBuy_Cus" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_UsersCustomers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_Shp_Mer" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_SubscriptionsDetails_UsersMerchants" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_UsersMerchants_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_Pro_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_Pro_ProCat" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_ProDet_Pro" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_ProDet_ProColor" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_ProDet_ProSize" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_Rcpt_Usr" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_Rcpt_Usr1" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_ReceiptBuys_Receipts" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_ReceiptsSubscriptions_Receipts" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_ReceiptsBuysStates_ReceiptsBuys" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.FK_SubscriptionsDetails_Subscriptions" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.Mstr" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.RcptBuyDet" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoeStoreModel.RcptSubDet" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

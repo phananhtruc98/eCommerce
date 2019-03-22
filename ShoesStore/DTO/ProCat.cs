@@ -12,17 +12,19 @@ namespace DTO
     using System;
     using System.Collections.Generic;
     
-    public partial class RcptBuySta
+    public partial class ProCat
     {
-        public RcptBuySta()
+        public ProCat()
         {
-            this.RcptBuyStaDets = new HashSet<RcptBuyStaDet>();
+            this.Pros = new HashSet<Pro>();
         }
     
-        public int StaId { get; set; }
-        public int RcptBuyId { get; set; }
+        public int CatId { get; set; }
+        public string CatName { get; set; }
+        public bool Active { get; set; }
+        public System.DateTime DateAdd { get; set; }
+        public Nullable<System.DateTime> DateEdit { get; set; }
     
-        public virtual RcptBuy RcptBuy { get; set; }
-        public virtual ICollection<RcptBuyStaDet> RcptBuyStaDets { get; set; }
+        public virtual ICollection<Pro> Pros { get; set; }
     }
 }

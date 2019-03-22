@@ -12,17 +12,15 @@ namespace DTO
     using System;
     using System.Collections.Generic;
     
-    public partial class RcptBuySta
+    public partial class ProDet
     {
-        public RcptBuySta()
-        {
-            this.RcptBuyStaDets = new HashSet<RcptBuyStaDet>();
-        }
+        public int ShpId { get; set; }
+        public int ProId { get; set; }
+        public int ColorId { get; set; }
+        public int SizeId { get; set; }
     
-        public int StaId { get; set; }
-        public int RcptBuyId { get; set; }
-    
-        public virtual RcptBuy RcptBuy { get; set; }
-        public virtual ICollection<RcptBuyStaDet> RcptBuyStaDets { get; set; }
+        public virtual Pro Pro { get; set; }
+        public virtual ProColor ProColor { get; set; }
+        public virtual ProSize ProSize { get; set; }
     }
 }
