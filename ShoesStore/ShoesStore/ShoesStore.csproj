@@ -1939,9 +1939,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\customstyle.css" />
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="GioHang.aspx" />
+    <Content Include="images\logos\shuzlogo.jpg" />
     <Content Include="SanPham_ChiTiet.aspx" />
     <Content Include="SanPham_DanhSach.aspx" />
     <Content Include="favicon.ico" />
