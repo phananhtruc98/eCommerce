@@ -34,13 +34,13 @@
                         <div class="block-sidebar__item">
                             <div class="widget-filters widget" data-collapse
                                 data-collapse-opened-class="filter--opened">
-                                <h4 class="widget__title">Filters</h4>
+                                <h4 class="widget__title">Bộ lọc</h4>
                                 <div class="widget-filters__list">
                                     <div class="widget-filters__item">
                                         <div class="filter filter--opened" data-collapse-item>
                                             <button type="button"
                                                 class="filter__title" data-collapse-trigger>
-                                                Categories
+                                                Danh mục
                                                 <svg
                                                     class="filter__arrow" width="12px" height="7px">
                                                     <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7">
@@ -167,7 +167,7 @@
                                         <div class="filter filter--opened" data-collapse-item>
                                             <button type="button"
                                                 class="filter__title" data-collapse-trigger>
-                                                Brand
+                                                Thương hiệu
                                                 <svg
                                                     class="filter__arrow" width="12px" height="7px">
                                                     <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7">
@@ -298,100 +298,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="widget-filters__item">
-                                        <div class="filter filter--opened" data-collapse-item>
-                                            <button type="button"
-                                                class="filter__title" data-collapse-trigger>
-                                                Brand
-                                                <svg
-                                                    class="filter__arrow" width="12px" height="7px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7">
-                                                    </use>
-                                                </svg></button>
-                                            <div class="filter__body" data-collapse-content>
-                                                <div class="filter__container">
-                                                    <div class="filter-list">
-                                                        <div class="filter-list__list">
-                                                            <label
-                                                                class="filter-list__item">
-                                                                <span
-                                                                    class="filter-list__input input-radio"><span
-                                                                        class="input-radio__body">
-                                                                        <input
-                                                                            class="input-radio__input"
-                                                                            name="filter_radio" type="radio">
-                                                                        <span
-                                                                            class="input-radio__circle"></span>
-                                                                    </span></span><span
-                                                                        class="filter-list__title">Wakita </span><span
-                                                                            class="filter-list__counter">7</span></label>
-                                                            <label class="filter-list__item">
-                                                                <span
-                                                                    class="filter-list__input input-radio"><span
-                                                                        class="input-radio__body">
-                                                                        <input
-                                                                            class="input-radio__input"
-                                                                            name="filter_radio" type="radio">
-                                                                        <span
-                                                                            class="input-radio__circle"></span>
-                                                                    </span></span><span
-                                                                        class="filter-list__title">Zosch </span><span
-                                                                            class="filter-list__counter">42</span></label>
-                                                            <label
-                                                                class="filter-list__item filter-list__item--disabled">
-                                                                <span
-                                                                    class="filter-list__input input-radio"><span
-                                                                        class="input-radio__body">
-                                                                        <input
-                                                                            class="input-radio__input"
-                                                                            name="filter_radio" type="radio"
-                                                                            checked="checked" disabled="disabled">
-                                                                        <span class="input-radio__circle"></span>
-                                                                    </span></span><span
-                                                                        class="filter-list__title">WeVALT</span></label>
-                                                            <label
-                                                                class="filter-list__item filter-list__item--disabled">
-                                                                <span
-                                                                    class="filter-list__input input-radio"><span
-                                                                        class="input-radio__body">
-                                                                        <input
-                                                                            class="input-radio__input"
-                                                                            name="filter_radio" type="radio"
-                                                                            disabled="disabled">
-                                                                        <span
-                                                                            class="input-radio__circle"></span>
-                                                                    </span></span><span
-                                                                        class="filter-list__title">Hammer</span></label>
-                                                            <label class="filter-list__item">
-                                                                <span
-                                                                    class="filter-list__input input-radio"><span
-                                                                        class="input-radio__body">
-                                                                        <input
-                                                                            class="input-radio__input"
-                                                                            name="filter_radio" type="radio">
-                                                                        <span
-                                                                            class="input-radio__circle"></span>
-                                                                    </span></span><span
-                                                                        class="filter-list__title">Mitasia </span><span
-                                                                            class="filter-list__counter">1</span></label>
-                                                            <label class="filter-list__item">
-                                                                <span
-                                                                    class="filter-list__input input-radio"><span
-                                                                        class="input-radio__body">
-                                                                        <input
-                                                                            class="input-radio__input"
-                                                                            name="filter_radio" type="radio">
-                                                                        <span
-                                                                            class="input-radio__circle"></span>
-                                                                    </span></span><span
-                                                                        class="filter-list__title">Metaggo </span><span
-                                                                            class="filter-list__counter">25</span></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="widget-filters__item">
                                         <div class="filter filter--opened" data-collapse-item>
                                             <button type="button"
@@ -982,11 +889,16 @@
                                     <div class="view-options__legend">Showing 6 of 98 products</div>
                                     <div class="view-options__divider"></div>
                                     <div class="view-options__control">
-                                        <label for="">Sort By</label>
+                                        <label for="">Sắp xếp</label>
                                         <div>
                                             <select class="form-control form-control-sm" name="" id="">
-                                                <option value="">Default</option>
-                                                <option value="">Name (A-Z)</option>
+                                                <option value="">Bán chạy nhất</option>
+                                                <option value="">Tên: Từ A đến Z</option>
+                                                <option value="">Tên: Từ Z đến A</option>
+                                                <option value="">Giá: Thấp đến Cao</option>
+                                                <option value="">Giá: Cao đến Thấp</option>
+                                                <option value="">Rating: Cao đến Thấp</option>
+                                                <option value="">Rating: Thấp đến Cao</option>
                                             </select>
                                         </div>
                                     </div>

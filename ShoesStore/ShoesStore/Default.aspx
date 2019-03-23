@@ -11,9 +11,9 @@
                             <div class="block-slideshow__body">
                                 <div class="owl-carousel"><a class="block-slideshow__slide" href="#">
                                         <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop"
-                                            style="background-image: url('images/slides/slide-1-full.jpg')"></div>
+                                            style="background-image: url('images/slides/home_slide_1.jpeg')"></div>
                                         <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile"
-                                            style="background-image: url('images/slides/slide-1-mobile.jpg')"></div>
+                                            style="background-image: url('images/slides/home_slide_1.jpeg')"></div>
                                         <div class="block-slideshow__slide-content">
                                             <div class="block-slideshow__slide-title">Big choice of<br>Plumbing products
                                             </div>
@@ -25,9 +25,9 @@
                                         </div>
                                     </a><a class="block-slideshow__slide" href="#">
                                         <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop"
-                                            style="background-image: url('images/slides/slide-2-full.jpg')"></div>
+                                            style="background-image: url('images/slides/home_slide_3.jpeg')"></div>
                                         <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile"
-                                            style="background-image: url('images/slides/slide-2-mobile.jpg')"></div>
+                                            style="background-image: url('images/slides/home_slide_3_mobile_1.jpeg')"></div>
                                         <div class="block-slideshow__slide-content">
                                             <div class="block-slideshow__slide-title">Screwdrivers<br>Professional Tools
                                             </div>
@@ -39,9 +39,9 @@
                                         </div>
                                     </a><a class="block-slideshow__slide" href="#">
                                         <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop"
-                                            style="background-image: url('images/slides/slide-3-full.jpg')"></div>
+                                            style="background-image: url('images/slides/home_slide_2.jpeg')"></div>
                                         <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile"
-                                            style="background-image: url('images/slides/slide-3-mobile.jpg')"></div>
+                                            style="background-image: url('images/slides/home_slide_2.jpg')"></div>
                                         <div class="block-slideshow__slide-content">
                                             <div class="block-slideshow__slide-title">One more<br>Unique header</div>
                                             <div class="block-slideshow__slide-text">Lorem ipsum dolor sit amet,
@@ -3647,19 +3647,19 @@
                 <div class="container">
                     <div class="block-brands__slider">
                         <div class="owl-carousel">
-                            <div class="block-brands__item"><a href="#"><img src="images/logos/logo-1.png" alt=""></a>
+                            <div class="block-brands__item"><a href="#"><img src="images/logos/adidas.png" alt=""></a>
                             </div>
-                            <div class="block-brands__item"><a href="#"><img src="images/logos/logo-2.png" alt=""></a>
+                            <div class="block-brands__item"><a href="#"><img src="images/logos/asics.png" alt=""></a>
                             </div>
-                            <div class="block-brands__item"><a href="#"><img src="images/logos/logo-3.png" alt=""></a>
+                            <div class="block-brands__item"><a href="#"><img src="images/logos/converse.png" alt=""></a>
                             </div>
-                            <div class="block-brands__item"><a href="#"><img src="images/logos/logo-4.png" alt=""></a>
+                            <div class="block-brands__item"><a href="#"><img src="images/logos/newbalance.png" alt=""></a>
                             </div>
-                            <div class="block-brands__item"><a href="#"><img src="images/logos/logo-5.png" alt=""></a>
+                            <div class="block-brands__item"><a href="#"><img src="images/logos/nike.png" alt=""></a>
                             </div>
-                            <div class="block-brands__item"><a href="#"><img src="images/logos/logo-6.png" alt=""></a>
+                            <div class="block-brands__item"><a href="#"><img src="images/logos/reebok.png" alt=""></a>
                             </div>
-                            <div class="block-brands__item"><a href="#"><img src="images/logos/logo-7.png" alt=""></a>
+                            <div class="block-brands__item"><a href="#"><img src="images/logos/vans.png" alt=""></a>
                             </div>
                         </div>
                     </div>

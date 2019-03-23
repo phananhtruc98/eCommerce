@@ -917,7 +917,7 @@
                                         </div>
 
                                         <div class="footer-newsletter__text footer-newsletter__text--social">
-                                            Theo dõi chúng tôi trên
+                                            <h5 class="footer-newsletter__text">Theo dõi chúng tôi trên</h5>
                                         </div>
                                         <ul class="footer-newsletter__social-links">
                                             <li
