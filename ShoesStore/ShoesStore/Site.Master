@@ -55,33 +55,35 @@
         </div>
         <!-- quickview-modal / end -->
         <!-- Dang Nhap modal-->
-        <div class="modal" id="DangNhap">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Đăng nhập</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        
-                                <label for="usr">Name:</label>
-                                <input type="text" class="form-control" id="usr">
-                            <label>Password</label>
-                            <input type="password"
-                                class="form-control" placeholder="Password">
-                            <small
-                                class="form-text text-muted"><a href="#">Forgotten Password</a></small>
-                        
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <div id="DangNhap" class="modal"  >
+            <div class="modal-dialog modal-dialog-centered ">
+                    <div class="modal-content  p-4 m-5 ">
+                        <div class="modal-header">
+                            <h3>Đăng nhập</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <a href="#" class="float-right">Đăng ký</a>
+                                <label for="uname1">Tài khoản</label>
+                                <input type="text" class="form-control form-control-lg" name="uname1" id="uname1" required="">
+                                <div class="invalid-feedback">Oops, you missed this one.</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Mật khẩu</label>
+                                <input type="password" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
+                                <div class="invalid-feedback">Enter your password too!</div>
+                            </div>
+                            <div class="custom-control">
+                                <a href="#" class="custom-control-label" for="rememberMe">Cần trợ giúp?</a>
+                            </div>
+                            <div class="form-group py-4">
+                                <button class="btn btn-outline-secondary btn-lg" data-dismiss="modal" aria-hidden="true">Hủy</button>
+                                <button type="submit" class="btn btn-primary btn-lg float-right" id="btnLogin">Đăng nhập</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
         <!-- Dang Nhap modal/end-->
         <!-- mobilemenu -->
