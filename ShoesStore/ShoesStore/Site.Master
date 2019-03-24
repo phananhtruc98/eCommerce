@@ -97,7 +97,9 @@
                             <a href="#" class="float-right" data-toggle="modal" data-target="#DangNhap">Đăng nhập</a>
                             <label for="uname1">Email</label>
                             <input type="text" class="form-control form-control-lg" name="uname1" id="uname1" required="">
-                            <div class="mt-1"><button type="button" class="btn btn-primary">Gửi mã xác minh</button></div>
+                            <div class="mt-1">
+                                <button type="button" class="btn btn-primary">Gửi mã xác minh</button>
+                            </div>
                             <div class="invalid-feedback">Nhập email!</div>
                         </div>
                         <div class="form-group">
@@ -204,7 +206,7 @@
                             <div class="mobile-links__item-title">
                                 <a data-collapse-trigger
                                     class="mobile-links__item-link">Theo dõi đơn hàng</a>
-                            </div>                            
+                            </div>
                         </li>
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
@@ -373,28 +375,40 @@
                                                     <!-- .megamenu -->
 
                                                     <ul class="menu menu--layout--classic">
-                                                        <li>
-                                                            <a href="#">Giày nữ</a>
 
-                                                        </li>
+                                                        <asp:Repeater ID="rptProCat" runat="server" OnInit="rptProCat_Init">
+                                                            <ItemTemplate>
+                                                                <li>
+                                                                    <a href="#"><%# Eval("CatName") %></a>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+
+
                                                     </ul>
                                                 </div>
 
                                                 <!-- .megamenu / end -->
                                             </li>
                                             <li class="nav-links__item nav-links__item--with-submenu"><a
-                                                href="<%=ResolveUrl("~/Pro_List.aspx") %>"><span>Thương hiệu
-                                                        <svg
-                                                            class="nav-links__arrow" width="9px" height="6px">
-                                                            <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6">
-                                                            </use>
-                                                        </svg></span></a>
+                                                href="<%=ResolveUrl("~/Pro_List.aspx") %>"><span>Thương hiệu<svg
+                                                    class="nav-links__arrow" width="9px" height="6px">
+                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6">
+                                                    </use>
+                                                </svg></span></a>
                                                 <div class="nav-links__menu">
                                                     <!-- .menu -->
                                                     <ul class="menu menu--layout--classic">
-                                                        <li><a href="<%=ResolveUrl("~/Pro_List.aspx") %>">ADIAS</a>
 
-                                                        </li>
+                                                        <asp:Repeater ID="rptProBrand" runat="server" OnInit="rptProBrand_Init">
+                                                            <ItemTemplate>
+                                                                <li>
+                                                                    <a href="#"><%# Eval("BrandName") %></a>
+                                                                </li>
+                                                            </ItemTemplate>
+
+                                                        </asp:Repeater>
+
 
                                                     </ul>
                                                     <!-- .menu / end -->
