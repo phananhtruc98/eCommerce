@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4b7e08164fda4e61a4ba9647bb9e467f" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.Cart" Width="1.5" PointX="7.5" PointY="12.375" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.CartDet" Width="1.5" PointX="12" PointY="10" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.Cus" Width="1.5" PointX="5.25" PointY="12.5" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.Mer" Width="1.5" PointX="5.25" PointY="9.375" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.MstrRole" Width="1.5" PointX="0.75" PointY="12.875" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.Pro" Width="1.5" PointX="9.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.ProBrand" Width="1.5" PointX="7.5" PointY="6" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.ProCat" Width="1.5" PointX="7.5" PointY="2.375" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.ProColor" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.ProDet" Width="1.5" PointX="12" PointY="6.125" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.ProSize" Width="1.5" PointX="9.75" PointY="4.125" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.Rcpt" Width="1.5" PointX="5.25" PointY="15.25" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.RcptBuy" Width="1.5" PointX="10.5" PointY="18.25" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.RcptBuyDet" Width="1.5" PointX="12.75" PointY="13.875" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.RcptBuySta" Width="1.5" PointX="12.75" PointY="21.75" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.RcptBuyStaDet" Width="1.5" PointX="15" PointY="21.625" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.RcptBuyStaStep" Width="1.5" PointX="12.75" PointY="18.75" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.RcptSub" Width="1.5" PointX="7.5" PointY="15.875" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.Shp" Width="1.5" PointX="7.5" PointY="9.125" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.Sub" Width="1.5" PointX="7.5" PointY="18.5" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.SubDet" Width="1.5" PointX="9.75" PointY="14.25" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.Usr" Width="1.5" PointX="3" PointY="11.5" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.WebInfo" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="ECOMM_C2C_SUBModel.WebSlide" Width="1.5" PointX="2.75" PointY="1.75" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_UsersCustomersCarts_UsersCustomers" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_RcptBuy_Cus" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_UsersCustomers_Users" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_Shp_Mer" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_SubscriptionsDetails_UsersMerchants" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_UsersMerchants_Users" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_Pro_Brand" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_Pro_ProCat" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_ProDet_Pro" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_ProDet_ProColor" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_ProDet_ProSize" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_Rcpt_Usr" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_Rcpt_Usr1" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_ReceiptBuys_Receipts" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_ReceiptsSubscriptions_Receipts" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_ReceiptsBuysDetails_ReceiptsBuys" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_ReceiptsBuysStates_ReceiptsBuys" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.FK_SubscriptionsDetails_Subscriptions" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.Mstr" />
+        <AssociationConnector Association="ECOMM_C2C_SUBModel.RcptSubDet" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

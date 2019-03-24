@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8B035CCD-853E-469F-B40E-D5D74D86D7D5}</ProjectGuid>
+    <ProjectGuid>{E2A3EEC8-767E-406F-A290-9FC5035FFED9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DTO</RootNamespace>
     <AssemblyName>DTO</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -48,109 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cart.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CartDet.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="Cu.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Mer.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MstrRole.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Pro.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProBrand.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProCat.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProColor.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProDet.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProSize.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Rcpt.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RcptBuy.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RcptBuySta.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RcptBuyStaDet.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RcptBuyStaStep.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RcptSub.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ShoeStoreModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShoeStoreModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ShoeStoreModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ShoeStoreModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShoeStoreModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Shp.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sub.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SubDet.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Usr.cs">
-      <DependentUpon>ShoeStoreModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
-    <EntityDeploy Include="ShoeStoreModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ShoeStoreModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ShoeStoreModel.edmx.diagram">
-      <DependentUpon>ShoeStoreModel.edmx</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ShoeStoreModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShoeStoreModel.edmx</DependentUpon>
-      <LastGenOutput>ShoeStoreModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ShoeStoreModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShoeStoreModel.edmx</DependentUpon>
-      <LastGenOutput>ShoeStoreModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
