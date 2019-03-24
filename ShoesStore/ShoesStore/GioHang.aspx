@@ -154,7 +154,7 @@
                                             <td>$25.00<div class="cart__calc-shipping">
                                                 <a href="#">Calculate
                                                             Shipping</a>
-                                                </div>
+                                            </div>
                                             </td>
                                         </tr>
                                         <tr>
