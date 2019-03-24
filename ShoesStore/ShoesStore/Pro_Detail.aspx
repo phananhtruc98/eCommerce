@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title="Sản phẩm chi tiết" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="SanPham_ChiTiet.aspx.cs" Inherits="ShoesStore.SanPham_ChiTiet" %>
+﻿<%@ Page Language="C#" Title="Sản phẩm chi tiết" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Pro_Detail.aspx.cs" Inherits="ShoesStore.SanPham_ChiTiet" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- site__body -->

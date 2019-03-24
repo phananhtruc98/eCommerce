@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="vendor/owl-carousel-2.3.4/assets/owl.carousel.min.css">
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/customstyle.css">
     <!-- js -->
     <script src="vendor/jquery-3.3.1/jquery.min.js"></script>
     <script src="vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js"></script>
@@ -41,6 +40,8 @@
     <link rel="stylesheet" href="fonts/stroyka/stroyka.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97489509-6"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'UA-97489509-6');</script>
+
+    <link rel="stylesheet" href="css/customstyle.css">
 </head>
 <body>
     <form runat="server">
@@ -55,37 +56,79 @@
         </div>
         <!-- quickview-modal / end -->
         <!-- Dang Nhap modal-->
-        <div id="DangNhap" class="modal"  >
+        <div id="DangNhap" class="modal">
             <div class="modal-dialog modal-dialog-centered ">
-                    <div class="modal-content  p-4 m-5 ">
-                        <div class="modal-header">
-                            <h3>Đăng nhập</h3>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <div class="modal-content  p-4 m-5 ">
+                    <div class="modal-header">
+                        <h3>Đăng nhập</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <a href="#" class="float-right" data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
+                            <label for="uname1">Tài khoản</label>
+                            <input type="text" class="form-control form-control-lg" name="uname1" id="uname1" required="">
+                            <div class="invalid-feedback">Oops, you missed this one.</div>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <a href="#" class="float-right">Đăng ký</a>
-                                <label for="uname1">Tài khoản</label>
-                                <input type="text" class="form-control form-control-lg" name="uname1" id="uname1" required="">
-                                <div class="invalid-feedback">Oops, you missed this one.</div>
-                            </div>
-                            <div class="form-group">
-                                <label>Mật khẩu</label>
-                                <input type="password" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
-                                <div class="invalid-feedback">Enter your password too!</div>
-                            </div>
-                            <div class="custom-control">
-                                <a href="#" class="custom-control-label" for="rememberMe">Cần trợ giúp?</a>
-                            </div>
-                            <div class="form-group py-4">
-                                <button class="btn btn-outline-secondary btn-lg" data-dismiss="modal" aria-hidden="true">Hủy</button>
-                                <button type="submit" class="btn btn-primary btn-lg float-right" id="btnLogin">Đăng nhập</button>
-                            </div>
+                        <div class="form-group">
+                            <label>Mật khẩu</label>
+                            <input type="password" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
+                            <div class="invalid-feedback">Enter your password too!</div>
+                        </div>
+                        <div class="form-group py-4">
+                            <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
+                            <button type="submit" class="btn btn-primary btn-lg float-right custom_font" id="btnLogin">Đăng nhập</button>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
         <!-- Dang Nhap modal/end-->
+        <!-- Dang Ky modal-->
+        <div id="DangKy" class="modal">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content  p-4 m-5 ">
+                    <div class="modal-header">
+                        <h3>Đăng ký</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <a href="#" class="float-right" data-toggle="modal" data-target="#DangNhap">Đăng nhập</a>
+                            <label for="uname1">Email</label>
+                            <input type="text" class="form-control form-control-lg" name="uname1" id="uname1" required="">
+                            <div class="mt-1"><button type="button" class="btn btn-primary">Gửi mã xác minh</button></div>
+                            <div class="invalid-feedback">Nhập email!</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Mã xác minh</label>
+                            <input type="number" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
+                            <div class="invalid-feedback">Nhập mã xác minh!</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tên đăng nhập</label>
+                            <input type="text" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
+                            <div class="invalid-feedback">Nhập tên đăng nhập!</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu</label>
+                            <input type="password" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
+                            <div class="invalid-feedback">Nhập mật khẩu!</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Xác nhận mật khẩu</label>
+                            <input type="password" class="form-control form-control-lg" id="pwd1" required="" autocomplete="new-password">
+                            <div class="invalid-feedback">Xác nhận mật khẩu!</div>
+                        </div>
+                        <div class="form-group py-4">
+                            <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
+                            <button type="submit" class="btn btn-primary btn-lg float-right custom_font" id="btnSignup">Đăng Ký</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Dang Ky modal/end-->
         <!-- mobilemenu -->
         <div class="mobilemenu">
             <div class="mobilemenu__backdrop"></div>
@@ -103,35 +146,16 @@
                         data-collapse-opened-class="mobile-links__item--open">
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
-                                <a href="index.html"
-                                    class="mobile-links__item-link">Home</a>
+                                <a href="#"
+                                    class="mobile-links__item-link">Trang chủ
+                                </a>
                                 <button class="mobile-links__item-toggle"
                                     type="button" data-collapse-trigger>
-                                    <svg class="mobile-links__item-arrow" width="12px"
-                                        height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                    </svg></button>
-                            </div>
-                            <div class="mobile-links__item-sub-links" data-collapse-content>
-                                <ul class="mobile-links mobile-links--level--1">
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="index.html"
-                                                class="mobile-links__item-link">Home 1</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="index-2.html"
-                                                class="mobile-links__item-link">Home 2</a>
-                                        </div>
-                                    </li>
-                                </ul>
                             </div>
                         </li>
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
-                                <a href="#" class="mobile-links__item-link">Categories</a>
+                                <a href="#" class="mobile-links__item-link">Danh mục</a>
                                 <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                     <svg
                                         class="mobile-links__item-arrow" width="12px" height="7px">
@@ -143,93 +167,7 @@
                                     <li class="mobile-links__item" data-collapse-item>
                                         <div class="mobile-links__item-title">
                                             <a href="#"
-                                                class="mobile-links__item-link">Power Tools</a>
-                                            <button
-                                                class="mobile-links__item-toggle" type="button" data-collapse-trigger>
-                                                <svg
-                                                    class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                                </svg></button>
-                                        </div>
-                                        <div class="mobile-links__item-sub-links" data-collapse-content>
-                                            <ul class="mobile-links mobile-links--level--2">
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="#"
-                                                            class="mobile-links__item-link">Engravers</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="#"
-                                                            class="mobile-links__item-link">Wrenches</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="#"
-                                                            class="mobile-links__item-link">Wall Chaser</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="#"
-                                                            class="mobile-links__item-link">Pneumatic Tools</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="#"
-                                                class="mobile-links__item-link">Machine Tools</a>
-                                            <button
-                                                class="mobile-links__item-toggle" type="button" data-collapse-trigger>
-                                                <svg
-                                                    class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                                </svg></button>
-                                        </div>
-                                        <div class="mobile-links__item-sub-links" data-collapse-content>
-                                            <ul class="mobile-links mobile-links--level--2">
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="#"
-                                                            class="mobile-links__item-link">Thread Cutting</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="#"
-                                                            class="mobile-links__item-link">Chip Blowers</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="#"
-                                                            class="mobile-links__item-link">Sharpening Machines</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="#"
-                                                            class="mobile-links__item-link">Pipe Cutters</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="#"
-                                                            class="mobile-links__item-link">Slotting machines</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="#"
-                                                            class="mobile-links__item-link">Lathes</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                                class="mobile-links__item-link">Giày nữ</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -237,8 +175,8 @@
                         </li>
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
-                                <a href="<%=ResolveUrl("~/SanPham_DanhSach.aspx") %>"
-                                    class="mobile-links__item-link">Shop</a>
+                                <a href="#"
+                                    class="mobile-links__item-link">Thương hiệu</a>
                                 <button class="mobile-links__item-toggle"
                                     type="button" data-collapse-trigger>
                                     <svg class="mobile-links__item-arrow" width="12px"
@@ -248,122 +186,10 @@
                             </div>
                             <div class="mobile-links__item-sub-links" data-collapse-content>
                                 <ul class="mobile-links mobile-links--level--1">
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="<%=ResolveUrl("~/SanPham_DanhSach.aspx") %>"
-                                                class="mobile-links__item-link">Shop Grid</a>
-                                            <button
-                                                class="mobile-links__item-toggle" type="button" data-collapse-trigger>
-                                                <svg
-                                                    class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                                </svg></button>
-                                        </div>
-                                        <div class="mobile-links__item-sub-links" data-collapse-content>
-                                            <ul class="mobile-links mobile-links--level--2">
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a
-                                                            href="<%=ResolveUrl("~/SanPham_DanhSach.aspx") %>"
-                                                            class="mobile-links__item-link">3 Columns Sidebar</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a
-                                                            href="shop-grid-4-columns-full.html"
-                                                            class="mobile-links__item-link">4 Columns Full</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a
-                                                            href="shop-grid-5-columns-full.html"
-                                                            class="mobile-links__item-link">5 Columns Full</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
                                     <li class="mobile-links__item" data-collapse-item>
                                         <div class="mobile-links__item-title">
                                             <a href="shop-list.html"
-                                                class="mobile-links__item-link">Shop List</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="shop-right-sidebar.html"
-                                                class="mobile-links__item-link">Shop Right Sidebar</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="product.html"
-                                                class="mobile-links__item-link">Product</a>
-                                            <button
-                                                class="mobile-links__item-toggle" type="button" data-collapse-trigger>
-                                                <svg
-                                                    class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                                </svg></button>
-                                        </div>
-                                        <div class="mobile-links__item-sub-links" data-collapse-content>
-                                            <ul class="mobile-links mobile-links--level--2">
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="product.html"
-                                                            class="mobile-links__item-link">Product</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="product-alt.html"
-                                                            class="mobile-links__item-link">Product Alt</a>
-                                                    </div>
-                                                </li>
-                                                <li class="mobile-links__item" data-collapse-item>
-                                                    <div class="mobile-links__item-title">
-                                                        <a href="product-sidebar.html"
-                                                            class="mobile-links__item-link">Product Sidebar</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="cart.html<%=ResolveUrl("~/GioHang.aspx") %>">class="mobile-links__item-link">Cart</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="checkout.html"
-                                                class="mobile-links__item-link">Checkout</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="wishlist.html"
-                                                class="mobile-links__item-link">Wishlist</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="compare.html"
-                                                class="mobile-links__item-link">Compare</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="account.html"
-                                                class="mobile-links__item-link">My Account</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="track-order.html"
-                                                class="mobile-links__item-link">Track Order</a>
+                                                class="mobile-links__item-link">Adidas</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -371,172 +197,31 @@
                         </li>
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
-                                <a href="blog-classic.html"
-                                    class="mobile-links__item-link">Blog</a>
-                                <button class="mobile-links__item-toggle"
-                                    type="button" data-collapse-trigger>
-                                    <svg class="mobile-links__item-arrow" width="12px"
-                                        height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                    </svg></button>
-                            </div>
-                            <div class="mobile-links__item-sub-links" data-collapse-content>
-                                <ul class="mobile-links mobile-links--level--1">
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="blog-classic.html"
-                                                class="mobile-links__item-link">Blog Classic</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="mobile-links__item" data-collapse-item>
-                            <div class="mobile-links__item-title">
-                                <a href="#" class="mobile-links__item-link">Pages</a>
-                                <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
-                                    <svg
-                                        class="mobile-links__item-arrow" width="12px" height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                    </svg></button>
-                            </div>
-                            <div class="mobile-links__item-sub-links" data-collapse-content>
-                                <ul class="mobile-links mobile-links--level--1">
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="about-us.html"
-                                                class="mobile-links__item-link">Về The Shuz</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="contact-us.html"
-                                                class="mobile-links__item-link">Liên hệ</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="contact-us-alt.html"
-                                                class="mobile-links__item-link">Contact Us Alt</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="404.html"
-                                                class="mobile-links__item-link">404</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="terms-and-conditions.html"
-                                                class="mobile-links__item-link">Terms And Conditions</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="faq.html"
-                                                class="mobile-links__item-link">FAQ</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="components.html"
-                                                class="mobile-links__item-link">Components</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="typography.html"
-                                                class="mobile-links__item-link">Typography</a>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <a href="#" class="mobile-links__item-link">Kênh người bán</a>
                             </div>
                         </li>
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
                                 <a data-collapse-trigger
-                                    class="mobile-links__item-link">Currency</a>
-                                <button class="mobile-links__item-toggle"
-                                    type="button" data-collapse-trigger>
-                                    <svg class="mobile-links__item-arrow" width="12px"
-                                        height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                    </svg></button>
-                            </div>
-                            <div class="mobile-links__item-sub-links" data-collapse-content>
-                                <ul class="mobile-links mobile-links--level--1">
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="#" class="mobile-links__item-link">€
-                                            Euro</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="#" class="mobile-links__item-link">£
-                                            Pound Sterling</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="#" class="mobile-links__item-link">$
-                                            US Dollar</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="#" class="mobile-links__item-link">₽
-                                            Russian Ruble</a>
-                                        </div>
-                                    </li>
-                                </ul>
+                                    class="mobile-links__item-link">Theo dõi đơn hàng</a>
+                            </div>                            
+                        </li>
+                        <li class="mobile-links__item" data-collapse-item>
+                            <div class="mobile-links__item-title">
+                                <a href="#" data-collapse-trigger
+                                    class="mobile-links__item-link">Về The Shuz</a>
                             </div>
                         </li>
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
-                                <a data-collapse-trigger
-                                    class="mobile-links__item-link">Language</a>
-                                <button class="mobile-links__item-toggle"
-                                    type="button" data-collapse-trigger>
-                                    <svg class="mobile-links__item-arrow" width="12px"
-                                        height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                    </svg></button>
+                                <a href="#" data-collapse-trigger
+                                    class="mobile-links__item-link">Đăng nhập</a>
                             </div>
-                            <div class="mobile-links__item-sub-links" data-collapse-content>
-                                <ul class="mobile-links mobile-links--level--1">
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="#"
-                                                class="mobile-links__item-link">English</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="#"
-                                                class="mobile-links__item-link">French</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="#"
-                                                class="mobile-links__item-link">German</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="#"
-                                                class="mobile-links__item-link">Russian</a>
-                                        </div>
-                                    </li>
-                                    <li class="mobile-links__item" data-collapse-item>
-                                        <div class="mobile-links__item-title">
-                                            <a href="#"
-                                                class="mobile-links__item-link">Italian</a>
-                                        </div>
-                                    </li>
-                                </ul>
+                        </li>
+                        <li class="mobile-links__item" data-collapse-item>
+                            <div class="mobile-links__item-title">
+                                <a href="#" data-collapse-trigger
+                                    class="mobile-links__item-link">Đăng ký</a>
                             </div>
                         </li>
                     </ul>
@@ -623,15 +308,15 @@
                             <div class="topbar__row">
                                 <div class="topbar__item topbar__item--link">
                                     <a class="topbar-link"
-                                        href="about-us.html">Về The Shuz</a>
+                                        href="#">Về The Shuz</a>
                                 </div>
                                 <div class="topbar__item topbar__item--link">
                                     <a class="topbar-link"
-                                        href="contact-us.html">Liên hệ</a>
+                                        href="#">Liên hệ</a>
                                 </div>
                                 <div class="topbar__item topbar__item--link">
                                     <a class="topbar-link"
-                                        href="track-order.html">Theo dõi đơn hàng</a>
+                                        href="#">Theo dõi đơn hàng</a>
                                 </div>
                                 <div class="topbar__item topbar__item--link">
                                     <a class="topbar-link"
@@ -698,7 +383,7 @@
                                                 <!-- .megamenu / end -->
                                             </li>
                                             <li class="nav-links__item nav-links__item--with-submenu"><a
-                                                href="<%=ResolveUrl("~/SanPham_DanhSach.aspx") %>"><span>Thương hiệu
+                                                href="<%=ResolveUrl("~/Pro_List.aspx") %>"><span>Thương hiệu
                                                         <svg
                                                             class="nav-links__arrow" width="9px" height="6px">
                                                             <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6">
@@ -707,7 +392,7 @@
                                                 <div class="nav-links__menu">
                                                     <!-- .menu -->
                                                     <ul class="menu menu--layout--classic">
-                                                        <li><a href="<%=ResolveUrl("~/SanPham_DanhSach.aspx") %>">ADIAS</a>
+                                                        <li><a href="<%=ResolveUrl("~/Pro_List.aspx") %>">ADIAS</a>
 
                                                         </li>
 
@@ -748,7 +433,7 @@
                                             </div>
                                         </div>
                                         <div class="indicator">
-                                            <a href="wishlist.html" class="indicator__button"><span
+                                            <a href="#" class="indicator__button"><span
                                                 class="indicator__area">
                                                 <svg width="20px" height="20px">
                                                     <use xlink:href="images/sprite.svg#heart-20"></use>
@@ -871,8 +556,8 @@
                                                         </table>
                                                     </div>
                                                     <div class="dropcart__buttons">
-                                                        <a class="btn btn-secondary" href="<%=ResolveUrl("~/GioHang.aspx") %>">Vào giỏ hàng</a>
-                                                        <a class="btn btn-primary" href="<%=ResolveUrl("~/ThanhToan.aspx") %>">Thanh toán</a>
+                                                        <a class="btn btn-secondary" href="<%=ResolveUrl("~/Cart.aspx") %>">Vào giỏ hàng</a>
+                                                        <a class="btn btn-primary" href="<%=ResolveUrl("~/Checkout.aspx") %>">Thanh toán</a>
                                                     </div>
                                                 </div>
                                                 <!-- .dropcart / end -->
