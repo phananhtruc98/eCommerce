@@ -2,7 +2,7 @@
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public interface IProBrand : ITable<ProBrand>
+    public interface IProBrand : ITableOnePrimary<ProBrand>
     {
     }
 }

@@ -2363,7 +2363,7 @@
     <Compile Include="BusinessLogicLayer\Interfaces\IBusiness.cs" />
     <Compile Include="BusinessLogicLayer\Interfaces\IProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Interfaces\IWebInfo.cs" />
-    <Compile Include="BusinessLogicLayer\Sub_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\Tables_BUS\Sub_BUS.cs" />
     <Compile Include="DataAccessLogicLayer\Cart.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
