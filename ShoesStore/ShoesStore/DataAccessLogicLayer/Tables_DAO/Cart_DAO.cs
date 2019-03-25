@@ -1,27 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using ShoesStore.DataAccessLogicLayer.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
 {
-    public class Sub_DAO:ISub
+    public class Cart_DAO:ICart
     {
-        public void Delete(Sub obj)
+        public void Delete(Cart obj)
         {
             throw new NotImplementedException();
         }
 
-        public List<Sub> GetAll()
+        public List<Cart> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Sub obj)
+        public void Insert(Cart obj)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Sub obj)
+        public void Update(Cart obj)
         {
             throw new NotImplementedException();
         }
@@ -31,12 +33,7 @@ namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
             throw new NotImplementedException();
         }
 
-        public List<Sub> Filter(Sub obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Sub GetByPrimaryKeys(int id)
+        public List<Cart> Filter(Cart obj)
         {
             throw new NotImplementedException();
         }

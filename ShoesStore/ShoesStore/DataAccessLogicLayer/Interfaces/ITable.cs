@@ -2,11 +2,13 @@
 
 namespace ShoesStore.DataAccessLogicLayer.Interfaces
 {
-    public interface ITable<Void>
+    public interface ITable<T>
     {
-        void Delete(Void obj);
-        List<Void> GetAll();
-        void Insert(Void obj);
-        void Update(Void obj);
+        void Delete(T obj);
+        List<T> GetAll();
+        void Insert(T obj);
+        void Update(T obj);
+        void SetActive();
+        List<T> Filter(T obj);
     }
 }

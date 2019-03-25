@@ -25,5 +25,15 @@ namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
         {
             throw new NotImplementedException();
         }
+
+        public void SetActive()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ProBrand> Filter(ProBrand obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

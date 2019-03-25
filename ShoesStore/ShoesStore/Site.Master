@@ -77,7 +77,8 @@
                         </div>
                         <div class="form-group py-4">
                             <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
-                            <button type="submit" class="btn btn-primary btn-lg float-right custom_font" id="btnLogin">Đăng nhập</button>
+                            <asp:Button runat="server" id="btnLogin" Text="Đăng nhập" CssClass="btn btn-primary btn-lg float-right custom_font" OnClick="btnLogin_Click"/>
+                            
                         </div>
                     </div>
                 </div>

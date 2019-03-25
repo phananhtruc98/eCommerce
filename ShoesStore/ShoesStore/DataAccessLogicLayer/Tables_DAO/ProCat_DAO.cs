@@ -32,6 +32,16 @@ namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
             DataProvider.Instance().SaveChanges();
         }
 
+        public void SetActive()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<ProCat> Filter(ProCat obj)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<ProCat> GetPopularProCats(int n)
         {
             throw new System.NotImplementedException();

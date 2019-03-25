@@ -29,6 +29,16 @@ namespace ShoesStore.BusinessLogicLayer.Tables_BUS
             throw new NotImplementedException();
         }
 
+        public void SetActive()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ProBrand> Filter(ProBrand obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public ProBrand GetById(int id)
         {
             throw new NotImplementedException();

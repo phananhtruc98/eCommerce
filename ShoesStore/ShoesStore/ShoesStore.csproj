@@ -2379,11 +2379,14 @@
     <Compile Include="DataAccessLogicLayer\Cus.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\Interfaces\ICart.cs" />
+    <Compile Include="DataAccessLogicLayer\Interfaces\IPro.cs" />
+    <Compile Include="DataAccessLogicLayer\Interfaces\ITableOnePrimary.cs" />
+    <Compile Include="DataAccessLogicLayer\Tables_DAO\Cart_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Tables_DAO\Cus_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\DataProvider.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\ICus.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\ITable.cs" />
-    <Compile Include="DataAccessLogicLayer\Interfaces\ITableOnePrimary.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\IProBrand.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\IProCat.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\ISub.cs" />
@@ -2567,6 +2570,7 @@
     <Compile Include="Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyExtensions\ProExtension.cs" />
     <Compile Include="Pro_Detail.aspx.cs">
       <DependentUpon>Pro_Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

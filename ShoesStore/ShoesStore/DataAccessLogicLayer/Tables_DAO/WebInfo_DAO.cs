@@ -33,6 +33,16 @@ namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
             DataProvider.Instance().SaveChanges();
         }
 
+        public void SetActive()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<WebInfo> Filter(WebInfo obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<WebSlide> GetSlides()
         {
             throw new NotImplementedException();
