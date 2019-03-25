@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin Free Bootstrap-4 Admin Dashboard Template</title>
+    <title>WebMaster Page</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.base.css">
@@ -17,8 +17,12 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/Admin/css/style.css">
+    
     <!-- endinject -->
     <link rel="shortcut icon" href="/Admin/images/favicon.png" />
+    <link rel="stylesheet" href="/Admin/css/customstyle.css"/>
+
+
 </head>
 
 <body>
@@ -27,31 +31,18 @@
         </asp:ScriptManager>
         <div class="container-scroller">
             <!-- partial:partials/_navbar.html -->
-            <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row nav_custom">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
                     <a class="navbar-brand brand-logo" href="/Admin/index.html">
-                        <img src="images/logo.svg" alt="logo" />
+                       <p class="logo_style">THE SHUZ</p>
                     </a>
                     <a class="navbar-brand brand-logo-mini" href="/Admin/index.html">
-                        <img src="images/logo-mini.svg" alt="logo" />
+                       <p  class="logo_style_mini">THE 
+                           SHUZ</p>
                     </a>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-center">
-                    <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Schedule
-              <span class="badge badge-primary ml-1">New</span>
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a href="#" class="nav-link">
-                                <i class="mdi mdi-elevation-rise"></i>Reports</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
-                        </li>
-                    </ul>
+                    
                     <ul class="navbar-nav navbar-nav-right">
                         <li class="nav-item dropdown">
                             <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -167,7 +158,7 @@
                         </li>
                         <li class="nav-item dropdown d-none d-xl-inline-block">
                             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                                <span class="profile-text">Hello, Lê DZĂN Đạt :))</span>
+                                <span class="profile-text">Xin chào, Mèo :))</span>
                                 <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="Profile image">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -184,13 +175,13 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item mt-2">Manage Accounts
+                                <a class="dropdown-item mt-2" href="#">Quản lý tài khoản
                                 </a>
-                                <a class="dropdown-item">Change Password
+                                <a class="dropdown-item" href="#">Thay đổi mật khẩu
                                 </a>
-                                <a class="dropdown-item">Check Inbox
+                                <a class="dropdown-item" href="#">Tin nhắn
                                 </a>
-                                <a class="dropdown-item">Sign Out
+                                <a class="dropdown-item" href="#">Đăng xuất
                                 </a>
                             </div>
                         </li>
@@ -212,91 +203,58 @@
                                         <img src="images/faces/face1.jpg" alt="profile image">
                                     </div>
                                     <div class="text-wrapper">
-                                        <p class="profile-name">Richard V.Welsh</p>
+                                        <p class="profile-name">Mèo</p>
                                         <div>
-                                            <small class="designation text-muted">Manager</small>
+                                            <small class="designation text-muted">Admin</small>
                                             <span class="status-indicator online"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-success btn-block">
-                                    New Project
-                <i class="mdi mdi-plus"></i>
-                                </button>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Admin/index.html">
+                            <a class="nav-link" href="<%=ResolveUrl("~/Admin/Default.aspx") %>">
                                 <i class="menu-icon mdi mdi-television"></i>
-                                <span class="menu-title">Dashboard</span>
+                                <span class="menu-title">Tổng quan</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                                <i class="menu-icon mdi mdi-content-copy"></i>
-                                <span class="menu-title">Basic UI Elements</span>
+                                <i class="menu-icon mdi mdi-account"></i>
+                                <span class="menu-title" >Quản lý người dùng</span>
                                 <i class="menu-arrow"></i>
                             </a>
                             <div class="collapse" id="ui-basic">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/pages/ui-features/buttons.html">Buttons</a>
+                                        <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageAdministrator.aspx") %>">Quản trị web</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/pages/ui-features/typography.html">Typography</a>
+                                        <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageMerchant.aspx") %>">Người bán</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageCustomer.aspx") %>">Người mua</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Admin/pages/forms/basic_elements.html">
-                                <i class="menu-icon mdi mdi-backup-restore"></i>
-                                <span class="menu-title">Form elements</span>
+                            <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageService.aspx") %>">
+                                <i class="menu-icon mdi mdi-server"></i>
+                                <span class="menu-title">Quản lý gói dịch vụ</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Admin/pages/charts/chartjs.html">
-                                <i class="menu-icon mdi mdi-chart-line"></i>
-                                <span class="menu-title">Charts</span>
+                            <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageService.aspx") %>">
+                                <i class="menu-icon mdi mdi-shopping"></i>
+                                <span class="menu-title">Quản lý sản phẩm</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Admin/pages/tables/basic-table.html">
-                                <i class="menu-icon mdi mdi-table"></i>
-                                <span class="menu-title">Tables</span>
+                            <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageService.aspx") %>">
+                                <i class="menu-icon mdi mdi-receipt"></i>
+                                <span class="menu-title">Quản lý hóa đơn</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/pages/icons/font-awesome.html">
-                                <i class="menu-icon mdi mdi-sticker"></i>
-                                <span class="menu-title">Icons</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                                <i class="menu-icon mdi mdi-restart"></i>
-                                <span class="menu-title">User Pages</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="collapse" id="auth">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/pages/samples/blank-page.html">Blank Page </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/pages/samples/login.html">Login </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/pages/samples/register.html">Register </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/pages/samples/error-404.html">404 </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/Admin/pages/samples/error-500.html">500 </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                     </ul>
                 </nav>
@@ -308,8 +266,8 @@
                     <!-- partial:partials/_footer.html -->
                     <footer class="footer">
                         <div class="container-fluid clearfix">
-                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-              <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
+                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block"> © 2019
+              <a href="<%=ResolveUrl("~/Default.aspx")  %>" target="_blank">The Shuz</a>. Tất cả các quyền được bảo lưu.</span>
                             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
               <i class="mdi mdi-heart text-danger"></i>
                             </span>

@@ -120,9 +120,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\Admin.aspx" />
+    <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\css\customstyle.css" />
     <Content Include="Admin\css\style.css" />
     <Content Include="Admin\fonts\Roboto\LICENSE.txt" />
+    <Content Include="Admin\gulpfile.js" />
     <Content Include="Admin\images\auth\login_1.jpg" />
     <Content Include="Admin\images\auth\register.jpg" />
     <Content Include="Admin\images\faces-clipart\pic-1.png" />
@@ -265,6 +267,12 @@
     <Content Include="Admin\js\maps.js" />
     <Content Include="Admin\js\misc.js" />
     <Content Include="Admin\js\off-canvas.js" />
+    <Content Include="Admin\ManageAdministrator.aspx" />
+    <Content Include="Admin\ManageCustomer.aspx" />
+    <Content Include="Admin\ManageMerchant.aspx" />
+    <Content Include="Admin\ManageProduct.aspx" />
+    <Content Include="Admin\ManageReceipt.aspx" />
+    <Content Include="Admin\ManageService.aspx" />
     <Content Include="Admin\pages\charts\chartjs.html" />
     <Content Include="Admin\pages\forms\basic_elements.html" />
     <Content Include="Admin\pages\icons\font-awesome.html" />
@@ -1989,7 +1997,6 @@
     <Content Include="fonts\stroyka\stroyka.ttf" />
     <Content Include="fonts\stroyka\stroyka.woff" />
     <Content Include="Admin\Admin.Master" />
-    <Content Include="Admin\css\maps\style.css.map" />
     <Content Include="Admin\fonts\Roboto\Roboto-Black.ttf" />
     <Content Include="Admin\fonts\Roboto\Roboto-BlackItalic.ttf" />
     <Content Include="Admin\fonts\Roboto\Roboto-Bold.ttf" />
@@ -2035,7 +2042,6 @@
     <Content Include="Admin\scss\_footer.scss" />
     <Content Include="Admin\scss\_functions.scss" />
     <Content Include="Admin\scss\_misc.scss" />
-    <Content Include="Admin\scss\_navbar.scss" />
     <Content Include="Admin\scss\_reset.scss" />
     <Content Include="Admin\scss\_sidebar.scss" />
     <Content Include="Admin\scss\_typography.scss" />
@@ -2162,6 +2168,10 @@
     <Content Include="DataAccessLogicLayer\ShoesStoreDBModel.edmx.diagram">
       <DependentUpon>ShoesStoreDBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Admin\package-lock.json" />
+    <Content Include="Admin\package.json" />
+    <Content Include="Admin\css\maps\style.css.map" />
+    <Content Include="Admin\scss\_navbar.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="images\aboutus.jpg" />
     <Content Include="images\avatars\avatar-1.jpg" />
@@ -2288,12 +2298,12 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\Admin.aspx.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
+    <Compile Include="Admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Admin.aspx.designer.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
+    <Compile Include="Admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
@@ -2301,6 +2311,48 @@
     </Compile>
     <Compile Include="Admin\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageAdministrator.aspx.cs">
+      <DependentUpon>ManageAdministrator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageAdministrator.aspx.designer.cs">
+      <DependentUpon>ManageAdministrator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageCustomer.aspx.cs">
+      <DependentUpon>ManageCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageCustomer.aspx.designer.cs">
+      <DependentUpon>ManageCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageMerchant.aspx.cs">
+      <DependentUpon>ManageMerchant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageMerchant.aspx.designer.cs">
+      <DependentUpon>ManageMerchant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageProduct.aspx.cs">
+      <DependentUpon>ManageProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageProduct.aspx.designer.cs">
+      <DependentUpon>ManageProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageReceipt.aspx.cs">
+      <DependentUpon>ManageReceipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageReceipt.aspx.designer.cs">
+      <DependentUpon>ManageReceipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageService.aspx.cs">
+      <DependentUpon>ManageService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageService.aspx.designer.cs">
+      <DependentUpon>ManageService.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

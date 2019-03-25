@@ -1,0 +1,21 @@
+﻿.navbar-brand-wrapper {
+    background: #ffd333;
+}
+.logo_style{
+    font-size: 26px;
+    color: black;
+    font-weight:bold;
+    font-family:'Times New Roman', Times, serif;
+}
+.logo_style_mini {
+    font-size: 12px;
+    color: black;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+.navbar.default-layout {
+    background: #ffd333;
+}
+.navbar.default-layout .navbar-menu-wrapper {
+    color: black;
+}
