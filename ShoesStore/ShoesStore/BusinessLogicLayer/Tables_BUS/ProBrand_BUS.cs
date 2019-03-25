@@ -19,17 +19,17 @@ namespace ShoesStore.BusinessLogicLayer.Tables_BUS
             return proBrand.GetAll();
         }
 
+        public ProBrand GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Insert(ProBrand obj)
         {
             throw new NotImplementedException();
         }
 
         public void Update(ProBrand obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ProBrand GetById(int id)
         {
             throw new NotImplementedException();
         }

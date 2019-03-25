@@ -1,4 +1,5 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
+using ShoesStore.DataAccessLogicLayer.Tables_DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,15 @@ namespace ShoesStore.BusinessLogicLayer
 {
     public class Sub_BUS : ISub_BUS
     {
-
+        private readonly ISub sub = new Sub_DAO();
         public void Delete(Sub obj)
         {
-            throw new NotImplementedException();
+            sub.Delete(obj);
         }
 
         public List<Sub> GetAll()
         {
-            throw new NotImplementedException();
+            return sub.GetAll();
         }
 
         public Sub GetById(int id)

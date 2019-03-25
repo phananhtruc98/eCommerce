@@ -7,7 +7,7 @@ using System.Web.DynamicData;
 
 namespace ShoesStore.DataAccessLogicLayer.Interfaces
 {
-    interface ITableOnePrimary<T>:ITable<T>
+    public interface ITableOnePrimary<T>:ITable<T>
     {
         T GetByPrimaryKeys(int id);
     }
