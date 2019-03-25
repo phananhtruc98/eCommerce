@@ -33,10 +33,10 @@
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row nav_custom">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-                    <a class="navbar-brand brand-logo" href="/Admin/index.html">
+                    <a class="navbar-brand brand-logo" href="<%=ResolveUrl("~/Admin/Default.aspx")%>">
                        <p class="logo_style">THE SHUZ</p>
                     </a>
-                    <a class="navbar-brand brand-logo-mini" href="/Admin/index.html">
+                    <a class="navbar-brand brand-logo-mini" href="<%=ResolveUrl("~/Admin/Default.aspx")%>">
                        <p  class="logo_style_mini">THE 
                            SHUZ</p>
                     </a>
@@ -245,13 +245,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageService.aspx") %>">
+                            <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageProduct.aspx") %>">
                                 <i class="menu-icon mdi mdi-shopping"></i>
                                 <span class="menu-title">Quản lý sản phẩm</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageService.aspx") %>">
+                            <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageReceipt.aspx") %>">
                                 <i class="menu-icon mdi mdi-receipt"></i>
                                 <span class="menu-title">Quản lý hóa đơn</span>
                             </a>
@@ -267,7 +267,7 @@
                     <footer class="footer">
                         <div class="container-fluid clearfix">
                             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block"> © 2019
-              <a href="<%=ResolveUrl("~/Default.aspx")  %>" target="_blank">The Shuz</a>. Tất cả các quyền được bảo lưu.</span>
+              <a href="<%=ResolveUrl("~/Admin/Default.aspx")%>" target="_blank">The Shuz</a>. Tất cả các quyền được bảo lưu.</span>
                             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
               <i class="mdi mdi-heart text-danger"></i>
                             </span>

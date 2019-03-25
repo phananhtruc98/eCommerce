@@ -9,7 +9,7 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public List<ProBrand> GetAll()
         {
-            throw new NotImplementedException();
+            return DataProvider.Instance().ProBrand.ToList();
         }
 
         public void Delete(ProBrand obj)
