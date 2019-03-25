@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using ShoesStore.DataAccessLogicLayer;
+using ShoesStore.DataAccessLogicLayer.Tables_DAO;
 
-namespace ShoesStore.BusinessLogicLayer
+namespace ShoesStore.BusinessLogicLayer.Tables_BUS
 {
     internal class ProCat_BUS : IProCat_BUS
     {

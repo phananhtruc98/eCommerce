@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace ShoesStore.DataAccessLogicLayer
+namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
 {
     public class WebInfo_DAO : IWebInfo
     {
@@ -19,16 +19,11 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance().SaveChanges();
         }
 
-        public WebInfo GetByPrimaryKeys(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public WebInfo Insert(WebInfo obj)
+        public void Insert(WebInfo obj)
         {
             DataProvider.Instance().WebInfo.Add(obj);
             DataProvider.Instance().SaveChanges();
-            return obj;
+            
         }
 
         public void Update(WebInfo obj)

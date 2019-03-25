@@ -1,6 +1,6 @@
 ﻿namespace ShoesStore.DataAccessLogicLayer.Interfaces
 {
-    internal interface ICus : IDataAccess<Cus>
+    internal interface ICus : IUsr<Cus>
     {
     }
 }

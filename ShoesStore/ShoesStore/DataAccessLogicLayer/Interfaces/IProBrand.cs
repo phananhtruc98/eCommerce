@@ -1,6 +1,8 @@
-﻿namespace ShoesStore.DataAccessLogicLayer
+﻿using ShoesStore.DataAccessLogicLayer.Interfaces;
+
+namespace ShoesStore.DataAccessLogicLayer
 {
-    public interface IProBrand : IDataAccess<ProBrand>
+    public interface IProBrand : ITable<ProBrand>
     {
     }
 }
