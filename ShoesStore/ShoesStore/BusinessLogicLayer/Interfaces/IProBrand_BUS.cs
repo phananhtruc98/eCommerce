@@ -1,6 +1,6 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
 
-namespace ShoesStore.BusinessLogicLayer.Interfaces
+namespace ShoesStore.BusinessLogicLayer
 {
     public interface IProBrand_BUS : IBusiness<ProBrand, int>
     {
