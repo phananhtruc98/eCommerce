@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ShoesStore.DataAccessLogicLayer.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
@@ -8,12 +9,12 @@ namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
     {
         public void Delete(Sub obj)
         {
-            throw new NotImplementedException();
+            DataProvider.Instance().Sub.Remove(obj);
+            DataProvider.Instance().SaveChanges();
         }
-
         public List<Sub> GetAll()
         {
-            throw new NotImplementedException();
+            return DataProvider.Instance().Sub.ToList();
         }
 
         public void Insert(Sub obj)
