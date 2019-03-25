@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public interface IProCat : IDataAccess<ProCat, int>
+    public interface IProCat : IDataAccess<ProCat>
     {
       
     }

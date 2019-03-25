@@ -7,20 +7,18 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     public class ProBrand_DAO : IProBrand
     {
-        public void Delete(ProBrand obj)
-        {
-          
-        }
-
         public List<ProBrand> GetAll()
         {
-            return DataProvider.Instance().ProBrand.ToList();
+            throw new NotImplementedException();
         }
 
-        public ProBrand GetById(int id)
+        public void Delete(ProBrand obj)
         {
-            // DataProvider.Instance().ProBrand_Select(id);
+            throw new NotImplementedException();
+        }
 
+        public ProBrand GetByPrimaryKeys(int id)
+        {
             throw new NotImplementedException();
         }
 
@@ -32,12 +30,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public void Update(ProBrand obj)
         {
             throw new NotImplementedException();
-        }
-        public ProBrand_Select_Result ProBrand_Select(int id)
-        {
-          return  DataProvider.Instance().ProBrand_Select(id).FirstOrDefault();
-
-          
         }
     }
 }

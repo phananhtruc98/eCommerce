@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShoesStore.DataAccessLogicLayer
+namespace ShoesStore.DataAccessLogicLayer.Interfaces
 {
-    public interface IProBrand: IDataAccess<ProBrand>
+    interface ICus:IDataAccess<Cus>
     {
-        
     }
 }

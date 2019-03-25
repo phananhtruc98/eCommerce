@@ -10,22 +10,10 @@
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class WebInfo
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public WebInfo()
-        {
-            this.WebSlide = new HashSet<WebSlide>();
-        }
-    
-        public int WebId { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string WorkTime { get; set; }
-    
-        public virtual ICollection<WebSlide> WebSlide { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
