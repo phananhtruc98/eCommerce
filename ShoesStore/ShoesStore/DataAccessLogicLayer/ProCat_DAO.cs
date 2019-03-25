@@ -20,6 +20,11 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance().SaveChanges();
         }
 
+        public ProCat GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public ProCat GetById(int id)
         {
             return DataProvider.Instance().ProCat.Find(id);

@@ -17,5 +17,10 @@ namespace ShoesStore.DataAccessLogicLayer
         public int id { get; set; }
         public Nullable<int> WebId { get; set; }
         public string Img { get; set; }
+        public Nullable<int> Order { get; set; }
+        public Nullable<System.DateTime> DateAdd { get; set; }
+        public Nullable<System.DateTime> DateEdit { get; set; }
+    
+        public virtual WebInfo WebInfo { get; set; }
     }
 }

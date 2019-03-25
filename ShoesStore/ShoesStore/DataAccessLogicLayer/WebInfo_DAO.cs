@@ -21,6 +21,11 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance().SaveChanges();
         }
 
+        public WebInfo GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public WebInfo GetById(int id)
         {
             return DataProvider.Instance().WebInfo.Find(id);
@@ -38,6 +43,11 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance().WebInfo.Attach(obj);
             DataProvider.Instance().Entry(obj).State = EntityState.Modified;
             DataProvider.Instance().SaveChanges();
+        }
+
+        public List<WebSlide> GetSlides()
+        {
+            throw new NotImplementedException();
         }
     }
 }
