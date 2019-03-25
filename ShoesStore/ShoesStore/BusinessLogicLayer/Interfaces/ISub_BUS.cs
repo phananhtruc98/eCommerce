@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public interface ISub_BUS: IBusiness<ISub,int>
+    public interface ISub_BUS: IBusiness<Sub,int>
     {
     }
 }
