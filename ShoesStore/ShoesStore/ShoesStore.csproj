@@ -2357,8 +2357,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogicLayer\Interfaces\IProBrand_BUS.cs" />
-    <Compile Include="BusinessLogicLayer\ProBrand_BUS.cs" />
-    <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\Tables_BUS\ProBrand_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\Tables_BUS\ProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Interfaces\IBusiness.cs" />
     <Compile Include="BusinessLogicLayer\Interfaces\IProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Interfaces\IWebInfo.cs" />
@@ -2377,11 +2377,15 @@
     <Compile Include="DataAccessLogicLayer\Cus.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\Tables_DAO\Cus_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\DataProvider.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\ICus.cs" />
-    <Compile Include="DataAccessLogicLayer\Interfaces\IDataAccess.cs" />
+    <Compile Include="DataAccessLogicLayer\Interfaces\ITable.cs" />
+    <Compile Include="DataAccessLogicLayer\Interfaces\ITableOnePrimary.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\IProBrand.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\IProCat.cs" />
+    <Compile Include="DataAccessLogicLayer\Interfaces\ISub.cs" />
+    <Compile Include="DataAccessLogicLayer\Interfaces\IUsr.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\IWebInfo.cs" />
     <Compile Include="DataAccessLogicLayer\Mer.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
@@ -2401,14 +2405,14 @@
     <Compile Include="DataAccessLogicLayer\ProBrand.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLogicLayer\ProBrand_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\Tables_DAO\ProBrand_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\ProBrand_Select_Result.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\ProCat.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLogicLayer\ProCat_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\Tables_DAO\ProCat_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\ProCat_Select_Result.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
@@ -2508,6 +2512,7 @@
     <Compile Include="DataAccessLogicLayer\SubDet_Select_Result.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\Tables_DAO\Sub_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Sub_Select_Result.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
@@ -2517,13 +2522,14 @@
     <Compile Include="DataAccessLogicLayer\Usr.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\Tables_DAO\Usr_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Usr_Select_Result.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\WebInfo.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLogicLayer\WebInfo_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\Tables_DAO\WebInfo_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\WebInfo_Insert_Result.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>

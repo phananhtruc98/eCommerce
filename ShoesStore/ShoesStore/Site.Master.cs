@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ShoesStore.BusinessLogicLayer;
+using ShoesStore.BusinessLogicLayer.Tables_BUS;
+using ShoesStore.DataAccessLogicLayer;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ShoesStore.BusinessLogicLayer;
-using ShoesStore.BusinessLogicLayer;
-using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore
 {
     public partial class SiteMaster : MasterPage
     {
-        IProCat_BUS proCat;
-        IProBrand proBrand;
+        IProCat_BUS _proCat;
+        IProBrand _proBrand;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -25,15 +23,15 @@ namespace ShoesStore
      
         protected void rptProCat_Init(object sender, EventArgs e)
         {
-            proCat = new ProCat_BUS();
-            rptProCat.DataSource = proCat.GetAll().ToList();
+            _proCat = new ProCat_BUS();
+            rptProCat.DataSource = _proCat.GetAll().ToList();
             rptProCat.DataBind();
         }
 
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
-            proBrand = new ProBrand_BUS();
-            rptProBrand.DataSource = proBrand.GetAll().ToList();
+            _proBrand = new ProBrand_BUS();
+            rptProBrand.DataSource = _proBrand.GetAll().ToList();
             rptProBrand.DataBind();
         }
     }

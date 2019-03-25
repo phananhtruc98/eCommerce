@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace ShoesStore.DataAccessLogicLayer
+namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
 {
     public class ProBrand_DAO : IProBrand
     {
@@ -15,12 +16,7 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ProBrand GetByPrimaryKeys(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ProBrand Insert(ProBrand obj)
+        public void Insert(ProBrand obj)
         {
             throw new NotImplementedException();
         }

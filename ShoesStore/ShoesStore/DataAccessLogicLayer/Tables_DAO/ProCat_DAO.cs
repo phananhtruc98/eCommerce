@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace ShoesStore.DataAccessLogicLayer
+namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
 {
     public class ProCat_DAO : IProCat
     {
@@ -19,16 +18,11 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance().SaveChanges();
         }
 
-        public ProCat GetByPrimaryKeys(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ProCat Insert(ProCat obj)
+        public void Insert(ProCat obj)
         {
             DataProvider.Instance().ProCat.Add(obj);
             DataProvider.Instance().SaveChanges();
-            return obj;
+
         }
 
         public void Update(ProCat obj)
@@ -36,6 +30,11 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance().ProCat.Attach(obj);
             DataProvider.Instance().Entry(obj).State = EntityState.Modified;
             DataProvider.Instance().SaveChanges();
+        }
+
+        public List<ProCat> GetPopularProCats(int n)
+        {
+            throw new System.NotImplementedException();
         }
 
         public ProCat GetById(int id)

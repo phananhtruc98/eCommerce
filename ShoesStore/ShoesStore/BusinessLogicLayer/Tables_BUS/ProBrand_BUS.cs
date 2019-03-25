@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using ShoesStore.DataAccessLogicLayer;
+using ShoesStore.DataAccessLogicLayer.Tables_DAO;
 
-namespace ShoesStore.BusinessLogicLayer
+namespace ShoesStore.BusinessLogicLayer.Tables_BUS
 {
     public class ProBrand_BUS : IProBrand
     {
@@ -13,17 +14,12 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ProBrand GetByPrimaryKeys(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<ProBrand> GetAll()
         {
             return proBrand.GetAll();
         }
 
-        public ProBrand Insert(ProBrand obj)
+        public void Insert(ProBrand obj)
         {
             throw new NotImplementedException();
         }
