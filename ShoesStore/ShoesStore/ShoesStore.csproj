@@ -2522,11 +2522,8 @@
     <Compile Include="DataAccessLogicLayer\SubDet_Select_Result.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="DataAccessLogicLayer\Sub_DAO.cs" />
-=======
+
     <Compile Include="DataAccessLogicLayer\Tables_DAO\Sub_DAO.cs" />
->>>>>>> f9a4d427646e7d84577ceb9c2782222adec5bfbf
     <Compile Include="DataAccessLogicLayer\Sub_Select_Result.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
