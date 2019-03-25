@@ -43,5 +43,10 @@ namespace ShoesStore.BusinessLogicLayer.Tables_BUS
         {
             throw new NotImplementedException();
         }
+
+        public ProBrand GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -35,5 +35,10 @@ namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
         {
             throw new NotImplementedException();
         }
+
+        public ProBrand GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
