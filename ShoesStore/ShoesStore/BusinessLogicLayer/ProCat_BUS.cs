@@ -1,15 +1,12 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ShoesStore.DataAccessLogicLayer;
+
 namespace ShoesStore.BusinessLogicLayer
 {
-    class ProCat_BUS:IProCat_BUS
+    internal class ProCat_BUS : IProCat_BUS
     {
-        private IProCat _dao = new ProCat_DAO();
+        private readonly IProCat _dao = new ProCat_DAO();
 
         public void Delete(ProCat obj)
         {
