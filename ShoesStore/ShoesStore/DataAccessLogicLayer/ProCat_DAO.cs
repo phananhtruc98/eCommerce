@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class ProCat_DAO : IProCat
@@ -25,11 +24,6 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ProCat GetById(int id)
-        {
-            return DataProvider.Instance().ProCat.Find(id);
-        }
-
         public ProCat Insert(ProCat obj)
         {
             DataProvider.Instance().ProCat.Add(obj);
@@ -42,6 +36,11 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance().ProCat.Attach(obj);
             DataProvider.Instance().Entry(obj).State = EntityState.Modified;
             DataProvider.Instance().SaveChanges();
+        }
+
+        public ProCat GetById(int id)
+        {
+            return DataProvider.Instance().ProCat.Find(id);
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Net;
 using System.Net.Mail;
-using System.Configuration;
 using Logger;
 
 namespace Utilities
@@ -11,23 +9,27 @@ namespace Utilities
     {
         public static string SendGmail(string fromMail, string passFromMail, string mailTo, string subject, string body)
         {
-            string msg = "";
+            var msg = "";
             try
             {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress(fromMail);
+                var mail = new MailMessage
+                {
+                    From = new MailAddress(fromMail)
+                };
                 mail.To.Add(mailTo);
                 mail.Subject = subject;
                 mail.Body = body;
                 mail.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient();
-                smtp.Port = 587;
-                smtp.Host = "smtp.gmail.com";
-                //danh cho gmail
-                smtp.UseDefaultCredentials = false;
-                //...........
-                smtp.Credentials = new System.Net.NetworkCredential(fromMail, passFromMail);
-                smtp.EnableSsl = true;
+                var smtp = new SmtpClient
+                {
+                    Port = 587,
+                    Host = "smtp.gmail.com",
+                    //danh cho gmail
+                    UseDefaultCredentials = false,
+                    //...........
+                    Credentials = new NetworkCredential(fromMail, passFromMail),
+                    EnableSsl = true
+                };
                 smtp.Send(mail);
                 msg = "";
             }
@@ -35,24 +37,31 @@ namespace Utilities
             {
                 Log.error("SendGmail " + mailTo + " err: " + ex.Message);
             }
+
             return msg;
         }
-        public static string SendMail(string mailTo, string subject, string body, string fromemail, string Port, string Smtp, string frompass)
+
+        public static string SendMail(string mailTo, string subject, string body, string fromemail, string Port,
+            string Smtp, string frompass)
         {
             string msg = null;
             try
             {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress(fromemail);
+                var mail = new MailMessage
+                {
+                    From = new MailAddress(fromemail)
+                };
                 mail.To.Add(mailTo);
                 mail.Subject = subject;
                 mail.Body = body;
                 mail.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient();
-                smtp.Port = int.Parse(Port);
-                smtp.Host = Smtp;
-                smtp.Credentials = new System.Net.NetworkCredential(fromemail, frompass);
-                smtp.EnableSsl = false;
+                var smtp = new SmtpClient
+                {
+                    Port = int.Parse(Port),
+                    Host = Smtp,
+                    Credentials = new NetworkCredential(fromemail, frompass),
+                    EnableSsl = false
+                };
                 smtp.Send(mail);
                 msg = "";
             }
@@ -60,6 +69,7 @@ namespace Utilities
             {
                 Log.error("SendMail " + mailTo + " err: " + ex.Message);
             }
+
             return msg;
         }
     }

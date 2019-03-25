@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ShoesStore.DataAccessLogicLayer.Interfaces
+﻿namespace ShoesStore.DataAccessLogicLayer.Interfaces
 {
-    interface ICus:IDataAccess<Cus>
+    internal interface ICus : IDataAccess<Cus>
     {
     }
 }

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
@@ -26,11 +24,6 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public WebInfo GetById(int id)
-        {
-            return DataProvider.Instance().WebInfo.Find(id);
-        }
-
         public WebInfo Insert(WebInfo obj)
         {
             DataProvider.Instance().WebInfo.Add(obj);
@@ -48,6 +41,11 @@ namespace ShoesStore.DataAccessLogicLayer
         public List<WebSlide> GetSlides()
         {
             throw new NotImplementedException();
+        }
+
+        public WebInfo GetById(int id)
+        {
+            return DataProvider.Instance().WebInfo.Find(id);
         }
     }
 }

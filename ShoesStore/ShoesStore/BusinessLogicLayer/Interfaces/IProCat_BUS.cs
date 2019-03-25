@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ShoesStore.DataAccessLogicLayer;
+﻿using ShoesStore.DataAccessLogicLayer;
+
 namespace ShoesStore.BusinessLogicLayer
 {
-    interface IProCat_BUS:IBusiness<ProCat,int>
+    internal interface IProCat_BUS : IBusiness<ProCat, int>
     {
     }
 }
