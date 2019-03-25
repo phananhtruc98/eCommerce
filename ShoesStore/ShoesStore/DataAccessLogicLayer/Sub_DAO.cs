@@ -1,32 +1,34 @@
-﻿using System;
+﻿using ShoesStore.DataAccessLogicLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class ProBrand_DAO : IProBrand
+    public class Sub_DAO : ISub
     {
-        public List<ProBrand> GetAll()
-        {
-            return DataProvider.Instance().ProBrand.ToList();
-        }
-
-        public void Delete(ProBrand obj)
+        public void Delete(Sub obj)
         {
             throw new NotImplementedException();
         }
 
-        public ProBrand GetByPrimaryKeys(int id)
+        public List<Sub> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public ProBrand Insert(ProBrand obj)
+        public Sub GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(ProBrand obj)
+        public Sub Insert(Sub obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Sub obj)
         {
             throw new NotImplementedException();
         }
