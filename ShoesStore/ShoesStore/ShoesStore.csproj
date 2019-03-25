@@ -2357,14 +2357,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogicLayer\Interfaces\IProBrand_BUS.cs" />
-<<<<<<< HEAD
-    <Compile Include="BusinessLogicLayer\Interfaces\ISub_BUS.cs" />
-    <Compile Include="BusinessLogicLayer\ProBrand_BUS.cs" />
-    <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
-=======
+
     <Compile Include="BusinessLogicLayer\Tables_BUS\ProBrand_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Tables_BUS\ProCat_BUS.cs" />
->>>>>>> f9a4d427646e7d84577ceb9c2782222adec5bfbf
+
     <Compile Include="BusinessLogicLayer\Interfaces\IBusiness.cs" />
     <Compile Include="BusinessLogicLayer\Interfaces\IProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Interfaces\IWebInfo.cs" />
@@ -2392,10 +2388,9 @@
     <Compile Include="DataAccessLogicLayer\Interfaces\IProBrand.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\IProCat.cs" />
     <Compile Include="DataAccessLogicLayer\Interfaces\ISub.cs" />
-<<<<<<< HEAD
-=======
+
     <Compile Include="DataAccessLogicLayer\Interfaces\IUsr.cs" />
->>>>>>> f9a4d427646e7d84577ceb9c2782222adec5bfbf
+
     <Compile Include="DataAccessLogicLayer\Interfaces\IWebInfo.cs" />
     <Compile Include="DataAccessLogicLayer\Mer.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
