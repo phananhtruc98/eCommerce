@@ -14,6 +14,11 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public ProBrand GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<ProBrand> GetAll()
         {
             return proBrand.GetAll();
