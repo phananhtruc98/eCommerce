@@ -1,7 +1,6 @@
-﻿using System;
-using ShoesStore.DataAccessLogicLayer.Tables_DAO;
+﻿using ShoesStore.DataAccessLogicLayer;
 
-namespace ShoesStore.DataAccessLogicLayer.Interfaces
+namespace ShoesStore.Interfaces
 {
     internal interface ICus : IUsr<Cus>
     {

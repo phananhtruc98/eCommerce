@@ -1,13 +1,13 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
-using ShoesStore.DataAccessLogicLayer.Tables_DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Sub_BUS : ISub_BUS
+    public class Sub_BUS : ISub
     {
         private readonly ISub sub = new Sub_DAO();
         public void Delete(Sub obj)
@@ -18,6 +18,11 @@ namespace ShoesStore.BusinessLogicLayer
         public List<Sub> GetAll()
         {
             return sub.GetAll();
+        }
+
+        void ITable<Sub>.Insert(Sub obj)
+        {
+            throw new NotImplementedException();
         }
 
         public Sub GetById(int id)
@@ -36,6 +41,16 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
         public void Update(Sub obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetActive()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Sub> Filter(Sub obj)
         {
             throw new NotImplementedException();
         }

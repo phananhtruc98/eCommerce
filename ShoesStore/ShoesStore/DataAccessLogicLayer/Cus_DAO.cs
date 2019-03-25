@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ShoesStore.DataAccessLogicLayer.Interfaces;
+using ShoesStore.Interfaces;
 
-namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
+namespace ShoesStore.DataAccessLogicLayer
 {
     public class Cus_DAO : ICus
     {

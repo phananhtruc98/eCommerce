@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using ShoesStore.DataAccessLogicLayer.Interfaces;
+using ShoesStore.Interfaces;
 
-namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
+namespace ShoesStore.DataAccessLogicLayer
 {
     public class Cart_DAO:ICart
     {

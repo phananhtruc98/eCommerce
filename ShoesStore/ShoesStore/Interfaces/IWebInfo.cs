@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using ShoesStore.DataAccessLogicLayer.Interfaces;
+using ShoesStore.DataAccessLogicLayer;
 
-namespace ShoesStore.DataAccessLogicLayer
+namespace ShoesStore.Interfaces
 {
     public interface IWebInfo : ITable<WebInfo>
     {

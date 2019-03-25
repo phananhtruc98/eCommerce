@@ -1,11 +1,9 @@
 ﻿using ShoesStore.BusinessLogicLayer;
-using ShoesStore.BusinessLogicLayer.Tables_BUS;
 using ShoesStore.DataAccessLogicLayer;
 using System;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ShoesStore.DataAccessLogicLayer.Interfaces;
 
 namespace ShoesStore
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
+namespace ShoesStore.DataAccessLogicLayer
 {
     public class Usr_DAO
     {

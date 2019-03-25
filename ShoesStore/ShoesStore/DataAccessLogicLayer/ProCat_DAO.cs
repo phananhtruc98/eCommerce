@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using ShoesStore.Interfaces;
 
-namespace ShoesStore.DataAccessLogicLayer.Tables_DAO
+namespace ShoesStore.DataAccessLogicLayer
 {
     public class ProCat_DAO : IProCat
     {
