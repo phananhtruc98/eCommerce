@@ -19,3 +19,8 @@
 .navbar.default-layout .navbar-menu-wrapper {
     color: black;
 }
+.custom_bar{
+    background-color:black;
+    color: #ffd333;
+    font-size: 40px;
+}
