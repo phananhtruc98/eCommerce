@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -2355,6 +2356,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BusinessLogicLayer\Cart_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Cus_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\Mer_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProBrand_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Sub_BUS.cs" />
@@ -2374,6 +2376,7 @@
     <Compile Include="DataAccessLogicLayer\Cus.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\Mer_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Table_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\UsrAct.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>

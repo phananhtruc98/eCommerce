@@ -18,7 +18,7 @@ namespace ShoesStore.BusinessLogicLayer
 
         public List<Usr> GetAll()
         {
-            throw new NotImplementedException();
+            return _dao.GetAll();
         }
 
         public void Insert(Usr obj)
