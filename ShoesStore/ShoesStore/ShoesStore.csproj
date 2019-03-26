@@ -2378,6 +2378,7 @@
     <Compile Include="DataAccessLogicLayer\UsrAct.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\UsrAct_DAO.cs" />
     <Compile Include="Interfaces\ICart.cs" />
     <Compile Include="Interfaces\IMer.cs" />
     <Compile Include="Interfaces\IPro.cs" />
@@ -2391,6 +2392,7 @@
     <Compile Include="Interfaces\IProCat.cs" />
     <Compile Include="Interfaces\ISub.cs" />
     <Compile Include="Interfaces\IUsr.cs" />
+    <Compile Include="Interfaces\IUsrAct.cs" />
     <Compile Include="Interfaces\IWebInfo.cs" />
     <Compile Include="DataAccessLogicLayer\Mer.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>

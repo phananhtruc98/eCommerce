@@ -13,12 +13,12 @@ namespace ShoesStore.BusinessLogicLayer
         private readonly IUsr<Usr> _dao = new Usr_DAO();
         public void Delete(Usr obj)
         {
-            throw new NotImplementedException();
+            _dao.Delete(obj);
         }
 
         public List<Usr> GetAll()
         {
-            throw new NotImplementedException();
+            return _dao.GetAll();
         }
 
         public void Insert(Usr obj)
@@ -57,9 +57,11 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
 
+        public UsrAct_DAO _usrAct { get; set; }
+
         public Usr Login(string login, string pwd)
         {
-            return _dao.Login(login, DecryptHelper.Decrypt(pwd));
+            return _dao.Login(login, EncryptHelper.Encrypt(pwd));
         }
 
         public void Register(Usr obj)

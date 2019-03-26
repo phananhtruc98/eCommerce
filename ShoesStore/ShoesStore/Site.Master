@@ -335,15 +335,16 @@
                                 <div class="topbar__item">
                                     <div class="topbar-dropdown">
                                         <button class="topbar-dropdown__btn" type="button">
-                                            Tài khoản
+                                            <asp:Label runat="server" id="lbAccount" Text="Tài khoản"></asp:Label>
                                                 <svg width="7px" height="5px">
                                                     <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
                                                 </svg></button>
                                         <div class="topbar-dropdown__body">
                                             <!-- .menu -->
                                             <ul class="menu menu--layout--topbar">
-                                                <li><a href="#" data-toggle="modal" data-target="#DangNhap">Đăng nhập</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#DangKy">Đăng ký</a></li>
+                                                <li id="usr_logout" runat="server" Visible="false" ><asp:LinkButton runat="server" id="lbtnLogout" OnClick="lbtnLogout_Click">Đăng xuất</asp:LinkButton></li>
+                                                <li id="usr_login" runat="server" ><a href="#" data-toggle="modal" data-target="#DangNhap" >Đăng nhập</a></li>
+                                                <li id="usr_register" runat="server"><a href="#" data-toggle="modal" data-target="#DangKy"  >Đăng ký</a></li>
                                                 <li><a href="#">Đặt hàng</a></li>
                                             </ul>
                                             <!-- .menu / end -->

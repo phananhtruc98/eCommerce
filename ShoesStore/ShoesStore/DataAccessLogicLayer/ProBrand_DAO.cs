@@ -16,5 +16,10 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public override bool IsExist(ProBrand obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

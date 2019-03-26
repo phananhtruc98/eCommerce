@@ -19,5 +19,10 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             return DataProvider.Instance().ProCat.Find(id);
         }
+
+        public override bool IsExist(ProCat obj)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

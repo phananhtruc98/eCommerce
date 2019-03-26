@@ -18,6 +18,8 @@ namespace ShoesStore.DataAccessLogicLayer
         }
 
 
+        public UsrAct_DAO _usrAct { get; set; }
+
         public Cus Login(string login, string pwd)
         {
             throw new NotImplementedException();
@@ -55,6 +57,11 @@ namespace ShoesStore.DataAccessLogicLayer
         }
 
         public bool IsActCode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool IsExist(Cus obj)
         {
             throw new NotImplementedException();
         }

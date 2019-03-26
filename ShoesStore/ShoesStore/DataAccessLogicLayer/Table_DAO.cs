@@ -7,7 +7,7 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class Table_DAO<T> : ITable<T> where T : class
+    public abstract class Table_DAO<T> : ITable<T> where T : class
     {
         public void Delete(T obj)
         {
@@ -45,9 +45,6 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public bool IsExist(T obj)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract bool IsExist(T obj);
     }
 }

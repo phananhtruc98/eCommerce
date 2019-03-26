@@ -1,22 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
+using System.Web;
 using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class Sub_DAO:Table_DAO<Sub>,ISub
+    public class UsrAct_DAO:Table_DAO<UsrAct>,IUsrAct
     {
-
-
-     
-        public int GetLastestId()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool IsExist(Sub obj)
+        public override bool IsExist(UsrAct obj)
         {
             throw new NotImplementedException();
         }

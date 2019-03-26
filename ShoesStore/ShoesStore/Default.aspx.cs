@@ -21,5 +21,11 @@ namespace ShoesStore
 
             
         }
+        protected void rptProCat_Init(object sender, EventArgs e)
+        {
+
+            rptProCat.DataSource = ((SiteMaster) Master)._proCat.GetAll();
+            rptProCat.DataBind();
+        }
     }
 }

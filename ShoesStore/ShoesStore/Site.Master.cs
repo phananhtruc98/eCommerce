@@ -13,7 +13,7 @@ namespace ShoesStore
 {
     public partial class SiteMaster : MasterPage, IMaster
     {
-        private ProCat_BUS _proCat = new ProCat_BUS();
+        internal ProCat_BUS _proCat = new ProCat_BUS();
         private ProBrand_BUS _proBrand = new ProBrand_BUS();
         private Usr_BUS _usr = new Usr_BUS();
         private Cart_BUS _cart = new Cart_BUS();
@@ -27,7 +27,13 @@ namespace ShoesStore
 
         private void Page_Init(object sender, EventArgs e)
         {
-
+            if (CheckLoginSession())
+            {
+                usr_login.Visible = false;
+                usr_register.Visible = false;
+                lbAccount.Text = $"Chào {((Usr) Session["loginUsr"]).UsrName}";
+                usr_logout.Visible = true;
+            }
 
 
         }
@@ -52,8 +58,8 @@ namespace ShoesStore
             {
                 Usr loginUsr = _usr.Login(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
-                HttpCookie cookieLogin = new HttpCookie("Login");
-
+                Session["LoginUsr"] = loginUsr;
+                Response.Redirect(Request.RawUrl);
             }
             catch (Exception exception)
             {
@@ -80,6 +86,12 @@ namespace ShoesStore
             return true;
         }
 
+        public bool CheckLoginSession()
+        {
+            if (Session["LoginUsr"] != null) return true;
+            return false;
+        }
+
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
             if (!IsValidRegister()) return;
@@ -92,9 +104,16 @@ namespace ShoesStore
                 DateAdd = DateTime.Now
             };
             if (_usr.IsExist(usr)) return;
-            _usr.CreateActCode(usr);
             _usr.Insert(usr);
+            _usr.CreateActCode(usr);
+            
 
+        }
+
+        protected void lbtnLogout_Click(object sender, EventArgs e)
+        {
+            Session["loginUsr"] = null;
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

@@ -10,6 +10,8 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     public class Usr_DAO :Table_DAO<Usr>, IUsr<Usr>
     {
+        public UsrAct_DAO _usrAct { get; set; }
+
         public Usr Login(string login, string pwd)
         {
             return GetAll().FirstOrDefault(m => m.Login == login && m.Password==pwd);
@@ -27,6 +29,8 @@ namespace ShoesStore.DataAccessLogicLayer
                 UsrId = obj.UsrId,
                 ActCode = EncryptHelper.Encrypt(obj.Login),
             };
+            _usrAct=new UsrAct_DAO();
+            _usrAct.Insert(uAct);
         }
 
         
@@ -40,6 +44,10 @@ namespace ShoesStore.DataAccessLogicLayer
             return DataProvider.Instance().Usr.Max(m => m.UsrId);
         }
 
-      
+
+        public override bool IsExist(Usr obj)
+        {
+            return GetAll().Any(m => m.UsrId == obj.UsrId);
+        }
     }
 }

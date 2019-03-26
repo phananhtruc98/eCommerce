@@ -1359,11 +1359,13 @@
                         <h3 class="block-header__title">New Arrivals</h3>
                         <div class="block-header__divider"></div>
                         <ul class="block-header__groups-list">
-                            <li><button type="button"
-                                    class="block-header__group block-header__group--active">All</button></li>
-                            <li><button type="button" class="block-header__group">Power Tools</button></li>
-                            <li><button type="button" class="block-header__group">Hand Tools</button></li>
-                            <li><button type="button" class="block-header__group">Plumbing</button></li>
+                            <li><button type="button" class="block-header__group block-header__group--active">All</button></li>
+                            <asp:Repeater runat="server" id="rptProCat" OnInit="rptProCat_Init">
+                                
+                                <ItemTemplate>
+                                    <li><button type="button" class="block-header__group"><%# Eval("CatName") %></button></li>
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </ul>
                         <div class="block-header__arrows-list"><button
                                 class="block-header__arrow block-header__arrow--left" type="button"><svg width="7px"
