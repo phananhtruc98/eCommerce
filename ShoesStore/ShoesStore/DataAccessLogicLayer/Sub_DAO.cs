@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using ShoesStore.Interfaces;
 
@@ -19,12 +20,15 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public void Insert(Sub obj)
         {
-            throw new NotImplementedException();
+            DataProvider.Instance().Sub.Add(obj);
+            DataProvider.Instance().SaveChanges();
         }
 
         public void Update(Sub obj)
         {
-            throw new NotImplementedException();
+            DataProvider.Instance().Sub.Attach(obj);
+            DataProvider.Instance().Entry(obj).State = EntityState.Modified;
+            DataProvider.Instance().SaveChanges();
         }
 
         public void SetActive()
