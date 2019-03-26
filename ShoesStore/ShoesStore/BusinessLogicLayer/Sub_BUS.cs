@@ -9,7 +9,7 @@ namespace ShoesStore.BusinessLogicLayer
 {
     public class Sub_BUS : ITable<Sub>
     {
-        private readonly ITable<Sub> sub = new Sub_DAO();
+        private readonly Sub_DAO _dao = new Sub_DAO();
 
         public Sub GetById(int id)
         {
@@ -28,12 +28,12 @@ namespace ShoesStore.BusinessLogicLayer
 
         public void Delete(Sub obj)
         {
-            throw new NotImplementedException();
+             _dao.Delete(obj);
         }
 
         public List<Sub> GetAll()
         {
-            throw new NotImplementedException();
+            return _dao.GetAll();
         }
 
         void ITable<Sub>.Insert(Sub obj)
@@ -43,12 +43,12 @@ namespace ShoesStore.BusinessLogicLayer
 
         public void Insert(Sub obj)
         {
-            sub.Insert(obj);
+            _dao.Insert(obj);
         }
 
         public void Update(Sub obj)
         {
-            sub.Update(obj);
+            _dao.Update(obj);
         }
 
         public void SetActive()
