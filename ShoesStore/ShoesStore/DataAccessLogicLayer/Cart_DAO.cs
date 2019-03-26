@@ -35,5 +35,10 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public bool IsExist(Cart obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

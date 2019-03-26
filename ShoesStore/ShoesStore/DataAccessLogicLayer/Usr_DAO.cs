@@ -1,12 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Linq;
+using ShoesStore.Interfaces;
+using Utilities;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class Usr_DAO
+    public class Usr_DAO :Table_DAO<Usr>, IUsr<Usr>
     {
-        public bool Login(string username, string password)
+        public Usr Login(string login, string pwd)
+        {
+            return GetAll().FirstOrDefault(m => m.Login == login && m.Password==pwd);
+        }
+
+        public void Register(Usr obj)
         {
             throw new NotImplementedException();
         }
+
+        public void CreateActCode(Usr obj)
+        {
+            UsrAct uAct = new UsrAct()
+            {
+                UsrId = obj.UsrId,
+                ActCode = EncryptHelper.Encrypt(obj.Login),
+            };
+        }
+
+        
+        public Usr GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetLastestId()
+        {
+            return DataProvider.Instance().Usr.Max(m => m.UsrId);
+        }
+
+      
     }
 }

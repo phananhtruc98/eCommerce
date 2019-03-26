@@ -2,8 +2,7 @@
 
 namespace ShoesStore.Interfaces
 {
-    interface ISub
+    interface IUsrAct:ITable<UsrAct>
     {
-
     }
 }

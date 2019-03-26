@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -48,9 +48,6 @@
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="SQLDB">
-      <HintPath>..\..\..\Users\anhtr\source\repos\SQLDB\SQLDB\bin\Debug\SQLDB.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -2356,9 +2353,12 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BusinessLogicLayer\Cart_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\Cus_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProBrand_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Sub_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\Usr_BUS.cs" />
     <Compile Include="DataAccessLogicLayer\Cart.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
@@ -2374,7 +2374,12 @@
     <Compile Include="DataAccessLogicLayer\Cus.cs">
       <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\Table_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\UsrAct.cs">
+      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\ICart.cs" />
+    <Compile Include="Interfaces\IMer.cs" />
     <Compile Include="Interfaces\IPro.cs" />
     <Compile Include="Interfaces\ITableOnePrimary.cs" />
     <Compile Include="DataAccessLogicLayer\Cart_DAO.cs" />
@@ -2565,6 +2570,8 @@
     <Compile Include="Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Pages\IMaster.cs" />
+    <Compile Include="Interfaces\Pages\IValidation.cs" />
     <Compile Include="MyExtensions\ProExtension.cs" />
     <Compile Include="Pro_Detail.aspx.cs">
       <DependentUpon>Pro_Detail.aspx</DependentUpon>

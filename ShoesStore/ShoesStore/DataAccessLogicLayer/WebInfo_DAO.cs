@@ -44,6 +44,11 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
+        public bool IsExist(WebInfo obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<WebSlide> GetSlides()
         {
             throw new NotImplementedException();

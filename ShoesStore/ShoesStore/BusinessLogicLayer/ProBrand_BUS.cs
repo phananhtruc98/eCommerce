@@ -5,9 +5,9 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class ProBrand_BUS : IProBrand
+    public class ProBrand_BUS : IProBrand,ITable<ProBrand>
     {
-        private readonly IProBrand proBrand = new ProBrand_DAO();
+        private readonly ProBrand_DAO proBrand = new ProBrand_DAO();
 
         public void Delete(ProBrand obj)
         {
@@ -39,12 +39,22 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public bool IsExist(ProBrand obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public ProBrand GetById(int id)
         {
             throw new NotImplementedException();
         }
 
         public ProBrand GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetLastestId()
         {
             throw new NotImplementedException();
         }

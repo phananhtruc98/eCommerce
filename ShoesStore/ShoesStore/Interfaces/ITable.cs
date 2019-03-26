@@ -10,5 +10,6 @@ namespace ShoesStore.Interfaces
         void Update(T obj);
         void SetActive();
         List<T> Filter(T obj);
+        bool IsExist(T obj);
     }
 }

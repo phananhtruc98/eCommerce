@@ -51,6 +51,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<SubDet> SubDet { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Usr> Usr { get; set; }
+        public DbSet<UsrAct> UsrAct { get; set; }
         public DbSet<WebInfo> WebInfo { get; set; }
         public DbSet<WebSlide> WebSlide { get; set; }
     

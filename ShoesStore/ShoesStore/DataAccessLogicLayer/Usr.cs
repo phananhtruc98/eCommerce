@@ -18,10 +18,11 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             this.Rcpt = new HashSet<Rcpt>();
             this.Rcpt1 = new HashSet<Rcpt>();
+            this.UsrAct = new HashSet<UsrAct>();
         }
     
         public int UsrId { get; set; }
-        public string UserName { get; set; }
+        public string UsrName { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public bool Active { get; set; }
@@ -35,6 +36,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public virtual Mer Mer { get; set; }
         public virtual ICollection<Rcpt> Rcpt { get; set; }
         public virtual ICollection<Rcpt> Rcpt1 { get; set; }
+        public virtual ICollection<UsrAct> UsrAct { get; set; }
         public virtual MstrRole MstrRole { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace ShoesStore.Interfaces
 {
-    interface IUsr<T>:ITableOnePrimary<T>
+    public interface IUsr<T>:ITableOnePrimary<T>
     {
-        void Login(string username, string password);
+        T Login(string login, string pwd);
         void Register(T obj);
-
+        void CreateActCode(T obj);
     }
 }

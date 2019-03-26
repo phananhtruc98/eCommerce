@@ -7,23 +7,9 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Sub_BUS : ISub
+    public class Sub_BUS : ITable<Sub>
     {
-        private readonly ISub sub = new Sub_DAO();
-        public void Delete(Sub obj)
-        {
-            sub.Delete(obj);
-        }
-
-        public List<Sub> GetAll()
-        {
-            return sub.GetAll();
-        }
-
-        void ITable<Sub>.Insert(Sub obj)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly ITable<Sub> sub = new Sub_DAO();
 
         public Sub GetById(int id)
         {
@@ -31,6 +17,26 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
         public Sub GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetLastestId()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Sub obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Sub> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        void ITable<Sub>.Insert(Sub obj)
         {
             throw new NotImplementedException();
         }
@@ -51,6 +57,11 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
         public List<Sub> Filter(Sub obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsExist(Sub obj)
         {
             throw new NotImplementedException();
         }

@@ -7,6 +7,7 @@ namespace ShoesStore.Interfaces
         ICart iCart { get; set; }
         void AddCart(Pro pro);
         void Buy(ICart icart);
-
+        void ActCode();
+        bool IsActCode();
     }
 }

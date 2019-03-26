@@ -1,40 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class ProCat_BUS : IProCat
+    public class Cart_BUS : ICart
     {
-        private readonly ProCat_DAO _dao = new ProCat_DAO();
-
-        public void Delete(ProCat obj)
+        public void Delete(Cart obj)
         {
             throw new NotImplementedException();
         }
 
-        public List<ProCat> GetAll()
-        {
-            return _dao.GetAll();
-        }
-
-        void ITable<ProCat>.Insert(ProCat obj)
+        public List<Cart> Filter(Cart obj)
         {
             throw new NotImplementedException();
         }
 
-        public ProCat GetById(int id)
+        public List<Cart> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public ProCat Insert(ProCat obj)
+        public void Insert(Cart obj)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(ProCat obj)
+        public bool IsExist(Cart obj)
         {
             throw new NotImplementedException();
         }
@@ -44,17 +39,7 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public List<ProCat> Filter(ProCat obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsExist(ProCat obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ProCat> GetPopularProCats(int n)
+        public void Update(Cart obj)
         {
             throw new NotImplementedException();
         }

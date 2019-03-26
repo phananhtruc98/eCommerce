@@ -1,47 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class Cus_DAO : ICus
+    public class Cus_DAO :Table_DAO<Cus>, ICus
     {
-        public void Delete(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Cus> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetActive()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Cus> Filter(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public Cus GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Login(string username, string password)
+        public int GetLastestId()
+        {
+            return GetAll().Max(m => m.CusId);
+        }
+
+
+        public Cus Login(string login, string pwd)
         {
             throw new NotImplementedException();
         }
@@ -51,13 +28,33 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ICart iCart { get; set; }
-        public void AddCart(Pro pro)
+        public void CreateActCode(Cus obj)
         {
             throw new NotImplementedException();
         }
 
+        public bool IsValidUser(Cus obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICart iCart { get; set; }
+        public void AddCart(Pro pro)
+        {
+          
+        }
+
         public void Buy(ICart icart)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ActCode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsActCode()
         {
             throw new NotImplementedException();
         }

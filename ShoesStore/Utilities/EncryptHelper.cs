@@ -27,7 +27,7 @@ namespace Utilities
             var cTransform = tdes.CreateEncryptor();
             var resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
             tdes.Clear();
-            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+            return System.Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
 
         //tạo mã kích hoạt bằng cách sử dụng hàm random sau đó mã hóa chuỗi random này đi

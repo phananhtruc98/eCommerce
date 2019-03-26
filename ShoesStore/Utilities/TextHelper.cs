@@ -449,5 +449,12 @@ namespace Utilities
 
             return textTrim;
         }
+
+        public static bool  IsSpecialCharacters(string s)
+        {
+            var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
+            if (regexItem.IsMatch(s)) return false;
+            return true;
+        }
     }
 }

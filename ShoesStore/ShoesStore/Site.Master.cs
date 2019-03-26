@@ -2,16 +2,21 @@
 using ShoesStore.DataAccessLogicLayer;
 using System;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ShoesStore.Interfaces.MasterPage;
+using ShoesStore.Interfaces.Pages;
+using Utilities;
 
 namespace ShoesStore
 {
-    public partial class SiteMaster : MasterPage
+    public partial class SiteMaster : MasterPage, IMaster
     {
-        ProCat_BUS _proCat;
-        ProBrand_BUS _proBrand;
-
+        private ProCat_BUS _proCat = new ProCat_BUS();
+        private ProBrand_BUS _proBrand = new ProBrand_BUS();
+        private Usr_BUS _usr = new Usr_BUS();
+        private Cart_BUS _cart = new Cart_BUS();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -20,23 +25,75 @@ namespace ShoesStore
             }
         }
 
+        private void Page_Init(object sender, EventArgs e)
+        {
+
+
+
+        }
 
         protected void rptProCat_Init(object sender, EventArgs e)
         {
-            _proCat = new ProCat_BUS();
+
             rptProCat.DataSource = _proCat.GetAll().ToList();
             rptProCat.DataBind();
         }
 
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
-            _proBrand = new ProBrand_BUS();
+
             rptProBrand.DataSource = _proBrand.GetAll().ToList();
             rptProBrand.DataBind();
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Usr loginUsr = _usr.Login(login_login.Value, login_pwd.Value);
+                if (loginUsr == null) return;
+                HttpCookie cookieLogin = new HttpCookie("Login");
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+
+
+
+        }
+
+        public bool IsValidLogin()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsValidRegister()
+        {
+            if (!Email.IsValidEmail(this.email.Value)) return false;
+            //if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
+            if (TextHelper.IsSpecialCharacters(this.login.Value)) return false;
+            if (this.password.Value != this.re_password.Value) return false;
+
+            return true;
+        }
+
+        protected void btnSignUp_Click(object sender, EventArgs e)
+        {
+            if (!IsValidRegister()) return;
+            Usr usr = new Usr()
+            {
+                UsrId = _usr.GetLastestId() + 1,
+                UsrName = this.username.Value,
+                Login = this.login.Value,
+                Password = EncryptHelper.Encrypt(this.password.Value),
+                DateAdd = DateTime.Now
+            };
+            if (_usr.IsExist(usr)) return;
+            _usr.CreateActCode(usr);
+            _usr.Insert(usr);
 
         }
     }
