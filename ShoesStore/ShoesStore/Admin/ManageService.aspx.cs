@@ -86,41 +86,8 @@ namespace ShoesStore.Admin
             }
         }
 
-        protected void gvSub_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.Header)
-            {
-                for (int i = 0; i < e.Row.Cells.Count; i++)
-                {
-                    switch (i)
-                    {
-                        case 1:
-                            e.Row.Cells[i].Text = "Mã gói";
-                            break;
-                        case 2:
-                            e.Row.Cells[i].Text = "Tên gói";
-                            break;
-                        case 3:
-                            e.Row.Cells[i].Text = "Thời gian";
-                            break;
-                        case 4:
-                            e.Row.Cells[i].Text = "Giá tiền";
-                            break;
-                    }
+        
 
-                }
-            }
-
-        }
-
-        protected void TaskGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            GridViewRow row = gvSub.Rows[e.RowIndex];
-            String str = ((TextBox)(row.Cells[1].Controls[0])).Text;
-        }
-
-        protected void lbInsert_Click(object sender, EventArgs e)
-        {
-        }
+        
     }
 }
