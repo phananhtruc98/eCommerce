@@ -41,14 +41,14 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public Sub Insert(Sub obj)
+        public void Insert(Sub obj)
         {
-            throw new NotImplementedException();
+            sub.Insert(obj);
         }
 
         public void Update(Sub obj)
         {
-            throw new NotImplementedException();
+            sub.Update(obj);
         }
 
         public void SetActive()
