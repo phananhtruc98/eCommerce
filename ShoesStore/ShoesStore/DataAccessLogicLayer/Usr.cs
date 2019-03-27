@@ -34,9 +34,9 @@ namespace ShoesStore.DataAccessLogicLayer
     
         public virtual Cus Cus { get; set; }
         public virtual Mer Mer { get; set; }
+        public virtual Mstr Mstr { get; set; }
         public virtual ICollection<Rcpt> Rcpt { get; set; }
         public virtual ICollection<Rcpt> Rcpt1 { get; set; }
         public virtual ICollection<UsrAct> UsrAct { get; set; }
-        public virtual MstrRole MstrRole { get; set; }
     }
 }

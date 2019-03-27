@@ -11,6 +11,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public int GetLastestId()
         {
             throw new NotImplementedException();
+            
         }
 
         public override void SetActive(Sub obj)
