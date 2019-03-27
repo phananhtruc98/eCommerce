@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
 using System.Web;
 using ShoesStore.DataAccessLogicLayer;
@@ -9,7 +10,7 @@ namespace ShoesStore.BusinessLogicLayer
 {
     public class Cus_BUS:ICus
     {
-        private readonly ITable<Cus> _dao = new Cus_DAO();
+        private readonly Cus_DAO _dao = new Cus_DAO();
         public void Delete(Cus obj)
         {
             throw new NotImplementedException();
@@ -97,6 +98,11 @@ namespace ShoesStore.BusinessLogicLayer
         Cus IUsr<Cus>.Login(string login, string pwd)
         {
             throw new NotImplementedException();
+        }
+
+        public ObjectResult<Cus_Info_Result> Get_Cus_Info()
+        {
+            return _dao.Get_Cus_Info();
         }
     }
 }
