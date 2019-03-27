@@ -1,4 +1,5 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
+using System.Data.Objects;
 
 namespace ShoesStore.Interfaces
 {
@@ -9,5 +10,6 @@ namespace ShoesStore.Interfaces
         void Buy(ICart icart);
         void ActCode();
         bool IsActCode();
+        ObjectResult<Cus_Info_Result> Get_Cus_Info();
     }
 }
