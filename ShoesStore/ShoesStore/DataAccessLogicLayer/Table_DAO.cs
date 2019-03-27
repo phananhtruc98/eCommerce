@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using ShoesStore.Interfaces;
+using ShoesStore.MyExtensions;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
@@ -33,17 +34,12 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance().Set<T>().Attach(obj);
             DataProvider.Instance().Entry(obj).State = EntityState.Modified;
             DataProvider.Instance().SaveChanges();
+
         }
 
-        public void SetActive()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void SetActive(T obj);
+        public abstract List<T> Filter(Func<T, bool> func);
 
-        public List<T> Filter(T obj)
-        {
-            throw new NotImplementedException();
-        }
 
         public abstract bool IsExist(T obj);
     }

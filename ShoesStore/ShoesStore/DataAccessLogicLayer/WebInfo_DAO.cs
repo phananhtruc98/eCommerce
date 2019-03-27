@@ -34,6 +34,16 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance().SaveChanges();
         }
 
+        public void SetActive(WebInfo obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<WebInfo> Filter(Func<WebInfo, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetActive()
         {
             throw new NotImplementedException();

@@ -2,7 +2,7 @@
 
 namespace ShoesStore.Interfaces
 {
-   public interface ICart:ITable<Cart>
+   public interface ICart
     {
     }
 }

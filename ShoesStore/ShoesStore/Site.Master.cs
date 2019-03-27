@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.Interfaces.MasterPage;
 using ShoesStore.Interfaces.Pages;
+using ShoesStore.MyExtensions;
 using Utilities;
 
 namespace ShoesStore
@@ -31,7 +32,7 @@ namespace ShoesStore
             {
                 usr_login.Visible = false;
                 usr_register.Visible = false;
-                lbAccount.Text = $"Chào {((Usr) Session["loginUsr"]).UsrName}";
+                lbAccount.Text = $"Chào {(WebSession.LoginUsr as Usr).UsrName}";
                 usr_logout.Visible = true;
             }
 
@@ -41,7 +42,7 @@ namespace ShoesStore
         protected void rptProCat_Init(object sender, EventArgs e)
         {
 
-            rptProCat.DataSource = _proCat.GetAll().ToList();
+            rptProCat.DataSource = _proCat.GetAll();
             rptProCat.DataBind();
         }
 
@@ -58,7 +59,7 @@ namespace ShoesStore
             {
                 Usr loginUsr = _usr.Login(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
-                Session["LoginUsr"] = loginUsr;
+                WebSession.LoginUsr = loginUsr;
                 Response.Redirect(Request.RawUrl);
             }
             catch (Exception exception)
@@ -88,8 +89,8 @@ namespace ShoesStore
 
         public bool CheckLoginSession()
         {
-            if (Session["LoginUsr"] != null) return true;
-            return false;
+            return (WebSession.LoginUsr == null) ? false : true;
+
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
@@ -106,13 +107,13 @@ namespace ShoesStore
             if (_usr.IsExist(usr)) return;
             _usr.Insert(usr);
             _usr.CreateActCode(usr);
-            
+
 
         }
 
         protected void lbtnLogout_Click(object sender, EventArgs e)
         {
-            Session["loginUsr"] = null;
+            WebSession.LoginUsr = null;
             Response.Redirect(Request.RawUrl);
         }
     }

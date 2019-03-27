@@ -2,7 +2,7 @@
 {
     public class DataProvider
     {
-        private static ShoesStoreDBContext _instance;
+        private static ShoesStoreDBContext _instance = null;
 
         protected DataProvider()
         {
@@ -11,9 +11,7 @@
 
         public static ShoesStoreDBContext Instance()
         {
-            if (_instance == null) _instance = new ShoesStoreDBContext();
-
-            return _instance;
+            return _instance ?? new ShoesStoreDBContext();
         }
     }
 }

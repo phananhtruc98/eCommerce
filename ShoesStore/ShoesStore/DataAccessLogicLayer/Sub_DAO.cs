@@ -13,6 +13,16 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
+        public override void SetActive(Sub obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<Sub> Filter(Func<Sub, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool IsExist(Sub obj)
         {
             throw new NotImplementedException();

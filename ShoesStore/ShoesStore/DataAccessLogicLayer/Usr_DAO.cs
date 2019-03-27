@@ -45,6 +45,16 @@ namespace ShoesStore.DataAccessLogicLayer
         }
 
 
+        public override void SetActive(Usr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<Usr> Filter(Func<Usr, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool IsExist(Usr obj)
         {
             return GetAll().Any(m => m.UsrId == obj.UsrId);

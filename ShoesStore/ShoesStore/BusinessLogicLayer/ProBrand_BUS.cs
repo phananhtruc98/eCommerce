@@ -29,6 +29,16 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public void SetActive(ProBrand obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ProBrand> Filter(Func<ProBrand, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetActive()
         {
             throw new NotImplementedException();

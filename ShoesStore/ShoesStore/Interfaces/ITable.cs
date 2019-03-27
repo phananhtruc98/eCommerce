@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ShoesStore.Interfaces
 {
@@ -8,8 +9,9 @@ namespace ShoesStore.Interfaces
         List<T> GetAll();
         void Insert(T obj);
         void Update(T obj);
-        void SetActive();
-        List<T> Filter(T obj);
+        void SetActive(T obj);
+        List<T> Filter(Func<T, bool> func);
         bool IsExist(T obj);
     }
+
 }

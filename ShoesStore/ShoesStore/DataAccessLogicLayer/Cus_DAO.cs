@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ShoesStore.Interfaces;
+using ShoesStore.MyExtensions;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
@@ -59,6 +60,16 @@ namespace ShoesStore.DataAccessLogicLayer
         public bool IsActCode()
         {
             throw new NotImplementedException();
+        }
+
+        public override void SetActive(Cus obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<Cus> Filter(Func<Cus, bool> func)
+        {
+            return ProExtension.Filter(GetAll(), func);
         }
 
         public override bool IsExist(Cus obj)
