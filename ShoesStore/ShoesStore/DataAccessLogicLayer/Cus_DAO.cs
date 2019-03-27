@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
 using ShoesStore.Interfaces;
 
@@ -64,6 +65,12 @@ namespace ShoesStore.DataAccessLogicLayer
         public override bool IsExist(Cus obj)
         {
             throw new NotImplementedException();
+        }
+
+
+        public ObjectResult<Cus_Info_Result> Get_Cus_Info()
+        {
+            return DataProvider.Instance().Cus_Info();
         }
     }
 }

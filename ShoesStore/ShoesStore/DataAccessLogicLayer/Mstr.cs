@@ -12,16 +12,16 @@ namespace ShoesStore.DataAccessLogicLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class MstrRole
+    public partial class Mstr
     {
-        public MstrRole()
+        public Mstr()
         {
-            this.Mstr = new HashSet<Mstr>();
+            this.MstrRole = new HashSet<MstrRole>();
         }
     
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        public int MstrId { get; set; }
     
-        public virtual ICollection<Mstr> Mstr { get; set; }
+        public virtual Usr Usr { get; set; }
+        public virtual ICollection<MstrRole> MstrRole { get; set; }
     }
 }

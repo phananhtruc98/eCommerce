@@ -10,18 +10,10 @@
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class MstrRole
+    public partial class sp_helpdiagramdefinition1_Result
     {
-        public MstrRole()
-        {
-            this.Mstr = new HashSet<Mstr>();
-        }
-    
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
-    
-        public virtual ICollection<Mstr> Mstr { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
