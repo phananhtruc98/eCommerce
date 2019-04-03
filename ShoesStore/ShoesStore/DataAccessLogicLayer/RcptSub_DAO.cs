@@ -8,10 +8,7 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     public class RcptSub_DAO : Table_DAO<RcptSub>, IRcptSub
     {
-        public override List<RcptSub> Filter(Func<RcptSub, bool> func)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public override bool IsExist(RcptSub obj)
         {
