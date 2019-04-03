@@ -16,6 +16,7 @@ namespace ShoesStore.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             BindDataGridView();
+            BindDataGridViewBrand();
         }
 
         private void BindDataGridView()

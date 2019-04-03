@@ -38,6 +38,11 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public List<Mstr> Filter(Func<Mstr, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Mstr> GetAll()
         {
             throw new NotImplementedException();
@@ -93,6 +98,11 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public void SetActive(Mstr obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Mstr obj)
         {
             throw new NotImplementedException();
@@ -103,9 +113,6 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        List<IMstr> ITable<IMstr>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
+  
     }
 }

@@ -39,7 +39,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public ObjectResult<Admin_Info_Result> Get_Admin_Info()
         {
-            return DataProvider.Instance().Admin_Info();
+            return DataProvider.Instance.Admin_Info();
         }
 
         public void Insert(IMstr obj)

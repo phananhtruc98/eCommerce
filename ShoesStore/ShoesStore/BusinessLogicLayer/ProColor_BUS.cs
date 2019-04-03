@@ -20,6 +20,11 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public List<ProColor> Filter(Func<ProColor, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<ProColor> GetAll()
         {
             return _dao.GetAll();
@@ -36,6 +41,11 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
         public void SetActive()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetActive(ProColor obj)
         {
             throw new NotImplementedException();
         }
