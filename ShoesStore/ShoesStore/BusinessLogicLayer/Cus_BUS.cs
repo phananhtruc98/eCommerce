@@ -6,29 +6,10 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Cus_BUS:ICus
+    public class Cus_BUS:Table_BUS<Cus,Cus_DAO>,ICus
     {
         private readonly Cus_DAO _dao = new Cus_DAO();
-        public void Delete(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Cus> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public void SetActive()
         {
             throw new NotImplementedException();
@@ -38,12 +19,7 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
-
-        public bool IsExist(Cus obj)
-        {
-            return _dao.IsExist(obj);
-        }
-
+        
         public Cus GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();

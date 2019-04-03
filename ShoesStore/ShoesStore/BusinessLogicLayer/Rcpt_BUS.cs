@@ -7,42 +7,9 @@ using System.Web;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Rcpt_BUS : IRcpt
+    public class Rcpt_BUS : Table_BUS<Rcpt, Rcpt_DAO>, IRcpt
     {
-        private Rcpt_DAO _dao = new Rcpt_DAO();
-        public void Delete(Rcpt obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Rcpt> Filter(Func<Rcpt, bool> func)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Rcpt> GetAll()
-        {
-            return _dao.GetAll();
-        }
-
-        public void Insert(Rcpt obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsExist(Rcpt obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetActive(Rcpt obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Rcpt obj)
-        {
-            throw new NotImplementedException();
-        }
+ 
+     
     }
 }

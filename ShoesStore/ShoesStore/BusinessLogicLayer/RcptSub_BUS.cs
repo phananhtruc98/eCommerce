@@ -7,47 +7,38 @@ using System.Web;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class RcptSub_BUS : IRcptSub
+    public class RcptSub_BUS : Table_BUS<RcptSub, RcptSub_DAO>, IRcptSub
     {
         private readonly RcptSub_DAO _dao = new RcptSub_DAO();
         private readonly Rcpt_DAO rcpt_dao = new Rcpt_DAO();
-        public void Delete(RcptSub obj)
-        {
-            throw new NotImplementedException();
-        }
 
-        public List<RcptSub> Filter(Func<RcptSub, bool> func)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<RcptSub> GetAll()
+        public List<RcptSub> GetAll_Join_Rcpt()
         {
             List<RcptSub> rcptSub_lst = new List<RcptSub>();
-            var  result = rcpt_dao.GetAll()
+            var result = rcpt_dao.GetAll()
                 .Join(_dao.GetAll(), r => r.RcptId,
                 s => s.RcptSubId, (rcpt, rcptSub) =>
                 new
                 {
-                    RcptSubId = rcptSub.RcptSubId,
-                    DateAdd = rcpt.DateAdd,
-                    DateEdit = rcpt.DateEdit,
-                    UsrAdd = rcpt.UsrAdd,
-                    UsrEdit = rcpt.UsrEdit
+                    rcptSub.RcptSubId,
+                    rcpt.DateAdd,
+                    rcpt.DateEdit,
+                    rcpt.UsrAdd,
+                    rcpt.UsrEdit
                 });
-            
-            foreach(var a in result)
+
+            foreach (var a in result)
             {
                 RcptSub ob = new RcptSub()
                 {
-                    RcptSubId=a.RcptSubId,
+                    RcptSubId = a.RcptSubId,
                     Rcpt = new Rcpt()
                     {
-                     RcptId = a.RcptSubId,
-                     DateAdd = a.DateAdd,
-                     DateEdit = a.DateEdit,
-                     UsrAdd = a.UsrAdd,
-                     UsrEdit = a.UsrEdit
+                        RcptId = a.RcptSubId,
+                        DateAdd = a.DateAdd,
+                        DateEdit = a.DateEdit,
+                        UsrAdd = a.UsrAdd,
+                        UsrEdit = a.UsrEdit
                     }
                 };
                 rcptSub_lst.Add(ob);
@@ -55,24 +46,6 @@ namespace ShoesStore.BusinessLogicLayer
             return rcptSub_lst;
         }
 
-        public void Insert(RcptSub obj)
-        {
-            throw new NotImplementedException();
-        }
 
-        public bool IsExist(RcptSub obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetActive(RcptSub obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(RcptSub obj)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
