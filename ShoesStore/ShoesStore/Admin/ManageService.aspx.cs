@@ -1,10 +1,7 @@
 ﻿using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ShoesStore.Admin
@@ -59,10 +56,13 @@ namespace ShoesStore.Admin
                 Sub result = (from c in sub_BUS.GetAll()
                               where c.SubId == Convert.ToInt32(e.CommandArgument)
                               select c).FirstOrDefault();
-                result.SubContent = subContent;
-                result.DurDay = Convert.ToInt32(durDay);
-                result.Price = price;
-                sub_BUS.Update(result);
+                if (result != null)
+                {
+                    result.SubContent = subContent;
+                    result.DurDay = Convert.ToInt32(durDay);
+                    result.Price = price;
+                    sub_BUS.Update(result);
+                }
 
                 gvSub.EditIndex = -1;
                 BindGridViewData();
@@ -76,11 +76,10 @@ namespace ShoesStore.Admin
                 {
                     return;
                 }
-                Sub new_sub = new Sub();
-                new_sub.SubContent = subContent;
-                new_sub.DurDay = Convert.ToInt32(durDay); 
-                new_sub.Price = price;
-                sub_BUS.Insert(new_sub);
+
+                Sub newSub = new Sub {SubContent = subContent, DurDay = Convert.ToInt32(durDay), Price = price};
+
+                sub_BUS.Insert(newSub);
 
                 BindGridViewData();
             }

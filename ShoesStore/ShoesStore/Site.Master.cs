@@ -2,22 +2,18 @@
 using ShoesStore.DataAccessLogicLayer;
 using System;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using ShoesStore.Interfaces.MasterPage;
 using ShoesStore.Interfaces.Pages;
-using ShoesStore.MyExtensions;
 using Utilities;
 
 namespace ShoesStore
 {
     public partial class SiteMaster : MasterPage, IMaster
     {
-        internal ProCat_BUS _proCat = new ProCat_BUS();
-        private ProBrand_BUS _proBrand = new ProBrand_BUS();
-        private Usr_BUS _usr = new Usr_BUS();
-        private Cart_BUS _cart = new Cart_BUS();
+        public readonly ProCat_BUS _proCat = new ProCat_BUS();
+        private readonly ProBrand_BUS _proBrand = new ProBrand_BUS();
+        private readonly Usr_BUS _usr = new Usr_BUS();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -36,7 +32,7 @@ namespace ShoesStore
             {
                 usr_login.Visible = false;
                 usr_register.Visible = false;
-                lbAccount.Text = $"Chào {(WebSession.LoginUsr as Usr).UsrName}";
+                lbAccount.Text = $"Chào {(WebSession.LoginUsr as Usr)?.UsrName}";
                 usr_logout.Visible = true;
             }
 
@@ -83,29 +79,27 @@ namespace ShoesStore
 
         public bool IsValidRegister()
         {
-            if (!Email.IsValidEmail(this.email.Value)) return false;
+            if (!Email.IsValidEmail(email.Value)) return false;
             //if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
-            if (TextHelper.IsSpecialCharacters(this.login.Value)) return false;
-            if (this.password.Value != this.re_password.Value) return false;
-
-            return true;
+            if (TextHelper.IsSpecialCharacters(login.Value)) return false;
+            return password.Value == re_password.Value;
         }
 
         public bool CheckLoginSession()
         {
-            return (WebSession.LoginUsr == null) ? false : true;
+            return (WebSession.LoginUsr != null);
 
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
             if (!IsValidRegister()) return;
-            Usr usr = new Usr()
+            var usr = new Usr()
             {
                 UsrId = _usr.GetLastestId() + 1,
-                UsrName = this.username.Value,
-                Login = this.login.Value,
-                Password = EncryptHelper.Encrypt(this.password.Value),
+                UsrName = username.Value,
+                Login = login.Value,
+                Password = EncryptHelper.Encrypt(password.Value),
                 DateAdd = DateTime.Now
             };
             if (_usr.IsExist(usr)) return;

@@ -1,14 +1,10 @@
 ﻿using ShoesStore.BusinessLogicLayer;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace ShoesStore.Admin
 {
-    public partial class ManageProduct : System.Web.UI.Page
+    public partial class ManageProduct : Page
     {
         private readonly ProColor_BUS proColor_BUS = new ProColor_BUS();
         private readonly ProBrand_BUS proBrand_BUS = new ProBrand_BUS();

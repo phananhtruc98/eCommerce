@@ -10,7 +10,7 @@
 namespace ShoesStore {
     
     
-    public partial class _Default {
+    public partial class Default {
         
         /// <summary>
         /// rptProCat control.
@@ -20,5 +20,17 @@ namespace ShoesStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptProCat;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new ShoesStore.SiteMaster Master {
+            get {
+                return ((ShoesStore.SiteMaster)(base.Master));
+            }
+        }
     }
 }

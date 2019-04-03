@@ -1,6 +1,4 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-
-namespace ShoesStore.Interfaces
+﻿namespace ShoesStore.Interfaces
 {
    public interface ICart
     {

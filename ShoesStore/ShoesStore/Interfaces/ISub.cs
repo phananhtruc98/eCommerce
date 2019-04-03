@@ -1,6 +1,4 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-
-namespace ShoesStore.Interfaces
+﻿namespace ShoesStore.Interfaces
 {
     interface ISub
     {

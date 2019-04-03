@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
@@ -13,7 +11,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public List<ProCat> GetPopularProCats(int n)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public ProCat GetById(int id)
@@ -23,7 +21,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public override void SetActive(ProCat obj)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public override List<ProCat> Filter(Func<ProCat, bool> func)
@@ -33,7 +31,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public override bool IsExist(ProCat obj)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
