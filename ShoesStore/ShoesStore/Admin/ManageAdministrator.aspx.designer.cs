@@ -13,13 +13,13 @@ namespace ShoesStore.Admin {
     public partial class Manage_Administrator {
         
         /// <summary>
-        /// gvMerchant control.
+        /// gvAdmin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMerchant;
+        protected global::System.Web.UI.WebControls.GridView gvAdmin;
         
         /// <summary>
         /// ValidationSummary1 control.

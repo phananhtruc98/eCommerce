@@ -250,12 +250,22 @@
                                 <span class="menu-title">Quản lý sản phẩm</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageReceipt.aspx") %>">
-                                <i class="menu-icon mdi mdi-receipt"></i>
-                                <span class="menu-title">Quản lý hóa đơn</span>
+                         <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#ui-basic_2" aria-expanded="false" aria-controls="ui-basic">
+                                <i class="menu-icon mdi mdi-account"></i>
+                                <span class="menu-title" >Quản lý hóa đơn</span>
+                                <i class="menu-arrow"></i>
                             </a>
-                        </li>
+                            <div class="collapse" id="ui-basic_2">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageReceipt_Mer.aspx") %>">Hóa đơn mua dịch vụ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<%=ResolveUrl("~/Admin/ManageReceipt_Cus.aspx") %>">Hóa đơn mua hàng</a>
+                                    </li>
+                                </ul>
+                            </div>
                     </ul>
                 </nav>
                 <!-- partial --> <!-- Động -->
