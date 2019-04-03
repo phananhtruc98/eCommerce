@@ -17,11 +17,17 @@
                         <FooterTemplate>
                             <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="InsertRow" ForeColor="#8C4510">Thêm</asp:LinkButton>
                         </FooterTemplate>
+                        <FooterStyle Wrap="False" />
+                        <HeaderStyle Wrap="False" />
+                        <ItemStyle Wrap="False" />
                         </asp:TemplateField>
                     <asp:TemplateField HeaderText="Mã người bán">
                         <ItemTemplate>
                             <%# Eval("UsrId") %>
                         </ItemTemplate>
+                        <FooterStyle Wrap="False" />
+                        <HeaderStyle Wrap="False" />
+                        <ItemStyle Wrap="False" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Tên người bán">
                         <ItemTemplate>
