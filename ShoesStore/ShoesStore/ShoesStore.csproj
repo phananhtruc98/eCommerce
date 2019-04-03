@@ -2373,6 +2373,8 @@
     <Compile Include="BusinessLogicLayer\ProBrand_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProColor_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\RcptSub_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\Rcpt_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Sub_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Table_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Usr_BUS.cs" />
@@ -2488,6 +2490,8 @@
     <Compile Include="DataAccessLogicLayer\RcptSubDet_Select_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptSub_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\Rcpt_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Rcpt_Select_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2573,6 +2577,8 @@
     <Compile Include="Interfaces\IMstr.cs" />
     <Compile Include="Interfaces\IPro.cs" />
     <Compile Include="Interfaces\IProColor.cs" />
+    <Compile Include="Interfaces\IRcpt.cs" />
+    <Compile Include="Interfaces\IRcptSub.cs" />
     <Compile Include="Interfaces\ITableOnePrimary.cs" />
     <Compile Include="DataAccessLogicLayer\Cart_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Cus_DAO.cs" />
