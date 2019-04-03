@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ShoesStore.SiteMaster" %>
+﻿    <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ShoesStore.SiteMaster" %>
 
 <!DOCTYPE html>
 
@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <title>The Shuz</title>
+    <title><%:Page.Title %></title>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
@@ -39,7 +39,14 @@
     <!-- font - stroyka -->
     <link rel="stylesheet" href="fonts/stroyka/stroyka.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97489509-6"></script>
-    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'UA-97489509-6');</script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() { dataLayer.push(arguments); }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-97489509-6');
+    </script>
 
     <link rel="stylesheet" href="css/customstyle.css">
 </head>
@@ -67,16 +74,16 @@
                         <div class="form-group">
                             <a href="#" class="float-right" data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
                             <label for="login_login">Tài khoản</label>
-                            <input type="text" class="form-control form-control-lg" id="login_login" runat="server">
+                            <input type="text" class="form-control form-control-lg" id="login_login" runat="server" />
                             <div class="invalid-feedback">Oops, you missed this one.</div>
                         </div>
                         <div class="form-group">
                             <label for="login_pwd">Mật khẩu</label>
-                            <input type="password" class="form-control form-control-lg" id="login_pwd" runat="server">
+                            <input type="password" class="form-control form-control-lg" id="login_pwd" runat="server" />
                             <div class="invalid-feedback">Enter your password too!</div>
                         </div>
                         <div class="form-group py-4">
-                            <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true" >Hủy</button>
+                            <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
                             <asp:Button runat="server" ID="btnLogin" Text="Đăng nhập" CssClass="btn btn-primary btn-lg float-right custom_font" OnClick="btnLogin_Click" />
 
                         </div>
@@ -130,7 +137,7 @@
                         </div>
                         <div class="form-group py-4">
                             <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
-                            <asp:Button AutoPostBack="true" Text="Đăng ký" CssClass="btn btn-primary btn-lg float-right custom_font" ID="btnSignUp" runat="server" OnClick="btnSignUp_Click" />
+                            <asp:Button Text="Đăng ký" CssClass="btn btn-primary btn-lg float-right custom_font" ID="btnSignUp" runat="server" OnClick="btnSignUp_Click" />
                         </div>
                     </div>
                 </div>
@@ -146,91 +153,101 @@
                     <button type="button" class="mobilemenu__close">
                         <svg
                             width="20px" height="20px">
-                            <use xlink:href="images/sprite.svg#cross-20"></use>
-                        </svg></button>
+                            <use href="images/sprite.svg#cross-20"></use>
+                        </svg>
+                    </button>
                 </div>
                 <div class="mobilemenu__content">
-                    <ul class="mobile-links mobile-links--level--0" data-collapse
+                    <ul class="mobile-links mobile-links--level--0" 
                         data-collapse-opened-class="mobile-links__item--open">
-                        <li class="mobile-links__item" data-collapse-item>
+                        <li class="mobile-links__item">
                             <div class="mobile-links__item-title">
                                 <a href="#"
                                     class="mobile-links__item-link">Trang chủ
                                 </a>
                                 <button class="mobile-links__item-toggle"
-                                    type="button" data-collapse-trigger>
+                                    type="button">
                                 </button>
                             </div>
                         </li>
-                        <li class="mobile-links__item" data-collapse-item>
+                        <li class="mobile-links__item">
                             <div class="mobile-links__item-title">
                                 <a href="#" class="mobile-links__item-link">Danh mục</a>
-                                <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
+                                <button class="mobile-links__item-toggle" type="button">
                                     <svg
                                         class="mobile-links__item-arrow" width="12px" height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                    </svg></button>
+                                        <use href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                    </svg>
+                                </button>
                             </div>
-                            <div class="mobile-links__item-sub-links" data-collapse-content>
+                            <div class="mobile-links__item-sub-links" >
                                 <ul class="mobile-links mobile-links--level--1">
-                                    <li class="mobile-links__item" data-collapse-item>
+                                    <li class="mobile-links__item">
                                         <div class="mobile-links__item-title">
                                             <a href="#"
-                                                class="mobile-links__item-link">Giày nữ</a>
+                                                class="mobile-links__item-link">Giày nữ
+                                            </a>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="mobile-links__item" data-collapse-item>
+                        <li class="mobile-links__item">
                             <div class="mobile-links__item-title">
                                 <a href="#"
-                                    class="mobile-links__item-link">Thương hiệu</a>
+                                    class="mobile-links__item-link">Thương hiệu
+                                </a>
                                 <button class="mobile-links__item-toggle"
-                                    type="button" data-collapse-trigger>
+                                    type="button">
                                     <svg class="mobile-links__item-arrow" width="12px"
                                         height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                                    </svg></button>
+                                        <use href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                    </svg>
+                                </button>
                             </div>
-                            <div class="mobile-links__item-sub-links" data-collapse-content>
+                            <div class="mobile-links__item-sub-links" >
                                 <ul class="mobile-links mobile-links--level--1">
-                                    <li class="mobile-links__item" data-collapse-item>
+                                    <li class="mobile-links__item">
                                         <div class="mobile-links__item-title">
                                             <a href="shop-list.html"
-                                                class="mobile-links__item-link">Adidas</a>
+                                                class="mobile-links__item-link">Adidas
+                                            </a>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="mobile-links__item" data-collapse-item>
+                        <li class="mobile-links__item">
                             <div class="mobile-links__item-title">
                                 <a href="#" class="mobile-links__item-link">Kênh người bán</a>
                             </div>
                         </li>
-                        <li class="mobile-links__item" data-collapse-item>
+                        <li class="mobile-links__item">
                             <div class="mobile-links__item-title">
-                                <a data-collapse-trigger
-                                    class="mobile-links__item-link">Theo dõi đơn hàng</a>
+                                <a
+                                    class="mobile-links__item-link">Theo dõi đơn hàng
+                                </a>
                             </div>
                         </li>
-                        <li class="mobile-links__item" data-collapse-item>
+                        <li class="mobile-links__item">
                             <div class="mobile-links__item-title">
-                                <a href="#" data-collapse-trigger
-                                    class="mobile-links__item-link">Về The Shuz</a>
+                                <a href="#"
+                                    class="mobile-links__item-link">Về The Shuz
+                                </a>
                             </div>
                         </li>
-                        <li class="mobile-links__item" data-collapse-item>
+                        <li class="mobile-links__item">
                             <div class="mobile-links__item-title">
-                                <a href="#" data-collapse-trigger
-                                    class="mobile-links__item-link">Đăng nhập</a>
+                                <a href="#"
+                                    class="mobile-links__item-link">Đăng nhập
+                                </a>
                             </div>
                         </li>
-                        <li class="mobile-links__item" data-collapse-item>
+                        <li class="mobile-links__item">
                             <div class="mobile-links__item-title">
-                                <a href="#" data-collapse-trigger
-                                    class="mobile-links__item-link">Đăng ký</a>
+                                <a href="#"
+                                    class="mobile-links__item-link">Đăng ký
+                                </a>
                             </div>
                         </li>
                     </ul>
@@ -242,64 +259,75 @@
         <div class="site">
             <!-- mobile site__header -->
             <header class="site__header d-lg-none">
-                <div class="mobile-header mobile-header--sticky mobile-header--stuck">
+                <div class="mobile-header">
                     <div class="mobile-header__panel">
                         <div class="container">
                             <div class="mobile-header__body">
                                 <button class="mobile-header__menu-button" onclick="return false">
                                     <svg width="18px"
                                         height="14px">
-                                        <use xlink:href="images/sprite.svg#menu-18x14"></use>
-                                    </svg></button>
+                                        <use href="images/sprite.svg#menu-18x14"></use>
+                                    </svg>
+                                </button>
                                 <a class="mobile-header__logo" href="#">
                                     <p class="logo_name">THE SHUZ</p>
                                 </a>
                                 <div class="mobile-header__search">
 
                                     <input
-                                        class="mobile-header__search-input" name="search"
+                                        class="" name="search"
                                         placeholder="Tìm kiếm" aria-label="Site search" type="text"
                                         autocomplete="off">
                                     <button
-                                        class="mobile-header__search-button mobile-header__search-button--submit"
+                                        class="mobile-header__search-button "
                                         type="submit">
                                         <svg width="20px" height="20px">
-                                            <use xlink:href="images/sprite.svg#search-20"></use>
-                                        </svg></button>
+                                            <use href="images/sprite.svg#search-20"></use>
+                                        </svg>
+                                    </button>
                                     <button
                                         class="mobile-header__search-button mobile-header__search-button--close"
                                         type="button">
                                         <svg width="20px" height="20px">
-                                            <use xlink:href="images/sprite.svg#cross-20"></use>
-                                        </svg></button>
-                                    <div class="mobile-header__search-body"></div>
+                                            <use href="images/sprite.svg#cross-20"></use>
+                                        </svg>
+                                    </button>
+                                    <div ></div>
 
                                 </div>
                                 <div class="mobile-header__indicators">
-                                    <div class="indicator indicator--mobile-search indicator--mobile d-sm-none">
+                                    <div class="indicator  indicator--mobile d-sm-none">
                                         <button class="indicator__button">
                                             <span class="indicator__area">
                                                 <svg width="20px"
                                                     height="20px">
-                                                    <use xlink:href="images/sprite.svg#search-20"></use>
-                                                </svg></span></button>
+                                                    <use href="images/sprite.svg#search-20"></use>
+                                                </svg>
+                                            </span>
+                                        </button>
                                     </div>
                                     <div class="indicator indicator--mobile d-sm-flex d-none">
-                                        <a href="#" class="indicator__button"><span class="indicator__area">
-                                            <svg width="20px"
-                                                height="20px">
-                                                <use xlink:href="images/sprite.svg#heart-20"></use>
-                                            </svg>
-                                            <span class="indicator__value">0</span></span></a>
-                                    </div>
-                                    <div class="indicator indicator--mobile">
-                                        <a href="<%=ResolveUrl("~/GioHang.aspx") %>"
-                                            class="indicator__button"><span class="indicator__area">
+                                        <a href="#" class="indicator__button">
+                                            <span class="indicator__area">
                                                 <svg width="20px"
                                                     height="20px">
-                                                    <use xlink:href="images/sprite.svg#cart-20"></use>
+                                                    <use href="images/sprite.svg#heart-20"></use>
                                                 </svg>
-                                                <span class="indicator__value">3</span></span></a>
+                                                <span class="indicator__value">0</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="indicator indicator--mobile">
+                                        <a href="<%= ResolveUrl("~/GioHang.aspx") %>"
+                                            class="indicator__button">
+                                            <span class="indicator__area">
+                                                <svg width="20px"
+                                                    height="20px">
+                                                    <use href="images/sprite.svg#cart-20"></use>
+                                                </svg>
+                                                <span class="indicator__value">3</span>
+                                            </span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -312,40 +340,53 @@
             <header class="site__header d-lg-block d-none">
                 <div class="site-header">
                     <!-- .topbar -->
-                    <div class="site-header__topbar topbar">
+                    <div class=" topbar">
                         <div class="topbar__container container">
                             <div class="topbar__row">
                                 <div class="topbar__item topbar__item--link">
                                     <a class="topbar-link"
-                                        href="#">Về The Shuz</a>
+                                        href="#">Về The Shuz
+                                    </a>
                                 </div>
                                 <div class="topbar__item topbar__item--link">
                                     <a class="topbar-link"
-                                        href="#">Liên hệ</a>
+                                        href="#">Liên hệ
+                                    </a>
                                 </div>
                                 <div class="topbar__item topbar__item--link">
                                     <a class="topbar-link"
-                                        href="#">Theo dõi đơn hàng</a>
+                                        href="#">Theo dõi đơn hàng
+                                    </a>
                                 </div>
                                 <div class="topbar__item topbar__item--link">
                                     <a class="topbar-link"
-                                        href="#">Kênh người bán</a>
+                                        href="#">Kênh người bán
+                                    </a>
                                 </div>
                                 <div class="topbar__spring"></div>
                                 <div class="topbar__item">
                                     <div class="topbar-dropdown">
                                         <button class="topbar-dropdown__btn" type="button">
-                                            <asp:Label runat="server" id="lbAccount" Text="Tài khoản"></asp:Label>
-                                                <svg width="7px" height="5px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
-                                                </svg></button>
+                                            <asp:Label runat="server" ID="lbAccount" Text="Tài khoản"></asp:Label>
+                                            <svg width="7px" height="5px">
+                                                <use href="images/sprite.svg#arrow-rounded-down-7x5"></use>
+                                            </svg>
+                                        </button>
                                         <div class="topbar-dropdown__body">
                                             <!-- .menu -->
                                             <ul class="menu menu--layout--topbar">
-                                                <li id="usr_logout" runat="server" Visible="false" ><asp:LinkButton runat="server" id="lbtnLogout" OnClick="lbtnLogout_Click">Đăng xuất</asp:LinkButton></li>
-                                                <li id="usr_login" runat="server" ><a href="#" data-toggle="modal" data-target="#DangNhap" >Đăng nhập</a></li>
-                                                <li id="usr_register" runat="server"><a href="#" data-toggle="modal" data-target="#DangKy"  >Đăng ký</a></li>
-                                                <li><a href="#">Đặt hàng</a></li>
+                                                <li id="usr_logout" runat="server" visible="false">
+                                                    <asp:LinkButton runat="server" ID="lbtnLogout" OnClick="lbtnLogout_Click">Đăng xuất</asp:LinkButton>
+                                                </li>
+                                                <li id="usr_login" runat="server">
+                                                    <a href="#" data-toggle="modal" data-target="#DangNhap">Đăng nhập</a>
+                                                </li>
+                                                <li id="usr_register" runat="server">
+                                                    <a href="#" data-toggle="modal" data-target="#DangKy">Đăng ký</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Đặt hàng</a>
+                                                </li>
                                             </ul>
                                             <!-- .menu / end -->
                                         </div>
@@ -362,27 +403,34 @@
                             <div class="nav-panel__container container">
                                 <div class="nav-panel__row">
                                     <div class="nav-panel__logo">
-                                        <a href="index.html" class="logo_name">THE SHUZ</a>
+                                        <a href="/Default.aspx" class="logo_name">THE SHUZ</a>
                                     </div>
                                     <!-- .nav-links -->
                                     <div class="nav-panel__nav-links nav-links">
                                         <ul class="nav-links__list">
-                                            <li class="nav-links__item nav-links__item--with-submenu"><a
-                                                href="#"><span>Trang chủ
-                                                </span></a>
+                                            <li class="nav-links__item nav-links__item--with-submenu">
+                                                <a
+                                                    href="/Default.aspx">
+                                                    <span>Trang chủ
+                                                    </span>
+                                                </a>
 
                                             </li>
-                                            <li class="nav-links__item nav-links__item--with-submenu"><a
-                                                href="#"><span>Danh mục
-                                                        <svg class="nav-links__arrow" width="9px"
-                                                            height="6px">
-                                                            <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6">
-                                                            </use>
-                                                        </svg></span></a>
+                                            <li class="nav-links__item nav-links__item--with-submenu">
+                                                <a
+                                                    href="#">
+                                                    <span>Danh mục
+                    <svg width="9px"
+                        height="6px">
+                        <use href="images/sprite.svg#arrow-rounded-down-9x6">
+                        </use>
+                    </svg>
+                                                    </span>
+                                                </a>
                                                 <div class="nav-links__menu">
                                                     <!-- .megamenu -->
 
-                                                    <ul class="menu menu--layout--classic">
+                                                    <ul class="menu ">
 
                                                         <asp:Repeater ID="rptProCat" runat="server" OnInit="rptProCat_Init">
                                                             <ItemTemplate>
@@ -398,15 +446,19 @@
 
                                                 <!-- .megamenu / end -->
                                             </li>
-                                            <li class="nav-links__item nav-links__item--with-submenu"><a
-                                                href="<%=ResolveUrl("~/Pro_List.aspx") %>"><span>Thương hiệu<svg
-                                                    class="nav-links__arrow" width="9px" height="6px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6">
-                                                    </use>
-                                                </svg></span></a>
+                                            <li class="nav-links__item nav-links__item--with-submenu">
+                                                <a
+                                                    href="<%= ResolveUrl("~/Pro_List.aspx") %>">
+                                                    <span>Thương hiệu
+                    <svg
+                        width="9px" height="6px">
+                        <use href="images/sprite.svg#arrow-rounded-down-9x6"></use>
+                    </svg>
+                                                    </span>
+                                                </a>
                                                 <div class="nav-links__menu">
                                                     <!-- .menu -->
-                                                    <ul class="menu menu--layout--classic">
+                                                    <ul class="menu ">
 
                                                         <asp:Repeater ID="rptProBrand" runat="server" OnInit="rptProBrand_Init">
                                                             <ItemTemplate>
@@ -431,12 +483,14 @@
                                                 <span class="indicator__area">
                                                     <svg
                                                         class="indicator__icon" width="20px" height="20px">
-                                                        <use xlink:href="images/sprite.svg#search-20"></use>
+                                                        <use href="images/sprite.svg#search-20"></use>
                                                     </svg>
                                                     <svg class="indicator__icon indicator__icon--open" width="20px"
                                                         height="20px">
-                                                        <use xlink:href="images/sprite.svg#cross-20"></use>
-                                                    </svg></span></button>
+                                                        <use href="images/sprite.svg#cross-20"></use>
+                                                    </svg>
+                                                </span>
+                                            </button>
                                             <div class="indicator__dropdown">
                                                 <div class="drop-search">
 
@@ -448,28 +502,35 @@
                                                         class="drop-search__button drop-search__button--submit"
                                                         type="submit">
                                                         <svg width="20px" height="20px">
-                                                            <use xlink:href="images/sprite.svg#search-20"></use>
-                                                        </svg></button>
+                                                            <use href="images/sprite.svg#search-20"></use>
+                                                        </svg>
+                                                    </button>
 
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="indicator">
-                                            <a href="#" class="indicator__button"><span
-                                                class="indicator__area">
-                                                <svg width="20px" height="20px">
-                                                    <use xlink:href="images/sprite.svg#heart-20"></use>
-                                                </svg>
-                                                <span class="indicator__value">0</span></span></a>
+                                            <a href="#" class="indicator__button">
+                                                <span
+                                                    class="indicator__area">
+                                                    <svg width="20px" height="20px">
+                                                        <use href="images/sprite.svg#heart-20"></use>
+                                                    </svg>
+                                                    <span class="indicator__value">0</span>
+                                                </span>
+                                            </a>
                                         </div>
                                         <div class="indicator indicator--trigger--click">
-                                            <a href="<%=ResolveUrl("~/GioHang.aspx") %>"
-                                                class="indicator__button"><span class="indicator__area">
+                                            <a href="<%= ResolveUrl("~/GioHang.aspx") %>"
+                                                class="indicator__button">
+                                                <span class="indicator__area">
                                                     <svg width="20px"
                                                         height="20px">
-                                                        <use xlink:href="images/sprite.svg#cart-20"></use>
+                                                        <use href="images/sprite.svg#cart-20"></use>
                                                     </svg>
-                                                    <span class="indicator__value">3</span></span></a>
+                                                    <span class="indicator__value">3</span>
+                                                </span>
+                                            </a>
                                             <div class="indicator__dropdown">
                                                 <!-- .dropcart -->
                                                 <div class="dropcart">
@@ -478,13 +539,15 @@
                                                             <div class="dropcart__product-image">
                                                                 <a href="product.html">
                                                                     <img
-                                                                        src="images/products/product-1.jpg" alt=""></a>
+                                                                        src="images/products/product-1.jpg" alt="">
+                                                                </a>
                                                             </div>
                                                             <div class="dropcart__product-info">
                                                                 <div class="dropcart__product-name">
                                                                     <a
                                                                         href="product.html">Electric Planer Brandix
-                                                                    KL370090G 300 Watts</a>
+                                    KL370090G 300 Watts
+                                                                    </a>
                                                                 </div>
                                                                 <ul class="dropcart__product-options">
                                                                     <li>Color: Yellow</li>
@@ -492,69 +555,85 @@
                                                                 </ul>
                                                                 <div class="dropcart__product-meta">
                                                                     <span
-                                                                        class="dropcart__product-quantity">2</span> x <span
-                                                                            class="dropcart__product-price">$699.00</span>
+                                                                        class="dropcart__product-quantity">2
+                                                                    </span>x
+                                <span
+                                    class="dropcart__product-price">$699.00
+                                </span>
                                                                 </div>
                                                             </div>
                                                             <button type="button"
                                                                 class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                 <svg
                                                                     width="10px" height="10px">
-                                                                    <use xlink:href="images/sprite.svg#cross-10"></use>
-                                                                </svg></button>
+                                                                    <use href="images/sprite.svg#cross-10"></use>
+                                                                </svg>
+                                                            </button>
                                                         </div>
                                                         <div class="dropcart__product">
                                                             <div class="dropcart__product-image">
                                                                 <a href="product.html">
                                                                     <img
-                                                                        src="images/products/product-2.jpg" alt=""></a>
+                                                                        src="images/products/product-2.jpg" alt="">
+                                                                </a>
                                                             </div>
                                                             <div class="dropcart__product-info">
                                                                 <div class="dropcart__product-name">
                                                                     <a
                                                                         href="product.html">Undefined Tool IRadix DPS3000SY
-                                                                    2700 watts</a>
+                                    2700 watts
+                                                                    </a>
                                                                 </div>
                                                                 <div class="dropcart__product-meta">
                                                                     <span
-                                                                        class="dropcart__product-quantity">1</span> x <span
-                                                                            class="dropcart__product-price">$849.00</span>
+                                                                        class="dropcart__product-quantity">1
+                                                                    </span>x
+                                <span
+                                    class="dropcart__product-price">$849.00
+                                </span>
                                                                 </div>
                                                             </div>
                                                             <button type="button"
                                                                 class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                 <svg
                                                                     width="10px" height="10px">
-                                                                    <use xlink:href="images/sprite.svg#cross-10"></use>
-                                                                </svg></button>
+                                                                    <use href="images/sprite.svg#cross-10"></use>
+                                                                </svg>
+                                                            </button>
                                                         </div>
                                                         <div class="dropcart__product">
                                                             <div class="dropcart__product-image">
                                                                 <a href="product.html">
                                                                     <img
-                                                                        src="images/products/product-5.jpg" alt=""></a>
+                                                                        src="images/products/product-5.jpg" alt="">
+                                                                </a>
                                                             </div>
                                                             <div class="dropcart__product-info">
                                                                 <div class="dropcart__product-name">
                                                                     <a
                                                                         href="product.html">Brandix Router Power Tool
-                                                                    2017ERXPK</a>
+                                    2017ERXPK
+                                                                    </a>
                                                                 </div>
                                                                 <ul class="dropcart__product-options">
                                                                     <li>Color: True Red</li>
                                                                 </ul>
                                                                 <div class="dropcart__product-meta">
                                                                     <span
-                                                                        class="dropcart__product-quantity">3</span> x <span
-                                                                            class="dropcart__product-price">$1,210.00</span>
+                                                                        class="dropcart__product-quantity">3
+                                                                    </span>x
+                                <span
+                                    class="dropcart__product-price">$1,210.00
+                                </span>
                                                                 </div>
                                                             </div>
                                                             <button type="button"
                                                                 class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                 <svg
                                                                     width="10px" height="10px">
-                                                                    <use xlink:href="images/sprite.svg#cross-10"></use>
-                                                                </svg></button>
+                                                                    <use href="images/sprite.svg#cross-10"></use>
+                                                                </svg>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                     <div class="dropcart__totals">
@@ -578,8 +657,8 @@
                                                         </table>
                                                     </div>
                                                     <div class="dropcart__buttons">
-                                                        <a class="btn btn-secondary" href="<%=ResolveUrl("~/Cart.aspx") %>">Vào giỏ hàng</a>
-                                                        <a class="btn btn-primary" href="<%=ResolveUrl("~/Checkout.aspx") %>">Thanh toán</a>
+                                                        <a class="btn btn-secondary" href="<%= ResolveUrl("~/Cart.aspx") %>">Vào giỏ hàng</a>
+                                                        <a class="btn btn-primary" href="<%= ResolveUrl("~/Checkout.aspx") %>">Thanh toán</a>
                                                     </div>
                                                 </div>
                                                 <!-- .dropcart / end -->
@@ -612,13 +691,27 @@
                                     <div class="site-footer__widget footer-contacts">
                                         <h5 class="footer-links__title">Chăm sóc khách hàng</h5>
                                         <ul class="footer-links__list">
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Vận chuyển</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Trung Tâm Trợ Giúp</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Hướng Dẫn Mua Hàng</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Hướng Dẫn Bán Hàng</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Chăm Sóc Khách Hàng</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Chính Sách Bảo Hành</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Trả Hàng & Hoàn Tiền</a></li>
+                                            <li>
+                                                <a href="#">Vận chuyển</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Trung Tâm Trợ Giúp</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Hướng Dẫn Mua Hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Hướng Dẫn Bán Hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chăm Sóc Khách Hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chính Sách Bảo Hành</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Trả Hàng & Hoàn Tiền</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -626,13 +719,27 @@
                                     <div class="site-footer__widget footer-links">
                                         <h5 class="footer-links__title">Về The Shuz</h5>
                                         <ul class="footer-links__list">
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Giới thiệu về The Shuz</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Tuyển Dụng</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Điều Khoản The Shuz</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Chính Sách Bảo Mật</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Chính Hãng</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Kênh Người Bán</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Q&A</a></li>
+                                            <li>
+                                                <a href="#">Giới thiệu về The Shuz</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Tuyển Dụng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Điều Khoản The Shuz</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chính Sách Bảo Mật</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chính Hãng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Kênh Người Bán</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Q&A</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -640,12 +747,24 @@
                                     <div class="site-footer__widget footer-links">
                                         <h5 class="footer-links__title">Tài khoản của tôi</h5>
                                         <ul class="footer-links__list">
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Cửa hàng của tôi</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Lịch sử đơn hàng</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Danh sách yêu thích</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Đặc biệt</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Chứng nhận</a></li>
-                                            <li class="footer-links__item"><a href="#" class="footer-links__link">Liên kết tổ chức</a></li>
+                                            <li>
+                                                <a href="#">Cửa hàng của tôi</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Lịch sử đơn hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Danh sách yêu thích</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Đặc biệt</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chứng nhận</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Liên kết tổ chức</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -662,23 +781,38 @@
                                         <ul class="footer-newsletter__social-links">
                                             <li
                                                 class="footer-newsletter__social-link footer-newsletter__social-link--facebook">
-                                                <a href="#" target="_blank"><i
-                                                    class="fab fa-facebook-f"></i></a></li>
+                                                <a href="#" target="_blank">
+                                                    <i
+                                                        class="fab fa-facebook-f"></i>
+                                                </a>
+                                            </li>
                                             <li
                                                 class="footer-newsletter__social-link footer-newsletter__social-link--twitter">
-                                                <a href="#" target="_blank"><i
-                                                    class="fab fa-twitter"></i></a></li>
+                                                <a href="#" target="_blank">
+                                                    <i
+                                                        class="fab fa-twitter"></i>
+                                                </a>
+                                            </li>
                                             <li
                                                 class="footer-newsletter__social-link footer-newsletter__social-link--youtube">
-                                                <a href="#" target="_blank"><i
-                                                    class="fab fa-youtube"></i></a></li>
+                                                <a href="#" target="_blank">
+                                                    <i
+                                                        class="fab fa-youtube"></i>
+                                                </a>
+                                            </li>
                                             <li
                                                 class="footer-newsletter__social-link footer-newsletter__social-link--instagram">
-                                                <a href="#" target="_blank"><i
-                                                    class="fab fa-instagram"></i></a></li>
+                                                <a href="#" target="_blank">
+                                                    <i
+                                                        class="fab fa-instagram"></i>
+                                                </a>
+                                            </li>
                                             <li class="footer-newsletter__social-link footer-newsletter__social-link--rss">
-                                                <a href="#" target="_blank"><i
-                                                    class="fas fa-rss"></i></a></li>
+                                                <a href="#" target="_blank">
+                                                    <i
+                                                        class="fas fa-rss"></i>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using ShoesStore.Interfaces;
 
@@ -14,19 +14,16 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance.Set<T>().Remove(obj);
             DataProvider.Instance.SaveChanges();
         }
-
         public List<T> GetAll()
         {
             return DataProvider.Instance.Set<T>().ToList();
         }
-
         public void Insert(T obj)
         {
             DataProvider.Instance.Set<T>().Add(obj);
             DataProvider.Instance.SaveChanges();
 
         }
-
         public void Update(T obj)
         {
             DataProvider.Instance.Set<T>().Attach(obj);
@@ -34,11 +31,7 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance.SaveChanges();
 
         }
-
         public abstract void SetActive(T obj);
-        public abstract List<T> Filter(Func<T, bool> func);
-
-
         public abstract bool IsExist(T obj);
     }
 }

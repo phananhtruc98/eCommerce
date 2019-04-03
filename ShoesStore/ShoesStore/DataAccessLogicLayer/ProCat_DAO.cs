@@ -24,11 +24,6 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public override List<ProCat> Filter(Func<ProCat, bool> func)
-        {
-            throw new NotImplementedException();
-        }
-
         public override bool IsExist(ProCat obj)
         {
             throw new NotImplementedException();

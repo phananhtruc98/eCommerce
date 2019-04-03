@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 
@@ -27,11 +26,6 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
         public override void SetActive(ProBrand obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<ProBrand> Filter(Func<ProBrand, bool> func)
         {
             throw new NotImplementedException();
         }

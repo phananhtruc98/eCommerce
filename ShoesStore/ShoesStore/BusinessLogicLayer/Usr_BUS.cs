@@ -6,39 +6,10 @@ using Utilities;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Usr_BUS : IUsr<Usr>,ITableOnePrimary<Usr>
+    public class Usr_BUS : Table_BUS<Usr,Usr_DAO>
     {
         private readonly Usr_DAO _dao = new Usr_DAO();
-        public void Delete(Usr obj)
-        {
-            _dao.Delete(obj);
-        }
-
-        public List<Usr> GetAll()
-        {
-            return _dao.GetAll();
-        }
-
-        public void Insert(Usr obj)
-        {
-            _dao.Insert(obj);
-        }
-
-        public void Update(Usr obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetActive(Usr obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Usr> Filter(Func<Usr, bool> func)
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public void SetActive()
         {
             throw new NotImplementedException();
@@ -47,11 +18,6 @@ namespace ShoesStore.BusinessLogicLayer
         public List<Usr> Filter(Usr obj)
         {
             throw new NotImplementedException();
-        }
-
-        public bool IsExist(Usr obj)
-        {
-            return _dao.IsExist(obj);
         }
 
         public Usr GetByPrimaryKeys(int id)

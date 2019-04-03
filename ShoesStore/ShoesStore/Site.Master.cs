@@ -10,19 +10,14 @@ namespace ShoesStore
 {
     public partial class SiteMaster : MasterPage, IMaster
     {
-        public readonly ProCat_BUS _proCat = new ProCat_BUS();
-        private readonly ProBrand_BUS _proBrand = new ProBrand_BUS();
-        private readonly Usr_BUS _usr = new Usr_BUS();
-
+        internal readonly ProCat_BUS _proCat = new ProCat_BUS();
+        internal readonly ProBrand_BUS _proBrand = new ProBrand_BUS();
+        internal readonly Usr_BUS _usr = new Usr_BUS();
+        internal readonly WebInfo_BUS _webInfo = new WebInfo_BUS();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                ProBrand pb=new ProBrand()
-                {
-                    BrandName = "HELLO"
-                };
-                _proBrand.Insert(pb);
             }
         }
 

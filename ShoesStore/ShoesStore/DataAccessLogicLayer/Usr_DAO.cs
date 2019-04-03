@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using ShoesStore.Interfaces;
 using Utilities;
@@ -8,7 +7,7 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     public class Usr_DAO :Table_DAO<Usr>, IUsr<Usr>
     {
-        public UsrAct_DAO _usrAct { get; set; }
+        public UsrAct_DAO UsrAct { get; set; }
 
         public Usr Login(string login, string pwd)
         {
@@ -27,8 +26,8 @@ namespace ShoesStore.DataAccessLogicLayer
                 UsrId = obj.UsrId,
                 ActCode = EncryptHelper.Encrypt(obj.Login),
             };
-            _usrAct=new UsrAct_DAO();
-            _usrAct.Insert(uAct);
+            UsrAct=new UsrAct_DAO();
+            UsrAct.Insert(uAct);
         }
 
         
@@ -42,20 +41,14 @@ namespace ShoesStore.DataAccessLogicLayer
             return DataProvider.Instance.Usr.Max(m => m.UsrId);
         }
 
-
         public override void SetActive(Usr obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<Usr> Filter(Func<Usr, bool> func)
         {
             throw new NotImplementedException();
         }
 
         public override bool IsExist(Usr obj)
         {
-            return GetAll().Any(m => m.UsrId == obj.UsrId);
+            throw new NotImplementedException();
         }
     }
 }

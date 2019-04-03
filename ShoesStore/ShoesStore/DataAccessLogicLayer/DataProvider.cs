@@ -3,7 +3,7 @@
     public class DataProvider
     {
         private static ShoesStoreDBContext _instance;
-        private static object _syncLock = new object();
+        private static readonly object _syncLock = new object();
         protected DataProvider()
         {
         }

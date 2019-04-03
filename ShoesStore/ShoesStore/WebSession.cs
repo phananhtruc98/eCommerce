@@ -4,7 +4,7 @@ namespace ShoesStore
 {
     public class WebSession
     {
-        private static WebSession _instance = null;
+        private static readonly WebSession _instance = null;
         public static object LoginUsr
         {
             get => HttpContext.Current.Session["LoginUsr"];

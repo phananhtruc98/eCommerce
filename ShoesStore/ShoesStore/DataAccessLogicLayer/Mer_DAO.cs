@@ -1,13 +1,12 @@
 ﻿using ShoesStore.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Data.Objects;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class Mer_DAO : Table_DAO<Mer>, IMer
     {
-        public UsrAct_DAO _usrAct { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public UsrAct_DAO UsrAct { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         
         
 
@@ -32,21 +31,6 @@ namespace ShoesStore.DataAccessLogicLayer
             return DataProvider.Instance.Mer_Info();
         }
 
-        public override void SetActive(Mer obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<Mer> Filter(Func<Mer, bool> func)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool IsExist(Mer obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public Mer Login(string login, string pwd)
         {
             throw new NotImplementedException();
@@ -57,6 +41,15 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-   
+
+        public override void SetActive(Mer obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool IsExist(Mer obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

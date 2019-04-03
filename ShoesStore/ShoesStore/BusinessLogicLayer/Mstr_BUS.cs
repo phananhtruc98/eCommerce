@@ -6,20 +6,17 @@ using System.Data.Objects;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Mstr_BUS : ITable<Mstr>, IMstr
+    public class Mstr_BUS : Table_BUS<Mstr,Mstr_DAO>, IMstr
     {
         private readonly Mstr_DAO _dao = new Mstr_DAO();
-        public UsrAct_DAO _usrAct { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public UsrAct_DAO UsrAct { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void CreateActCode(IMstr obj)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Mstr obj)
-        {
-            throw new NotImplementedException();
-        }
+   
 
         public void Delete(IMstr obj)
         {
@@ -36,16 +33,7 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public List<Mstr> Filter(Func<Mstr, bool> func)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Mstr> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public IMstr GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();
@@ -61,17 +49,9 @@ namespace ShoesStore.BusinessLogicLayer
             return _dao.Get_Admin_Info();
         }
 
-        public void Insert(Mstr obj)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         public void Insert(IMstr obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsExist(Mstr obj)
         {
             throw new NotImplementedException();
         }
@@ -96,15 +76,7 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public void SetActive(Mstr obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Mstr obj)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         public void Update(IMstr obj)
         {

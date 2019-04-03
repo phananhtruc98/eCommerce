@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -1964,6 +1963,7 @@
     </Content>
     <Content Include="Default.aspx" />
     <Content Include="Cart.aspx" />
+    <Content Include="GioHang.aspx" />
     <Content Include="images\colors\20190218_211950.jpg" />
     <Content Include="images\colors\chibiredking.png" />
     <Content Include="images\colors\logoclashroyale.png" />
@@ -2374,7 +2374,9 @@
     <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProColor_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Sub_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\Table_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Usr_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\WebInfo_BUS.cs" />
     <Compile Include="DataAccessLogicLayer\Admin_Info_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>

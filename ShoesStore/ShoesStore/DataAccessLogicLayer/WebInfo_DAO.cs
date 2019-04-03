@@ -6,55 +6,15 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class WebInfo_DAO : IWebInfo
+    public class WebInfo_DAO : Table_DAO<WebInfo>,IWebInfo
     {
-        public List<WebInfo> GetAll()
-        {
-            return DataProvider.Instance.WebInfo.ToList();
-        }
-
-        public void Delete(WebInfo obj)
-        {
-            DataProvider.Instance.WebInfo.Attach(obj);
-            DataProvider.Instance.WebInfo.Remove(obj);
-            DataProvider.Instance.SaveChanges();
-        }
-
-        public void Insert(WebInfo obj)
-        {
-            DataProvider.Instance.WebInfo.Add(obj);
-            DataProvider.Instance.SaveChanges();
-            
-        }
-
-        public void Update(WebInfo obj)
-        {
-            DataProvider.Instance.WebInfo.Attach(obj);
-            DataProvider.Instance.Entry(obj).State = EntityState.Modified;
-            DataProvider.Instance.SaveChanges();
-        }
-
-        public void SetActive(WebInfo obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<WebInfo> Filter(Func<WebInfo, bool> func)
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public void SetActive()
         {
             throw new NotImplementedException();
         }
 
         public List<WebInfo> Filter(WebInfo obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsExist(WebInfo obj)
         {
             throw new NotImplementedException();
         }
@@ -69,5 +29,14 @@ namespace ShoesStore.DataAccessLogicLayer
             return DataProvider.Instance.WebInfo.Find(id);
         }
 
+        public override void SetActive(WebInfo obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool IsExist(WebInfo obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

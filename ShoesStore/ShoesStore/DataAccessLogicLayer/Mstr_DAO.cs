@@ -7,7 +7,7 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     public class Mstr_DAO : Table_DAO<Mstr>, IMstr
     {
-        public UsrAct_DAO _usrAct { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public UsrAct_DAO UsrAct { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void CreateActCode(IMstr obj)
         {
@@ -50,21 +50,6 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public override void SetActive(Mstr obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<Mstr> Filter(Func<Mstr, bool> func)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool IsExist(Mstr obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public IMstr Login(string login, string pwd)
         {
             throw new NotImplementedException();
@@ -80,6 +65,15 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
- 
+
+        public override void SetActive(Mstr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool IsExist(Mstr obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

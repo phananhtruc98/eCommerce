@@ -6,41 +6,24 @@ using System.Data.Objects;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Mer_BUS : ITable<Mer>,IMer
+    public class Mer_BUS : Table_BUS<Mer, Mer_DAO>, IMer
     {
         private readonly Mer_DAO _dao = new Mer_DAO();
 
-        public UsrAct_DAO _usrAct { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public UsrAct_DAO UsrAct { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void CreateActCode(Mer obj)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Mer obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetActive(Mer obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Mer> Filter(Func<Mer, bool> func)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Mer> Filter(Mer obj)
         {
             throw new NotImplementedException();
         }
 
-        public List<Mer> GetAll()
-        {
-            return _dao.GetAll();
-        }
+
 
         public Mer GetByPrimaryKeys(int id)
         {
@@ -57,15 +40,6 @@ namespace ShoesStore.BusinessLogicLayer
             return _dao.Get_Mer_Info();
         }
 
-        public void Insert(Mer obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsExist(Mer obj)
-        {
-            throw new NotImplementedException();
-        }
 
         public Mer Login(string login, string pwd)
         {
@@ -82,11 +56,7 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public void Update(Mer obj)
-        {
-            throw new NotImplementedException();
-        }
 
-  
+
     }
 }

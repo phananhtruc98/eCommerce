@@ -8,7 +8,7 @@ namespace ShoesStore.Admin
 {
     public partial class Manage_Services : System.Web.UI.Page
     {
-        Sub_BUS sub_BUS = new Sub_BUS();
+        readonly Sub_BUS sub_BUS = new Sub_BUS();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

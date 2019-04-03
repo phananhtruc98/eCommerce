@@ -8,7 +8,7 @@ namespace ShoesStore.Admin
 {
     public partial class Manage_User : Page
     {
-        Mer_BUS mer_BUS = new Mer_BUS();
+        readonly Mer_BUS mer_BUS = new Mer_BUS();
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)

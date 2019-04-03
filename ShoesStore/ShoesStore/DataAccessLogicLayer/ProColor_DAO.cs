@@ -1,22 +1,16 @@
-﻿using ShoesStore.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class ProColor_DAO : Table_DAO<ProColor>, IProColor
     {
-        public override List<ProColor> Filter(Func<ProColor, bool> func)
+        public override void SetActive(ProColor obj)
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
 
         public override bool IsExist(ProColor obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void SetActive(ProColor obj)
         {
             throw new NotImplementedException();
         }

@@ -5,52 +5,23 @@ using System.Collections.Generic;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class ProColor_BUS : ITable<ProColor>
+    public class ProColor_BUS :Table_BUS<ProColor,ProColor_DAO>,IProColor
     {
         private readonly ProColor_DAO _dao = new ProColor_DAO();
-        public void Delete(ProColor obj)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public List<ProColor> Filter(ProColor obj)
         {
             throw new NotImplementedException();
         }
 
-        public List<ProColor> Filter(Func<ProColor, bool> func)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ProColor> GetAll()
-        {
-            return _dao.GetAll();
-        }
-
-        public void Insert(ProColor obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsExist(ProColor obj)
-        {
-            throw new NotImplementedException();
-        }
+    
+     
 
         public void SetActive()
         {
             throw new NotImplementedException();
         }
 
-        public void SetActive(ProColor obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(ProColor obj)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
