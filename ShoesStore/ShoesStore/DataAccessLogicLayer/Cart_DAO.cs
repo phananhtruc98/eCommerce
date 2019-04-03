@@ -4,39 +4,21 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class Cart_DAO:ICart
+    public class Cart_DAO:Table_DAO<Cart>,ICart
     {
-        public void Delete(Cart obj)
+   
+
+        public override void SetActive(Cart obj)
         {
             throw new NotImplementedException();
         }
 
-        public List<Cart> GetAll()
+        public override List<Cart> Filter(Func<Cart, bool> func)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Cart obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Cart obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetActive()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Cart> Filter(Cart obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsExist(Cart obj)
+        public override bool IsExist(Cart obj)
         {
             throw new NotImplementedException();
         }

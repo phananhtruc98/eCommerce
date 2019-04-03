@@ -24,6 +24,16 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public void SetActive(Mer obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Mer> Filter(Func<Mer, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Mer> Filter(Mer obj)
         {
             throw new NotImplementedException();

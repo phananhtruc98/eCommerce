@@ -7,7 +7,7 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Sub_BUS : ITable<Sub>
+    public class Sub_BUS : ITable<Sub>,ISub
     {
         private readonly Sub_DAO _dao = new Sub_DAO();
 
@@ -49,6 +49,16 @@ namespace ShoesStore.BusinessLogicLayer
         public void Update(Sub obj)
         {
             _dao.Update(obj);
+        }
+
+        public void SetActive(Sub obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Sub> Filter(Func<Sub, bool> func)
+        {
+            throw new NotImplementedException();
         }
 
         public void SetActive()

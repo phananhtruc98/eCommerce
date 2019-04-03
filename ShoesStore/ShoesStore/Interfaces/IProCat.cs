@@ -3,7 +3,7 @@ using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.Interfaces
 {
-    public interface IProCat : ITable<ProCat>
+    public interface IProCat
     {
         /// <summary>
         /// Lấy top n nhóm sản phẩm được mua nhiều nhất

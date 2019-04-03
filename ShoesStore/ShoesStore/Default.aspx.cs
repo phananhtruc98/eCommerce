@@ -12,14 +12,7 @@ namespace ShoesStore
     public partial class _Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            //SQLDB.SQLDB.ConnectionString = "Server=DESKTOP-O0PUDLR\\SQLEXPRESS;Database=DB_student;Integrated Security=true";
-
-            //SqlCommand sqlCon = new SqlCommand("SELECT * FROM courses");
-
-            //DataTable dt = SQLDB.SQLDB.GetData(sqlCon);
-
-            
+        {            
         }
         protected void rptProCat_Init(object sender, EventArgs e)
         {

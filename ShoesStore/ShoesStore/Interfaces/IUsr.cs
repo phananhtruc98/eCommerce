@@ -2,7 +2,7 @@
 
 namespace ShoesStore.Interfaces
 {
-    public interface IUsr<T>:ITableOnePrimary<T>
+    public interface IUsr<T>
     {
         UsrAct_DAO _usrAct { get; set; }
         T Login(string login, string pwd);

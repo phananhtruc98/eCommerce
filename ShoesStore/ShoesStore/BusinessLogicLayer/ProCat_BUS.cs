@@ -5,7 +5,7 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class ProCat_BUS : IProCat
+    public class ProCat_BUS : ITable<ProCat>,IProCat
     {
         private readonly ProCat_DAO _dao = new ProCat_DAO();
 
@@ -35,6 +35,16 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
         public void Update(ProCat obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetActive(ProCat obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ProCat> Filter(Func<ProCat, bool> func)
         {
             throw new NotImplementedException();
         }

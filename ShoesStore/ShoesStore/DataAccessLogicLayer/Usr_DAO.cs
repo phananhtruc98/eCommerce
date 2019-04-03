@@ -41,9 +41,19 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public int GetLastestId()
         {
-            return DataProvider.Instance().Usr.Max(m => m.UsrId);
+            return DataProvider.Instance.Usr.Max(m => m.UsrId);
         }
 
+
+        public override void SetActive(Usr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<Usr> Filter(Func<Usr, bool> func)
+        {
+            throw new NotImplementedException();
+        }
 
         public override bool IsExist(Usr obj)
         {

@@ -8,9 +8,9 @@ using Utilities;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Usr_BUS : IUsr<Usr>
+    public class Usr_BUS : IUsr<Usr>,ITableOnePrimary<Usr>
     {
-        private readonly IUsr<Usr> _dao = new Usr_DAO();
+        private readonly Usr_DAO _dao = new Usr_DAO();
         public void Delete(Usr obj)
         {
             _dao.Delete(obj);
@@ -27,6 +27,16 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
         public void Update(Usr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetActive(Usr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Usr> Filter(Func<Usr, bool> func)
         {
             throw new NotImplementedException();
         }
