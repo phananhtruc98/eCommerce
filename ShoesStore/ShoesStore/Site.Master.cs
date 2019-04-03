@@ -22,7 +22,11 @@ namespace ShoesStore
         {
             if (!IsPostBack)
             {
-
+                ProBrand pb=new ProBrand()
+                {
+                    BrandName = "HELLO"
+                };
+                _proBrand.Insert(pb);
             }
         }
 

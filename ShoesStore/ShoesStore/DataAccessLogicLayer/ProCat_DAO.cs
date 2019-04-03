@@ -18,7 +18,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public ProCat GetById(int id)
         {
-            return DataProvider.Instance().ProCat.Find(id);
+            return DataProvider.Instance.ProCat.Find(id);
         }
 
         public override void SetActive(ProCat obj)

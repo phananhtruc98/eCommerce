@@ -5,54 +5,11 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class ProBrand_BUS : IProBrand,ITable<ProBrand>
+    public class ProBrand_BUS :Table_DAO<ProBrand>, IProBrand
     {
         private readonly ProBrand_DAO proBrand = new ProBrand_DAO();
 
-        public void Delete(ProBrand obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ProBrand> GetAll()
-        {
-            return proBrand.GetAll();
-        }
-
-        public void Insert(ProBrand obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(ProBrand obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetActive(ProBrand obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ProBrand> Filter(Func<ProBrand, bool> func)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetActive()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ProBrand> Filter(ProBrand obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsExist(ProBrand obj)
-        {
-            throw new NotImplementedException();
-        }
+  
 
         public ProBrand GetById(int id)
         {
@@ -65,6 +22,21 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
         public int GetLastestId()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(ProBrand obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<ProBrand> Filter(Func<ProBrand, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool IsExist(ProBrand obj)
         {
             throw new NotImplementedException();
         }

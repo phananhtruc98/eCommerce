@@ -11,28 +11,28 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public List<WebInfo> GetAll()
         {
-            return DataProvider.Instance().WebInfo.ToList();
+            return DataProvider.Instance.WebInfo.ToList();
         }
 
         public void Delete(WebInfo obj)
         {
-            DataProvider.Instance().WebInfo.Attach(obj);
-            DataProvider.Instance().WebInfo.Remove(obj);
-            DataProvider.Instance().SaveChanges();
+            DataProvider.Instance.WebInfo.Attach(obj);
+            DataProvider.Instance.WebInfo.Remove(obj);
+            DataProvider.Instance.SaveChanges();
         }
 
         public void Insert(WebInfo obj)
         {
-            DataProvider.Instance().WebInfo.Add(obj);
-            DataProvider.Instance().SaveChanges();
+            DataProvider.Instance.WebInfo.Add(obj);
+            DataProvider.Instance.SaveChanges();
             
         }
 
         public void Update(WebInfo obj)
         {
-            DataProvider.Instance().WebInfo.Attach(obj);
-            DataProvider.Instance().Entry(obj).State = EntityState.Modified;
-            DataProvider.Instance().SaveChanges();
+            DataProvider.Instance.WebInfo.Attach(obj);
+            DataProvider.Instance.Entry(obj).State = EntityState.Modified;
+            DataProvider.Instance.SaveChanges();
         }
 
         public void SetActive(WebInfo obj)
@@ -67,7 +67,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public WebInfo GetById(int id)
         {
-            return DataProvider.Instance().WebInfo.Find(id);
+            return DataProvider.Instance.WebInfo.Find(id);
         }
 
     }

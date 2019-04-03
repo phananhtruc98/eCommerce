@@ -52,6 +52,16 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
+        public override void SetActive(Mstr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<Mstr> Filter(Func<Mstr, bool> func)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool IsExist(Mstr obj)
         {
             throw new NotImplementedException();
@@ -72,9 +82,6 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        List<IMstr> ITable<IMstr>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
+ 
     }
 }

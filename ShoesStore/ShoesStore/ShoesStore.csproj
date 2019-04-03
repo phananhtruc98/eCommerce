@@ -1950,15 +1950,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="css\customstyle.css" />
     <Content Include="css\style.css" />
-    <Content Include="DataAccessLogicLayer\ShoesStoreDBModel.Context.tt">
+    <Content Include="DataAccessLogicLayer\ShoesStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShoesStoreDBModel.edmx</DependentUpon>
-      <LastGenOutput>ShoesStoreDBModel.Context.cs</LastGenOutput>
+      <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
+      <LastGenOutput>ShoesStoreModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataAccessLogicLayer\ShoesStoreDBModel.tt">
+    <Content Include="DataAccessLogicLayer\ShoesStoreModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShoesStoreDBModel.edmx</DependentUpon>
-      <LastGenOutput>ShoesStoreDBModel.cs</LastGenOutput>
+      <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
+      <LastGenOutput>ShoesStoreModel.cs</LastGenOutput>
     </Content>
     <Content Include="Default.aspx" />
     <Content Include="Cart.aspx" />
@@ -2158,17 +2158,17 @@
     <Content Include="Admin\vendors\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Admin\vendors\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Admin\vendors\tinymce\skins\lightgray\fonts\tinymce.woff" />
-    <EntityDeploy Include="DataAccessLogicLayer\ShoesStoreDBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ShoesStoreDBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DataAccessLogicLayer\ShoesStoreDBModel.edmx.diagram">
-      <DependentUpon>ShoesStoreDBModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Admin\package-lock.json" />
     <Content Include="Admin\package.json" />
     <Content Include="Admin\css\maps\style.css.map" />
     <Content Include="Admin\scss\_navbar.scss" />
+    <EntityDeploy Include="DataAccessLogicLayer\ShoesStoreModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShoesStoreModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataAccessLogicLayer\ShoesStoreModel.edmx.diagram">
+      <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="images\aboutus.jpg" />
     <Content Include="images\avatars\avatar-1.jpg" />
@@ -2360,111 +2360,186 @@
     <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Sub_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Usr_BUS.cs" />
-    <Compile Include="DataAccessLogicLayer\Mstr_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Admin_Info_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Cart.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\CartDet.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\CartDet_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Cart_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Cus.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Cus_Info_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Mer.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLogicLayer\Mer_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Mer_Info_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Mstr.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\MstrRole.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\MstrRole_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\Mstr_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\Mer_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Pro.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\ProBrand.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\ProBrand_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\ProCat.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\ProCat_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\ProColor.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\ProColor_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\ProDet.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\ProDet_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\ProSize.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\ProSize_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Rcpt.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\RcptBuy.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\RcptBuyDet.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptBuyDet_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\RcptBuySta.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\RcptBuyStaDet.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptBuyStaDet_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\RcptBuyStaStep.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptBuyStaStep_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptBuySta_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptBuy_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\RcptSub.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptSubDet_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\Rcpt_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\ShoesStoreModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoesStoreModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\ShoesStoreModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\ShoesStoreModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Shp.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLogicLayer\sp_helpdiagramdefinition1_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\sp_helpdiagrams1_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+    <Compile Include="DataAccessLogicLayer\Shp_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Sub.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\SubDet.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLogicLayer\sysdiagrams.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+    <Compile Include="DataAccessLogicLayer\SubDet_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\Sub_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Table_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Usr.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\UsrAct.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\UsrAct_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\Usr_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\WebInfo.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\WebInfo_Insert_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\WebInfo_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\WebInfo_Update_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\WebSlide.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\WebSlide_Insert_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\WebSlide_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\WebSlide_Update_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ICart.cs" />
     <Compile Include="Interfaces\IMer.cs" />
@@ -2482,104 +2557,11 @@
     <Compile Include="Interfaces\IUsr.cs" />
     <Compile Include="Interfaces\IUsrAct.cs" />
     <Compile Include="Interfaces\IWebInfo.cs" />
-    <Compile Include="DataAccessLogicLayer\MstrRole_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\Mstr_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccessLogicLayer\ProBrand_DAO.cs" />
-    <Compile Include="DataAccessLogicLayer\ProBrand_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccessLogicLayer\ProCat_DAO.cs" />
-    <Compile Include="DataAccessLogicLayer\ProCat_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\ProColor_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\ProDet_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\ProSize_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\RcptBuyDet_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\RcptBuyStaDet_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\RcptBuyStaStep_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\RcptBuySta_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\RcptBuy_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\RcptSubDet_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\Rcpt_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\ShoesStoreDBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShoesStoreDBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\ShoesStoreDBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\ShoesStoreDBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShoesStoreDBModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\Shp_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\SubDet_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccessLogicLayer\Sub_DAO.cs" />
-    <Compile Include="DataAccessLogicLayer\Sub_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccessLogicLayer\Usr_DAO.cs" />
-    <Compile Include="DataAccessLogicLayer\Usr_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccessLogicLayer\WebInfo_DAO.cs" />
-    <Compile Include="DataAccessLogicLayer\WebInfo_Insert_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\WebInfo_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\WebInfo_Update_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\WebSlide_Insert_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\WebSlide_Select_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\WebSlide_Update_Result.cs">
-      <DependentUpon>ShoesStoreDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

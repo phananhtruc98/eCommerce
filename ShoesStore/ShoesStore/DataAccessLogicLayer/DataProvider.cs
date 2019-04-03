@@ -2,16 +2,33 @@
 {
     public class DataProvider
     {
-        private static ShoesStoreDBContext _instance = null;
-
+        private static ShoesStoreDBContext _instance;
+        private static object _syncLock = new object();
         protected DataProvider()
         {
-            var db = new ShoesStoreDBContext();
         }
 
-        public static ShoesStoreDBContext Instance()
+        public static ShoesStoreDBContext Instance
         {
-            return _instance ?? new ShoesStoreDBContext();
+            // Uses lazy initialization.
+
+            // Note: this is not thread safe.
+            get
+            {
+
+                if (_instance == null)
+                {
+                    lock (_syncLock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new ShoesStoreDBContext();
+                        }
+                    }
+                }
+
+                return _instance;
+            }
         }
     }
 }

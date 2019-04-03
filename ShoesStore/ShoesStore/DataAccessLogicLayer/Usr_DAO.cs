@@ -41,7 +41,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public int GetLastestId()
         {
-            return DataProvider.Instance().Usr.Max(m => m.UsrId);
+            return DataProvider.Instance.Usr.Max(m => m.UsrId);
         }
 
 

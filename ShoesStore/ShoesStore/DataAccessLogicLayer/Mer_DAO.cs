@@ -16,7 +16,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public void CreateActCode(Mer obj)
         {
 
-            DataProvider.Instance().Mer_Info();
+            DataProvider.Instance.Mer_Info();
         }
         
         public Mer GetByPrimaryKeys(int id)
@@ -31,7 +31,17 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public ObjectResult<Mer_Info_Result> Get_Mer_Info()
         {
-            return DataProvider.Instance().Mer_Info();
+            return DataProvider.Instance.Mer_Info();
+        }
+
+        public override void SetActive(Mer obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<Mer> Filter(Func<Mer, bool> func)
+        {
+            throw new NotImplementedException();
         }
 
         public override bool IsExist(Mer obj)

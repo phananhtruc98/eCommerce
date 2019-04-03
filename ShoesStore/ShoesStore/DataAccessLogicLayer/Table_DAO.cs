@@ -12,28 +12,28 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public void Delete(T obj)
         {
-            DataProvider.Instance().Set<T>().Attach(obj);
-            DataProvider.Instance().Set<T>().Remove(obj);
-            DataProvider.Instance().SaveChanges();
+            DataProvider.Instance.Set<T>().Attach(obj);
+            DataProvider.Instance.Set<T>().Remove(obj);
+            DataProvider.Instance.SaveChanges();
         }
 
         public List<T> GetAll()
         {
-            return DataProvider.Instance().Set<T>().ToList();
+            return DataProvider.Instance.Set<T>().ToList();
         }
 
         public void Insert(T obj)
         {
-            DataProvider.Instance().Set<T>().Add(obj);
-            DataProvider.Instance().SaveChanges();
+            DataProvider.Instance.Set<T>().Add(obj);
+            DataProvider.Instance.SaveChanges();
 
         }
 
         public void Update(T obj)
         {
-            DataProvider.Instance().Set<T>().Attach(obj);
-            DataProvider.Instance().Entry(obj).State = EntityState.Modified;
-            DataProvider.Instance().SaveChanges();
+            DataProvider.Instance.Set<T>().Attach(obj);
+            DataProvider.Instance.Entry(obj).State = EntityState.Modified;
+            DataProvider.Instance.SaveChanges();
 
         }
 

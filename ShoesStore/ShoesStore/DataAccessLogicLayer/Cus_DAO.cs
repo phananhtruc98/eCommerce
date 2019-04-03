@@ -81,7 +81,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public ObjectResult<Cus_Info_Result> Get_Cus_Info()
         {
-            return DataProvider.Instance().Cus_Info();
+            return DataProvider.Instance.Cus_Info();
         }
     }
 }
