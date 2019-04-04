@@ -13,6 +13,15 @@ namespace ShoesStore {
     public partial class Default {
         
         /// <summary>
+        /// featuredProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater featuredProducts;
+        
+        /// <summary>
         /// rptProCat control.
         /// </summary>
         /// <remarks>
