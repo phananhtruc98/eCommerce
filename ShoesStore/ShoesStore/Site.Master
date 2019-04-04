@@ -75,12 +75,26 @@
                             <a href="#" class="float-right" data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
                             <label for="login_login">Tài khoản</label>
                             <input type="text" class="form-control form-control-lg" id="login_login" runat="server" />
-                            <div class="invalid-feedback">Oops, you missed this one.</div>
+                            <asp:RequiredFieldValidator
+                                display="Dynamic"
+                                ID="RequiredLoginUsername"
+                                runat="server"
+                                ErrorMessage="Chưa nhập tài khoản!"
+                                ControlToValidate="login_login"
+                                ForeColor="Red">
+                            </asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group">
                             <label for="login_pwd">Mật khẩu</label>
                             <input type="password" class="form-control form-control-lg" id="login_pwd" runat="server" />
-                            <div class="invalid-feedback">Enter your password too!</div>
+                            <asp:RequiredFieldValidator
+                                display="Dynamic"
+                                ID="RequiredLoginPassword"
+                                runat="server"
+                                ErrorMessage="Chưa nhập mật khẩu!"
+                                ControlToValidate="login_pwd"
+                                ForeColor="Red">
+                            </asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group py-4">
                             <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
@@ -108,32 +122,99 @@
                             <div class="mt-1">
                                 <button type="button" class="btn btn-primary">Gửi mã xác minh</button>
                             </div>
-                            <div class="invalid-feedback">Nhập email!</div>
+                            <asp:RequiredFieldValidator
+                                display="Dynamic"
+                                ID="RequiredEmail"
+                                runat="server"
+                                ErrorMessage="Chưa nhập Email!"
+                                ControlToValidate="email"
+                                ForeColor="Red">
+                            </asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator 
+                                ID="RegularExpressionValidator" 
+                                runat="server"
+                                ErrorMessage="Email không đúng!"
+                                ControlToValidate="email"
+                                ForeColor="Red"
+                                ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                                ></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-group">
                             <label for="active_code">Mã xác minh</label>
                             <input type="number" class="form-control form-control-lg" id="active_code" runat="server" />
-                            <div class="invalid-feedback">Nhập mã xác minh!</div>
+                            <asp:RequiredFieldValidator
+                                display="Dynamic"
+                                ID="RequiredActiveCode"
+                                runat="server"
+                                ErrorMessage="Chưa nhập mã xác minh!"
+                                ControlToValidate="active_code"
+                                ForeColor="Red">
+                            </asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator 
+                                ID="RegularExpressionValidator1" 
+                                runat="server"
+                                ErrorMessage="Mã xác minh không đúng!"
+                                ControlToValidate="active_code"
+                                ForeColor="Red"
+                                ValidationExpression="^(\d{4})$"
+                                ></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-group">
                             <label for="username">Họ và tên</label>
                             <input type="text" class="form-control form-control-lg" id="username" runat="server" />
-                            <div class="invalid-feedback">Nhập họ và tên!</div>
+                            <asp:RequiredFieldValidator
+                                display="Dynamic"
+                                ID="RequiredFullname"
+                                runat="server"
+                                ErrorMessage="Chưa nhập họ tên!"
+                                ControlToValidate="username"
+                                ForeColor="Red">
+                            </asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group">
                             <label for="login">Tên đăng nhập</label>
                             <input type="text" class="form-control form-control-lg" id="login" runat="server" />
-                            <div class="invalid-feedback">Nhập tên đăng nhập!</div>
+                            <asp:RequiredFieldValidator
+                                display="Dynamic"
+                                ID="RequiredUsername"
+                                runat="server"
+                                ErrorMessage="Chưa nhập tên đăng nhập!"
+                                ControlToValidate="login"
+                                ForeColor="Red">
+                            </asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group">
                             <label for="password">Mật khẩu</label>
                             <input type="password" class="form-control form-control-lg" id="password" runat="server" />
-                            <div class="invalid-feedback">Nhập mật khẩu!</div>
+                            <asp:RequiredFieldValidator
+                                ID="RequiredPassword"
+                                display="Dynamic"
+                                runat="server"
+                                ErrorMessage="Chưa nhập mật khẩu!"
+                                ControlToValidate="password"
+                                ForeColor="Red">
+                            </asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator 
+                                ID="RegularExpressionValidator3" 
+                                runat="server"
+                                ErrorMessage="Mật khẩu yếu"
+                                ControlToValidate="password"
+                                ForeColor="Red"
+                                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                                ></asp:RegularExpressionValidator>
+
                         </div>
                         <div class="form-group">
                             <label for="re_password">Xác nhận mật khẩu</label>
                             <input type="password" class="form-control form-control-lg" id="re_password" runat="server" />
-                            <div class="invalid-feedback">Xác nhận mật khẩu!</div>
+                            <asp:RequiredFieldValidator
+                                display="Dynamic"
+                                ID="RequiredRePassword"
+                                runat="server"
+                                ErrorMessage="Chưa nhập lại mật khẩu!"
+                                ControlToValidate="re_password"
+                                ForeColor="Red">
+                            </asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group py-4">
                             <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
