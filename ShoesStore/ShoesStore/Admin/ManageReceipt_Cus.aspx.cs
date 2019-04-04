@@ -10,7 +10,7 @@ namespace ShoesStore.Admin
 {
     public partial class ManageReceipt_Cus : System.Web.UI.Page
     {
-        private readonly RcptSub_BUS rcptSub_bus = new RcptSub_BUS(); 
+        private readonly RcptBuy_BUS rcptBuy_bus = new RcptBuy_BUS(); 
         protected void Page_Load(object sender, EventArgs e)
         {
             BindDataGridView();
@@ -18,16 +18,17 @@ namespace ShoesStore.Admin
 
         private void BindDataGridView()
         {
-            gvRcptSub.DataSource = (from rcptSub in rcptSub_bus.GetAll()
+            gvRcptBuy.DataSource = (from rcptBuy in rcptBuy_bus.GetAll()
                                    select new
                                    {
-                                       rcptSub.RcptSubId,
-                                       rcptSub.Rcpt.DateAdd,
-                                       rcptSub.Rcpt.DateEdit,
-                                       rcptSub.Rcpt.UsrAdd,
-                                       rcptSub.Rcpt.UsrEdit
+                                       rcptBuy.CusId,
+                                       rcptBuy.RcptBuyId,
+                                       rcptBuy.Rcpt.DateAdd,
+                                       rcptBuy.Rcpt.DateEdit,
+                                       rcptBuy.Rcpt.UsrAdd,
+                                       rcptBuy.Rcpt.UsrEdit
                                    }).ToList();
-            gvRcptSub.DataBind();
+            gvRcptBuy.DataBind();
         }
     }
 }
