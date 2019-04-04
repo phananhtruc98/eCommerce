@@ -13,21 +13,21 @@ namespace ShoesStore.Admin {
     public partial class ManageReceipt_Cus {
         
         /// <summary>
-        /// gvRcptSub control.
+        /// gvRcptBuy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRcptSub;
+        protected global::System.Web.UI.WebControls.GridView gvRcptBuy;
         
         /// <summary>
-        /// ValidationRcptSubId control.
+        /// ValidationRcptBuyId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationRcptSubId;
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationRcptBuyId;
     }
 }
