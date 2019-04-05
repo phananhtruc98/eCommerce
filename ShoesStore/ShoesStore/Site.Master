@@ -1,4 +1,4 @@
-﻿    <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ShoesStore.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ShoesStore.SiteMaster" %>
 
 <!DOCTYPE html>
 
@@ -72,11 +72,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <a href="#" class="float-right" data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
+                            <a href="#" class="float-right" data-dismiss="modal"  data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
                             <label for="login_login">Tài khoản</label>
                             <input type="text" class="form-control form-control-lg" id="login_login" runat="server" />
                             <asp:RequiredFieldValidator
-                                display="Dynamic"
+                                Display="Dynamic"
                                 ID="RequiredLoginUsername"
                                 runat="server"
                                 ErrorMessage="Chưa nhập tài khoản!"
@@ -88,7 +88,7 @@
                             <label for="login_pwd">Mật khẩu</label>
                             <input type="password" class="form-control form-control-lg" id="login_pwd" runat="server" />
                             <asp:RequiredFieldValidator
-                                display="Dynamic"
+                                Display="Dynamic"
                                 ID="RequiredLoginPassword"
                                 runat="server"
                                 ErrorMessage="Chưa nhập mật khẩu!"
@@ -116,54 +116,52 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <a href="#" class="float-right" data-toggle="modal" data-target="#DangNhap">Đăng nhập</a>
+                            <a href="#" data-dismiss="modal" class="float-right" data-toggle="modal" data-target="#DangNhap">Đăng nhập</a>
                             <label for="email">Email</label>
                             <input type="text" class="form-control form-control-lg" name="uname1" id="email" runat="server" />
                             <div class="mt-1">
                                 <button type="button" class="btn btn-primary">Gửi mã xác minh</button>
                             </div>
                             <asp:RequiredFieldValidator
-                                display="Dynamic"
+                                Display="Dynamic"
                                 ID="RequiredEmail"
                                 runat="server"
                                 ErrorMessage="Chưa nhập Email!"
                                 ControlToValidate="email"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator 
-                                ID="RegularExpressionValidator" 
+                            <asp:RegularExpressionValidator
+                                ID="RegularExpressionValidator"
                                 runat="server"
                                 ErrorMessage="Email không đúng!"
                                 ControlToValidate="email"
                                 ForeColor="Red"
-                                ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                                ></asp:RegularExpressionValidator>
+                                ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-group">
                             <label for="active_code">Mã xác minh</label>
                             <input type="number" class="form-control form-control-lg" id="active_code" runat="server" />
                             <asp:RequiredFieldValidator
-                                display="Dynamic"
+                                Display="Dynamic"
                                 ID="RequiredActiveCode"
                                 runat="server"
                                 ErrorMessage="Chưa nhập mã xác minh!"
                                 ControlToValidate="active_code"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator 
-                                ID="RegularExpressionValidator1" 
+                            <asp:RegularExpressionValidator
+                                ID="RegularExpressionValidator1"
                                 runat="server"
                                 ErrorMessage="Mã xác minh không đúng!"
                                 ControlToValidate="active_code"
                                 ForeColor="Red"
-                                ValidationExpression="^(\d{4})$"
-                                ></asp:RegularExpressionValidator>
+                                ValidationExpression="^(\d{4})$"></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-group">
                             <label for="username">Họ và tên</label>
                             <input type="text" class="form-control form-control-lg" id="username" runat="server" />
                             <asp:RequiredFieldValidator
-                                display="Dynamic"
+                                Display="Dynamic"
                                 ID="RequiredFullname"
                                 runat="server"
                                 ErrorMessage="Chưa nhập họ tên!"
@@ -175,7 +173,7 @@
                             <label for="login">Tên đăng nhập</label>
                             <input type="text" class="form-control form-control-lg" id="login" runat="server" />
                             <asp:RequiredFieldValidator
-                                display="Dynamic"
+                                Display="Dynamic"
                                 ID="RequiredUsername"
                                 runat="server"
                                 ErrorMessage="Chưa nhập tên đăng nhập!"
@@ -188,27 +186,26 @@
                             <input type="password" class="form-control form-control-lg" id="password" runat="server" />
                             <asp:RequiredFieldValidator
                                 ID="RequiredPassword"
-                                display="Dynamic"
+                                Display="Dynamic"
                                 runat="server"
                                 ErrorMessage="Chưa nhập mật khẩu!"
                                 ControlToValidate="password"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator 
-                                ID="RegularExpressionValidator3" 
+                            <asp:RegularExpressionValidator
+                                ID="RegularExpressionValidator3"
                                 runat="server"
                                 ErrorMessage="Mật khẩu yếu"
                                 ControlToValidate="password"
                                 ForeColor="Red"
-                                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
-                                ></asp:RegularExpressionValidator>
+                                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"></asp:RegularExpressionValidator>
 
                         </div>
                         <div class="form-group">
                             <label for="re_password">Xác nhận mật khẩu</label>
                             <input type="password" class="form-control form-control-lg" id="re_password" runat="server" />
                             <asp:RequiredFieldValidator
-                                display="Dynamic"
+                                Display="Dynamic"
                                 ID="RequiredRePassword"
                                 runat="server"
                                 ErrorMessage="Chưa nhập lại mật khẩu!"
@@ -239,7 +236,7 @@
                     </button>
                 </div>
                 <div class="mobilemenu__content">
-                    <ul class="mobile-links mobile-links--level--0" 
+                    <ul class="mobile-links mobile-links--level--0"
                         data-collapse-opened-class="mobile-links__item--open">
                         <li class="mobile-links__item">
                             <div class="mobile-links__item-title">
@@ -261,7 +258,7 @@
                                     </svg>
                                 </button>
                             </div>
-                            <div class="mobile-links__item-sub-links" >
+                            <div class="mobile-links__item-sub-links">
                                 <ul class="mobile-links mobile-links--level--1">
                                     <li class="mobile-links__item">
                                         <div class="mobile-links__item-title">
@@ -286,7 +283,7 @@
                                     </svg>
                                 </button>
                             </div>
-                            <div class="mobile-links__item-sub-links" >
+                            <div class="mobile-links__item-sub-links">
                                 <ul class="mobile-links mobile-links--level--1">
                                     <li class="mobile-links__item">
                                         <div class="mobile-links__item-title">
@@ -373,7 +370,7 @@
                                             <use href="images/sprite.svg#cross-20"></use>
                                         </svg>
                                     </button>
-                                    <div ></div>
+                                    <div></div>
 
                                 </div>
                                 <div class="mobile-header__indicators">
