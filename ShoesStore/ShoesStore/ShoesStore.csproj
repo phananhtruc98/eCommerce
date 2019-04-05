@@ -1952,6 +1952,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="css\customstyle.css" />
     <Content Include="css\style.css" />
+    <Content Include="CusHome.aspx" />
     <Content Include="DataAccessLogicLayer\ShoesStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
@@ -2381,6 +2382,13 @@
     <Compile Include="BusinessLogicLayer\Table_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Usr_BUS.cs" />
     <Compile Include="BusinessLogicLayer\WebInfo_BUS.cs" />
+    <Compile Include="CusHome.aspx.cs">
+      <DependentUpon>CusHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CusHome.aspx.designer.cs">
+      <DependentUpon>CusHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\Admin_Info_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
