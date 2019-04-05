@@ -19,15 +19,7 @@ namespace ShoesStore.Admin
         }
         private void BindGridViewData()
         {
-            gvRcptSub.DataSource = (from rcptSub in rcptSub_BUS.GetAll_Join_Rcpt()
-                                    select new
-                                    {
-                                        rcptSub.RcptSubId,
-                                        rcptSub.Rcpt.DateAdd,
-                                        rcptSub.Rcpt.DateEdit,
-                                        rcptSub.Rcpt.UsrAdd,
-                                        rcptSub.Rcpt.UsrEdit
-                                    }).ToList();
+            gvRcptSub.DataSource = rcptSub_BUS.GetAll().ToList();
             gvRcptSub.DataBind();
         }
 
@@ -41,12 +33,11 @@ namespace ShoesStore.Admin
             }
             else if (e.CommandName == "DeleteRow")
             {
-                RcptSub result = (from c in rcptSub_BUS.GetAll_Join_Rcpt()
-                              where c.RcptSubId == Convert.ToInt32(e.CommandArgument)
-                              select c).FirstOrDefault();
+                RcptSub result = rcptSub_BUS.GetAll().FirstOrDefault(m=>m.RcptSubId==Convert.ToInt32(e.CommandArgument));
+               
                 Rcpt result1 = (from c in rcpt_BUS.GetAll()
-                                  where c.RcptId == Convert.ToInt32(e.CommandArgument)
-                                  select c).FirstOrDefault();
+                                where c.RcptId == Convert.ToInt32(e.CommandArgument)
+                                select c).FirstOrDefault();
                 rcptSub_BUS.Delete(result);
                 rcpt_BUS.Delete(result1);
                 BindGridViewData();
@@ -67,8 +58,8 @@ namespace ShoesStore.Admin
                 string UsrEdit = ((TextBox)gvRcptSub.Rows[rowIndex].FindControl("EditUsrEdit")).Text;
                 // SỬA CODE Ở ĐÂY
                 RcptSub result = (from c in rcptSub_BUS.GetAll()
-                              where c.RcptSubId == Convert.ToInt32(e.CommandArgument)
-                              select c).FirstOrDefault();
+                                  where c.RcptSubId == Convert.ToInt32(e.CommandArgument)
+                                  select c).FirstOrDefault();
                 if (result != null)
                 {
                     // SỬA CODE Ở ĐÂY
@@ -106,11 +97,12 @@ namespace ShoesStore.Admin
                     UsrEdit = Convert.ToInt32(usrEdit)
                 };
 
-                RcptSub newRcptSub = new RcptSub {
+                RcptSub newRcptSub = new RcptSub
+                {
                     RcptSubId = Convert.ToInt32(rcptSubId)
                 };
 
-                
+
 
                 rcptSub_BUS.Insert(newRcptSub);
                 rcpt_BUS.Insert(rcpt);

@@ -45,7 +45,7 @@
 
                     <asp:TemplateField HeaderText="Ngày thêm">
                         <ItemTemplate>
-                            <%# Eval("DateAdd") %>
+                            <%# Eval("Rcpt.DateAdd") %>
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox runat="server" ID="EditDateAdd" Text='<%# Bind("DateAdd") %>' />
@@ -63,7 +63,7 @@
 
                     <asp:TemplateField HeaderText="Ngày sửa">
                         <ItemTemplate>
-                            <%# Eval("DateEdit") %>
+                            <%# Eval("Rcpt.DateEdit") %>
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox runat="server" ID="EditDateEdit" Text='<%# Bind("DateEdit") %>' />
@@ -74,7 +74,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Người thêm">
                         <ItemTemplate>
-                            <%# Eval("UsrAdd") %>
+                            <%# Eval("Rcpt.UsrAdd") %>
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox runat="server" ID="EditUsrAdd" Text='<%# Bind("UsrAdd") %>' />
@@ -91,7 +91,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Người chỉnh sửa">
                         <ItemTemplate>
-                            <%# Eval("UsrEdit") %>
+                            <%# Eval("Rcpt.UsrEdit") %>
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox runat="server" ID="EditUsrEdit" Text='<%# Bind("UsrEdit") %>' />
