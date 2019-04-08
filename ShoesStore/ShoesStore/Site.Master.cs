@@ -14,6 +14,7 @@ namespace ShoesStore
         internal readonly ProBrand_BUS _proBrand = new ProBrand_BUS();
         internal readonly Usr_BUS _usr = new Usr_BUS();
         internal readonly WebInfo_BUS _webInfo = new WebInfo_BUS();
+        private static string _actCode = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,15 +24,13 @@ namespace ShoesStore
 
         private void Page_Init(object sender, EventArgs e)
         {
-            if (CheckLoginSession())
+            if (WebSession.LoginUsr != null)
             {
                 usr_login.Visible = false;
                 usr_register.Visible = false;
                 lbAccount.Text = $"Chào {(WebSession.LoginUsr as Usr)?.UsrName}";
                 usr_logout.Visible = true;
             }
-
-
         }
 
         protected void rptProCat_Init(object sender, EventArgs e)
@@ -77,14 +76,11 @@ namespace ShoesStore
             if (!Email.IsValidEmail(email.Value)) return false;
             //if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
             if (TextHelper.IsSpecialCharacters(login.Value)) return false;
+            if (active_code.Value != _actCode) return false;
             return password.Value == re_password.Value;
         }
 
-        public bool CheckLoginSession()
-        {
-            return (WebSession.LoginUsr != null);
 
-        }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
@@ -100,6 +96,8 @@ namespace ShoesStore
             if (_usr.IsExist(usr)) return;
             _usr.Insert(usr);
             _usr.CreateActCode(usr);
+            Response.Redirect(Request.RawUrl);
+
 
 
         }
@@ -108,6 +106,18 @@ namespace ShoesStore
         {
             WebSession.LoginUsr = null;
             Response.Redirect(Request.RawUrl);
+        }
+
+        protected void btnActCodeSender_Click(object sender, EventArgs e)
+        {
+            RequiredEmail.Validate();
+            RegularExpressionValidator.Validate();
+            if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
+            {
+                _actCode = TextHelper.RandomNumber(4);
+                Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
+                    $"Mã kích hoạt của bạn là {_actCode}");
+            }
         }
     }
 }

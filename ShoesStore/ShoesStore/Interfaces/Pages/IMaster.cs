@@ -6,6 +6,5 @@ namespace ShoesStore.Interfaces.Pages
     {
         bool IsValidLogin();
         bool IsValidRegister();
-        bool CheckLoginSession();
     }
 }

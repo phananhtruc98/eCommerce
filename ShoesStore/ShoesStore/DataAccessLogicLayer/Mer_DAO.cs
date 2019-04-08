@@ -31,6 +31,11 @@ namespace ShoesStore.DataAccessLogicLayer
             return DataProvider.Instance.Mer_Info();
         }
 
+        public UsrAct GetUsrAct(int usrId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Mer Login(string login, string pwd)
         {
             throw new NotImplementedException();

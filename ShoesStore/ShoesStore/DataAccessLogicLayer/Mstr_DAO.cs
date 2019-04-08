@@ -50,6 +50,11 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
+        public UsrAct GetUsrAct(int usrId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IMstr Login(string login, string pwd)
         {
             throw new NotImplementedException();

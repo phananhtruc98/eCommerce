@@ -6,10 +6,10 @@ using Utilities;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Usr_BUS : Table_BUS<Usr,Usr_DAO>
+    public class Usr_BUS : Table_BUS<Usr, Usr_DAO>, IUsr<Usr>
     {
         private readonly Usr_DAO _dao = new Usr_DAO();
-      
+
         public void SetActive()
         {
             throw new NotImplementedException();
@@ -32,6 +32,11 @@ namespace ShoesStore.BusinessLogicLayer
 
 
         public UsrAct_DAO _usrAct { get; set; }
+
+        public UsrAct GetUsrAct(int usrId)
+        {
+            return _dao.GetUsrAct(usrId);
+        }
 
         public Usr Login(string login, string pwd)
         {

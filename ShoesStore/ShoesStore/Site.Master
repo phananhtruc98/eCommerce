@@ -72,7 +72,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <a href="#" class="float-right" data-dismiss="modal"  data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
+                            <a href="#" class="float-right" data-dismiss="modal" data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
                             <label for="login_login">Tài khoản</label>
                             <input type="text" class="form-control form-control-lg" id="login_login" runat="server" />
                             <asp:RequiredFieldValidator
@@ -81,6 +81,7 @@
                                 runat="server"
                                 ErrorMessage="Chưa nhập tài khoản!"
                                 ControlToValidate="login_login"
+                                ValidationGroup="Login"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
                         </div>
@@ -93,12 +94,13 @@
                                 runat="server"
                                 ErrorMessage="Chưa nhập mật khẩu!"
                                 ControlToValidate="login_pwd"
+                                ValidationGroup="Login"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group py-4">
                             <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
-                            <asp:Button runat="server" ID="btnLogin" Text="Đăng nhập" CssClass="btn btn-primary btn-lg float-right custom_font" OnClick="btnLogin_Click" />
+                            <asp:Button runat="server" ID="btnLogin" Text="Đăng nhập" ValidationGroup="Login" CssClass="btn btn-primary btn-lg float-right custom_font" OnClick="btnLogin_Click" />
 
                         </div>
                     </div>
@@ -120,7 +122,15 @@
                             <label for="email">Email</label>
                             <input type="text" class="form-control form-control-lg" name="uname1" id="email" runat="server" />
                             <div class="mt-1">
-                                <button type="button" class="btn btn-primary">Gửi mã xác minh</button>
+                                <asp:UpdatePanel runat="server">
+                                    <ContentTemplate>
+                                        <asp:Button type="button" ID="btnActCodeSender" class="btn btn-primary" Text="Gửi mã xác minh" runat="server" OnClick="btnActCodeSender_Click" />
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="btnActCodeSender" EventName="Click" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+
                             </div>
                             <asp:RequiredFieldValidator
                                 Display="Dynamic"
@@ -128,6 +138,7 @@
                                 runat="server"
                                 ErrorMessage="Chưa nhập Email!"
                                 ControlToValidate="email"
+                                ValidationGroup="Register"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator
@@ -136,6 +147,7 @@
                                 ErrorMessage="Email không đúng!"
                                 ControlToValidate="email"
                                 ForeColor="Red"
+                                ValidationGroup="Register"
                                 ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                         </div>
                         <div class="form-group">
@@ -147,6 +159,7 @@
                                 runat="server"
                                 ErrorMessage="Chưa nhập mã xác minh!"
                                 ControlToValidate="active_code"
+                                ValidationGroup="Register"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator
@@ -154,6 +167,7 @@
                                 runat="server"
                                 ErrorMessage="Mã xác minh không đúng!"
                                 ControlToValidate="active_code"
+                                ValidationGroup="Register"
                                 ForeColor="Red"
                                 ValidationExpression="^(\d{4})$"></asp:RegularExpressionValidator>
                         </div>
@@ -166,6 +180,7 @@
                                 runat="server"
                                 ErrorMessage="Chưa nhập họ tên!"
                                 ControlToValidate="username"
+                                ValidationGroup="Register"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
                         </div>
@@ -178,6 +193,7 @@
                                 runat="server"
                                 ErrorMessage="Chưa nhập tên đăng nhập!"
                                 ControlToValidate="login"
+                                ValidationGroup="Register"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
                         </div>
@@ -190,6 +206,7 @@
                                 runat="server"
                                 ErrorMessage="Chưa nhập mật khẩu!"
                                 ControlToValidate="password"
+                                ValidationGroup="Register"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator
@@ -197,6 +214,7 @@
                                 runat="server"
                                 ErrorMessage="Mật khẩu yếu"
                                 ControlToValidate="password"
+                                ValidationGroup="Register"
                                 ForeColor="Red"
                                 ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"></asp:RegularExpressionValidator>
 
@@ -210,12 +228,20 @@
                                 runat="server"
                                 ErrorMessage="Chưa nhập lại mật khẩu!"
                                 ControlToValidate="re_password"
+                                ValidationGroup="Register"
                                 ForeColor="Red">
                             </asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group py-4">
                             <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
-                            <asp:Button Text="Đăng ký" CssClass="btn btn-primary btn-lg float-right custom_font" ID="btnSignUp" runat="server" OnClick="btnSignUp_Click" />
+                            <asp:UpdatePanel runat="server">
+                                <ContentTemplate>
+                                    <asp:Button Text="Đăng ký" CssClass="btn btn-primary btn-lg float-right custom_font" ID="btnSignUp" runat="server" ValidationGroup="Register" OnClick="btnSignUp_Click" />
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="btnSignUp" EventName="Click" />
+                                </Triggers>
+                            </asp:UpdatePanel>
                         </div>
                     </div>
                 </div>

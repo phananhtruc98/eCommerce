@@ -20,6 +20,11 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public UsrAct_DAO UsrAct { get; set; }
 
+        public UsrAct GetUsrAct(int usrId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Cus Login(string login, string pwd)
         {
             throw new NotImplementedException();

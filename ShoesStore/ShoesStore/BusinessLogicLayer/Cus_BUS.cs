@@ -32,6 +32,11 @@ namespace ShoesStore.BusinessLogicLayer
 
         public UsrAct_DAO UsrAct { get; set; }
 
+        public UsrAct GetUsrAct(int usrId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Login(string username, string password)
         {
             throw new NotImplementedException();

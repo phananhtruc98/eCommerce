@@ -5,13 +5,18 @@ using Utilities;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class Usr_DAO :Table_DAO<Usr>, IUsr<Usr>
+    public class Usr_DAO : Table_DAO<Usr>, IUsr<Usr>
     {
-        public UsrAct_DAO UsrAct { get; set; }
+        private UsrAct_DAO _usrAct_DAO = new UsrAct_DAO();
+
+        public UsrAct GetUsrAct(int usrId)
+        {
+            return _usrAct_DAO.GetAll().FirstOrDefault(m => m.UsrId == usrId);
+        }
 
         public Usr Login(string login, string pwd)
         {
-            return GetAll().FirstOrDefault(m => m.Login == login && m.Password==pwd);
+            return GetAll().FirstOrDefault(m => m.Login == login && m.Password == pwd);
         }
 
         public void Register(Usr obj)
@@ -21,16 +26,18 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public void CreateActCode(Usr obj)
         {
+
             UsrAct uAct = new UsrAct()
             {
                 UsrId = obj.UsrId,
                 ActCode = EncryptHelper.Encrypt(obj.Login),
             };
-            UsrAct=new UsrAct_DAO();
-            UsrAct.Insert(uAct);
+            _usrAct_DAO = new UsrAct_DAO();
+            _usrAct_DAO.Insert(uAct);
         }
 
-        
+
+
         public Usr GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();
@@ -48,7 +55,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public override bool IsExist(Usr obj)
         {
-            throw new NotImplementedException();
+            return GetAll().FirstOrDefault(m => m.Login == obj.Login)==null ? false : true;
         }
     }
 }

@@ -456,5 +456,16 @@ namespace Utilities
             if (regexItem.IsMatch(s)) return false;
             return true;
         }
+        public static string RandomNumber(int length)
+        {
+            string s = "";
+            Random random = new Random();
+            for (int i = 1; i <= length; i++)
+            {
+                s += random.Next(0, 9);
+            }
+
+            return s;
+        }  
     }
 }

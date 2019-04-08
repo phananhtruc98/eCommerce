@@ -88,9 +88,9 @@
                         <ul class="block-header__groups-list">
                             <li><button type="button"
                                     class="block-header__group block-header__group--active">All</button></li>
-                            <asp:Repeater runat="server" id="featuredProducts">
+                            <asp:Repeater runat="server" id="featuredProducts" OnInit="featuredProducts_Init">
                                 <ItemTemplate>
-                                    <li><button type="button" class="block-header__group">Power Tools</button></li>
+                                    <li><button type="button" class="block-header__group"><%#Eval("CatName") %></button></li>
                                 </ItemTemplate>
                                 
 
