@@ -2169,6 +2169,7 @@
     <Content Include="Admin\package.json" />
     <Content Include="Admin\css\maps\style.css.map" />
     <Content Include="Admin\scss\_navbar.scss" />
+    <Content Include="Merchant\DefaultMer.aspx" />
     <EntityDeploy Include="DataAccessLogicLayer\ShoesStoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ShoesStoreModel.Designer.cs</LastGenOutput>
@@ -2669,6 +2670,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\DefaultMer.aspx.cs">
+      <DependentUpon>DefaultMer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\DefaultMer.aspx.designer.cs">
+      <DependentUpon>DefaultMer.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebSession.cs" />
   </ItemGroup>

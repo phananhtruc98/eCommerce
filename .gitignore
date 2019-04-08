@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /ShoesStore/ShoesStore/Web.config
+/Merchant-Web
+/Merchant-Web.rar
