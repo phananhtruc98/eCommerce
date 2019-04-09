@@ -41,8 +41,6 @@
                         <HeaderStyle Wrap="False" />
                         <ItemStyle Wrap="False" />
                     </asp:TemplateField>
-
-
                     <asp:TemplateField HeaderText="Ngày thêm">
                         <ItemTemplate>
                             <%# Eval("Rcpt.DateAdd") %>
@@ -111,6 +109,7 @@
                 <SortedAscendingHeaderStyle BackColor="#AF0101" />
                 <SortedDescendingCellStyle BackColor="#F6F0C0" />
                 <SortedDescendingHeaderStyle BackColor="#7E0000" />
+                <EmptyDataTemplate>No Record Available</EmptyDataTemplate>  
             </asp:GridView>
             <asp:ValidationSummary ID="ValidationRcptSubId" ValidationGroup="Insert"
                 ForeColor="Red" runat="server" />
