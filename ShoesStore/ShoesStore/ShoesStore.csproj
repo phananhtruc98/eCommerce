@@ -1951,7 +1951,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="css\customstyle.css" />
     <Content Include="css\style.css" />
-    <Content Include="CusHome.aspx" />
+    <Content Include="Customer\CusHome.aspx" />
     <Content Include="DataAccessLogicLayer\ShoesStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
@@ -1963,8 +1963,8 @@
       <LastGenOutput>ShoesStoreModel.cs</LastGenOutput>
     </Content>
     <Content Include="Default.aspx" />
-    <Content Include="Cart.aspx" />
-    <Content Include="GioHang.aspx" />
+    <Content Include="Customer\Cart.aspx" />
+    <Content Include="Customer\GioHang.aspx" />
     <Content Include="images\colors\20190218_211950.jpg" />
     <Content Include="images\colors\chibiredking.png" />
     <Content Include="images\colors\logoclashroyale.png" />
@@ -1983,8 +1983,8 @@
     <Content Include="images\slides\home_slide_2.jpg" />
     <Content Include="images\slides\home_slide_3.jpeg" />
     <Content Include="images\slides\home_slide_3_mobile_1.jpeg" />
-    <Content Include="Pro_Detail.aspx" />
-    <Content Include="Pro_List.aspx" />
+    <Content Include="Customer\Pro_Detail.aspx" />
+    <Content Include="Customer\Pro_List.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\stroyka\stroyka.css" />
@@ -2284,7 +2284,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="Checkout.aspx" />
+    <Content Include="Customer\Checkout.aspx" />
     <Content Include="vendor\bootstrap-4.2.1\css\bootstrap.min.css" />
     <Content Include="vendor\bootstrap-4.2.1\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\fontawesome-5.6.1\css\all.min.css" />
@@ -2382,11 +2382,11 @@
     <Compile Include="BusinessLogicLayer\Table_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Usr_BUS.cs" />
     <Compile Include="BusinessLogicLayer\WebInfo_BUS.cs" />
-    <Compile Include="CusHome.aspx.cs">
+    <Compile Include="Customer\CusHome.aspx.cs">
       <DependentUpon>CusHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CusHome.aspx.designer.cs">
+    <Compile Include="Customer\CusHome.aspx.designer.cs">
       <DependentUpon>CusHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Admin_Info_Result.cs">
@@ -2583,6 +2583,7 @@
     <Compile Include="DataAccessLogicLayer\WebSlide_Update_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Interfaces\ICart.cs" />
     <Compile Include="Interfaces\IMer.cs" />
     <Compile Include="Interfaces\IMstr.cs" />
@@ -2615,28 +2616,28 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Cart.aspx.cs">
+    <Compile Include="Customer\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Cart.aspx.designer.cs">
+    <Compile Include="Customer\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Pages\IMaster.cs" />
     <Compile Include="Interfaces\Pages\IValidation.cs" />
     <Compile Include="MyExtensions\ProExtension.cs" />
-    <Compile Include="Pro_Detail.aspx.cs">
+    <Compile Include="Customer\Pro_Detail.aspx.cs">
       <DependentUpon>Pro_Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pro_Detail.aspx.designer.cs">
+    <Compile Include="Customer\Pro_Detail.aspx.designer.cs">
       <DependentUpon>Pro_Detail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pro_List.aspx.cs">
+    <Compile Include="Customer\Pro_List.aspx.cs">
       <DependentUpon>Pro_List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pro_List.aspx.designer.cs">
+    <Compile Include="Customer\Pro_List.aspx.designer.cs">
       <DependentUpon>Pro_List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -2657,11 +2658,11 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="Checkout.aspx.cs">
+    <Compile Include="Customer\Checkout.aspx.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Checkout.aspx.designer.cs">
+    <Compile Include="Customer\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">

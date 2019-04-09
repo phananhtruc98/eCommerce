@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" Title="Quản lý sản phẩm" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageProduct.aspx.cs" Inherits="ShoesStore.Admin.ManageProduct" %>
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="btn btn-lg custom_bar">Thông tin sản phẩm</div>
     <div class="row">
@@ -18,52 +17,50 @@
                         <FooterTemplate>
                             <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="InsertRow" ForeColor="#8C4510">Thêm</asp:LinkButton>
                         </FooterTemplate>
-                        <HeaderStyle Wrap="False" />
-                        <ItemStyle Wrap="False" />
+                        <HeaderStyle Wrap="False"/>
+                        <ItemStyle Wrap="False"/>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Mã màu">
                         <ItemTemplate>
                             <%# Eval("ColorId") %>
                         </ItemTemplate>
-                        <HeaderStyle Wrap="False" />
-                        <ItemStyle Wrap="False" />
+                        <HeaderStyle Wrap="False"/>
+                        <ItemStyle Wrap="False"/>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Tên màu">
                         <ItemTemplate>
                             <%# Eval("ColorName") %>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditColorName" Text='<%# Bind("ColorName") %>' />
+                            <asp:TextBox runat="server" ID="EditColorName" Text='<%# Bind("ColorName") %>'/>
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox runat="server" ID="InsertColorName" Text=' <%# Bind("ColorName") %>' />
+                            <asp:TextBox runat="server" ID="InsertColorName" Text=' <%# Bind("ColorName") %>'/>
                             <asp:RequiredFieldValidator ID="rfvEditColorName"
-                                runat="server"
-                                ErrorMessage="Chưa nhập tên màu"
-                                ControlToValidate="InsertColorName"
-                                Text="*" ForeColor="Red" ValidationGroup="Insert">
+                                                        runat="server"
+                                                        ErrorMessage="Chưa nhập tên màu"
+                                                        ControlToValidate="InsertColorName"
+                                                        Text="*" ForeColor="Red" ValidationGroup="Insert">
                             </asp:RequiredFieldValidator>
                         </FooterTemplate>
-                        <FooterStyle Wrap="False" />
-                        <HeaderStyle Wrap="False" />
-                        <ItemStyle Wrap="False" />
+                        <FooterStyle Wrap="False"/>
+                        <HeaderStyle Wrap="False"/>
+                        <ItemStyle Wrap="False"/>
                     </asp:TemplateField>
-
                 </Columns>
-                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
-                <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-                <RowStyle BackColor="White" ForeColor="#330099" />
-                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
-                <SortedAscendingCellStyle BackColor="#FEFCEB" />
-                <SortedAscendingHeaderStyle BackColor="#AF0101" />
-                <SortedDescendingCellStyle BackColor="#F6F0C0" />
-                <SortedDescendingHeaderStyle BackColor="#7E0000" />
+                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099"/>
+                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC"/>
+                <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center"/>
+                <RowStyle BackColor="White" ForeColor="#330099"/>
+                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399"/>
+                <SortedAscendingCellStyle BackColor="#FEFCEB"/>
+                <SortedAscendingHeaderStyle BackColor="#AF0101"/>
+                <SortedDescendingCellStyle BackColor="#F6F0C0"/>
+                <SortedDescendingHeaderStyle BackColor="#7E0000"/>
             </asp:GridView>
             <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert"
-                ForeColor="Red" runat="server" />
+                                   ForeColor="Red" runat="server"/>
         </div>
-
         <div class="col-6 table-responsive">
             <asp:GridView ID="gvBrand" class="custom_table" ShowFooter="True" runat="server" AutoGeneratedColumns="false" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
                 <Columns>
@@ -79,46 +76,45 @@
                         <FooterTemplate>
                             <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="InsertRow" ForeColor="#8C4510">Thêm</asp:LinkButton>
                         </FooterTemplate>
-                        <HeaderStyle />
+                        <HeaderStyle/>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Mã thương hiệu">
                         <ItemTemplate>
                             <%# Eval("BrandId") %>
                         </ItemTemplate>
-                        <HeaderStyle />
-                        <ItemStyle />
+                        <HeaderStyle/>
+                        <ItemStyle/>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Tên thương hiệu">
                         <ItemTemplate>
                             <%# Eval("BrandName") %>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditColorName" Text='<%# Bind("BrandName") %>' />
+                            <asp:TextBox runat="server" ID="EditColorName" Text='<%# Bind("BrandName") %>'/>
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox runat="server" ID="InsertBrandName" Text=' <%# Bind("BrandName") %>' />
+                            <asp:TextBox runat="server" ID="InsertBrandName" Text=' <%# Bind("BrandName") %>'/>
                             <asp:RequiredFieldValidator ID="rfvEditBrandName"
-                                runat="server"
-                                ErrorMessage="Chưa nhập tên màu"
-                                ControlToValidate="InsertBrandName"
-                                Text="*" ForeColor="Red" ValidationGroup="Insert">
+                                                        runat="server"
+                                                        ErrorMessage="Chưa nhập tên màu"
+                                                        ControlToValidate="InsertBrandName"
+                                                        Text="*" ForeColor="Red" ValidationGroup="Insert">
                             </asp:RequiredFieldValidator>
                         </FooterTemplate>
                     </asp:TemplateField>
-
                 </Columns>
-                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
-                <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-                <RowStyle BackColor="White" ForeColor="#330099" />
-                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
-                <SortedAscendingCellStyle BackColor="#FEFCEB" />
-                <SortedAscendingHeaderStyle BackColor="#AF0101" />
-                <SortedDescendingCellStyle BackColor="#F6F0C0" />
-                <SortedDescendingHeaderStyle BackColor="#7E0000" />
+                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099"/>
+                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC"/>
+                <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center"/>
+                <RowStyle BackColor="White" ForeColor="#330099"/>
+                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399"/>
+                <SortedAscendingCellStyle BackColor="#FEFCEB"/>
+                <SortedAscendingHeaderStyle BackColor="#AF0101"/>
+                <SortedDescendingCellStyle BackColor="#F6F0C0"/>
+                <SortedDescendingHeaderStyle BackColor="#7E0000"/>
             </asp:GridView>
             <asp:ValidationSummary ID="ValidationBrand" ValidationGroup="Insert"
-                ForeColor="Red" runat="server" />
+                                   ForeColor="Red" runat="server"/>
         </div>
     </div>
 </asp:Content>

@@ -22,9 +22,7 @@
   }
 }(function ($) {
   'use strict';
-
   var isSupportAmd = typeof define === 'function' && define.amd;
-
   /**
    * returns whether font is installed or not.
    *
@@ -39,15 +37,11 @@
       top: '-9999px',
       fontSize: '200px'
     }).text('mmmmmmmmmwwwwwww').appendTo(document.body);
-
     var originalWidth = $tester.css('fontFamily', testFontName).width();
     var width = $tester.css('fontFamily', fontName + ',' + testFontName).width();
-
     $tester.remove();
-
     return originalWidth !== width;
   };
-
   var userAgent = navigator.userAgent;
   var isMSIE = /MSIE|Trident/i.test(userAgent);
   var browserVersion;
@@ -61,9 +55,7 @@
       browserVersion = parseFloat(matches[1]);
     }
   }
-
   var isEdge = /Edge\/\d+/.test(userAgent);
-
   var hasCodeMirror = !!window.CodeMirror;
   if (!hasCodeMirror && isSupportAmd) {
     // Webpack
@@ -93,12 +85,10 @@
       }
     }
   }
-
   var isSupportTouch =
     (('ontouchstart' in window) ||
      (navigator.MaxTouchPoints > 0) ||
      (navigator.msMaxTouchPoints > 0));
-
   /**
    * @class core.agent
    *
@@ -124,7 +114,6 @@
     isFontInstalled: isFontInstalled,
     isW3CRangeSupport: !!document.createRange
   };
-
   /**
    * @class core.func
    *
@@ -139,49 +128,39 @@
         return itemA === itemB;
       };
     };
-
     var eq2 = function (itemA, itemB) {
       return itemA === itemB;
     };
-
     var peq2 = function (propName) {
       return function (itemA, itemB) {
         return itemA[propName] === itemB[propName];
       };
     };
-
     var ok = function () {
       return true;
     };
-
     var fail = function () {
       return false;
     };
-
     var not = function (f) {
       return function () {
         return !f.apply(f, arguments);
       };
     };
-
     var and = function (fA, fB) {
       return function (item) {
         return fA(item) && fB(item);
       };
     };
-
     var self = function (a) {
       return a;
     };
-
     var invoke = function (obj, method) {
       return function () {
         return obj[method].apply(obj, arguments);
       };
     };
-
     var idCounter = 0;
-
     /**
      * generate a globally-unique id
      *
@@ -191,7 +170,6 @@
       var id = ++idCounter + '';
       return prefix ? prefix + id : id;
     };
-
     /**
      * returns bnd (bounds) from rect
      *
@@ -214,7 +192,6 @@
         height: rect.bottom - rect.top
       };
     };
-
     /**
      * returns a copy of the object where the keys have become the values and the values the keys.
      * @param {Object} obj
@@ -229,7 +206,6 @@
       }
       return inverted;
     };
-
     /**
      * @param {String} namespace
      * @param {String} [prefix]
@@ -241,7 +217,6 @@
         return name.substring(0, 1).toUpperCase() + name.substring(1);
       }).join('');
     };
-
     /**
      * Returns a function, that, as long as it continues to be invoked, will not
      * be triggered. The function will be called after it stops being called for
@@ -270,7 +245,6 @@
         }
       };
     };
-
     return {
       eq: eq,
       eq2: eq2,
@@ -288,7 +262,6 @@
       debounce: debounce
     };
   })();
-
   /**
    * @class core.list
    *
@@ -306,7 +279,6 @@
     var head = function (array) {
       return array[0];
     };
-
     /**
      * returns the last item of an array.
      *
@@ -315,7 +287,6 @@
     var last = function (array) {
       return array[array.length - 1];
     };
-
     /**
      * returns everything but the last entry of the array.
      *
@@ -324,7 +295,6 @@
     var initial = function (array) {
       return array.slice(0, array.length - 1);
     };
-
     /**
      * returns the rest of the items in an array.
      *
@@ -333,7 +303,6 @@
     var tail = function (array) {
       return array.slice(1);
     };
-
     /**
      * returns item of array
      */
@@ -345,7 +314,6 @@
         }
       }
     };
-
     /**
      * returns true if all of the values in the array pass the predicate truth test.
      */
@@ -357,21 +325,18 @@
       }
       return true;
     };
-
     /**
      * returns index of item
      */
     var indexOf = function (array, item) {
       return $.inArray(item, array);
     };
-
     /**
      * returns true if the value is present in the list.
      */
     var contains = function (array, item) {
       return indexOf(array, item) !== -1;
     };
-
     /**
      * get sum from a list
      *
@@ -384,7 +349,6 @@
         return memo + fn(v);
       }, 0);
     };
-  
     /**
      * returns a copy of the collection with array type.
      * @param {Collection} collection - collection eg) node.childNodes, ...
@@ -396,14 +360,12 @@
       }
       return result;
     };
-
     /**
      * returns whether list is empty or not
      */
     var isEmpty = function (array) {
       return !array || !array.length;
     };
-  
     /**
      * cluster elements by predicate function.
      *
@@ -424,7 +386,6 @@
         return memo;
       }, [[head(array)]]);
     };
-  
     /**
      * returns a copy of the array with all false values removed
      *
@@ -438,7 +399,6 @@
       }
       return aResult;
     };
-
     /**
      * produces a duplicate-free version of the array
      *
@@ -446,16 +406,13 @@
      */
     var unique = function (array) {
       var results = [];
-
       for (var idx = 0, len = array.length; idx < len; idx ++) {
         if (!contains(results, array[idx])) {
           results.push(array[idx]);
         }
       }
-
       return results;
     };
-
     /**
      * returns next item.
      * @param {Array} array
@@ -463,10 +420,8 @@
     var next = function (array, item) {
       var idx = indexOf(array, item);
       if (idx === -1) { return null; }
-
       return array[idx + 1];
     };
-
     /**
      * returns prev item.
      * @param {Array} array
@@ -474,20 +429,15 @@
     var prev = function (array, item) {
       var idx = indexOf(array, item);
       if (idx === -1) { return null; }
-
       return array[idx - 1];
     };
-
     return { head: head, last: last, initial: initial, tail: tail,
              prev: prev, next: next, find: find, contains: contains,
              all: all, sum: sum, from: from, isEmpty: isEmpty,
              clusterBy: clusterBy, compact: compact, unique: unique };
   })();
-
-
   var NBSP_CHAR = String.fromCharCode(160);
   var ZERO_WIDTH_NBSP_CHAR = '\ufeff';
-
   /**
    * @class core.dom
    *
@@ -508,7 +458,6 @@
     var isEditable = function (node) {
       return node && $(node).hasClass('note-editable');
     };
-
     /**
      * @method isControlSizing
      *
@@ -520,7 +469,6 @@
     var isControlSizing = function (node) {
       return node && $(node).hasClass('note-control-sizing');
     };
-
     /**
      * @method makePredByNodeName
      *
@@ -535,7 +483,6 @@
         return node && node.nodeName.toUpperCase() === nodeName;
       };
     };
-
     /**
      * @method isText
      *
@@ -547,7 +494,6 @@
     var isText = function (node) {
       return node && node.nodeType === 3;
     };
-
     /**
      * @method isElement
      *
@@ -559,7 +505,6 @@
     var isElement = function (node) {
       return node && node.nodeType === 1;
     };
-
     /**
      * ex) br, col, embed, hr, img, input, ...
      * @see http://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
@@ -567,32 +512,23 @@
     var isVoid = function (node) {
       return node && /^BR|^IMG|^HR|^IFRAME|^BUTTON|^INPUT/.test(node.nodeName.toUpperCase());
     };
-
     var isPara = function (node) {
       if (isEditable(node)) {
         return false;
       }
-
       // Chrome(v31.0), FF(v25.0.1) use DIV for paragraph
       return node && /^DIV|^P|^LI|^H[1-7]/.test(node.nodeName.toUpperCase());
     };
-
     var isHeading = function (node) {
       return node && /^H[1-7]/.test(node.nodeName.toUpperCase());
     };
-
     var isPre = makePredByNodeName('PRE');
-
     var isLi = makePredByNodeName('LI');
-
     var isPurePara = function (node) {
       return isPara(node) && !isLi(node);
     };
-
     var isTable = makePredByNodeName('TABLE');
-
     var isData = makePredByNodeName('DATA');
-
     var isInline = function (node) {
       return !isBodyContainer(node) &&
              !isList(node) &&
@@ -602,35 +538,25 @@
              !isBlockquote(node) &&
              !isData(node);
     };
-
     var isList = function (node) {
       return node && /^UL|^OL/.test(node.nodeName.toUpperCase());
     };
-
     var isHr = makePredByNodeName('HR');
-
     var isCell = function (node) {
       return node && /^TD|^TH/.test(node.nodeName.toUpperCase());
     };
-
     var isBlockquote = makePredByNodeName('BLOCKQUOTE');
-
     var isBodyContainer = function (node) {
       return isCell(node) || isBlockquote(node) || isEditable(node);
     };
-
     var isAnchor = makePredByNodeName('A');
-
     var isParaInline = function (node) {
       return isInline(node) && !!ancestor(node, isPara);
     };
-
     var isBodyInline = function (node) {
       return isInline(node) && !ancestor(node, isPara);
     };
-
     var isBody = makePredByNodeName('BODY');
-
     /**
      * returns whether nodeB is closest sibling of nodeA
      *
@@ -642,7 +568,6 @@
       return nodeA.nextSibling === nodeB ||
              nodeA.previousSibling === nodeB;
     };
-
     /**
      * returns array of closest siblings with node
      *
@@ -652,7 +577,6 @@
      */
     var withClosestSiblings = function (node, pred) {
       pred = pred || func.ok;
-
       var siblings = [];
       if (node.previousSibling && pred(node.previousSibling)) {
         siblings.push(node.previousSibling);
@@ -663,14 +587,12 @@
       }
       return siblings;
     };
-
     /**
      * blank HTML for cursor position
      * - [workaround] old IE only works with &nbsp;
      * - [workaround] IE11 and other browser works with bogus br
      */
     var blankHTML = agent.isMSIE && agent.browserVersion < 11 ? '&nbsp;' : '<br>';
-
     /**
      * @method nodeLength
      *
@@ -682,15 +604,11 @@
       if (isText(node)) {
         return node.nodeValue.length;
       }
-      
       if (node) {
         return node.childNodes.length;
       }
-      
       return 0;
-      
     };
-
     /**
      * returns whether node is empty or not.
      *
@@ -699,7 +617,6 @@
      */
     var isEmpty = function (node) {
       var len = nodeLength(node);
-
       if (len === 0) {
         return true;
       } else if (!isText(node) && len === 1 && node.innerHTML === blankHTML) {
@@ -709,10 +626,8 @@
         // ex) <p></p>, <span></span>
         return true;
       }
-
       return false;
     };
-
     /**
      * padding blankHTML if node is empty (for cursor position)
      */
@@ -721,7 +636,6 @@
         node.innerHTML = blankHTML;
       }
     };
-
     /**
      * find nearest ancestor predicate hit
      *
@@ -732,12 +646,10 @@
       while (node) {
         if (pred(node)) { return node; }
         if (isEditable(node)) { break; }
-
         node = node.parentNode;
       }
       return null;
     };
-
     /**
      * find nearest ancestor only single child blood line and predicate hit
      *
@@ -746,17 +658,14 @@
      */
     var singleChildAncestor = function (node, pred) {
       node = node.parentNode;
-
       while (node) {
         if (nodeLength(node) !== 1) { break; }
         if (pred(node)) { return node; }
         if (isEditable(node)) { break; }
-
         node = node.parentNode;
       }
       return null;
     };
-
     /**
      * returns new array of ancestor nodes (until predicate hit).
      *
@@ -765,18 +674,15 @@
      */
     var listAncestor = function (node, pred) {
       pred = pred || func.fail;
-
       var ancestors = [];
       ancestor(node, function (el) {
         if (!isEditable(el)) {
           ancestors.push(el);
         }
-
         return pred(el);
       });
       return ancestors;
     };
-
     /**
      * find farthest ancestor predicate hit
      */
@@ -784,7 +690,6 @@
       var ancestors = listAncestor(node);
       return list.last(ancestors.filter(pred));
     };
-
     /**
      * returns common ancestor node between two nodes.
      *
@@ -798,7 +703,6 @@
       }
       return null; // difference document area
     };
-
     /**
      * listing all previous siblings (until predicate hit).
      *
@@ -807,7 +711,6 @@
      */
     var listPrev = function (node, pred) {
       pred = pred || func.fail;
-
       var nodes = [];
       while (node) {
         if (pred(node)) { break; }
@@ -816,7 +719,6 @@
       }
       return nodes;
     };
-
     /**
      * listing next siblings (until predicate hit).
      *
@@ -825,7 +727,6 @@
      */
     var listNext = function (node, pred) {
       pred = pred || func.fail;
-
       var nodes = [];
       while (node) {
         if (pred(node)) { break; }
@@ -834,7 +735,6 @@
       }
       return nodes;
     };
-
     /**
      * listing descendant nodes
      *
@@ -844,7 +744,6 @@
     var listDescendant = function (node, pred) {
       var descendants = [];
       pred = pred || func.ok;
-
       // start DFS(depth first search) with node
       (function fnWalk(current) {
         if (node !== current && pred(current)) {
@@ -854,10 +753,8 @@
           fnWalk(current.childNodes[idx]);
         }
       })(node);
-
       return descendants;
     };
-
     /**
      * wrap node with new tag.
      *
@@ -868,13 +765,10 @@
     var wrap = function (node, wrapperName) {
       var parent = node.parentNode;
       var wrapper = $('<' + wrapperName + '>')[0];
-
       parent.insertBefore(wrapper, node);
       wrapper.appendChild(node);
-
       return wrapper;
     };
-
     /**
      * insert node after preceding
      *
@@ -890,7 +784,6 @@
       }
       return node;
     };
-
     /**
      * append elements.
      *
@@ -903,7 +796,6 @@
       });
       return node;
     };
-
     /**
      * returns whether boundaryPoint is left edge or not.
      *
@@ -913,7 +805,6 @@
     var isLeftEdgePoint = function (point) {
       return point.offset === 0;
     };
-
     /**
      * returns whether boundaryPoint is right edge or not.
      *
@@ -923,7 +814,6 @@
     var isRightEdgePoint = function (point) {
       return point.offset === nodeLength(point.node);
     };
-
     /**
      * returns whether boundaryPoint is edge or not.
      *
@@ -933,7 +823,6 @@
     var isEdgePoint = function (point) {
       return isLeftEdgePoint(point) || isRightEdgePoint(point);
     };
-
     /**
      * returns whether node is left edge of ancestor or not.
      *
@@ -948,10 +837,8 @@
         }
         node = node.parentNode;
       }
-
       return true;
     };
-
     /**
      * returns whether node is right edge of ancestor or not.
      *
@@ -969,10 +856,8 @@
         }
         node = node.parentNode;
       }
-
       return true;
     };
-
     /**
      * returns whether point is left edge of ancestor or not.
      * @param {BoundaryPoint} point
@@ -982,7 +867,6 @@
     var isLeftEdgePointOf = function (point, ancestor) {
       return isLeftEdgePoint(point) && isLeftEdgeOf(point.node, ancestor);
     };
-
     /**
      * returns whether point is right edge of ancestor or not.
      * @param {BoundaryPoint} point
@@ -992,7 +876,6 @@
     var isRightEdgePointOf = function (point, ancestor) {
       return isRightEdgePoint(point) && isRightEdgeOf(point.node, ancestor);
     };
-
     /**
      * returns offset from parent.
      *
@@ -1005,11 +888,9 @@
       }
       return offset;
     };
-
     var hasChildren = function (node) {
       return !!(node && node.childNodes && node.childNodes.length);
     };
-
     /**
      * returns previous boundaryPoint
      *
@@ -1019,12 +900,10 @@
      */
     var prevPoint = function (point, isSkipInnerOffset) {
       var node, offset;
-
       if (point.offset === 0) {
         if (isEditable(point.node)) {
           return null;
         }
-
         node = point.node.parentNode;
         offset = position(point.node);
       } else if (hasChildren(point.node)) {
@@ -1034,13 +913,11 @@
         node = point.node;
         offset = isSkipInnerOffset ? 0 : point.offset - 1;
       }
-
       return {
         node: node,
         offset: offset
       };
     };
-
     /**
      * returns next boundaryPoint
      *
@@ -1050,12 +927,10 @@
      */
     var nextPoint = function (point, isSkipInnerOffset) {
       var node, offset;
-
       if (nodeLength(point.node) === point.offset) {
         if (isEditable(point.node)) {
           return null;
         }
-
         node = point.node.parentNode;
         offset = position(point.node) + 1;
       } else if (hasChildren(point.node)) {
@@ -1065,13 +940,11 @@
         node = point.node;
         offset = isSkipInnerOffset ? nodeLength(point.node) : point.offset + 1;
       }
-
       return {
         node: node,
         offset: offset
       };
     };
-
     /**
      * returns whether pointA and pointB is same or not.
      *
@@ -1082,7 +955,6 @@
     var isSamePoint = function (pointA, pointB) {
       return pointA.node === pointB.node && pointA.offset === pointB.offset;
     };
-
     /**
      * returns whether point is visible (can set cursor) or not.
      *
@@ -1093,16 +965,13 @@
       if (isText(point.node) || !hasChildren(point.node) || isEmpty(point.node)) {
         return true;
       }
-
       var leftNode = point.node.childNodes[point.offset - 1];
       var rightNode = point.node.childNodes[point.offset];
       if ((!leftNode || isVoid(leftNode)) && (!rightNode || isVoid(rightNode))) {
         return true;
       }
-
       return false;
     };
-
     /**
      * @method prevPointUtil
      *
@@ -1115,13 +984,10 @@
         if (pred(point)) {
           return point;
         }
-
         point = prevPoint(point);
       }
-
       return null;
     };
-
     /**
      * @method nextPointUntil
      *
@@ -1134,13 +1000,10 @@
         if (pred(point)) {
           return point;
         }
-
         point = nextPoint(point);
       }
-
       return null;
     };
-
     /**
      * returns whether point has character or not.
      *
@@ -1151,11 +1014,9 @@
       if (!isText(point.node)) {
         return false;
       }
-
       var ch = point.node.nodeValue.charAt(point.offset - 1);
       return ch && (ch !== ' ' && ch !== NBSP_CHAR);
     };
-
     /**
      * @method walkPoint
      *
@@ -1166,21 +1027,17 @@
      */
     var walkPoint = function (startPoint, endPoint, handler, isSkipInnerOffset) {
       var point = startPoint;
-
       while (point) {
         handler(point);
-
         if (isSamePoint(point, endPoint)) {
           break;
         }
-
         var isSkipOffset = isSkipInnerOffset &&
                            startPoint.node !== point.node &&
                            endPoint.node !== point.node;
         point = nextPoint(point, isSkipOffset);
       }
     };
-
     /**
      * @method makeOffsetPath
      *
@@ -1193,7 +1050,6 @@
       var ancestors = listAncestor(node, func.eq(ancestor));
       return ancestors.map(position).reverse();
     };
-
     /**
      * @method fromOffsetPath
      *
@@ -1213,7 +1069,6 @@
       }
       return current;
     };
-
     /**
      * @method splitNode
      *
@@ -1228,7 +1083,6 @@
     var splitNode = function (point, options) {
       var isSkipPaddingBlankHTML = options && options.isSkipPaddingBlankHTML;
       var isNotSplitEdgePoint = options && options.isNotSplitEdgePoint;
-
       // edge case
       if (isEdgePoint(point) && (isText(point.node) || isNotSplitEdgePoint)) {
         if (isLeftEdgePoint(point)) {
@@ -1237,7 +1091,6 @@
           return point.node.nextSibling;
         }
       }
-
       // split #text
       if (isText(point.node)) {
         return point.node.splitText(point.offset);
@@ -1245,16 +1098,13 @@
         var childNode = point.node.childNodes[point.offset];
         var clone = insertAfter(point.node.cloneNode(false), point.node);
         appendChildNodes(clone, listNext(childNode));
-
         if (!isSkipPaddingBlankHTML) {
           paddingBlankHTML(point.node);
           paddingBlankHTML(clone);
         }
-
         return clone;
       }
     };
-
     /**
      * @method splitTree
      *
@@ -1270,25 +1120,21 @@
     var splitTree = function (root, point, options) {
       // ex) [#text, <span>, <p>]
       var ancestors = listAncestor(point.node, func.eq(root));
-
       if (!ancestors.length) {
         return null;
       } else if (ancestors.length === 1) {
         return splitNode(point, options);
       }
-
       return ancestors.reduce(function (node, parent) {
         if (node === point.node) {
           node = splitNode(point, options);
         }
-
         return splitNode({
           node: parent,
           offset: node ? dom.position(node) : nodeLength(parent)
         }, options);
       });
     };
-
     /**
      * split point
      *
@@ -1303,7 +1149,6 @@
       var pred = isInline ? isPara : isBodyContainer;
       var ancestors = listAncestor(point.node, pred);
       var topAncestor = list.last(ancestors) || point.node;
-
       var splitRoot, container;
       if (pred(topAncestor)) {
         splitRoot = ancestors[ancestors.length - 2];
@@ -1312,32 +1157,26 @@
         splitRoot = topAncestor;
         container = splitRoot.parentNode;
       }
-
       // if splitRoot is exists, split with splitTree
       var pivot = splitRoot && splitTree(splitRoot, point, {
         isSkipPaddingBlankHTML: isInline,
         isNotSplitEdgePoint: isInline
       });
-
       // if container is point.node, find pivot with point.offset
       if (!pivot && container === point.node) {
         pivot = point.node.childNodes[point.offset];
       }
-
       return {
         rightNode: pivot,
         container: container
       };
     };
-
     var create = function (nodeName) {
       return document.createElement(nodeName);
     };
-
     var createText = function (text) {
       return document.createTextNode(text);
     };
-
     /**
      * @method remove
      *
@@ -1349,7 +1188,6 @@
     var remove = function (node, isRemoveChild) {
       if (!node || !node.parentNode) { return; }
       if (node.removeNode) { return node.removeNode(isRemoveChild); }
-
       var parent = node.parentNode;
       if (!isRemoveChild) {
         var nodes = [];
@@ -1357,15 +1195,12 @@
         for (i = 0, len = node.childNodes.length; i < len; i++) {
           nodes.push(node.childNodes[i]);
         }
-
         for (i = 0, len = nodes.length; i < len; i++) {
           parent.insertBefore(nodes[i], node);
         }
       }
-
       parent.removeChild(node);
     };
-
     /**
      * @method removeWhile
      *
@@ -1377,13 +1212,11 @@
         if (isEditable(node) || !pred(node)) {
           break;
         }
-
         var parent = node.parentNode;
         remove(node);
         node = parent;
       }
     };
-
     /**
      * @method replace
      *
@@ -1397,22 +1230,16 @@
       if (node.nodeName.toUpperCase() === nodeName.toUpperCase()) {
         return node;
       }
-
       var newNode = create(nodeName);
-
       if (node.style.cssText) {
         newNode.style.cssText = node.style.cssText;
       }
-
       appendChildNodes(newNode, list.from(node.childNodes));
       insertAfter(newNode, node);
       remove(node);
-
       return newNode;
     };
-
     var isTextarea = makePredByNodeName('TEXTAREA');
-
     /**
      * @param {jQuery} $node
      * @param {Boolean} [stripLinebreaks] - default: false
@@ -1424,7 +1251,6 @@
       }
       return val;
     };
-
     /**
      * @method html
      *
@@ -1435,7 +1261,6 @@
      */
     var html = function ($node, isNewlineOnBlock) {
       var markup = value($node);
-
       if (isNewlineOnBlock) {
         var regexTag = /<(\/?)(\b(?!!)[^>\s]*)(.*?)(\s*\/?>)/g;
         markup = markup.replace(regexTag, function (match, endSlash, name) {
@@ -1443,38 +1268,31 @@
           var isEndOfInlineContainer = /^DIV|^TD|^TH|^P|^LI|^H[1-7]/.test(name) &&
                                        !!endSlash;
           var isBlockNode = /^BLOCKQUOTE|^TABLE|^TBODY|^TR|^HR|^UL|^OL/.test(name);
-
           return match + ((isEndOfInlineContainer || isBlockNode) ? '\n' : '');
         });
         markup = $.trim(markup);
       }
-
       return markup;
     };
-
     var posFromPlaceholder = function (placeholder) {
       var $placeholder = $(placeholder);
       var pos = $placeholder.offset();
       var height = $placeholder.outerHeight(true); // include margin
-
       return {
         left: pos.left,
         top: pos.top + height
       };
     };
-
     var attachEvents = function ($node, events) {
       Object.keys(events).forEach(function (key) {
         $node.on(key, events[key]);
       });
     };
-
     var detachEvents = function ($node, events) {
       Object.keys(events).forEach(function (key) {
         $node.off(key, events[key]);
       });
     };
-
     /**
      * @method isCustomStyleTag
      *
@@ -1486,7 +1304,6 @@
     var isCustomStyleTag = function (node) {
       return node && !dom.isText(node) && list.contains(node.classList, 'note-styletag');
     };
-
     return {
       /** @property {String} NBSP_CHAR */
       NBSP_CHAR: NBSP_CHAR,
@@ -1578,7 +1395,6 @@
       isCustomStyleTag: isCustomStyleTag
     };
   })();
-
   /**
    * @param {jQuery} $note
    * @param {Object} options
@@ -1586,13 +1402,11 @@
    */
   var Context = function ($note, options) {
     var self = this;
-
     var ui = $.summernote.ui;
     this.memos = {};
     this.modules = {};
     this.layoutInfo = {};
     this.options = options;
-
     /**
      * create layout and initialize modules and other resources
      */
@@ -1602,7 +1416,6 @@
       $note.hide();
       return this;
     };
-
     /**
      * destroy modules and other resources and remove layout
      */
@@ -1611,7 +1424,6 @@
       $note.removeData('summernote');
       ui.removeLayout($note, this.layoutInfo);
     };
-
     /**
      * destory modules and other resources and initialize it again
      */
@@ -1620,47 +1432,38 @@
       this.code(dom.emptyPara);
       this._destroy();
       this._initialize();
-
       if (disabled) {
         self.disable();
       }
     };
-
     this._initialize = function () {
       // add optional buttons
       var buttons = $.extend({}, this.options.buttons);
       Object.keys(buttons).forEach(function (key) {
         self.memo('button.' + key, buttons[key]);
       });
-
       var modules = $.extend({}, this.options.modules, $.summernote.plugins || {});
-
       // add and initialize modules
       Object.keys(modules).forEach(function (key) {
         self.module(key, modules[key], true);
       });
-
       Object.keys(this.modules).forEach(function (key) {
         self.initializeModule(key);
       });
     };
-
     this._destroy = function () {
       // destroy modules with reversed order
       Object.keys(this.modules).reverse().forEach(function (key) {
         self.removeModule(key);
       });
-
       Object.keys(this.memos).forEach(function (key) {
         self.removeMemo(key);
       });
       // trigger custom onDestroy callback
       this.triggerEvent('destroy', this);
     };
-
     this.code = function (html) {
       var isActivated = this.invoke('codeview.isActivated');
-
       if (html === undefined) {
         this.invoke('codeview.sync');
         return isActivated ? this.layoutInfo.codable.val() : this.layoutInfo.editable.html();
@@ -1674,17 +1477,14 @@
         this.triggerEvent('change', html);
       }
     };
-
     this.isDisabled = function () {
       return this.layoutInfo.editable.attr('contenteditable') === 'false';
     };
-
     this.enable = function () {
       this.layoutInfo.editable.attr('contenteditable', true);
       this.invoke('toolbar.activate', true);
       this.triggerEvent('disable', false);
     };
-
     this.disable = function () {
       // close codeview if codeview is opend
       if (this.invoke('codeview.isActivated')) {
@@ -1692,81 +1492,65 @@
       }
       this.layoutInfo.editable.attr('contenteditable', false);
       this.invoke('toolbar.deactivate', true);
-
       this.triggerEvent('disable', true);
     };
-
     this.triggerEvent = function () {
       var namespace = list.head(arguments);
       var args = list.tail(list.from(arguments));
-
       var callback = this.options.callbacks[func.namespaceToCamel(namespace, 'on')];
       if (callback) {
         callback.apply($note[0], args);
       }
       $note.trigger('summernote.' + namespace, args);
     };
-
     this.initializeModule = function (key) {
       var module = this.modules[key];
       module.shouldInitialize = module.shouldInitialize || func.ok;
       if (!module.shouldInitialize()) {
         return;
       }
-
       // initialize module
       if (module.initialize) {
         module.initialize();
       }
-
       // attach events
       if (module.events) {
         dom.attachEvents($note, module.events);
       }
     };
-
     this.module = function (key, ModuleClass, withoutIntialize) {
       if (arguments.length === 1) {
         return this.modules[key];
       }
-
       this.modules[key] = new ModuleClass(this);
-
       if (!withoutIntialize) {
         this.initializeModule(key);
       }
     };
-
     this.removeModule = function (key) {
       var module = this.modules[key];
       if (module.shouldInitialize()) {
         if (module.events) {
           dom.detachEvents($note, module.events);
         }
-
         if (module.destroy) {
           module.destroy();
         }
       }
-
       delete this.modules[key];
     };
-
     this.memo = function (key, obj) {
       if (arguments.length === 1) {
         return this.memos[key];
       }
       this.memos[key] = obj;
     };
-
     this.removeMemo = function (key) {
       if (this.memos[key] && this.memos[key].destroy) {
         this.memos[key].destroy();
       }
-
       delete this.memos[key];
     };
-
     /**
      *Some buttons need to change their visual style immediately once they get pressed
      */
@@ -1776,7 +1560,6 @@
         self.invoke('buttons.updateCurrentStyle');
       };
     };
-
     this.createInvokeHandler = function (namespace, value) {
       return function (event) {
         event.preventDefault();
@@ -1784,16 +1567,13 @@
         self.invoke(namespace, value || $target.closest('[data-value]').data('value'), $target);
       };
     };
-
     this.invoke = function () {
       var namespace = list.head(arguments);
       var args = list.tail(list.from(arguments));
-
       var splits = namespace.split('.');
       var hasSeparator = splits.length > 1;
       var moduleName = hasSeparator && list.head(splits);
       var methodName = hasSeparator ? list.last(splits) : list.head(splits);
-
       var module = this.modules[moduleName || 'editor'];
       if (!moduleName && this[methodName]) {
         return this[methodName].apply(this, args);
@@ -1801,10 +1581,8 @@
         return module[methodName].apply(module, args);
       }
     };
-
     return this.initialize();
   };
-
   $.fn.extend({
     /**
      * Summernote API
@@ -1816,16 +1594,12 @@
       var type = $.type(list.head(arguments));
       var isExternalAPICalled = type === 'string';
       var hasInitOptions = type === 'object';
-
       var options = hasInitOptions ? list.head(arguments) : {};
-
       options = $.extend({}, $.summernote.options, options);
-
       // Update options
       options.langInfo = $.extend(true, {}, $.summernote.lang['en-US'], $.summernote.lang[options.lang]);
       options.icons = $.extend(true, {}, $.summernote.options.icons, options.icons);
       options.tooltip = options.tooltip === 'auto' ? !agent.isSupportTouch : options.tooltip;
-
       this.each(function (idx, note) {
         var $note = $(note);
         if (!$note.data('summernote')) {
@@ -1834,7 +1608,6 @@
           $note.data('summernote').triggerEvent('init', context.layoutInfo);
         }
       });
-
       var $note = this.first();
       if ($note.length) {
         var context = $note.data('summernote');
@@ -1844,57 +1617,44 @@
           context.invoke('editor.focus');
         }
       }
-
       return this;
     }
   });
-
-
   var Renderer = function (markup, children, options, callback) {
     this.render = function ($parent) {
       var $node = $(markup);
-
       if (options && options.contents) {
         $node.html(options.contents);
       }
-
       if (options && options.className) {
         $node.addClass(options.className);
       }
-
       if (options && options.data) {
         $.each(options.data, function (k, v) {
           $node.attr('data-' + k, v);
         });
       }
-
       if (options && options.click) {
         $node.on('click', options.click);
       }
-
       if (children) {
         var $container = $node.find('.note-children-container');
         children.forEach(function (child) {
           child.render($container.length ? $container : $node);
         });
       }
-
       if (callback) {
         callback($node, options);
       }
-
       if (options && options.callback) {
         options.callback($node);
       }
-
       if ($parent) {
         $parent.append($node);
       }
-
       return $node;
     };
   };
-
   var renderer = {
     create: function (markup, callback) {
       return function () {
@@ -1907,11 +1667,9 @@
       };
     }
   };
-
   var tooltip = (function () {
     var Tooltip = function ($node, options) {
       var self = this;
-  
       this.init = function (options) {
         this.options = $.extend({}, {
           title: '',
@@ -1919,7 +1677,6 @@
           trigger: 'hover focus',
           placement: 'bottom'
         }, options);
-  
         // create tooltip node
         this.$tooltip = $([
           '<div class="note-tooltip in">',
@@ -1927,13 +1684,11 @@
           '  <div class="note-tooltip-content"/>',
           '</div>'
         ].join(''));
-  
         // define event
         if (this.options.trigger !== 'manual') {
           this.options.trigger.split(' ').forEach(function (eventName) {
             if (eventName === 'hover') {
               $node.off('mouseenter mouseleave');
-  
               $node.on('mouseenter', function () {
                 self.show($node);
               }).on('mouseleave', function () {
@@ -1953,24 +1708,19 @@
           });
         }
       };
-  
       this.show = function () {
         var offset = $node.offset();
-  
         var $tooltip = this.$tooltip;
         var title = this.options.title || $node.attr('title') || $node.data('title');
         var placement = this.options.placement || $node.data('placement');
-  
         $tooltip.addClass(placement);
         $tooltip.addClass('in');
         $tooltip.find('.note-tooltip-content').text(title);
         $tooltip.appendTo(this.options.target);
-  
         var nodeWidth = $node.outerWidth();
         var nodeHeight = $node.outerHeight();
         var tooltipWidth = $tooltip.outerWidth();
         var tooltipHeight = $tooltip.outerHeight();
-  
         if (placement === 'bottom') {
           $tooltip.css({
             top: offset.top + nodeHeight,
@@ -1993,12 +1743,10 @@
           });
         }
       };
-  
       this.hide = function () {
         this.$tooltip.removeClass('in');
         this.$tooltip.remove();
       };
-  
       this.toggle = function () {
         if (this.$tooltip.hasClass('in')) {
           this.hide();
@@ -2006,109 +1754,84 @@
           this.show();
         }
       };
-  
       this.init(options);
     };
-
     return {
       create: function ($node, options) {
         return new Tooltip($node, options);
       }
     };
   })();
-
-
   var dropdown = (function () {
-
     var Dropdown = function ($node, options) {
       var self = this;
-
       this.init = function () {
         this.$button = $node;
         this.setEvent();
       };
-
       this.setEvent = function () {
         this.$button.on('click', function () {
           self.toggle(); 
         });
       };
-
       this.clear = function () {
         var $parent = $('.note-btn-group.open');
         $parent.find('.note-btn.active').removeClass('active');
         $parent.removeClass('open');
       };
-
       this.show = function () {
         this.$button.addClass('active');
         this.$button.parent().addClass('open');
-
         var $dropdown = this.$button.next();
         var offset = $dropdown.offset();
         var width = $dropdown.outerWidth();
         var windowWidth = $(window).width();
         var bodyMarginRight = parseFloat($('body').css('margin-right'));
-
         if (offset.left + width > windowWidth - bodyMarginRight) {
           $dropdown.css('margin-left', windowWidth - bodyMarginRight - (offset.left + width));
         } else {
           $dropdown.css('margin-left', '');
         }
       };
-
       this.hide = function () {
         this.$button.removeClass('active');
         this.$button.parent().removeClass('open');
       };
-
       this.toggle = function () {
         var isOpened = this.$button.parent().hasClass('open');
-
         this.clear();
-
         if (isOpened) {
           this.hide();
         } else {
           this.show();
         }
       };
-
       this.init(options);
     };
-
     return {
       create: function ($node, options) {
         return new Dropdown($node, options);
       }
     };
   })();
-
   $(document).on('click', function (e) {
     if (!$(e.target).closest('.note-btn-group').length) {
       $('.note-btn-group.open').removeClass('open');
     }
   });
-
   $(document).on('click.note-dropdown-menu', function (e) {
     $(e.target).closest('.note-dropdown-menu').parent().removeClass('open');
   });
-
-
   var modal = (function () {
     var Modal = function ($node, options) {
       var self = this;
-
       this.init = function (options) {
         this.options = $.extend({}, {
           target: 'body'
         }, options);
-
         this.$modal = $node;
         this.$backdrop = $('<div class="note-modal-backdrop" />');
-
       };
-
       this.show = function () {
         if (this.options.target === 'body') {
           this.$backdrop.css('position', 'fixed');
@@ -2117,32 +1840,26 @@
           this.$backdrop.css('position', 'absolute');
           this.$modal.css('position', 'absolute');
         }
-
         this.$backdrop.appendTo(this.options.target).show();
         this.$modal.appendTo(this.options.target).addClass('open').show();
-
         this.$modal.trigger('note.modal.show');
         this.$modal.off('click', '.close').on('click', '.close', function () {
           self.hide();
         });
       };
-
       this.hide = function () {
         this.$modal.removeClass('open').hide();
         this.$backdrop.hide();
         this.$modal.trigger('note.modal.hide');
       };
-
       this.init(options);
     };
-
     return {
       create: function ($node, options) {
         return new Modal($node, options);
       }
     };
   })();
-
   var editor = renderer.create('<div class="note-editor note-frame"/>');
   var toolbar = renderer.create('<div class="note-toolbar"/>');
   var editingArea = renderer.create('<div class="note-editing-area"/>');
@@ -2157,10 +1874,8 @@
     '  </div>',
     '</div>'
   ].join(''));
-
   var airEditor = renderer.create('<div class="note-editor"/>');
   var airEditable = renderer.create('<div class="note-editable" contentEditable="true"/>');
-
   var buttonGroup = renderer.create('<div class="note-btn-group">');
   var button = renderer.create('<button type="button" class="note-btn">', function ($node, options) {
     // set button type
@@ -2172,58 +1887,43 @@
     if (options.contents) {
       $node.html(options.contents);
     }
-    
     if (options && options.data && options.data.toggle === 'dropdown') {
       DropdownUI.create($node);
     }
   });
-
   var dropdown = renderer.create('<div class="note-dropdown-menu">', function ($node, options) {
     var markup = $.isArray(options.items) ? options.items.map(function (item) {
       var value = (typeof item === 'string') ? item : (item.value || '');
       var content = options.template ? options.template(item) : item;
       var $temp = $('<a class="note-dropdown-item" href="#" data-value="' + value + '"></a>');
-
       $temp.html(content).data('item', item); 
-
       return $temp;
     }) : options.items;
-
     $node.html(markup);
-
     $node.on('click', '> .note-dropdown-item', function (e) {
       var $a = $(this);
-
       var item = $a.data('item');
       var value = $a.data('value');
-
       if (item.click) {
         item.click($a);
       } else if (options.itemClick) {
         options.itemClick(e, item, value);
       }
-
     });
   });
-
   var dropdownCheck = renderer.create('<div class="note-dropdown-menu note-check">', function ($node, options) {
     var markup = $.isArray(options.items) ? options.items.map(function (item) {
       var value = (typeof item === 'string') ? item : (item.value || '');
       var content = options.template ? options.template(item) : item;
-
       var $temp = $('<a class="note-dropdown-item" href="#" data-value="' + value + '"></a>');
       $temp.html([icon(options.checkClassName), ' ', content]).data('item', item);
       return $temp;
     }) : options.items;
-
     $node.html(markup);
-
     $node.on('click', '> .note-dropdown-item', function (e) {
       var $a = $(this);
-
       var item = $a.data('item');
       var value = $a.data('value');
-
       if (item.click) {
         item.click($a);
       } else if (options.itemClick) {
@@ -2231,11 +1931,9 @@
       }
     });
   });
-
   var dropdownButtonContents = function (contents, options) {
     return contents + ' ' + icon(options.icons.caret, 'span');
   };
-
   var dropdownButton = function (opt, callback) {
     return buttonGroup([
       button({
@@ -2254,7 +1952,6 @@
       })
     ], { callback: callback }).render();
   };
-
   var dropdownCheckButton = function (opt, callback) {
     return buttonGroup([
       button({
@@ -2274,9 +1971,7 @@
       })
     ], { callback: callback }).render();
   };
-
   var paragraphDropdownButton = function (opt) {
-
     return buttonGroup([
       button({
         className: 'dropdown-toggle',
@@ -2298,7 +1993,6 @@
       ])
     ]).render();
   };
-
   var tableMoveHandler = function (event, col, row) {
     var PX_PER_EM = 18;
     var $picker = $(event.target.parentNode); // target is mousecatcher
@@ -2306,7 +2000,6 @@
     var $catcher = $picker.find('.note-dimension-picker-mousecatcher');
     var $highlighted = $picker.find('.note-dimension-picker-highlighted');
     var $unhighlighted = $picker.find('.note-dimension-picker-unhighlighted');
-
     var posOffset;
     // HTML5 with jQuery - e.offsetX is undefined in Firefox
     if (event.offsetX === undefined) {
@@ -2321,28 +2014,21 @@
         y: event.offsetY
       };
     }
-
     var dim = {
       c: Math.ceil(posOffset.x / PX_PER_EM) || 1,
       r: Math.ceil(posOffset.y / PX_PER_EM) || 1
     };
-
     $highlighted.css({ width: dim.c + 'em', height: dim.r + 'em' });
     $catcher.data('value', dim.c + 'x' + dim.r);
-
     if (3 < dim.c && dim.c < col) {
       $unhighlighted.css({ width: dim.c + 1 + 'em'});
     }
-
     if (3 < dim.r && dim.r < row) {
       $unhighlighted.css({ height: dim.r + 1 + 'em'});
     }
-
     $dimensionDisplay.html(dim.c + ' x ' + dim.r);
   };
-
   var tableDropdownButton = function (opt) {
-
     return buttonGroup([
       button({
         className: 'dropdown-toggle',
@@ -2377,7 +2063,6 @@
       }
     }).render();
   };
-
   var palette = renderer.create('<div class="note-color-palette"/>', function ($node, options) {
     var contents = [];
     for (var row = 0, rowSize = options.colors.length; row < rowSize; row++) {
@@ -2398,15 +2083,11 @@
       contents.push('<div class="note-color-row">' + buttons.join('') + '</div>');
     }
     $node.html(contents.join(''));
-
     $node.find('.note-color-btn').each(function () {
       TooltipUI.create($(this));
     });
-
   });
-
   var colorDropdownButton = function (opt, type) {
-
     return buttonGroup({
       className: 'note-color',
       children: [
@@ -2417,12 +2098,10 @@
           click: opt.currentClick,
           callback: function ($button) {
             var $recentColor = $button.find('.note-recent-color');
-
             if (type !== 'foreColor') {
               $recentColor.css('background-color', '#FFFF00');
               $button.attr('data-backColor', '#FFFF00');
             }
-
           }
         }),
         button({
@@ -2466,7 +2145,6 @@
                 eventName: $holder.data('event')
               }).render());
             });
-
             if (type === 'fore') {
               $dropdown.find('.btn-background-color').hide();
               $dropdown.css({ 'min-width': '210px' });
@@ -2479,15 +2157,12 @@
             var $button = $(event.target);
             var eventName = $button.data('event');
             var value = $button.data('value');
-
             if (eventName && value) {
               var key = eventName === 'backColor' ? 'background-color': 'color';
               var $color = $button.closest('.note-color').find('.note-recent-color');
               var $currentButton = $button.closest('.note-color').find('.note-current-color-button');
-
               $color.css(key, value);
               $currentButton.attr('data-' + eventName, value);
-
               if (type === 'fore') {
                 opt.itemClick('foreColor', value);
               } else if (type === 'back') {
@@ -2501,7 +2176,6 @@
       ]
     }).render();
   };
-
   var dialog = renderer.create('<div class="note-modal" tabindex="-1"/>', function ($node, options) {
     if (options.fade) {
       $node.addClass('fade');
@@ -2520,12 +2194,9 @@
       ),
       '  </div>'
     ].join(''));
-
     $node.data('modal', ModalUI.create($node, options));
   });
-
   var videoDialog = function (opt) {
-
     var body = '<div class="note-form-group">' +
       '<label class="note-form-label">' +
       opt.lang.video.url + ' <small class="text-muted">' +
@@ -2538,7 +2209,6 @@
       opt.lang.video.insert,
       '</button>'
     ].join('');
-
     return dialog({
       title: opt.lang.video.insert,
       fade: opt.fade,
@@ -2546,7 +2216,6 @@
       footer: footer
     }).render();
   };
-
   var imageDialog = function (opt) {
     var body = '<div class="note-form-group note-group-select-from-files">' +
       '<label class="note-form-label">' + opt.lang.image.selectFromFiles + '</label>' +
@@ -2562,7 +2231,6 @@
       opt.lang.image.insert,
       '</button>'
     ].join('');
-
     return dialog({
       title: opt.lang.image.insert,
       fade: opt.fade,
@@ -2570,7 +2238,6 @@
       footer: footer
     }).render();
   };
-
   var linkDialog = function (opt) {
     var body = '<div class="note-form-group">' +
       '<label class="note-form-label">' + opt.lang.link.textToDisplay + '</label>' +
@@ -2590,7 +2257,6 @@
       opt.lang.link.insert,
       '</button>'
     ].join('');
-
     return dialog({
       className: 'link-dialog',
       title: opt.lang.link.insert,
@@ -2599,7 +2265,6 @@
       footer: footer
     }).render();
   };
-
   var popover = renderer.create([
     '<div class="note-popover bottom">',
     '  <div class="note-popover-arrow"/>',
@@ -2607,14 +2272,11 @@
     '</div>'
   ].join(''), function ($node, options) {
     var direction = typeof options.direction !== 'undefined' ? options.direction : 'bottom';
-
     $node.addClass(direction).hide();
-
     if (options.hideArrow) {
       $node.find('.note-popover-arrow').hide();
     }
   });
-
   var checkbox = renderer.create('<div class="checkbox"></div>', function ($node, options) {
     $node.html([
       ' <label' + (options.id ? ' for="' + options.id + '"' : '') + '>',
@@ -2624,12 +2286,10 @@
       '</label>'
     ].join(''));
   });
-
   var icon = function (iconClassName, tagName) {
     tagName = tagName || 'i';
     return '<' + tagName + ' class="' + iconClassName + '"/>';
   };
-
   var ui = {
     editor: editor,
     toolbar: toolbar,
@@ -2657,37 +2317,29 @@
     popover: popover,
     checkbox: checkbox,
     icon: icon,
-
     toggleBtn: function ($btn, isEnable) {
       $btn.toggleClass('disabled', !isEnable);
       $btn.attr('disabled', !isEnable);
     },
-
     toggleBtnActive: function ($btn, isActive) {
       $btn.toggleClass('active', isActive);
     },
-
     check: function ($dom, value) {
       $dom.find('.checked').removeClass('checked');
       $dom.find('[data-value="' + value + '"]').addClass('checked');
     },
-
     onDialogShown: function ($dialog, handler) {
       $dialog.one('note.modal.show', handler);
     },
-
     onDialogHidden: function ($dialog, handler) {
       $dialog.one('note.modal.hide', handler);
     },
-
     showDialog: function ($dialog) {
       $dialog.data('modal').show();
     },
-
     hideDialog: function ($dialog) {
       $dialog.data('modal').hide();
     },
-
     /**
      * get popover content area
      *
@@ -2697,7 +2349,6 @@
     getPopoverContent: function ($popover) {
       return $popover.find('.note-popover-content');
     },
-
     /**
      * get dialog's body area
      *
@@ -2707,7 +2358,6 @@
     getDialogBody: function ($dialog) {
       return $dialog.find('.note-modal-body');
     },
-
     createLayout: function ($note, options) {
       var $editor = (options.airMode ? ui.airEditor([
         ui.editingArea([
@@ -2721,9 +2371,7 @@
         ]),
         ui.statusbar()
       ])).render();
-
       $editor.insertAfter($note);
-
       return {
         note: $note,
         editor: $editor,
@@ -2734,7 +2382,6 @@
         statusbar: $editor.find('.note-statusbar')
       };
     },
-
     removeLayout: function ($note, layoutInfo) {
       $note.html(layoutInfo.editable.html());
       layoutInfo.editor.remove();
@@ -2742,11 +2389,9 @@
       $note.show();
     }
   };
-
   $.summernote = $.summernote || {
     lang: {}
   };
-
   $.extend($.summernote.lang, {
     'en-US': {
       font: {
@@ -2899,8 +2544,6 @@
       }
     }
   });
-
-
   /**
    * @class core.key
    *
@@ -2916,13 +2559,11 @@
       'ENTER': 13,
       'SPACE': 32,
       'DELETE': 46,
-
       // Arrow
       'LEFT': 37,
       'UP': 38,
       'RIGHT': 39,
       'DOWN': 40,
-
       // Number: 0-9
       'NUM0': 48,
       'NUM1': 49,
@@ -2933,7 +2574,6 @@
       'NUM6': 54,
       'NUM7': 55,
       'NUM8': 56,
-
       // Alphabet: a-z
       'B': 66,
       'E': 69,
@@ -2947,13 +2587,11 @@
       'V': 86,
       'Y': 89,
       'Z': 90,
-
       'SLASH': 191,
       'LEFTBRACKET': 219,
       'BACKSLASH': 220,
       'RIGHTBRACKET': 221
     };
-
     return {
       /**
        * @method isEdit
@@ -2992,9 +2630,7 @@
       code: keyMap
     };
   })();
-
   var range = (function () {
-
     /**
      * return boundaryPoint from TextRange, inspired by Andy Na's HuskyRange.js
      *
@@ -3006,7 +2642,6 @@
      */
     var textRangeToPoint = function (textRange, isStart) {
       var container = textRange.parentElement(), offset;
-  
       var tester = document.body.createTextRange(), prevContainer;
       var childNodes = list.from(container.childNodes);
       for (offset = 0; offset < childNodes.length; offset++) {
@@ -3019,42 +2654,34 @@
         }
         prevContainer = childNodes[offset];
       }
-  
       if (offset !== 0 && dom.isText(childNodes[offset - 1])) {
         var textRangeStart = document.body.createTextRange(), curTextNode = null;
         textRangeStart.moveToElementText(prevContainer || container);
         textRangeStart.collapse(!prevContainer);
         curTextNode = prevContainer ? prevContainer.nextSibling : container.firstChild;
-  
         var pointTester = textRange.duplicate();
         pointTester.setEndPoint('StartToStart', textRangeStart);
         var textCount = pointTester.text.replace(/[\r\n]/g, '').length;
-  
         while (textCount > curTextNode.nodeValue.length && curTextNode.nextSibling) {
           textCount -= curTextNode.nodeValue.length;
           curTextNode = curTextNode.nextSibling;
         }
-  
         /* jshint ignore:start */
         var dummy = curTextNode.nodeValue; // enforce IE to re-reference curTextNode, hack
         /* jshint ignore:end */
-  
         if (isStart && curTextNode.nextSibling && dom.isText(curTextNode.nextSibling) &&
             textCount === curTextNode.nodeValue.length) {
           textCount -= curTextNode.nodeValue.length;
           curTextNode = curTextNode.nextSibling;
         }
-  
         container = curTextNode;
         offset = textCount;
       }
-  
       return {
         cont: container,
         offset: offset
       };
     };
-    
     /**
      * return TextRange from boundary point (inspired by google closure-library)
      * @param {BoundaryPoint} point
@@ -3063,7 +2690,6 @@
     var pointToTextRange = function (point) {
       var textRangeInfo = function (container, offset) {
         var node, isCollapseToStart;
-  
         if (dom.isText(container)) {
           var prevTextNodes = dom.listPrev(container, func.not(dom.isText));
           var prevContainer = list.last(prevTextNodes).previousSibling;
@@ -3075,27 +2701,22 @@
           if (dom.isText(node)) {
             return textRangeInfo(node, 0);
           }
-  
           offset = 0;
           isCollapseToStart = false;
         }
-  
         return {
           node: node,
           collapseToStart: isCollapseToStart,
           offset: offset
         };
       };
-  
       var textRange = document.body.createTextRange();
       var info = textRangeInfo(point.node, point.offset);
-  
       textRange.moveToElementText(info.node);
       textRange.collapse(info.collapseToStart);
       textRange.moveStart('character', info.offset);
       return textRange;
     };
-    
     /**
      * Wrapped Range
      *
@@ -3110,30 +2731,25 @@
       this.so = so;
       this.ec = ec;
       this.eo = eo;
-  
       // nativeRange: get nativeRange from sc, so, ec, eo
       var nativeRange = function () {
         if (agent.isW3CRangeSupport) {
           var w3cRange = document.createRange();
           w3cRange.setStart(sc, so);
           w3cRange.setEnd(ec, eo);
-
           return w3cRange;
         } else {
           var textRange = pointToTextRange({
             node: sc,
             offset: so
           });
-
           textRange.setEndPoint('EndToEnd', pointToTextRange({
             node: ec,
             offset: eo
           }));
-
           return textRange;
         }
       };
-
       this.getPoints = function () {
         return {
           sc: sc,
@@ -3142,21 +2758,18 @@
           eo: eo
         };
       };
-
       this.getStartPoint = function () {
         return {
           node: sc,
           offset: so
         };
       };
-
       this.getEndPoint = function () {
         return {
           node: ec,
           offset: eo
         };
       };
-
       /**
        * select update visible range
        */
@@ -3171,10 +2784,8 @@
         } else {
           nativeRng.select();
         }
-        
         return this;
       };
-
       /**
        * Moves the scrollbar to start container(sc) of current range
        *
@@ -3185,15 +2796,12 @@
         if (container.scrollTop + height < this.sc.offsetTop) {
           container.scrollTop += Math.abs(container.scrollTop + height - this.sc.offsetTop);
         }
-
         return this;
       };
-
       /**
        * @return {WrappedRange}
        */
       this.normalize = function () {
-
         /**
          * @param {BoundaryPoint} point
          * @param {Boolean} isLeftToRight
@@ -3206,12 +2814,10 @@
               (dom.isVisiblePoint(point) && dom.isBlock(point.node) && dom.isEmpty(point.node))) {
             return point;
           }
-
           // point on block's edge
           var block = dom.ancestor(point.node, dom.isBlock);
           if (((dom.isLeftEdgePointOf(point, block) || dom.isVoid(dom.prevPoint(point).node)) && !isLeftToRight) ||
               ((dom.isRightEdgePointOf(point, block) || dom.isVoid(dom.nextPoint(point).node)) && isLeftToRight)) {
-
             // returns point already on visible point
             if (dom.isVisiblePoint(point)) {
               return point;
@@ -3219,15 +2825,12 @@
             // reverse direction 
             isLeftToRight = !isLeftToRight;
           }
-
           var nextPoint = isLeftToRight ? dom.nextPointUntil(dom.nextPoint(point), dom.isVisiblePoint) :
                                           dom.prevPointUntil(dom.prevPoint(point), dom.isVisiblePoint);
           return nextPoint || point;
         };
-
         var endPoint = getVisiblePoint(this.getEndPoint(), false);
         var startPoint = this.isCollapsed() ? endPoint : getVisiblePoint(this.getStartPoint(), true);
-
         return new WrappedRange(
           startPoint.node,
           startPoint.offset,
@@ -3235,7 +2838,6 @@
           endPoint.offset
         );
       };
-
       /**
        * returns matched nodes on range
        *
@@ -3247,22 +2849,17 @@
        */
       this.nodes = function (pred, options) {
         pred = pred || func.ok;
-
         var includeAncestor = options && options.includeAncestor;
         var fullyContains = options && options.fullyContains;
-
         // TODO compare points and sort
         var startPoint = this.getStartPoint();
         var endPoint = this.getEndPoint();
-
         var nodes = [];
         var leftEdgeNodes = [];
-
         dom.walkPoint(startPoint, endPoint, function (point) {
           if (dom.isEditable(point.node)) {
             return;
           }
-
           var node;
           if (fullyContains) {
             if (dom.isLeftEdgePoint(point)) {
@@ -3276,15 +2873,12 @@
           } else {
             node = point.node;
           }
-
           if (node && pred(node)) {
             nodes.push(node);
           }
         }, true);
-
         return list.unique(nodes);
       };
-
       /**
        * returns commonAncestor of range
        * @return {Element} - commonAncestor
@@ -3292,7 +2886,6 @@
       this.commonAncestor = function () {
         return dom.commonAncestor(sc, ec);
       };
-
       /**
        * returns expanded range by pred
        *
@@ -3302,23 +2895,18 @@
       this.expand = function (pred) {
         var startAncestor = dom.ancestor(sc, pred);
         var endAncestor = dom.ancestor(ec, pred);
-
         if (!startAncestor && !endAncestor) {
           return new WrappedRange(sc, so, ec, eo);
         }
-
         var boundaryPoints = this.getPoints();
-
         if (startAncestor) {
           boundaryPoints.sc = startAncestor;
           boundaryPoints.so = 0;
         }
-
         if (endAncestor) {
           boundaryPoints.ec = endAncestor;
           boundaryPoints.eo = dom.nodeLength(endAncestor);
         }
-
         return new WrappedRange(
           boundaryPoints.sc,
           boundaryPoints.so,
@@ -3326,7 +2914,6 @@
           boundaryPoints.eo
         );
       };
-
       /**
        * @param {Boolean} isCollapseToStart
        * @return {WrappedRange}
@@ -3338,28 +2925,23 @@
           return new WrappedRange(ec, eo, ec, eo);
         }
       };
-
       /**
        * splitText on range
        */
       this.splitText = function () {
         var isSameContainer = sc === ec;
         var boundaryPoints = this.getPoints();
-
         if (dom.isText(ec) && !dom.isEdgePoint(this.getEndPoint())) {
           ec.splitText(eo);
         }
-
         if (dom.isText(sc) && !dom.isEdgePoint(this.getStartPoint())) {
           boundaryPoints.sc = sc.splitText(so);
           boundaryPoints.so = 0;
-
           if (isSameContainer) {
             boundaryPoints.ec = boundaryPoints.sc;
             boundaryPoints.eo = eo - so;
           }
         }
-
         return new WrappedRange(
           boundaryPoints.sc,
           boundaryPoints.so,
@@ -3367,7 +2949,6 @@
           boundaryPoints.eo
         );
       };
-
       /**
        * delete contents on range
        * @return {WrappedRange}
@@ -3376,17 +2957,14 @@
         if (this.isCollapsed()) {
           return this;
         }
-
         var rng = this.splitText();
         var nodes = rng.nodes(null, {
           fullyContains: true
         });
-
         // find new cursor point
         var point = dom.prevPointUntil(rng.getStartPoint(), function (point) {
           return !list.contains(nodes, point.node);
         });
-
         var emptyParents = [];
         $.each(nodes, function (idx, node) {
           // find empty parents
@@ -3396,12 +2974,10 @@
           }
           dom.remove(node, false);
         });
-
         // remove empty parents
         $.each(emptyParents, function (idx, node) {
           dom.remove(node, false);
         });
-
         return new WrappedRange(
           point.node,
           point.offset,
@@ -3409,7 +2985,6 @@
           point.offset
         ).normalize();
       };
-      
       /**
        * makeIsOn: return isOn(pred) function
        */
@@ -3419,7 +2994,6 @@
           return !!ancestor && (ancestor === dom.ancestor(ec, pred));
         };
       };
-  
       // isOnEditable: judge whether range is on editable or not
       this.isOnEditable = makeIsOn(dom.isEditable);
       // isOnList: judge whether range is on list node or not
@@ -3430,7 +3004,6 @@
       this.isOnCell = makeIsOn(dom.isCell);
       // isOnData: judge whether range is on data node or not
       this.isOnData = makeIsOn(dom.isData);
-
       /**
        * @param {Function} pred
        * @return {Boolean}
@@ -3439,18 +3012,15 @@
         if (!dom.isLeftEdgePoint(this.getStartPoint())) {
           return false;
         }
-
         var node = dom.ancestor(this.sc, pred);
         return node && dom.isLeftEdgeOf(this.sc, node);
       };
-
       /**
        * returns whether range was collapsed or not
        */
       this.isCollapsed = function () {
         return sc === ec && so === eo;
       };
-
       /**
        * wrap inline nodes which children of body with paragraph
        *
@@ -3461,7 +3031,6 @@
           sc.innerHTML = dom.emptyPara;
           return new WrappedRange(sc.firstChild, 0, sc.firstChild, 0);
         }
-
         /**
          * [workaround] firefox often create range on not visible point. so normalize here.
          *  - firefox: |<p>text</p>|
@@ -3471,7 +3040,6 @@
         if (dom.isParaInline(sc) || dom.isPara(sc)) {
           return rng;
         }
-
         // find inline top ancestor
         var topAncestor;
         if (dom.isInline(rng.sc)) {
@@ -3483,20 +3051,16 @@
         } else {
           topAncestor = rng.sc.childNodes[rng.so > 0 ? rng.so - 1 : 0];
         }
-
         // siblings not in paragraph
         var inlineSiblings = dom.listPrev(topAncestor, dom.isParaInline).reverse();
         inlineSiblings = inlineSiblings.concat(dom.listNext(topAncestor.nextSibling, dom.isParaInline));
-
         // wrap with paragraph
         if (inlineSiblings.length) {
           var para = dom.wrap(list.head(inlineSiblings), 'p');
           dom.appendChildNodes(para, list.tail(inlineSiblings));
         }
-
         return this.normalize();
       };
-
       /**
        * insert node at current cursor
        *
@@ -3506,30 +3070,24 @@
       this.insertNode = function (node) {
         var rng = this.wrapBodyInlineWithPara().deleteContents();
         var info = dom.splitPoint(rng.getStartPoint(), dom.isInline(node));
-
         if (info.rightNode) {
           info.rightNode.parentNode.insertBefore(node, info.rightNode);
         } else {
           info.container.appendChild(node);
         }
-
         return node;
       };
-
       /**
        * insert html at current cursor
        */
       this.pasteHTML = function (markup) {
         var contentsContainer = $('<div></div>').html(markup)[0];
         var childNodes = list.from(contentsContainer.childNodes);
-
         var rng = this.wrapBodyInlineWithPara().deleteContents();
-
         return childNodes.reverse().map(function (childNode) {
           return rng.insertNode(childNode);
         }).reverse();
       };
-  
       /**
        * returns text in range
        *
@@ -3539,7 +3097,6 @@
         var nativeRng = nativeRange();
         return agent.isW3CRangeSupport ? nativeRng.toString() : nativeRng.text;
       };
-
       /**
        * returns range for word before cursor
        *
@@ -3548,21 +3105,17 @@
        */
       this.getWordRange = function (findAfter) {
         var endPoint = this.getEndPoint();
-
         if (!dom.isCharPoint(endPoint)) {
           return this;
         }
-
         var startPoint = dom.prevPointUntil(endPoint, function (point) {
           return !dom.isCharPoint(point);
         });
-
         if (findAfter) {
           endPoint = dom.nextPointUntil(endPoint, function (point) {
             return !dom.isCharPoint(point);
           });
         }
-
         return new WrappedRange(
           startPoint.node,
           startPoint.offset,
@@ -3570,7 +3123,6 @@
           endPoint.offset
         );
       };
-  
       /**
        * create offsetPath bookmark
        *
@@ -3588,7 +3140,6 @@
           }
         };
       };
-
       /**
        * create offsetPath bookmark base on paragraph
        *
@@ -3606,7 +3157,6 @@
           }
         };
       };
-
       /**
        * getClientRects
        * @return {Rect[]}
@@ -3616,7 +3166,6 @@
         return nativeRng.getClientRects();
       };
     };
-
   /**
    * @class core.range
    *
@@ -3655,7 +3204,6 @@
           return wrappedRange;
         }
       },
-
       createFromSelection: function () {
         var sc, so, ec, eo;
         if (agent.isW3CRangeSupport) {
@@ -3667,7 +3215,6 @@
             // We won't never need it.
             return null;
           }
-
           var nativeRng = selection.getRangeAt(0);
           sc = nativeRng.startContainer;
           so = nativeRng.startOffset;
@@ -3679,26 +3226,21 @@
           textRangeEnd.collapse(false);
           var textRangeStart = textRange;
           textRangeStart.collapse(true);
-
           var startPoint = textRangeToPoint(textRangeStart, true),
           endPoint = textRangeToPoint(textRangeEnd, false);
-
           // same visible point case: range was collapsed.
           if (dom.isText(startPoint.node) && dom.isLeftEdgePoint(startPoint) &&
               dom.isTextNode(endPoint.node) && dom.isRightEdgePoint(endPoint) &&
               endPoint.node.nextSibling === startPoint.node) {
             startPoint = endPoint;
           }
-
           sc = startPoint.cont;
           so = startPoint.offset;
           ec = endPoint.cont;
           eo = endPoint.offset;
         }
-
         return new WrappedRange(sc, so, ec, eo);
       },
-
       /**
        * @method 
        * 
@@ -3712,7 +3254,6 @@
         var so = 0;
         var ec = node;
         var eo = dom.nodeLength(ec);
-
         // browsers can't target a picture or void node
         if (dom.isVoid(sc)) {
           so = dom.listPrev(sc).length - 1;
@@ -3725,10 +3266,8 @@
           eo = dom.listPrev(ec).length;
           ec = ec.parentNode;
         }
-
         return this.create(sc, so, ec, eo);
       },
-
       /**
        * create WrappedRange from node after position
        *
@@ -3738,7 +3277,6 @@
       createFromNodeBefore: function (node) {
         return this.createFromNode(node).collapse(true);
       },
-
       /**
        * create WrappedRange from node after position
        *
@@ -3748,7 +3286,6 @@
       createFromNodeAfter: function (node) {
         return this.createFromNode(node).collapse();
       },
-
       /**
        * @method 
        * 
@@ -3765,7 +3302,6 @@
         var eo = bookmark.e.offset;
         return new WrappedRange(sc, so, ec, eo);
       },
-
       /**
        * @method 
        *
@@ -3780,12 +3316,10 @@
         var eo = bookmark.e.offset;
         var sc = dom.fromOffsetPath(list.head(paras), bookmark.s.path);
         var ec = dom.fromOffsetPath(list.last(paras), bookmark.e.path);
-
         return new WrappedRange(sc, so, ec, eo);
       }
     };
   })();
-
   /**
    * @class core.async
    *
@@ -3816,7 +3350,6 @@
         }).readAsDataURL(file);
       }).promise();
     };
-  
     /**
      * @method createImage
      *
@@ -3828,7 +3361,6 @@
     var createImage = function (url) {
       return $.Deferred(function (deferred) {
         var $img = $('<img>');
-
         $img.one('load', function () {
           $img.off('error abort');
           deferred.resolve($img);
@@ -3840,13 +3372,11 @@
         }).appendTo(document.body).attr('src', url);
       }).promise();
     };
-
     return {
       readFileAsDataURL: readFileAsDataURL,
       createImage: createImage
     };
   })();
-
   /**
    * @class editing.History
    *
@@ -3856,17 +3386,14 @@
   var History = function ($editable) {
     var stack = [], stackOffset = -1;
     var editable = $editable[0];
-
     var makeSnapshot = function () {
       var rng = range.create(editable);
       var emptyBookmark = {s: {path: [], offset: 0}, e: {path: [], offset: 0}};
-
       return {
         contents: $editable.html(),
         bookmark: (rng ? rng.bookmark(editable) : emptyBookmark)
       };
     };
-
     var applySnapshot = function (snapshot) {
       if (snapshot.contents !== null) {
         $editable.html(snapshot.contents);
@@ -3875,7 +3402,6 @@
         range.createFromBookmark(editable, snapshot.bookmark).select();
       }
     };
-
     /**
     * @method rewind
     * Rewinds the history stack back to the first snapshot taken.
@@ -3886,14 +3412,11 @@
       if ($editable.html() !== stack[stackOffset].contents) {
         this.recordUndo();
       }
-
       // Return to the first available snapshot.
       stackOffset = 0;
-
       // Apply that snapshot.
       applySnapshot(stack[stackOffset]);
     };
-
     /**
     * @method reset
     * Resets the history stack completely; reverting to an empty editor.
@@ -3901,17 +3424,13 @@
     this.reset = function () {
       // Clear the stack.
       stack = [];
-
       // Restore stackOffset to its original value.
       stackOffset = -1;
-
       // Clear the editable area.
       $editable.html('');
-
       // Record our first snapshot (of nothing).
       this.recordUndo();
     };
-
     /**
      * undo
      */
@@ -3920,13 +3439,11 @@
       if ($editable.html() !== stack[stackOffset].contents) {
         this.recordUndo();
       }
-
       if (0 < stackOffset) {
         stackOffset--;
         applySnapshot(stack[stackOffset]);
       }
     };
-
     /**
      * redo
      */
@@ -3936,23 +3453,19 @@
         applySnapshot(stack[stackOffset]);
       }
     };
-
     /**
      * recorded undo
      */
     this.recordUndo = function () {
       stackOffset++;
-
       // Wash out stack after stackOffset
       if (stack.length > stackOffset) {
         stack = stack.slice(0, stackOffset);
       }
-
       // Create new snapshot and push it to the end
       stack.push(makeSnapshot());
     };
   };
-
   /**
    * @class editing.Style
    *
@@ -3983,7 +3496,6 @@
       }
       return $obj.css.call($obj, propertyNames);
     };
-
     /**
      * returns style object from node
      *
@@ -3996,7 +3508,6 @@
       styleInfo['font-size'] = parseInt(styleInfo['font-size'], 10);
       return styleInfo;
     };
-
     /**
      * paragraph level style
      *
@@ -4010,7 +3521,6 @@
         $(para).css(styleInfo);
       });
     };
-
     /**
      * insert and returns styleNodes on range.
      *
@@ -4023,22 +3533,18 @@
      */
     this.styleNodes = function (rng, options) {
       rng = rng.splitText();
-
       var nodeName = options && options.nodeName || 'SPAN';
       var expandClosestSibling = !!(options && options.expandClosestSibling);
       var onlyPartialContains = !!(options && options.onlyPartialContains);
-
       if (rng.isCollapsed()) {
         return [rng.insertNode(dom.create(nodeName))];
       }
-
       var pred = dom.makePredByNodeName(nodeName);
       var nodes = rng.nodes(dom.isText, {
         fullyContains: true
       }).map(function (text) {
         return dom.singleChildAncestor(text, pred) || dom.wrap(text, nodeName);
       });
-
       if (expandClosestSibling) {
         if (onlyPartialContains) {
           var nodesInRange = rng.nodes();
@@ -4047,7 +3553,6 @@
             return list.contains(nodesInRange, node);
           });
         }
-
         return nodes.map(function (node) {
           var siblings = dom.withClosestSiblings(node, pred);
           var head = list.head(siblings);
@@ -4062,7 +3567,6 @@
         return nodes;
       }
     };
-
     /**
      * get current style on cursor
      *
@@ -4072,7 +3576,6 @@
     this.current = function (rng) {
       var $cont = $(!dom.isElement(rng.sc) ? rng.sc.parentNode : rng.sc);
       var styleInfo = this.fromNode($cont);
-
       // document.queryCommandState for toggle state
       // [workaround] prevent Firefox nsresult: "0x80004005 (NS_ERROR_FAILURE)"
       try {
@@ -4086,7 +3589,6 @@
           'font-family': document.queryCommandValue('fontname') || styleInfo['font-family']
         });
       } catch (e) {}
-
       // list-style-type to list-style(unordered, ordered)
       if (!rng.isOnList()) {
         styleInfo['list-style'] = 'none';
@@ -4095,7 +3597,6 @@
         var isUnordered = $.inArray(styleInfo['list-style-type'], orderedTypes) > -1;
         styleInfo['list-style'] = isUnordered ? 'unordered' : 'ordered';
       }
-
       var para = dom.ancestor(rng.sc, dom.isPara);
       if (para && para.style['line-height']) {
         styleInfo['line-height'] = para.style.lineHeight;
@@ -4103,16 +3604,12 @@
         var lineHeight = parseInt(styleInfo['line-height'], 10) / parseInt(styleInfo['font-size'], 10);
         styleInfo['line-height'] = lineHeight.toFixed(1);
       }
-
       styleInfo.anchor = rng.isOnAnchor() && dom.ancestor(rng.sc, dom.isAnchor);
       styleInfo.ancestors = dom.listAncestor(rng.sc, dom.isEditable);
       styleInfo.range = rng;
-
       return styleInfo;
     };
   };
-
-
   /**
    * @class editing.Bullet
    *
@@ -4120,31 +3617,26 @@
    */
   var Bullet = function () {
     var self = this;
-
     /**
      * toggle ordered list
      */
     this.insertOrderedList = function (editable) {
       this.toggleList('OL', editable);
     };
-
     /**
      * toggle unordered list
      */
     this.insertUnorderedList = function (editable) {
       this.toggleList('UL', editable);
     };
-
     /**
      * indent
      */
     this.indent = function (editable) {
       var self = this;
       var rng = range.create(editable).wrapBodyInlineWithPara();
-
       var paras = rng.nodes(dom.isPara, { includeAncestor: true });
       var clustereds = list.clusterBy(paras, func.peq2('parentNode'));
-
       $.each(clustereds, function (idx, paras) {
         var head = list.head(paras);
         if (dom.isLi(head)) {
@@ -4157,20 +3649,16 @@
           });
         }
       });
-
       rng.select();
     };
-
     /**
      * outdent
      */
     this.outdent = function (editable) {
       var self = this;
       var rng = range.create(editable).wrapBodyInlineWithPara();
-
       var paras = rng.nodes(dom.isPara, { includeAncestor: true });
       var clustereds = list.clusterBy(paras, func.peq2('parentNode'));
-
       $.each(clustereds, function (idx, paras) {
         var head = list.head(paras);
         if (dom.isLi(head)) {
@@ -4184,10 +3672,8 @@
           });
         }
       });
-
       rng.select();
     };
-
     /**
      * toggle list
      *
@@ -4195,11 +3681,9 @@
      */
     this.toggleList = function (listName, editable) {
       var rng = range.create(editable).wrapBodyInlineWithPara();
-
       var paras = rng.nodes(dom.isPara, { includeAncestor: true });
       var bookmark = rng.paraBookmark(paras);
       var clustereds = list.clusterBy(paras, func.peq2('parentNode'));
-
       // paragraph to list
       if (list.find(paras, dom.isPurePara)) {
         var wrappedParas = [];
@@ -4214,7 +3698,6 @@
         }).filter(function (listNode) {
           return !$.nodeName(listNode, listName);
         });
-
         if (diffLists.length) {
           $.each(diffLists, function (idx, listNode) {
             dom.replace(listNode, listName);
@@ -4223,10 +3706,8 @@
           paras = this.releaseList(clustereds, true);
         }
       }
-
       range.createFromParaBookmark(bookmark, paras).select();
     };
-
     /**
      * @param {Node[]} paras
      * @param {String} listName
@@ -4235,28 +3716,21 @@
     this.wrapList = function (paras, listName) {
       var head = list.head(paras);
       var last = list.last(paras);
-
       var prevList = dom.isList(head.previousSibling) && head.previousSibling;
       var nextList = dom.isList(last.nextSibling) && last.nextSibling;
-
       var listNode = prevList || dom.insertAfter(dom.create(listName || 'UL'), last);
-
       // P to LI
       paras = paras.map(function (para) {
         return dom.isPurePara(para) ? dom.replace(para, 'LI') : para;
       });
-
       // append to list(<ul>, <ol>)
       dom.appendChildNodes(listNode, paras);
-
       if (nextList) {
         dom.appendChildNodes(listNode, list.from(nextList.childNodes));
         dom.remove(nextList);
       }
-
       return paras;
     };
-
     /**
      * @method releaseList
      *
@@ -4266,11 +3740,9 @@
      */
     this.releaseList = function (clustereds, isEscapseToBody) {
       var releasedParas = [];
-
       $.each(clustereds, function (idx, paras) {
         var head = list.head(paras);
         var last = list.last(paras);
-
         var headList = isEscapseToBody ? dom.lastAncestor(head, dom.isList) :
                                          head.parentNode;
         var lastList = headList.childNodes.length > 1 ? dom.splitTree(headList, {
@@ -4279,28 +3751,23 @@
         }, {
           isSkipPaddingBlankHTML: true
         }) : null;
-
         var middleList = dom.splitTree(headList, {
           node: head.parentNode,
           offset: dom.position(head)
         }, {
           isSkipPaddingBlankHTML: true
         });
-
         paras = isEscapseToBody ? dom.listDescendant(middleList, dom.isLi) :
                                   list.from(middleList.childNodes).filter(dom.isLi);
-
         // LI to P
         if (isEscapseToBody || !dom.isList(headList.parentNode)) {
           paras = paras.map(function (para) {
             return dom.replace(para, 'P');
           });
         }
-
         $.each(list.from(paras).reverse(), function (idx, para) {
           dom.insertAfter(para, headList);
         });
-
         // remove empty lists
         var rootLists = list.compact([headList, middleList, lastList]);
         $.each(rootLists, function (idx, rootList) {
@@ -4311,15 +3778,11 @@
             }
           });
         });
-
         releasedParas = releasedParas.concat(paras);
       });
-
       return releasedParas;
     };
   };
-
-
   /**
    * @class editing.Typing
    *
@@ -4327,10 +3790,8 @@
    *
    */
   var Typing = function () {
-
     // a Bullet instance to toggle lists off
     var bullet = new Bullet();
-
     /**
      * insert tab
      *
@@ -4341,26 +3802,20 @@
       var tab = dom.createText(new Array(tabsize + 1).join(dom.NBSP_CHAR));
       rng = rng.deleteContents();
       rng.insertNode(tab, true);
-
       rng = range.create(tab, tabsize);
       rng.select();
     };
-
     /**
      * insert paragraph
      */
     this.insertParagraph = function (editable) {
       var rng = range.create(editable);
-
       // deleteContents on range.
       rng = rng.deleteContents();
-
       // Wrap range if it needs to be wrapped by paragraph
       rng = rng.wrapBodyInlineWithPara();
-
       // finding paragraph
       var splitRoot = dom.ancestor(rng.sc, dom.isPara);
-
       var nextPara;
       // on paragraph: split paragraph
       if (splitRoot) {
@@ -4377,14 +3832,11 @@
         // if new line has content (not a line break)
         } else {
           nextPara = dom.splitTree(splitRoot, rng.getStartPoint());
-
           var emptyAnchors = dom.listDescendant(splitRoot, dom.isEmptyAnchor);
           emptyAnchors = emptyAnchors.concat(dom.listDescendant(nextPara, dom.isEmptyAnchor));
-
           $.each(emptyAnchors, function (idx, anchor) {
             dom.remove(anchor);
           });
-
           // replace empty heading, pre or custom-made styleTag with P tag
           if ((dom.isHeading(nextPara) || dom.isPre(nextPara) || dom.isCustomStyleTag(nextPara)) && dom.isEmpty(nextPara)) {
             nextPara = dom.replace(nextPara, 'p');
@@ -4400,12 +3852,9 @@
           rng.sc.appendChild(nextPara);
         }
       }
-
       range.create(nextPara, 0).normalize().select().scrollIntoView(editable);
     };
   };
-
-
   /**
    * @class Create a virtual table to create what actions to do in change.
    * @param {object} startPoint Cell selected to apply change.
@@ -4417,11 +3866,9 @@
     var _startPoint = { 'colPos': 0, 'rowPos': 0 };
     var _virtualTable = [];
     var _actionCellList = [];
-
     //////////////////////////////////////////////
     // Private functions
     //////////////////////////////////////////////
-
     /**
      * Set the startPoint of action.
      */
@@ -4437,7 +3884,6 @@
       }
       _startPoint.rowPos = startPoint.parentElement.rowIndex;
     }
-
     /**
      * Define virtual table position info object.
      * 
@@ -4460,7 +3906,6 @@
       }
       _virtualTable[rowIndex][cellIndex] = objPosition;
     }
-
     /**
      * Create action cell object.
      * 
@@ -4477,7 +3922,6 @@
         }
       };
     }
-
     /**
      * Recover free index of row to append Cell.
      * 
@@ -4491,7 +3935,6 @@
       if (!_virtualTable[rowIndex][cellIndex]) {
         return cellIndex;
       }
-
       var newCellIndex = cellIndex;
       while (_virtualTable[rowIndex][newCellIndex]) {
         newCellIndex++;
@@ -4500,7 +3943,6 @@
         }
       }
     }
-
     /**
      * Recover info about row and cell and add information to virtual table.
      * 
@@ -4513,7 +3955,6 @@
       var cellHasRowspan = (cell.rowSpan > 1);
       var isThisSelectedCell = (row.rowIndex === _startPoint.rowPos && cell.cellIndex === _startPoint.colPos);
       setVirtualTablePosition(row.rowIndex, cellIndex, row, cell, cellHasRowspan, cellHasColspan, false);
-
       // Add span rows to virtual Table.
       var rowspanNumber = cell.attributes.rowSpan ? parseInt(cell.attributes.rowSpan.value, 10) : 0;
       if (rowspanNumber > 1) {
@@ -4523,7 +3964,6 @@
           setVirtualTablePosition(rowspanIndex, cellIndex, row, cell, true, cellHasColspan, true);
         }
       }
-
       // Add span cols to virtual table.
       var colspanNumber = cell.attributes.colSpan ? parseInt(cell.attributes.colSpan.value, 10) : 0;
       if (colspanNumber > 1) {
@@ -4534,7 +3974,6 @@
         }
       }
     }
-
     /**
      * Process validation and adjust of start point if needed
      * 
@@ -4548,7 +3987,6 @@
         _startPoint.colPos++;
       }
     }
-
     /**
      * Create virtual table of cells with all cells, including span cells.
      */
@@ -4561,7 +3999,6 @@
         }
       }
     }
-
     /**
      * Get action to be applied on the cell.
      * 
@@ -4585,7 +4022,6 @@
       }
       return TableResultAction.resultAction.RemoveCell;
     }
-
     /**
      * Get action to be applied on the cell.
      * 
@@ -4610,23 +4046,19 @@
       }
       return TableResultAction.resultAction.AddCell;
     }
-
     function init() {
       setStartPoint();
       createVirtualTable();
     }
-
     //////////////////////////////////////////////
     // Public functions
     //////////////////////////////////////////////
-
     /**
      * Recover array os what to do in table.
      */
     this.getActionList = function () {
       var fixedRow = (where === TableResultAction.where.Row) ? _startPoint.rowPos : -1;
       var fixedCol = (where === TableResultAction.where.Column) ? _startPoint.colPos : -1;
-
       var actualPosition = 0;
       var canContinue = true;
       while (canContinue) {
@@ -4642,7 +4074,6 @@
           canContinue = false;
           return _actionCellList;
         }
-
         // Define action to be applied in this cell
         var resultAction = TableResultAction.resultAction.Ignore;
         switch (action) {
@@ -4656,10 +4087,8 @@
         _actionCellList.push(getActionCell(cell, resultAction, rowPosition, colPosition));
         actualPosition++;
       }
-
       return _actionCellList;
     };
-
     init();
   };
   /**
@@ -4677,7 +4106,6 @@
   * Result action to be executed enum.
   */
   TableResultAction.resultAction = { 'Ignore': 0, 'SubtractSpanCount': 1, 'RemoveCell': 2, 'AddCell': 3, 'SumSpanCount': 4 };
-
   /**
    * 
    * @class editing.Table
@@ -4696,13 +4124,11 @@
       var cell = dom.ancestor(rng.commonAncestor(), dom.isCell);
       var table = dom.ancestor(cell, dom.isTable);
       var cells = dom.listDescendant(table, dom.isCell);
-
       var nextCell = list[isShift ? 'prev' : 'next'](cells, cell);
       if (nextCell) {
         range.create(nextCell, 0).select();
       }
     };
-
     /**
      * Add a new row
      *
@@ -4712,15 +4138,12 @@
      */
     this.addRow = function (rng, position) {
       var cell = dom.ancestor(rng.commonAncestor(), dom.isCell);
-
       var currentTr = $(cell).closest('tr');
       var trAttributes = this.recoverAttributes(currentTr);
       var html = $('<tr' + trAttributes + '></tr>');
-
       var vTable = new TableResultAction(cell, TableResultAction.where.Row,
         TableResultAction.requestAction.Add, $(currentTr).closest('table')[0]);
       var actions = vTable.getActionList();
-
       for (var idCell = 0; idCell < actions.length; idCell++) {
         var currentCell = actions[idCell];
         var tdAttributes = this.recoverAttributes(currentCell.baseCell);
@@ -4744,7 +4167,6 @@
             break;
         }
       }
-
       if (position === 'top') {
         currentTr.before(html);
       }
@@ -4758,7 +4180,6 @@
         currentTr.after(html);
       }
     };
-
     /**
      * Add a new col
      *
@@ -4771,11 +4192,9 @@
       var row = $(cell).closest('tr');
       var rowsGroup = $(row).siblings();
       rowsGroup.push(row);
-
       var vTable = new TableResultAction(cell, TableResultAction.where.Column,
         TableResultAction.requestAction.Add, $(row).closest('table')[0]);
       var actions = vTable.getActionList();
-
       for (var actionIndex = 0; actionIndex < actions.length; actionIndex++) {
         var currentCell = actions[actionIndex];
         var tdAttributes = this.recoverAttributes(currentCell.baseCell);
@@ -4799,7 +4218,6 @@
         }
       }
     };
-
     /*
     * Copy attributes from element.
     *
@@ -4808,26 +4226,20 @@
     */
     this.recoverAttributes = function (el) {
       var resultStr = '';
-
       if (!el) {
         return resultStr;
       }
-
       var attrList = el.attributes || [];
-
       for (var i = 0; i < attrList.length; i++) {
         if (attrList[i].name.toLowerCase() === 'id') {
           continue;
         }
-
         if (attrList[i].specified) {
           resultStr += ' ' + attrList[i].name + '=\'' + attrList[i].value + '\'';
         }
       }
-
       return resultStr;
     };
-
     /**
      * Delete current row
      *
@@ -4839,16 +4251,13 @@
       var row = $(cell).closest('tr');
       var cellPos = row.children('td, th').index($(cell));
       var rowPos = row[0].rowIndex;
-
       var vTable = new TableResultAction(cell, TableResultAction.where.Row,
         TableResultAction.requestAction.Delete, $(row).closest('table')[0]);
       var actions = vTable.getActionList();
-
       for (var actionIndex = 0; actionIndex < actions.length; actionIndex++) {
         if (!actions[actionIndex]) {
           continue;
         }
-
         var baseCell = actions[actionIndex].baseCell;
         var virtualPosition = actions[actionIndex].virtualTable;
         var hasRowspan = (baseCell.rowSpan && baseCell.rowSpan > 1);
@@ -4892,7 +4301,6 @@
       }
       row.remove();
     };
-
     /**
      * Delete current col
      *
@@ -4903,11 +4311,9 @@
       var cell = dom.ancestor(rng.commonAncestor(), dom.isCell);
       var row = $(cell).closest('tr');
       var cellPos = row.children('td, th').index($(cell));
-
       var vTable = new TableResultAction(cell, TableResultAction.where.Column,
         TableResultAction.requestAction.Delete, $(row).closest('table')[0]);
       var actions = vTable.getActionList();
-
       for (var actionIndex = 0; actionIndex < actions.length; actionIndex++) {
         if (!actions[actionIndex]) {
           continue;
@@ -4936,7 +4342,6 @@
         }
       }
     };
-
     /**
      * create empty table element
      *
@@ -4950,7 +4355,6 @@
         tds.push('<td>' + dom.blank + '</td>');
       }
       tdHTML = tds.join('');
-
       var trs = [], trHTML;
       for (var idxRow = 0; idxRow < rowCount; idxRow++) {
         trs.push('<tr>' + tdHTML + '</tr>');
@@ -4960,10 +4364,8 @@
       if (options && options.tableClassName) {
         $table.addClass(options.tableClassName);
       }
-
       return $table[0];
     };
-
     /**
      * Delete current table
      *
@@ -4975,31 +4377,24 @@
       $(cell).closest('table').remove();
     };
   };
-
-
   var KEY_BOGUS = 'bogus';
-
   /**
    * @class Editor
    */
   var Editor = function (context) {
     var self = this;
-
     var $note = context.layoutInfo.note;
     var $editor = context.layoutInfo.editor;
     var $editable = context.layoutInfo.editable;
     var options = context.options;
     var lang = options.langInfo;
-
     var editable = $editable[0];
     var lastRange = null;
-
     var style = new Style();
     var table = new Table();
     var typing = new Typing();
     var bullet = new Bullet();
     var history = new History($editable);
-
     this.initialize = function () {
       // bind custom events
       $editable.on('keydown', function (event) {
@@ -5007,7 +4402,6 @@
           context.triggerEvent('enter', event);
         }
         context.triggerEvent('keydown', event);
-
         if (!event.isDefaultPrevented()) {
           if (options.shortcuts) {
             self.handleKeyMap(event);
@@ -5030,23 +4424,19 @@
       }).on('paste', function (event) {
         context.triggerEvent('paste', event);
       });
-
       // init content before set event
       $editable.html(dom.html($note) || dom.emptyPara);
-
       // [workaround] IE doesn't have input events for contentEditable
       // - see: https://goo.gl/4bfIvA
       var changeEventName = agent.isMSIE ? 'DOMCharacterDataModified DOMSubtreeModified DOMNodeInserted' : 'input';
       $editable.on(changeEventName, func.debounce(function () {
         context.triggerEvent('change', $editable.html());
       }, 100));
-
       $editor.on('focusin', function (event) {
         context.triggerEvent('focusin', event);
       }).on('focusout', function (event) {
         context.triggerEvent('focusout', event);
       });
-
       if (!options.airMode) {
         if (options.width) {
           $editor.outerWidth(options.width);
@@ -5061,27 +4451,21 @@
           $editable.css('min-height', options.minHeight);
         }
       }
-
       history.recordUndo();
     };
-
     this.destroy = function () {
       $editable.off();
     };
-
     this.handleKeyMap = function (event) {
       var keyMap = options.keyMap[agent.isMac ? 'mac' : 'pc'];
       var keys = [];
-
       if (event.metaKey) { keys.push('CMD'); }
       if (event.ctrlKey && !event.altKey) { keys.push('CTRL'); }
       if (event.shiftKey) { keys.push('SHIFT'); }
-
       var keyName = key.nameFromCode[event.keyCode];
       if (keyName) {
         keys.push(keyName);
       }
-
       var eventName = keyMap[keys.join('+')];
       if (eventName) {
         event.preventDefault();
@@ -5090,7 +4474,6 @@
         this.afterCommand();
       }
     };
-
     this.preventDefaultEditableShortCuts = function (event) {
       // B(Bold, 66) / I(Italic, 73) / U(Underline, 85)
       if ((event.ctrlKey || event.metaKey) &&
@@ -5098,7 +4481,6 @@
         event.preventDefault();
       }
     };
-
     /**
      * create range
      * @return {WrappedRange}
@@ -5107,7 +4489,6 @@
       this.focus();
       return range.create(editable);
     };
-
     /**
      * saveRange
      *
@@ -5121,7 +4502,6 @@
         lastRange.collapse().select();
       }
     };
-
     /**
      * restoreRange
      *
@@ -5133,19 +4513,15 @@
         this.focus();
       }
     };
-
     this.saveTarget = function (node) {
       $editable.data('target', node);
     };
-
     this.clearTarget = function () {
       $editable.removeData('target');
     };
-
     this.restoreTarget = function () {
       return $editable.data('target');
     };
-
     /**
      * currentStyle
      *
@@ -5159,7 +4535,6 @@
       }
       return rng ? style.current(rng) : style.fromNode($editable);
     };
-
     /**
      * style from node
      *
@@ -5169,7 +4544,6 @@
     this.styleFromNode = function ($node) {
       return style.fromNode($node);
     };
-
     /**
      * undo
      */
@@ -5179,7 +4553,6 @@
       context.triggerEvent('change', $editable.html());
     };
     context.memo('help.undo', lang.help.undo);
-
     /**
      * redo
      */
@@ -5189,7 +4562,6 @@
       context.triggerEvent('change', $editable.html());
     };
     context.memo('help.redo', lang.help.redo);
-
     /**
      * before command
      */
@@ -5198,7 +4570,6 @@
       // keep focus on editable before command execution
       self.focus();
     };
-
     /**
      * after command
      * @param {Boolean} isPreventTrigger
@@ -5209,14 +4580,12 @@
         context.triggerEvent('change', $editable.html());
       }
     };
-
     /* jshint ignore:start */
     // native commands(with execCommand), generate function for execCommand
     var commands = ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript',
                     'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull',
                     'formatBlock', 'removeFormat',
                     'backColor', 'fontName'];
-
     for (var idx = 0, len = commands.length; idx < len; idx ++) {
       this[commands[idx]] = (function (sCmd) {
         return function (value) {
@@ -5228,7 +4597,6 @@
       context.memo('help.' + commands[idx], lang.help[commands[idx]]);
     }
     /* jshint ignore:end */
-
     /**
      * handle tab key
      */
@@ -5243,7 +4611,6 @@
       }
     };
     context.memo('help.tab', lang.help.tab);
-
     /**
      * handle shift+tab key
      */
@@ -5254,7 +4621,6 @@
       }
     };
     context.memo('help.untab', lang.help.untab);
-
     /**
      * run given function between beforeCommand and afterCommand
      */
@@ -5265,7 +4631,6 @@
         afterCommand();
       };
     };
-
     /**
      * insert paragraph
      */
@@ -5273,27 +4638,22 @@
       typing.insertParagraph(editable);
     });
     context.memo('help.insertParagraph', lang.help.insertParagraph);
-
     this.insertOrderedList = this.wrapCommand(function () {
       bullet.insertOrderedList(editable);
     });
     context.memo('help.insertOrderedList', lang.help.insertOrderedList);
-
     this.insertUnorderedList = this.wrapCommand(function () {
       bullet.insertUnorderedList(editable);
     });
     context.memo('help.insertUnorderedList', lang.help.insertUnorderedList);
-
     this.indent = this.wrapCommand(function () {
       bullet.indent(editable);
     });
     context.memo('help.indent', lang.help.indent);
-
     this.outdent = this.wrapCommand(function () {
       bullet.outdent(editable);
     });
     context.memo('help.outdent', lang.help.outdent);
-
     /**
      * insert image
      *
@@ -5304,7 +4664,6 @@
     this.insertImage = function (src, param) {
       return async.createImage(src, param).then(function ($image) {
         beforeCommand();
-
         if (typeof param === 'function') {
           param($image);
         } else {
@@ -5313,7 +4672,6 @@
           }
           $image.css('width', Math.min($editable.width(), $image.width()));
         }
-
         $image.show();
         range.create(editable).insertNode($image[0]);
         range.createFromNodeAfter($image[0]).select();
@@ -5322,7 +4680,6 @@
         context.triggerEvent('image.upload.error', e);
       });
     };
-
     /**
      * insertImages
      * @param {File[]} files
@@ -5341,14 +4698,12 @@
         }
       });
     };
-
     /**
      * insertImagesOrCallback
      * @param {File[]} files
      */
     this.insertImagesOrCallback = function (files) {
       var callbacks = options.callbacks;
-
       // If onImageUpload options setted
       if (callbacks.onImageUpload) {
         context.triggerEvent('image.upload', files);
@@ -5357,7 +4712,6 @@
         this.insertImages(files);
       }
     };
-
     /**
      * insertNode
      * insert node
@@ -5368,7 +4722,6 @@
       rng.insertNode(node);
       range.createFromNodeAfter(node).select();
     });
-
     /**
      * insert text
      * @param {String} text
@@ -5378,22 +4731,18 @@
       var textNode = rng.insertNode(dom.createText(text));
       range.create(textNode, dom.nodeLength(textNode)).select();
     });
-
     /**
      * return selected plain text
      * @return {String} text
      */
     this.getSelectedText = function () {
       var rng = this.createRange();
-
       // if range on anchor, expand range with anchor
       if (rng.isOnAnchor()) {
         rng = range.createFromNode(dom.ancestor(rng.sc, dom.isAnchor));
       }
-
       return rng.toString();
     };
-
     /**
      * paste HTML
      * @param {String} markup
@@ -5402,7 +4751,6 @@
       var contents = this.createRange().pasteHTML(markup);
       range.createFromNodeAfter(list.last(contents)).select();
     });
-
     /**
      * formatBlock
      *
@@ -5416,18 +4764,15 @@
         this.onFormatBlock(tagName);
       }
     });
-
     this.onFormatBlock = function (tagName) {
       // [workaround] for MSIE, IE need `<`
       tagName = agent.isMSIE ? '<' + tagName + '>' : tagName;
       document.execCommand('FormatBlock', false, tagName);
     };
-
     this.formatPara = function () {
       this.formatBlock('P');
     };
     context.memo('help.formatPara', lang.help.formatPara);
-
     /* jshint ignore:start */
     for (var idx = 1; idx <= 6; idx ++) {
       this['formatH' + idx] = function (idx) {
@@ -5438,7 +4783,6 @@
       context.memo('help.formatH'+idx, lang.help['formatH' + idx]);
     };
     /* jshint ignore:end */
-
     /**
      * fontSize
      *
@@ -5446,15 +4790,12 @@
      */
     this.fontSize = function (value) {
       var rng = this.createRange();
-
       if (rng && rng.isCollapsed()) {
         var spans = style.styleNodes(rng);
         var firstSpan = list.head(spans);
-
         $(spans).css({
           'font-size': value + 'px'
         });
-
         // [workaround] added styled bogus span for style
         //  - also bogus character needed for cursor position
         if (firstSpan && !dom.nodeLength(firstSpan)) {
@@ -5470,7 +4811,6 @@
         afterCommand();
       }
     };
-
     /**
      * insert horizontal rule
      */
@@ -5481,7 +4821,6 @@
       }
     });
     context.memo('help.insertHorizontalRule', lang.help.insertHorizontalRule);
-
     /**
      * remove bogus node and character
      */
@@ -5490,21 +4829,16 @@
       if (!bogusNode) {
         return;
       }
-
       var textNode = list.find(list.from(bogusNode.childNodes), dom.isText);
-
       var bogusCharIdx = textNode.nodeValue.indexOf(dom.ZERO_WIDTH_NBSP_CHAR);
       if (bogusCharIdx !== -1) {
         textNode.deleteData(bogusCharIdx, 1);
       }
-
       if (dom.isEmpty(bogusNode)) {
         dom.remove(bogusNode);
       }
-
       $editable.removeData(KEY_BOGUS);
     };
-
     /**
      * lineHeight
      * @param {String} value
@@ -5514,7 +4848,6 @@
         lineHeight: value
       });
     });
-
     /**
      * unlink
      *
@@ -5526,13 +4859,11 @@
         var anchor = dom.ancestor(rng.sc, dom.isAnchor);
         rng = range.createFromNode(anchor);
         rng.select();
-
         beforeCommand();
         document.execCommand('unlink');
         afterCommand();
       }
     };
-
     /**
      * create link (command)
      *
@@ -5544,12 +4875,10 @@
       var isNewWindow = linkInfo.isNewWindow;
       var rng = linkInfo.range || this.createRange();
       var isTextChanged = rng.toString() !== linkText;
-
       // handle spaced urls from input
       if (typeof linkUrl === 'string') {
         linkUrl = linkUrl.trim();
       }
-
       if (options.onCreateLink) {
         linkUrl = options.onCreateLink(linkUrl);
       } else {
@@ -5557,7 +4886,6 @@
         linkUrl = /^[A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?/.test(linkUrl) ?
           linkUrl : 'http://' + linkUrl;
       }
-
       var anchors = [];
       if (isTextChanged) {
         rng = rng.deleteContents();
@@ -5570,7 +4898,6 @@
           onlyPartialContains: true
         });
       }
-
       $.each(anchors, function (idx, anchor) {
         $(anchor).attr('href', linkUrl);
         if (isNewWindow) {
@@ -5579,12 +4906,10 @@
           $(anchor).removeAttr('target');
         }
       });
-
       var startRange = range.createFromNodeBefore(list.head(anchors));
       var startPoint = startRange.getStartPoint();
       var endRange = range.createFromNodeAfter(list.last(anchors));
       var endPoint = endRange.getEndPoint();
-
       range.create(
         startPoint.node,
         startPoint.offset,
@@ -5592,7 +4917,6 @@
         endPoint.offset
       ).select();
     });
-
     /**
      * returns link info
      *
@@ -5604,7 +4928,6 @@
      */
     this.getLinkInfo = function () {
       var rng = this.createRange().expand(dom.isAnchor);
-
       // Get the first anchor on range(for edit).
       var $anchor = $(list.head(rng.nodes(dom.isAnchor)));
       var linkInfo = {
@@ -5612,15 +4935,12 @@
         text: rng.toString(),
         url: $anchor.length ? $anchor.attr('href') : ''
       };
-
       // Define isNewWindow when anchor exists.
       if ($anchor.length) {
         linkInfo.isNewWindow = $anchor.attr('target') === '_blank';
       }
-
       return linkInfo;
     };
-
     /**
      * setting color
      *
@@ -5631,11 +4951,9 @@
     this.color = this.wrapCommand(function (colorInfo) {
       var foreColor = colorInfo.foreColor;
       var backColor = colorInfo.backColor;
-
       if (foreColor) { document.execCommand('foreColor', false, foreColor); }
       if (backColor) { document.execCommand('backColor', false, backColor); }
     });
-
     /**
      * Set foreground color
      *
@@ -5645,7 +4963,6 @@
       document.execCommand('styleWithCSS', false, true);
       document.execCommand('foreColor', false, colorInfo);
     });
-
     /**
      * insert Table
      *
@@ -5653,11 +4970,9 @@
      */
     this.insertTable = this.wrapCommand(function (dim) {
       var dimension = dim.split('x');
-
       var rng = this.createRange().deleteContents();
       rng.insertNode(table.createTable(dimension[0], dimension[1], options));
     });
-
      /**
      * @method addRow
      *
@@ -5671,7 +4986,6 @@
         afterCommand();
       }
     };
-
      /**
      * @method addCol
      *
@@ -5685,7 +4999,6 @@
         afterCommand();
       }
     };
-
     /**
      * @method deleteRow
      *
@@ -5699,7 +5012,6 @@
         afterCommand();
       }
     };
-
     /**
      * @method deleteCol
      *
@@ -5713,7 +5025,6 @@
         afterCommand();
       }
     };
-
     /**
      * @method deleteTable
      *
@@ -5727,7 +5038,6 @@
         afterCommand();
       }
     };
-
     /**
      * float me
      *
@@ -5739,7 +5049,6 @@
       $target.toggleClass('note-float-right', value === 'right');
       $target.css('float', value);
     });
-
     /**
      * resize overlay element
      * @param {String} value
@@ -5751,7 +5060,6 @@
         height: ''
       });
     });
-
     /**
      * @param {Position} pos
      * @param {jQuery} $target - target element
@@ -5772,10 +5080,8 @@
           height: pos.y
         };
       }
-
       $target.css(imageSize);
     };
-
     /**
      * remove media object
      */
@@ -5783,14 +5089,12 @@
       var $target = $(this.restoreTarget()).detach();
       context.triggerEvent('media.delete', $target, $editable);
     });
-
     /**
      * returns whether editable area has focus or not.
      */
     this.hasFocus = function () {
       return $editable.is(':focus');
     };
-
     /**
      * set focus
      */
@@ -5801,7 +5105,6 @@
         $editable.focus();
       }
     };
-
     /**
      * returns whether contents is empty or not.
      * @return {Boolean}
@@ -5809,7 +5112,6 @@
     this.isEmpty = function () {
       return dom.isEmpty($editable[0]) || dom.emptyPara === $editable.html();
     };
-
     /**
      * Removes all contents and restores the editable instance to an _emptyPara_.
      */
@@ -5817,19 +5119,15 @@
       context.invoke('code', dom.emptyPara);
     };
   };
-
   var Clipboard = function (context) {
     var self = this;
-
     var $editable = context.layoutInfo.editable;
-
     this.events = {
       'summernote.keydown': function (we, e) {
         if (self.needKeydownHook()) {
           if ((e.ctrlKey || e.metaKey) && e.keyCode === key.code.V) {
             context.invoke('editor.saveRange');
             self.$paste.focus();
-
             setTimeout(function () {
               self.pasteByHook();
             }, 0);
@@ -5837,11 +5135,9 @@
         }
       }
     };
-
     this.needKeydownHook = function () {
       return (agent.isMSIE && agent.browserVersion > 10) || agent.isFF;
     };
-
     this.initialize = function () {
       // [workaround] getting image from clipboard
       //  - IE11 and Firefox: CTRL+v hook
@@ -5853,7 +5149,6 @@
           opacity: 0
         });
         $editable.before(this.$paste);
-
         this.$paste.on('paste', function (event) {
           context.triggerEvent('paste', event);
         });
@@ -5861,17 +5156,14 @@
         $editable.on('paste', this.pasteByEvent);
       }
     };
-
     this.destroy = function () {
       if (this.needKeydownHook()) {
         this.$paste.remove();
         this.$paste = null;
       }
     };
-
     this.pasteByHook = function () {
       var node = this.$paste[0].firstChild;
-
       var src = node && node.src;
       if (dom.isImg(node) && src.indexOf('data:') === 0) {
         var decodedData = atob(node.src.split(',')[1]);
@@ -5879,10 +5171,8 @@
         for (var i = 0; i < decodedData.length; i++) {
           array[i] = decodedData.charCodeAt(i);
         }
-
         var blob = new Blob([array], { type: 'image/png' });
         blob.name = 'clipboard.png';
-
         context.invoke('editor.restoreRange');
         context.invoke('editor.focus');
         context.invoke('editor.insertImagesOrCallback', [blob]);
@@ -5890,15 +5180,12 @@
         var pasteContent = $('<div />').html(this.$paste.html()).html();
         context.invoke('editor.restoreRange');
         context.invoke('editor.focus');
-
         if (pasteContent) {
           context.invoke('editor.pasteHTML', pasteContent);
         }
       }
-
       this.$paste.empty();
     };
-
     /**
      * paste by clipboard event
      *
@@ -5915,7 +5202,6 @@
       }
     };
   };
-
   var Dropzone = function (context) {
     var $document = $(document);
     var $editor = context.layoutInfo.editor;
@@ -5923,20 +5209,17 @@
     var options = context.options;
     var lang = options.langInfo;
     var documentEventHandlers = {};
-
     var $dropzone = $([
       '<div class="note-dropzone">',
       '  <div class="note-dropzone-message"/>',
       '</div>'
     ].join('')).prependTo($editor);
-
     var detachDocumentEvent = function () {
       Object.keys(documentEventHandlers).forEach(function (key) {
         $document.off(key.substr(2).toLowerCase(), documentEventHandlers[key]);
       });
       documentEventHandlers = {};
     };
-
     /**
      * attach Drag and Drop Events
      */
@@ -5951,14 +5234,12 @@
         this.attachDragAndDropEvent();
       }
     };
-
     /**
      * attach Drag and Drop Events
      */
     this.attachDragAndDropEvent = function () {
       var collection = $(),
           $dropzoneMessage = $dropzone.find('.note-dropzone-message');
-
       documentEventHandlers.onDragenter = function (e) {
         var isCodeview = context.invoke('codeview.isActivated');
         var hasEditorSize = $editor.width() > 0 && $editor.height() > 0;
@@ -5970,25 +5251,21 @@
         }
         collection = collection.add(e.target);
       };
-
       documentEventHandlers.onDragleave = function (e) {
         collection = collection.not(e.target);
         if (!collection.length) {
           $editor.removeClass('dragover');
         }
       };
-
       documentEventHandlers.onDrop = function () {
         collection = $();
         $editor.removeClass('dragover');
       };
-
       // show dropzone on dragenter when dragging a object to document
       // -but only if the editor is visible, i.e. has a positive width and height
       $document.on('dragenter', documentEventHandlers.onDragenter)
         .on('dragleave', documentEventHandlers.onDragleave)
         .on('drop', documentEventHandlers.onDrop);
-
       // change dropzone's message on hover.
       $dropzone.on('dragenter', function () {
         $dropzone.addClass('hover');
@@ -5997,11 +5274,9 @@
         $dropzone.removeClass('hover');
         $dropzoneMessage.text(lang.image.dragImageHere);
       });
-
       // attach dropImage
       $dropzone.on('drop', function (event) {
         var dataTransfer = event.originalEvent.dataTransfer;
-
         if (dataTransfer && dataTransfer.files && dataTransfer.files.length) {
           event.preventDefault();
           $editable.focus();
@@ -6009,7 +5284,6 @@
         } else {
           $.each(dataTransfer.types, function (idx, type) {
             var content = dataTransfer.getData(type);
-
             if (type.toLowerCase().indexOf('text') > -1) {
               context.invoke('editor.pasteHTML', content);
             } else {
@@ -6021,13 +5295,10 @@
         }
       }).on('dragover', false); // prevent default dragover event
     };
-
     this.destroy = function () {
       detachDocumentEvent();
     };
   };
-
-
   var CodeMirror;
   if (agent.hasCodeMirror) {
     if (agent.isSupportAmd) {
@@ -6038,7 +5309,6 @@
       CodeMirror = window.CodeMirror;
     }
   }
-
   /**
    * @class Codeview
    */
@@ -6047,21 +5317,18 @@
     var $editable = context.layoutInfo.editable;
     var $codable = context.layoutInfo.codable;
     var options = context.options;
-
     this.sync = function () {
       var isCodeview = this.isActivated();
       if (isCodeview && agent.hasCodeMirror) {
         $codable.data('cmEditor').save();
       }
     };
-
     /**
      * @return {Boolean}
      */
     this.isActivated = function () {
       return $editor.hasClass('codeview');
     };
-
     /**
      * toggle codeview
      */
@@ -6073,22 +5340,18 @@
       }
       context.triggerEvent('codeview.toggled');
     };
-
     /**
      * activate code view
      */
     this.activate = function () {
       $codable.val(dom.html($editable, options.prettifyHtml));
       $codable.height($editable.height());
-
       context.invoke('toolbar.updateCodeview', true);
       $editor.addClass('codeview');
       $codable.focus();
-
       // activate CodeMirror as codable
       if (agent.hasCodeMirror) {
         var cmEditor = CodeMirror.fromTextArea($codable[0], options.codemirror);
-
         // CodeMirror TernServer
         if (options.codemirror.tern) {
           var server = new CodeMirror.TernServer(options.codemirror.tern);
@@ -6097,13 +5360,11 @@
             server.updateArgHints(cm);
           });
         }
-
         // CodeMirror hasn't Padding.
         cmEditor.setSize(null, $editable.outerHeight());
         $codable.data('cmEditor', cmEditor);
       }
     };
-
     /**
      * deactivate code view
      */
@@ -6114,58 +5375,44 @@
         $codable.val(cmEditor.getValue());
         cmEditor.toTextArea();
       }
-
       var value = dom.value($codable, options.prettifyHtml) || dom.emptyPara;
       var isChange = $editable.html() !== value;
-
       $editable.html(value);
       $editable.height(options.height ? $codable.height() : 'auto');
       $editor.removeClass('codeview');
-
       if (isChange) {
         context.triggerEvent('change', $editable.html(), $editable);
       }
-
       $editable.focus();
-
       context.invoke('toolbar.updateCodeview', false);
     };
-
     this.destroy = function () {
       if (this.isActivated()) {
         this.deactivate();
       }
     };
   };
-
   var EDITABLE_PADDING = 24;
-
   var Statusbar = function (context) {
     var $document = $(document);
     var $statusbar = context.layoutInfo.statusbar;
     var $editable = context.layoutInfo.editable;
     var options = context.options;
-
     this.initialize = function () {
       if (options.airMode || options.disableResizeEditor) {
         this.destroy();
         return;
       }
-
       $statusbar.on('mousedown', function (event) {
         event.preventDefault();
         event.stopPropagation();
-
         var editableTop = $editable.offset().top - $document.scrollTop();
         var onMouseMove = function (event) {
           var height = event.clientY - (editableTop + EDITABLE_PADDING);
-
           height = (options.minheight > 0) ? Math.max(height, options.minheight) : height;
           height = (options.maxHeight > 0) ? Math.min(height, options.maxHeight) : height;
-
           $editable.height(height);
         };
-
         $document
           .on('mousemove', onMouseMove)
           .one('mouseup', function () {
@@ -6173,23 +5420,19 @@
           });
       });
     };
-
     this.destroy = function () {
       $statusbar.off();
       $statusbar.remove();
     };
   };
-
   var Fullscreen = function (context) {
     var self = this;
     var $editor = context.layoutInfo.editor;
     var $toolbar = context.layoutInfo.toolbar;
     var $editable = context.layoutInfo.editable;
     var $codable = context.layoutInfo.codable;
-
     var $window = $(window);
     var $scrollbar = $('html, body');
-
     this.resizeTo = function (size) {
       $editable.css('height', size.h);
       $codable.css('height', size.h);
@@ -6197,13 +5440,11 @@
         $codable.data('cmeditor').setsize(null, size.h);
       }
     };
-
     this.onResize = function () {
       self.resizeTo({
         h: $window.height() - $toolbar.outerHeight()
       });
     };
-
     /**
      * toggle fullscreen
      */
@@ -6218,22 +5459,17 @@
         this.resizeTo({ h: $editable.data('orgHeight') });
         $scrollbar.css('overflow', 'visible');
       }
-
       context.invoke('toolbar.updateFullscreen', this.isFullscreen());
     };
-
     this.isFullscreen = function () {
       return $editor.hasClass('fullscreen');
     };
   };
-
   var Handle = function (context) {
     var self = this;
-
     var $document = $(document);
     var $editingArea = context.layoutInfo.editingArea;
     var options = context.options;
-
     this.events = {
       'summernote.mousedown': function (we, e) {
         if (self.update(e.target)) {
@@ -6250,7 +5486,6 @@
         self.update();
       }
     };
-
     this.initialize = function () {
       this.$handle = $([
         '<div class="note-handle">',
@@ -6266,25 +5501,20 @@
         '</div>',
         '</div>'
       ].join('')).prependTo($editingArea);
-
       this.$handle.on('mousedown', function (event) {
         if (dom.isControlSizing(event.target)) {
           event.preventDefault();
           event.stopPropagation();
-
           var $target = self.$handle.find('.note-control-selection').data('target'),
               posStart = $target.offset(),
               scrollTop = $document.scrollTop();
-
           var onMouseMove = function (event) {
             context.invoke('editor.resizeTo', {
               x: event.clientX - posStart.left,
               y: event.clientY - (posStart.top - scrollTop)
             }, $target, !event.shiftKey);
-
             self.update($target[0]);
           };
-
           $document
             .on('mousemove', onMouseMove)
             .one('mouseup', function (e) {
@@ -6292,34 +5522,27 @@
               $document.off('mousemove', onMouseMove);
               context.invoke('editor.afterCommand');
             });
-
           if (!$target.data('ratio')) { // original ratio.
             $target.data('ratio', $target.height() / $target.width());
           }
         }
       });
-
       // Listen for scrolling on the handle overlay.
       this.$handle.on('wheel', function (e) {
         e.preventDefault();
         self.update();
       });
     };
-
     this.destroy = function () {
       this.$handle.remove();
     };
-
     this.update = function (target) {
       if (context.isDisabled()) {
         return false;
       }
-
       var isImage = dom.isImg(target);
       var $selection = this.$handle.find('.note-control-selection');
-
       context.invoke('imagePopover.update', target);
-
       if (isImage) {
         var $image = $(target);
         var position = $image.position();
@@ -6327,13 +5550,11 @@
           left: position.left + parseInt($image.css('marginLeft'), 10),
           top: position.top + parseInt($image.css('marginTop'), 10)
         };
-
         // exclude margin
         var imageSize = {
           w: $image.outerWidth(false),
           h: $image.outerHeight(false)
         };
-
         $selection.css({
           display: 'block',
           left: pos.left,
@@ -6341,17 +5562,14 @@
           width: imageSize.w,
           height: imageSize.h
         }).data('target', $image); // save current image element.
-
         var sizingText = imageSize.w + 'x' + imageSize.h;
         $selection.find('.note-control-selection-info').text(sizingText);
         context.invoke('editor.saveTarget', target);
       } else {
         this.hide();
       }
-
       return isImage;
     };
-
     /**
      * hide
      *
@@ -6362,12 +5580,10 @@
       this.$handle.children().hide();
     };
   };
-
   var AutoLink = function (context) {
     var self = this;
     var defaultScheme = 'http://';
     var linkPattern = /^([A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?|mailto:[A-Z0-9._%+-]+@)?(www\.)?(.+)$/i;
-
     this.events = {
       'summernote.keyup': function (we, e) {
         if (!e.isDefaultPrevented()) {
@@ -6378,70 +5594,56 @@
         self.handleKeydown(e);
       }
     };
-
     this.initialize = function () {
       this.lastWordRange = null;
     };
-
     this.destroy = function () {
       this.lastWordRange = null;
     };
-
     this.replace = function () {
       if (!this.lastWordRange) {
         return;
       }
-
       var keyword = this.lastWordRange.toString();
       var match = keyword.match(linkPattern);
-
       if (match && (match[1] || match[2])) {
         var link = match[1] ? keyword : defaultScheme + keyword;
         var node = $('<a />').html(keyword).attr('href', link)[0];
-
         this.lastWordRange.insertNode(node);
         this.lastWordRange = null;
         context.invoke('editor.focus');
       }
-
     };
-
     this.handleKeydown = function (e) {
       if (list.contains([key.code.ENTER, key.code.SPACE], e.keyCode)) {
         var wordRange = context.invoke('editor.createRange').getWordRange();
         this.lastWordRange = wordRange;
       }
     };
-
     this.handleKeyup = function (e) {
       if (list.contains([key.code.ENTER, key.code.SPACE], e.keyCode)) {
         this.replace();
       }
     };
   };
-
   /**
    * textarea auto sync.
    */
   var AutoSync = function (context) {
     var $note = context.layoutInfo.note;
-
     this.events = {
       'summernote.change': function () {
         $note.val(context.invoke('code'));
       }
     };
-
     this.shouldInitialize = function () {
       return dom.isTextarea($note[0]);
     };
   };
-
   var Placeholder = function (context) {
     var self = this;
     var $editingArea = context.layoutInfo.editingArea;
     var options = context.options;
-
     this.events = {
       'summernote.init summernote.change': function () {
         self.update();
@@ -6450,58 +5652,45 @@
         self.update();
       }
     };
-
     this.shouldInitialize = function () {
       return !!options.placeholder;
     };
-
     this.initialize = function () {
       this.$placeholder = $('<div class="note-placeholder">');
       this.$placeholder.on('click', function () {
         context.invoke('focus');
       }).text(options.placeholder).prependTo($editingArea);
-
       this.update();
     };
-
     this.destroy = function () {
       this.$placeholder.remove();
     };
-
     this.update = function () {
       var isShow = !context.invoke('codeview.isActivated') && context.invoke('editor.isEmpty');
       this.$placeholder.toggle(isShow);
     };
   };
-
   var Buttons = function (context) {
     var self = this;
     var ui = $.summernote.ui;
-
     var $toolbar = context.layoutInfo.toolbar;
     var options = context.options;
     var lang = options.langInfo;
-
     var invertedKeyMap = func.invertObject(options.keyMap[agent.isMac ? 'mac' : 'pc']);
-
     var representShortcut = this.representShortcut = function (editorMethod) {
       var shortcut = invertedKeyMap[editorMethod];
       if (!options.shortcuts || !shortcut) {
         return '';
       }
-
       if (agent.isMac) {
         shortcut = shortcut.replace('CMD', '⌘').replace('SHIFT', '⇧');
       }
-
       shortcut = shortcut.replace('BACKSLASH', '\\')
                          .replace('SLASH', '/')
                          .replace('LEFTBRACKET', '[')
                          .replace('RIGHTBRACKET', ']');
-
       return ' (' + shortcut + ')';
     };
-
     this.initialize = function () {
       this.addToolbarButtons();
       this.addImagePopoverButtons();
@@ -6509,20 +5698,16 @@
       this.addTablePopoverButtons();
       this.fontInstalledMap = {};
     };
-
     this.destroy = function () {
       delete this.fontInstalledMap;
     };
-
     this.isFontInstalled = function (name) {
       if (!self.fontInstalledMap.hasOwnProperty(name)) {
         self.fontInstalledMap[name] = agent.isFontInstalled(name) ||
           list.contains(options.fontNamesIgnoreCheck, name);
       }
-
       return self.fontInstalledMap[name];
     };
-
     this.addToolbarButtons = function () {
       context.memo('button.style', function () {
         return ui.buttonGroup([
@@ -6538,23 +5723,19 @@
             className: 'dropdown-style',
             items: context.options.styleTags,
             template: function (item) {
-
               if (typeof item === 'string') {
                 item = { tag: item, title: (lang.style.hasOwnProperty(item) ? lang.style[item] : item) };
               }
-
               var tag = item.tag;
               var title = item.title;
               var style = item.style ? ' style="' + item.style + '" ' : '';
               var className = item.className ? ' class="' + item.className + '"' : '';
-
               return '<' + tag + style + className + '>' + title + '</' + tag +  '>';
             },
             click: context.createInvokeHandler('editor.formatBlock')
           })
         ]).render();
       });
-
       context.memo('button.bold', function () {
         return ui.button({
           className: 'note-btn-bold',
@@ -6563,7 +5744,6 @@
           click: context.createInvokeHandlerAndUpdateState('editor.bold')
         }).render();
       });
-
       context.memo('button.italic', function () {
         return ui.button({
           className: 'note-btn-italic',
@@ -6572,7 +5752,6 @@
           click: context.createInvokeHandlerAndUpdateState('editor.italic')
         }).render();
       });
-
       context.memo('button.underline', function () {
         return ui.button({
           className: 'note-btn-underline',
@@ -6581,7 +5760,6 @@
           click: context.createInvokeHandlerAndUpdateState('editor.underline')
         }).render();
       });
-
       context.memo('button.clear', function () {
         return ui.button({
           contents: ui.icon(options.icons.eraser),
@@ -6589,7 +5767,6 @@
           click: context.createInvokeHandler('editor.removeFormat')
         }).render();
       });
-
       context.memo('button.strikethrough', function () {
         return ui.button({
           className: 'note-btn-strikethrough',
@@ -6598,7 +5775,6 @@
           click: context.createInvokeHandlerAndUpdateState('editor.strikethrough')
         }).render();
       });
-
       context.memo('button.superscript', function () {
         return ui.button({
           className: 'note-btn-superscript',
@@ -6607,7 +5783,6 @@
           click: context.createInvokeHandlerAndUpdateState('editor.superscript')
         }).render();
       });
-
       context.memo('button.subscript', function () {
         return ui.button({
           className: 'note-btn-subscript',
@@ -6616,7 +5791,6 @@
           click: context.createInvokeHandlerAndUpdateState('editor.subscript')
         }).render();
       });
-
       context.memo('button.fontname', function () {
         return ui.buttonGroup([
           ui.button({
@@ -6638,7 +5812,6 @@
           })
         ]).render();
       });
-
       context.memo('button.fontsize', function () {
         return ui.buttonGroup([
           ui.button({
@@ -6657,7 +5830,6 @@
           })
         ]).render();
       });
-
       context.memo('button.color', function () {
         return ui.buttonGroup({
           className: 'note-color',
@@ -6722,12 +5894,10 @@
                 var $button = $(event.target);
                 var eventName = $button.data('event');
                 var value = $button.data('value');
-
                 if (eventName && value) {
                   var key = eventName === 'backColor' ? 'background-color' : 'color';
                   var $color = $button.closest('.note-color').find('.note-recent-color');
                   var $currentButton = $button.closest('.note-color').find('.note-current-color-button');
-
                   $color.css(key, value);
                   $currentButton.attr('data-' + eventName, value);
                   context.invoke('editor.' + eventName, value);
@@ -6737,7 +5907,6 @@
           ]
         }).render();
       });
-
       context.memo('button.ul',  function () {
         return ui.button({
           contents: ui.icon(options.icons.unorderedlist),
@@ -6745,7 +5914,6 @@
           click: context.createInvokeHandler('editor.insertUnorderedList')
         }).render();
       });
-
       context.memo('button.ol', function () {
         return ui.button({
           contents: ui.icon(options.icons.orderedlist),
@@ -6753,50 +5921,42 @@
           click:  context.createInvokeHandler('editor.insertOrderedList')
         }).render();
       });
-
       var justifyLeft = ui.button({
         contents: ui.icon(options.icons.alignLeft),
         tooltip: lang.paragraph.left + representShortcut('justifyLeft'),
         click: context.createInvokeHandler('editor.justifyLeft')
       });
-
       var justifyCenter = ui.button({
         contents: ui.icon(options.icons.alignCenter),
         tooltip: lang.paragraph.center + representShortcut('justifyCenter'),
         click: context.createInvokeHandler('editor.justifyCenter')
       });
-
       var justifyRight = ui.button({
         contents: ui.icon(options.icons.alignRight),
         tooltip: lang.paragraph.right + representShortcut('justifyRight'),
         click: context.createInvokeHandler('editor.justifyRight')
       });
-
       var justifyFull = ui.button({
         contents: ui.icon(options.icons.alignJustify),
         tooltip: lang.paragraph.justify + representShortcut('justifyFull'),
         click: context.createInvokeHandler('editor.justifyFull')
       });
-
       var outdent = ui.button({
         contents: ui.icon(options.icons.outdent),
         tooltip: lang.paragraph.outdent + representShortcut('outdent'),
         click: context.createInvokeHandler('editor.outdent')
       });
-
       var indent = ui.button({
         contents: ui.icon(options.icons.indent),
         tooltip: lang.paragraph.indent + representShortcut('indent'),
         click: context.createInvokeHandler('editor.indent')
       });
-
       context.memo('button.justifyLeft', func.invoke(justifyLeft, 'render'));
       context.memo('button.justifyCenter', func.invoke(justifyCenter, 'render'));
       context.memo('button.justifyRight', func.invoke(justifyRight, 'render'));
       context.memo('button.justifyFull', func.invoke(justifyFull, 'render'));
       context.memo('button.outdent', func.invoke(outdent, 'render'));
       context.memo('button.indent', func.invoke(indent, 'render'));
-
       context.memo('button.paragraph', function () {
         return ui.buttonGroup([
           ui.button({
@@ -6819,7 +5979,6 @@
           ])
         ]).render();
       });
-
       context.memo('button.height', function () {
         return ui.buttonGroup([
           ui.button({
@@ -6838,7 +5997,6 @@
           })
         ]).render();
       });
-
       context.memo('button.table', function () {
         return ui.buttonGroup([
           ui.button({
@@ -6871,7 +6029,6 @@
           }
         }).render();
       });
-
       context.memo('button.link', function () {
         return ui.button({
           contents: ui.icon(options.icons.link),
@@ -6879,7 +6036,6 @@
           click: context.createInvokeHandler('linkDialog.show')
         }).render();
       });
-
       context.memo('button.picture', function () {
         return ui.button({
           contents: ui.icon(options.icons.picture),
@@ -6887,7 +6043,6 @@
           click: context.createInvokeHandler('imageDialog.show')
         }).render();
       });
-
       context.memo('button.video', function () {
         return ui.button({
           contents: ui.icon(options.icons.video),
@@ -6895,7 +6050,6 @@
           click: context.createInvokeHandler('videoDialog.show')
         }).render();
       });
-
       context.memo('button.hr', function () {
         return ui.button({
           contents: ui.icon(options.icons.minus),
@@ -6903,7 +6057,6 @@
           click: context.createInvokeHandler('editor.insertHorizontalRule')
         }).render();
       });
-
       context.memo('button.fullscreen', function () {
         return ui.button({
           className: 'btn-fullscreen',
@@ -6912,7 +6065,6 @@
           click: context.createInvokeHandler('fullscreen.toggle')
         }).render();
       });
-
       context.memo('button.codeview', function () {
         return ui.button({
           className: 'btn-codeview',
@@ -6921,7 +6073,6 @@
           click: context.createInvokeHandler('codeview.toggle')
         }).render();
       });
-
       context.memo('button.redo', function () {
         return ui.button({
           contents: ui.icon(options.icons.redo),
@@ -6929,7 +6080,6 @@
           click: context.createInvokeHandler('editor.redo')
         }).render();
       });
-
       context.memo('button.undo', function () {
         return ui.button({
           contents: ui.icon(options.icons.undo),
@@ -6937,7 +6087,6 @@
           click: context.createInvokeHandler('editor.undo')
         }).render();
       });
-
       context.memo('button.help', function () {
         return ui.button({
           contents: ui.icon(options.icons.question),
@@ -6946,7 +6095,6 @@
         }).render();
       });
     };
-
     /**
      * image : [
      *   ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
@@ -6977,7 +6125,6 @@
           click: context.createInvokeHandler('editor.resize', '0.25')
         }).render();
       });
-
       // Float Buttons
       context.memo('button.floatLeft', function () {
         return ui.button({
@@ -6986,7 +6133,6 @@
           click: context.createInvokeHandler('editor.floatMe', 'left')
         }).render();
       });
-
       context.memo('button.floatRight', function () {
         return ui.button({
           contents: ui.icon(options.icons.alignRight),
@@ -6994,7 +6140,6 @@
           click: context.createInvokeHandler('editor.floatMe', 'right')
         }).render();
       });
-
       context.memo('button.floatNone', function () {
         return ui.button({
           contents: ui.icon(options.icons.alignJustify),
@@ -7002,7 +6147,6 @@
           click: context.createInvokeHandler('editor.floatMe', 'none')
         }).render();
       });
-
       // Remove Buttons
       context.memo('button.removeMedia', function () {
         return ui.button({
@@ -7012,7 +6156,6 @@
         }).render();
       });
     };
-
     this.addLinkPopoverButtons = function () {
       context.memo('button.linkDialogShow', function () {
         return ui.button({
@@ -7021,7 +6164,6 @@
           click: context.createInvokeHandler('linkDialog.show')
         }).render();
       });
-
       context.memo('button.unlink', function () {
         return ui.button({
           contents: ui.icon(options.icons.unlink),
@@ -7030,7 +6172,6 @@
         }).render();
       });
     };
-
     /**
      * table : [
      *  ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
@@ -7095,17 +6236,14 @@
         }).render();
       });
     };
-
     this.build = function ($container, groups) {
       for (var groupIdx = 0, groupLen = groups.length; groupIdx < groupLen; groupIdx++) {
         var group = groups[groupIdx];
         var groupName = group[0];
         var buttons = group[1];
-
         var $group = ui.buttonGroup({
           className: 'note-' + groupName
         }).render();
-
         for (var idx = 0, len = buttons.length; idx < len; idx++) {
           var button = context.memo('button.' + buttons[idx]);
           if (button) {
@@ -7115,13 +6253,11 @@
         $group.appendTo($container);
       }
     };
-
     /**
      * @param {jQuery} [$container]
      */
     this.updateCurrentStyle = function ($container) {
       var $cont = $container || $toolbar;
-      
       var styleInfo = context.invoke('editor.currentStyle');
       this.updateBtnStates($cont, {
         '.note-btn-bold': function () {
@@ -7143,7 +6279,6 @@
           return styleInfo['font-strikethrough'] === 'strikethrough';
         }
       });
-
       if (styleInfo['font-family']) {
         var fontNames = styleInfo['font-family'].split(',').map(function (name) {
           return name.replace(/[\'\"]/g, '')
@@ -7151,7 +6286,6 @@
             .replace(/^\s+/, '');
         });
         var fontName = list.find(fontNames, self.isFontInstalled);
-
         $cont.find('.dropdown-fontname a').each(function () {
           var $item = $(this);
           // always compare string to avoid creating another func.
@@ -7160,7 +6294,6 @@
         });
         $cont.find('.note-current-fontname').text(fontName);
       }
-
       if (styleInfo['font-size']) {
         var fontSize = styleInfo['font-size'];
         $cont.find('.dropdown-fontsize a').each(function () {
@@ -7171,7 +6304,6 @@
         });
         $cont.find('.note-current-fontsize').text(fontSize);
       }
-
       if (styleInfo['line-height']) {
         var lineHeight = styleInfo['line-height'];
         $cont.find('.dropdown-line-height li a').each(function () {
@@ -7181,13 +6313,11 @@
         });
       }
     };
-
     this.updateBtnStates = function ($container, infos) {
       $.each(infos, function (selector, pred) {
         ui.toggleBtnActive($container.find(selector), pred());
       });
     };
-
     this.tableMoveHandler = function (event) {
       var PX_PER_EM = 18;
       var $picker = $(event.target.parentNode); // target is mousecatcher
@@ -7195,7 +6325,6 @@
       var $catcher = $picker.find('.note-dimension-picker-mousecatcher');
       var $highlighted = $picker.find('.note-dimension-picker-highlighted');
       var $unhighlighted = $picker.find('.note-dimension-picker-unhighlighted');
-
       var posOffset;
       // HTML5 with jQuery - e.offsetX is undefined in Firefox
       if (event.offsetX === undefined) {
@@ -7210,65 +6339,49 @@
           y: event.offsetY
         };
       }
-
       var dim = {
         c: Math.ceil(posOffset.x / PX_PER_EM) || 1,
         r: Math.ceil(posOffset.y / PX_PER_EM) || 1
       };
-
       $highlighted.css({ width: dim.c + 'em', height: dim.r + 'em' });
       $catcher.data('value', dim.c + 'x' + dim.r);
-
       if (3 < dim.c && dim.c < options.insertTableMaxSize.col) {
         $unhighlighted.css({ width: dim.c + 1 + 'em'});
       }
-
       if (3 < dim.r && dim.r < options.insertTableMaxSize.row) {
         $unhighlighted.css({ height: dim.r + 1 + 'em'});
       }
-
       $dimensionDisplay.html(dim.c + ' x ' + dim.r);
     };
   };
-
   var Toolbar = function (context) {
     var ui = $.summernote.ui;
-
     var $note = context.layoutInfo.note;
     var $editor = context.layoutInfo.editor;
     var $toolbar = context.layoutInfo.toolbar;
     var options = context.options;
-
     this.shouldInitialize = function () {
       return !options.airMode;
     };
-
     this.initialize = function () {
       options.toolbar = options.toolbar || [];
-
       if (!options.toolbar.length) {
         $toolbar.hide();
       } else {
         context.invoke('buttons.build', $toolbar, options.toolbar);
       }
-
       if (options.toolbarContainer) {
         $toolbar.appendTo(options.toolbarContainer);
       }
-
       this.changeContainer(false);
-
       $note.on('summernote.keyup summernote.mouseup summernote.change', function () {
         context.invoke('buttons.updateCurrentStyle');
       });
-
       context.invoke('buttons.updateCurrentStyle');
     };
-
     this.destroy = function () {
       $toolbar.children().remove();
     };
-
     this.changeContainer = function (isFullscreen) {
       if (isFullscreen) {
         $toolbar.prependTo($editor);
@@ -7278,13 +6391,10 @@
         }
       }
     };
-
     this.updateFullscreen = function (isFullscreen) {
       ui.toggleBtnActive($toolbar.find('.btn-fullscreen'), isFullscreen);
-
       this.changeContainer(isFullscreen);
     };
-
     this.updateCodeview = function (isCodeview) {
       ui.toggleBtnActive($toolbar.find('.btn-codeview'), isCodeview);
       if (isCodeview) {
@@ -7293,7 +6403,6 @@
         this.activate();
       }
     };
-
     this.activate = function (isIncludeCodeview) {
       var $btn = $toolbar.find('button');
       if (!isIncludeCodeview) {
@@ -7301,7 +6410,6 @@
       }
       ui.toggleBtn($btn, true);
     };
-
     this.deactivate = function (isIncludeCodeview) {
       var $btn = $toolbar.find('button');
       if (!isIncludeCodeview) {
@@ -7310,18 +6418,14 @@
       ui.toggleBtn($btn, false);
     };
   };
-
   var LinkDialog = function (context) {
     var self = this;
     var ui = $.summernote.ui;
-
     var $editor = context.layoutInfo.editor;
     var options = context.options;
     var lang = options.langInfo;
-
     this.initialize = function () {
       var $container = options.dialogsInBody ? $(document.body) : $editor;
-
       var body = '<div class="form-group note-form-group">' +
                    '<label class="note-form-label">' + lang.link.textToDisplay + '</label>' +
                    '<input class="note-link-text form-control '+
@@ -7338,7 +6442,6 @@
           : '');
       var footer = '<button href="#" class="btn btn-primary note-btn note-btn-primary ' +
       'note-link-btn disabled" disabled>' + lang.link.insert + '</button>';
-
       this.$dialog = ui.dialog({
         className: 'link-dialog',
         title: lang.link.insert,
@@ -7347,12 +6450,10 @@
         footer: footer
       }).render().appendTo($container);
     };
-
     this.destroy = function () {
       ui.hideDialog(this.$dialog);
       this.$dialog.remove();
     };
-
     this.bindEnterKey = function ($input, $btn) {
       $input.on('keypress', function (event) {
         if (event.keyCode === key.code.ENTER) {
@@ -7360,14 +6461,12 @@
         }
       });
     };
-
     /**
      * toggle update button
      */
     this.toggleLinkBtn = function ($linkBtn, $linkText, $linkUrl) {
       ui.toggleBtn($linkBtn, $linkText.val() && $linkUrl.val());
     };
-
     /**
      * Show link dialog and set event handlers on dialog controls.
      *
@@ -7380,28 +6479,22 @@
         $linkUrl = self.$dialog.find('.note-link-url'),
         $linkBtn = self.$dialog.find('.note-link-btn'),
         $openInNewWindow = self.$dialog.find('input[type=checkbox]');
-
         ui.onDialogShown(self.$dialog, function () {
           context.triggerEvent('dialog.shown');
-
           // if no url was given, copy text to url
           if (!linkInfo.url) {
             linkInfo.url = linkInfo.text;
           }
-
           $linkText.val(linkInfo.text);
-
           var handleLinkTextUpdate = function () {
             self.toggleLinkBtn($linkBtn, $linkText, $linkUrl);
             // if linktext was modified by keyup,
             // stop cloning text from linkUrl
             linkInfo.text = $linkText.val();
           };
-
           $linkText.on('input', handleLinkTextUpdate).on('paste', function () {
             setTimeout(handleLinkTextUpdate, 0);
           });
-
           var handleLinkUrlUpdate = function () {
             self.toggleLinkBtn($linkBtn, $linkText, $linkUrl);
             // display same link on `Text to display` input
@@ -7410,23 +6503,17 @@
               $linkText.val($linkUrl.val());
             }
           };
-
           $linkUrl.on('input', handleLinkUrlUpdate).on('paste', function () {
             setTimeout(handleLinkUrlUpdate, 0);
           }).val(linkInfo.url).trigger('focus');
-
           self.toggleLinkBtn($linkBtn, $linkText, $linkUrl);
           self.bindEnterKey($linkUrl, $linkBtn);
           self.bindEnterKey($linkText, $linkBtn);
-
           var isChecked = linkInfo.isNewWindow !== undefined ?
             linkInfo.isNewWindow : context.options.linkTargetBlank;
-
           $openInNewWindow.prop('checked', isChecked);
-
           $linkBtn.one('click', function (event) {
             event.preventDefault();
-
             deferred.resolve({
               range: linkInfo.range,
               url: $linkUrl.val(),
@@ -7436,28 +6523,23 @@
             ui.hideDialog(self.$dialog);
           });
         });
-
         ui.onDialogHidden(self.$dialog, function () {
           // detach events
           $linkText.off('input paste keypress');
           $linkUrl.off('input paste keypress');
           $linkBtn.off('click');
-
           if (deferred.state() === 'pending') {
             deferred.reject();
           }
         });
-
         ui.showDialog(self.$dialog);
       }).promise();
     };
-
     /**
      * @param {Object} layoutInfo
      */
     this.show = function () {
       var linkInfo = context.invoke('editor.getLinkInfo');
-
       context.invoke('editor.saveRange');
       this.showLinkDialog(linkInfo).then(function (linkInfo) {
         context.invoke('editor.restoreRange');
@@ -7468,13 +6550,10 @@
     };
     context.memo('help.linkDialog.show', options.langInfo.help['linkDialog.show']);
   };
-
   var LinkPopover = function (context) {
     var self = this;
     var ui = $.summernote.ui;
-
     var options = context.options;
-
     this.events = {
       'summernote.keyup summernote.mouseup summernote.change summernote.scroll': function () {
         self.update();
@@ -7483,11 +6562,9 @@
         self.hide();
       }
     };
-
     this.shouldInitialize = function () {
       return !list.isEmpty(options.popover.link);
     };
-
     this.initialize = function () {
       this.$popover = ui.popover({
         className: 'note-link-popover',
@@ -7497,27 +6574,22 @@
         }
       }).render().appendTo('body');
       var $content = this.$popover.find('.popover-content,.note-popover-content');
-
       context.invoke('buttons.build', $content, options.popover.link);
     };
-
     this.destroy = function () {
       this.$popover.remove();
     };
-
     this.update = function () {
       // Prevent focusing on editable when invoke('code') is executed
       if (!context.invoke('editor.hasFocus')) {
         this.hide();
         return;
       }
-
       var rng = context.invoke('editor.createRange');
       if (rng.isCollapsed() && rng.isOnAnchor()) {
         var anchor = dom.ancestor(rng.sc, dom.isAnchor);
         var href = $(anchor).attr('href');
         this.$popover.find('a').attr('href', href).html(href);
-
         var pos = dom.posFromPlaceholder(anchor);
         this.$popover.css({
           display: 'block',
@@ -7528,23 +6600,18 @@
         this.hide();
       }
     };
-
     this.hide = function () {
       this.$popover.hide();
     };
   };
-
   var ImageDialog = function (context) {
     var self = this;
     var ui = $.summernote.ui;
-
     var $editor = context.layoutInfo.editor;
     var options = context.options;
     var lang = options.langInfo;
-
     this.initialize = function () {
       var $container = options.dialogsInBody ? $(document.body) : $editor;
-
       var imageLimitation = '';
       if (options.maximumImageFileSize) {
         var unit = Math.floor(Math.log(options.maximumImageFileSize) / Math.log(1024));
@@ -7552,7 +6619,6 @@
                            ' ' + ' KMGTP'[unit] + 'B';
         imageLimitation = '<small>' + lang.image.maximumFileSize + ' : ' + readableSize + '</small>';
       }
-
       var body = '<div class="form-group note-form-group note-group-select-from-files">' +
                    '<label class="note-form-label">' + lang.image.selectFromFiles + '</label>' +
                    '<input class="note-image-input form-control note-form-control note-input" '+
@@ -7566,7 +6632,6 @@
                  '</div>';
       var footer = '<button href="#" class="btn btn-primary note-btn note-btn-primary ' +
       'note-image-btn disabled" disabled>' + lang.image.insert + '</button>';
-
       this.$dialog = ui.dialog({
         title: lang.image.insert,
         fade: options.dialogsFade,
@@ -7574,12 +6639,10 @@
         footer: footer
       }).render().appendTo($container);
     };
-
     this.destroy = function () {
       ui.hideDialog(this.$dialog);
       this.$dialog.remove();
     };
-
     this.bindEnterKey = function ($input, $btn) {
       $input.on('keypress', function (event) {
         if (event.keyCode === key.code.ENTER) {
@@ -7587,14 +6650,12 @@
         }
       });
     };
-
     this.show = function () {
       context.invoke('editor.saveRange');
       this.showImageDialog().then(function (data) {
         // [workaround] hide dialog before restore range for IE range focus
         ui.hideDialog(self.$dialog);
         context.invoke('editor.restoreRange');
-
         if (typeof data === 'string') { // image url
           context.invoke('editor.insertImage', data);
         } else { // array of files
@@ -7604,7 +6665,6 @@
         context.invoke('editor.restoreRange');
       });
     };
-
     /**
      * show image dialog
      *
@@ -7616,10 +6676,8 @@
         var $imageInput = self.$dialog.find('.note-image-input'),
             $imageUrl = self.$dialog.find('.note-image-url'),
             $imageBtn = self.$dialog.find('.note-image-btn');
-
         ui.onDialogShown(self.$dialog, function () {
           context.triggerEvent('dialog.shown');
-
           // Cloning imageInput to clear element.
           $imageInput.replaceWith($imageInput.clone()
             .on('change', function () {
@@ -7627,36 +6685,28 @@
             })
             .val('')
           );
-
           $imageBtn.click(function (event) {
             event.preventDefault();
-
             deferred.resolve($imageUrl.val());
           });
-
           $imageUrl.on('keyup paste', function () {
             var url = $imageUrl.val();
             ui.toggleBtn($imageBtn, url);
           }).val('').trigger('focus');
           self.bindEnterKey($imageUrl, $imageBtn);
         });
-
         ui.onDialogHidden(self.$dialog, function () {
           $imageInput.off('change');
           $imageUrl.off('keyup paste keypress');
           $imageBtn.off('click');
-
           if (deferred.state() === 'pending') {
             deferred.reject();
           }
         });
-
         ui.showDialog(self.$dialog);
       });
     };
   };
-
-
   /**
    * Image popover module
    *  mouse events that show/hide popover will be handled by Handle.js.
@@ -7665,39 +6715,31 @@
   var ImagePopover = function (context) {
     var self = this;
     var ui = $.summernote.ui;
-
     var $editable = context.layoutInfo.editable;
     var editable = $editable[0];
     var options = context.options;
-
     this.events = {
       'summernote.disable': function () {
         self.hide();
       }
     };
-
     this.shouldInitialize = function () {
       return !list.isEmpty(options.popover.image);
     };
-
     this.initialize = function () {
       this.$popover = ui.popover({
         className: 'note-image-popover'
       }).render().appendTo('body');
       var $content = this.$popover.find('.popover-content,.note-popover-content');
-
       context.invoke('buttons.build', $content, options.popover.image);
     };
-
     this.destroy = function () {
       this.$popover.remove();
     };
-
     this.update = function (target) {
       if (dom.isImg(target)) {
         var pos = dom.posFromPlaceholder(target);
         var posEditor = dom.posFromPlaceholder(editable);
-
         this.$popover.css({
           display: 'block',
           left: pos.left,
@@ -7707,18 +6749,14 @@
         this.hide();
       }
     };
-
     this.hide = function () {
       this.$popover.hide();
     };
   };
-
   var TablePopover = function (context) {
     var self = this;
     var ui = $.summernote.ui;
-
     var options = context.options;
-
     this.events = {
       'summernote.mousedown': function (we, e) {
         self.update(e.target);
@@ -7730,36 +6768,28 @@
         self.hide();
       }
     };
-
     this.shouldInitialize = function () {
       return !list.isEmpty(options.popover.table);
     };
-
     this.initialize = function () {
       this.$popover = ui.popover({
         className: 'note-table-popover'
       }).render().appendTo('body');
       var $content = this.$popover.find('.popover-content,.note-popover-content');
-
       context.invoke('buttons.build', $content, options.popover.table);
-
       // [workaround] Disable Firefox's default table editor
       if (agent.isFF) {
         document.execCommand('enableInlineTableEditing', false, false);
       }
     };
-
     this.destroy = function () {
       this.$popover.remove();
     };
-
     this.update = function (target) {
       if (context.isDisabled()) {
         return false;
       }
-
       var isCell = dom.isCell(target);
-
       if (isCell) {
         var pos = dom.posFromPlaceholder(target);
         this.$popover.css({
@@ -7770,26 +6800,20 @@
       } else {
         this.hide();
       }
-
       return isCell;
     };
-
     this.hide = function () {
       this.$popover.hide();
     };
   };
-
   var VideoDialog = function (context) {
     var self = this;
     var ui = $.summernote.ui;
-
     var $editor = context.layoutInfo.editor;
     var options = context.options;
     var lang = options.langInfo;
-
     this.initialize = function () {
       var $container = options.dialogsInBody ? $(document.body) : $editor;
-
       var body = '<div class="form-group note-form-group row-fluid">' +
           '<label class="note-form-label">' + lang.video.url + ' <small class="text-muted">' + lang.video.providers + '</small></label>' +
           '<input class="note-video-url form-control  note-form-control note-input span12" ' + 
@@ -7797,7 +6821,6 @@
           '</div>';
       var footer = '<button href="#" class="btn btn-primary note-btn note-btn-primary ' + 
       ' note-video-btn disabled" disabled>' + lang.video.insert + '</button>';
-
       this.$dialog = ui.dialog({
         title: lang.video.insert,
         fade: options.dialogsFade,
@@ -7805,12 +6828,10 @@
         footer: footer
       }).render().appendTo($container);
     };
-
     this.destroy = function () {
       ui.hideDialog(this.$dialog);
       this.$dialog.remove();
     };
-
     this.bindEnterKey = function ($input, $btn) {
       $input.on('keypress', function (event) {
         if (event.keyCode === key.code.ENTER) {
@@ -7818,42 +6839,30 @@
         }
       });
     };
-
     this.createVideoNode = function (url) {
       // video url patterns(youtube, instagram, vimeo, dailymotion, youku, mp4, ogg, webm)
       var ytRegExp = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
       var ytMatch = url.match(ytRegExp);
-
       var igRegExp = /(?:www\.|\/\/)instagram\.com\/p\/(.[a-zA-Z0-9_-]*)/;
       var igMatch = url.match(igRegExp);
-
       var vRegExp = /\/\/vine\.co\/v\/([a-zA-Z0-9]+)/;
       var vMatch = url.match(vRegExp);
-
       var vimRegExp = /\/\/(player\.)?vimeo\.com\/([a-z]*\/)*(\d+)[?]?.*/;
       var vimMatch = url.match(vimRegExp);
-
       var dmRegExp = /.+dailymotion.com\/(video|hub)\/([^_]+)[^#]*(#video=([^_&]+))?/;
       var dmMatch = url.match(dmRegExp);
-
       var youkuRegExp = /\/\/v\.youku\.com\/v_show\/id_(\w+)=*\.html/;
       var youkuMatch = url.match(youkuRegExp);
-
       var qqRegExp = /\/\/v\.qq\.com.*?vid=(.+)/;
       var qqMatch = url.match(qqRegExp);
-
       var qqRegExp2 = /\/\/v\.qq\.com\/x?\/?(page|cover).*?\/([^\/]+)\.html\??.*/;
       var qqMatch2 = url.match(qqRegExp2);
-
       var mp4RegExp = /^.+.(mp4|m4v)$/;
       var mp4Match = url.match(mp4RegExp);
-
       var oggRegExp = /^.+.(ogg|ogv)$/;
       var oggMatch = url.match(oggRegExp);
-
       var webmRegExp = /^.+.(webm)$/;
       var webmMatch = url.match(webmRegExp);
-
       var $video;
       if (ytMatch && ytMatch[1].length === 11) {
         var youtubeId = ytMatch[1];
@@ -7905,12 +6914,9 @@
         // this is not a known video link. Now what, Cat? Now what?
         return false;
       }
-
       $video.addClass('note-video-clip');
-
       return $video[0];
     };
-
     this.show = function () {
       var text = context.invoke('editor.getSelectedText');
       context.invoke('editor.saveRange');
@@ -7918,10 +6924,8 @@
         // [workaround] hide dialog before restore range for IE range focus
         ui.hideDialog(self.$dialog);
         context.invoke('editor.restoreRange');
-
         // build node
         var $node = self.createVideoNode(url);
-
         if ($node) {
           // insert video node
           context.invoke('editor.insertNode', $node);
@@ -7930,7 +6934,6 @@
         context.invoke('editor.restoreRange');
       });
     };
-
     /**
      * show image dialog
      *
@@ -7941,45 +6944,34 @@
       return $.Deferred(function (deferred) {
         var $videoUrl = self.$dialog.find('.note-video-url'),
             $videoBtn = self.$dialog.find('.note-video-btn');
-
         ui.onDialogShown(self.$dialog, function () {
           context.triggerEvent('dialog.shown');
-
           $videoUrl.val(text).on('input', function () {
             ui.toggleBtn($videoBtn, $videoUrl.val());
           }).trigger('focus');
-
           $videoBtn.click(function (event) {
             event.preventDefault();
-
             deferred.resolve($videoUrl.val());
           });
-
           self.bindEnterKey($videoUrl, $videoBtn);
         });
-
         ui.onDialogHidden(self.$dialog, function () {
           $videoUrl.off('input');
           $videoBtn.off('click');
-
           if (deferred.state() === 'pending') {
             deferred.reject();
           }
         });
-
         ui.showDialog(self.$dialog);
       });
     };
   };
-
   var HelpDialog = function (context) {
     var self = this;
     var ui = $.summernote.ui;
-
     var $editor = context.layoutInfo.editor;
     var options = context.options;
     var lang = options.langInfo;
-
     this.createShortCutList = function () {
       var keyMap = options.keyMap[agent.isMac ? 'mac' : 'pc'];
       return Object.keys(keyMap).map(function (key) {
@@ -7992,10 +6984,8 @@
         return $row.html();
       }).join('');
     };
-
     this.initialize = function () {
       var $container = options.dialogsInBody ? $(document.body) : $editor;
-
       var body = [
         '<p class="text-center">',
         '<a href="http://summernote.org/" target="_blank">Summernote 0.8.8</a> · ',
@@ -8003,7 +6993,6 @@
         '<a href="https://github.com/summernote/summernote/issues" target="_blank">Issues</a>',
         '</p>'
       ].join('');
-
       this.$dialog = ui.dialog({
         title: lang.options.help,
         fade: options.dialogsFade,
@@ -8017,12 +7006,10 @@
         }
       }).render().appendTo($container);
     };
-
     this.destroy = function () {
       ui.hideDialog(this.$dialog);
       this.$dialog.remove();
     };
-
     /**
      * show help dialog
      *
@@ -8037,7 +7024,6 @@
         ui.showDialog(self.$dialog);
       }).promise();
     };
-
     this.show = function () {
       context.invoke('editor.saveRange');
       this.showHelpDialog().then(function () {
@@ -8045,15 +7031,11 @@
       });
     };
   };
-
   var AirPopover = function (context) {
     var self = this;
     var ui = $.summernote.ui;
-
     var options = context.options;
-
     var AIR_MODE_POPOVER_X_OFFSET = 20;
-
     this.events = {
       'summernote.keyup summernote.mouseup summernote.scroll': function () {
         self.update();
@@ -8067,30 +7049,24 @@
         if (agent.isFF) {
           return;
         }
-
         if (!e.relatedTarget || !dom.ancestor(e.relatedTarget, func.eq(self.$popover[0]))) {
           self.hide();
         }
       }
     };
-
     this.shouldInitialize = function () {
       return options.airMode && !list.isEmpty(options.popover.air);
     };
-
     this.initialize = function () {
       this.$popover = ui.popover({
         className: 'note-air-popover'
       }).render().appendTo('body');
       var $content = this.$popover.find('.popover-content');
-
       context.invoke('buttons.build', $content, options.popover.air);
     };
-
     this.destroy = function () {
       this.$popover.remove();
     };
-
     this.update = function () {
       var styleInfo = context.invoke('editor.currentStyle');
       if (styleInfo.range && !styleInfo.range.isCollapsed()) {
@@ -8108,21 +7084,17 @@
         this.hide();
       }
     };
-
     this.hide = function () {
       this.$popover.hide();
     };
   };
-
   var HintPopover = function (context) {
     var self = this;
     var ui = $.summernote.ui;
-
     var POPOVER_DIST = 5;
     var hint = context.options.hint || [];
     var direction = context.options.hintDirection || 'bottom';
     var hints = $.isArray(hint) ? hint : [hint];
-
     this.events = {
       'summernote.keyup': function (we, e) {
         if (!e.isDefaultPrevented()) {
@@ -8136,11 +7108,9 @@
         self.hide();
       }
     };
-
     this.shouldInitialize = function () {
       return hints.length > 0;
     };
-
     this.initialize = function () {
       this.lastWordRange = null;
       this.$popover = ui.popover({
@@ -8148,80 +7118,61 @@
         hideArrow: true,
         direction: ''
       }).render().appendTo('body');
-
       this.$popover.hide();
-
       this.$content = this.$popover.find('.popover-content,.note-popover-content');
-
       this.$content.on('click', '.note-hint-item', function () {
         self.$content.find('.active').removeClass('active');
         $(this).addClass('active');
         self.replace();
       });
     };
-
     this.destroy = function () {
       this.$popover.remove();
     };
-
     this.selectItem = function ($item) {
       this.$content.find('.active').removeClass('active');
       $item.addClass('active');
-
       this.$content[0].scrollTop = $item[0].offsetTop - (this.$content.innerHeight() / 2);
     };
-
     this.moveDown = function () {
       var $current = this.$content.find('.note-hint-item.active');
       var $next = $current.next();
-
       if ($next.length) {
         this.selectItem($next);
       } else {
         var $nextGroup = $current.parent().next();
-
         if (!$nextGroup.length) {
           $nextGroup = this.$content.find('.note-hint-group').first();
         }
-
         this.selectItem($nextGroup.find('.note-hint-item').first());
       }
     };
-
     this.moveUp = function () {
       var $current = this.$content.find('.note-hint-item.active');
       var $prev = $current.prev();
-
       if ($prev.length) {
         this.selectItem($prev);
       } else {
         var $prevGroup = $current.parent().prev();
-
         if (!$prevGroup.length) {
           $prevGroup = this.$content.find('.note-hint-group').last();
         }
-
         this.selectItem($prevGroup.find('.note-hint-item').last());
       }
     };
-
     this.replace = function () {
       var $item = this.$content.find('.note-hint-item.active');
-
       if ($item.length) {
         var node = this.nodeFromItem($item);
         // XXX: consider to move codes to editor for recording redo/undo.
         this.lastWordRange.insertNode(node);
         range.createFromNode(node).collapse().select();
-
         this.lastWordRange = null;
         this.hide();
         context.triggerEvent('change', context.layoutInfo.editable.html(), context.layoutInfo.editable);
         context.invoke('editor.focus');
       }
-
     };
-
     this.nodeFromItem = function ($item) {
       var hint = hints[$item.data('index')];
       var item = $item.data('item');
@@ -8231,7 +7182,6 @@
       }
       return node;
     };
-
     this.createItemTemplates = function (hintIdx, items) {
       var hint = hints[hintIdx];
       return items.map(function (item, idx) {
@@ -8241,19 +7191,16 @@
           'index': hintIdx,
           'item': item
         });
-
         if (hintIdx === 0 && idx === 0) {
           $item.addClass('active');
         }
         return $item;
       });
     };
-
     this.handleKeydown = function (e) {
       if (!this.$popover.is(':visible')) {
         return;
       }
-
       if (e.keyCode === key.code.ENTER) {
         e.preventDefault();
         this.replace();
@@ -8265,7 +7212,6 @@
         this.moveDown();
       }
     };
-
     this.searchKeyword = function (index, keyword, callback) {
       var hint = hints[index];
       if (hint && hint.match.test(keyword) && hint.search) {
@@ -8275,7 +7221,6 @@
         callback();
       }
     };
-
     this.createGroup = function (idx, keyword) {
       var $group = $('<div class="note-hint-group note-hint-group-' + idx + '"/>');
       this.searchKeyword(idx, keyword, function (items) {
@@ -8285,10 +7230,8 @@
           self.show();
         }
       });
-
       return $group;
     };
-
     this.handleKeyup = function (e) {
       if (list.contains([key.code.ENTER, key.code.UP, key.code.DOWN], e.keyCode)) {
         if (e.keyCode === key.code.ENTER) {
@@ -8301,20 +7244,15 @@
         var keyword = wordRange.toString();
         if (hints.length && keyword) {
           this.$content.empty();
-
           var bnd = func.rect2bnd(list.last(wordRange.getClientRects()));
           if (bnd) {
-
             this.$popover.hide();
-
             this.lastWordRange = wordRange;
-
             hints.forEach(function (hint, idx) {
               if (hint.match.test(keyword)) {
                 self.createGroup(idx, keyword).appendTo(self.$content);
               }
             });
-
             // set position for popover after group is created
             if (direction === 'top') {
               this.$popover.css({
@@ -8327,30 +7265,23 @@
                 top: bnd.top + bnd.height + POPOVER_DIST
               });
             }
-
           }
         } else {
           this.hide();
         }
       }
     };
-
     this.show = function () {
       this.$popover.show();
     };
-
     this.hide = function () {
       this.$popover.hide();
     };
   };
-
-
   $.summernote = $.extend($.summernote, {
     version: '0.8.8',
     ui: ui,
-
     plugins: {},
-
     options: {
       modules: {
         'editor': Editor,
@@ -8377,11 +7308,8 @@
         'helpDialog': HelpDialog,
         'airPopover': AirPopover
       },
-
       buttons: {},
-      
       lang: 'en-US',
-
       // toolbar
       toolbar: [
         ['style', ['style']],
@@ -8394,7 +7322,6 @@
         ['insert', ['link', 'picture', 'video']],
         ['view', ['fullscreen', 'codeview', 'help']]
       ],
-
       // popover
       popover: {
         image: [
@@ -8417,30 +7344,23 @@
           ['insert', ['link', 'picture']]
         ]
       },
-
       // air mode: inline editor
       airMode: false,
-
       width: null,
       height: null,
-
       focus: false,
       tabSize: 4,
       styleWithSpan: true,
       shortcuts: true,
       textareaAutoSync: true,
       direction: null,
-
       styleTags: ['p', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-
       fontNames: [
         'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
         'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
         'Tahoma', 'Times New Roman', 'Verdana'
       ],
-
       fontSizes: ['8', '9', '10', '11', '12', '14', '18', '24', '36'],
-
       // pallete colors(n x n)
       colors: [
         ['#000000', '#424242', '#636363', '#9C9C94', '#CEC6CE', '#EFEFEF', '#F7F7F7', '#FFFFFF'],
@@ -8452,21 +7372,15 @@
         ['#9C0000', '#B56308', '#BD9400', '#397B21', '#104A5A', '#085294', '#311873', '#731842'],
         ['#630000', '#7B3900', '#846300', '#295218', '#083139', '#003163', '#21104A', '#4A1031']
       ],
-
       lineHeights: ['1.0', '1.2', '1.4', '1.5', '1.6', '1.8', '2.0', '3.0'],
-
       tableClassName: 'table table-bordered',
-
       insertTableMaxSize: {
         col: 10,
         row: 10
       },
-
       dialogsInBody: false,
       dialogsFade: false,
-
       maximumImageFileSize: null,
-
       callbacks: {
         onInit: null,
         onFocus: null,
@@ -8478,13 +7392,11 @@
         onImageUpload: null,
         onImageUploadError: null
       },
-
       codemirror: {
         mode: 'text/html',
         htmlMode: true,
         lineNumbers: true
       },
-
       keyMap: {
         pc: {
           'ENTER': 'insertParagraph',
@@ -8515,7 +7427,6 @@
           'CTRL+ENTER': 'insertHorizontalRule',
           'CTRL+K': 'linkDialog.show'
         },
-
         mac: {
           'ENTER': 'insertParagraph',
           'CMD+Z': 'undo',
@@ -8594,5 +7505,4 @@
       }
     }
   });
-
 }));

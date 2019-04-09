@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the legacyoutput plugin.
  *
@@ -149,12 +135,10 @@ define(
   function (PluginManager, Tools) {
     PluginManager.add('legacyoutput', function (editor, url, $) {
       editor.settings.inline_styles = false;
-
       editor.on('init', function () {
         var alignElements = 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img',
           fontSizes = Tools.explode(editor.settings.font_size_style_values),
           schema = editor.schema;
-
         // Override some internal formats to produce legacy elements and attributes
         editor.formatter.register({
           // Change alignment formats to use the deprecated align attribute
@@ -162,7 +146,6 @@ define(
           aligncenter: { selector: alignElements, attributes: { align: 'center' } },
           alignright: { selector: alignElements, attributes: { align: 'right' } },
           alignjustify: { selector: alignElements, attributes: { align: 'justify' } },
-
           // Change the basic formatting elements to use deprecated element types
           bold: [
             { inline: 'b', remove: 'all' },
@@ -182,7 +165,6 @@ define(
             { inline: 'strike', remove: 'all' },
             { inline: 'span', styles: { textDecoration: 'line-through' }, exact: true }
           ],
-
           // Change font size and font family to use the deprecated font element
           fontname: { inline: 'font', attributes: { face: '%value' } },
           fontsize: {
@@ -193,26 +175,21 @@ define(
               }
             }
           },
-
           // Setup font elements for colors as well
           forecolor: { inline: 'font', attributes: { color: '%value' } },
           hilitecolor: { inline: 'font', styles: { backgroundColor: '%value' } }
         });
-
         // Check that deprecated elements are allowed if not add them
         Tools.each('b,i,u,strike'.split(','), function (name) {
           schema.addValidElements(name + '[*]');
         });
-
         // Add font element if it's missing
         if (!schema.getElementRule("font")) {
           schema.addValidElements("font[face|size|color|style]");
         }
-
         // Add the missing and depreacted align attribute for the serialization engine
         Tools.each(alignElements.split(','), function (name) {
           var rule = schema.getElementRule(name);
-
           if (rule) {
             if (!rule.attributes.align) {
               rule.attributes.align = {};
@@ -221,23 +198,18 @@ define(
           }
         });
       });
-
       editor.addButton('fontsizeselect', function () {
         var items = [], defaultFontsizeFormats = '8pt=1 10pt=2 12pt=3 14pt=4 18pt=5 24pt=6 36pt=7';
         var fontsizeFormats = editor.settings.fontsizeFormats || defaultFontsizeFormats;
-
         editor.$.each(fontsizeFormats.split(' '), function (i, item) {
           var text = item, value = item;
           var values = item.split('=');
-
           if (values.length > 1) {
             text = values[0];
             value = values[1];
           }
-
           items.push({ text: text, value: value });
         });
-
         return {
           type: 'listbox',
           text: 'Font Sizes',
@@ -246,10 +218,8 @@ define(
           fixedWidth: true,
           onPostRender: function () {
             var self = this;
-
             editor.on('NodeChange', function () {
               var fontElm;
-
               fontElm = editor.dom.getParent(editor.selection.getNode(), 'font');
               if (fontElm) {
                 self.value(fontElm.size);
@@ -265,19 +235,15 @@ define(
           }
         };
       });
-
       editor.addButton('fontselect', function () {
         function createFormats(formats) {
           formats = formats.replace(/;$/, '').split(';');
-
           var i = formats.length;
           while (i--) {
             formats[i] = formats[i].split('=');
           }
-
           return formats;
         }
-
         var defaultFontsFormats =
           'Andale Mono=andale mono,monospace;' +
           'Arial=arial,helvetica,sans-serif;' +
@@ -296,9 +262,7 @@ define(
           'Verdana=verdana,geneva,sans-serif;' +
           'Webdings=webdings;' +
           'Wingdings=wingdings,zapf dingbats';
-
         var items = [], fonts = createFormats(editor.settings.font_formats || defaultFontsFormats);
-
         $.each(fonts, function (i, font) {
           items.push({
             text: { raw: font[0] },
@@ -306,7 +270,6 @@ define(
             textStyle: font[1].indexOf('dings') == -1 ? 'font-family:' + font[1] : ''
           });
         });
-
         return {
           type: 'listbox',
           text: 'Font Family',
@@ -315,10 +278,8 @@ define(
           fixedWidth: true,
           onPostRender: function () {
             var self = this;
-
             editor.on('NodeChange', function () {
               var fontElm;
-
               fontElm = editor.dom.getParent(editor.selection.getNode(), 'font');
               if (fontElm) {
                 self.value(fontElm.face);
@@ -335,7 +296,6 @@ define(
         };
       });
     });
-
     return function () { };
   }
 );

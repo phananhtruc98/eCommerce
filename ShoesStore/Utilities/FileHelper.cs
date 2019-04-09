@@ -202,57 +202,50 @@ namespace Utilities
         public void
             ResizeImageHeight(string imgPath, string saveTo, int resizeHeight) //, int Width, int Height, int X, int Y)
         {
-            try
+            using (var originalImage = sd.Image.FromFile(imgPath))
             {
-                using (var originalImage = sd.Image.FromFile(imgPath))
-                {
-                    var originalWidth = int.Parse(originalImage.Width.ToString());
-                    var originalHeight = int.Parse(originalImage.Height.ToString());
-                    /*
+                var originalWidth = int.Parse(originalImage.Width.ToString());
+                var originalHeight = int.Parse(originalImage.Height.ToString());
+                /*
                      * chia theo tỉ lể tìm ra chiều cao mới
                      * int originalImage_H -----------> resizeHeight
                      * int originalImage_W ----------->???NewWidth
                      
                      */
-                    var newWidth = originalWidth * resizeHeight / originalHeight;
-                    using (var bmp = new sd.Bitmap(newWidth, resizeHeight)) //(Width, Height))
+                var newWidth = originalWidth * resizeHeight / originalHeight;
+                using (var bmp = new sd.Bitmap(newWidth, resizeHeight)) //(Width, Height))
+                {
+                    bmp.SetResolution(originalImage.HorizontalResolution, originalImage.VerticalResolution);
+                    using (var graphic = sd.Graphics.FromImage(bmp))
                     {
-                        bmp.SetResolution(originalImage.HorizontalResolution, originalImage.VerticalResolution);
-                        using (var graphic = sd.Graphics.FromImage(bmp))
+                        graphic.SmoothingMode = SmoothingMode.AntiAlias;
+                        graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                        graphic.CompositingQuality = CompositingQuality.HighQuality;
+                        graphic.DrawImage(originalImage,
+                            new sd.Rectangle(0, 0, newWidth,
+                                resizeHeight)); //, X, Y, Width, Height, sd.GraphicsUnit.Pixel);
+                        var msBuffer = new MemoryStream();
+                        bmp.Save(msBuffer, originalImage.RawFormat);
+                        var bufferImage = msBuffer.GetBuffer();
+                        msBuffer.Dispose();
+                        using (var msWrite = new MemoryStream(bufferImage, 0, bufferImage.Length))
                         {
-                            graphic.SmoothingMode = SmoothingMode.AntiAlias;
-                            graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                            graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                            graphic.CompositingQuality = CompositingQuality.HighQuality;
-                            graphic.DrawImage(originalImage,
-                                new sd.Rectangle(0, 0, newWidth,
-                                    resizeHeight)); //, X, Y, Width, Height, sd.GraphicsUnit.Pixel);
-                            var msBuffer = new MemoryStream();
-                            bmp.Save(msBuffer, originalImage.RawFormat);
-                            var bufferImage = msBuffer.GetBuffer();
-                            msBuffer.Dispose();
-                            using (var msWrite = new MemoryStream(bufferImage, 0, bufferImage.Length))
+                            msWrite.Write(bufferImage, 0, bufferImage.Length);
+                            using (var imageResized = sd.Image.FromStream(msWrite, true))
                             {
-                                msWrite.Write(bufferImage, 0, bufferImage.Length);
-                                using (var imageResized = sd.Image.FromStream(msWrite, true))
-                                {
-                                    //string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
-                                    imageResized.Save(saveTo, imageResized.RawFormat);
-                                }
-
-                                msWrite.Dispose();
+                                //string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
+                                imageResized.Save(saveTo, imageResized.RawFormat);
                             }
 
-                            graphic.Dispose();
+                            msWrite.Dispose();
                         }
 
-                        bmp.Dispose();
+                        graphic.Dispose();
                     }
+
+                    bmp.Dispose();
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 
@@ -260,56 +253,49 @@ namespace Utilities
         public void
             ResizeImageWidth(string imgPath, string saveTo, int resizeWidth) //, int Width, int Height, int X, int Y)
         {
-            try
+            using (var originalImage = sd.Image.FromFile(imgPath))
             {
-                using (var originalImage = sd.Image.FromFile(imgPath))
-                {
-                    var originalWidth = int.Parse(originalImage.Width.ToString());
-                    var originalHeight = int.Parse(originalImage.Height.ToString());
-                    /*
+                var originalWidth = int.Parse(originalImage.Width.ToString());
+                var originalHeight = int.Parse(originalImage.Height.ToString());
+                /*
                      * chia theo tỉ lể tìm ra chiều cao mới
                      * int originalImage_W ----------->resizeWidth
                      * int originalImage_H -----------> ???New_Height
                      */
-                    var newHeight = originalHeight * resizeWidth / originalWidth;
-                    using (var bmp = new sd.Bitmap(resizeWidth, newHeight)) //(Width, Height))
+                var newHeight = originalHeight * resizeWidth / originalWidth;
+                using (var bmp = new sd.Bitmap(resizeWidth, newHeight)) //(Width, Height))
+                {
+                    bmp.SetResolution(originalImage.HorizontalResolution, originalImage.VerticalResolution);
+                    using (var graphic = sd.Graphics.FromImage(bmp))
                     {
-                        bmp.SetResolution(originalImage.HorizontalResolution, originalImage.VerticalResolution);
-                        using (var graphic = sd.Graphics.FromImage(bmp))
+                        graphic.SmoothingMode = SmoothingMode.AntiAlias;
+                        graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                        graphic.CompositingQuality = CompositingQuality.HighQuality;
+                        graphic.DrawImage(originalImage,
+                            new sd.Rectangle(0, 0, resizeWidth,
+                                newHeight)); //, X, Y, Width, Height, sd.GraphicsUnit.Pixel);
+                        var msBuffer = new MemoryStream();
+                        bmp.Save(msBuffer, originalImage.RawFormat);
+                        var bufferImage = msBuffer.GetBuffer();
+                        msBuffer.Dispose();
+                        using (var msWrite = new MemoryStream(bufferImage, 0, bufferImage.Length))
                         {
-                            graphic.SmoothingMode = SmoothingMode.AntiAlias;
-                            graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                            graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                            graphic.CompositingQuality = CompositingQuality.HighQuality;
-                            graphic.DrawImage(originalImage,
-                                new sd.Rectangle(0, 0, resizeWidth,
-                                    newHeight)); //, X, Y, Width, Height, sd.GraphicsUnit.Pixel);
-                            var msBuffer = new MemoryStream();
-                            bmp.Save(msBuffer, originalImage.RawFormat);
-                            var bufferImage = msBuffer.GetBuffer();
-                            msBuffer.Dispose();
-                            using (var msWrite = new MemoryStream(bufferImage, 0, bufferImage.Length))
+                            msWrite.Write(bufferImage, 0, bufferImage.Length);
+                            using (var imageResized = sd.Image.FromStream(msWrite, true))
                             {
-                                msWrite.Write(bufferImage, 0, bufferImage.Length);
-                                using (var imageResized = sd.Image.FromStream(msWrite, true))
-                                {
-                                    //string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
-                                    imageResized.Save(saveTo, imageResized.RawFormat);
-                                }
-
-                                msWrite.Dispose();
+                                //string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
+                                imageResized.Save(saveTo, imageResized.RawFormat);
                             }
 
-                            graphic.Dispose();
+                            msWrite.Dispose();
                         }
 
-                        bmp.Dispose();
+                        graphic.Dispose();
                     }
+
+                    bmp.Dispose();
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 
@@ -318,33 +304,26 @@ namespace Utilities
             ResizeImageWidthHeight(string imgPath, int resizeWidth,
                 int resizeHeight) //, int Width, int Height, int X, int Y)
         {
-            try
+            using (var originalImage = sd.Image.FromFile(imgPath))
             {
-                using (var originalImage = sd.Image.FromFile(imgPath))
+                //int h = int.Parse(originalImage.Height.ToString()) / resize;
+                //int w = int.Parse(originalImage.Width.ToString()) / resize;
+                using (var bmp = new sd.Bitmap(resizeWidth, resizeHeight)) //(Width, Height))
                 {
-                    //int h = int.Parse(originalImage.Height.ToString()) / resize;
-                    //int w = int.Parse(originalImage.Width.ToString()) / resize;
-                    using (var bmp = new sd.Bitmap(resizeWidth, resizeHeight)) //(Width, Height))
+                    bmp.SetResolution(originalImage.HorizontalResolution, originalImage.VerticalResolution);
+                    using (var graphic = sd.Graphics.FromImage(bmp))
                     {
-                        bmp.SetResolution(originalImage.HorizontalResolution, originalImage.VerticalResolution);
-                        using (var graphic = sd.Graphics.FromImage(bmp))
-                        {
-                            graphic.SmoothingMode = SmoothingMode.AntiAlias;
-                            graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                            graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                            graphic.DrawImage(originalImage,
-                                new sd.Rectangle(0, 0, resizeWidth,
-                                    resizeHeight)); //, X, Y, Width, Height, sd.GraphicsUnit.Pixel);
-                            var ms = new MemoryStream();
-                            bmp.Save(ms, originalImage.RawFormat);
-                            return ms.GetBuffer();
-                        }
+                        graphic.SmoothingMode = SmoothingMode.AntiAlias;
+                        graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                        graphic.DrawImage(originalImage,
+                            new sd.Rectangle(0, 0, resizeWidth,
+                                resizeHeight)); //, X, Y, Width, Height, sd.GraphicsUnit.Pixel);
+                        var ms = new MemoryStream();
+                        bmp.Save(ms, originalImage.RawFormat);
+                        return ms.GetBuffer();
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 

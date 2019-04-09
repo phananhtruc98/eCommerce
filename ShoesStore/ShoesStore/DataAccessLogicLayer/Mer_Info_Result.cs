@@ -6,11 +6,9 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
-    
     public partial class Mer_Info_Result
     {
         public int UsrId { get; set; }

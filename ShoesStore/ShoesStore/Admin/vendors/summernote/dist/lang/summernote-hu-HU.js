@@ -129,7 +129,6 @@
         undo: 'Visszavonás',
         redo: 'Újra'
       }
-
     }
   });
 })(jQuery);

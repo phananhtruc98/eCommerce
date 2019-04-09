@@ -6,24 +6,20 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class Sub
     {
         public Sub()
         {
             this.SubDet = new HashSet<SubDet>();
         }
-    
         public int SubId { get; set; }
         public string SubContent { get; set; }
         public int DurDay { get; set; }
         public string Price { get; set; }
-    
         public virtual ICollection<SubDet> SubDet { get; set; }
     }
 }

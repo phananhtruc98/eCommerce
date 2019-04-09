@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Admin {
-    
-    
     public partial class Manage_Customer {
-        
         /// <summary>
         /// gvCustomer control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvCustomer;
-        
         /// <summary>
         /// ValidationSummary1 control.
         /// </summary>

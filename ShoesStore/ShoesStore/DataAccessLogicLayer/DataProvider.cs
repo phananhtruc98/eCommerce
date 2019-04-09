@@ -4,6 +4,7 @@
     {
         private static ShoesStoreDBContext _instance;
         private static readonly object _syncLock = new object();
+
         protected DataProvider()
         {
         }
@@ -15,17 +16,11 @@
             // Note: this is not thread safe.
             get
             {
-
                 if (_instance == null)
-                {
                     lock (_syncLock)
                     {
-                        if (_instance == null)
-                        {
-                            _instance = new ShoesStoreDBContext();
-                        }
+                        if (_instance == null) _instance = new ShoesStoreDBContext();
                     }
-                }
 
                 return _instance;
             }

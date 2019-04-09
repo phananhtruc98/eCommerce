@@ -13,7 +13,6 @@
     border: none;
     cursor: pointer;
 }
-
 .icheckbox_square-red {
     background-position: 0 0;
 }
@@ -30,7 +29,6 @@
     .icheckbox_square-red.checked.disabled {
         background-position: -96px 0;
     }
-
 .iradio_square-red {
     background-position: -120px 0;
 }
@@ -47,7 +45,6 @@
     .iradio_square-red.checked.disabled {
         background-position: -216px 0;
     }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_square-red,

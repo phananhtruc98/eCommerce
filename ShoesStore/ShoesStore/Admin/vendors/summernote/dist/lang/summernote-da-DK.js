@@ -108,7 +108,6 @@
         undo: 'Fortryd',
         redo: 'Annuller fortryd'
       }
-
     }
   });
 })(jQuery);

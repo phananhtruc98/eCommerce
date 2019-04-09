@@ -6,24 +6,20 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class SubDet
     {
         public SubDet()
         {
             this.RcptSub = new HashSet<RcptSub>();
         }
-    
         public int SubId { get; set; }
         public int MerId { get; set; }
         public Nullable<System.DateTime> DateStart { get; set; }
         public Nullable<System.DateTime> DateEnd { get; set; }
-    
         public virtual Mer Mer { get; set; }
         public virtual Sub Sub { get; set; }
         public virtual ICollection<RcptSub> RcptSub { get; set; }

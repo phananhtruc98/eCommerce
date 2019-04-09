@@ -6,38 +6,13 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Cus_BUS:Table_BUS<Cus,Cus_DAO>,ICus
+    public class Cus_BUS : Table_BUS<Cus, Cus_DAO>, ICus
     {
         private readonly Cus_DAO _dao = new Cus_DAO();
-        
-        public void SetActive()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Cus> Filter(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-        
-        public Cus GetByPrimaryKeys(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetLastestId()
-        {
-            throw new NotImplementedException();
-        }
 
         public UsrAct_DAO UsrAct { get; set; }
 
         public UsrAct GetUsrAct(int usrId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Login(string username, string password)
         {
             throw new NotImplementedException();
         }
@@ -82,6 +57,31 @@ namespace ShoesStore.BusinessLogicLayer
         public ObjectResult<Cus_Info_Result> Get_Cus_Info()
         {
             return _dao.Get_Cus_Info();
+        }
+
+        public List<Cus> Filter(Cus obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Cus GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetLastestId()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Login(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetActive()
+        {
+            throw new NotImplementedException();
         }
     }
 }

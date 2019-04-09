@@ -6,18 +6,15 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class RcptBuyStaDet
     {
         public int StaId { get; set; }
         public int StepId { get; set; }
         public bool IsDone { get; set; }
-    
         public virtual RcptBuySta RcptBuySta { get; set; }
         public virtual RcptBuyStaStep RcptBuyStaStep { get; set; }
     }

@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.EditorManager',
   [
@@ -123,41 +111,32 @@ define(
     return resolve('tinymce.EditorManager');
   }
 );
-
 defineGlobal("global!Array", Array);
 defineGlobal("global!Error", Error);
 define(
   'ephox.katamari.api.Fun',
-
   [
     'global!Array',
     'global!Error'
   ],
-
   function (Array, Error) {
-
     var noop = function () { };
-
     var compose = function (fa, fb) {
       return function () {
         return fa(fb.apply(null, arguments));
       };
     };
-
     var constant = function (value) {
       return function () {
         return value;
       };
     };
-
     var identity = function (x) {
       return x;
     };
-
     var tripleEquals = function(a, b) {
       return a === b;
     };
-
     // Don't use array slice(arguments), makes the whole function unoptimisable on Chrome
     var curry = function (f) {
       // equivalent to arguments.slice(1)
@@ -166,40 +145,31 @@ define(
       // thankfully, we have tests for this.
       var args = new Array(arguments.length - 1);
       for (var i = 1; i < arguments.length; i++) args[i-1] = arguments[i];
-
       return function () {
         var newArgs = new Array(arguments.length);
         for (var j = 0; j < newArgs.length; j++) newArgs[j] = arguments[j];
-
         var all = args.concat(newArgs);
         return f.apply(null, all);
       };
     };
-
     var not = function (f) {
       return function () {
         return !f.apply(null, arguments);
       };
     };
-
     var die = function (msg) {
       return function () {
         throw new Error(msg);
       };
     };
-
     var apply = function (f) {
       return f();
     };
-
     var call = function(f) {
       f();
     };
-
     var never = constant(false);
     var always = constant(true);
-    
-
     return {
       noop: noop,
       compose: compose,
@@ -216,89 +186,59 @@ define(
     };
   }
 );
-
 defineGlobal("global!Object", Object);
 define(
   'ephox.katamari.api.Option',
-
   [
     'ephox.katamari.api.Fun',
     'global!Object'
   ],
-
   function (Fun, Object) {
-
     var never = Fun.never;
     var always = Fun.always;
-
     /**
       Option objects support the following methods:
-
       fold :: this Option a -> ((() -> b, a -> b)) -> Option b
-
       is :: this Option a -> a -> Boolean
-
       isSome :: this Option a -> () -> Boolean
-
       isNone :: this Option a -> () -> Boolean
-
       getOr :: this Option a -> a -> a
-
       getOrThunk :: this Option a -> (() -> a) -> a
-
       getOrDie :: this Option a -> String -> a
-
       or :: this Option a -> Option a -> Option a
         - if some: return self
         - if none: return opt
-
       orThunk :: this Option a -> (() -> Option a) -> Option a
         - Same as "or", but uses a thunk instead of a value
-
       map :: this Option a -> (a -> b) -> Option b
         - "fmap" operation on the Option Functor.
         - same as 'each'
-
       ap :: this Option a -> Option (a -> b) -> Option b
         - "apply" operation on the Option Apply/Applicative.
         - Equivalent to <*> in Haskell/PureScript.
-
       each :: this Option a -> (a -> b) -> Option b
         - same as 'map'
-
       bind :: this Option a -> (a -> Option b) -> Option b
         - "bind"/"flatMap" operation on the Option Bind/Monad.
         - Equivalent to >>= in Haskell/PureScript; flatMap in Scala.
-
       flatten :: {this Option (Option a))} -> () -> Option a
         - "flatten"/"join" operation on the Option Monad.
-
       exists :: this Option a -> (a -> Boolean) -> Boolean
-
       forall :: this Option a -> (a -> Boolean) -> Boolean
-
       filter :: this Option a -> (a -> Boolean) -> Option a
-
       equals :: this Option a -> Option a -> Boolean
-
       equals_ :: this Option a -> (Option a, a -> Boolean) -> Boolean
-
       toArray :: this Option a -> () -> [a]
-
     */
-
     var none = function () { return NONE; };
-
     var NONE = (function () {
       var eq = function (o) {
         return o.isNone();
       };
-
       // inlined from peanut, maybe a micro-optimisation?
       var call = function (thunk) { return thunk(); };
       var id = function (n) { return n; };
       var noop = function () { };
-
       var me = {
         fold: function (n, s) { return n(); },
         is: never,
@@ -327,27 +267,20 @@ define(
       if (Object.freeze) Object.freeze(me);
       return me;
     })();
-
-
     /** some :: a -> Option a */
     var some = function (a) {
-
       // inlined from peanut, maybe a micro-optimisation?
       var constant_a = function () { return a; };
-
       var self = function () {
         // can't Fun.constant this one
         return me;
       };
-
       var map = function (f) {
         return some(f(a));
       };
-
       var bind = function (f) {
         return f(a);
       };
-
       var me = {
         fold: function (n, s) { return s(a); },
         is: function (v) { return a === v; },
@@ -392,12 +325,10 @@ define(
       };
       return me;
     };
-
     /** from :: undefined|null|a -> Option a */
     var from = function (value) {
       return value === null || value === undefined ? NONE : some(value);
     };
-
     return {
       some: some,
       none: none,
@@ -405,47 +336,37 @@ define(
     };
   }
 );
-
 defineGlobal("global!String", String);
 define(
   'ephox.katamari.api.Arr',
-
   [
     'ephox.katamari.api.Option',
     'global!Array',
     'global!Error',
     'global!String'
   ],
-
   function (Option, Array, Error, String) {
     // Use the native Array.indexOf if it is available (IE9+) otherwise fall back to manual iteration
     // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
     var rawIndexOf = (function () {
       var pIndexOf = Array.prototype.indexOf;
-
       var fastIndex = function (xs, x) { return  pIndexOf.call(xs, x); };
-
       var slowIndex = function(xs, x) { return slowIndexOf(xs, x); };
-
       return pIndexOf === undefined ? slowIndex : fastIndex;
     })();
-
     var indexOf = function (xs, x) {
       // The rawIndexOf method does not wrap up in an option. This is for performance reasons.
       var r = rawIndexOf(xs, x);
       return r === -1 ? Option.none() : Option.some(r);
     };
-
     var contains = function (xs, x) {
       return rawIndexOf(xs, x) > -1;
     };
-
     // Using findIndex is likely less optimal in Chrome (dynamic return type instead of bool)
     // but if we need that micro-optimisation we can inline it later.
     var exists = function (xs, pred) {
       return findIndex(xs, pred).isSome();
     };
-
     var range = function (num, f) {
       var r = [];
       for (var i = 0; i < num; i++) {
@@ -453,14 +374,12 @@ define(
       }
       return r;
     };
-
     // It's a total micro optimisation, but these do make some difference.
     // Particularly for browsers other than Chrome.
     // - length caching
     // http://jsperf.com/browser-diet-jquery-each-vs-for-loop/69
     // - not using push
     // http://jsperf.com/array-direct-assignment-vs-push/2
-
     var chunk = function (array, size) {
       var r = [];
       for (var i = 0; i < array.length; i += size) {
@@ -469,7 +388,6 @@ define(
       }
       return r;
     };
-
     var map = function(xs, f) {
       // pre-allocating array size when it's guaranteed to be known
       // http://jsperf.com/push-allocated-vs-dynamic/22
@@ -481,7 +399,6 @@ define(
       }
       return r;
     };
-
     // Unwound implementing other functions in terms of each.
     // The code size is roughly the same, and it should allow for better optimisation.
     var each = function(xs, f) {
@@ -490,14 +407,12 @@ define(
         f(x, i, xs);
       }
     };
-
     var eachr = function (xs, f) {
       for (var i = xs.length - 1; i >= 0; i--) {
         var x = xs[i];
         f(x, i, xs);
       }
     };
-
     var partition = function(xs, pred) {
       var pass = [];
       var fail = [];
@@ -508,7 +423,6 @@ define(
       }
       return { pass: pass, fail: fail };
     };
-
     var filter = function(xs, pred) {
       var r = [];
       for (var i = 0, len = xs.length; i < len; i++) {
@@ -519,7 +433,6 @@ define(
       }
       return r;
     };
-
     /*
      * Groups an array into contiguous arrays of like elements. Whether an element is like or not depends on f.
      *
@@ -538,7 +451,6 @@ define(
         var wasType = f(xs[0]); // initial case for matching
         var r = [];
         var group = [];
-
         for (var i = 0, len = xs.length; i < len; i++) {
           var x = xs[i];
           var type = f(x);
@@ -555,21 +467,18 @@ define(
         return r;
       }
     };
-
     var foldr = function (xs, f, acc) {
       eachr(xs, function (x) {
         acc = f(acc, x);
       });
       return acc;
     };
-
     var foldl = function (xs, f, acc) {
       each(xs, function (x) {
         acc = f(acc, x);
       });
       return acc;
     };
-
     var find = function (xs, pred) {
       for (var i = 0, len = xs.length; i < len; i++) {
         var x = xs[i];
@@ -579,7 +488,6 @@ define(
       }
       return Option.none();
     };
-
     var findIndex = function (xs, pred) {
       for (var i = 0, len = xs.length; i < len; i++) {
         var x = xs[i];
@@ -587,20 +495,16 @@ define(
           return Option.some(i);
         }
       }
-
       return Option.none();
     };
-
     var slowIndexOf = function (xs, x) {
       for (var i = 0, len = xs.length; i < len; ++i) {
         if (xs[i] === x) {
           return i;
         }
       }
-
       return -1;
     };
-
     var push = Array.prototype.push;
     var flatten = function (xs) {
       // Note, this is possible because push supports multiple arguments:
@@ -615,12 +519,10 @@ define(
       }
       return r;
     };
-
     var bind = function (xs, f) {
       var output = map(xs, f);
       return flatten(output);
     };
-
     var forall = function (xs, pred) {
       for (var i = 0, len = xs.length; i < len; ++i) {
         var x = xs[i];
@@ -630,26 +532,22 @@ define(
       }
       return true;
     };
-
     var equal = function (a1, a2) {
       return a1.length === a2.length && forall(a1, function (x, i) {
         return x === a2[i];
       });
     };
-
     var slice = Array.prototype.slice;
     var reverse = function (xs) {
       var r = slice.call(xs, 0);
       r.reverse();
       return r;
     };
-
     var difference = function (a1, a2) {
       return filter(a1, function (x) {
         return !contains(a2, x);
       });
     };
-
     var mapToObject = function(xs, f) {
       var r = {};
       for (var i = 0, len = xs.length; i < len; i++) {
@@ -658,17 +556,14 @@ define(
       }
       return r;
     };
-
     var pure = function(x) {
       return [x];
     };
-
     var sort = function (xs, comparator) {
       var copy = slice.call(xs, 0);
       copy.sort(comparator);
       return copy;
     };
-
     return {
       map: map,
       each: each,
@@ -706,7 +601,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.Env',
   [
@@ -716,7 +610,6 @@ define(
     return resolve('tinymce.Env');
   }
 );
-
 define(
   'tinymce.plugins.help.data.KeyboardShortcuts',
   [
@@ -725,7 +618,6 @@ define(
   function (Env) {
     var meta = Env.mac ? '\u2318' : 'Ctrl';
     var access = Env.mac ? 'Ctrl + Alt' : 'Shift + Alt';
-
     var shortcuts = [
       { shortcut: meta + ' + B', action: 'Bold' },
       { shortcut: meta + ' + I', action: 'Italic' },
@@ -753,12 +645,10 @@ define(
       { shortcut: meta + ' + S', action: 'Save (if save plugin activated)' },
       { shortcut: meta + ' + F', action: 'Find (if searchreplace plugin activated)' }
     ];
-
     return {
       shortcuts: shortcuts
     };
   });
-
 define(
   'tinymce.plugins.help.ui.KeyboardShortcutsTab',
   [
@@ -776,7 +666,6 @@ define(
                   '<td>' + shortcut.shortcut + '</td>' +
                 '</tr>';
       }).join('');
-
       return {
         title: 'Handy Shortcuts',
         type: 'container',
@@ -797,20 +686,16 @@ define(
         ]
       };
     };
-
     return {
       makeTab: makeTab
     };
   });
-
 define(
   'ephox.katamari.api.Obj',
-
   [
     'ephox.katamari.api.Option',
     'global!Object'
   ],
-
   function (Option, Object) {
     // There are many variations of Object iteration that are faster than the 'for-in' style:
     // http://jsperf.com/object-keys-iteration/107
@@ -818,7 +703,6 @@ define(
     // Use the native keys if it is available (IE9+), otherwise fall back to manually filtering
     var keys = (function () {
       var fastKeys = Object.keys;
-
       // This technically means that 'each' and 'find' on IE8 iterate through the object twice.
       // This code doesn't run on IE8 much, so it's an acceptable tradeoff.
       // If it becomes a problem we can always duplicate the feature detection inside each and find as well.
@@ -831,11 +715,8 @@ define(
         }
         return r;
       };
-
       return fastKeys === undefined ? slowKeys : fastKeys;
     })();
-
-
     var each = function (obj, f) {
       var props = keys(obj);
       for (var k = 0, len = props.length; k < len; k++) {
@@ -844,7 +725,6 @@ define(
         f(x, i, obj);
       }
     };
-
     /** objectMap :: (JsObj(k, v), (v, k, JsObj(k, v) -> x)) -> JsObj(k, x) */
     var objectMap = function (obj, f) {
       return tupleMap(obj, function (x, i, obj) {
@@ -854,7 +734,6 @@ define(
         };
       });
     };
-
     /** tupleMap :: (JsObj(k, v), (v, k, JsObj(k, v) -> { k: x, v: y })) -> JsObj(x, y) */
     var tupleMap = function (obj, f) {
       var r = {};
@@ -864,7 +743,6 @@ define(
       });
       return r;
     };
-
     /** bifilter :: (JsObj(k, v), (v, k -> Bool)) -> { t: JsObj(k, v), f: JsObj(k, v) } */
     var bifilter = function (obj, pred) {
       var t = {};
@@ -878,7 +756,6 @@ define(
         f: f
       };
     };
-
     /** mapToArray :: (JsObj(k, v), (v, k -> a)) -> [a] */
     var mapToArray = function (obj, f) {
       var r = [];
@@ -887,7 +764,6 @@ define(
       });
       return r;
     };
-
     /** find :: (JsObj(k, v), (v, k, JsObj(k, v) -> Bool)) -> Option v */
     var find = function (obj, pred) {
       var props = keys(obj);
@@ -900,18 +776,15 @@ define(
       }
       return Option.none();
     };
-
     /** values :: JsObj(k, v) -> [v] */
     var values = function (obj) {
       return mapToArray(obj, function (v) {
         return v;
       });
     };
-
     var size = function (obj) {
       return values(obj).length;
     };
-
     return {
       bifilter: bifilter,
       each: each,
@@ -927,28 +800,21 @@ define(
 );
 define(
   'ephox.katamari.str.StrAppend',
-
   [
-
   ],
-
   function () {
     var addToStart = function (str, prefix) {
       return prefix + str;
     };
-
     var addToEnd = function (str, suffix) {
       return str + suffix;
     };
-
     var removeFromStart = function (str, numChars) {
       return str.substring(numChars);
     };
-
     var removeFromEnd = function (str, numChars) {
       return str.substring(0, str.length - numChars);
     };
- 
     return {
       addToStart: addToStart,
       addToEnd: addToEnd,
@@ -959,12 +825,10 @@ define(
 );
 define(
   'ephox.katamari.str.StringParts',
-
   [
     'ephox.katamari.api.Option',
     'global!Error'
   ],
-
   function (Option, Error) {
     /** Return the first 'count' letters from 'str'.
 -     *  e.g. first("abcde", 2) === "ab"
@@ -972,22 +836,18 @@ define(
     var first = function(str, count) {
      return str.substr(0, count);
     };
-
     /** Return the last 'count' letters from 'str'.
     *  e.g. last("abcde", 2) === "de"
     */
     var last = function(str, count) {
      return str.substr(str.length - count, str.length);
     };
-
     var head = function(str) {
       return str === '' ? Option.none() : Option.some(str.substr(0, 1));
     };
-
     var tail = function(str) {
       return str === '' ? Option.none() : Option.some(str.substring(1));
     };
-
     return {
       first: first,
       last: last,
@@ -998,13 +858,11 @@ define(
 );
 define(
   'ephox.katamari.api.Strings',
-
   [
     'ephox.katamari.str.StrAppend',
     'ephox.katamari.str.StringParts',
     'global!Error'
   ],
-
   function (StrAppend, StringParts, Error) {
     var checkRange = function(str, substr, start) {
       if (substr === '') return true;
@@ -1012,7 +870,6 @@ define(
       var x = str.substr(start, start + substr.length);
       return x === substr;
     };
-
     /** Given a string and object, perform template-replacements on the string, as specified by the object.
      * Any template fields of the form ${name} are replaced by the string or number specified as obj["name"]
      * Based on Douglas Crockford's 'supplant' method for template-replace of strings. Uses different template format.
@@ -1022,7 +879,6 @@ define(
         var t = typeof a;
         return t === 'string' || t === 'number';
       };
-
       return str.replace(/\${([^{}]*)}/g,
         function (a, b) {
           var value = obj[b];
@@ -1030,27 +886,21 @@ define(
         }
       );
     };
-
     var removeLeading = function (str, prefix) {
       return startsWith(str, prefix) ? StrAppend.removeFromStart(str, prefix.length) : str;
     };
-
     var removeTrailing = function (str, prefix) {
       return endsWith(str, prefix) ? StrAppend.removeFromEnd(str, prefix.length) : str;
     };
-
     var ensureLeading = function (str, prefix) {
       return startsWith(str, prefix) ? str : StrAppend.addToStart(str, prefix);
     };
-
     var ensureTrailing = function (str, prefix) {
       return endsWith(str, prefix) ? str : StrAppend.addToEnd(str, prefix);
     };
- 
     var contains = function(str, substr) {
       return str.indexOf(substr) !== -1;
     };
-
     var capitalize = function(str) {
       return StringParts.head(str).bind(function (head) {
         return StringParts.tail(str).map(function (tail) {
@@ -1058,7 +908,6 @@ define(
         });
       }).getOr(str);
     };
-
     /** Does 'str' start with 'prefix'?
      *  Note: all strings start with the empty string.
      *        More formally, for all strings x, startsWith(x, "").
@@ -1067,7 +916,6 @@ define(
     var startsWith = function(str, prefix) {
       return checkRange(str, prefix, 0);
     };
-
     /** Does 'str' end with 'suffix'?
      *  Note: all strings end with the empty string.
      *        More formally, for all strings x, endsWith(x, "").
@@ -1076,21 +924,16 @@ define(
     var endsWith = function(str, suffix) {
       return checkRange(str, suffix, str.length - suffix.length);
     };
-
-   
     /** removes all leading and trailing spaces */
     var trim = function(str) {
       return str.replace(/^\s+|\s+$/g, '');
     };
-
     var lTrim = function(str) {
       return str.replace(/^\s+/g, '');
     };
-
     var rTrim = function(str) {
       return str.replace(/\s+$/g, '');
     };
-
     return {
       supplant: supplant,
       startsWith: startsWith,
@@ -1107,7 +950,6 @@ define(
     };
   }
 );
-
 define(
   'tinymce.plugins.help.data.PluginUrls',
   [
@@ -1158,12 +1000,10 @@ define(
       'visualchars',
       'wordcount'
     ];
-
     return {
       urls: urls
     };
   });
-
 define(
 'tinymce.plugins.help.ui.PluginsTab',
   [
@@ -1185,18 +1025,15 @@ function (tinymce, Obj, Arr, Fun, Strings, PluginUrls) {
       });
     });
   };
-
   var pluginLister = function (editor) {
     var plugins = Obj.mapToArray(editor.plugins, function (plugin, key) {
       return '<li>' + maybeUrlize(key) + '</li>';
     });
     var count = plugins.length;
     var pluginsString = plugins.join('');
-
     return '<p><b>Plugins installed (' + count + '):</b></p>' +
             '<ul>' + pluginsString + '</ul>';
   };
-
   var installedPlugins = function (editor) {
     return {
       type: 'container',
@@ -1206,7 +1043,6 @@ function (tinymce, Obj, Arr, Fun, Strings, PluginUrls) {
       flex: 1
     };
   };
-
   var availablePlugins = function () {
     return {
       type: 'container',
@@ -1225,7 +1061,6 @@ function (tinymce, Obj, Arr, Fun, Strings, PluginUrls) {
       flex: 1
     };
   };
-
   var makeTab = function (editor) {
     return {
       title: 'Plugins',
@@ -1240,12 +1075,10 @@ function (tinymce, Obj, Arr, Fun, Strings, PluginUrls) {
       ]
     };
   };
-
   return {
     makeTab: makeTab
   };
 });
-
 define(
   'tinymce.plugins.help.ui.ButtonsRow',
   [
@@ -1255,11 +1088,9 @@ define(
     var getVersion = function (major, minor) {
       return major.indexOf('@') === 0 ? 'X.X.X' : major + '.' + minor;
     };
-
     var makeRow = function () {
       var version = getVersion(EditorManager.majorVersion, EditorManager.minorVersion);
       var changeLogLink = '<a href="https://www.tinymce.com/docs/changelog/" target="_blank">TinyMCE ' + version + '</a>';
-
       return [
         {
           type: 'label',
@@ -1277,13 +1108,11 @@ define(
         }
       ];
     };
-
     return {
       makeRow: makeRow
     };
   }
 );
-
 define(
   'tinymce.plugins.help.ui.Dialog',
   [
@@ -1311,12 +1140,10 @@ define(
         });
       };
     };
-
     return {
       openDialog: openDialog
     };
   });
-
 define(
   'tinymce.plugins.help.Plugin',
   [
@@ -1329,24 +1156,18 @@ define(
         icon: 'help',
         onclick: Dialog.openDialog(editor, url)
       });
-
       editor.addMenuItem('Help', {
         text: 'Help',
         icon: 'help',
         context: 'view',
         onclick: Dialog.openDialog(editor, url)
       });
-
       editor.addCommand('mceHelp', Dialog.openDialog(editor, url));
-
       editor.shortcuts.add('Alt+0', 'Open help dialog', Dialog.openDialog(editor, url));
     };
-
     PluginManager.add('help', Plugin);
-
     return function () {};
   }
 );
-
 dem('tinymce.plugins.help.Plugin')();
 })();

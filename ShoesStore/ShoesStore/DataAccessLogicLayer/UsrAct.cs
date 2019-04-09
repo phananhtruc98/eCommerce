@@ -6,19 +6,16 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class UsrAct
     {
         public int ActId { get; set; }
         public Nullable<int> UsrId { get; set; }
         public string ActCode { get; set; }
         public Nullable<bool> IsAct { get; set; }
-    
         public virtual Usr Usr { get; set; }
     }
 }

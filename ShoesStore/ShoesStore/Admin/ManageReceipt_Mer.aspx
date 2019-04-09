@@ -17,57 +17,56 @@
                         <FooterTemplate>
                             <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="InsertRow" ForeColor="#8C4510">Thêm</asp:LinkButton>
                         </FooterTemplate>
-                        <FooterStyle Wrap="False" />
-                        <HeaderStyle Wrap="False" />
-                        <ItemStyle Wrap="False" />
+                        <FooterStyle Wrap="False"/>
+                        <HeaderStyle Wrap="False"/>
+                        <ItemStyle Wrap="False"/>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Mã hóa đơn">
                         <ItemTemplate>
                             <%# Eval("RcptSubId") %>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditSupId" Text='<%# Bind("RcptSubId") %>' />
+                            <asp:TextBox runat="server" ID="EditSupId" Text='<%# Bind("RcptSubId") %>'/>
                         </EditItemTemplate>
                         <FooterTemplate>
-                        <asp:TextBox runat="server" type="number" ID="InsertSupId" Text='<%# Bind("RcptSubId") %>' />
+                            <asp:TextBox runat="server" type="number" ID="InsertSupId" Text='<%# Bind("RcptSubId") %>'/>
                             <asp:RequiredFieldValidator ID="rfvEditSupId"
-                                runat="server"
-                                ErrorMessage="Chưa mã hóa đơn"
-                                ControlToValidate="InsertSupId"
-                                Text="*" ForeColor="Red" ValidationGroup="Insert">
+                                                        runat="server"
+                                                        ErrorMessage="Chưa mã hóa đơn"
+                                                        ControlToValidate="InsertSupId"
+                                                        Text="*" ForeColor="Red" ValidationGroup="Insert">
                             </asp:RequiredFieldValidator>
-                            </FooterTemplate>
-                        <FooterStyle Wrap="False" />
-                        <HeaderStyle Wrap="False" />
-                        <ItemStyle Wrap="False" />
+                        </FooterTemplate>
+                        <FooterStyle Wrap="False"/>
+                        <HeaderStyle Wrap="False"/>
+                        <ItemStyle Wrap="False"/>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Ngày thêm">
                         <ItemTemplate>
                             <%# Eval("Rcpt.DateAdd") %>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditDateAdd" Text='<%# Bind("DateAdd") %>' />
+                            <asp:TextBox runat="server" ID="EditDateAdd" Text='<%# Bind("DateAdd") %>'/>
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox runat="server" type="date" ID="InsertDateAdd" Text='<%# Bind("DateAdd") %>' />
+                            <asp:TextBox runat="server" type="date" ID="InsertDateAdd" Text='<%# Bind("DateAdd") %>'/>
                             <asp:RequiredFieldValidator ID="rfvEditDateAdd"
-                                runat="server"
-                                ErrorMessage="Chưa nhập ngày thêm"
-                                ControlToValidate="InsertDateAdd"
-                                Text="*" ForeColor="Red" ValidationGroup="Insert">
+                                                        runat="server"
+                                                        ErrorMessage="Chưa nhập ngày thêm"
+                                                        ControlToValidate="InsertDateAdd"
+                                                        Text="*" ForeColor="Red" ValidationGroup="Insert">
                             </asp:RequiredFieldValidator>
                         </FooterTemplate>
                     </asp:TemplateField>
-
                     <asp:TemplateField HeaderText="Ngày sửa">
                         <ItemTemplate>
                             <%# Eval("Rcpt.DateEdit") %>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditDateEdit" Text='<%# Bind("DateEdit") %>' />
+                            <asp:TextBox runat="server" ID="EditDateEdit" Text='<%# Bind("DateEdit") %>'/>
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox runat="server" type="date" ID="InsertDateEdit" Text='<%# Bind("DateEdit") %>' />
+                            <asp:TextBox runat="server" type="date" ID="InsertDateEdit" Text='<%# Bind("DateEdit") %>'/>
                         </FooterTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Người thêm">
@@ -75,15 +74,15 @@
                             <%# Eval("Rcpt.UsrAdd") %>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditUsrAdd" Text='<%# Bind("UsrAdd") %>' />
+                            <asp:TextBox runat="server" ID="EditUsrAdd" Text='<%# Bind("UsrAdd") %>'/>
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox runat="server" ID="InsertUsrAdd" Text=' <%# Bind("UsrAdd") %>' />
+                            <asp:TextBox runat="server" ID="InsertUsrAdd" Text=' <%# Bind("UsrAdd") %>'/>
                             <asp:RequiredFieldValidator ID="rfvEditUsrAdd"
-                                runat="server"
-                                ErrorMessage="Chưa nhập người thêm"
-                                ControlToValidate="InsertUsrAdd"
-                                Text="*" ForeColor="Red" ValidationGroup="Insert">
+                                                        runat="server"
+                                                        ErrorMessage="Chưa nhập người thêm"
+                                                        ControlToValidate="InsertUsrAdd"
+                                                        Text="*" ForeColor="Red" ValidationGroup="Insert">
                             </asp:RequiredFieldValidator>
                         </FooterTemplate>
                     </asp:TemplateField>
@@ -92,27 +91,26 @@
                             <%# Eval("Rcpt.UsrEdit") %>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditUsrEdit" Text='<%# Bind("UsrEdit") %>' />
+                            <asp:TextBox runat="server" ID="EditUsrEdit" Text='<%# Bind("UsrEdit") %>'/>
                         </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox runat="server" ID="InsertUsrEdit" Text=' <%# Bind("UsrEdit") %>' />
+                            <asp:TextBox runat="server" ID="InsertUsrEdit" Text=' <%# Bind("UsrEdit") %>'/>
                         </FooterTemplate>
-
                     </asp:TemplateField>
                 </Columns>
-                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
-                <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-                <RowStyle BackColor="White" ForeColor="#330099" />
-                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
-                <SortedAscendingCellStyle BackColor="#FEFCEB" />
-                <SortedAscendingHeaderStyle BackColor="#AF0101" />
-                <SortedDescendingCellStyle BackColor="#F6F0C0" />
-                <SortedDescendingHeaderStyle BackColor="#7E0000" />
-                <EmptyDataTemplate>No Record Available</EmptyDataTemplate>  
+                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099"/>
+                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC"/>
+                <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center"/>
+                <RowStyle BackColor="White" ForeColor="#330099"/>
+                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399"/>
+                <SortedAscendingCellStyle BackColor="#FEFCEB"/>
+                <SortedAscendingHeaderStyle BackColor="#AF0101"/>
+                <SortedDescendingCellStyle BackColor="#F6F0C0"/>
+                <SortedDescendingHeaderStyle BackColor="#7E0000"/>
+                <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
             </asp:GridView>
             <asp:ValidationSummary ID="ValidationRcptSubId" ValidationGroup="Insert"
-                ForeColor="Red" runat="server" />
+                                   ForeColor="Red" runat="server"/>
         </div>
     </div>
 </asp:Content>

@@ -6,12 +6,10 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class Usr
     {
         public Usr()
@@ -20,7 +18,6 @@ namespace ShoesStore.DataAccessLogicLayer
             this.Rcpt1 = new HashSet<Rcpt>();
             this.UsrAct = new HashSet<UsrAct>();
         }
-    
         public int UsrId { get; set; }
         public string UsrName { get; set; }
         public string Login { get; set; }
@@ -31,7 +28,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public string Phone { get; set; }
         public System.DateTime DateAdd { get; set; }
         public Nullable<System.DateTime> DateEdit { get; set; }
-    
         public virtual Cus Cus { get; set; }
         public virtual Mer Mer { get; set; }
         public virtual Mstr Mstr { get; set; }

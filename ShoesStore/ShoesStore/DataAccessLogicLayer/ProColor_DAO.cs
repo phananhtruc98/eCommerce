@@ -5,12 +5,12 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     public class ProColor_DAO : Table_DAO<ProColor>, IProColor
     {
-        public override void SetActive(ProColor obj)
+        public override bool IsExist(ProColor obj)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public override bool IsExist(ProColor obj)
+        public override void SetActive(ProColor obj)
         {
             throw new NotImplementedException();
         }

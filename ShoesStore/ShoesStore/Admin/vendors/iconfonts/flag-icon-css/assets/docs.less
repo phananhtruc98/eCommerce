@@ -1,15 +1,12 @@
 @color-from:   #0d6632;
 @color-to: #f4c01a;
-
 body {
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
 }
-
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
-
 .flag-wrapper {
   width: 100%;
   display: inline-block;
@@ -17,13 +14,11 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 2px black;
   overflow: hidden;
   margin-bottom: 20px;
-
   &:after {
     padding-top: 75%; /* ratio */
     display: block;
     content: '';
   }
-
   .flag {
     position: absolute;
     top: 0; bottom: 0; right: 0; left: 0;
@@ -32,17 +27,14 @@ h1, h2, h3, h4, h5, h6 {
     background-size: cover;
   }
 }
-
 .no-wrap {
   white-space: nowrap;
   margin-bottom: 8px;
   overflow: hidden;
 }
-
 .all-flags .flag-icon-background {
   cursor: pointer;
 }
-
 .jumbotron {
   position: relative;
   font-size: 16px;
@@ -65,14 +57,12 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     margin: 2px;
   }
-
   p
   a,
   .jumbotron-links a {
     font-weight: 500;
     color: #fff;
   }
-
   .jumbotron-links {
     margin-top: 15px;
     margin-bottom: 0;
@@ -86,7 +76,6 @@ h1, h2, h3, h4, h5, h6 {
       margin-left: 20px;
     }
   }
-
   .bottom {
     position: absolute;
     bottom: 0;
@@ -96,7 +85,6 @@ h1, h2, h3, h4, h5, h6 {
     background-color: fade(#000, 20%);
   }
 }
-
 .btn-outline {
   margin-top: 15px;
   margin-bottom: 15px;
@@ -115,7 +103,6 @@ h1, h2, h3, h4, h5, h6 {
     border-color: #fff;
   }
 }
-
 .how-to {
   padding: 20px;
   h2 {
@@ -136,13 +123,11 @@ h1, h2, h3, h4, h5, h6 {
     white-space: normal;
   }
 }
-
 footer {
   text-align: center;
   opacity: .8;
   padding: 50px;
   background: linear-gradient(to right, @color-to, @color-from);
-
   a {
     color: #fff;
     &:hover {
@@ -150,7 +135,6 @@ footer {
     }
   }
 }
-
 .links {
   margin: 0;
   list-style: none;

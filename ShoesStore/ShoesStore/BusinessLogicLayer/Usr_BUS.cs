@@ -10,26 +10,6 @@ namespace ShoesStore.BusinessLogicLayer
     {
         private readonly Usr_DAO _dao = new Usr_DAO();
 
-        public void SetActive()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Usr> Filter(Usr obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Usr GetByPrimaryKeys(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetLastestId()
-        {
-            return _dao.GetLastestId();
-        }
-
 
         public UsrAct_DAO _usrAct { get; set; }
 
@@ -51,6 +31,26 @@ namespace ShoesStore.BusinessLogicLayer
         public void CreateActCode(Usr obj)
         {
             _dao.CreateActCode(obj);
+        }
+
+        public List<Usr> Filter(Usr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Usr GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetLastestId()
+        {
+            return _dao.GetLastestId();
+        }
+
+        public void SetActive()
+        {
+            throw new NotImplementedException();
         }
     }
 }

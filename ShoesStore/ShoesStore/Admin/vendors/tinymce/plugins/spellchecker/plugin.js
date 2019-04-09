@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -92,7 +83,6 @@ jsc*/
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.plugins.spellchecker.core.DomTextMatcher',
   [
@@ -101,7 +91,6 @@ define(
     function isContentEditableFalse(node) {
       return node && node.nodeType == 1 && node.contentEditable === "false";
     }
-
     // Based on work developed by: James Padolsey http://james.padolsey.com
     // released under UNLICENSE that is compatible with LGPL
     // TODO: Handle contentEditable edgecase:
@@ -109,16 +98,13 @@ define(
     return function (node, editor) {
       var m, matches = [], text, dom = editor.dom;
       var blockElementsMap, hiddenTextElementsMap, shortEndedElementsMap;
-
       blockElementsMap = editor.schema.getBlockElements(); // H1-H6, P, TD etc
       hiddenTextElementsMap = editor.schema.getWhiteSpaceElements(); // TEXTAREA, PRE, STYLE, SCRIPT
       shortEndedElementsMap = editor.schema.getShortEndedElements(); // BR, IMG, INPUT
-
       function createMatch(m, data) {
         if (!m[0]) {
           throw 'findAndReplaceDOMText cannot handle zero-length matches';
         }
-
         return {
           start: m.index,
           end: m.index + m[0].length,
@@ -126,54 +112,41 @@ define(
           data: data
         };
       }
-
       function getText(node) {
         var txt;
-
         if (node.nodeType === 3) {
           return node.data;
         }
-
         if (hiddenTextElementsMap[node.nodeName] && !blockElementsMap[node.nodeName]) {
           return '';
         }
-
         if (isContentEditableFalse(node)) {
           return '\n';
         }
-
         txt = '';
-
         if (blockElementsMap[node.nodeName] || shortEndedElementsMap[node.nodeName]) {
           txt += '\n';
         }
-
         if ((node = node.firstChild)) {
           do {
             txt += getText(node);
           } while ((node = node.nextSibling));
         }
-
         return txt;
       }
-
       function stepThroughMatches(node, matches, replaceFn) {
         var startNode, endNode, startNodeIndex,
           endNodeIndex, innerNodes = [], atIndex = 0, curNode = node,
           matchLocation, matchIndex = 0;
-
         matches = matches.slice(0);
         matches.sort(function (a, b) {
           return a.start - b.start;
         });
-
         matchLocation = matches.shift();
-
         out: while (true) { //eslint-disable-line no-constant-condition
           if (blockElementsMap[curNode.nodeName] || shortEndedElementsMap[curNode.nodeName] || isContentEditableFalse(curNode)) {
             atIndex++;
           }
-
           if (curNode.nodeType === 3) {
             if (!endNode && curNode.length + atIndex >= matchLocation.end) {
               // We've found the ending
@@ -183,16 +156,13 @@ define(
               // Intersecting node
               innerNodes.push(curNode);
             }
-
             if (!startNode && curNode.length + atIndex > matchLocation.start) {
               // We've found the match start
               startNode = curNode;
               startNodeIndex = matchLocation.start - atIndex;
             }
-
             atIndex += curNode.length;
           }
-
           if (startNode && endNode) {
             curNode = replaceFn({
               startNode: startNode,
@@ -203,7 +173,6 @@ define(
               match: matchLocation.text,
               matchIndex: matchIndex
             });
-
             // replaceFn has to return the node that replaced the endNode
             // and then we step back so we can continue from the end of the
             // match:
@@ -213,7 +182,6 @@ define(
             innerNodes = [];
             matchLocation = matches.shift();
             matchIndex++;
-
             if (!matchLocation) {
               break; // no more matches
             }
@@ -228,7 +196,6 @@ define(
             curNode = curNode.nextSibling;
             continue;
           }
-
           // Move forward or up:
           while (true) { //eslint-disable-line no-constant-condition
             if (curNode.nextSibling) {
@@ -242,7 +209,6 @@ define(
           }
         }
       }
-
       /**
       * Generates the actual replaceFn which splits up text nodes
       * and inserts the replacement element.
@@ -250,36 +216,28 @@ define(
       function genReplacer(callback) {
         function makeReplacementNode(fill, matchIndex) {
           var match = matches[matchIndex];
-
           if (!match.stencil) {
             match.stencil = callback(match);
           }
-
           var clone = match.stencil.cloneNode(false);
           clone.setAttribute('data-mce-index', matchIndex);
-
           if (fill) {
             clone.appendChild(dom.doc.createTextNode(fill));
           }
-
           return clone;
         }
-
         return function (range) {
           var before, after, parentNode, startNode = range.startNode,
             endNode = range.endNode, matchIndex = range.matchIndex,
             doc = dom.doc;
-
           if (startNode === endNode) {
             var node = startNode;
-
             parentNode = node.parentNode;
             if (range.startNodeIndex > 0) {
               // Add "before" text node (before the match)
               before = doc.createTextNode(node.data.substring(0, range.startNodeIndex));
               parentNode.insertBefore(before, node);
             }
-
             // Create the replacement node:
             var el = makeReplacementNode(range.match, matchIndex);
             parentNode.insertBefore(el, node);
@@ -288,65 +246,50 @@ define(
               after = doc.createTextNode(node.data.substring(range.endNodeIndex));
               parentNode.insertBefore(after, node);
             }
-
             node.parentNode.removeChild(node);
-
             return el;
           }
-
           // Replace startNode -> [innerNodes...] -> endNode (in that order)
           before = doc.createTextNode(startNode.data.substring(0, range.startNodeIndex));
           after = doc.createTextNode(endNode.data.substring(range.endNodeIndex));
           var elA = makeReplacementNode(startNode.data.substring(range.startNodeIndex), matchIndex);
           var innerEls = [];
-
           for (var i = 0, l = range.innerNodes.length; i < l; ++i) {
             var innerNode = range.innerNodes[i];
             var innerEl = makeReplacementNode(innerNode.data, matchIndex);
             innerNode.parentNode.replaceChild(innerEl, innerNode);
             innerEls.push(innerEl);
           }
-
           var elB = makeReplacementNode(endNode.data.substring(0, range.endNodeIndex), matchIndex);
-
           parentNode = startNode.parentNode;
           parentNode.insertBefore(before, startNode);
           parentNode.insertBefore(elA, startNode);
           parentNode.removeChild(startNode);
-
           parentNode = endNode.parentNode;
           parentNode.insertBefore(elB, endNode);
           parentNode.insertBefore(after, endNode);
           parentNode.removeChild(endNode);
-
           return elB;
         };
       }
-
       function unwrapElement(element) {
         var parentNode = element.parentNode;
         parentNode.insertBefore(element.firstChild, element);
         element.parentNode.removeChild(element);
       }
-
       function getWrappersByIndex(index) {
         var elements = node.getElementsByTagName('*'), wrappers = [];
-
         index = typeof index == "number" ? "" + index : null;
-
         for (var i = 0; i < elements.length; i++) {
           var element = elements[i], dataIndex = element.getAttribute('data-mce-index');
-
           if (dataIndex !== null && dataIndex.length) {
             if (dataIndex === index || index === null) {
               wrappers.push(element);
             }
           }
         }
-
         return wrappers;
       }
-
       /**
       * Returns the index of a specific match object or -1 if it isn't found.
       *
@@ -360,10 +303,8 @@ define(
             return i;
           }
         }
-
         return -1;
       }
-
       /**
       * Filters the matches. If the callback returns true it stays if not it gets removed.
       *
@@ -372,19 +313,15 @@ define(
       */
       function filter(callback) {
         var filteredMatches = [];
-
         each(function (match, i) {
           if (callback(match, i)) {
             filteredMatches.push(match);
           }
         });
-
         matches = filteredMatches;
-
         /*jshint validthis:true*/
         return this;
       }
-
       /**
       * Executes the specified callback for each match.
       *
@@ -397,11 +334,9 @@ define(
             break;
           }
         }
-
         /*jshint validthis:true*/
         return this;
       }
-
       /**
       * Wraps the current matches with nodes created by the specified callback.
       * Multiple clones of these matches might occur on matches that are on multiple nodex.
@@ -413,11 +348,9 @@ define(
         if (matches.length) {
           stepThroughMatches(node, matches, genReplacer(callback));
         }
-
         /*jshint validthis:true*/
         return this;
       }
-
       /**
       * Finds the specified regexp and adds them to the matches collection.
       *
@@ -431,10 +364,8 @@ define(
             matches.push(createMatch(m, data));
           }
         }
-
         return this;
       }
-
       /**
       * Unwraps the specified match object or all matches if unspecified.
       *
@@ -443,15 +374,12 @@ define(
       */
       function unwrap(match) {
         var i, elements = getWrappersByIndex(match ? indexOf(match) : null);
-
         i = elements.length;
         while (i--) {
           unwrapElement(elements[i]);
         }
-
         return this;
       }
-
       /**
       * Returns a match object by the specified DOM element.
       *
@@ -461,7 +389,6 @@ define(
       function matchFromElement(element) {
         return matches[element.getAttribute('data-mce-index')];
       }
-
       /**
       * Returns a DOM element from the specified match element. This will be the first element if it's split
       * on multiple nodes.
@@ -472,7 +399,6 @@ define(
       function elementFromMatch(match) {
         return getWrappersByIndex(indexOf(match))[0];
       }
-
       /**
       * Adds match the specified range for example a grammar line.
       *
@@ -488,10 +414,8 @@ define(
           text: text.substr(start, length),
           data: data
         });
-
         return this;
       }
-
       /**
       * Returns a DOM range for the specified match.
       *
@@ -500,14 +424,11 @@ define(
       */
       function rangeFromMatch(match) {
         var wrappers = getWrappersByIndex(indexOf(match));
-
         var rng = editor.dom.createRng();
         rng.setStartBefore(wrappers[0]);
         rng.setEndAfter(wrappers[wrappers.length - 1]);
-
         return rng;
       }
-
       /**
       * Replaces the specified match with the specified text.
       *
@@ -517,16 +438,12 @@ define(
       */
       function replace(match, text) {
         var rng = rangeFromMatch(match);
-
         rng.deleteContents();
-
         if (text.length > 0) {
           rng.insertNode(editor.dom.doc.createTextNode(text));
         }
-
         return rng;
       }
-
       /**
       * Resets the DomTextMatcher instance. This will remove any wrapped nodes and remove any matches.
       *
@@ -535,12 +452,9 @@ define(
       function reset() {
         matches.splice(0, matches.length);
         unwrap();
-
         return this;
       }
-
       text = getText(node);
-
       return {
         text: text,
         matches: matches,
@@ -570,7 +484,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -580,7 +493,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -590,7 +502,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -600,7 +511,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -610,7 +520,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.ui.Menu',
   [
@@ -620,7 +529,6 @@ define(
     return resolve('tinymce.ui.Menu');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -630,7 +538,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.dom.DOMUtils',
   [
@@ -640,7 +547,6 @@ define(
     return resolve('tinymce.dom.DOMUtils');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -650,7 +556,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.XHR',
   [
@@ -660,7 +565,6 @@ define(
     return resolve('tinymce.util.XHR');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -670,7 +574,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.URI',
   [
@@ -680,7 +583,6 @@ define(
     return resolve('tinymce.util.URI');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -690,7 +592,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.JSON',
   [
@@ -700,7 +601,6 @@ define(
     return resolve('tinymce.util.JSON');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -710,7 +610,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the code plugin.
  *
@@ -733,18 +632,14 @@ define(
     PluginManager.add('spellchecker', function (editor, url) {
       var languageMenuItems, self = this, lastSuggestions, started, suggestionsMenu, settings = editor.settings;
       var hasDictionarySupport;
-
       function getTextMatcher() {
         if (!self.textMatcher) {
           self.textMatcher = new DomTextMatcher(editor.getBody(), editor);
         }
-
         return self.textMatcher;
       }
-
       function buildMenuItems(listName, languageValues) {
         var items = [];
-
         Tools.each(languageValues, function (languageValue) {
           items.push({
             selectable: true,
@@ -752,10 +647,8 @@ define(
             data: languageValue.value
           });
         });
-
         return items;
       }
-
       // draw back if power version is requested and registered
       if (/(^|[ ,])tinymcespellchecker([, ]|$)/.test(settings.plugins) && PluginManager.get('tinymcespellchecker')) {
         /*eslint no-console:0 */
@@ -767,36 +660,29 @@ define(
         }
         return;
       }
-
       var languagesString = settings.spellchecker_languages ||
         'English=en,Danish=da,Dutch=nl,Finnish=fi,French=fr_FR,' +
         'German=de,Italian=it,Polish=pl,Portuguese=pt_BR,' +
         'Spanish=es,Swedish=sv';
-
       languageMenuItems = buildMenuItems('Language',
         Tools.map(languagesString.split(','), function (langPair) {
           langPair = langPair.split('=');
-
           return {
             name: langPair[0],
             value: langPair[1]
           };
         })
       );
-
       function isEmpty(obj) {
         /*jshint unused:false*/
         /*eslint no-unused-vars:0 */
         for (var name in obj) {
           return false;
         }
-
         return true;
       }
-
       function showSuggestions(word, spans) {
         var items = [], suggestions = lastSuggestions[word];
-
         Tools.each(suggestions, function (suggestion) {
           items.push({
             text: suggestion,
@@ -807,9 +693,7 @@ define(
             }
           });
         });
-
         items.push({ text: '-' });
-
         if (hasDictionarySupport) {
           items.push({
             text: 'Add to Dictionary', onclick: function () {
@@ -817,21 +701,18 @@ define(
             }
           });
         }
-
         items.push.apply(items, [
           {
             text: 'Ignore', onclick: function () {
               ignoreWord(word, spans);
             }
           },
-
           {
             text: 'Ignore all', onclick: function () {
               ignoreWord(word, spans, true);
             }
           }
         ]);
-
         // Render menu
         suggestionsMenu = new Menu({
           items: items,
@@ -846,14 +727,11 @@ define(
             suggestionsMenu = null;
           }
         });
-
         suggestionsMenu.renderTo(document.body);
-
         // Position menu
         var pos = DOMUtils.DOM.getPos(editor.getContentAreaContainer());
         var targetPos = editor.dom.getPos(spans[0]);
         var root = editor.dom.getRoot();
-
         // Adjust targetPos for scrolling in the editor
         if (root.nodeName == 'BODY') {
           targetPos.x -= root.ownerDocument.documentElement.scrollLeft || root.scrollLeft;
@@ -862,13 +740,10 @@ define(
           targetPos.x -= root.scrollLeft;
           targetPos.y -= root.scrollTop;
         }
-
         pos.x += targetPos.x;
         pos.y += targetPos.y;
-
         suggestionsMenu.moveTo(pos.x, pos.y + spans[0].offsetHeight);
       }
-
       function getWordCharPattern() {
         // Regexp for finding word specific characters this will split words by
         // spaces, quotes, copy right characters etc. It's escaped with unicode characters
@@ -880,20 +755,15 @@ define(
           "\u00bc\u00bd\u00be\u00bf\u00d7\u00f7\u00a4\u201d\u201c\u201e\u00a0\u2002\u2003\u2009" +
           "]+", "g");
       }
-
       function defaultSpellcheckCallback(method, text, doneCallback, errorCallback) {
         var data = { method: method, lang: settings.spellchecker_language }, postData = '';
-
         data[method == "addToDictionary" ? "word" : "text"] = text;
-
         Tools.each(data, function (value, key) {
           if (postData) {
             postData += '&';
           }
-
           postData += key + '=' + encodeURIComponent(value);
         });
-
         XHR.send({
           url: new URI(url).toAbsolute(settings.spellchecker_rpc_url),
           type: "post",
@@ -901,7 +771,6 @@ define(
           data: postData,
           success: function (result) {
             result = JSON.parse(result);
-
             if (!result) {
               var message = editor.translate("Server response wasn't proper JSON.");
               errorCallback(message);
@@ -919,37 +788,30 @@ define(
           }
         });
       }
-
       function sendRpcCall(name, data, successCallback, errorCallback) {
         var spellCheckCallback = settings.spellchecker_callback || defaultSpellcheckCallback;
         spellCheckCallback.call(self, name, data, successCallback, errorCallback);
       }
-
       function spellcheck() {
         if (finish()) {
           return;
         }
-
         function errorCallback(message) {
           editor.notificationManager.open({ text: message, type: 'error' });
           editor.setProgressState(false);
           finish();
         }
-
         editor.setProgressState(true);
         sendRpcCall("spellcheck", getTextMatcher().text, markErrors, errorCallback);
         editor.focus();
       }
-
       function checkIfFinished() {
         if (!editor.dom.select('span.mce-spellchecker-word').length) {
           finish();
         }
       }
-
       function addToDictionary(word, spans) {
         editor.setProgressState(true);
-
         sendRpcCall("addToDictionary", word, function () {
           editor.setProgressState(false);
           editor.dom.remove(spans, true);
@@ -959,10 +821,8 @@ define(
           editor.setProgressState(false);
         });
       }
-
       function ignoreWord(word, spans, all) {
         editor.selection.collapse();
-
         if (all) {
           Tools.each(editor.dom.select('span.mce-spellchecker-word'), function (span) {
             if (span.getAttribute('data-mce-word') == word) {
@@ -972,60 +832,45 @@ define(
         } else {
           editor.dom.remove(spans, true);
         }
-
         checkIfFinished();
       }
-
       function finish() {
         getTextMatcher().reset();
         self.textMatcher = null;
-
         if (started) {
           started = false;
           editor.fire('SpellcheckEnd');
           return true;
         }
       }
-
       function getElmIndex(elm) {
         var value = elm.getAttribute('data-mce-index');
-
         if (typeof value == "number") {
           return "" + value;
         }
-
         return value;
       }
-
       function findSpansByIndex(index) {
         var nodes, spans = [];
-
         nodes = Tools.toArray(editor.getBody().getElementsByTagName('span'));
         if (nodes.length) {
           for (var i = 0; i < nodes.length; i++) {
             var nodeIndex = getElmIndex(nodes[i]);
-
             if (nodeIndex === null || !nodeIndex.length) {
               continue;
             }
-
             if (nodeIndex === index.toString()) {
               spans.push(nodes[i]);
             }
           }
         }
-
         return spans;
       }
-
       editor.on('click', function (e) {
         var target = e.target;
-
         if (target.className == "mce-spellchecker-word") {
           e.preventDefault();
-
           var spans = findSpansByIndex(getElmIndex(target));
-
           if (spans.length > 0) {
             var rng = editor.dom.createRng();
             rng.setStartBefore(spans[0]);
@@ -1035,7 +880,6 @@ define(
           }
         }
       });
-
       editor.addMenuItem('spellchecker', {
         text: 'Spellcheck',
         context: 'tools',
@@ -1043,23 +887,18 @@ define(
         selectable: true,
         onPostRender: function () {
           var self = this;
-
           self.active(started);
-
           editor.on('SpellcheckStart SpellcheckEnd', function () {
             self.active(started);
           });
         }
       });
-
       function updateSelection(e) {
         var selectedLanguage = settings.spellchecker_language;
-
         e.control.items().each(function (ctrl) {
           ctrl.active(ctrl.settings.data === selectedLanguage);
         });
       }
-
       /**
        * Find the specified words and marks them. It will also show suggestions for those words.
        *
@@ -1074,7 +913,6 @@ define(
        */
       function markErrors(data) {
         var suggestions;
-
         if (data.words) {
           hasDictionarySupport = !!data.dictionary;
           suggestions = data.words;
@@ -1082,18 +920,14 @@ define(
           // Fallback to old format
           suggestions = data;
         }
-
         editor.setProgressState(false);
-
         if (isEmpty(suggestions)) {
           var message = editor.translate('No misspellings found.');
           editor.notificationManager.open({ text: message, type: 'info' });
           started = false;
           return;
         }
-
         lastSuggestions = suggestions;
-
         getTextMatcher().find(getWordCharPattern()).filter(function (match) {
           return !!suggestions[match.text];
         }).wrap(function (match) {
@@ -1103,23 +937,19 @@ define(
             "data-mce-word": match.text
           });
         });
-
         started = true;
         editor.fire('SpellcheckStart');
       }
-
       var buttonArgs = {
         tooltip: 'Spellcheck',
         onclick: spellcheck,
         onPostRender: function () {
           var self = this;
-
           editor.on('SpellcheckStart SpellcheckEnd', function () {
             self.active(started);
           });
         }
       };
-
       if (languageMenuItems.length > 1) {
         buttonArgs.type = 'splitbutton';
         buttonArgs.menu = languageMenuItems;
@@ -1128,30 +958,24 @@ define(
           settings.spellchecker_language = e.control.settings.data;
         };
       }
-
       editor.addButton('spellchecker', buttonArgs);
       editor.addCommand('mceSpellCheck', spellcheck);
-
       editor.on('remove', function () {
         if (suggestionsMenu) {
           suggestionsMenu.remove();
           suggestionsMenu = null;
         }
       });
-
       editor.on('change', checkIfFinished);
-
       this.getTextMatcher = getTextMatcher;
       this.getWordCharPattern = getWordCharPattern;
       this.markErrors = markErrors;
       this.getLanguage = function () {
         return settings.spellchecker_language;
       };
-
       // Set default spellchecker language if it's not specified
       settings.spellchecker_language = settings.spellchecker_language || settings.language || 'en';
     });
-
     return function () { };
   }
 );

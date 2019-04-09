@@ -6,12 +6,10 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class RcptBuyDet
     {
         public int RcptBuyId { get; set; }
@@ -19,7 +17,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public int ProId { get; set; }
         public string Cmt { get; set; }
         public Nullable<int> Point { get; set; }
-    
         public virtual Pro Pro { get; set; }
         public virtual RcptBuy RcptBuy { get; set; }
     }

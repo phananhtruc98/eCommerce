@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the charmap plugin.
  *
@@ -149,7 +135,6 @@ define(
   function (PluginManager, Tools) {
     PluginManager.add('charmap', function (editor) {
       var isArray = Tools.isArray;
-
       function getDefaultCharMap() {
         return [
           ['160', 'no-break space'],
@@ -424,75 +409,58 @@ define(
           ['8207', 'right-to-left mark']
         ];
       }
-
       function charmapFilter(charmap) {
         return Tools.grep(charmap, function (item) {
           return isArray(item) && item.length == 2;
         });
       }
-
       function getCharsFromSetting(settingValue) {
         if (isArray(settingValue)) {
           return [].concat(charmapFilter(settingValue));
         }
-
         if (typeof settingValue == "function") {
           return settingValue();
         }
-
         return [];
       }
-
       function extendCharMap(charmap) {
         var settings = editor.settings;
-
         if (settings.charmap) {
           charmap = getCharsFromSetting(settings.charmap);
         }
-
         if (settings.charmap_append) {
           return [].concat(charmap).concat(getCharsFromSetting(settings.charmap_append));
         }
-
         return charmap;
       }
-
       function getCharMap() {
         return extendCharMap(getDefaultCharMap());
       }
-
       function insertChar(chr) {
         editor.fire('insertCustomChar', { chr: chr }).chr;
         editor.execCommand('mceInsertContent', false, chr);
       }
-
       function showDialog() {
         var gridHtml, x, y, win;
-
         function getParentTd(elm) {
           while (elm) {
             if (elm.nodeName == 'TD') {
               return elm;
             }
-
             elm = elm.parentNode;
           }
         }
-
         gridHtml = '<table role="presentation" cellspacing="0" class="mce-charmap"><tbody>';
-
         var charmap = getCharMap();
         var width = Math.min(charmap.length, 25);
         var height = Math.ceil(charmap.length / width);
         for (y = 0; y < height; y++) {
           gridHtml += '<tr>';
-
           for (x = 0; x < width; x++) {
             var index = y * width + x;
             if (index < charmap.length) {
               var chr = charmap[index];
               var chrText = chr ? String.fromCharCode(parseInt(chr[0], 10)) : '&nbsp;';
-
               gridHtml += (
                 '<td title="' + chr[1] + '">' +
                 '<div tabindex="-1" title="' + chr[1] + '" role="button" data-chr="' + chrText + '">' +
@@ -504,23 +472,18 @@ define(
               gridHtml += '<td />';
             }
           }
-
           gridHtml += '</tr>';
         }
-
         gridHtml += '</tbody></table>';
-
         var charMapPanel = {
           type: 'container',
           html: gridHtml,
           onclick: function (e) {
             var target = e.target;
-
             if (/^(TD|DIV)$/.test(target.nodeName)) {
               var charDiv = getParentTd(target).firstChild;
               if (charDiv && charDiv.hasAttribute('data-chr')) {
                 insertChar(charDiv.getAttribute('data-chr'));
-
                 if (!e.ctrlKey) {
                   win.close();
                 }
@@ -529,7 +492,6 @@ define(
           },
           onmouseover: function (e) {
             var td = getParentTd(e.target);
-
             if (td && td.firstChild) {
               win.find('#preview').text(td.firstChild.firstChild.data);
               win.find('#previewTitle').text(td.title);
@@ -539,7 +501,6 @@ define(
             }
           }
         };
-
         win = editor.windowManager.open({
           title: "Special character",
           spacing: 10,
@@ -588,28 +549,23 @@ define(
           ]
         });
       }
-
       editor.addCommand('mceShowCharmap', showDialog);
-
       editor.addButton('charmap', {
         icon: 'charmap',
         tooltip: 'Special character',
         cmd: 'mceShowCharmap'
       });
-
       editor.addMenuItem('charmap', {
         icon: 'charmap',
         text: 'Special character',
         cmd: 'mceShowCharmap',
         context: 'insert'
       });
-
       return {
         getCharMap: getCharMap,
         insertChar: insertChar
       };
     });
-
     return function () { };
   }
 );

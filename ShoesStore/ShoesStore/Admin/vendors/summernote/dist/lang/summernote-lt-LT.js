@@ -101,7 +101,6 @@
         undo: 'Anuliuoti veiksmą',
         redo: 'Perdaryti veiksmą'
       }
-
     }
   });
 })(jQuery);

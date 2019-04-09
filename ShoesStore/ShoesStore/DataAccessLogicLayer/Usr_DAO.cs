@@ -26,16 +26,14 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public void CreateActCode(Usr obj)
         {
-
-            UsrAct uAct = new UsrAct()
+            var uAct = new UsrAct
             {
                 UsrId = obj.UsrId,
-                ActCode = EncryptHelper.Encrypt(obj.Login),
+                ActCode = EncryptHelper.Encrypt(obj.Login)
             };
             _usrAct_DAO = new UsrAct_DAO();
             _usrAct_DAO.Insert(uAct);
         }
-
 
 
         public Usr GetByPrimaryKeys(int id)
@@ -48,14 +46,14 @@ namespace ShoesStore.DataAccessLogicLayer
             return DataProvider.Instance.Usr.Max(m => m.UsrId);
         }
 
+        public override bool IsExist(Usr obj)
+        {
+            return GetAll().FirstOrDefault(m => m.Login == obj.Login) == null ? false : true;
+        }
+
         public override void SetActive(Usr obj)
         {
             throw new NotImplementedException();
-        }
-
-        public override bool IsExist(Usr obj)
-        {
-            return GetAll().FirstOrDefault(m => m.Login == obj.Login)==null ? false : true;
         }
     }
 }

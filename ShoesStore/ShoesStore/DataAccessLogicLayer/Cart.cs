@@ -14,11 +14,8 @@ namespace ShoesStore.DataAccessLogicLayer
     
     public partial class Cart
     {
-        public Cart()
-        {
-            this.CartDet = new HashSet<CartDet>();
-        }
-    
+        public Cart() => this.CartDet = new HashSet<CartDet>();
+
         public int CartId { get; set; }
         public Nullable<int> CusId { get; set; }
         public string IpAddress { get; set; }

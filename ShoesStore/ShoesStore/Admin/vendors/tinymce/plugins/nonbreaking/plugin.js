@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the nonbreaking plugin.
  *
@@ -128,37 +116,29 @@ define(
   function (PluginManager) {
     PluginManager.add('nonbreaking', function (editor) {
       var setting = editor.getParam('nonbreaking_force_tab');
-
       editor.addCommand('mceNonBreaking', function () {
         editor.insertContent(
           (editor.plugins.visualchars && editor.plugins.visualchars.state) ?
             '<span class="mce-nbsp">&nbsp;</span>' : '&nbsp;'
         );
-
         editor.dom.setAttrib(editor.dom.select('span.mce-nbsp'), 'data-mce-bogus', '1');
       });
-
       editor.addButton('nonbreaking', {
         title: 'Nonbreaking space',
         cmd: 'mceNonBreaking'
       });
-
       editor.addMenuItem('nonbreaking', {
         text: 'Nonbreaking space',
         cmd: 'mceNonBreaking',
         context: 'insert'
       });
-
       if (setting) {
         var spaces = +setting > 1 ? +setting : 3;  // defaults to 3 spaces if setting is true (or 1)
-
         editor.on('keydown', function (e) {
           if (e.keyCode == 9) {
-
             if (e.shiftKey) {
               return;
             }
-
             e.preventDefault();
             for (var i = 0; i < spaces; i++) {
               editor.execCommand('mceNonBreaking');
@@ -167,7 +147,6 @@ define(
         });
       }
     });
-
     return function () { };
   }
 );

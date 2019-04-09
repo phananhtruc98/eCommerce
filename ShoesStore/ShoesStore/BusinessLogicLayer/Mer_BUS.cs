@@ -1,8 +1,8 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-using ShoesStore.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Objects;
+using ShoesStore.DataAccessLogicLayer;
+using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
@@ -10,27 +10,13 @@ namespace ShoesStore.BusinessLogicLayer
     {
         private readonly Mer_DAO _dao = new Mer_DAO();
 
-        public UsrAct_DAO UsrAct { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public UsrAct_DAO UsrAct
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
 
         public void CreateActCode(Mer obj)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public List<Mer> Filter(Mer obj)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-        public Mer GetByPrimaryKeys(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetLastestId()
         {
             throw new NotImplementedException();
         }
@@ -56,12 +42,26 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public void SetActive()
+
+        public List<Mer> Filter(Mer obj)
         {
             throw new NotImplementedException();
         }
 
 
+        public Mer GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
 
+        public int GetLastestId()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetActive()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

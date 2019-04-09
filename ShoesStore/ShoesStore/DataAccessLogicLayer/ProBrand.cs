@@ -6,22 +6,18 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class ProBrand
     {
         public ProBrand()
         {
             this.Pro = new HashSet<Pro>();
         }
-    
         public int BrandId { get; set; }
         public string BrandName { get; set; }
-    
         public virtual ICollection<Pro> Pro { get; set; }
     }
 }

@@ -104,7 +104,6 @@
         undo: 'Rückgängig',
         redo: 'Wiederholen'
       }
-
     }
   });
 })(jQuery);

@@ -6,25 +6,21 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class ProCat
     {
         public ProCat()
         {
             this.Pro = new HashSet<Pro>();
         }
-    
         public int CatId { get; set; }
         public string CatName { get; set; }
         public bool Active { get; set; }
         public System.DateTime DateAdd { get; set; }
         public Nullable<System.DateTime> DateEdit { get; set; }
-    
         public virtual ICollection<Pro> Pro { get; set; }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Xml;
 using Logger;
+using System.Xml;
+using System.Configuration;
 
 namespace Utilities
 {
@@ -244,9 +244,8 @@ namespace Utilities
             // value array
             for (int i = 0, j = commandParameters.Length; i < j; i++)
                 // If the current array value derives from IDbDataParameter, then assign its Value property
-                if (parameterValues[i] is IDbDataParameter)
+                if (parameterValues[i] is IDbDataParameter paramInstance)
                 {
-                    var paramInstance = (IDbDataParameter) parameterValues[i];
                     if (paramInstance.Value == null)
                         commandParameters[i].Value = DBNull.Value;
                     else
@@ -443,8 +442,8 @@ namespace Utilities
 
             // Create a command and prepare it for execution
             var cmd = new SqlCommand();
-            var mustCloseConnection = false;
-            PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out mustCloseConnection);
+            PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters,
+                out var mustCloseConnection);
 
             // Finally, execute the command
             var retval = cmd.ExecuteNonQuery();
@@ -532,9 +531,8 @@ namespace Utilities
 
             // Create a command and prepare it for execution
             var cmd = new SqlCommand();
-            var mustCloseConnection = false;
             PrepareCommand(cmd, transaction.Connection, transaction, commandType, commandText, commandParameters,
-                out mustCloseConnection);
+                out _);
 
             // Finally, execute the command
             var retval = cmd.ExecuteNonQuery();
@@ -710,8 +708,8 @@ namespace Utilities
 
             // Create a command and prepare it for execution
             var cmd = new SqlCommand();
-            var mustCloseConnection = false;
-            PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out mustCloseConnection);
+            PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters,
+                out var mustCloseConnection);
 
             // Create the DataAdapter & DataSet
             using (var da = new SqlDataAdapter(cmd))
@@ -808,9 +806,8 @@ namespace Utilities
 
             // Create a command and prepare it for execution
             var cmd = new SqlCommand();
-            var mustCloseConnection = false;
             PrepareCommand(cmd, transaction.Connection, transaction, commandType, commandText, commandParameters,
-                out mustCloseConnection);
+                out var mustCloseConnection);
 
             // Create the DataAdapter & DataSet
             using (var da = new SqlDataAdapter(cmd))
@@ -1323,8 +1320,8 @@ namespace Utilities
             // Create a command and prepare it for execution
             var cmd = new SqlCommand();
 
-            var mustCloseConnection = false;
-            PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out mustCloseConnection);
+            PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters,
+                out var mustCloseConnection);
 
             // Execute the command & return the results
             var retval = cmd.ExecuteScalar();
@@ -1415,9 +1412,8 @@ namespace Utilities
 
             // Create a command and prepare it for execution
             var cmd = new SqlCommand();
-            var mustCloseConnection = false;
             PrepareCommand(cmd, transaction.Connection, transaction, commandType, commandText, commandParameters,
-                out mustCloseConnection);
+                out var mustCloseConnection);
 
             // Execute the command & return the results
             var retval = cmd.ExecuteScalar();
@@ -1608,9 +1604,8 @@ namespace Utilities
 
             // Create a command and prepare it for execution
             var cmd = new SqlCommand();
-            var mustCloseConnection = false;
             PrepareCommand(cmd, transaction.Connection, transaction, commandType, commandText, commandParameters,
-                out mustCloseConnection);
+                out var mustCloseConnection);
 
             // Create the DataAdapter & DataSet
             var retval = cmd.ExecuteXmlReader();
@@ -1986,9 +1981,8 @@ namespace Utilities
 
             // Create a command and prepare it for execution
             var command = new SqlCommand();
-            var mustCloseConnection = false;
             PrepareCommand(command, connection, transaction, commandType, commandText, commandParameters,
-                out mustCloseConnection);
+                out var mustCloseConnection);
 
             // Create the DataAdapter & DataSet
             using (var dataAdapter = new SqlDataAdapter(command))
@@ -2495,8 +2489,7 @@ namespace Utilities
             string cmdText, params SqlParameter[] commandParameters)
         {
             var cmd = new SqlCommand();
-            var mustCloseConnection = false;
-            PrepareCommand(cmd, connection, trans, cmdType, cmdText, commandParameters, out mustCloseConnection);
+            PrepareCommand(cmd, connection, trans, cmdType, cmdText, commandParameters, out var mustCloseConnection);
             var val = cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
             return val;
@@ -2592,7 +2585,6 @@ namespace Utilities
             var myConnection = new SqlConnection(connectionstring);
             var myCommand = new SqlCommand(querystring, myConnection)
             {
-
                 // Mark the Command as a SPROC
                 CommandType = CommandType.Text
             };
@@ -2717,8 +2709,7 @@ namespace Utilities
 
             var hashKey = connectionString + ":" + commandText;
 
-            var cachedParameters = ParamCache[hashKey] as SqlParameter[];
-            if (cachedParameters == null)
+            if (!(ParamCache[hashKey] is SqlParameter[] cachedParameters))
                 return null;
             return CloneParameters(cachedParameters);
         }

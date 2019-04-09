@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the directionality plugin.
  *
@@ -150,10 +136,8 @@ define(
     PluginManager.add('directionality', function (editor) {
       function setDir(dir) {
         var dom = editor.dom, curDir, blocks = editor.selection.getSelectedBlocks();
-
         if (blocks.length) {
           curDir = dom.getAttrib(blocks[0], "dir");
-
           Tools.each(blocks, function (block) {
             // Add dir to block if the parent block doesn't already have that dir
             if (!dom.getParent(block.parentNode, "*[dir='" + dir + "']", dom.getRoot())) {
@@ -164,42 +148,33 @@ define(
               }
             }
           });
-
           editor.nodeChanged();
         }
       }
-
       function generateSelector(dir) {
         var selector = [];
-
         Tools.each('h1 h2 h3 h4 h5 h6 div p'.split(' '), function (name) {
           selector.push(name + '[dir=' + dir + ']');
         });
-
         return selector.join(',');
       }
-
       editor.addCommand('mceDirectionLTR', function () {
         setDir("ltr");
       });
-
       editor.addCommand('mceDirectionRTL', function () {
         setDir("rtl");
       });
-
       editor.addButton('ltr', {
         title: 'Left to right',
         cmd: 'mceDirectionLTR',
         stateSelector: generateSelector('ltr')
       });
-
       editor.addButton('rtl', {
         title: 'Right to left',
         cmd: 'mceDirectionRTL',
         stateSelector: generateSelector('rtl')
       });
     });
-
     return function () { };
   }
 );

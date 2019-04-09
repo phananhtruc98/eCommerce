@@ -6,23 +6,19 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class ProColor
     {
         public ProColor()
         {
             this.ProDet = new HashSet<ProDet>();
         }
-    
         public int ColorId { get; set; }
         public string ColorName { get; set; }
         public string ColorImg { get; set; }
-    
         public virtual ICollection<ProDet> ProDet { get; set; }
     }
 }

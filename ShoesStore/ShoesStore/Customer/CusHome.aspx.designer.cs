@@ -6,10 +6,7 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-namespace ShoesStore {
-    
-    
+namespace ShoesStore.Customer {
     public partial class CusHome {
     }
 }

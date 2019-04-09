@@ -3,14 +3,14 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class Cart_DAO:Table_DAO<Cart>,ICart
+    public class Cart_DAO : Table_DAO<Cart>, ICart
     {
-        public override void SetActive(Cart obj)
+        public override bool IsExist(Cart obj)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public override bool IsExist(Cart obj)
+        public override void SetActive(Cart obj)
         {
             throw new NotImplementedException();
         }

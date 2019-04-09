@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.Env',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.Env');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the autolink plugin.
  *
@@ -150,23 +136,19 @@ define(
     PluginManager.add('autolink', function (editor) {
       var AutoUrlDetectState;
       var AutoLinkPattern = /^(https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.|(?:mailto:)?[A-Z0-9._%+\-]+@)(.+)$/i;
-
       if (editor.settings.autolink_pattern) {
         AutoLinkPattern = editor.settings.autolink_pattern;
       }
-
       editor.on("keydown", function (e) {
         if (e.keyCode == 13) {
           return handleEnter(editor);
         }
       });
-
       // Internet Explorer has built-in automatic linking for most cases
       if (Env.ie) {
         editor.on("focus", function () {
           if (!AutoUrlDetectState) {
             AutoUrlDetectState = true;
-
             try {
               editor.execCommand('AutoUrlDetect', false, true);
             } catch (ex) {
@@ -174,53 +156,41 @@ define(
             }
           }
         });
-
         return;
       }
-
       editor.on("keypress", function (e) {
         if (e.keyCode == 41) {
           return handleEclipse(editor);
         }
       });
-
       editor.on("keyup", function (e) {
         if (e.keyCode == 32) {
           return handleSpacebar(editor);
         }
       });
-
       function handleEclipse(editor) {
         parseCurrentLine(editor, -1, '(', true);
       }
-
       function handleSpacebar(editor) {
         parseCurrentLine(editor, 0, '', true);
       }
-
       function handleEnter(editor) {
         parseCurrentLine(editor, -1, '', false);
       }
-
       function parseCurrentLine(editor, endOffset, delimiter) {
         var rng, end, start, endContainer, bookmark, text, matches, prev, len, rngText;
-
         function scopeIndex(container, index) {
           if (index < 0) {
             index = 0;
           }
-
           if (container.nodeType == 3) {
             var len = container.data.length;
-
             if (index > len) {
               index = len;
             }
           }
-
           return index;
         }
-
         function setStart(container, offset) {
           if (container.nodeType != 1 || container.hasChildNodes()) {
             rng.setStart(container, scopeIndex(container, offset));
@@ -228,7 +198,6 @@ define(
             rng.setStartBefore(container);
           }
         }
-
         function setEnd(container, offset) {
           if (container.nodeType != 1 || container.hasChildNodes()) {
             rng.setEnd(container, scopeIndex(container, offset));
@@ -236,12 +205,10 @@ define(
             rng.setEndAfter(container);
           }
         }
-
         // Never create a link when we are inside a link
         if (editor.selection.getNode().tagName == 'A') {
           return;
         }
-
         // We need at least five characters to form a URL,
         // hence, at minimum, five characters from the beginning of the line.
         rng = editor.selection.getRng(true).cloneRange();
@@ -253,55 +220,44 @@ define(
             if (!rng.endContainer.firstChild || !rng.endContainer.firstChild.nextSibling) {
               return;
             }
-
             prev = rng.endContainer.firstChild.nextSibling;
           }
-
           len = prev.length;
           setStart(prev, len);
           setEnd(prev, len);
-
           if (rng.endOffset < 5) {
             return;
           }
-
           end = rng.endOffset;
           endContainer = prev;
         } else {
           endContainer = rng.endContainer;
-
           // Get a text node
           if (endContainer.nodeType != 3 && endContainer.firstChild) {
             while (endContainer.nodeType != 3 && endContainer.firstChild) {
               endContainer = endContainer.firstChild;
             }
-
             // Move range to text node
             if (endContainer.nodeType == 3) {
               setStart(endContainer, 0);
               setEnd(endContainer, endContainer.nodeValue.length);
             }
           }
-
           if (rng.endOffset == 1) {
             end = 2;
           } else {
             end = rng.endOffset - 1 - endOffset;
           }
         }
-
         start = end;
-
         do {
           // Move the selection one character backwards.
           setStart(endContainer, end >= 2 ? end - 2 : 0);
           setEnd(endContainer, end >= 1 ? end - 1 : 0);
           end -= 1;
           rngText = rng.toString();
-
           // Loop until one of the following is found: a blank space, &nbsp;, delimiter, (end-2) >= 0
         } while (rngText != ' ' && rngText !== '' && rngText.charCodeAt(0) != 160 && (end - 2) >= 0 && rngText != delimiter);
-
         if (rng.toString() == delimiter || rng.toString().charCodeAt(0) == 160) {
           setStart(endContainer, end);
           setEnd(endContainer, start);
@@ -313,38 +269,30 @@ define(
           setStart(endContainer, end);
           setEnd(endContainer, start);
         }
-
         // Exclude last . from word like "www.site.com."
         text = rng.toString();
         if (text.charAt(text.length - 1) == '.') {
           setEnd(endContainer, start - 1);
         }
-
         text = rng.toString();
         matches = text.match(AutoLinkPattern);
-
         if (matches) {
           if (matches[1] == 'www.') {
             matches[1] = 'http://www.';
           } else if (/@$/.test(matches[1]) && !/^mailto:/.test(matches[1])) {
             matches[1] = 'mailto:' + matches[1];
           }
-
           bookmark = editor.selection.getBookmark();
-
           editor.selection.setRng(rng);
           editor.execCommand('createlink', false, matches[1] + matches[2]);
-
           if (editor.settings.default_link_target) {
             editor.dom.setAttrib(editor.selection.getNode(), 'target', editor.settings.default_link_target);
           }
-
           editor.selection.moveToBookmark(bookmark);
           editor.nodeChanged();
         }
       }
     });
-
     return function () { };
   }
 );

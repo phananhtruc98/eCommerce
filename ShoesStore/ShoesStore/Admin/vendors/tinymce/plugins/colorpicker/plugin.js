@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Color',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.util.Color');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the colorpicker plugin.
  *
@@ -151,21 +137,17 @@ define(
       function colorPickerCallback(callback, value) {
         function setColor(value) {
           var color = new Color(value), rgb = color.toRgb();
-
           win.fromJSON({
             r: rgb.r,
             g: rgb.g,
             b: rgb.b,
             hex: color.toHex().substr(1)
           });
-
           showPreview(color.toHex());
         }
-
         function showPreview(hexColor) {
           win.find('#preview')[0].getEl().style.background = hexColor;
         }
-
         var win = editor.windowManager.open({
           title: 'Color',
           items: {
@@ -181,7 +163,6 @@ define(
                 value: value,
                 onchange: function () {
                   var rgb = this.rgb();
-
                   if (win) {
                     win.find('#r').value(rgb.r);
                     win.find('#g').value(rgb.g);
@@ -204,23 +185,19 @@ define(
                   onchange: function () {
                     var colorPickerCtrl = win.find('colorpicker')[0];
                     var name, value;
-
                     name = this.name();
                     value = this.value();
-
                     if (name == "hex") {
                       value = '#' + value;
                       setColor(value);
                       colorPickerCtrl.value(value);
                       return;
                     }
-
                     value = {
                       r: win.find('#r').value(),
                       g: win.find('#g').value(),
                       b: win.find('#b').value()
                     };
-
                     colorPickerCtrl.value(value);
                     setColor(value);
                   }
@@ -239,15 +216,12 @@ define(
             callback('#' + this.toJSON().hex);
           }
         });
-
         setColor(value);
       }
-
       if (!editor.settings.color_picker_callback) {
         editor.settings.color_picker_callback = colorPickerCallback;
       }
     });
-
     return function () { };
   }
 );

@@ -6,12 +6,10 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class RcptBuy
     {
         public RcptBuy()
@@ -19,10 +17,8 @@ namespace ShoesStore.DataAccessLogicLayer
             this.RcptBuyDet = new HashSet<RcptBuyDet>();
             this.RcptBuySta = new HashSet<RcptBuySta>();
         }
-    
         public int RcptBuyId { get; set; }
         public int CusId { get; set; }
-    
         public virtual Cus Cus { get; set; }
         public virtual Rcpt Rcpt { get; set; }
         public virtual ICollection<RcptBuyDet> RcptBuyDet { get; set; }

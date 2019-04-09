@@ -2,7 +2,6 @@
 @function social-color($key: "twitter") {
   @return map-get($social-colors, $key);
 }
-
 // Social Color
 @each $color,
 $value in $social-colors {
@@ -10,7 +9,6 @@ $value in $social-colors {
     @include text-color(social-color($color));
   }
 }
-
 @each $color,
 $value in $social-colors {
   .bg-#{$color} {

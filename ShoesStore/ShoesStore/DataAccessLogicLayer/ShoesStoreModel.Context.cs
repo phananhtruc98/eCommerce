@@ -6,7 +6,6 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
@@ -15,19 +14,16 @@ namespace ShoesStore.DataAccessLogicLayer
     using System.Data.Objects;
     using System.Data.Objects.DataClasses;
     using System.Linq;
-    
     public partial class ShoesStoreDBContext : DbContext
     {
         public ShoesStoreDBContext()
             : base("name=ShoesStoreDBContext")
         {
         }
-    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
         public DbSet<Cart> Cart { get; set; }
         public DbSet<CartDet> CartDet { get; set; }
         public DbSet<Cus> Cus { get; set; }
@@ -50,1607 +46,1234 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<Shp> Shp { get; set; }
         public DbSet<Sub> Sub { get; set; }
         public DbSet<SubDet> SubDet { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Usr> Usr { get; set; }
         public DbSet<UsrAct> UsrAct { get; set; }
         public DbSet<WebInfo> WebInfo { get; set; }
         public DbSet<WebSlide> WebSlide { get; set; }
-    
         public virtual ObjectResult<Admin_Info_Result> Admin_Info()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_Info_Result>("Admin_Info");
         }
-    
         public virtual int Cart_Delete(Nullable<int> cartID)
         {
             var cartIDParameter = cartID.HasValue ?
                 new ObjectParameter("CartID", cartID) :
                 new ObjectParameter("CartID", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Cart_Delete", cartIDParameter);
         }
-    
         public virtual int Cart_Insert(Nullable<int> cusID, string ipAddress)
         {
             var cusIDParameter = cusID.HasValue ?
                 new ObjectParameter("CusID", cusID) :
                 new ObjectParameter("CusID", typeof(int));
-    
             var ipAddressParameter = ipAddress != null ?
                 new ObjectParameter("IpAddress", ipAddress) :
                 new ObjectParameter("IpAddress", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Cart_Insert", cusIDParameter, ipAddressParameter);
         }
-    
         public virtual ObjectResult<Cart_Select_Result> Cart_Select(Nullable<int> cartID)
         {
             var cartIDParameter = cartID.HasValue ?
                 new ObjectParameter("CartID", cartID) :
                 new ObjectParameter("CartID", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Cart_Select_Result>("Cart_Select", cartIDParameter);
         }
-    
         public virtual int Cart_Update(Nullable<int> cartID, Nullable<int> cusID, string ipAddress)
         {
             var cartIDParameter = cartID.HasValue ?
                 new ObjectParameter("CartID", cartID) :
                 new ObjectParameter("CartID", typeof(int));
-    
             var cusIDParameter = cusID.HasValue ?
                 new ObjectParameter("CusID", cusID) :
                 new ObjectParameter("CusID", typeof(int));
-    
             var ipAddressParameter = ipAddress != null ?
                 new ObjectParameter("IpAddress", ipAddress) :
                 new ObjectParameter("IpAddress", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Cart_Update", cartIDParameter, cusIDParameter, ipAddressParameter);
         }
-    
         public virtual int CartDet_Delete(Nullable<int> cartId, Nullable<int> shpId, Nullable<int> proId)
         {
             var cartIdParameter = cartId.HasValue ?
                 new ObjectParameter("CartId", cartId) :
                 new ObjectParameter("CartId", typeof(int));
-    
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CartDet_Delete", cartIdParameter, shpIdParameter, proIdParameter);
         }
-    
         public virtual int CartDet_Insert(Nullable<int> cartId, Nullable<int> shpId, Nullable<int> proId, Nullable<int> qty)
         {
             var cartIdParameter = cartId.HasValue ?
                 new ObjectParameter("CartId", cartId) :
                 new ObjectParameter("CartId", typeof(int));
-    
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             var qtyParameter = qty.HasValue ?
                 new ObjectParameter("Qty", qty) :
                 new ObjectParameter("Qty", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CartDet_Insert", cartIdParameter, shpIdParameter, proIdParameter, qtyParameter);
         }
-    
         public virtual ObjectResult<CartDet_Select_Result> CartDet_Select(Nullable<int> cartId, Nullable<int> shpId, Nullable<int> proId)
         {
             var cartIdParameter = cartId.HasValue ?
                 new ObjectParameter("CartId", cartId) :
                 new ObjectParameter("CartId", typeof(int));
-    
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CartDet_Select_Result>("CartDet_Select", cartIdParameter, shpIdParameter, proIdParameter);
         }
-    
         public virtual int CartDet_Update(Nullable<int> cartId, Nullable<int> shpId, Nullable<int> proId, Nullable<int> qty)
         {
             var cartIdParameter = cartId.HasValue ?
                 new ObjectParameter("CartId", cartId) :
                 new ObjectParameter("CartId", typeof(int));
-    
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             var qtyParameter = qty.HasValue ?
                 new ObjectParameter("Qty", qty) :
                 new ObjectParameter("Qty", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CartDet_Update", cartIdParameter, shpIdParameter, proIdParameter, qtyParameter);
         }
-    
         public virtual int Cus_Delete(Nullable<int> cusId)
         {
             var cusIdParameter = cusId.HasValue ?
                 new ObjectParameter("CusId", cusId) :
                 new ObjectParameter("CusId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Cus_Delete", cusIdParameter);
         }
-    
         public virtual ObjectResult<Cus_Info_Result> Cus_Info()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Cus_Info_Result>("Cus_Info");
         }
-    
         public virtual int Cus_Insert(Nullable<int> cusId)
         {
             var cusIdParameter = cusId.HasValue ?
                 new ObjectParameter("CusId", cusId) :
                 new ObjectParameter("CusId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Cus_Insert", cusIdParameter);
         }
-    
         public virtual ObjectResult<Nullable<int>> Cus_Select(Nullable<int> cusID)
         {
             var cusIDParameter = cusID.HasValue ?
                 new ObjectParameter("CusID", cusID) :
                 new ObjectParameter("CusID", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Cus_Select", cusIDParameter);
         }
-    
         public virtual int Cus_Update(Nullable<int> cusId)
         {
             var cusIdParameter = cusId.HasValue ?
                 new ObjectParameter("CusId", cusId) :
                 new ObjectParameter("CusId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Cus_Update", cusIdParameter);
         }
-    
         public virtual int Mer_Delete(Nullable<int> merId)
         {
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Mer_Delete", merIdParameter);
         }
-    
         public virtual ObjectResult<Mer_Info_Result> Mer_Info()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Mer_Info_Result>("Mer_Info");
         }
-    
         public virtual int Mer_Insert(Nullable<int> merId)
         {
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Mer_Insert", merIdParameter);
         }
-    
         public virtual ObjectResult<Nullable<int>> Mer_Select(Nullable<int> merId)
         {
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Mer_Select", merIdParameter);
         }
-    
         public virtual int Mer_Update(Nullable<int> merId)
         {
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Mer_Update", merIdParameter);
         }
-    
         public virtual int Mstr_Delete(Nullable<int> mstrId, Nullable<int> roleId)
         {
             var mstrIdParameter = mstrId.HasValue ?
                 new ObjectParameter("MstrId", mstrId) :
                 new ObjectParameter("MstrId", typeof(int));
-    
             var roleIdParameter = roleId.HasValue ?
                 new ObjectParameter("RoleId", roleId) :
                 new ObjectParameter("RoleId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Mstr_Delete", mstrIdParameter, roleIdParameter);
         }
-    
         public virtual int Mstr_Insert(Nullable<int> mstrId, Nullable<int> roleId)
         {
             var mstrIdParameter = mstrId.HasValue ?
                 new ObjectParameter("MstrId", mstrId) :
                 new ObjectParameter("MstrId", typeof(int));
-    
             var roleIdParameter = roleId.HasValue ?
                 new ObjectParameter("RoleId", roleId) :
                 new ObjectParameter("RoleId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Mstr_Insert", mstrIdParameter, roleIdParameter);
         }
-    
         public virtual ObjectResult<Nullable<int>> Mstr_Select(Nullable<int> mstrId, Nullable<int> roleId)
         {
             var mstrIdParameter = mstrId.HasValue ?
                 new ObjectParameter("MstrId", mstrId) :
                 new ObjectParameter("MstrId", typeof(int));
-    
             var roleIdParameter = roleId.HasValue ?
                 new ObjectParameter("RoleId", roleId) :
                 new ObjectParameter("RoleId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Mstr_Select", mstrIdParameter, roleIdParameter);
         }
-    
         public virtual int Mstr_Update(Nullable<int> mstrId, Nullable<int> roleId)
         {
             var mstrIdParameter = mstrId.HasValue ?
                 new ObjectParameter("MstrId", mstrId) :
                 new ObjectParameter("MstrId", typeof(int));
-    
             var roleIdParameter = roleId.HasValue ?
                 new ObjectParameter("RoleId", roleId) :
                 new ObjectParameter("RoleId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Mstr_Update", mstrIdParameter, roleIdParameter);
         }
-    
         public virtual int MstrRole_Delete(Nullable<int> roleId, string roleName)
         {
             var roleIdParameter = roleId.HasValue ?
                 new ObjectParameter("RoleId", roleId) :
                 new ObjectParameter("RoleId", typeof(int));
-    
             var roleNameParameter = roleName != null ?
                 new ObjectParameter("RoleName", roleName) :
                 new ObjectParameter("RoleName", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MstrRole_Delete", roleIdParameter, roleNameParameter);
         }
-    
         public virtual int MstrRole_Insert(Nullable<int> roleId, string roleName)
         {
             var roleIdParameter = roleId.HasValue ?
                 new ObjectParameter("RoleId", roleId) :
                 new ObjectParameter("RoleId", typeof(int));
-    
             var roleNameParameter = roleName != null ?
                 new ObjectParameter("RoleName", roleName) :
                 new ObjectParameter("RoleName", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MstrRole_Insert", roleIdParameter, roleNameParameter);
         }
-    
         public virtual ObjectResult<MstrRole_Select_Result> MstrRole_Select(Nullable<int> roleId, string roleName)
         {
             var roleIdParameter = roleId.HasValue ?
                 new ObjectParameter("RoleId", roleId) :
                 new ObjectParameter("RoleId", typeof(int));
-    
             var roleNameParameter = roleName != null ?
                 new ObjectParameter("RoleName", roleName) :
                 new ObjectParameter("RoleName", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MstrRole_Select_Result>("MstrRole_Select", roleIdParameter, roleNameParameter);
         }
-    
         public virtual int MstrRole_Update(Nullable<int> roleId, string roleName)
         {
             var roleIdParameter = roleId.HasValue ?
                 new ObjectParameter("RoleId", roleId) :
                 new ObjectParameter("RoleId", typeof(int));
-    
             var roleNameParameter = roleName != null ?
                 new ObjectParameter("RoleName", roleName) :
                 new ObjectParameter("RoleName", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MstrRole_Update", roleIdParameter, roleNameParameter);
         }
-    
         public virtual int ProBrand_Delete(Nullable<int> brandId)
         {
             var brandIdParameter = brandId.HasValue ?
                 new ObjectParameter("BrandId", brandId) :
                 new ObjectParameter("BrandId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProBrand_Delete", brandIdParameter);
         }
-    
         public virtual int ProBrand_Insert(Nullable<int> brandId, string brandName)
         {
             var brandIdParameter = brandId.HasValue ?
                 new ObjectParameter("BrandId", brandId) :
                 new ObjectParameter("BrandId", typeof(int));
-    
             var brandNameParameter = brandName != null ?
                 new ObjectParameter("BrandName", brandName) :
                 new ObjectParameter("BrandName", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProBrand_Insert", brandIdParameter, brandNameParameter);
         }
-    
         public virtual ObjectResult<ProBrand_Select_Result> ProBrand_Select(Nullable<int> brandId)
         {
             var brandIdParameter = brandId.HasValue ?
                 new ObjectParameter("BrandId", brandId) :
                 new ObjectParameter("BrandId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProBrand_Select_Result>("ProBrand_Select", brandIdParameter);
         }
-    
         public virtual int ProBrand_Update(Nullable<int> brandId, string brandName)
         {
             var brandIdParameter = brandId.HasValue ?
                 new ObjectParameter("BrandId", brandId) :
                 new ObjectParameter("BrandId", typeof(int));
-    
             var brandNameParameter = brandName != null ?
                 new ObjectParameter("BrandName", brandName) :
                 new ObjectParameter("BrandName", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProBrand_Update", brandIdParameter, brandNameParameter);
         }
-    
         public virtual int ProCat_Delete(Nullable<int> catId)
         {
             var catIdParameter = catId.HasValue ?
                 new ObjectParameter("CatId", catId) :
                 new ObjectParameter("CatId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProCat_Delete", catIdParameter);
         }
-    
         public virtual int ProCat_Insert(Nullable<int> catId, string catName, Nullable<bool> active, Nullable<System.DateTime> dateAdd, Nullable<System.DateTime> dateEdit)
         {
             var catIdParameter = catId.HasValue ?
                 new ObjectParameter("CatId", catId) :
                 new ObjectParameter("CatId", typeof(int));
-    
             var catNameParameter = catName != null ?
                 new ObjectParameter("CatName", catName) :
                 new ObjectParameter("CatName", typeof(string));
-    
             var activeParameter = active.HasValue ?
                 new ObjectParameter("Active", active) :
                 new ObjectParameter("Active", typeof(bool));
-    
             var dateAddParameter = dateAdd.HasValue ?
                 new ObjectParameter("DateAdd", dateAdd) :
                 new ObjectParameter("DateAdd", typeof(System.DateTime));
-    
             var dateEditParameter = dateEdit.HasValue ?
                 new ObjectParameter("DateEdit", dateEdit) :
                 new ObjectParameter("DateEdit", typeof(System.DateTime));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProCat_Insert", catIdParameter, catNameParameter, activeParameter, dateAddParameter, dateEditParameter);
         }
-    
         public virtual ObjectResult<ProCat_Select_Result> ProCat_Select(Nullable<int> catId)
         {
             var catIdParameter = catId.HasValue ?
                 new ObjectParameter("CatId", catId) :
                 new ObjectParameter("CatId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProCat_Select_Result>("ProCat_Select", catIdParameter);
         }
-    
         public virtual int ProCat_Update(Nullable<int> catId, string catName, Nullable<bool> active, Nullable<System.DateTime> dateAdd, Nullable<System.DateTime> dateEdit)
         {
             var catIdParameter = catId.HasValue ?
                 new ObjectParameter("CatId", catId) :
                 new ObjectParameter("CatId", typeof(int));
-    
             var catNameParameter = catName != null ?
                 new ObjectParameter("CatName", catName) :
                 new ObjectParameter("CatName", typeof(string));
-    
             var activeParameter = active.HasValue ?
                 new ObjectParameter("Active", active) :
                 new ObjectParameter("Active", typeof(bool));
-    
             var dateAddParameter = dateAdd.HasValue ?
                 new ObjectParameter("DateAdd", dateAdd) :
                 new ObjectParameter("DateAdd", typeof(System.DateTime));
-    
             var dateEditParameter = dateEdit.HasValue ?
                 new ObjectParameter("DateEdit", dateEdit) :
                 new ObjectParameter("DateEdit", typeof(System.DateTime));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProCat_Update", catIdParameter, catNameParameter, activeParameter, dateAddParameter, dateEditParameter);
         }
-    
         public virtual int ProColor_Delete(Nullable<int> colorId)
         {
             var colorIdParameter = colorId.HasValue ?
                 new ObjectParameter("ColorId", colorId) :
                 new ObjectParameter("ColorId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProColor_Delete", colorIdParameter);
         }
-    
         public virtual int ProColor_Insert(Nullable<int> colorId, string colorName, string colorImg)
         {
             var colorIdParameter = colorId.HasValue ?
                 new ObjectParameter("ColorId", colorId) :
                 new ObjectParameter("ColorId", typeof(int));
-    
             var colorNameParameter = colorName != null ?
                 new ObjectParameter("ColorName", colorName) :
                 new ObjectParameter("ColorName", typeof(string));
-    
             var colorImgParameter = colorImg != null ?
                 new ObjectParameter("ColorImg", colorImg) :
                 new ObjectParameter("ColorImg", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProColor_Insert", colorIdParameter, colorNameParameter, colorImgParameter);
         }
-    
         public virtual ObjectResult<ProColor_Select_Result> ProColor_Select(Nullable<int> colorId)
         {
             var colorIdParameter = colorId.HasValue ?
                 new ObjectParameter("ColorId", colorId) :
                 new ObjectParameter("ColorId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProColor_Select_Result>("ProColor_Select", colorIdParameter);
         }
-    
         public virtual int ProColor_Update(Nullable<int> colorId, string colorName, string colorImg)
         {
             var colorIdParameter = colorId.HasValue ?
                 new ObjectParameter("ColorId", colorId) :
                 new ObjectParameter("ColorId", typeof(int));
-    
             var colorNameParameter = colorName != null ?
                 new ObjectParameter("ColorName", colorName) :
                 new ObjectParameter("ColorName", typeof(string));
-    
             var colorImgParameter = colorImg != null ?
                 new ObjectParameter("ColorImg", colorImg) :
                 new ObjectParameter("ColorImg", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProColor_Update", colorIdParameter, colorNameParameter, colorImgParameter);
         }
-    
         public virtual int ProDet_Delete(Nullable<int> shpId, Nullable<int> proId, Nullable<int> colorId, Nullable<int> sizeId)
         {
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             var colorIdParameter = colorId.HasValue ?
                 new ObjectParameter("ColorId", colorId) :
                 new ObjectParameter("ColorId", typeof(int));
-    
             var sizeIdParameter = sizeId.HasValue ?
                 new ObjectParameter("SizeId", sizeId) :
                 new ObjectParameter("SizeId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProDet_Delete", shpIdParameter, proIdParameter, colorIdParameter, sizeIdParameter);
         }
-    
         public virtual int ProDet_Insert(Nullable<int> shpId, Nullable<int> proId, Nullable<int> colorId, Nullable<int> sizeId)
         {
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             var colorIdParameter = colorId.HasValue ?
                 new ObjectParameter("ColorId", colorId) :
                 new ObjectParameter("ColorId", typeof(int));
-    
             var sizeIdParameter = sizeId.HasValue ?
                 new ObjectParameter("SizeId", sizeId) :
                 new ObjectParameter("SizeId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProDet_Insert", shpIdParameter, proIdParameter, colorIdParameter, sizeIdParameter);
         }
-    
         public virtual ObjectResult<ProDet_Select_Result> ProDet_Select(Nullable<int> shpId, Nullable<int> proId, Nullable<int> colorId, Nullable<int> sizeId)
         {
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             var colorIdParameter = colorId.HasValue ?
                 new ObjectParameter("ColorId", colorId) :
                 new ObjectParameter("ColorId", typeof(int));
-    
             var sizeIdParameter = sizeId.HasValue ?
                 new ObjectParameter("SizeId", sizeId) :
                 new ObjectParameter("SizeId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProDet_Select_Result>("ProDet_Select", shpIdParameter, proIdParameter, colorIdParameter, sizeIdParameter);
         }
-    
         public virtual int ProDet_Update(Nullable<int> shpId, Nullable<int> proId, Nullable<int> colorId, Nullable<int> sizeId)
         {
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             var colorIdParameter = colorId.HasValue ?
                 new ObjectParameter("ColorId", colorId) :
                 new ObjectParameter("ColorId", typeof(int));
-    
             var sizeIdParameter = sizeId.HasValue ?
                 new ObjectParameter("SizeId", sizeId) :
                 new ObjectParameter("SizeId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProDet_Update", shpIdParameter, proIdParameter, colorIdParameter, sizeIdParameter);
         }
-    
         public virtual int ProSize_Delete(Nullable<int> sizeId)
         {
             var sizeIdParameter = sizeId.HasValue ?
                 new ObjectParameter("SizeId", sizeId) :
                 new ObjectParameter("SizeId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProSize_Delete", sizeIdParameter);
         }
-    
         public virtual int ProSize_Insert(Nullable<int> sizeId, string sizeName, string sizeImg)
         {
             var sizeIdParameter = sizeId.HasValue ?
                 new ObjectParameter("SizeId", sizeId) :
                 new ObjectParameter("SizeId", typeof(int));
-    
             var sizeNameParameter = sizeName != null ?
                 new ObjectParameter("SizeName", sizeName) :
                 new ObjectParameter("SizeName", typeof(string));
-    
             var sizeImgParameter = sizeImg != null ?
                 new ObjectParameter("SizeImg", sizeImg) :
                 new ObjectParameter("SizeImg", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProSize_Insert", sizeIdParameter, sizeNameParameter, sizeImgParameter);
         }
-    
         public virtual ObjectResult<ProSize_Select_Result> ProSize_Select(Nullable<int> sizeId)
         {
             var sizeIdParameter = sizeId.HasValue ?
                 new ObjectParameter("SizeId", sizeId) :
                 new ObjectParameter("SizeId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProSize_Select_Result>("ProSize_Select", sizeIdParameter);
         }
-    
         public virtual int ProSize_Update(Nullable<int> sizeId, string sizeName, string sizeImg)
         {
             var sizeIdParameter = sizeId.HasValue ?
                 new ObjectParameter("SizeId", sizeId) :
                 new ObjectParameter("SizeId", typeof(int));
-    
             var sizeNameParameter = sizeName != null ?
                 new ObjectParameter("SizeName", sizeName) :
                 new ObjectParameter("SizeName", typeof(string));
-    
             var sizeImgParameter = sizeImg != null ?
                 new ObjectParameter("SizeImg", sizeImg) :
                 new ObjectParameter("SizeImg", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProSize_Update", sizeIdParameter, sizeNameParameter, sizeImgParameter);
         }
-    
         public virtual int Rcpt_Delete(Nullable<int> rcptId)
         {
             var rcptIdParameter = rcptId.HasValue ?
                 new ObjectParameter("RcptId", rcptId) :
                 new ObjectParameter("RcptId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Rcpt_Delete", rcptIdParameter);
         }
-    
         public virtual int Rcpt_Insert(Nullable<int> rcptId, Nullable<int> usrAdd, Nullable<int> usrEdit, Nullable<System.DateTime> dateAdd, Nullable<System.DateTime> dateEdit)
         {
             var rcptIdParameter = rcptId.HasValue ?
                 new ObjectParameter("RcptId", rcptId) :
                 new ObjectParameter("RcptId", typeof(int));
-    
             var usrAddParameter = usrAdd.HasValue ?
                 new ObjectParameter("UsrAdd", usrAdd) :
                 new ObjectParameter("UsrAdd", typeof(int));
-    
             var usrEditParameter = usrEdit.HasValue ?
                 new ObjectParameter("UsrEdit", usrEdit) :
                 new ObjectParameter("UsrEdit", typeof(int));
-    
             var dateAddParameter = dateAdd.HasValue ?
                 new ObjectParameter("DateAdd", dateAdd) :
                 new ObjectParameter("DateAdd", typeof(System.DateTime));
-    
             var dateEditParameter = dateEdit.HasValue ?
                 new ObjectParameter("DateEdit", dateEdit) :
                 new ObjectParameter("DateEdit", typeof(System.DateTime));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Rcpt_Insert", rcptIdParameter, usrAddParameter, usrEditParameter, dateAddParameter, dateEditParameter);
         }
-    
         public virtual ObjectResult<Rcpt_Select_Result> Rcpt_Select(Nullable<int> rcptId)
         {
             var rcptIdParameter = rcptId.HasValue ?
                 new ObjectParameter("RcptId", rcptId) :
                 new ObjectParameter("RcptId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Rcpt_Select_Result>("Rcpt_Select", rcptIdParameter);
         }
-    
         public virtual int Rcpt_Update(Nullable<int> rcptId, Nullable<int> usrAdd, Nullable<int> usrEdit, Nullable<System.DateTime> dateAdd, Nullable<System.DateTime> dateEdit)
         {
             var rcptIdParameter = rcptId.HasValue ?
                 new ObjectParameter("RcptId", rcptId) :
                 new ObjectParameter("RcptId", typeof(int));
-    
             var usrAddParameter = usrAdd.HasValue ?
                 new ObjectParameter("UsrAdd", usrAdd) :
                 new ObjectParameter("UsrAdd", typeof(int));
-    
             var usrEditParameter = usrEdit.HasValue ?
                 new ObjectParameter("UsrEdit", usrEdit) :
                 new ObjectParameter("UsrEdit", typeof(int));
-    
             var dateAddParameter = dateAdd.HasValue ?
                 new ObjectParameter("DateAdd", dateAdd) :
                 new ObjectParameter("DateAdd", typeof(System.DateTime));
-    
             var dateEditParameter = dateEdit.HasValue ?
                 new ObjectParameter("DateEdit", dateEdit) :
                 new ObjectParameter("DateEdit", typeof(System.DateTime));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Rcpt_Update", rcptIdParameter, usrAddParameter, usrEditParameter, dateAddParameter, dateEditParameter);
         }
-    
         public virtual int RcptBuy_Delete(Nullable<int> rcptBuyId)
         {
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuy_Delete", rcptBuyIdParameter);
         }
-    
         public virtual int RcptBuy_Insert(Nullable<int> rcptBuyId, Nullable<int> cusId)
         {
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             var cusIdParameter = cusId.HasValue ?
                 new ObjectParameter("CusId", cusId) :
                 new ObjectParameter("CusId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuy_Insert", rcptBuyIdParameter, cusIdParameter);
         }
-    
         public virtual ObjectResult<RcptBuy_Select_Result> RcptBuy_Select(Nullable<int> rcptBuyId)
         {
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RcptBuy_Select_Result>("RcptBuy_Select", rcptBuyIdParameter);
         }
-    
         public virtual int RcptBuy_Update(Nullable<int> rcptBuyId, Nullable<int> cusId)
         {
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             var cusIdParameter = cusId.HasValue ?
                 new ObjectParameter("CusId", cusId) :
                 new ObjectParameter("CusId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuy_Update", rcptBuyIdParameter, cusIdParameter);
         }
-    
         public virtual int RcptBuyDet_Delete(Nullable<int> rcptBuyId, Nullable<int> shpId, Nullable<int> proId)
         {
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuyDet_Delete", rcptBuyIdParameter, shpIdParameter, proIdParameter);
         }
-    
         public virtual int RcptBuyDet_Insert(Nullable<int> rcptBuyId, Nullable<int> shpId, Nullable<int> proId)
         {
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuyDet_Insert", rcptBuyIdParameter, shpIdParameter, proIdParameter);
         }
-    
         public virtual ObjectResult<RcptBuyDet_Select_Result> RcptBuyDet_Select(Nullable<int> rcptBuyId, Nullable<int> shpId, Nullable<int> proId)
         {
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RcptBuyDet_Select_Result>("RcptBuyDet_Select", rcptBuyIdParameter, shpIdParameter, proIdParameter);
         }
-    
         public virtual int RcptBuyDet_Update(Nullable<int> rcptBuyId, Nullable<int> shpId, Nullable<int> proId)
         {
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var proIdParameter = proId.HasValue ?
                 new ObjectParameter("ProId", proId) :
                 new ObjectParameter("ProId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuyDet_Update", rcptBuyIdParameter, shpIdParameter, proIdParameter);
         }
-    
         public virtual int RcptBuySta_Delete(Nullable<int> staId, Nullable<int> rcptBuyId)
         {
             var staIdParameter = staId.HasValue ?
                 new ObjectParameter("StaId", staId) :
                 new ObjectParameter("StaId", typeof(int));
-    
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuySta_Delete", staIdParameter, rcptBuyIdParameter);
         }
-    
         public virtual int RcptBuySta_Insert(Nullable<int> staId, Nullable<int> rcptBuyId)
         {
             var staIdParameter = staId.HasValue ?
                 new ObjectParameter("StaId", staId) :
                 new ObjectParameter("StaId", typeof(int));
-    
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuySta_Insert", staIdParameter, rcptBuyIdParameter);
         }
-    
         public virtual ObjectResult<RcptBuySta_Select_Result> RcptBuySta_Select(Nullable<int> staId, Nullable<int> rcptBuyId)
         {
             var staIdParameter = staId.HasValue ?
                 new ObjectParameter("StaId", staId) :
                 new ObjectParameter("StaId", typeof(int));
-    
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RcptBuySta_Select_Result>("RcptBuySta_Select", staIdParameter, rcptBuyIdParameter);
         }
-    
         public virtual int RcptBuySta_Update(Nullable<int> staId, Nullable<int> rcptBuyId)
         {
             var staIdParameter = staId.HasValue ?
                 new ObjectParameter("StaId", staId) :
                 new ObjectParameter("StaId", typeof(int));
-    
             var rcptBuyIdParameter = rcptBuyId.HasValue ?
                 new ObjectParameter("RcptBuyId", rcptBuyId) :
                 new ObjectParameter("RcptBuyId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuySta_Update", staIdParameter, rcptBuyIdParameter);
         }
-    
         public virtual int RcptBuyStaDet_Delete(Nullable<int> staId, Nullable<int> stepId)
         {
             var staIdParameter = staId.HasValue ?
                 new ObjectParameter("StaId", staId) :
                 new ObjectParameter("StaId", typeof(int));
-    
             var stepIdParameter = stepId.HasValue ?
                 new ObjectParameter("StepId", stepId) :
                 new ObjectParameter("StepId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuyStaDet_Delete", staIdParameter, stepIdParameter);
         }
-    
         public virtual int RcptBuyStaDet_Insert(Nullable<int> staId, Nullable<int> stepId, Nullable<bool> isDone)
         {
             var staIdParameter = staId.HasValue ?
                 new ObjectParameter("StaId", staId) :
                 new ObjectParameter("StaId", typeof(int));
-    
             var stepIdParameter = stepId.HasValue ?
                 new ObjectParameter("StepId", stepId) :
                 new ObjectParameter("StepId", typeof(int));
-    
             var isDoneParameter = isDone.HasValue ?
                 new ObjectParameter("IsDone", isDone) :
                 new ObjectParameter("IsDone", typeof(bool));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuyStaDet_Insert", staIdParameter, stepIdParameter, isDoneParameter);
         }
-    
         public virtual ObjectResult<RcptBuyStaDet_Select_Result> RcptBuyStaDet_Select(Nullable<int> staId, Nullable<int> stepId)
         {
             var staIdParameter = staId.HasValue ?
                 new ObjectParameter("StaId", staId) :
                 new ObjectParameter("StaId", typeof(int));
-    
             var stepIdParameter = stepId.HasValue ?
                 new ObjectParameter("StepId", stepId) :
                 new ObjectParameter("StepId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RcptBuyStaDet_Select_Result>("RcptBuyStaDet_Select", staIdParameter, stepIdParameter);
         }
-    
         public virtual int RcptBuyStaDet_Update(Nullable<int> staId, Nullable<int> stepId, Nullable<bool> isDone)
         {
             var staIdParameter = staId.HasValue ?
                 new ObjectParameter("StaId", staId) :
                 new ObjectParameter("StaId", typeof(int));
-    
             var stepIdParameter = stepId.HasValue ?
                 new ObjectParameter("StepId", stepId) :
                 new ObjectParameter("StepId", typeof(int));
-    
             var isDoneParameter = isDone.HasValue ?
                 new ObjectParameter("IsDone", isDone) :
                 new ObjectParameter("IsDone", typeof(bool));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuyStaDet_Update", staIdParameter, stepIdParameter, isDoneParameter);
         }
-    
         public virtual int RcptBuyStaStep_Delete(Nullable<int> stepId)
         {
             var stepIdParameter = stepId.HasValue ?
                 new ObjectParameter("StepId", stepId) :
                 new ObjectParameter("StepId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuyStaStep_Delete", stepIdParameter);
         }
-    
         public virtual int RcptBuyStaStep_Insert(Nullable<int> stepId, string stepCont, Nullable<int> stepOrder)
         {
             var stepIdParameter = stepId.HasValue ?
                 new ObjectParameter("StepId", stepId) :
                 new ObjectParameter("StepId", typeof(int));
-    
             var stepContParameter = stepCont != null ?
                 new ObjectParameter("StepCont", stepCont) :
                 new ObjectParameter("StepCont", typeof(string));
-    
             var stepOrderParameter = stepOrder.HasValue ?
                 new ObjectParameter("StepOrder", stepOrder) :
                 new ObjectParameter("StepOrder", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuyStaStep_Insert", stepIdParameter, stepContParameter, stepOrderParameter);
         }
-    
         public virtual ObjectResult<RcptBuyStaStep_Select_Result> RcptBuyStaStep_Select(Nullable<int> stepId)
         {
             var stepIdParameter = stepId.HasValue ?
                 new ObjectParameter("StepId", stepId) :
                 new ObjectParameter("StepId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RcptBuyStaStep_Select_Result>("RcptBuyStaStep_Select", stepIdParameter);
         }
-    
         public virtual int RcptBuyStaStep_Update(Nullable<int> stepId, string stepCont, Nullable<int> stepOrder)
         {
             var stepIdParameter = stepId.HasValue ?
                 new ObjectParameter("StepId", stepId) :
                 new ObjectParameter("StepId", typeof(int));
-    
             var stepContParameter = stepCont != null ?
                 new ObjectParameter("StepCont", stepCont) :
                 new ObjectParameter("StepCont", typeof(string));
-    
             var stepOrderParameter = stepOrder.HasValue ?
                 new ObjectParameter("StepOrder", stepOrder) :
                 new ObjectParameter("StepOrder", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptBuyStaStep_Update", stepIdParameter, stepContParameter, stepOrderParameter);
         }
-    
         public virtual int RcptSub_Delete(Nullable<int> rcptSubId)
         {
             var rcptSubIdParameter = rcptSubId.HasValue ?
                 new ObjectParameter("RcptSubId", rcptSubId) :
                 new ObjectParameter("RcptSubId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptSub_Delete", rcptSubIdParameter);
         }
-    
         public virtual int RcptSub_Insert(Nullable<int> rcptSubId)
         {
             var rcptSubIdParameter = rcptSubId.HasValue ?
                 new ObjectParameter("RcptSubId", rcptSubId) :
                 new ObjectParameter("RcptSubId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptSub_Insert", rcptSubIdParameter);
         }
-    
         public virtual ObjectResult<Nullable<int>> RcptSub_Select(Nullable<int> rcptSubId)
         {
             var rcptSubIdParameter = rcptSubId.HasValue ?
                 new ObjectParameter("RcptSubId", rcptSubId) :
                 new ObjectParameter("RcptSubId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("RcptSub_Select", rcptSubIdParameter);
         }
-    
         public virtual int RcptSub_Update(Nullable<int> rcptSubId)
         {
             var rcptSubIdParameter = rcptSubId.HasValue ?
                 new ObjectParameter("RcptSubId", rcptSubId) :
                 new ObjectParameter("RcptSubId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptSub_Update", rcptSubIdParameter);
         }
-    
         public virtual int RcptSubDet_Delete(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)
         {
             var rcptSubIdParameter = rcptSubId.HasValue ?
                 new ObjectParameter("RcptSubId", rcptSubId) :
                 new ObjectParameter("RcptSubId", typeof(int));
-    
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptSubDet_Delete", rcptSubIdParameter, subIdParameter, merIdParameter);
         }
-    
         public virtual int RcptSubDet_Insert(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)
         {
             var rcptSubIdParameter = rcptSubId.HasValue ?
                 new ObjectParameter("RcptSubId", rcptSubId) :
                 new ObjectParameter("RcptSubId", typeof(int));
-    
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptSubDet_Insert", rcptSubIdParameter, subIdParameter, merIdParameter);
         }
-    
         public virtual ObjectResult<RcptSubDet_Select_Result> RcptSubDet_Select(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)
         {
             var rcptSubIdParameter = rcptSubId.HasValue ?
                 new ObjectParameter("RcptSubId", rcptSubId) :
                 new ObjectParameter("RcptSubId", typeof(int));
-    
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RcptSubDet_Select_Result>("RcptSubDet_Select", rcptSubIdParameter, subIdParameter, merIdParameter);
         }
-    
         public virtual int RcptSubDet_Update(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)
         {
             var rcptSubIdParameter = rcptSubId.HasValue ?
                 new ObjectParameter("RcptSubId", rcptSubId) :
                 new ObjectParameter("RcptSubId", typeof(int));
-    
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RcptSubDet_Update", rcptSubIdParameter, subIdParameter, merIdParameter);
         }
-    
         public virtual int Shp_Delete(Nullable<int> shpId)
         {
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Shp_Delete", shpIdParameter);
         }
-    
         public virtual int Shp_Insert(Nullable<int> shpId, Nullable<int> merId, string shpName, Nullable<System.DateTime> dateStart, Nullable<bool> active)
         {
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             var shpNameParameter = shpName != null ?
                 new ObjectParameter("ShpName", shpName) :
                 new ObjectParameter("ShpName", typeof(string));
-    
             var dateStartParameter = dateStart.HasValue ?
                 new ObjectParameter("DateStart", dateStart) :
                 new ObjectParameter("DateStart", typeof(System.DateTime));
-    
             var activeParameter = active.HasValue ?
                 new ObjectParameter("Active", active) :
                 new ObjectParameter("Active", typeof(bool));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Shp_Insert", shpIdParameter, merIdParameter, shpNameParameter, dateStartParameter, activeParameter);
         }
-    
         public virtual ObjectResult<Shp_Select_Result> Shp_Select(Nullable<int> shpId)
         {
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Shp_Select_Result>("Shp_Select", shpIdParameter);
         }
-    
         public virtual int Shp_Update(Nullable<int> shpId, Nullable<int> merId, string shpName, Nullable<System.DateTime> dateStart, Nullable<bool> active)
         {
             var shpIdParameter = shpId.HasValue ?
                 new ObjectParameter("ShpId", shpId) :
                 new ObjectParameter("ShpId", typeof(int));
-    
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             var shpNameParameter = shpName != null ?
                 new ObjectParameter("ShpName", shpName) :
                 new ObjectParameter("ShpName", typeof(string));
-    
             var dateStartParameter = dateStart.HasValue ?
                 new ObjectParameter("DateStart", dateStart) :
                 new ObjectParameter("DateStart", typeof(System.DateTime));
-    
             var activeParameter = active.HasValue ?
                 new ObjectParameter("Active", active) :
                 new ObjectParameter("Active", typeof(bool));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Shp_Update", shpIdParameter, merIdParameter, shpNameParameter, dateStartParameter, activeParameter);
         }
-    
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?
                 new ObjectParameter("diagramname", diagramname) :
                 new ObjectParameter("diagramname", typeof(string));
-    
             var owner_idParameter = owner_id.HasValue ?
                 new ObjectParameter("owner_id", owner_id) :
                 new ObjectParameter("owner_id", typeof(int));
-    
             var versionParameter = version.HasValue ?
                 new ObjectParameter("version", version) :
                 new ObjectParameter("version", typeof(int));
-    
             var definitionParameter = definition != null ?
                 new ObjectParameter("definition", definition) :
                 new ObjectParameter("definition", typeof(byte[]));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
         }
-    
         public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?
                 new ObjectParameter("diagramname", diagramname) :
                 new ObjectParameter("diagramname", typeof(string));
-    
             var owner_idParameter = owner_id.HasValue ?
                 new ObjectParameter("owner_id", owner_id) :
                 new ObjectParameter("owner_id", typeof(int));
-    
             var versionParameter = version.HasValue ?
                 new ObjectParameter("version", version) :
                 new ObjectParameter("version", typeof(int));
-    
             var definitionParameter = definition != null ?
                 new ObjectParameter("definition", definition) :
                 new ObjectParameter("definition", typeof(byte[]));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
         }
-    
         public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
         {
             var diagramnameParameter = diagramname != null ?
                 new ObjectParameter("diagramname", diagramname) :
                 new ObjectParameter("diagramname", typeof(string));
-    
             var owner_idParameter = owner_id.HasValue ?
                 new ObjectParameter("owner_id", owner_id) :
                 new ObjectParameter("owner_id", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
         }
-    
         public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
         {
             var diagramnameParameter = diagramname != null ?
                 new ObjectParameter("diagramname", diagramname) :
                 new ObjectParameter("diagramname", typeof(string));
-    
             var owner_idParameter = owner_id.HasValue ?
                 new ObjectParameter("owner_id", owner_id) :
                 new ObjectParameter("owner_id", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
         }
-    
         public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
         {
             var diagramnameParameter = diagramname != null ?
                 new ObjectParameter("diagramname", diagramname) :
                 new ObjectParameter("diagramname", typeof(string));
-    
             var owner_idParameter = owner_id.HasValue ?
                 new ObjectParameter("owner_id", owner_id) :
                 new ObjectParameter("owner_id", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
-    
         public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
         {
             var diagramnameParameter = diagramname != null ?
                 new ObjectParameter("diagramname", diagramname) :
                 new ObjectParameter("diagramname", typeof(string));
-    
             var owner_idParameter = owner_id.HasValue ?
                 new ObjectParameter("owner_id", owner_id) :
                 new ObjectParameter("owner_id", typeof(int));
-    
             var new_diagramnameParameter = new_diagramname != null ?
                 new ObjectParameter("new_diagramname", new_diagramname) :
                 new ObjectParameter("new_diagramname", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
-    
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
-    
         public virtual int Sub_Delete(Nullable<int> subId)
         {
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Sub_Delete", subIdParameter);
         }
-    
         public virtual int Sub_Insert(Nullable<int> subId, string subContent, Nullable<int> durDay, string price)
         {
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             var subContentParameter = subContent != null ?
                 new ObjectParameter("SubContent", subContent) :
                 new ObjectParameter("SubContent", typeof(string));
-    
             var durDayParameter = durDay.HasValue ?
                 new ObjectParameter("DurDay", durDay) :
                 new ObjectParameter("DurDay", typeof(int));
-    
             var priceParameter = price != null ?
                 new ObjectParameter("Price", price) :
                 new ObjectParameter("Price", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Sub_Insert", subIdParameter, subContentParameter, durDayParameter, priceParameter);
         }
-    
         public virtual ObjectResult<Sub_Select_Result> Sub_Select(Nullable<int> subId)
         {
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sub_Select_Result>("Sub_Select", subIdParameter);
         }
-    
         public virtual int Sub_Update(Nullable<int> subId, string subContent, Nullable<int> durDay, string price)
         {
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             var subContentParameter = subContent != null ?
                 new ObjectParameter("SubContent", subContent) :
                 new ObjectParameter("SubContent", typeof(string));
-    
             var durDayParameter = durDay.HasValue ?
                 new ObjectParameter("DurDay", durDay) :
                 new ObjectParameter("DurDay", typeof(int));
-    
             var priceParameter = price != null ?
                 new ObjectParameter("Price", price) :
                 new ObjectParameter("Price", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Sub_Update", subIdParameter, subContentParameter, durDayParameter, priceParameter);
         }
-    
         public virtual int SubDet_Delete(Nullable<int> subId, Nullable<int> merId)
         {
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SubDet_Delete", subIdParameter, merIdParameter);
         }
-    
         public virtual int SubDet_Insert(Nullable<int> subId, Nullable<int> merId, Nullable<System.DateTime> dateStart, Nullable<System.DateTime> dateEnd)
         {
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             var dateStartParameter = dateStart.HasValue ?
                 new ObjectParameter("DateStart", dateStart) :
                 new ObjectParameter("DateStart", typeof(System.DateTime));
-    
             var dateEndParameter = dateEnd.HasValue ?
                 new ObjectParameter("DateEnd", dateEnd) :
                 new ObjectParameter("DateEnd", typeof(System.DateTime));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SubDet_Insert", subIdParameter, merIdParameter, dateStartParameter, dateEndParameter);
         }
-    
         public virtual ObjectResult<SubDet_Select_Result> SubDet_Select(Nullable<int> subId, Nullable<int> merId)
         {
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SubDet_Select_Result>("SubDet_Select", subIdParameter, merIdParameter);
         }
-    
         public virtual int SubDet_Update(Nullable<int> subId, Nullable<int> merId, Nullable<System.DateTime> dateStart, Nullable<System.DateTime> dateEnd)
         {
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
                 new ObjectParameter("SubId", typeof(int));
-    
             var merIdParameter = merId.HasValue ?
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
-    
             var dateStartParameter = dateStart.HasValue ?
                 new ObjectParameter("DateStart", dateStart) :
                 new ObjectParameter("DateStart", typeof(System.DateTime));
-    
             var dateEndParameter = dateEnd.HasValue ?
                 new ObjectParameter("DateEnd", dateEnd) :
                 new ObjectParameter("DateEnd", typeof(System.DateTime));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SubDet_Update", subIdParameter, merIdParameter, dateStartParameter, dateEndParameter);
         }
-    
         public virtual int Usr_Delete(Nullable<int> usrId)
         {
             var usrIdParameter = usrId.HasValue ?
                 new ObjectParameter("UsrId", usrId) :
                 new ObjectParameter("UsrId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usr_Delete", usrIdParameter);
         }
-    
         public virtual int Usr_Insert(Nullable<int> usrId, string userName, string login, string password, Nullable<bool> active, string email, string address, string phone, Nullable<System.DateTime> dateAdd, Nullable<System.DateTime> dateEdit)
         {
             var usrIdParameter = usrId.HasValue ?
                 new ObjectParameter("UsrId", usrId) :
                 new ObjectParameter("UsrId", typeof(int));
-    
             var userNameParameter = userName != null ?
                 new ObjectParameter("UserName", userName) :
                 new ObjectParameter("UserName", typeof(string));
-    
             var loginParameter = login != null ?
                 new ObjectParameter("Login", login) :
                 new ObjectParameter("Login", typeof(string));
-    
             var passwordParameter = password != null ?
                 new ObjectParameter("Password", password) :
                 new ObjectParameter("Password", typeof(string));
-    
             var activeParameter = active.HasValue ?
                 new ObjectParameter("Active", active) :
                 new ObjectParameter("Active", typeof(bool));
-    
             var emailParameter = email != null ?
                 new ObjectParameter("Email", email) :
                 new ObjectParameter("Email", typeof(string));
-    
             var addressParameter = address != null ?
                 new ObjectParameter("Address", address) :
                 new ObjectParameter("Address", typeof(string));
-    
             var phoneParameter = phone != null ?
                 new ObjectParameter("Phone", phone) :
                 new ObjectParameter("Phone", typeof(string));
-    
             var dateAddParameter = dateAdd.HasValue ?
                 new ObjectParameter("DateAdd", dateAdd) :
                 new ObjectParameter("DateAdd", typeof(System.DateTime));
-    
             var dateEditParameter = dateEdit.HasValue ?
                 new ObjectParameter("DateEdit", dateEdit) :
                 new ObjectParameter("DateEdit", typeof(System.DateTime));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usr_Insert", usrIdParameter, userNameParameter, loginParameter, passwordParameter, activeParameter, emailParameter, addressParameter, phoneParameter, dateAddParameter, dateEditParameter);
         }
-    
         public virtual ObjectResult<Usr_Select_Result> Usr_Select(Nullable<int> usrId)
         {
             var usrIdParameter = usrId.HasValue ?
                 new ObjectParameter("UsrId", usrId) :
                 new ObjectParameter("UsrId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usr_Select_Result>("Usr_Select", usrIdParameter);
         }
-    
         public virtual int Usr_Update(Nullable<int> usrId, string userName, string login, string password, Nullable<bool> active, string email, string address, string phone, Nullable<System.DateTime> dateAdd, Nullable<System.DateTime> dateEdit)
         {
             var usrIdParameter = usrId.HasValue ?
                 new ObjectParameter("UsrId", usrId) :
                 new ObjectParameter("UsrId", typeof(int));
-    
             var userNameParameter = userName != null ?
                 new ObjectParameter("UserName", userName) :
                 new ObjectParameter("UserName", typeof(string));
-    
             var loginParameter = login != null ?
                 new ObjectParameter("Login", login) :
                 new ObjectParameter("Login", typeof(string));
-    
             var passwordParameter = password != null ?
                 new ObjectParameter("Password", password) :
                 new ObjectParameter("Password", typeof(string));
-    
             var activeParameter = active.HasValue ?
                 new ObjectParameter("Active", active) :
                 new ObjectParameter("Active", typeof(bool));
-    
             var emailParameter = email != null ?
                 new ObjectParameter("Email", email) :
                 new ObjectParameter("Email", typeof(string));
-    
             var addressParameter = address != null ?
                 new ObjectParameter("Address", address) :
                 new ObjectParameter("Address", typeof(string));
-    
             var phoneParameter = phone != null ?
                 new ObjectParameter("Phone", phone) :
                 new ObjectParameter("Phone", typeof(string));
-    
             var dateAddParameter = dateAdd.HasValue ?
                 new ObjectParameter("DateAdd", dateAdd) :
                 new ObjectParameter("DateAdd", typeof(System.DateTime));
-    
             var dateEditParameter = dateEdit.HasValue ?
                 new ObjectParameter("DateEdit", dateEdit) :
                 new ObjectParameter("DateEdit", typeof(System.DateTime));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usr_Update", usrIdParameter, userNameParameter, loginParameter, passwordParameter, activeParameter, emailParameter, addressParameter, phoneParameter, dateAddParameter, dateEditParameter);
         }
-    
         public virtual int WebInfo_Delete(Nullable<int> webId)
         {
             var webIdParameter = webId.HasValue ?
                 new ObjectParameter("WebId", webId) :
                 new ObjectParameter("WebId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("WebInfo_Delete", webIdParameter);
         }
-    
         public virtual ObjectResult<WebInfo_Insert_Result> WebInfo_Insert(Nullable<int> webId, string name, string address, string email, string phone, string workTime)
         {
             var webIdParameter = webId.HasValue ?
                 new ObjectParameter("WebId", webId) :
                 new ObjectParameter("WebId", typeof(int));
-    
             var nameParameter = name != null ?
                 new ObjectParameter("Name", name) :
                 new ObjectParameter("Name", typeof(string));
-    
             var addressParameter = address != null ?
                 new ObjectParameter("Address", address) :
                 new ObjectParameter("Address", typeof(string));
-    
             var emailParameter = email != null ?
                 new ObjectParameter("Email", email) :
                 new ObjectParameter("Email", typeof(string));
-    
             var phoneParameter = phone != null ?
                 new ObjectParameter("Phone", phone) :
                 new ObjectParameter("Phone", typeof(string));
-    
             var workTimeParameter = workTime != null ?
                 new ObjectParameter("WorkTime", workTime) :
                 new ObjectParameter("WorkTime", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WebInfo_Insert_Result>("WebInfo_Insert", webIdParameter, nameParameter, addressParameter, emailParameter, phoneParameter, workTimeParameter);
         }
-    
         public virtual ObjectResult<WebInfo_Select_Result> WebInfo_Select(Nullable<int> webId)
         {
             var webIdParameter = webId.HasValue ?
                 new ObjectParameter("WebId", webId) :
                 new ObjectParameter("WebId", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WebInfo_Select_Result>("WebInfo_Select", webIdParameter);
         }
-    
         public virtual ObjectResult<WebInfo_Update_Result> WebInfo_Update(Nullable<int> webId, string name, string address, string email, string phone, string workTime)
         {
             var webIdParameter = webId.HasValue ?
                 new ObjectParameter("WebId", webId) :
                 new ObjectParameter("WebId", typeof(int));
-    
             var nameParameter = name != null ?
                 new ObjectParameter("Name", name) :
                 new ObjectParameter("Name", typeof(string));
-    
             var addressParameter = address != null ?
                 new ObjectParameter("Address", address) :
                 new ObjectParameter("Address", typeof(string));
-    
             var emailParameter = email != null ?
                 new ObjectParameter("Email", email) :
                 new ObjectParameter("Email", typeof(string));
-    
             var phoneParameter = phone != null ?
                 new ObjectParameter("Phone", phone) :
                 new ObjectParameter("Phone", typeof(string));
-    
             var workTimeParameter = workTime != null ?
                 new ObjectParameter("WorkTime", workTime) :
                 new ObjectParameter("WorkTime", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WebInfo_Update_Result>("WebInfo_Update", webIdParameter, nameParameter, addressParameter, emailParameter, phoneParameter, workTimeParameter);
         }
-    
         public virtual int WebSlide_Delete(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("WebSlide_Delete", idParameter);
         }
-    
         public virtual ObjectResult<WebSlide_Insert_Result> WebSlide_Insert(Nullable<int> id, Nullable<int> webId, string img)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
-    
             var webIdParameter = webId.HasValue ?
                 new ObjectParameter("WebId", webId) :
                 new ObjectParameter("WebId", typeof(int));
-    
             var imgParameter = img != null ?
                 new ObjectParameter("Img", img) :
                 new ObjectParameter("Img", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WebSlide_Insert_Result>("WebSlide_Insert", idParameter, webIdParameter, imgParameter);
         }
-    
         public virtual ObjectResult<WebSlide_Select_Result> WebSlide_Select(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WebSlide_Select_Result>("WebSlide_Select", idParameter);
         }
-    
         public virtual ObjectResult<WebSlide_Update_Result> WebSlide_Update(Nullable<int> id, Nullable<int> webId, string img)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
-    
             var webIdParameter = webId.HasValue ?
                 new ObjectParameter("WebId", webId) :
                 new ObjectParameter("WebId", typeof(int));
-    
             var imgParameter = img != null ?
                 new ObjectParameter("Img", img) :
                 new ObjectParameter("Img", typeof(string));
-    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WebSlide_Update_Result>("WebSlide_Update", idParameter, webIdParameter, imgParameter);
         }
     }

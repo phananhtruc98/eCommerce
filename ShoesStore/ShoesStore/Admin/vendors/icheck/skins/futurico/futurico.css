@@ -13,7 +13,6 @@
     border: none;
     cursor: pointer;
 }
-
 .icheckbox_futurico {
     background-position: 0 0;
 }
@@ -27,7 +26,6 @@
     .icheckbox_futurico.checked.disabled {
         background-position: -54px 0;
     }
-
 .iradio_futurico {
     background-position: -72px 0;
 }
@@ -41,7 +39,6 @@
     .iradio_futurico.checked.disabled {
         background-position: -126px 0;
     }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_futurico,

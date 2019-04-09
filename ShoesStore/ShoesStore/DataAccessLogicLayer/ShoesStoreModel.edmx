@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ShoesStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ShoesStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008"
+              Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
+              xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation"
+              xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="CartId" />
@@ -646,390 +650,483 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="Admin_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Cart_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Admin_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Cart_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CartID" Type="int" Mode="In" />
         </Function>
-        <Function Name="Cart_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Cart_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CusID" Type="int" Mode="In" />
           <Parameter Name="IpAddress" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="Cart_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Cart_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CartID" Type="int" Mode="In" />
         </Function>
-        <Function Name="Cart_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Cart_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CartID" Type="int" Mode="In" />
           <Parameter Name="CusID" Type="int" Mode="In" />
           <Parameter Name="IpAddress" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="CartDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="CartDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CartId" Type="int" Mode="In" />
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
         </Function>
-        <Function Name="CartDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="CartDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CartId" Type="int" Mode="In" />
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
           <Parameter Name="Qty" Type="int" Mode="In" />
         </Function>
-        <Function Name="CartDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="CartDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CartId" Type="int" Mode="In" />
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
         </Function>
-        <Function Name="CartDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="CartDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CartId" Type="int" Mode="In" />
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
           <Parameter Name="Qty" Type="int" Mode="In" />
         </Function>
-        <Function Name="Cus_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Cus_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CusId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Cus_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Cus_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Cus_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Cus_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CusId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Cus_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Cus_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CusID" Type="int" Mode="In" />
         </Function>
-        <Function Name="Cus_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Cus_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CusId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Mer_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Mer_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Mer_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Mer_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Mer_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Mer_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Mer_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Mer_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Mer_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Mer_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Mstr_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Mstr_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MstrId" Type="int" Mode="In" />
           <Parameter Name="RoleId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Mstr_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Mstr_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MstrId" Type="int" Mode="In" />
           <Parameter Name="RoleId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Mstr_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Mstr_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MstrId" Type="int" Mode="In" />
           <Parameter Name="RoleId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Mstr_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Mstr_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MstrId" Type="int" Mode="In" />
           <Parameter Name="RoleId" Type="int" Mode="In" />
         </Function>
-        <Function Name="MstrRole_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="MstrRole_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RoleId" Type="int" Mode="In" />
           <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="MstrRole_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="MstrRole_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RoleId" Type="int" Mode="In" />
           <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="MstrRole_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="MstrRole_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RoleId" Type="int" Mode="In" />
           <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="MstrRole_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="MstrRole_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RoleId" Type="int" Mode="In" />
           <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="ProBrand_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProBrand_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BrandId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProBrand_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProBrand_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BrandId" Type="int" Mode="In" />
           <Parameter Name="BrandName" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="ProBrand_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProBrand_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BrandId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProBrand_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProBrand_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BrandId" Type="int" Mode="In" />
           <Parameter Name="BrandName" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="ProCat_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProCat_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CatId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProCat_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProCat_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CatId" Type="int" Mode="In" />
           <Parameter Name="CatName" Type="nvarchar" Mode="In" />
           <Parameter Name="Active" Type="bit" Mode="In" />
           <Parameter Name="DateAdd" Type="datetime" Mode="In" />
           <Parameter Name="DateEdit" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="ProCat_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProCat_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CatId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProCat_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProCat_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CatId" Type="int" Mode="In" />
           <Parameter Name="CatName" Type="nvarchar" Mode="In" />
           <Parameter Name="Active" Type="bit" Mode="In" />
           <Parameter Name="DateAdd" Type="datetime" Mode="In" />
           <Parameter Name="DateEdit" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="ProColor_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProColor_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ColorId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProColor_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ColorId" Type="int" Mode="In" />
-          <Parameter Name="ColorName" Type="nvarchar" Mode="In" />
-          <Parameter Name="ColorImg" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="ProColor_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ColorId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="ProColor_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProColor_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ColorId" Type="int" Mode="In" />
           <Parameter Name="ColorName" Type="nvarchar" Mode="In" />
           <Parameter Name="ColorImg" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="ProDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProColor_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ColorId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ProColor_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ColorId" Type="int" Mode="In" />
+          <Parameter Name="ColorName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ColorImg" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ProDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
           <Parameter Name="ColorId" Type="int" Mode="In" />
           <Parameter Name="SizeId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
           <Parameter Name="ColorId" Type="int" Mode="In" />
           <Parameter Name="SizeId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
           <Parameter Name="ColorId" Type="int" Mode="In" />
           <Parameter Name="SizeId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
           <Parameter Name="ColorId" Type="int" Mode="In" />
           <Parameter Name="SizeId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProSize_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProSize_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SizeId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProSize_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProSize_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SizeId" Type="int" Mode="In" />
           <Parameter Name="SizeName" Type="nvarchar" Mode="In" />
           <Parameter Name="SizeImg" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="ProSize_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProSize_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SizeId" Type="int" Mode="In" />
         </Function>
-        <Function Name="ProSize_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ProSize_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SizeId" Type="int" Mode="In" />
           <Parameter Name="SizeName" Type="nvarchar" Mode="In" />
           <Parameter Name="SizeImg" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="Rcpt_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Rcpt_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Rcpt_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Rcpt_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptId" Type="int" Mode="In" />
           <Parameter Name="UsrAdd" Type="int" Mode="In" />
           <Parameter Name="UsrEdit" Type="int" Mode="In" />
           <Parameter Name="DateAdd" Type="datetime" Mode="In" />
           <Parameter Name="DateEdit" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="Rcpt_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Rcpt_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Rcpt_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Rcpt_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptId" Type="int" Mode="In" />
           <Parameter Name="UsrAdd" Type="int" Mode="In" />
           <Parameter Name="UsrEdit" Type="int" Mode="In" />
           <Parameter Name="DateAdd" Type="datetime" Mode="In" />
           <Parameter Name="DateEdit" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="RcptBuy_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuy_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptBuyId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuy_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="RcptBuyId" Type="int" Mode="In" />
-          <Parameter Name="CusId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="RcptBuy_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="RcptBuyId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="RcptBuy_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuy_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptBuyId" Type="int" Mode="In" />
           <Parameter Name="CusId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuyDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuy_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RcptBuyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RcptBuy_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RcptBuyId" Type="int" Mode="In" />
+          <Parameter Name="CusId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RcptBuyDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptBuyId" Type="int" Mode="In" />
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuyDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuyDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptBuyId" Type="int" Mode="In" />
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuyDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuyDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptBuyId" Type="int" Mode="In" />
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuyDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuyDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptBuyId" Type="int" Mode="In" />
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="ProId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuySta_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuySta_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StaId" Type="int" Mode="In" />
           <Parameter Name="RcptBuyId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuySta_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuySta_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StaId" Type="int" Mode="In" />
           <Parameter Name="RcptBuyId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuySta_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuySta_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StaId" Type="int" Mode="In" />
           <Parameter Name="RcptBuyId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuySta_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuySta_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StaId" Type="int" Mode="In" />
           <Parameter Name="RcptBuyId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuyStaDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuyStaDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StaId" Type="int" Mode="In" />
           <Parameter Name="StepId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuyStaDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuyStaDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StaId" Type="int" Mode="In" />
           <Parameter Name="StepId" Type="int" Mode="In" />
           <Parameter Name="IsDone" Type="bit" Mode="In" />
         </Function>
-        <Function Name="RcptBuyStaDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuyStaDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StaId" Type="int" Mode="In" />
           <Parameter Name="StepId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuyStaDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuyStaDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StaId" Type="int" Mode="In" />
           <Parameter Name="StepId" Type="int" Mode="In" />
           <Parameter Name="IsDone" Type="bit" Mode="In" />
         </Function>
-        <Function Name="RcptBuyStaStep_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuyStaStep_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StepId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptBuyStaStep_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="StepId" Type="int" Mode="In" />
-          <Parameter Name="StepCont" Type="nvarchar" Mode="In" />
-          <Parameter Name="StepOrder" Type="int" Mode="In" />
-        </Function>
-        <Function Name="RcptBuyStaStep_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="StepId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="RcptBuyStaStep_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuyStaStep_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="StepId" Type="int" Mode="In" />
           <Parameter Name="StepCont" Type="nvarchar" Mode="In" />
           <Parameter Name="StepOrder" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptSub_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptBuyStaStep_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StepId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RcptBuyStaStep_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StepId" Type="int" Mode="In" />
+          <Parameter Name="StepCont" Type="nvarchar" Mode="In" />
+          <Parameter Name="StepOrder" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RcptSub_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptSubId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptSub_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptSub_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptSubId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptSub_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptSub_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptSubId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptSub_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptSub_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptSubId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptSubDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptSubDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptSubId" Type="int" Mode="In" />
           <Parameter Name="SubId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptSubDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptSubDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptSubId" Type="int" Mode="In" />
           <Parameter Name="SubId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptSubDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptSubDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptSubId" Type="int" Mode="In" />
           <Parameter Name="SubId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
-        <Function Name="RcptSubDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="RcptSubDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false"
+                  IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptSubId" Type="int" Mode="In" />
           <Parameter Name="SubId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Shp_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Shp_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShpId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Shp_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Shp_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
           <Parameter Name="ShpName" Type="nvarchar" Mode="In" />
           <Parameter Name="DateStart" Type="datetime" Mode="In" />
           <Parameter Name="Active" Type="bit" Mode="In" />
         </Function>
-        <Function Name="Shp_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Shp_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShpId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Shp_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Shp_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShpId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
           <Parameter Name="ShpName" Type="nvarchar" Mode="In" />
           <Parameter Name="DateStart" Type="datetime" Mode="In" />
           <Parameter Name="Active" Type="bit" Mode="In" />
         </Function>
-        <Function Name="Sub_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Sub_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Sub_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="SubId" Type="int" Mode="In" />
-          <Parameter Name="SubContent" Type="nvarchar" Mode="In" />
-          <Parameter Name="DurDay" Type="int" Mode="In" />
-          <Parameter Name="Price" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="Sub_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="SubId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Sub_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Sub_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubId" Type="int" Mode="In" />
           <Parameter Name="SubContent" Type="nvarchar" Mode="In" />
           <Parameter Name="DurDay" Type="int" Mode="In" />
           <Parameter Name="Price" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="SubDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Sub_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sub_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubId" Type="int" Mode="In" />
+          <Parameter Name="SubContent" Type="nvarchar" Mode="In" />
+          <Parameter Name="DurDay" Type="int" Mode="In" />
+          <Parameter Name="Price" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SubDet_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
-        <Function Name="SubDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="SubDet_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
           <Parameter Name="DateStart" Type="datetime" Mode="In" />
           <Parameter Name="DateEnd" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="SubDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="SubDet_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
-        <Function Name="SubDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="SubDet_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
           <Parameter Name="DateStart" Type="datetime" Mode="In" />
           <Parameter Name="DateEnd" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="Usr_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Usr_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsrId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Usr_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Usr_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsrId" Type="int" Mode="In" />
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="Login" Type="varchar" Mode="In" />
@@ -1041,10 +1138,12 @@
           <Parameter Name="DateAdd" Type="datetime" Mode="In" />
           <Parameter Name="DateEdit" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="Usr_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Usr_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsrId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Usr_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Usr_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsrId" Type="int" Mode="In" />
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="Login" Type="varchar" Mode="In" />
@@ -1056,21 +1155,12 @@
           <Parameter Name="DateAdd" Type="datetime" Mode="In" />
           <Parameter Name="DateEdit" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="WebInfo_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="WebInfo_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="WebId" Type="int" Mode="In" />
         </Function>
-        <Function Name="WebInfo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="WebId" Type="int" Mode="In" />
-          <Parameter Name="Name" Type="nvarchar" Mode="In" />
-          <Parameter Name="Address" Type="nvarchar" Mode="In" />
-          <Parameter Name="Email" Type="varchar" Mode="In" />
-          <Parameter Name="Phone" Type="varchar" Mode="In" />
-          <Parameter Name="WorkTime" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="WebInfo_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="WebId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="WebInfo_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="WebInfo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="WebId" Type="int" Mode="In" />
           <Parameter Name="Name" Type="nvarchar" Mode="In" />
           <Parameter Name="Address" Type="nvarchar" Mode="In" />
@@ -1078,18 +1168,35 @@
           <Parameter Name="Phone" Type="varchar" Mode="In" />
           <Parameter Name="WorkTime" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="WebSlide_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="WebInfo_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WebId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="WebInfo_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WebId" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="WorkTime" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="WebSlide_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
-        <Function Name="WebSlide_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="WebSlide_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="WebId" Type="int" Mode="In" />
           <Parameter Name="Img" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="WebSlide_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="WebSlide_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
-        <Function Name="WebSlide_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="WebSlide_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false"
+                  ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="WebId" Type="int" Mode="In" />
           <Parameter Name="Img" Type="nvarchar" Mode="In" />
@@ -1171,23 +1278,28 @@
             <End Role="Rcpt" EntitySet="Rcpt" />
             <End Role="RcptBuy" EntitySet="RcptBuy" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysDetails_ReceiptsBuys" Association="Self.FK_ReceiptsBuysDetails_ReceiptsBuys">
+          <AssociationSet Name="FK_ReceiptsBuysDetails_ReceiptsBuys"
+                          Association="Self.FK_ReceiptsBuysDetails_ReceiptsBuys">
             <End Role="RcptBuy" EntitySet="RcptBuy" />
             <End Role="RcptBuyDet" EntitySet="RcptBuyDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" Association="Self.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts">
+          <AssociationSet Name="FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts"
+                          Association="Self.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts">
             <End Role="Pro" EntitySet="Pro" />
             <End Role="RcptBuyDet" EntitySet="RcptBuyDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysStates_ReceiptsBuys" Association="Self.FK_ReceiptsBuysStates_ReceiptsBuys">
+          <AssociationSet Name="FK_ReceiptsBuysStates_ReceiptsBuys"
+                          Association="Self.FK_ReceiptsBuysStates_ReceiptsBuys">
             <End Role="RcptBuy" EntitySet="RcptBuy" />
             <End Role="RcptBuySta" EntitySet="RcptBuySta" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" Association="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates">
+          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates"
+                          Association="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates">
             <End Role="RcptBuySta" EntitySet="RcptBuySta" />
             <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" Association="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
+          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps"
+                          Association="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
             <End Role="RcptBuyStaStep" EntitySet="RcptBuyStaStep" />
             <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
           </AssociationSet>
@@ -1195,11 +1307,13 @@
             <End Role="Rcpt" EntitySet="Rcpt" />
             <End Role="RcptSub" EntitySet="RcptSub" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" Association="Self.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
+          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions"
+                          Association="Self.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
             <End Role="RcptSub" EntitySet="RcptSub" />
             <End Role="RcptSubDet" EntitySet="RcptSubDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" Association="Self.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
+          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails"
+                          Association="Self.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
             <End Role="SubDet" EntitySet="SubDet" />
             <End Role="RcptSubDet" EntitySet="RcptSubDet" />
           </AssociationSet>
@@ -1207,11 +1321,13 @@
             <End Role="Mer" EntitySet="Mer" />
             <End Role="Shp" EntitySet="Shp" />
           </AssociationSet>
-          <AssociationSet Name="FK_SubscriptionsDetails_Subscriptions" Association="Self.FK_SubscriptionsDetails_Subscriptions">
+          <AssociationSet Name="FK_SubscriptionsDetails_Subscriptions"
+                          Association="Self.FK_SubscriptionsDetails_Subscriptions">
             <End Role="Sub" EntitySet="Sub" />
             <End Role="SubDet" EntitySet="SubDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_SubscriptionsDetails_UsersMerchants" Association="Self.FK_SubscriptionsDetails_UsersMerchants">
+          <AssociationSet Name="FK_SubscriptionsDetails_UsersMerchants"
+                          Association="Self.FK_SubscriptionsDetails_UsersMerchants">
             <End Role="Mer" EntitySet="Mer" />
             <End Role="SubDet" EntitySet="SubDet" />
           </AssociationSet>
@@ -1219,15 +1335,18 @@
             <End Role="Usr" EntitySet="Usr" />
             <End Role="Cus" EntitySet="Cus" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomersCarts_UsersCustomers" Association="Self.FK_UsersCustomersCarts_UsersCustomers">
+          <AssociationSet Name="FK_UsersCustomersCarts_UsersCustomers"
+                          Association="Self.FK_UsersCustomersCarts_UsersCustomers">
             <End Role="Cus" EntitySet="Cus" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersCustomersCarts" Association="Self.FK_UsersCustomersCartsDetails_UsersCustomersCarts">
+          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersCustomersCarts"
+                          Association="Self.FK_UsersCustomersCartsDetails_UsersCustomersCarts">
             <End Role="Cart" EntitySet="Cart" />
             <End Role="CartDet" EntitySet="CartDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" Association="Self.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
+          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts"
+                          Association="Self.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
             <End Role="Pro" EntitySet="Pro" />
             <End Role="CartDet" EntitySet="CartDet" />
           </AssociationSet>
@@ -1235,7 +1354,8 @@
             <End Role="Usr" EntitySet="Usr" />
             <End Role="Mer" EntitySet="Mer" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersMerchantsShopsProducts_UsersMerchantsShops" Association="Self.FK_UsersMerchantsShopsProducts_UsersMerchantsShops">
+          <AssociationSet Name="FK_UsersMerchantsShopsProducts_UsersMerchantsShops"
+                          Association="Self.FK_UsersMerchantsShopsProducts_UsersMerchantsShops">
             <End Role="Shp" EntitySet="Shp" />
             <End Role="Pro" EntitySet="Pro" />
           </AssociationSet>
@@ -1248,21 +1368,25 @@
             <End Role="WebSlide" EntitySet="WebSlide" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ShoesStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ShoesStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false"
+              xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
+              xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation"
+              xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ShoesStoreDBContext" annotation:LazyLoadingEnabled="true">
           <FunctionImport Name="Admin_Info" ReturnType="Collection(ShoesStoreModel.Admin_Info_Result)" />
           <FunctionImport Name="Cart_Delete">
-          <Parameter Name="CartID" Mode="In" Type="Int32" />
+            <Parameter Name="CartID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Cart_Insert">
             <Parameter Name="CusID" Mode="In" Type="Int32" />
             <Parameter Name="IpAddress" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Cart_Select" ReturnType="Collection(ShoesStoreModel.Cart_Select_Result)">
-          <Parameter Name="CartID" Mode="In" Type="Int32" />
+            <Parameter Name="CartID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Cart_Update">
             <Parameter Name="CartID" Mode="In" Type="Int32" />
@@ -1292,30 +1416,30 @@
             <Parameter Name="Qty" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Cus_Delete">
-          <Parameter Name="CusId" Mode="In" Type="Int32" />
+            <Parameter Name="CusId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Cus_Info" ReturnType="Collection(ShoesStoreModel.Cus_Info_Result)" />
           <FunctionImport Name="Cus_Insert">
-          <Parameter Name="CusId" Mode="In" Type="Int32" />
+            <Parameter Name="CusId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Cus_Select" ReturnType="Collection(Int32)">
-          <Parameter Name="CusID" Mode="In" Type="Int32" />
+            <Parameter Name="CusID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Cus_Update">
-          <Parameter Name="CusId" Mode="In" Type="Int32" />
+            <Parameter Name="CusId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Mer_Delete">
-          <Parameter Name="MerId" Mode="In" Type="Int32" />
+            <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Mer_Info" ReturnType="Collection(ShoesStoreModel.Mer_Info_Result)" />
           <FunctionImport Name="Mer_Insert">
-          <Parameter Name="MerId" Mode="In" Type="Int32" />
+            <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Mer_Select" ReturnType="Collection(Int32)">
-          <Parameter Name="MerId" Mode="In" Type="Int32" />
+            <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Mer_Update">
-          <Parameter Name="MerId" Mode="In" Type="Int32" />
+            <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Mstr_Delete">
             <Parameter Name="MstrId" Mode="In" Type="Int32" />
@@ -1350,21 +1474,21 @@
             <Parameter Name="RoleName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ProBrand_Delete">
-          <Parameter Name="BrandId" Mode="In" Type="Int32" />
+            <Parameter Name="BrandId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProBrand_Insert">
             <Parameter Name="BrandId" Mode="In" Type="Int32" />
             <Parameter Name="BrandName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ProBrand_Select" ReturnType="Collection(ShoesStoreModel.ProBrand_Select_Result)">
-          <Parameter Name="BrandId" Mode="In" Type="Int32" />
+            <Parameter Name="BrandId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProBrand_Update">
             <Parameter Name="BrandId" Mode="In" Type="Int32" />
             <Parameter Name="BrandName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ProCat_Delete">
-          <Parameter Name="CatId" Mode="In" Type="Int32" />
+            <Parameter Name="CatId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProCat_Insert">
             <Parameter Name="CatId" Mode="In" Type="Int32" />
@@ -1374,7 +1498,7 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="ProCat_Select" ReturnType="Collection(ShoesStoreModel.ProCat_Select_Result)">
-          <Parameter Name="CatId" Mode="In" Type="Int32" />
+            <Parameter Name="CatId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProCat_Update">
             <Parameter Name="CatId" Mode="In" Type="Int32" />
@@ -1384,7 +1508,7 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="ProColor_Delete">
-          <Parameter Name="ColorId" Mode="In" Type="Int32" />
+            <Parameter Name="ColorId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProColor_Insert">
             <Parameter Name="ColorId" Mode="In" Type="Int32" />
@@ -1392,7 +1516,7 @@
             <Parameter Name="ColorImg" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ProColor_Select" ReturnType="Collection(ShoesStoreModel.ProColor_Select_Result)">
-          <Parameter Name="ColorId" Mode="In" Type="Int32" />
+            <Parameter Name="ColorId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProColor_Update">
             <Parameter Name="ColorId" Mode="In" Type="Int32" />
@@ -1424,7 +1548,7 @@
             <Parameter Name="SizeId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProSize_Delete">
-          <Parameter Name="SizeId" Mode="In" Type="Int32" />
+            <Parameter Name="SizeId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProSize_Insert">
             <Parameter Name="SizeId" Mode="In" Type="Int32" />
@@ -1432,7 +1556,7 @@
             <Parameter Name="SizeImg" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ProSize_Select" ReturnType="Collection(ShoesStoreModel.ProSize_Select_Result)">
-          <Parameter Name="SizeId" Mode="In" Type="Int32" />
+            <Parameter Name="SizeId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProSize_Update">
             <Parameter Name="SizeId" Mode="In" Type="Int32" />
@@ -1440,7 +1564,7 @@
             <Parameter Name="SizeImg" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Rcpt_Delete">
-          <Parameter Name="RcptId" Mode="In" Type="Int32" />
+            <Parameter Name="RcptId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Rcpt_Insert">
             <Parameter Name="RcptId" Mode="In" Type="Int32" />
@@ -1450,7 +1574,7 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="Rcpt_Select" ReturnType="Collection(ShoesStoreModel.Rcpt_Select_Result)">
-          <Parameter Name="RcptId" Mode="In" Type="Int32" />
+            <Parameter Name="RcptId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Rcpt_Update">
             <Parameter Name="RcptId" Mode="In" Type="Int32" />
@@ -1460,14 +1584,14 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="RcptBuy_Delete">
-          <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
+            <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RcptBuy_Insert">
             <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
             <Parameter Name="CusId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RcptBuy_Select" ReturnType="Collection(ShoesStoreModel.RcptBuy_Select_Result)">
-          <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
+            <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RcptBuy_Update">
             <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
@@ -1518,7 +1642,8 @@
             <Parameter Name="StepId" Mode="In" Type="Int32" />
             <Parameter Name="IsDone" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="RcptBuyStaDet_Select" ReturnType="Collection(ShoesStoreModel.RcptBuyStaDet_Select_Result)">
+          <FunctionImport Name="RcptBuyStaDet_Select"
+                          ReturnType="Collection(ShoesStoreModel.RcptBuyStaDet_Select_Result)">
             <Parameter Name="StaId" Mode="In" Type="Int32" />
             <Parameter Name="StepId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1528,15 +1653,16 @@
             <Parameter Name="IsDone" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="RcptBuyStaStep_Delete">
-          <Parameter Name="StepId" Mode="In" Type="Int32" />
+            <Parameter Name="StepId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RcptBuyStaStep_Insert">
             <Parameter Name="StepId" Mode="In" Type="Int32" />
             <Parameter Name="StepCont" Mode="In" Type="String" />
             <Parameter Name="StepOrder" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="RcptBuyStaStep_Select" ReturnType="Collection(ShoesStoreModel.RcptBuyStaStep_Select_Result)">
-          <Parameter Name="StepId" Mode="In" Type="Int32" />
+          <FunctionImport Name="RcptBuyStaStep_Select"
+                          ReturnType="Collection(ShoesStoreModel.RcptBuyStaStep_Select_Result)">
+            <Parameter Name="StepId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RcptBuyStaStep_Update">
             <Parameter Name="StepId" Mode="In" Type="Int32" />
@@ -1544,16 +1670,16 @@
             <Parameter Name="StepOrder" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RcptSub_Delete">
-          <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
+            <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RcptSub_Insert">
-          <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
+            <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RcptSub_Select" ReturnType="Collection(Int32)">
-          <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
+            <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RcptSub_Update">
-          <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
+            <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RcptSubDet_Delete">
             <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
@@ -1576,7 +1702,7 @@
             <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Shp_Delete">
-          <Parameter Name="ShpId" Mode="In" Type="Int32" />
+            <Parameter Name="ShpId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Shp_Insert">
             <Parameter Name="ShpId" Mode="In" Type="Int32" />
@@ -1586,7 +1712,7 @@
             <Parameter Name="Active" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="Shp_Select" ReturnType="Collection(ShoesStoreModel.Shp_Select_Result)">
-          <Parameter Name="ShpId" Mode="In" Type="Int32" />
+            <Parameter Name="ShpId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Shp_Update">
             <Parameter Name="ShpId" Mode="In" Type="Int32" />
@@ -1611,7 +1737,8 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ShoesStoreModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition"
+                          ReturnType="Collection(ShoesStoreModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1626,7 +1753,7 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="Sub_Delete">
-          <Parameter Name="SubId" Mode="In" Type="Int32" />
+            <Parameter Name="SubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sub_Insert">
             <Parameter Name="SubId" Mode="In" Type="Int32" />
@@ -1635,7 +1762,7 @@
             <Parameter Name="Price" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Sub_Select" ReturnType="Collection(ShoesStoreModel.Sub_Select_Result)">
-          <Parameter Name="SubId" Mode="In" Type="Int32" />
+            <Parameter Name="SubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Sub_Update">
             <Parameter Name="SubId" Mode="In" Type="Int32" />
@@ -1664,7 +1791,7 @@
             <Parameter Name="DateEnd" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="Usr_Delete">
-          <Parameter Name="UsrId" Mode="In" Type="Int32" />
+            <Parameter Name="UsrId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usr_Insert">
             <Parameter Name="UsrId" Mode="In" Type="Int32" />
@@ -1679,7 +1806,7 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="Usr_Select" ReturnType="Collection(ShoesStoreModel.Usr_Select_Result)">
-          <Parameter Name="UsrId" Mode="In" Type="Int32" />
+            <Parameter Name="UsrId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usr_Update">
             <Parameter Name="UsrId" Mode="In" Type="Int32" />
@@ -1694,7 +1821,7 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="WebInfo_Delete">
-          <Parameter Name="WebId" Mode="In" Type="Int32" />
+            <Parameter Name="WebId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="WebInfo_Insert" ReturnType="Collection(ShoesStoreModel.WebInfo_Insert_Result)">
             <Parameter Name="WebId" Mode="In" Type="Int32" />
@@ -1705,7 +1832,7 @@
             <Parameter Name="WorkTime" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="WebInfo_Select" ReturnType="Collection(ShoesStoreModel.WebInfo_Select_Result)">
-          <Parameter Name="WebId" Mode="In" Type="Int32" />
+            <Parameter Name="WebId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="WebInfo_Update" ReturnType="Collection(ShoesStoreModel.WebInfo_Update_Result)">
             <Parameter Name="WebId" Mode="In" Type="Int32" />
@@ -1716,7 +1843,7 @@
             <Parameter Name="WorkTime" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="WebSlide_Delete">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="WebSlide_Insert" ReturnType="Collection(ShoesStoreModel.WebSlide_Insert_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1724,7 +1851,7 @@
             <Parameter Name="Img" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="WebSlide_Select" ReturnType="Collection(ShoesStoreModel.WebSlide_Select_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="WebSlide_Update" ReturnType="Collection(ShoesStoreModel.WebSlide_Update_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1757,15 +1884,18 @@
           <EntitySet Name="UsrAct" EntityType="ShoesStoreModel.UsrAct" />
           <EntitySet Name="WebInfo" EntityType="ShoesStoreModel.WebInfo" />
           <EntitySet Name="WebSlide" EntityType="ShoesStoreModel.WebSlide" />
-          <AssociationSet Name="FK_UsersCustomersCarts_UsersCustomers" Association="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers">
+          <AssociationSet Name="FK_UsersCustomersCarts_UsersCustomers"
+                          Association="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers">
             <End Role="Cus" EntitySet="Cus" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersCustomersCarts" Association="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts">
+          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersCustomersCarts"
+                          Association="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts">
             <End Role="Cart" EntitySet="Cart" />
             <End Role="CartDet" EntitySet="CartDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" Association="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
+          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts"
+                          Association="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
             <End Role="Pro" EntitySet="Pro" />
             <End Role="CartDet" EntitySet="CartDet" />
           </AssociationSet>
@@ -1781,7 +1911,8 @@
             <End Role="Mer" EntitySet="Mer" />
             <End Role="Shp" EntitySet="Shp" />
           </AssociationSet>
-          <AssociationSet Name="FK_SubscriptionsDetails_UsersMerchants" Association="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants">
+          <AssociationSet Name="FK_SubscriptionsDetails_UsersMerchants"
+                          Association="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants">
             <End Role="Mer" EntitySet="Mer" />
             <End Role="SubDet" EntitySet="SubDet" />
           </AssociationSet>
@@ -1805,11 +1936,13 @@
             <End Role="Pro" EntitySet="Pro" />
             <End Role="ProDet" EntitySet="ProDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" Association="ShoesStoreModel.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts">
+          <AssociationSet Name="FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts"
+                          Association="ShoesStoreModel.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts">
             <End Role="Pro" EntitySet="Pro" />
             <End Role="RcptBuyDet" EntitySet="RcptBuyDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersMerchantsShopsProducts_UsersMerchantsShops" Association="ShoesStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops">
+          <AssociationSet Name="FK_UsersMerchantsShopsProducts_UsersMerchantsShops"
+                          Association="ShoesStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops">
             <End Role="Shp" EntitySet="Shp" />
             <End Role="Pro" EntitySet="Pro" />
           </AssociationSet>
@@ -1833,27 +1966,33 @@
             <End Role="Rcpt" EntitySet="Rcpt" />
             <End Role="RcptBuy" EntitySet="RcptBuy" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptions_Receipts" Association="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts">
+          <AssociationSet Name="FK_ReceiptsSubscriptions_Receipts"
+                          Association="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts">
             <End Role="Rcpt" EntitySet="Rcpt" />
             <End Role="RcptSub" EntitySet="RcptSub" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysDetails_ReceiptsBuys" Association="ShoesStoreModel.FK_ReceiptsBuysDetails_ReceiptsBuys">
+          <AssociationSet Name="FK_ReceiptsBuysDetails_ReceiptsBuys"
+                          Association="ShoesStoreModel.FK_ReceiptsBuysDetails_ReceiptsBuys">
             <End Role="RcptBuy" EntitySet="RcptBuy" />
             <End Role="RcptBuyDet" EntitySet="RcptBuyDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysStates_ReceiptsBuys" Association="ShoesStoreModel.FK_ReceiptsBuysStates_ReceiptsBuys">
+          <AssociationSet Name="FK_ReceiptsBuysStates_ReceiptsBuys"
+                          Association="ShoesStoreModel.FK_ReceiptsBuysStates_ReceiptsBuys">
             <End Role="RcptBuy" EntitySet="RcptBuy" />
             <End Role="RcptBuySta" EntitySet="RcptBuySta" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" Association="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates">
+          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates"
+                          Association="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates">
             <End Role="RcptBuySta" EntitySet="RcptBuySta" />
             <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" Association="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
+          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps"
+                          Association="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
             <End Role="RcptBuyStaStep" EntitySet="RcptBuyStaStep" />
             <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_SubscriptionsDetails_Subscriptions" Association="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions">
+          <AssociationSet Name="FK_SubscriptionsDetails_Subscriptions"
+                          Association="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions">
             <End Role="Sub" EntitySet="Sub" />
             <End Role="SubDet" EntitySet="SubDet" />
           </AssociationSet>
@@ -2078,8 +2217,11 @@
           <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CusId" Type="Int32" />
           <Property Name="IpAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers" FromRole="Cart" ToRole="Cus" />
-          <NavigationProperty Name="CartDet" Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts" FromRole="Cart" ToRole="CartDet" />
+          <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers"
+                              FromRole="Cart" ToRole="Cus" />
+          <NavigationProperty Name="CartDet"
+                              Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts"
+                              FromRole="Cart" ToRole="CartDet" />
         </EntityType>
         <EntityType Name="CartDet">
           <Key>
@@ -2091,17 +2233,24 @@
           <Property Name="ShpId" Type="Int32" Nullable="false" />
           <Property Name="ProId" Type="Int32" Nullable="false" />
           <Property Name="Qty" Type="Int32" />
-          <NavigationProperty Name="Cart" Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts" FromRole="CartDet" ToRole="Cart" />
-          <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" FromRole="CartDet" ToRole="Pro" />
+          <NavigationProperty Name="Cart"
+                              Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts"
+                              FromRole="CartDet" ToRole="Cart" />
+          <NavigationProperty Name="Pro"
+                              Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts"
+                              FromRole="CartDet" ToRole="Pro" />
         </EntityType>
         <EntityType Name="Cus">
           <Key>
             <PropertyRef Name="CusId" />
           </Key>
           <Property Name="CusId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cart" Relationship="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers" FromRole="Cus" ToRole="Cart" />
-          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuy_Cus" FromRole="Cus" ToRole="RcptBuy" />
-          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_UsersCustomers_Users" FromRole="Cus" ToRole="Usr" />
+          <NavigationProperty Name="Cart" Relationship="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers"
+                              FromRole="Cus" ToRole="Cart" />
+          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuy_Cus" FromRole="Cus"
+                              ToRole="RcptBuy" />
+          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_UsersCustomers_Users" FromRole="Cus"
+                              ToRole="Usr" />
         </EntityType>
         <EntityType Name="Mer">
           <Key>
@@ -2109,8 +2258,10 @@
           </Key>
           <Property Name="MerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Shp" Relationship="ShoesStoreModel.FK_Shp_Mer" FromRole="Mer" ToRole="Shp" />
-          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants" FromRole="Mer" ToRole="SubDet" />
-          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_UsersMerchants_Users" FromRole="Mer" ToRole="Usr" />
+          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants"
+                              FromRole="Mer" ToRole="SubDet" />
+          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_UsersMerchants_Users" FromRole="Mer"
+                              ToRole="Usr" />
         </EntityType>
         <EntityType Name="Mstr">
           <Key>
@@ -2147,12 +2298,19 @@
           <Property Name="Active" Type="Boolean" />
           <Property Name="DateAdd" Type="DateTime" Precision="3" />
           <Property Name="DateEdit" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CartDet" Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" FromRole="Pro" ToRole="CartDet" />
-          <NavigationProperty Name="ProBrand" Relationship="ShoesStoreModel.FK_Pro_Brand" FromRole="Pro" ToRole="ProBrand" />
+          <NavigationProperty Name="CartDet"
+                              Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts"
+                              FromRole="Pro" ToRole="CartDet" />
+          <NavigationProperty Name="ProBrand" Relationship="ShoesStoreModel.FK_Pro_Brand" FromRole="Pro"
+                              ToRole="ProBrand" />
           <NavigationProperty Name="ProCat" Relationship="ShoesStoreModel.FK_Pro_ProCat" FromRole="Pro" ToRole="ProCat" />
           <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_ProDet_Pro" FromRole="Pro" ToRole="ProDet" />
-          <NavigationProperty Name="RcptBuyDet" Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" FromRole="Pro" ToRole="RcptBuyDet" />
-          <NavigationProperty Name="Shp" Relationship="ShoesStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" FromRole="Pro" ToRole="Shp" />
+          <NavigationProperty Name="RcptBuyDet"
+                              Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts"
+                              FromRole="Pro" ToRole="RcptBuyDet" />
+          <NavigationProperty Name="Shp"
+                              Relationship="ShoesStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops"
+                              FromRole="Pro" ToRole="Shp" />
         </EntityType>
         <EntityType Name="ProBrand">
           <Key>
@@ -2180,7 +2338,8 @@
           <Property Name="ColorId" Type="Int32" Nullable="false" />
           <Property Name="ColorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ColorImg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_ProDet_ProColor" FromRole="ProColor" ToRole="ProDet" />
+          <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_ProDet_ProColor" FromRole="ProColor"
+                              ToRole="ProDet" />
         </EntityType>
         <EntityType Name="ProDet">
           <Key>
@@ -2194,8 +2353,10 @@
           <Property Name="ColorId" Type="Int32" Nullable="false" />
           <Property Name="SizeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_ProDet_Pro" FromRole="ProDet" ToRole="Pro" />
-          <NavigationProperty Name="ProColor" Relationship="ShoesStoreModel.FK_ProDet_ProColor" FromRole="ProDet" ToRole="ProColor" />
-          <NavigationProperty Name="ProSize" Relationship="ShoesStoreModel.FK_ProDet_ProSize" FromRole="ProDet" ToRole="ProSize" />
+          <NavigationProperty Name="ProColor" Relationship="ShoesStoreModel.FK_ProDet_ProColor" FromRole="ProDet"
+                              ToRole="ProColor" />
+          <NavigationProperty Name="ProSize" Relationship="ShoesStoreModel.FK_ProDet_ProSize" FromRole="ProDet"
+                              ToRole="ProSize" />
         </EntityType>
         <EntityType Name="ProSize">
           <Key>
@@ -2204,7 +2365,8 @@
           <Property Name="SizeId" Type="Int32" Nullable="false" />
           <Property Name="SizeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="SizeImg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_ProDet_ProSize" FromRole="ProSize" ToRole="ProDet" />
+          <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_ProDet_ProSize" FromRole="ProSize"
+                              ToRole="ProDet" />
         </EntityType>
         <EntityType Name="Rcpt">
           <Key>
@@ -2217,8 +2379,10 @@
           <Property Name="DateEdit" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_Rcpt_Usr" FromRole="Rcpt" ToRole="Usr" />
           <NavigationProperty Name="Usr1" Relationship="ShoesStoreModel.FK_Rcpt_Usr1" FromRole="Rcpt" ToRole="Usr" />
-          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_ReceiptBuys_Receipts" FromRole="Rcpt" ToRole="RcptBuy" />
-          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts" FromRole="Rcpt" ToRole="RcptSub" />
+          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_ReceiptBuys_Receipts" FromRole="Rcpt"
+                              ToRole="RcptBuy" />
+          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts"
+                              FromRole="Rcpt" ToRole="RcptSub" />
         </EntityType>
         <EntityType Name="RcptBuy">
           <Key>
@@ -2227,9 +2391,12 @@
           <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
           <Property Name="CusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_RcptBuy_Cus" FromRole="RcptBuy" ToRole="Cus" />
-          <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_ReceiptBuys_Receipts" FromRole="RcptBuy" ToRole="Rcpt" />
-          <NavigationProperty Name="RcptBuyDet" Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_ReceiptsBuys" FromRole="RcptBuy" ToRole="RcptBuyDet" />
-          <NavigationProperty Name="RcptBuySta" Relationship="ShoesStoreModel.FK_ReceiptsBuysStates_ReceiptsBuys" FromRole="RcptBuy" ToRole="RcptBuySta" />
+          <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_ReceiptBuys_Receipts" FromRole="RcptBuy"
+                              ToRole="Rcpt" />
+          <NavigationProperty Name="RcptBuyDet" Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_ReceiptsBuys"
+                              FromRole="RcptBuy" ToRole="RcptBuyDet" />
+          <NavigationProperty Name="RcptBuySta" Relationship="ShoesStoreModel.FK_ReceiptsBuysStates_ReceiptsBuys"
+                              FromRole="RcptBuy" ToRole="RcptBuySta" />
         </EntityType>
         <EntityType Name="RcptBuyDet">
           <Key>
@@ -2242,8 +2409,11 @@
           <Property Name="ProId" Type="Int32" Nullable="false" />
           <Property Name="Cmt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Point" Type="Int32" />
-          <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" FromRole="RcptBuyDet" ToRole="Pro" />
-          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_ReceiptsBuys" FromRole="RcptBuyDet" ToRole="RcptBuy" />
+          <NavigationProperty Name="Pro"
+                              Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts"
+                              FromRole="RcptBuyDet" ToRole="Pro" />
+          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_ReceiptsBuys"
+                              FromRole="RcptBuyDet" ToRole="RcptBuy" />
         </EntityType>
         <EntityType Name="RcptBuySta">
           <Key>
@@ -2251,8 +2421,11 @@
           </Key>
           <Property Name="StaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_ReceiptsBuysStates_ReceiptsBuys" FromRole="RcptBuySta" ToRole="RcptBuy" />
-          <NavigationProperty Name="RcptBuyStaDet" Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" FromRole="RcptBuySta" ToRole="RcptBuyStaDet" />
+          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_ReceiptsBuysStates_ReceiptsBuys"
+                              FromRole="RcptBuySta" ToRole="RcptBuy" />
+          <NavigationProperty Name="RcptBuyStaDet"
+                              Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates"
+                              FromRole="RcptBuySta" ToRole="RcptBuyStaDet" />
         </EntityType>
         <EntityType Name="RcptBuyStaDet">
           <Key>
@@ -2262,8 +2435,12 @@
           <Property Name="StaId" Type="Int32" Nullable="false" />
           <Property Name="StepId" Type="Int32" Nullable="false" />
           <Property Name="IsDone" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="RcptBuySta" Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" FromRole="RcptBuyStaDet" ToRole="RcptBuySta" />
-          <NavigationProperty Name="RcptBuyStaStep" Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" FromRole="RcptBuyStaDet" ToRole="RcptBuyStaStep" />
+          <NavigationProperty Name="RcptBuySta"
+                              Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates"
+                              FromRole="RcptBuyStaDet" ToRole="RcptBuySta" />
+          <NavigationProperty Name="RcptBuyStaStep"
+                              Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps"
+                              FromRole="RcptBuyStaDet" ToRole="RcptBuyStaStep" />
         </EntityType>
         <EntityType Name="RcptBuyStaStep">
           <Key>
@@ -2272,15 +2449,19 @@
           <Property Name="StepId" Type="Int32" Nullable="false" />
           <Property Name="StepCont" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="StepOrder" Type="Int32" />
-          <NavigationProperty Name="RcptBuyStaDet" Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" FromRole="RcptBuyStaStep" ToRole="RcptBuyStaDet" />
+          <NavigationProperty Name="RcptBuyStaDet"
+                              Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps"
+                              FromRole="RcptBuyStaStep" ToRole="RcptBuyStaDet" />
         </EntityType>
         <EntityType Name="RcptSub">
           <Key>
             <PropertyRef Name="RcptSubId" />
           </Key>
           <Property Name="RcptSubId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts" FromRole="RcptSub" ToRole="Rcpt" />
-          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.RcptSubDet" FromRole="RcptSub" ToRole="SubDet" />
+          <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts"
+                              FromRole="RcptSub" ToRole="Rcpt" />
+          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.RcptSubDet" FromRole="RcptSub"
+                              ToRole="SubDet" />
         </EntityType>
         <EntityType Name="Shp">
           <Key>
@@ -2292,7 +2473,9 @@
           <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_Shp_Mer" FromRole="Shp" ToRole="Mer" />
-          <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" FromRole="Shp" ToRole="Pro" />
+          <NavigationProperty Name="Pro"
+                              Relationship="ShoesStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops"
+                              FromRole="Shp" ToRole="Pro" />
         </EntityType>
         <EntityType Name="Sub">
           <Key>
@@ -2302,7 +2485,8 @@
           <Property Name="SubContent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DurDay" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions" FromRole="Sub" ToRole="SubDet" />
+          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions"
+                              FromRole="Sub" ToRole="SubDet" />
         </EntityType>
         <EntityType Name="SubDet">
           <Key>
@@ -2313,9 +2497,12 @@
           <Property Name="MerId" Type="Int32" Nullable="false" />
           <Property Name="DateStart" Type="DateTime" Precision="3" />
           <Property Name="DateEnd" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants" FromRole="SubDet" ToRole="Mer" />
-          <NavigationProperty Name="Sub" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions" FromRole="SubDet" ToRole="Sub" />
-          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.RcptSubDet" FromRole="SubDet" ToRole="RcptSub" />
+          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants"
+                              FromRole="SubDet" ToRole="Mer" />
+          <NavigationProperty Name="Sub" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions"
+                              FromRole="SubDet" ToRole="Sub" />
+          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.RcptSubDet" FromRole="SubDet"
+                              ToRole="RcptSub" />
         </EntityType>
         <EntityType Name="Usr">
           <Key>
@@ -2331,8 +2518,10 @@
           <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateEdit" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_UsersCustomers_Users" FromRole="Usr" ToRole="Cus" />
-          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_UsersMerchants_Users" FromRole="Usr" ToRole="Mer" />
+          <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_UsersCustomers_Users" FromRole="Usr"
+                              ToRole="Cus" />
+          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_UsersMerchants_Users" FromRole="Usr"
+                              ToRole="Mer" />
           <NavigationProperty Name="Mstr" Relationship="ShoesStoreModel.FK_Mstr_Usr" FromRole="Usr" ToRole="Mstr" />
           <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_Rcpt_Usr" FromRole="Usr" ToRole="Rcpt" />
           <NavigationProperty Name="Rcpt1" Relationship="ShoesStoreModel.FK_Rcpt_Usr1" FromRole="Usr" ToRole="Rcpt" />
@@ -2358,7 +2547,8 @@
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="WorkTime" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="WebSlide" Relationship="ShoesStoreModel.FK_WebSlide_WebInfo" FromRole="WebInfo" ToRole="WebSlide" />
+          <NavigationProperty Name="WebSlide" Relationship="ShoesStoreModel.FK_WebSlide_WebInfo" FromRole="WebInfo"
+                              ToRole="WebSlide" />
         </EntityType>
         <EntityType Name="WebSlide">
           <Key>
@@ -2370,7 +2560,8 @@
           <Property Name="Order" Type="Int32" />
           <Property Name="DateAdd" Type="DateTime" Precision="3" />
           <Property Name="DateEdit" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="WebInfo" Relationship="ShoesStoreModel.FK_WebSlide_WebInfo" FromRole="WebSlide" ToRole="WebInfo" />
+          <NavigationProperty Name="WebInfo" Relationship="ShoesStoreModel.FK_WebSlide_WebInfo" FromRole="WebSlide"
+                              ToRole="WebInfo" />
         </EntityType>
         <Association Name="FK_UsersCustomersCarts_UsersCustomers">
           <End Type="ShoesStoreModel.Cus" Role="Cus" Multiplicity="0..1" />
@@ -2715,7 +2906,8 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ShoesStoreModelStoreContainer" CdmEntityContainer="ShoesStoreDBContext">
+        <EntityContainerMapping StorageEntityContainer="ShoesStoreModelStoreContainer"
+                                CdmEntityContainer="ShoesStoreDBContext">
           <FunctionImportMapping FunctionImportName="Admin_Info" FunctionName="ShoesStoreModel.Store.Admin_Info">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.Admin_Info_Result">
@@ -2745,9 +2937,12 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Cart_Update" FunctionName="ShoesStoreModel.Store.Cart_Update" />
-          <FunctionImportMapping FunctionImportName="CartDet_Delete" FunctionName="ShoesStoreModel.Store.CartDet_Delete" />
-          <FunctionImportMapping FunctionImportName="CartDet_Insert" FunctionName="ShoesStoreModel.Store.CartDet_Insert" />
-          <FunctionImportMapping FunctionImportName="CartDet_Select" FunctionName="ShoesStoreModel.Store.CartDet_Select">
+          <FunctionImportMapping FunctionImportName="CartDet_Delete"
+                                 FunctionName="ShoesStoreModel.Store.CartDet_Delete" />
+          <FunctionImportMapping FunctionImportName="CartDet_Insert"
+                                 FunctionName="ShoesStoreModel.Store.CartDet_Insert" />
+          <FunctionImportMapping FunctionImportName="CartDet_Select"
+                                 FunctionName="ShoesStoreModel.Store.CartDet_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.CartDet_Select_Result">
                 <ScalarProperty Name="CartId" ColumnName="CartId" />
@@ -2757,7 +2952,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CartDet_Update" FunctionName="ShoesStoreModel.Store.CartDet_Update" />
+          <FunctionImportMapping FunctionImportName="CartDet_Update"
+                                 FunctionName="ShoesStoreModel.Store.CartDet_Update" />
           <FunctionImportMapping FunctionImportName="Cus_Delete" FunctionName="ShoesStoreModel.Store.Cus_Delete" />
           <FunctionImportMapping FunctionImportName="Cus_Info" FunctionName="ShoesStoreModel.Store.Cus_Info">
             <ResultMapping>
@@ -2802,9 +2998,12 @@
           <FunctionImportMapping FunctionImportName="Mstr_Insert" FunctionName="ShoesStoreModel.Store.Mstr_Insert" />
           <FunctionImportMapping FunctionImportName="Mstr_Select" FunctionName="ShoesStoreModel.Store.Mstr_Select" />
           <FunctionImportMapping FunctionImportName="Mstr_Update" FunctionName="ShoesStoreModel.Store.Mstr_Update" />
-          <FunctionImportMapping FunctionImportName="MstrRole_Delete" FunctionName="ShoesStoreModel.Store.MstrRole_Delete" />
-          <FunctionImportMapping FunctionImportName="MstrRole_Insert" FunctionName="ShoesStoreModel.Store.MstrRole_Insert" />
-          <FunctionImportMapping FunctionImportName="MstrRole_Select" FunctionName="ShoesStoreModel.Store.MstrRole_Select">
+          <FunctionImportMapping FunctionImportName="MstrRole_Delete"
+                                 FunctionName="ShoesStoreModel.Store.MstrRole_Delete" />
+          <FunctionImportMapping FunctionImportName="MstrRole_Insert"
+                                 FunctionName="ShoesStoreModel.Store.MstrRole_Insert" />
+          <FunctionImportMapping FunctionImportName="MstrRole_Select"
+                                 FunctionName="ShoesStoreModel.Store.MstrRole_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.MstrRole_Select_Result">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
@@ -2812,10 +3011,14 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="MstrRole_Update" FunctionName="ShoesStoreModel.Store.MstrRole_Update" />
-          <FunctionImportMapping FunctionImportName="ProBrand_Delete" FunctionName="ShoesStoreModel.Store.ProBrand_Delete" />
-          <FunctionImportMapping FunctionImportName="ProBrand_Insert" FunctionName="ShoesStoreModel.Store.ProBrand_Insert" />
-          <FunctionImportMapping FunctionImportName="ProBrand_Select" FunctionName="ShoesStoreModel.Store.ProBrand_Select">
+          <FunctionImportMapping FunctionImportName="MstrRole_Update"
+                                 FunctionName="ShoesStoreModel.Store.MstrRole_Update" />
+          <FunctionImportMapping FunctionImportName="ProBrand_Delete"
+                                 FunctionName="ShoesStoreModel.Store.ProBrand_Delete" />
+          <FunctionImportMapping FunctionImportName="ProBrand_Insert"
+                                 FunctionName="ShoesStoreModel.Store.ProBrand_Insert" />
+          <FunctionImportMapping FunctionImportName="ProBrand_Select"
+                                 FunctionName="ShoesStoreModel.Store.ProBrand_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.ProBrand_Select_Result">
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
@@ -2823,7 +3026,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ProBrand_Update" FunctionName="ShoesStoreModel.Store.ProBrand_Update" />
+          <FunctionImportMapping FunctionImportName="ProBrand_Update"
+                                 FunctionName="ShoesStoreModel.Store.ProBrand_Update" />
           <FunctionImportMapping FunctionImportName="ProCat_Delete" FunctionName="ShoesStoreModel.Store.ProCat_Delete" />
           <FunctionImportMapping FunctionImportName="ProCat_Insert" FunctionName="ShoesStoreModel.Store.ProCat_Insert" />
           <FunctionImportMapping FunctionImportName="ProCat_Select" FunctionName="ShoesStoreModel.Store.ProCat_Select">
@@ -2838,9 +3042,12 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ProCat_Update" FunctionName="ShoesStoreModel.Store.ProCat_Update" />
-          <FunctionImportMapping FunctionImportName="ProColor_Delete" FunctionName="ShoesStoreModel.Store.ProColor_Delete" />
-          <FunctionImportMapping FunctionImportName="ProColor_Insert" FunctionName="ShoesStoreModel.Store.ProColor_Insert" />
-          <FunctionImportMapping FunctionImportName="ProColor_Select" FunctionName="ShoesStoreModel.Store.ProColor_Select">
+          <FunctionImportMapping FunctionImportName="ProColor_Delete"
+                                 FunctionName="ShoesStoreModel.Store.ProColor_Delete" />
+          <FunctionImportMapping FunctionImportName="ProColor_Insert"
+                                 FunctionName="ShoesStoreModel.Store.ProColor_Insert" />
+          <FunctionImportMapping FunctionImportName="ProColor_Select"
+                                 FunctionName="ShoesStoreModel.Store.ProColor_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.ProColor_Select_Result">
                 <ScalarProperty Name="ColorId" ColumnName="ColorId" />
@@ -2849,7 +3056,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ProColor_Update" FunctionName="ShoesStoreModel.Store.ProColor_Update" />
+          <FunctionImportMapping FunctionImportName="ProColor_Update"
+                                 FunctionName="ShoesStoreModel.Store.ProColor_Update" />
           <FunctionImportMapping FunctionImportName="ProDet_Delete" FunctionName="ShoesStoreModel.Store.ProDet_Delete" />
           <FunctionImportMapping FunctionImportName="ProDet_Insert" FunctionName="ShoesStoreModel.Store.ProDet_Insert" />
           <FunctionImportMapping FunctionImportName="ProDet_Select" FunctionName="ShoesStoreModel.Store.ProDet_Select">
@@ -2863,9 +3071,12 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ProDet_Update" FunctionName="ShoesStoreModel.Store.ProDet_Update" />
-          <FunctionImportMapping FunctionImportName="ProSize_Delete" FunctionName="ShoesStoreModel.Store.ProSize_Delete" />
-          <FunctionImportMapping FunctionImportName="ProSize_Insert" FunctionName="ShoesStoreModel.Store.ProSize_Insert" />
-          <FunctionImportMapping FunctionImportName="ProSize_Select" FunctionName="ShoesStoreModel.Store.ProSize_Select">
+          <FunctionImportMapping FunctionImportName="ProSize_Delete"
+                                 FunctionName="ShoesStoreModel.Store.ProSize_Delete" />
+          <FunctionImportMapping FunctionImportName="ProSize_Insert"
+                                 FunctionName="ShoesStoreModel.Store.ProSize_Insert" />
+          <FunctionImportMapping FunctionImportName="ProSize_Select"
+                                 FunctionName="ShoesStoreModel.Store.ProSize_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.ProSize_Select_Result">
                 <ScalarProperty Name="SizeId" ColumnName="SizeId" />
@@ -2874,7 +3085,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ProSize_Update" FunctionName="ShoesStoreModel.Store.ProSize_Update" />
+          <FunctionImportMapping FunctionImportName="ProSize_Update"
+                                 FunctionName="ShoesStoreModel.Store.ProSize_Update" />
           <FunctionImportMapping FunctionImportName="Rcpt_Delete" FunctionName="ShoesStoreModel.Store.Rcpt_Delete" />
           <FunctionImportMapping FunctionImportName="Rcpt_Insert" FunctionName="ShoesStoreModel.Store.Rcpt_Insert" />
           <FunctionImportMapping FunctionImportName="Rcpt_Select" FunctionName="ShoesStoreModel.Store.Rcpt_Select">
@@ -2889,9 +3101,12 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Rcpt_Update" FunctionName="ShoesStoreModel.Store.Rcpt_Update" />
-          <FunctionImportMapping FunctionImportName="RcptBuy_Delete" FunctionName="ShoesStoreModel.Store.RcptBuy_Delete" />
-          <FunctionImportMapping FunctionImportName="RcptBuy_Insert" FunctionName="ShoesStoreModel.Store.RcptBuy_Insert" />
-          <FunctionImportMapping FunctionImportName="RcptBuy_Select" FunctionName="ShoesStoreModel.Store.RcptBuy_Select">
+          <FunctionImportMapping FunctionImportName="RcptBuy_Delete"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuy_Delete" />
+          <FunctionImportMapping FunctionImportName="RcptBuy_Insert"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuy_Insert" />
+          <FunctionImportMapping FunctionImportName="RcptBuy_Select"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuy_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.RcptBuy_Select_Result">
                 <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
@@ -2899,10 +3114,14 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RcptBuy_Update" FunctionName="ShoesStoreModel.Store.RcptBuy_Update" />
-          <FunctionImportMapping FunctionImportName="RcptBuyDet_Delete" FunctionName="ShoesStoreModel.Store.RcptBuyDet_Delete" />
-          <FunctionImportMapping FunctionImportName="RcptBuyDet_Insert" FunctionName="ShoesStoreModel.Store.RcptBuyDet_Insert" />
-          <FunctionImportMapping FunctionImportName="RcptBuyDet_Select" FunctionName="ShoesStoreModel.Store.RcptBuyDet_Select">
+          <FunctionImportMapping FunctionImportName="RcptBuy_Update"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuy_Update" />
+          <FunctionImportMapping FunctionImportName="RcptBuyDet_Delete"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyDet_Delete" />
+          <FunctionImportMapping FunctionImportName="RcptBuyDet_Insert"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyDet_Insert" />
+          <FunctionImportMapping FunctionImportName="RcptBuyDet_Select"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyDet_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.RcptBuyDet_Select_Result">
                 <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
@@ -2913,10 +3132,14 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RcptBuyDet_Update" FunctionName="ShoesStoreModel.Store.RcptBuyDet_Update" />
-          <FunctionImportMapping FunctionImportName="RcptBuySta_Delete" FunctionName="ShoesStoreModel.Store.RcptBuySta_Delete" />
-          <FunctionImportMapping FunctionImportName="RcptBuySta_Insert" FunctionName="ShoesStoreModel.Store.RcptBuySta_Insert" />
-          <FunctionImportMapping FunctionImportName="RcptBuySta_Select" FunctionName="ShoesStoreModel.Store.RcptBuySta_Select">
+          <FunctionImportMapping FunctionImportName="RcptBuyDet_Update"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyDet_Update" />
+          <FunctionImportMapping FunctionImportName="RcptBuySta_Delete"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuySta_Delete" />
+          <FunctionImportMapping FunctionImportName="RcptBuySta_Insert"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuySta_Insert" />
+          <FunctionImportMapping FunctionImportName="RcptBuySta_Select"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuySta_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.RcptBuySta_Select_Result">
                 <ScalarProperty Name="StaId" ColumnName="StaId" />
@@ -2924,10 +3147,14 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RcptBuySta_Update" FunctionName="ShoesStoreModel.Store.RcptBuySta_Update" />
-          <FunctionImportMapping FunctionImportName="RcptBuyStaDet_Delete" FunctionName="ShoesStoreModel.Store.RcptBuyStaDet_Delete" />
-          <FunctionImportMapping FunctionImportName="RcptBuyStaDet_Insert" FunctionName="ShoesStoreModel.Store.RcptBuyStaDet_Insert" />
-          <FunctionImportMapping FunctionImportName="RcptBuyStaDet_Select" FunctionName="ShoesStoreModel.Store.RcptBuyStaDet_Select">
+          <FunctionImportMapping FunctionImportName="RcptBuySta_Update"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuySta_Update" />
+          <FunctionImportMapping FunctionImportName="RcptBuyStaDet_Delete"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyStaDet_Delete" />
+          <FunctionImportMapping FunctionImportName="RcptBuyStaDet_Insert"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyStaDet_Insert" />
+          <FunctionImportMapping FunctionImportName="RcptBuyStaDet_Select"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyStaDet_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.RcptBuyStaDet_Select_Result">
                 <ScalarProperty Name="StaId" ColumnName="StaId" />
@@ -2936,10 +3163,14 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RcptBuyStaDet_Update" FunctionName="ShoesStoreModel.Store.RcptBuyStaDet_Update" />
-          <FunctionImportMapping FunctionImportName="RcptBuyStaStep_Delete" FunctionName="ShoesStoreModel.Store.RcptBuyStaStep_Delete" />
-          <FunctionImportMapping FunctionImportName="RcptBuyStaStep_Insert" FunctionName="ShoesStoreModel.Store.RcptBuyStaStep_Insert" />
-          <FunctionImportMapping FunctionImportName="RcptBuyStaStep_Select" FunctionName="ShoesStoreModel.Store.RcptBuyStaStep_Select">
+          <FunctionImportMapping FunctionImportName="RcptBuyStaDet_Update"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyStaDet_Update" />
+          <FunctionImportMapping FunctionImportName="RcptBuyStaStep_Delete"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyStaStep_Delete" />
+          <FunctionImportMapping FunctionImportName="RcptBuyStaStep_Insert"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyStaStep_Insert" />
+          <FunctionImportMapping FunctionImportName="RcptBuyStaStep_Select"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyStaStep_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.RcptBuyStaStep_Select_Result">
                 <ScalarProperty Name="StepId" ColumnName="StepId" />
@@ -2948,14 +3179,22 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RcptBuyStaStep_Update" FunctionName="ShoesStoreModel.Store.RcptBuyStaStep_Update" />
-          <FunctionImportMapping FunctionImportName="RcptSub_Delete" FunctionName="ShoesStoreModel.Store.RcptSub_Delete" />
-          <FunctionImportMapping FunctionImportName="RcptSub_Insert" FunctionName="ShoesStoreModel.Store.RcptSub_Insert" />
-          <FunctionImportMapping FunctionImportName="RcptSub_Select" FunctionName="ShoesStoreModel.Store.RcptSub_Select" />
-          <FunctionImportMapping FunctionImportName="RcptSub_Update" FunctionName="ShoesStoreModel.Store.RcptSub_Update" />
-          <FunctionImportMapping FunctionImportName="RcptSubDet_Delete" FunctionName="ShoesStoreModel.Store.RcptSubDet_Delete" />
-          <FunctionImportMapping FunctionImportName="RcptSubDet_Insert" FunctionName="ShoesStoreModel.Store.RcptSubDet_Insert" />
-          <FunctionImportMapping FunctionImportName="RcptSubDet_Select" FunctionName="ShoesStoreModel.Store.RcptSubDet_Select">
+          <FunctionImportMapping FunctionImportName="RcptBuyStaStep_Update"
+                                 FunctionName="ShoesStoreModel.Store.RcptBuyStaStep_Update" />
+          <FunctionImportMapping FunctionImportName="RcptSub_Delete"
+                                 FunctionName="ShoesStoreModel.Store.RcptSub_Delete" />
+          <FunctionImportMapping FunctionImportName="RcptSub_Insert"
+                                 FunctionName="ShoesStoreModel.Store.RcptSub_Insert" />
+          <FunctionImportMapping FunctionImportName="RcptSub_Select"
+                                 FunctionName="ShoesStoreModel.Store.RcptSub_Select" />
+          <FunctionImportMapping FunctionImportName="RcptSub_Update"
+                                 FunctionName="ShoesStoreModel.Store.RcptSub_Update" />
+          <FunctionImportMapping FunctionImportName="RcptSubDet_Delete"
+                                 FunctionName="ShoesStoreModel.Store.RcptSubDet_Delete" />
+          <FunctionImportMapping FunctionImportName="RcptSubDet_Insert"
+                                 FunctionName="ShoesStoreModel.Store.RcptSubDet_Insert" />
+          <FunctionImportMapping FunctionImportName="RcptSubDet_Select"
+                                 FunctionName="ShoesStoreModel.Store.RcptSubDet_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.RcptSubDet_Select_Result">
                 <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
@@ -2964,7 +3203,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RcptSubDet_Update" FunctionName="ShoesStoreModel.Store.RcptSubDet_Update" />
+          <FunctionImportMapping FunctionImportName="RcptSubDet_Update"
+                                 FunctionName="ShoesStoreModel.Store.RcptSubDet_Update" />
           <FunctionImportMapping FunctionImportName="Shp_Delete" FunctionName="ShoesStoreModel.Store.Shp_Delete" />
           <FunctionImportMapping FunctionImportName="Shp_Insert" FunctionName="ShoesStoreModel.Store.Shp_Insert" />
           <FunctionImportMapping FunctionImportName="Shp_Select" FunctionName="ShoesStoreModel.Store.Shp_Select">
@@ -3024,8 +3264,10 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Usr_Update" FunctionName="ShoesStoreModel.Store.Usr_Update" />
-          <FunctionImportMapping FunctionImportName="WebInfo_Delete" FunctionName="ShoesStoreModel.Store.WebInfo_Delete" />
-          <FunctionImportMapping FunctionImportName="WebInfo_Insert" FunctionName="ShoesStoreModel.Store.WebInfo_Insert">
+          <FunctionImportMapping FunctionImportName="WebInfo_Delete"
+                                 FunctionName="ShoesStoreModel.Store.WebInfo_Delete" />
+          <FunctionImportMapping FunctionImportName="WebInfo_Insert"
+                                 FunctionName="ShoesStoreModel.Store.WebInfo_Insert">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.WebInfo_Insert_Result">
                 <ScalarProperty Name="WebId" ColumnName="WebId" />
@@ -3037,7 +3279,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="WebInfo_Select" FunctionName="ShoesStoreModel.Store.WebInfo_Select">
+          <FunctionImportMapping FunctionImportName="WebInfo_Select"
+                                 FunctionName="ShoesStoreModel.Store.WebInfo_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.WebInfo_Select_Result">
                 <ScalarProperty Name="WebId" ColumnName="WebId" />
@@ -3049,7 +3292,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="WebInfo_Update" FunctionName="ShoesStoreModel.Store.WebInfo_Update">
+          <FunctionImportMapping FunctionImportName="WebInfo_Update"
+                                 FunctionName="ShoesStoreModel.Store.WebInfo_Update">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.WebInfo_Update_Result">
                 <ScalarProperty Name="WebId" ColumnName="WebId" />
@@ -3061,8 +3305,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="WebSlide_Delete" FunctionName="ShoesStoreModel.Store.WebSlide_Delete" />
-          <FunctionImportMapping FunctionImportName="WebSlide_Insert" FunctionName="ShoesStoreModel.Store.WebSlide_Insert">
+          <FunctionImportMapping FunctionImportName="WebSlide_Delete"
+                                 FunctionName="ShoesStoreModel.Store.WebSlide_Delete" />
+          <FunctionImportMapping FunctionImportName="WebSlide_Insert"
+                                 FunctionName="ShoesStoreModel.Store.WebSlide_Insert">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.WebSlide_Insert_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -3071,7 +3317,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="WebSlide_Select" FunctionName="ShoesStoreModel.Store.WebSlide_Select">
+          <FunctionImportMapping FunctionImportName="WebSlide_Select"
+                                 FunctionName="ShoesStoreModel.Store.WebSlide_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.WebSlide_Select_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -3080,7 +3327,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="WebSlide_Update" FunctionName="ShoesStoreModel.Store.WebSlide_Update">
+          <FunctionImportMapping FunctionImportName="WebSlide_Update"
+                                 FunctionName="ShoesStoreModel.Store.WebSlide_Update">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.WebSlide_Update_Result">
                 <ScalarProperty Name="id" ColumnName="id" />

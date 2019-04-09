@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.dom.DOMUtils',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.dom.DOMUtils');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -143,7 +129,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -153,7 +138,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.EditorManager',
   [
@@ -163,7 +147,6 @@ define(
     return resolve('tinymce.EditorManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -173,7 +156,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Delay',
   [
@@ -183,7 +165,6 @@ define(
     return resolve('tinymce.util.Delay');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -193,7 +174,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.Env',
   [
@@ -203,7 +183,6 @@ define(
     return resolve('tinymce.Env');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -213,7 +192,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the code plugin.
  *
@@ -233,33 +211,26 @@ define(
   function (PluginManager, DOMUtils, Tools, EditorManager, Delay, Env) {
     PluginManager.add('tabfocus', function (editor) {
       var DOM = DOMUtils.DOM;
-
       function tabCancel(e) {
         if (e.keyCode === 9 && !e.ctrlKey && !e.altKey && !e.metaKey) {
           e.preventDefault();
         }
       }
-
       function tabHandler(e) {
         var x, el, v, i;
-
         if (e.keyCode !== 9 || e.ctrlKey || e.altKey || e.metaKey || e.isDefaultPrevented()) {
           return;
         }
-
         function find(direction) {
           el = DOM.select(':input:enabled,*[tabindex]:not(iframe)');
-
           function canSelectRecursive(e) {
             return e.nodeName === "BODY" || (e.type != 'hidden' &&
               e.style.display != "none" &&
               e.style.visibility != "hidden" && canSelectRecursive(e.parentNode));
           }
-
           function canSelect(el) {
             return /INPUT|TEXTAREA|BUTTON/.test(el.tagName) && EditorManager.get(e.id) && el.tabIndex != -1 && canSelectRecursive(el);
           }
-
           Tools.each(el, function (e, i) {
             if (e.id == editor.id) {
               x = i;
@@ -279,17 +250,13 @@ define(
               }
             }
           }
-
           return null;
         }
-
         v = Tools.explode(editor.getParam('tab_focus', editor.getParam('tabfocus_elements', ':prev,:next')));
-
         if (v.length == 1) {
           v[1] = v[0];
           v[0] = ':prev';
         }
-
         // Find element to focus
         if (e.shiftKey) {
           if (v[0] == ':prev') {
@@ -304,10 +271,8 @@ define(
             el = DOM.get(v[1]);
           }
         }
-
         if (el) {
           var focusEditor = EditorManager.get(el.id || el.name);
-
           if (el.id && focusEditor) {
             focusEditor.focus();
           } else {
@@ -315,23 +280,18 @@ define(
               if (!Env.webkit) {
                 window.focus();
               }
-
               el.focus();
             }, 10);
           }
-
           e.preventDefault();
         }
       }
-
       editor.on('init', function () {
         if (editor.inline) {
           // Remove default tabIndex in inline mode
           DOM.setAttrib(editor.getBody(), 'tabIndex', null);
         }
-
         editor.on('keyup', tabCancel);
-
         if (Env.gecko) {
           editor.on('keypress keydown', tabHandler);
         } else {
@@ -339,8 +299,6 @@ define(
         }
       });
     });
-
-
     return function () { };
   }
 );

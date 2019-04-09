@@ -3,7 +3,6 @@
     -webkit-animation: #{$mdi-css-prefix}-spin 2s infinite linear;
             animation: #{$mdi-css-prefix}-spin 2s infinite linear;
 }
-
 @-webkit-keyframes #{$mdi-css-prefix}-spin {
     0% {
       -webkit-transform: rotate(0deg);
@@ -14,7 +13,6 @@
               transform: rotate(359deg);
     }
 }
-
 @keyframes #{$mdi-css-prefix}-spin {
     0% {
       -webkit-transform: rotate(0deg);

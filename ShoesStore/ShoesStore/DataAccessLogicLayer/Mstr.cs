@@ -6,21 +6,17 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     using System.Collections.Generic;
-    
     public partial class Mstr
     {
         public Mstr()
         {
             this.MstrRole = new HashSet<MstrRole>();
         }
-    
         public int MstrId { get; set; }
-    
         public virtual Usr Usr { get; set; }
         public virtual ICollection<MstrRole> MstrRole { get; set; }
     }

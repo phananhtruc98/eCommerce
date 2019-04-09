@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.dom.DOMUtils',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.dom.DOMUtils');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the fullscreen plugin.
  *
@@ -148,62 +134,48 @@ define(
   ],
   function (DOMUtils, PluginManager) {
     var DOM = DOMUtils.DOM;
-
     PluginManager.add('fullscreen', function (editor) {
       var fullscreenState = false, iframeWidth, iframeHeight, resizeHandler;
       var containerWidth, containerHeight, scrollPos;
-
       if (editor.settings.inline) {
         return;
       }
-
       function getWindowSize() {
         var w, h, win = window, doc = document;
         var body = doc.body;
-
         // Old IE
         if (body.offsetWidth) {
           w = body.offsetWidth;
           h = body.offsetHeight;
         }
-
         // Modern browsers
         if (win.innerWidth && win.innerHeight) {
           w = win.innerWidth;
           h = win.innerHeight;
         }
-
         return { w: w, h: h };
       }
-
       function getScrollPos() {
         var vp = DOM.getViewPort();
-
         return {
           x: vp.x,
           y: vp.y
         };
       }
-
       function setScrollPos(pos) {
         window.scrollTo(pos.x, pos.y);
       }
-
       function toggleFullscreen() {
         var body = document.body, documentElement = document.documentElement, editorContainerStyle;
         var editorContainer, iframe, iframeStyle;
-
         function resize() {
           DOM.setStyle(iframe, 'height', getWindowSize().h - (editorContainer.clientHeight - iframe.clientHeight));
         }
-
         fullscreenState = !fullscreenState;
-
         editorContainer = editor.getContainer();
         editorContainerStyle = editorContainer.style;
         iframe = editor.getContentAreaContainer().firstChild;
         iframeStyle = iframe.style;
-
         if (fullscreenState) {
           scrollPos = getScrollPos();
           iframeWidth = iframeStyle.width;
@@ -212,48 +184,38 @@ define(
           containerWidth = editorContainerStyle.width;
           containerHeight = editorContainerStyle.height;
           editorContainerStyle.width = editorContainerStyle.height = '';
-
           DOM.addClass(body, 'mce-fullscreen');
           DOM.addClass(documentElement, 'mce-fullscreen');
           DOM.addClass(editorContainer, 'mce-fullscreen');
-
           DOM.bind(window, 'resize', resize);
           resize();
           resizeHandler = resize;
         } else {
           iframeStyle.width = iframeWidth;
           iframeStyle.height = iframeHeight;
-
           if (containerWidth) {
             editorContainerStyle.width = containerWidth;
           }
-
           if (containerHeight) {
             editorContainerStyle.height = containerHeight;
           }
-
           DOM.removeClass(body, 'mce-fullscreen');
           DOM.removeClass(documentElement, 'mce-fullscreen');
           DOM.removeClass(editorContainer, 'mce-fullscreen');
           DOM.unbind(window, 'resize', resizeHandler);
           setScrollPos(scrollPos);
         }
-
         editor.fire('FullscreenStateChanged', { state: fullscreenState });
       }
-
       editor.on('init', function () {
         editor.addShortcut('Ctrl+Shift+F', '', toggleFullscreen);
       });
-
       editor.on('remove', function () {
         if (resizeHandler) {
           DOM.unbind(window, 'resize', resizeHandler);
         }
       });
-
       editor.addCommand('mceFullScreen', toggleFullscreen);
-
       editor.addMenuItem('fullscreen', {
         text: 'Fullscreen',
         shortcut: 'Ctrl+Shift+F',
@@ -264,34 +226,29 @@ define(
         },
         onPostRender: function () {
           var self = this;
-
           editor.on('FullscreenStateChanged', function (e) {
             self.active(e.state);
           });
         },
         context: 'view'
       });
-
       editor.addButton('fullscreen', {
         tooltip: 'Fullscreen',
         shortcut: 'Ctrl+Shift+F',
         onClick: toggleFullscreen,
         onPostRender: function () {
           var self = this;
-
           editor.on('FullscreenStateChanged', function (e) {
             self.active(e.state);
           });
         }
       });
-
       return {
         isFullscreen: function () {
           return fullscreenState;
         }
       };
     });
-
     return function () { };
   }
 );

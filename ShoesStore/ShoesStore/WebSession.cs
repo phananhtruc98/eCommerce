@@ -11,9 +11,6 @@ namespace ShoesStore
             set => HttpContext.Current.Session["LoginUsr"] = value;
         }
 
-        public static WebSession Instance
-        {
-            get { return _instance ?? new WebSession(); }
-        }
+        public static WebSession Instance => _instance ?? new WebSession();
     }
 }
