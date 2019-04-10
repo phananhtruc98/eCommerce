@@ -7,7 +7,15 @@ using System.Web;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class RcptSubDet_BUS: Table_BUS<RcptSubDet_Select_Result, RcptSubDet_DAO>, IRcptSubDet
+    public class RcptSubDet_BUS: Table_BUS<RcptSubDet, RcptSubDet_DAO>, IRcptSubDet
     {
+        private readonly RcptSubDet_DAO _dao = new RcptSubDet_DAO();
+        public List<RcptSubDet> SelectedRowById(int RcptSubId)
+        {
+            return _dao.SelectedRowById(RcptSubId);
+
+        }
+
+
     }
 }

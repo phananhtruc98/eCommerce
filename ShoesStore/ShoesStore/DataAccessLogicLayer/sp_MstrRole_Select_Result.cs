@@ -11,10 +11,9 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class ProSize_Select_Result
+    public partial class sp_MstrRole_Select_Result
     {
-        public int SizeId { get; set; }
-        public string SizeName { get; set; }
-        public string SizeImg { get; set; }
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }

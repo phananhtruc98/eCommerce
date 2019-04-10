@@ -18,9 +18,9 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ObjectResult<Admin_Info_Result> Get_Admin_Info()
+        public ObjectResult<sp_Admin_Info_Result> Get_Admin_Info()
         {
-            return DataProvider.Instance.Admin_Info();
+            return DataProvider.Instance.sp_Admin_Info();
         }
 
         public UsrAct GetUsrAct(int usrId)

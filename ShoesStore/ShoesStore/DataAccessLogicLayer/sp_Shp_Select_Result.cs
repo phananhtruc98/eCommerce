@@ -11,11 +11,12 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class Sub_Select_Result
+    public partial class sp_Shp_Select_Result
     {
-        public int SubId { get; set; }
-        public string SubContent { get; set; }
-        public int DurDay { get; set; }
-        public string Price { get; set; }
+        public int ShpId { get; set; }
+        public int MerId { get; set; }
+        public string ShpName { get; set; }
+        public System.DateTime DateStart { get; set; }
+        public bool Active { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class CartDet_Select_Result
+    public partial class sp_CartDet_Select_Result
     {
         public int CartId { get; set; }
         public int ShpId { get; set; }

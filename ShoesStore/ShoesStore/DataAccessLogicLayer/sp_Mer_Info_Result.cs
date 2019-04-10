@@ -11,7 +11,7 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class Admin_Info_Result
+    public partial class sp_Mer_Info_Result
     {
         public int UsrId { get; set; }
         public string UsrName { get; set; }
@@ -23,6 +23,5 @@ namespace ShoesStore.DataAccessLogicLayer
         public string Phone { get; set; }
         public System.DateTime DateAdd { get; set; }
         public Nullable<System.DateTime> DateEdit { get; set; }
-        public string RoleName { get; set; }
     }
 }

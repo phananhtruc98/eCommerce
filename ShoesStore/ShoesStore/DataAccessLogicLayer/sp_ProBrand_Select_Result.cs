@@ -11,10 +11,9 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class RcptBuyStaDet_Select_Result
+    public partial class sp_ProBrand_Select_Result
     {
-        public int StaId { get; set; }
-        public int StepId { get; set; }
-        public bool IsDone { get; set; }
+        public int BrandId { get; set; }
+        public string BrandName { get; set; }
     }
 }

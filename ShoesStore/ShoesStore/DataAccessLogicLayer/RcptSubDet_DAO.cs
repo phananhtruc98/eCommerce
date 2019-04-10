@@ -6,14 +6,24 @@ using System.Web;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class RcptSubDet_DAO : Table_DAO<RcptSubDet_Select_Result>, IRcptSubDet
+    public class RcptSubDet_DAO : Table_DAO<RcptSubDet>, IRcptSubDet
     {
-        public override bool IsExist(RcptSubDet_Select_Result obj)
+        public List<RcptSubDet> SelectedRowById(int RcptSubId)
+        {
+            var result = (from r in GetAll()
+                         where r.RcptSubId == RcptSubId
+                         select r).ToList();
+
+            return result;
+                         
+        }
+
+        public override bool IsExist(RcptSubDet obj)
         {
             throw new NotImplementedException();
         }
 
-        public override void SetActive(RcptSubDet_Select_Result obj)
+        public override void SetActive(RcptSubDet obj)
         {
             throw new NotImplementedException();
         }

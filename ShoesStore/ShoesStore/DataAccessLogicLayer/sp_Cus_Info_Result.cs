@@ -11,11 +11,16 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class Rcpt_Select_Result
+    public partial class sp_Cus_Info_Result
     {
-        public int RcptId { get; set; }
-        public int UsrAdd { get; set; }
-        public Nullable<int> UsrEdit { get; set; }
+        public int UsrId { get; set; }
+        public string UsrName { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public bool Active { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
         public System.DateTime DateAdd { get; set; }
         public Nullable<System.DateTime> DateEdit { get; set; }
     }

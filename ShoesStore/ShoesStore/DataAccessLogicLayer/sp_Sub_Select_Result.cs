@@ -11,10 +11,11 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class ProColor_Select_Result
+    public partial class sp_Sub_Select_Result
     {
-        public int ColorId { get; set; }
-        public string ColorName { get; set; }
-        public string ColorImg { get; set; }
+        public int SubId { get; set; }
+        public string SubContent { get; set; }
+        public int DurDay { get; set; }
+        public string Price { get; set; }
     }
 }

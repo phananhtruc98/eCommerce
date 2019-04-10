@@ -15,12 +15,12 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public void CreateActCode(Mer obj)
         {
-            DataProvider.Instance.Mer_Info();
+            DataProvider.Instance.sp_Mer_Info();
         }
 
-        public ObjectResult<Mer_Info_Result> Get_Mer_Info()
+        public ObjectResult<sp_Mer_Info_Result> Get_Mer_Info()
         {
-            return DataProvider.Instance.Mer_Info();
+            return DataProvider.Instance.sp_Mer_Info();
         }
 
         public UsrAct GetUsrAct(int usrId)

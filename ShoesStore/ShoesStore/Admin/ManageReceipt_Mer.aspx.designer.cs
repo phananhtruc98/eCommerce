@@ -6,8 +6,12 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace ShoesStore.Admin {
+    
+    
     public partial class ManageReceipt_Mer {
+        
         /// <summary>
         /// gvRcptSub control.
         /// </summary>
@@ -16,6 +20,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRcptSub;
+        
         /// <summary>
         /// ValidationRcptSubId control.
         /// </summary>
@@ -24,5 +29,14 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationRcptSubId;
+        
+        /// <summary>
+        /// dtviewRcptSubDet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DetailsView dtviewRcptSubDet;
     }
 }

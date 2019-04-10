@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShoesStore.Interfaces
 {
-    public interface IRcptSubDet:ITable<RcptSubDet_Select_Result>
+    public interface IRcptSubDet:ITable<RcptSubDet>
     {
 
     }

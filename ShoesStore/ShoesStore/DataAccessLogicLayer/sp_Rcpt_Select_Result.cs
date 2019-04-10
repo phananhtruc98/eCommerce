@@ -11,9 +11,12 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class MstrRole_Select_Result
+    public partial class sp_Rcpt_Select_Result
     {
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        public int RcptId { get; set; }
+        public int UsrAdd { get; set; }
+        public Nullable<int> UsrEdit { get; set; }
+        public System.DateTime DateAdd { get; set; }
+        public Nullable<System.DateTime> DateEdit { get; set; }
     }
 }
