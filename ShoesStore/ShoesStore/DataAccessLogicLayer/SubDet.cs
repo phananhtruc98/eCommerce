@@ -16,7 +16,7 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public SubDet()
         {
-            this.RcptSub = new HashSet<RcptSub>();
+            this.RcptSubDet = new HashSet<RcptSubDet>();
         }
     
         public int SubId { get; set; }
@@ -25,7 +25,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public Nullable<System.DateTime> DateEnd { get; set; }
     
         public virtual Mer Mer { get; set; }
+        public virtual ICollection<RcptSubDet> RcptSubDet { get; set; }
         public virtual Sub Sub { get; set; }
-        public virtual ICollection<RcptSub> RcptSub { get; set; }
     }
 }

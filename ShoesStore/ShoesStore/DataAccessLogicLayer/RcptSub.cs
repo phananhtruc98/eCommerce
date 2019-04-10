@@ -16,12 +16,12 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public RcptSub()
         {
-            this.SubDet = new HashSet<SubDet>();
+            this.RcptSubDet = new HashSet<RcptSubDet>();
         }
     
         public int RcptSubId { get; set; }
     
         public virtual Rcpt Rcpt { get; set; }
-        public virtual ICollection<SubDet> SubDet { get; set; }
+        public virtual ICollection<RcptSubDet> RcptSubDet { get; set; }
     }
 }

@@ -16,5 +16,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public int RcptSubId { get; set; }
         public int SubId { get; set; }
         public int MerId { get; set; }
+        public Nullable<int> Quantity { get; set; }
     }
 }

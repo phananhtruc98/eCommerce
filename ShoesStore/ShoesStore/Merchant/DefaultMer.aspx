@@ -5,13 +5,13 @@
             <div class="col-lg-8 order-lg-2">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a href="#" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                        <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" data-target="#messages" data-toggle="tab" class="nav-link">Contact info</a>
+                        <a href="" data-target="#messages" data-toggle="tab" class="nav-link">Contact info</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" data-target="#edit" data-toggle="tab" class="nav-link">other info</a>
+                        <a href="" data-target="#edit" data-toggle="tab" class="nav-link">other info</a>
                     </li>
                 </ul>
                 <div class="tab-content py-4">
@@ -113,7 +113,7 @@
                         </table>
                     </div>
                     <div class="tab-pane" id="edit">
-                       
+                        <form role="form">
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">First name</label>
                                 <div class="col-lg-9">
@@ -162,7 +162,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
                                 <div class="col-lg-9">
-                                    <select id="user_time_zone" class="form-control" >
+                                    <select id="user_time_zone" class="form-control" size="0">
                                         <option value="Hawaii">(GMT-10:00) Hawaii</option>
                                         <option value="Alaska">(GMT-09:00) Alaska</option>
                                         <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
@@ -199,7 +199,7 @@
                                     <input type="button" class="btn btn-primary" value="Save Changes">
                                 </div>
                             </div>
-                        
+                        </form>
                     </div>
                 </div>
             </div>
@@ -213,4 +213,6 @@
             </div>
         </div>
     </div>
+   
 </asp:Content>
+

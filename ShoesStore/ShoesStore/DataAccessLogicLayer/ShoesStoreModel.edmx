@@ -49,6 +49,8 @@
           </Key>
           <Property Name="MstrId" Type="int" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="AddBy" Type="int" />
         </EntityType>
         <EntityType Name="MstrRole">
           <Key>
@@ -190,6 +192,7 @@
           <Property Name="RcptSubId" Type="int" Nullable="false" />
           <Property Name="SubId" Type="int" Nullable="false" />
           <Property Name="MerId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
         </EntityType>
         <EntityType Name="Shp">
           <Key>
@@ -219,6 +222,16 @@
           <Property Name="MerId" Type="int" Nullable="false" />
           <Property Name="DateStart" Type="datetime" />
           <Property Name="DateEnd" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Usr">
           <Key>
@@ -287,6 +300,18 @@
             </Principal>
             <Dependent Role="MstrDet">
               <PropertyRef Name="MstrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MstrDet_Mstr1">
+          <End Role="Mstr" Type="Self.Mstr" Multiplicity="0..1" />
+          <End Role="MstrDet" Type="Self.MstrDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mstr">
+              <PropertyRef Name="MstrId" />
+            </Principal>
+            <Dependent Role="MstrDet">
+              <PropertyRef Name="AddBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -697,6 +722,7 @@
         <Function Name="Cus_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CusId" Type="int" Mode="In" />
         </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="Mer_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
@@ -988,6 +1014,36 @@
           <Parameter Name="DateStart" Type="datetime" Mode="In" />
           <Parameter Name="Active" Type="bit" Mode="In" />
         </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sub_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SubId" Type="int" Mode="In" />
         </Function>
@@ -1119,6 +1175,7 @@
           <EntitySet Name="Shp" EntityType="Self.Shp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sub" EntityType="Self.Sub" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubDet" EntityType="Self.SubDet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usr" EntityType="Self.Usr" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsrAct" EntityType="Self.UsrAct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebInfo" EntityType="Self.WebInfo" Schema="dbo" store:Type="Tables" />
@@ -1128,6 +1185,10 @@
             <End Role="Mstr" EntitySet="Mstr" />
           </AssociationSet>
           <AssociationSet Name="FK_MstrDet_Mstr" Association="Self.FK_MstrDet_Mstr">
+            <End Role="Mstr" EntitySet="Mstr" />
+            <End Role="MstrDet" EntitySet="MstrDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MstrDet_Mstr1" Association="Self.FK_MstrDet_Mstr1">
             <End Role="Mstr" EntitySet="Mstr" />
             <End Role="MstrDet" EntitySet="MstrDet" />
           </AssociationSet>
@@ -1300,7 +1361,21 @@
           </Key>
           <Property Name="MstrId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usr" Relationship="Self.FK_Mstr_Usr" FromRole="Mstr" ToRole="Usr" />
-          <NavigationProperty Name="MstrRole" Relationship="Self.MstrDet" FromRole="Mstr" ToRole="MstrRole" />
+          <NavigationProperty Name="MstrDet" Relationship="Self.FK_MstrDet_Mstr" FromRole="Mstr" ToRole="MstrDet" />
+          <NavigationProperty Name="MstrDet1" Relationship="Self.FK_MstrDet_Mstr1" FromRole="Mstr" ToRole="MstrDet" />
+        </EntityType>
+        <EntityType Name="MstrDet">
+          <Key>
+            <PropertyRef Name="MstrId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="MstrId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="AddBy" Type="Int32" />
+          <NavigationProperty Name="Mstr" Relationship="Self.FK_MstrDet_Mstr" FromRole="MstrDet" ToRole="Mstr" />
+          <NavigationProperty Name="Mstr1" Relationship="Self.FK_MstrDet_Mstr1" FromRole="MstrDet" ToRole="Mstr" />
+          <NavigationProperty Name="MstrRole" Relationship="Self.FK_MstrDet_MstrRole" FromRole="MstrDet" ToRole="MstrRole" />
         </EntityType>
         <EntityType Name="MstrRole">
           <Key>
@@ -1308,7 +1383,7 @@
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Mstr" Relationship="Self.MstrDet" FromRole="MstrRole" ToRole="Mstr" />
+          <NavigationProperty Name="MstrDet" Relationship="Self.FK_MstrDet_MstrRole" FromRole="MstrRole" ToRole="MstrDet" />
         </EntityType>
         <EntityType Name="Pro">
           <Key>
@@ -1462,7 +1537,20 @@
           </Key>
           <Property Name="RcptSubId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Rcpt" Relationship="Self.FK_ReceiptsSubscriptions_Receipts" FromRole="RcptSub" ToRole="Rcpt" />
-          <NavigationProperty Name="SubDet" Relationship="Self.RcptSubDet" FromRole="RcptSub" ToRole="SubDet" />
+          <NavigationProperty Name="RcptSubDet" Relationship="Self.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" FromRole="RcptSub" ToRole="RcptSubDet" />
+        </EntityType>
+        <EntityType Name="RcptSubDet">
+          <Key>
+            <PropertyRef Name="RcptSubId" />
+            <PropertyRef Name="SubId" />
+            <PropertyRef Name="MerId" />
+          </Key>
+          <Property Name="RcptSubId" Type="Int32" Nullable="false" />
+          <Property Name="SubId" Type="Int32" Nullable="false" />
+          <Property Name="MerId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="RcptSub" Relationship="Self.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" FromRole="RcptSubDet" ToRole="RcptSub" />
+          <NavigationProperty Name="SubDet" Relationship="Self.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" FromRole="RcptSubDet" ToRole="SubDet" />
         </EntityType>
         <EntityType Name="Shp">
           <Key>
@@ -1496,8 +1584,18 @@
           <Property Name="DateStart" Type="DateTime" Precision="3" />
           <Property Name="DateEnd" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Mer" Relationship="Self.FK_SubscriptionsDetails_UsersMerchants" FromRole="SubDet" ToRole="Mer" />
+          <NavigationProperty Name="RcptSubDet" Relationship="Self.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" FromRole="SubDet" ToRole="RcptSubDet" />
           <NavigationProperty Name="Sub" Relationship="Self.FK_SubscriptionsDetails_Subscriptions" FromRole="SubDet" ToRole="Sub" />
-          <NavigationProperty Name="RcptSub" Relationship="Self.RcptSubDet" FromRole="SubDet" ToRole="RcptSub" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Usr">
           <Key>
@@ -1661,6 +1759,42 @@
             </Principal>
             <Dependent Role="Mstr">
               <PropertyRef Name="MstrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MstrDet_Mstr">
+          <End Role="Mstr" Type="Self.Mstr" Multiplicity="1" />
+          <End Role="MstrDet" Type="Self.MstrDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mstr">
+              <PropertyRef Name="MstrId" />
+            </Principal>
+            <Dependent Role="MstrDet">
+              <PropertyRef Name="MstrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MstrDet_Mstr1">
+          <End Role="Mstr" Type="Self.Mstr" Multiplicity="0..1" />
+          <End Role="MstrDet" Type="Self.MstrDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mstr">
+              <PropertyRef Name="MstrId" />
+            </Principal>
+            <Dependent Role="MstrDet">
+              <PropertyRef Name="AddBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MstrDet_MstrRole">
+          <End Role="MstrRole" Type="Self.MstrRole" Multiplicity="1" />
+          <End Role="MstrDet" Type="Self.MstrDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MstrRole">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="MstrDet">
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1848,6 +1982,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
+          <End Role="RcptSub" Type="Self.RcptSub" Multiplicity="1" />
+          <End Role="RcptSubDet" Type="Self.RcptSubDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RcptSub">
+              <PropertyRef Name="RcptSubId" />
+            </Principal>
+            <Dependent Role="RcptSubDet">
+              <PropertyRef Name="RcptSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
+          <End Role="SubDet" Type="Self.SubDet" Multiplicity="1" />
+          <End Role="RcptSubDet" Type="Self.RcptSubDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubDet">
+              <PropertyRef Name="SubId" />
+              <PropertyRef Name="MerId" />
+            </Principal>
+            <Dependent Role="RcptSubDet">
+              <PropertyRef Name="SubId" />
+              <PropertyRef Name="MerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SubscriptionsDetails_Subscriptions">
           <End Role="Sub" Type="Self.Sub" Multiplicity="1" />
           <End Role="SubDet" Type="Self.SubDet" Multiplicity="*" />
@@ -1884,20 +2044,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MstrDet">
-          <End Role="Mstr" Type="Self.Mstr" Multiplicity="*" />
-          <End Role="MstrRole" Type="Self.MstrRole" Multiplicity="*" />
-        </Association>
-        <Association Name="RcptSubDet">
-          <End Role="RcptSub" Type="Self.RcptSub" Multiplicity="*" />
-          <End Role="SubDet" Type="Self.SubDet" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="ShoesStoreDBContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cart" EntityType="Self.Cart" />
           <EntitySet Name="CartDet" EntityType="Self.CartDet" />
           <EntitySet Name="Cus" EntityType="Self.Cus" />
           <EntitySet Name="Mer" EntityType="Self.Mer" />
           <EntitySet Name="Mstr" EntityType="Self.Mstr" />
+          <EntitySet Name="MstrDet" EntityType="Self.MstrDet" />
           <EntitySet Name="MstrRole" EntityType="Self.MstrRole" />
           <EntitySet Name="Pro" EntityType="Self.Pro" />
           <EntitySet Name="ProBrand" EntityType="Self.ProBrand" />
@@ -1912,9 +2065,11 @@
           <EntitySet Name="RcptBuyStaDet" EntityType="Self.RcptBuyStaDet" />
           <EntitySet Name="RcptBuyStaStep" EntityType="Self.RcptBuyStaStep" />
           <EntitySet Name="RcptSub" EntityType="Self.RcptSub" />
+          <EntitySet Name="RcptSubDet" EntityType="Self.RcptSubDet" />
           <EntitySet Name="Shp" EntityType="Self.Shp" />
           <EntitySet Name="Sub" EntityType="Self.Sub" />
           <EntitySet Name="SubDet" EntityType="Self.SubDet" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Usr" EntityType="Self.Usr" />
           <EntitySet Name="UsrAct" EntityType="Self.UsrAct" />
           <EntitySet Name="WebInfo" EntityType="Self.WebInfo" />
@@ -1954,6 +2109,18 @@
           <AssociationSet Name="FK_Mstr_Usr" Association="Self.FK_Mstr_Usr">
             <End Role="Usr" EntitySet="Usr" />
             <End Role="Mstr" EntitySet="Mstr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MstrDet_Mstr" Association="Self.FK_MstrDet_Mstr">
+            <End Role="Mstr" EntitySet="Mstr" />
+            <End Role="MstrDet" EntitySet="MstrDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MstrDet_Mstr1" Association="Self.FK_MstrDet_Mstr1">
+            <End Role="Mstr" EntitySet="Mstr" />
+            <End Role="MstrDet" EntitySet="MstrDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MstrDet_MstrRole" Association="Self.FK_MstrDet_MstrRole">
+            <End Role="MstrRole" EntitySet="MstrRole" />
+            <End Role="MstrDet" EntitySet="MstrDet" />
           </AssociationSet>
           <AssociationSet Name="FK_Pro_Brand" Association="Self.FK_Pro_Brand">
             <End Role="ProBrand" EntitySet="ProBrand" />
@@ -2015,6 +2182,14 @@
             <End Role="RcptBuyStaStep" EntitySet="RcptBuyStaStep" />
             <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" Association="Self.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
+            <End Role="RcptSub" EntitySet="RcptSub" />
+            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" Association="Self.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
+            <End Role="SubDet" EntitySet="SubDet" />
+            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
+          </AssociationSet>
           <AssociationSet Name="FK_SubscriptionsDetails_Subscriptions" Association="Self.FK_SubscriptionsDetails_Subscriptions">
             <End Role="Sub" EntitySet="Sub" />
             <End Role="SubDet" EntitySet="SubDet" />
@@ -2026,14 +2201,6 @@
           <AssociationSet Name="FK_WebSlide_WebInfo" Association="Self.FK_WebSlide_WebInfo">
             <End Role="WebInfo" EntitySet="WebInfo" />
             <End Role="WebSlide" EntitySet="WebSlide" />
-          </AssociationSet>
-          <AssociationSet Name="MstrDet" Association="Self.MstrDet">
-            <End Role="Mstr" EntitySet="Mstr" />
-            <End Role="MstrRole" EntitySet="MstrRole" />
-          </AssociationSet>
-          <AssociationSet Name="RcptSubDet" Association="Self.RcptSubDet">
-            <End Role="RcptSub" EntitySet="RcptSub" />
-            <End Role="SubDet" EntitySet="SubDet" />
           </AssociationSet>
           <FunctionImport Name="Admin_Info" ReturnType="Collection(ShoesStoreModel.Admin_Info_Result)" />
           <FunctionImport Name="Cart_Delete">
@@ -2377,6 +2544,36 @@
             <Parameter Name="DateStart" Mode="In" Type="DateTime" />
             <Parameter Name="Active" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ShoesStoreModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ShoesStoreModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="Sub_Delete">
             <Parameter Name="SubId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2599,6 +2796,7 @@
           <Property Type="Int32" Name="RcptSubId" Nullable="false" />
           <Property Type="Int32" Name="SubId" Nullable="false" />
           <Property Type="Int32" Name="MerId" Nullable="false" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
         </ComplexType>
         <ComplexType Name="Shp_Select_Result">
           <Property Type="Int32" Name="ShpId" Nullable="false" />
@@ -2606,6 +2804,17 @@
           <Property Type="String" Name="ShpName" Nullable="false" MaxLength="255" />
           <Property Type="DateTime" Name="DateStart" Nullable="false" Precision="23" />
           <Property Type="Boolean" Name="Active" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="Sub_Select_Result">
           <Property Type="Int32" Name="SubId" Nullable="false" />
@@ -2713,6 +2922,16 @@
             <EntityTypeMapping TypeName="ShoesStoreModel.Mstr">
               <MappingFragment StoreEntitySet="Mstr">
                 <ScalarProperty Name="MstrId" ColumnName="MstrId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MstrDet">
+            <EntityTypeMapping TypeName="ShoesStoreModel.MstrDet">
+              <MappingFragment StoreEntitySet="MstrDet">
+                <ScalarProperty Name="MstrId" ColumnName="MstrId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="AddBy" ColumnName="AddBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2854,6 +3073,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="RcptSubDet">
+            <EntityTypeMapping TypeName="ShoesStoreModel.RcptSubDet">
+              <MappingFragment StoreEntitySet="RcptSubDet">
+                <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
+                <ScalarProperty Name="SubId" ColumnName="SubId" />
+                <ScalarProperty Name="MerId" ColumnName="MerId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Shp">
             <EntityTypeMapping TypeName="ShoesStoreModel.Shp">
               <MappingFragment StoreEntitySet="Shp">
@@ -2882,6 +3111,17 @@
                 <ScalarProperty Name="MerId" ColumnName="MerId" />
                 <ScalarProperty Name="DateStart" ColumnName="DateStart" />
                 <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ShoesStoreModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2935,23 +3175,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="MstrDet" TypeName="ShoesStoreModel.MstrDet" StoreEntitySet="MstrDet">
-            <EndProperty Name="Mstr">
-              <ScalarProperty Name="MstrId" ColumnName="MstrId" />
-            </EndProperty>
-            <EndProperty Name="MstrRole">
-              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="RcptSubDet" TypeName="ShoesStoreModel.RcptSubDet" StoreEntitySet="RcptSubDet">
-            <EndProperty Name="RcptSub">
-              <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
-            </EndProperty>
-            <EndProperty Name="SubDet">
-              <ScalarProperty Name="SubId" ColumnName="SubId" />
-              <ScalarProperty Name="MerId" ColumnName="MerId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="Admin_Info" FunctionName="ShoesStoreModel.Store.Admin_Info">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.Admin_Info_Result">
@@ -3197,6 +3420,7 @@
                 <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
                 <ScalarProperty Name="SubId" ColumnName="SubId" />
                 <ScalarProperty Name="MerId" ColumnName="MerId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3215,6 +3439,30 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Shp_Update" FunctionName="ShoesStoreModel.Store.Shp_Update" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ShoesStoreModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ShoesStoreModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ShoesStoreModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ShoesStoreModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShoesStoreModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ShoesStoreModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShoesStoreModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ShoesStoreModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ShoesStoreModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="Sub_Delete" FunctionName="ShoesStoreModel.Store.Sub_Delete" />
           <FunctionImportMapping FunctionImportName="Sub_Insert" FunctionName="ShoesStoreModel.Store.Sub_Insert" />
           <FunctionImportMapping FunctionImportName="Sub_Select" FunctionName="ShoesStoreModel.Store.Sub_Select">

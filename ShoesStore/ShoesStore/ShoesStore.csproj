@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -2171,6 +2170,10 @@
     <Content Include="Admin\package.json" />
     <Content Include="Admin\css\maps\style.css.map" />
     <Content Include="Admin\scss\_navbar.scss" />
+    <Content Include="Merchant\about-us.aspx" />
+    <Content Include="Merchant\checkout.aspx" />
+    <Content Include="Merchant\contact-us.aspx" />
+    <Content Include="Merchant\css\style.css" />
     <Content Include="Merchant\DefaultMer.aspx" />
     <EntityDeploy Include="DataAccessLogicLayer\ShoesStoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -2179,6 +2182,28 @@
     <Content Include="DataAccessLogicLayer\ShoesStoreModel.edmx.diagram">
       <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Merchant\fonts\stroyka\stroyka.ttf" />
+    <Content Include="Merchant\fonts\stroyka\stroyka.woff" />
+    <Content Include="Merchant\giohang.aspx" />
+    <Content Include="Merchant\index-2.aspx" />
+    <Content Include="Merchant\merchant.aspx" />
+    <Content Include="Merchant\signin.aspx" />
+    <Content Include="Merchant\sub.aspx" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.eot" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.ttf" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.woff" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.woff2" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400d41d.eot" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-regular-400.eot" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-regular-400.ttf" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-regular-400.woff" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-regular-400.woff2" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-regular-400d41d.eot" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900.eot" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900.ttf" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900.woff" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900.woff2" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900d41d.eot" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="images\aboutus.jpg" />
     <Content Include="images\avatars\avatar-1.jpg" />
@@ -2257,6 +2282,106 @@
     <Content Include="images\teammates\teammate-3.jpg" />
     <Content Include="js\main.js" />
     <Content Include="js\number.js" />
+    <Content Include="Merchant\fonts\stroyka\stroyka.css" />
+    <Content Include="Merchant\fonts\stroyka\stroyka.svg" />
+    <Content Include="Merchant\images\aboutus.jpg" />
+    <Content Include="Merchant\images\avatars\avatar-1.jpg" />
+    <Content Include="Merchant\images\avatars\avatar-2.jpg" />
+    <Content Include="Merchant\images\avatars\avatar-3.jpg" />
+    <Content Include="Merchant\images\avatars\avatar-4.jpg" />
+    <Content Include="Merchant\images\banners\banner-1-mobile.jpg" />
+    <Content Include="Merchant\images\banners\banner-1.jpg" />
+    <Content Include="Merchant\images\categories\category-1.jpg" />
+    <Content Include="Merchant\images\categories\category-2.jpg" />
+    <Content Include="Merchant\images\categories\category-3.jpg" />
+    <Content Include="Merchant\images\categories\category-4.jpg" />
+    <Content Include="Merchant\images\categories\category-5.jpg" />
+    <Content Include="Merchant\images\categories\category-6.jpg" />
+    <Content Include="Merchant\images\favicon.png" />
+    <Content Include="Merchant\images\languages\language-1.png" />
+    <Content Include="Merchant\images\languages\language-2.png" />
+    <Content Include="Merchant\images\languages\language-3.png" />
+    <Content Include="Merchant\images\languages\language-4.png" />
+    <Content Include="Merchant\images\languages\language-5.png" />
+    <Content Include="Merchant\images\logos\logo-1.png" />
+    <Content Include="Merchant\images\logos\logo-2.png" />
+    <Content Include="Merchant\images\logos\logo-3.png" />
+    <Content Include="Merchant\images\logos\logo-4.png" />
+    <Content Include="Merchant\images\logos\logo-5.png" />
+    <Content Include="Merchant\images\logos\logo-6.png" />
+    <Content Include="Merchant\images\logos\logo-7.png" />
+    <Content Include="Merchant\images\megamenu\megamenu-1.jpg" />
+    <Content Include="Merchant\images\megamenu\megamenu-2.jpg" />
+    <Content Include="Merchant\images\megamenu\megamenu-3.jpg" />
+    <Content Include="Merchant\images\payments.png" />
+    <Content Include="Merchant\images\posts\post-1-thumbnail.jpg" />
+    <Content Include="Merchant\images\posts\post-1.jpg" />
+    <Content Include="Merchant\images\posts\post-10.jpg" />
+    <Content Include="Merchant\images\posts\post-2-thumbnail.jpg" />
+    <Content Include="Merchant\images\posts\post-2.jpg" />
+    <Content Include="Merchant\images\posts\post-3-thumbnail.jpg" />
+    <Content Include="Merchant\images\posts\post-3.jpg" />
+    <Content Include="Merchant\images\posts\post-4.jpg" />
+    <Content Include="Merchant\images\posts\post-5.jpg" />
+    <Content Include="Merchant\images\posts\post-6.jpg" />
+    <Content Include="Merchant\images\posts\post-7.jpg" />
+    <Content Include="Merchant\images\posts\post-8.jpg" />
+    <Content Include="Merchant\images\posts\post-9.jpg" />
+    <Content Include="Merchant\images\posts\post-featured.jpg" />
+    <Content Include="Merchant\images\products\product-1.jpg" />
+    <Content Include="Merchant\images\products\product-10.jpg" />
+    <Content Include="Merchant\images\products\product-11.jpg" />
+    <Content Include="Merchant\images\products\product-12.jpg" />
+    <Content Include="Merchant\images\products\product-13.jpg" />
+    <Content Include="Merchant\images\products\product-14.jpg" />
+    <Content Include="Merchant\images\products\product-15.jpg" />
+    <Content Include="Merchant\images\products\product-16-1.html" />
+    <Content Include="Merchant\images\products\product-16-1.jpg" />
+    <Content Include="Merchant\images\products\product-16-2.html" />
+    <Content Include="Merchant\images\products\product-16-2.jpg" />
+    <Content Include="Merchant\images\products\product-16-3.html" />
+    <Content Include="Merchant\images\products\product-16-3.jpg" />
+    <Content Include="Merchant\images\products\product-16-4.html" />
+    <Content Include="Merchant\images\products\product-16-4.jpg" />
+    <Content Include="Merchant\images\products\product-16.html" />
+    <Content Include="Merchant\images\products\product-16.jpg" />
+    <Content Include="Merchant\images\products\product-2.jpg" />
+    <Content Include="Merchant\images\products\product-3.jpg" />
+    <Content Include="Merchant\images\products\product-4.jpg" />
+    <Content Include="Merchant\images\products\product-5.jpg" />
+    <Content Include="Merchant\images\products\product-6.jpg" />
+    <Content Include="Merchant\images\products\product-7.jpg" />
+    <Content Include="Merchant\images\products\product-8.jpg" />
+    <Content Include="Merchant\images\products\product-9.jpg" />
+    <Content Include="Merchant\images\shoeicon.png" />
+    <Content Include="Merchant\images\shuz.png" />
+    <Content Include="Merchant\images\slides\slide-1-full.jpg" />
+    <Content Include="Merchant\images\slides\slide-1-mobile.jpg" />
+    <Content Include="Merchant\images\slides\slide-1.jpg" />
+    <Content Include="Merchant\images\slides\slide-2-full.jpg" />
+    <Content Include="Merchant\images\slides\slide-2-mobile.jpg" />
+    <Content Include="Merchant\images\slides\slide-2.jpg" />
+    <Content Include="Merchant\images\slides\slide-3-full.jpg" />
+    <Content Include="Merchant\images\slides\slide-3-mobile.jpg" />
+    <Content Include="Merchant\images\slides\slide-3.jpg" />
+    <Content Include="Merchant\images\sprite.svg" />
+    <Content Include="Merchant\images\teammates\teammate-1.jpg" />
+    <Content Include="Merchant\images\teammates\teammate-2.jpg" />
+    <Content Include="Merchant\images\teammates\teammate-3.jpg" />
+    <Content Include="Merchant\js\main.js" />
+    <Content Include="Merchant\js\number.js" />
+    <Content Include="Merchant\vendor\bootstrap-4.2.1\css\bootstrap.min.css" />
+    <Content Include="Merchant\vendor\bootstrap-4.2.1\js\bootstrap.bundle.min.js" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\css\all.min.css" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.svg" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-regular-400.svg" />
+    <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900.svg" />
+    <Content Include="Merchant\vendor\jquery-3.3.1\jquery.min.js" />
+    <Content Include="Merchant\vendor\nouislider-12.1.0\nouislider.min.js" />
+    <Content Include="Merchant\vendor\owl-carousel-2.3.4\assets\owl.carousel.min.css" />
+    <Content Include="Merchant\vendor\owl-carousel-2.3.4\assets\owl.video.play.png" />
+    <Content Include="Merchant\vendor\owl-carousel-2.3.4\owl.carousel.min.js" />
+    <Content Include="Merchant\vendor\svg4everybody-2.1.9\svg4everybody.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -2449,6 +2574,9 @@
     <Compile Include="DataAccessLogicLayer\Mstr.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\MstrDet.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\MstrRole.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2528,6 +2656,9 @@
     <Compile Include="DataAccessLogicLayer\RcptSub.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptSubDet.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\RcptSubDet_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\RcptSubDet_Select_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
@@ -2558,6 +2689,12 @@
     <Compile Include="DataAccessLogicLayer\Shp_Select_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\Sub.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2568,6 +2705,9 @@
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Sub_Select_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\sysdiagrams.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Table_DAO.cs" />
@@ -2640,6 +2780,62 @@
     </Compile>
     <Compile Include="Interfaces\Pages\IMaster.cs" />
     <Compile Include="Interfaces\Pages\IValidation.cs" />
+    <Compile Include="Merchant\about-us.aspx.cs">
+      <DependentUpon>about-us.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\about-us.aspx.designer.cs">
+      <DependentUpon>about-us.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\checkout.aspx.cs">
+      <DependentUpon>checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\checkout.aspx.designer.cs">
+      <DependentUpon>checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\contact-us.aspx.cs">
+      <DependentUpon>contact-us.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\contact-us.aspx.designer.cs">
+      <DependentUpon>contact-us.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\giohang.aspx.cs">
+      <DependentUpon>giohang.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\giohang.aspx.designer.cs">
+      <DependentUpon>giohang.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\index-2.aspx.cs">
+      <DependentUpon>index-2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\index-2.aspx.designer.cs">
+      <DependentUpon>index-2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\merchant.aspx.cs">
+      <DependentUpon>merchant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\merchant.aspx.designer.cs">
+      <DependentUpon>merchant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\signin.aspx.cs">
+      <DependentUpon>signin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\signin.aspx.designer.cs">
+      <DependentUpon>signin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\sub.aspx.cs">
+      <DependentUpon>sub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\sub.aspx.designer.cs">
+      <DependentUpon>sub.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyExtensions\ProExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

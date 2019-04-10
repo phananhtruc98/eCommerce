@@ -16,12 +16,12 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public MstrRole()
         {
-            this.Mstr = new HashSet<Mstr>();
+            this.MstrDet = new HashSet<MstrDet>();
         }
     
         public int RoleId { get; set; }
         public string RoleName { get; set; }
     
-        public virtual ICollection<Mstr> Mstr { get; set; }
+        public virtual ICollection<MstrDet> MstrDet { get; set; }
     }
 }
