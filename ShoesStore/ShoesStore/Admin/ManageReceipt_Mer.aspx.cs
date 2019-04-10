@@ -16,11 +16,11 @@ namespace ShoesStore.Admin
         {
             if (!IsPostBack)
             {
-                BindGridViewData();
+                BindGridViewgvRcptSub();
                 
             }
         }
-        private void BindGridViewData()
+        private void BindGridViewgvRcptSub()
         {
             gvRcptSub.DataSource = rcptSub_BUS.GetAll().ToList();
             gvRcptSub.DataBind();
@@ -28,18 +28,22 @@ namespace ShoesStore.Admin
             {
             }
         }
-
+        private void BindDetailsViewRcptSubDet(int RcptSubId)
+        {
+            dtviewRcptSubDet.DataSource = rcptSubDet_BUS.SelectedRowById(RcptSubId);
+            dtviewRcptSubDet.DataBind();
+        }
         protected void gvSub_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditRow")
             {
                 int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
                 gvRcptSub.EditIndex = rowIndex;
-                BindGridViewData();
+                BindGridViewgvRcptSub();
             }
             else if (e.CommandName == "DeleteRow")
             {
-                RcptSubDet_Select_Result result2 = rcptSubDet_BUS.GetAll().FirstOrDefault(m => m.RcptSubId == Convert.ToInt32(e.CommandArgument));
+                RcptSubDet result2 = rcptSubDet_BUS.GetAll().FirstOrDefault(m => m.RcptSubId == Convert.ToInt32(e.CommandArgument));
 
                 RcptSub result = rcptSub_BUS.GetAll().FirstOrDefault(m => m.RcptSubId == Convert.ToInt32(e.CommandArgument));
 
@@ -49,12 +53,12 @@ namespace ShoesStore.Admin
                 rcptSubDet_BUS.Delete(result2);
                 rcptSub_BUS.Delete(result);
                 rcpt_BUS.Delete(result1);
-                BindGridViewData();
+                BindGridViewgvRcptSub();
             }
             else if (e.CommandName == "CancelUpdate")
             {
                 gvRcptSub.EditIndex = -1;
-                BindGridViewData();
+                BindGridViewgvRcptSub();
             }
             else if (e.CommandName == "UpdateRow")
             {
@@ -74,7 +78,7 @@ namespace ShoesStore.Admin
                 }
 
                 gvRcptSub.EditIndex = -1;
-                BindGridViewData();
+                BindGridViewgvRcptSub();
             }
             else if (e.CommandName == "InsertRow")
             {
@@ -101,15 +105,14 @@ namespace ShoesStore.Admin
                     UsrEdit = null
                 };
 
+                rcpt_BUS.Insert(rcpt);
                 RcptSub newRcptSub = new RcptSub
                 {
-                    RcptSubId = rcpt_BUS.getMaxRcptId()
+                    RcptSubId = rcpt_BUS.getMaxRcptId() 
                 };
 
                 rcptSub_BUS.Insert(newRcptSub);
-                rcpt_BUS.Insert(rcpt);
-
-                BindGridViewData();
+                BindGridViewgvRcptSub();
             }
             else if(e.CommandName=="EInsertRow")
             {
@@ -135,25 +138,22 @@ namespace ShoesStore.Admin
                     UsrEdit = null
                 };
 
+                rcpt_BUS.Insert(rcpt);
                 RcptSub newRcptSub = new RcptSub
                 {
                     RcptSubId = rcpt_BUS.getMaxRcptId()
                 };
 
                 rcptSub_BUS.Insert(newRcptSub);
-                rcpt_BUS.Insert(rcpt);
 
-                BindGridViewData();
+                BindGridViewgvRcptSub();
             }
         }
-        protected void AddNewRecord(object sender, EventArgs e)
+        
+        protected void gvRcptSub_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gvRcptSub.ShowFooter = true;
-        }
-
-        protected void gvRcptSub_DataBound(object sender, EventArgs e)
-        {
-
+            int rcptSubId = Int32.Parse((gvRcptSub.SelectedRow.FindControl("rcptsubid") as Label).Text);
+            BindDetailsViewRcptSubDet(rcptSubId);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ObjectResult<Admin_Info_Result> Get_Admin_Info()
+        public ObjectResult<sp_Admin_Info_Result> Get_Admin_Info()
         {
             return _dao.Get_Admin_Info();
         }

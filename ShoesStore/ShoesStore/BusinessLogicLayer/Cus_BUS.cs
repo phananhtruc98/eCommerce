@@ -54,7 +54,7 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ObjectResult<Cus_Info_Result> Get_Cus_Info()
+        public ObjectResult<sp_Cus_Info_Result> Get_Cus_Info()
         {
             return _dao.Get_Cus_Info();
         }

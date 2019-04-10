@@ -5,6 +5,6 @@ namespace ShoesStore.Interfaces
 {
     interface IMer:IUsr<Mer>
     {
-        ObjectResult<Mer_Info_Result> Get_Mer_Info();
+        ObjectResult<sp_Mer_Info_Result> Get_Mer_Info();
     }
 }

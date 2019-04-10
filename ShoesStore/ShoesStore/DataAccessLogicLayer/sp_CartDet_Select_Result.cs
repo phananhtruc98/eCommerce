@@ -11,12 +11,11 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class ProCat_Select_Result
+    public partial class sp_CartDet_Select_Result
     {
-        public int CatId { get; set; }
-        public string CatName { get; set; }
-        public bool Active { get; set; }
-        public System.DateTime DateAdd { get; set; }
-        public Nullable<System.DateTime> DateEdit { get; set; }
+        public int CartId { get; set; }
+        public int ShpId { get; set; }
+        public int ProId { get; set; }
+        public Nullable<int> Qty { get; set; }
     }
 }

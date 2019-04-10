@@ -11,11 +11,10 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class SubDet_Select_Result
+    public partial class sp_ProSize_Select_Result
     {
-        public int SubId { get; set; }
-        public int MerId { get; set; }
-        public Nullable<System.DateTime> DateStart { get; set; }
-        public Nullable<System.DateTime> DateEnd { get; set; }
+        public int SizeId { get; set; }
+        public string SizeName { get; set; }
+        public string SizeImg { get; set; }
     }
 }

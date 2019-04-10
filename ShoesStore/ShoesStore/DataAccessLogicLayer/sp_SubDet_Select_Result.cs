@@ -11,9 +11,11 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class ProBrand_Select_Result
+    public partial class sp_SubDet_Select_Result
     {
-        public int BrandId { get; set; }
-        public string BrandName { get; set; }
+        public int SubId { get; set; }
+        public int MerId { get; set; }
+        public Nullable<System.DateTime> DateStart { get; set; }
+        public Nullable<System.DateTime> DateEnd { get; set; }
     }
 }

@@ -11,12 +11,9 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class Shp_Select_Result
+    public partial class sp_RcptBuy_Select_Result
     {
-        public int ShpId { get; set; }
-        public int MerId { get; set; }
-        public string ShpName { get; set; }
-        public System.DateTime DateStart { get; set; }
-        public bool Active { get; set; }
+        public int RcptBuyId { get; set; }
+        public int CusId { get; set; }
     }
 }

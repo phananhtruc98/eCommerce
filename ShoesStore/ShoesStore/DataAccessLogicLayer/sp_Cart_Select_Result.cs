@@ -11,17 +11,10 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class Usr_Select_Result
+    public partial class sp_Cart_Select_Result
     {
-        public int UsrId { get; set; }
-        public string UsrName { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public bool Active { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public System.DateTime DateAdd { get; set; }
-        public Nullable<System.DateTime> DateEdit { get; set; }
+        public int CartId { get; set; }
+        public Nullable<int> CusId { get; set; }
+        public string IpAddress { get; set; }
     }
 }

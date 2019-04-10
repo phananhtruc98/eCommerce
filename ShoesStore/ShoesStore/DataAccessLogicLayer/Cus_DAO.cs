@@ -51,9 +51,9 @@ namespace ShoesStore.DataAccessLogicLayer
         }
 
 
-        public ObjectResult<Cus_Info_Result> Get_Cus_Info()
+        public ObjectResult<sp_Cus_Info_Result> Get_Cus_Info()
         {
-            return DataProvider.Instance.Cus_Info();
+            return DataProvider.Instance.sp_Cus_Info();
         }
 
         public Cus GetByPrimaryKeys(int id)

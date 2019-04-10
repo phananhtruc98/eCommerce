@@ -10,6 +10,6 @@ namespace ShoesStore.Interfaces
         void Buy(ICart icart);
         void ActCode();
         bool IsActCode();
-        ObjectResult<Cus_Info_Result> Get_Cus_Info();
+        ObjectResult<sp_Cus_Info_Result> Get_Cus_Info();
     }
 }

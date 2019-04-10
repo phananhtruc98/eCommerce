@@ -11,10 +11,12 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class RcptBuyStaDet_Select_Result
+    public partial class sp_ProCat_Select_Result
     {
-        public int StaId { get; set; }
-        public int StepId { get; set; }
-        public bool IsDone { get; set; }
+        public int CatId { get; set; }
+        public string CatName { get; set; }
+        public bool Active { get; set; }
+        public System.DateTime DateAdd { get; set; }
+        public Nullable<System.DateTime> DateEdit { get; set; }
     }
 }

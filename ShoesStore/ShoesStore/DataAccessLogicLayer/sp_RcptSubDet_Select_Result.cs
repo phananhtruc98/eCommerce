@@ -11,10 +11,11 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class RcptBuyStaStep_Select_Result
+    public partial class sp_RcptSubDet_Select_Result
     {
-        public int StepId { get; set; }
-        public string StepCont { get; set; }
-        public Nullable<int> StepOrder { get; set; }
+        public int RcptSubId { get; set; }
+        public int SubId { get; set; }
+        public int MerId { get; set; }
+        public Nullable<int> Quantity { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ObjectResult<Mer_Info_Result> Get_Mer_Info()
+        public ObjectResult<sp_Mer_Info_Result> Get_Mer_Info()
         {
             return _dao.Get_Mer_Info();
         }

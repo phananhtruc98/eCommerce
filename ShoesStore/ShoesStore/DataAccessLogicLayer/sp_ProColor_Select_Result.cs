@@ -11,9 +11,10 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class RcptBuy_Select_Result
+    public partial class sp_ProColor_Select_Result
     {
-        public int RcptBuyId { get; set; }
-        public int CusId { get; set; }
+        public int ColorId { get; set; }
+        public string ColorName { get; set; }
+        public string ColorImg { get; set; }
     }
 }
