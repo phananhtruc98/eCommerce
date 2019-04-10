@@ -239,206 +239,9 @@
         </div>
     </div>
 </div>
-<!-- Dang Ky modal/end-->
-<!-- mobilemenu -->
-<div class="mobilemenu">
-    <div class="mobilemenu__backdrop"></div>
-    <div class="mobilemenu__body">
-        <div class="mobilemenu__header">
-            <div class="mobilemenu__title">Menu</div>
-            <button type="button" class="mobilemenu__close">
-                <svg
-                    width="20px" height="20px">
-                    <use href="images/sprite.svg#cross-20"></use>
-                </svg>
-            </button>
-        </div>
-        <div class="mobilemenu__content">
-            <ul class="mobile-links mobile-links--level--0"
-                data-collapse-opened-class="mobile-links__item--open">
-                <li class="mobile-links__item">
-                    <div class="mobile-links__item-title">
-                        <a href="#"
-                           class="mobile-links__item-link">
-                            Trang chủ
-                        </a>
-                        <button class="mobile-links__item-toggle"
-                                type="button">
-                        </button>
-                    </div>
-                </li>
-                <li class="mobile-links__item">
-                    <div class="mobile-links__item-title">
-                        <a href="#" class="mobile-links__item-link">Danh mục</a>
-                        <button class="mobile-links__item-toggle" type="button">
-                            <svg
-                                class="mobile-links__item-arrow" width="12px" height="7px">
-                                <use href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="mobile-links__item-sub-links">
-                        <ul class="mobile-links mobile-links--level--1">
-                            <li class="mobile-links__item">
-                                <div class="mobile-links__item-title">
-                                    <a href="#"
-                                       class="mobile-links__item-link">
-                                        Giày nữ
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="mobile-links__item">
-                    <div class="mobile-links__item-title">
-                        <a href="#"
-                           class="mobile-links__item-link">
-                            Thương hiệu
-                        </a>
-                        <button class="mobile-links__item-toggle"
-                                type="button">
-                            <svg class="mobile-links__item-arrow" width="12px"
-                                 height="7px">
-                                <use href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="mobile-links__item-sub-links">
-                        <ul class="mobile-links mobile-links--level--1">
-                            <li class="mobile-links__item">
-                                <div class="mobile-links__item-title">
-                                    <a href="shop-list.html"
-                                       class="mobile-links__item-link">
-                                        Adidas
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="mobile-links__item">
-                    <div class="mobile-links__item-title">
-                        <a href="#" class="mobile-links__item-link">Kênh người bán</a>
-                    </div>
-                </li>
-                <li class="mobile-links__item">
-                    <div class="mobile-links__item-title">
-                        <a
-                            class="mobile-links__item-link">
-                            Theo dõi đơn hàng
-                        </a>
-                    </div>
-                </li>
-                <li class="mobile-links__item">
-                    <div class="mobile-links__item-title">
-                        <a href="#"
-                           class="mobile-links__item-link">
-                            Về The Shuz
-                        </a>
-                    </div>
-                </li>
-                <li class="mobile-links__item">
-                    <div class="mobile-links__item-title">
-                        <a href="#"
-                           class="mobile-links__item-link">
-                            Đăng nhập
-                        </a>
-                    </div>
-                </li>
-                <li class="mobile-links__item">
-                    <div class="mobile-links__item-title">
-                        <a href="#"
-                           class="mobile-links__item-link">
-                            Đăng ký
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- mobilemenu / end -->
-<!-- site -->
+
 <div class="site">
-<!-- mobile site__header -->
-<header class="site__header d-lg-none">
-    <div class="mobile-header">
-        <div class="mobile-header__panel">
-            <div class="container">
-                <div class="mobile-header__body">
-                    <button class="mobile-header__menu-button" onclick="return false">
-                        <svg width="18px"
-                             height="14px">
-                            <use href="images/sprite.svg#menu-18x14"></use>
-                        </svg>
-                    </button>
-                    <a class="mobile-header__logo" href="#">
-                        <p class="logo_name">THE SHUZ</p>
-                    </a>
-                    <div class="mobile-header__search">
-                        <input
-                            class="" name="search"
-                            placeholder="Tìm kiếm" aria-label="Site search" type="text"
-                            autocomplete="off">
-                        <button
-                            class="mobile-header__search-button "
-                            type="submit">
-                            <svg width="20px" height="20px">
-                                <use href="images/sprite.svg#search-20"></use>
-                            </svg>
-                        </button>
-                        <button
-                            class="mobile-header__search-button mobile-header__search-button--close"
-                            type="button">
-                            <svg width="20px" height="20px">
-                                <use href="images/sprite.svg#cross-20"></use>
-                            </svg>
-                        </button>
-                        <div></div>
-                    </div>
-                    <div class="mobile-header__indicators">
-                        <div class="indicator  indicator--mobile d-sm-none">
-                            <button class="indicator__button">
-                                <span class="indicator__area">
-                                    <svg width="20px"
-                                         height="20px">
-                                        <use href="images/sprite.svg#search-20"></use>
-                                    </svg>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="indicator indicator--mobile d-sm-flex d-none">
-                            <a href="#" class="indicator__button">
-                                <span class="indicator__area">
-                                    <svg width="20px"
-                                         height="20px">
-                                        <use href="images/sprite.svg#heart-20"></use>
-                                    </svg>
-                                    <span class="indicator__value">0</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="indicator indicator--mobile">
-                            <a href="<%= ResolveUrl("~/Customer/GioHang.aspx") %>"
-                               class="indicator__button">
-                                <span class="indicator__area">
-                                    <svg width="20px"
-                                         height="20px">
-                                        <use href="images/sprite.svg#cart-20"></use>
-                                    </svg>
-                                    <span class="indicator__value">3</span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- mobile site__header / end -->
-<!-- desktop site__header -->
+
 <header class="site__header d-lg-block d-none">
 <div class="site-header">
 <!-- .topbar -->
@@ -514,9 +317,17 @@
     <ul class="nav-links__list">
         <li class="nav-links__item nav-links__item--with-submenu">
             <a
-                href="/Default.aspx">
+                href=".">
                 <span>
                     Trang chủ
+                </span>
+            </a>
+        </li>
+        <li class="nav-links__item nav-links__item--with-submenu">
+            <a
+                href="san-pham">
+                <span>
+                    Sản phẩm
                 </span>
             </a>
         </li>
@@ -575,46 +386,7 @@
 </div>
 <!-- .nav-links / end -->
 <div class="nav-panel__indicators">
-    <div class="indicator indicator--trigger--click">
-        <button type="button" class="indicator__button">
-            <span class="indicator__area">
-                <svg
-                    class="indicator__icon" width="20px" height="20px">
-                    <use href="images/sprite.svg#search-20"></use>
-                </svg>
-                <svg class="indicator__icon indicator__icon--open" width="20px"
-                     height="20px">
-                    <use href="images/sprite.svg#cross-20"></use>
-                </svg>
-            </span>
-        </button>
-        <div class="indicator__dropdown">
-            <div class="drop-search">
-                <input
-                    class="drop-search__input" name="search"
-                    placeholder="Search over 10,000 products"
-                    aria-label="Site search" type="text" autocomplete="off">
-                <button
-                    class="drop-search__button "
-                    type="submit">
-                    <svg width="20px" height="20px">
-                        <use href="images/sprite.svg#search-20"></use>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="indicator">
-        <a href="#" class="indicator__button">
-            <span
-                class="indicator__area">
-                <svg width="20px" height="20px">
-                    <use href="images/sprite.svg#heart-20"></use>
-                </svg>
-                <span class="indicator__value">0</span>
-            </span>
-        </a>
-    </div>
+
     <div class="indicator indicator--trigger--click">
         <a href="<%= ResolveUrl("~/Customer/GioHang.aspx") %>"
            class="indicator__button">

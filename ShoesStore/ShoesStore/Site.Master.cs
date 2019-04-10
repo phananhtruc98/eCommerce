@@ -14,6 +14,8 @@ namespace ShoesStore
         internal readonly ProBrand_BUS _proBrand = new ProBrand_BUS();
         internal readonly Usr_BUS _usr = new Usr_BUS();
         internal readonly WebInfo_BUS _webInfo = new WebInfo_BUS();
+        internal readonly WebSlide_BUS _webSlide = new WebSlide_BUS();
+        internal readonly Pro_BUS _pro = new Pro_BUS();
         private static string _actCode = "";
         protected void Page_Load(object sender, EventArgs e)
         {

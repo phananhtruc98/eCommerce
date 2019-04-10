@@ -13,6 +13,15 @@ namespace ShoesStore {
     public partial class Default {
         
         /// <summary>
+        /// rptSlides control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptSlides;
+        
+        /// <summary>
         /// featuredProducts control.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,40 @@ namespace ShoesStore {
         protected global::System.Web.UI.WebControls.Repeater featuredProducts;
         
         /// <summary>
-        /// rptProCat control.
+        /// rptFeatureProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProCat;
+        protected global::System.Web.UI.WebControls.Repeater rptFeatureProducts;
+        
+        /// <summary>
+        /// rptBestSellers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptBestSellers;
+        
+        /// <summary>
+        /// rptPopularCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptPopularCategories;
+        
+        /// <summary>
+        /// rptBrandLogos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptBrandLogos;
         
         /// <summary>
         /// Master property.

@@ -24,6 +24,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public bool Active { get; set; }
         public System.DateTime DateAdd { get; set; }
         public Nullable<System.DateTime> DateEdit { get; set; }
+        public string Img { get; set; }
     
         public virtual ICollection<Pro> Pro { get; set; }
     }
