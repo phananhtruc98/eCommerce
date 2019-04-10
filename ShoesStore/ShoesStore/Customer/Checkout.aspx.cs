@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Web.UI;
 
-namespace ShoesStore
+namespace ShoesStore.Customer
 {
-    public partial class GioHang : Page
+    public partial class ThanhToan : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

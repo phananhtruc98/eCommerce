@@ -2,7 +2,6 @@
 @mixin bg($color) {
   background: $color;
 }
-
 @mixin bg-gradient($color1, $color2) {
   background: $color1;
   /* For browsers that do not support gradients */
@@ -15,7 +14,6 @@
   background: linear-gradient(90deg, $color1, $color2);
   /* Standard syntax */
 }
-
 @mixin bg-inverse-variant($color) {
   background: rgba($color, 0.2);
 }

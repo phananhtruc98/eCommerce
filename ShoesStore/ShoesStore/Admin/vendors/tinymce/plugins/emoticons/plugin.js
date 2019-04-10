@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the emoticons plugin.
  *
@@ -154,31 +140,22 @@ define(
         ["money-mouth", "sealed", "smile", "surprised"],
         ["tongue-out", "undecided", "wink", "yell"]
       ];
-
       function getHtml() {
         var emoticonsHtml;
-
         emoticonsHtml = '<table role="list" class="mce-grid">';
-
         Tools.each(emoticons, function (row) {
           emoticonsHtml += '<tr>';
-
           Tools.each(row, function (icon) {
             var emoticonUrl = url + '/img/smiley-' + icon + '.gif';
-
             emoticonsHtml += '<td><a href="#" data-mce-url="' + emoticonUrl + '" data-mce-alt="' + icon + '" tabindex="-1" ' +
               'role="option" aria-label="' + icon + '"><img src="' +
               emoticonUrl + '" style="width: 18px; height: 18px" role="presentation" /></a></td>';
           });
-
           emoticonsHtml += '</tr>';
         });
-
         emoticonsHtml += '</table>';
-
         return emoticonsHtml;
       }
-
       editor.addButton('emoticons', {
         type: 'panelbutton',
         panel: {
@@ -187,7 +164,6 @@ define(
           html: getHtml,
           onclick: function (e) {
             var linkElm = editor.dom.getParent(e.target, 'a');
-
             if (linkElm) {
               editor.insertContent(
                 '<img src="' +
@@ -195,7 +171,6 @@ define(
                 '" alt="' + linkElm.getAttribute('data-mce-alt') +
                 '" />'
               );
-
               this.hide();
             }
           }
@@ -203,7 +178,6 @@ define(
         tooltip: 'Emoticons'
       });
     });
-
     return function () { };
   }
 );

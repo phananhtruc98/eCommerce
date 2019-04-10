@@ -7,6 +7,19 @@ namespace Utilities
 {
     public class Email
     {
+        public static bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static string SendGmail(string fromMail, string passFromMail, string mailTo, string subject, string body)
         {
             var msg = "";
@@ -71,19 +84,6 @@ namespace Utilities
             }
 
             return msg;
-        }
-
-        public static bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
         }
     }
 }

@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the advlist plugin.
  *
@@ -149,20 +135,16 @@ define(
   function (PluginManager, Tools) {
     PluginManager.add('advlist', function (editor) {
       var olMenuItems, ulMenuItems;
-
       var hasPlugin = function (editor, plugin) {
         var plugins = editor.settings.plugins ? editor.settings.plugins : '';
         return Tools.inArray(plugins.split(/[ ,]/), plugin) !== -1;
       };
-
       function isChildOfBody(elm) {
         return editor.$.contains(editor.getBody(), elm);
       }
-
       function isListNode(node) {
         return node && (/^(OL|UL|DL)$/).test(node.nodeName) && isChildOfBody(node);
       }
-
       function buildMenuItems(listName, styleValues) {
         var items = [];
         if (styleValues) {
@@ -177,74 +159,58 @@ define(
         }
         return items;
       }
-
       olMenuItems = buildMenuItems('OL', editor.getParam(
         "advlist_number_styles",
         "default,lower-alpha,lower-greek,lower-roman,upper-alpha,upper-roman"
       ));
-
       ulMenuItems = buildMenuItems('UL', editor.getParam("advlist_bullet_styles", "default,circle,disc,square"));
-
       function applyListFormat(listName, styleValue) {
         editor.undoManager.transact(function () {
           var list, dom = editor.dom, sel = editor.selection;
-
           // Check for existing list element
           list = dom.getParent(sel.getNode(), 'ol,ul');
-
           // Switch/add list type if needed
           if (!list || list.nodeName != listName || styleValue === false) {
             var detail = {
               'list-style-type': styleValue ? styleValue : ''
             };
-
             editor.execCommand(listName == 'UL' ? 'InsertUnorderedList' : 'InsertOrderedList', false, detail);
           }
-
           list = dom.getParent(sel.getNode(), 'ol,ul');
           if (list) {
             Tools.each(dom.select('ol,ul', list).concat([list]), function (list) {
               if (list.nodeName !== listName && styleValue !== false) {
                 list = dom.rename(list, listName);
               }
-
               dom.setStyle(list, 'listStyleType', styleValue ? styleValue : null);
               list.removeAttribute('data-mce-style');
             });
           }
-
           editor.focus();
         });
       }
-
       function updateSelection(e) {
         var listStyleType = editor.dom.getStyle(editor.dom.getParent(editor.selection.getNode(), 'ol,ul'), 'listStyleType') || '';
-
         e.control.items().each(function (ctrl) {
           ctrl.active(ctrl.settings.data === listStyleType);
         });
       }
-
       var listState = function (listName) {
         return function () {
           var self = this;
-
           editor.on('NodeChange', function (e) {
             var lists = Tools.grep(e.parents, isListNode);
             self.active(lists.length > 0 && lists[0].nodeName === listName);
           });
         };
       };
-
       if (hasPlugin(editor, "lists")) {
         editor.addCommand('ApplyUnorderedListStyle', function (ui, value) {
           applyListFormat('UL', value['list-style-type']);
         });
-
         editor.addCommand('ApplyOrderedListStyle', function (ui, value) {
           applyListFormat('OL', value['list-style-type']);
         });
-
         editor.addButton('numlist', {
           type: (olMenuItems.length > 0) ? 'splitbutton' : 'button',
           tooltip: 'Numbered list',
@@ -258,7 +224,6 @@ define(
             applyListFormat('OL', false);
           }
         });
-
         editor.addButton('bullist', {
           type: (ulMenuItems.length > 0) ? 'splitbutton' : 'button',
           tooltip: 'Bullet list',
@@ -274,9 +239,7 @@ define(
         });
       }
     });
-
     return function () { };
-
   }
 );
 dem('tinymce.plugins.advlist.Plugin')();

@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.Env',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.Env');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.JSON',
   [
@@ -143,7 +129,6 @@ define(
     return resolve('tinymce.util.JSON');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -153,7 +138,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -163,7 +147,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -173,7 +156,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.XHR',
   [
@@ -183,7 +165,6 @@ define(
     return resolve('tinymce.util.XHR');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -193,7 +174,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the image plugin.
  *
@@ -213,60 +193,46 @@ define(
     PluginManager.add('image', function (editor) {
       function getImageSize(url, callback) {
         var img = document.createElement('img');
-
         function done(width, height) {
           if (img.parentNode) {
             img.parentNode.removeChild(img);
           }
-
           callback({ width: width, height: height });
         }
-
         img.onload = function () {
           done(Math.max(img.width, img.clientWidth), Math.max(img.height, img.clientHeight));
         };
-
         img.onerror = function () {
           done();
         };
-
         var style = img.style;
         style.visibility = 'hidden';
         style.position = 'fixed';
         style.bottom = style.left = 0;
         style.width = style.height = 'auto';
-
         document.body.appendChild(img);
         img.src = url;
       }
-
       function buildListItems(inputList, itemCallback, startItems) {
         function appendItems(values, output) {
           output = output || [];
-
           Tools.each(values, function (item) {
             var menuItem = { text: item.text || item.title };
-
             if (item.menu) {
               menuItem.menu = appendItems(item.menu);
             } else {
               menuItem.value = item.value;
               itemCallback(menuItem);
             }
-
             output.push(menuItem);
           });
-
           return output;
         }
-
         return appendItems(inputList, startItems || []);
       }
-
       function createImageList(callback) {
         return function () {
           var imageList = editor.settings.image_list;
-
           if (typeof imageList == "string") {
             XHR.send({
               url: imageList,
@@ -281,57 +247,44 @@ define(
           }
         };
       }
-
       function showDialog(imageList) {
         var win, data = {}, dom = editor.dom, imgElm, figureElm;
         var width, height, imageListCtrl, classListCtrl, imageDimensions = editor.settings.image_dimensions !== false;
-
         function recalcSize() {
           var widthCtrl, heightCtrl, newWidth, newHeight;
-
           widthCtrl = win.find('#width')[0];
           heightCtrl = win.find('#height')[0];
-
           if (!widthCtrl || !heightCtrl) {
             return;
           }
-
           newWidth = widthCtrl.value();
           newHeight = heightCtrl.value();
-
           if (win.find('#constrain')[0].checked() && width && height && newWidth && newHeight) {
             if (width != newWidth) {
               newHeight = Math.round((newWidth / width) * newHeight);
-
               if (!isNaN(newHeight)) {
                 heightCtrl.value(newHeight);
               }
             } else {
               newWidth = Math.round((newHeight / height) * newWidth);
-
               if (!isNaN(newWidth)) {
                 widthCtrl.value(newWidth);
               }
             }
           }
-
           width = newWidth;
           height = newHeight;
         }
-
         function onSubmitForm() {
           var figureElm, oldImg;
-
           function waitLoad(imgElm) {
             function selectImage() {
               imgElm.onload = imgElm.onerror = null;
-
               if (editor.selection) {
                 editor.selection.select(imgElm);
                 editor.nodeChanged();
               }
             }
-
             imgElm.onload = function () {
               if (!data.width && !data.height && imageDimensions) {
                 dom.setAttribs(imgElm, {
@@ -339,38 +292,28 @@ define(
                   height: imgElm.clientHeight
                 });
               }
-
               selectImage();
             };
-
             imgElm.onerror = selectImage;
           }
-
           updateStyle();
           recalcSize();
-
           data = Tools.extend(data, win.toJSON());
-
           if (!data.alt) {
             data.alt = '';
           }
-
           if (!data.title) {
             data.title = '';
           }
-
           if (data.width === '') {
             data.width = null;
           }
-
           if (data.height === '') {
             data.height = null;
           }
-
           if (!data.style) {
             data.style = null;
           }
-
           // Setup new data excluding style properties
           /*eslint dot-notation: 0*/
           data = {
@@ -383,7 +326,6 @@ define(
             caption: data.caption,
             "class": data["class"]
           };
-
           editor.undoManager.transact(function () {
             if (!data.src) {
               if (imgElm) {
@@ -391,14 +333,11 @@ define(
                 editor.focus();
                 editor.nodeChanged();
               }
-
               return;
             }
-
             if (data.title === "") {
               data.title = null;
             }
-
             if (!imgElm) {
               data.id = '__mcenew';
               editor.focus();
@@ -408,9 +347,7 @@ define(
             } else {
               dom.setAttribs(imgElm, data);
             }
-
             editor.editorUpload.uploadImagesAuto();
-
             if (data.caption === false) {
               if (dom.is(imgElm.parentNode, 'figure.image')) {
                 figureElm = imgElm.parentNode;
@@ -418,11 +355,9 @@ define(
                 dom.remove(figureElm);
               }
             }
-
             function isTextBlock(node) {
               return editor.schema.getTextBlockElements()[node.nodeName];
             }
-
             if (data.caption === true) {
               if (!dom.is(imgElm.parentNode, 'figure.image')) {
                 oldImg = imgElm;
@@ -431,88 +366,69 @@ define(
                 figureElm.appendChild(imgElm);
                 figureElm.appendChild(dom.create('figcaption', { contentEditable: true }, 'Caption'));
                 figureElm.contentEditable = false;
-
                 var textBlock = dom.getParent(oldImg, isTextBlock);
                 if (textBlock) {
                   dom.split(textBlock, oldImg, figureElm);
                 } else {
                   dom.replace(figureElm, oldImg);
                 }
-
                 editor.selection.select(figureElm);
               }
-
               return;
             }
-
             waitLoad(imgElm);
           });
         }
-
         function removePixelSuffix(value) {
           if (value) {
             value = value.replace(/px$/, '');
           }
-
           return value;
         }
-
         function srcChange(e) {
           var srcURL, prependURL, absoluteURLPattern, meta = e.meta || {};
-
           if (imageListCtrl) {
             imageListCtrl.value(editor.convertURL(this.value(), 'src'));
           }
-
           Tools.each(meta, function (value, key) {
             win.find('#' + key).value(value);
           });
-
           if (!meta.width && !meta.height) {
             srcURL = editor.convertURL(this.value(), 'src');
-
             // Pattern test the src url and make sure we haven't already prepended the url
             prependURL = editor.settings.image_prepend_url;
             absoluteURLPattern = new RegExp('^(?:[a-z]+:)?//', 'i');
             if (prependURL && !absoluteURLPattern.test(srcURL) && srcURL.substring(0, prependURL.length) !== prependURL) {
               srcURL = prependURL + srcURL;
             }
-
             this.value(srcURL);
-
             getImageSize(editor.documentBaseURI.toAbsolute(this.value()), function (data) {
               if (data.width && data.height && imageDimensions) {
                 width = data.width;
                 height = data.height;
-
                 win.find('#width').value(width);
                 win.find('#height').value(height);
               }
             });
           }
         }
-
         function onBeforeCall(e) {
           e.meta = win.toJSON();
         }
-
         imgElm = editor.selection.getNode();
         figureElm = dom.getParent(imgElm, 'figure.image');
         if (figureElm) {
           imgElm = dom.select('img', figureElm)[0];
         }
-
         if (imgElm &&
           (imgElm.nodeName != 'IMG' ||
             imgElm.getAttribute('data-mce-object') ||
             imgElm.getAttribute('data-mce-placeholder'))) {
           imgElm = null;
         }
-
         if (imgElm) {
           width = dom.getAttrib(imgElm, 'width');
           height = dom.getAttrib(imgElm, 'height');
-
           data = {
             src: dom.getAttrib(imgElm, 'src'),
             alt: dom.getAttrib(imgElm, 'alt'),
@@ -523,7 +439,6 @@ define(
             caption: !!figureElm
           };
         }
-
         if (imageList) {
           imageListCtrl = {
             type: 'listbox',
@@ -538,11 +453,9 @@ define(
             value: data.src && editor.convertURL(data.src, 'src'),
             onselect: function (e) {
               var altCtrl = win.find('#alt');
-
               if (!altCtrl.value() || (e.lastControl && altCtrl.value() == e.lastControl.text())) {
                 altCtrl.value(e.control.text());
               }
-
               win.find('#src').value(e.control.value()).fire('change');
             },
             onPostRender: function () {
@@ -551,7 +464,6 @@ define(
             }
           };
         }
-
         if (editor.settings.image_class_list) {
           classListCtrl = {
             name: 'class',
@@ -569,7 +481,6 @@ define(
             )
           };
         }
-
         // General settings shared between simple and advanced dialogs
         var generalFormItems = [
           {
@@ -583,15 +494,12 @@ define(
           },
           imageListCtrl
         ];
-
         if (editor.settings.image_description !== false) {
           generalFormItems.push({ name: 'alt', type: 'textbox', label: 'Image description' });
         }
-
         if (editor.settings.image_title) {
           generalFormItems.push({ name: 'title', type: 'textbox', label: 'Image Title' });
         }
-
         if (imageDimensions) {
           generalFormItems.push({
             type: 'container',
@@ -608,18 +516,13 @@ define(
             ]
           });
         }
-
         generalFormItems.push(classListCtrl);
-
         if (editor.settings.image_caption && Env.ceFalse) {
           generalFormItems.push({ name: 'caption', type: 'checkbox', label: 'Caption' });
         }
-
         function mergeMargins(css) {
           if (css.margin) {
-
             var splitMargin = css.margin.split(" ");
-
             switch (splitMargin.length) {
               case 1: //margin: toprightbottomleft;
                 css['margin-top'] = css['margin-top'] || splitMargin[0];
@@ -649,25 +552,19 @@ define(
           }
           return css;
         }
-
         function updateStyle() {
           function addPixelSuffix(value) {
             if (value.length > 0 && /^[0-9]+$/.test(value)) {
               value += 'px';
             }
-
             return value;
           }
-
           if (!editor.settings.image_advtab) {
             return;
           }
-
           var data = win.toJSON(),
             css = dom.parseStyle(data.style);
-
           css = mergeMargins(css);
-
           if (data.vspace) {
             css['margin-top'] = css['margin-bottom'] = addPixelSuffix(data.vspace);
           }
@@ -677,23 +574,17 @@ define(
           if (data.border) {
             css['border-width'] = addPixelSuffix(data.border);
           }
-
           win.find('#style').value(dom.serializeStyle(dom.parseStyle(dom.serializeStyle(css))));
         }
-
         function updateVSpaceHSpaceBorder() {
           if (!editor.settings.image_advtab) {
             return;
           }
-
           var data = win.toJSON(),
             css = dom.parseStyle(data.style);
-
           win.find('#vspace').value("");
           win.find('#hspace').value("");
-
           css = mergeMargins(css);
-
           //Move opposite equal margins to vspace/hspace field
           if ((css['margin-top'] && css['margin-bottom']) || (css['margin-right'] && css['margin-left'])) {
             if (css['margin-top'] === css['margin-bottom']) {
@@ -707,16 +598,12 @@ define(
               win.find('#hspace').value('');
             }
           }
-
           //Move border-width
           if (css['border-width']) {
             win.find('#border').value(removePixelSuffix(css['border-width']));
           }
-
           win.find('#style').value(dom.serializeStyle(dom.parseStyle(dom.serializeStyle(css))));
-
         }
-
         if (editor.settings.image_advtab) {
           // Parse styles from img
           if (imgElm) {
@@ -729,10 +616,8 @@ define(
             if (imgElm.style.borderWidth) {
               data.border = removePixelSuffix(imgElm.style.borderWidth);
             }
-
             data.style = editor.dom.serializeStyle(editor.dom.parseStyle(editor.dom.getAttrib(imgElm, 'style')));
           }
-
           // Advanced dialog shows general+advanced tabs
           win = editor.windowManager.open({
             title: 'Insert/edit image',
@@ -744,7 +629,6 @@ define(
                 type: 'form',
                 items: generalFormItems
               },
-
               {
                 title: 'Advanced',
                 type: 'form',
@@ -789,24 +673,19 @@ define(
           });
         }
       }
-
       editor.on('preInit', function () {
         function hasImageClass(node) {
           var className = node.attr('class');
           return className && /\bimage\b/.test(className);
         }
-
         function toggleContentEditableState(state) {
           return function (nodes) {
             var i = nodes.length, node;
-
             function toggleContentEditable(node) {
               node.attr('contenteditable', state ? 'true' : null);
             }
-
             while (i--) {
               node = nodes[i];
-
               if (hasImageClass(node)) {
                 node.attr('contenteditable', state ? 'false' : null);
                 Tools.each(node.getAll('figcaption'), toggleContentEditable);
@@ -814,18 +693,15 @@ define(
             }
           };
         }
-
         editor.parser.addNodeFilter('figure', toggleContentEditableState(true));
         editor.serializer.addNodeFilter('figure', toggleContentEditableState(false));
       });
-
       editor.addButton('image', {
         icon: 'image',
         tooltip: 'Insert/edit image',
         onclick: createImageList(showDialog),
         stateSelector: 'img:not([data-mce-object],[data-mce-placeholder]),figure.image'
       });
-
       editor.addMenuItem('image', {
         icon: 'image',
         text: 'Image',
@@ -833,10 +709,8 @@ define(
         context: 'insert',
         prependToContext: true
       });
-
       editor.addCommand('mceImage', createImageList(showDialog));
     });
-
     return function () { };
   }
 );

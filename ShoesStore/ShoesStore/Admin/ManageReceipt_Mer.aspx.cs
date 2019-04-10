@@ -1,15 +1,13 @@
 ﻿using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ShoesStore.Admin
 {
-    public partial class ManageReceipt_Mer : System.Web.UI.Page
+    public partial class ManageReceipt_Mer : Page
     {
         private readonly RcptSub_BUS rcptSub_BUS = new RcptSub_BUS();
         private readonly Rcpt_BUS rcpt_BUS = new Rcpt_BUS();

@@ -5,19 +5,8 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class Cus_DAO :Table_DAO<Cus>, ICus
+    public class Cus_DAO : Table_DAO<Cus>, ICus
     {
-        public Cus GetByPrimaryKeys(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetLastestId()
-        {
-            return GetAll().Max(m => m.CusId);
-        }
-
-
         public UsrAct_DAO UsrAct { get; set; }
 
         public UsrAct GetUsrAct(int usrId)
@@ -40,15 +29,10 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public bool IsValidUser(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public ICart iCart { get; set; }
+
         public void AddCart(Pro pro)
         {
-          
         }
 
         public void Buy(ICart icart)
@@ -72,12 +56,27 @@ namespace ShoesStore.DataAccessLogicLayer
             return DataProvider.Instance.Cus_Info();
         }
 
-        public override void SetActive(Cus obj)
+        public Cus GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();
         }
 
+        public int GetLastestId()
+        {
+            return GetAll().Max(m => m.CusId);
+        }
+
         public override bool IsExist(Cus obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsValidUser(Cus obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(Cus obj)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,4 @@
 /* Sidebar */
-
 .sidebar {
   min-height: calc(100vh - #{$navbar-height});
   background: $sidebar-light-bg;
@@ -167,7 +166,6 @@
     }
   }
 }
-
 //sidebar color variation
 .sidebar-dark {
   .sidebar {
@@ -262,9 +260,7 @@
     }
   }
 }
-
 /* style for off-canvas menu*/
-
 @media screen and (max-width: 991px) {
   .sidebar-offcanvas {
     position: fixed;

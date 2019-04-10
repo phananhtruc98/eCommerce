@@ -3,7 +3,7 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class ProBrand_DAO : Table_DAO<ProBrand>,IProBrand
+    public class ProBrand_DAO : Table_DAO<ProBrand>, IProBrand
     {
         public ProBrand GetByPrimaryKeys(int id)
         {

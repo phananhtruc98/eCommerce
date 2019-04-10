@@ -59,7 +59,6 @@
         .iradio_line.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line .icheck_line-icon,
@@ -69,7 +68,6 @@
         background-size: 60px 13px;
     }
 }
-
 /* red */
 .icheckbox_line-red,
 .iradio_line-red {
@@ -130,7 +128,6 @@
         .iradio_line-red.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line-red .icheck_line-icon,
@@ -140,7 +137,6 @@
         background-size: 60px 13px;
     }
 }
-
 /* green */
 .icheckbox_line-green,
 .iradio_line-green {
@@ -201,7 +197,6 @@
         .iradio_line-green.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line-green .icheck_line-icon,
@@ -211,7 +206,6 @@
         background-size: 60px 13px;
     }
 }
-
 /* blue */
 .icheckbox_line-blue,
 .iradio_line-blue {
@@ -272,7 +266,6 @@
         .iradio_line-blue.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line-blue .icheck_line-icon,
@@ -282,7 +275,6 @@
         background-size: 60px 13px;
     }
 }
-
 /* aero */
 .icheckbox_line-aero,
 .iradio_line-aero {
@@ -343,7 +335,6 @@
         .iradio_line-aero.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line-aero .icheck_line-icon,
@@ -353,7 +344,6 @@
         background-size: 60px 13px;
     }
 }
-
 /* grey */
 .icheckbox_line-grey,
 .iradio_line-grey {
@@ -414,7 +404,6 @@
         .iradio_line-grey.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line-grey .icheck_line-icon,
@@ -424,7 +413,6 @@
         background-size: 60px 13px;
     }
 }
-
 /* orange */
 .icheckbox_line-orange,
 .iradio_line-orange {
@@ -485,7 +473,6 @@
         .iradio_line-orange.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line-orange .icheck_line-icon,
@@ -495,7 +482,6 @@
         background-size: 60px 13px;
     }
 }
-
 /* yellow */
 .icheckbox_line-yellow,
 .iradio_line-yellow {
@@ -556,7 +542,6 @@
         .iradio_line-yellow.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line-yellow .icheck_line-icon,
@@ -566,7 +551,6 @@
         background-size: 60px 13px;
     }
 }
-
 /* pink */
 .icheckbox_line-pink,
 .iradio_line-pink {
@@ -627,7 +611,6 @@
         .iradio_line-pink.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line-pink .icheck_line-icon,
@@ -637,7 +620,6 @@
         background-size: 60px 13px;
     }
 }
-
 /* purple */
 .icheckbox_line-purple,
 .iradio_line-purple {
@@ -698,7 +680,6 @@
         .iradio_line-purple.checked.disabled .icheck_line-icon {
             background-position: -45px 0;
         }
-
 /* HiDPI support */
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
     .icheckbox_line-purple .icheck_line-icon,

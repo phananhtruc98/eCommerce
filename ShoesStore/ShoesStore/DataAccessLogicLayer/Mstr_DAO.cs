@@ -1,18 +1,41 @@
-﻿using ShoesStore.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Objects;
+using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class Mstr_DAO : Table_DAO<Mstr>, IMstr
     {
-        public UsrAct_DAO UsrAct { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public UsrAct_DAO UsrAct
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
 
         public void CreateActCode(IMstr obj)
         {
             throw new NotImplementedException();
-            
+        }
+
+        public ObjectResult<Admin_Info_Result> Get_Admin_Info()
+        {
+            return DataProvider.Instance.Admin_Info();
+        }
+
+        public UsrAct GetUsrAct(int usrId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IMstr Login(string login, string pwd)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Register(IMstr obj)
+        {
+            throw new NotImplementedException();
         }
 
         public void Delete(IMstr obj)
@@ -35,11 +58,6 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ObjectResult<Admin_Info_Result> Get_Admin_Info()
-        {
-            return DataProvider.Instance.Admin_Info();
-        }
-
         public void Insert(IMstr obj)
         {
             throw new NotImplementedException();
@@ -50,22 +68,7 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public UsrAct GetUsrAct(int usrId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IMstr Login(string login, string pwd)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Register(IMstr obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(IMstr obj)
+        public override bool IsExist(Mstr obj)
         {
             throw new NotImplementedException();
         }
@@ -76,7 +79,7 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public override bool IsExist(Mstr obj)
+        public void Update(IMstr obj)
         {
             throw new NotImplementedException();
         }

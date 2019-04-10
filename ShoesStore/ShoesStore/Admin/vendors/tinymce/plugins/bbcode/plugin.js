@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the bbcode plugin.
  *
@@ -151,22 +137,18 @@ define(
       return {
         init: function (ed) {
           var self = this, dialect = ed.getParam('bbcode_dialect', 'punbb').toLowerCase();
-
           ed.on('beforeSetContent', function (e) {
             e.content = self['_' + dialect + '_bbcode2html'](e.content);
           });
-
           ed.on('postProcess', function (e) {
             if (e.set) {
               e.content = self['_' + dialect + '_bbcode2html'](e.content);
             }
-
             if (e.get) {
               e.content = self['_' + dialect + '_html2bbcode'](e.content);
             }
           });
         },
-
         getInfo: function () {
           return {
             longname: 'BBCode Plugin',
@@ -175,17 +157,13 @@ define(
             infourl: 'http://www.tinymce.com/wiki.php/Plugin:bbcode'
           };
         },
-
         // Private methods
-
         // HTML -> BBCode in PunBB dialect
         _punbb_html2bbcode: function (s) {
           s = Tools.trim(s);
-
           function rep(re, str) {
             s = s.replace(re, str);
           }
-
           // example: <strong> to [b]
           rep(/<a.*?href=\"(.*?)\".*?>(.*?)<\/a>/gi, "[url=$1]$2[/url]");
           rep(/<font.*?color=\"(.*?)\".*?class=\"codeStyle\".*?>(.*?)<\/font>/gi, "[code][color=$1]$2[/color][/code]");
@@ -224,18 +202,14 @@ define(
           rep(/&lt;/gi, "<");
           rep(/&gt;/gi, ">");
           rep(/&amp;/gi, "&");
-
           return s;
         },
-
         // BBCode -> HTML from PunBB dialect
         _punbb_bbcode2html: function (s) {
           s = Tools.trim(s);
-
           function rep(re, str) {
             s = s.replace(re, str);
           }
-
           // example: [b] to <strong>
           rep(/\n/gi, "<br />");
           rep(/\[b\]/gi, "<strong>");
@@ -250,7 +224,6 @@ define(
           rep(/\[color=(.*?)\](.*?)\[\/color\]/gi, "<font color=\"$1\">$2</font>");
           rep(/\[code\](.*?)\[\/code\]/gi, "<span class=\"codeStyle\">$1</span>&nbsp;");
           rep(/\[quote.*?\](.*?)\[\/quote\]/gi, "<span class=\"quoteStyle\">$1</span>&nbsp;");
-
           return s;
         }
       };

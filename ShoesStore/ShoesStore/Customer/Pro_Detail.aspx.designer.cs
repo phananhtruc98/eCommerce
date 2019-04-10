@@ -6,10 +6,7 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-namespace ShoesStore {
-    
-    
-    public partial class DS_SanPham {
+namespace ShoesStore.Customer {
+    public partial class SanPham_ChiTiet {
     }
 }

@@ -1,5 +1,4 @@
 /* Demo Styles */
-
 // Add spacing to Boostrap components for demo purpose
 .template-demo {
   >.btn {
@@ -70,7 +69,6 @@
     @extend .px-2;
   }
 }
-
 .demo-modal {
   position: static;
   display: block;
@@ -81,7 +79,6 @@
     }
   }
 }
-
 .loader-demo-box {
   @extend .border;
   @extend .border-secondary;
@@ -91,7 +88,6 @@
   @extend .d-flex;
   @extend .align-items-center;
 }
-
 .purchace-popup {
   >div {
     @extend .grid-margin;

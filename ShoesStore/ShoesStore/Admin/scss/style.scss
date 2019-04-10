@@ -1,13 +1,10 @@
 /*------------------------------------------------------------------
  [Master Stylesheet]
-
   Project:	Star Admin Bootstrap Template [Free Version]
   Version:	2.0.0
 -------------------------------------------------------------------*/
-
 /*-------------------------------------------------------------------
   ===== Table of Contents =====
-
   * Bootstrap functions
   * Template variables
   * SCSS Compass Functions
@@ -52,33 +49,22 @@
     + Auth
     + Error
 -------------------------------------------------------------------*/
-
 /*-------------------------------------------------------------------*/
-
 /* === Import Bootstrap functions and variables === */
-
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 /*-------------------------------------------------------------------*/
-
 /* === Import template variables === */
-
 @import "variables";
 /*-------------------------------------------------------------------*/
-
 /* === SCSS Compass Functions === */
-
 @import "../node_modules/compass-mixins/lib/compass";
 @import "../node_modules/compass-mixins/lib/animate";
 /*-------------------------------------------------------------------*/
-
 /* === Boostrap Main SCSS === */
-
 @import "../node_modules/bootstrap/scss/bootstrap";
 /*-------------------------------------------------------------------*/
-
 /* === Template mixins === */
-
 @import "mixins/animation";
 @import "mixins/background";
 @import "mixins/blockqoute";
@@ -88,9 +74,7 @@
 @import "mixins/misc";
 @import "mixins/text";
 /*-------------------------------------------------------------------*/
-
 /* === Core Styles === */
-
 @import "reset";
 @import "fonts";
 @import "functions";
@@ -103,9 +87,7 @@
 @import "demo";
 @import "dashboard";
 /*-------------------------------------------------------------------*/
-
 /* === Components === */
-
 @import "components/badges";
 @import "components/bootstrap-progress";
 @import "components/buttons";
@@ -120,8 +102,6 @@
 @import "components/preview";
 @import "components/tables";
 /*-------------------------------------------------------------------*/
-
 /* === Landing screens === */
-
 @import "landing-screens/auth";
 @import "landing-screens/error";

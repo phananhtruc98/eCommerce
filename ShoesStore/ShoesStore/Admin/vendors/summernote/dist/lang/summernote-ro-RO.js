@@ -96,7 +96,6 @@
         undo: 'Starea anterioară',
         redo: 'Starea ulterioară'
       }
-
     }
   });
 })(jQuery);

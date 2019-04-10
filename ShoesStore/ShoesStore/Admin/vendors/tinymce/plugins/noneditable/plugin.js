@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the noneditable plugin.
  *
@@ -149,25 +135,20 @@ define(
   function (PluginManager, Tools) {
     PluginManager.add('noneditable', function (editor) {
       var editClass, nonEditClass, nonEditableRegExps, contentEditableAttrName = 'contenteditable';
-
       function hasClass(checkClassName) {
         return function (node) {
           return (" " + node.attr("class") + " ").indexOf(checkClassName) !== -1;
         };
       }
-
       function convertRegExpsToNonEditable(e) {
         var i = nonEditableRegExps.length, content = e.content, cls = Tools.trim(nonEditClass);
-
         function replaceMatchWithSpan(match) {
           var args = arguments, index = args[args.length - 2];
           var prevChar = index > 0 ? content.charAt(index - 1) : '';
-
           // Is value inside an attribute then don't replace
           if (prevChar === '"') {
             return match;
           }
-
           // Is value inside a contentEditable="false" tag
           if (prevChar === '>') {
             var findStartTagIndex = content.lastIndexOf('<', index);
@@ -178,47 +159,36 @@ define(
               }
             }
           }
-
           return (
             '<span class="' + cls + '" data-mce-content="' + editor.dom.encode(args[0]) + '">' +
             editor.dom.encode(typeof args[1] === "string" ? args[1] : args[0]) + '</span>'
           );
         }
-
         // Don't replace the variables when raw is used for example on undo/redo
         if (e.format == "raw") {
           return;
         }
-
         while (i--) {
           content = content.replace(nonEditableRegExps[i], replaceMatchWithSpan);
         }
-
         e.content = content;
       }
-
       editClass = " " + Tools.trim(editor.getParam("noneditable_editable_class", "mceEditable")) + " ";
       nonEditClass = " " + Tools.trim(editor.getParam("noneditable_noneditable_class", "mceNonEditable")) + " ";
-
       var hasEditClass = hasClass(editClass);
       var hasNonEditClass = hasClass(nonEditClass);
-
       nonEditableRegExps = editor.getParam("noneditable_regexp");
       if (nonEditableRegExps && !nonEditableRegExps.length) {
         nonEditableRegExps = [nonEditableRegExps];
       }
-
       editor.on('PreInit', function () {
         if (nonEditableRegExps) {
           editor.on('BeforeSetContent', convertRegExpsToNonEditable);
         }
-
         editor.parser.addAttributeFilter('class', function (nodes) {
           var i = nodes.length, node;
-
           while (i--) {
             node = nodes[i];
-
             if (hasEditClass(node)) {
               node.attr(contentEditableAttrName, "true");
             } else if (hasNonEditClass(node)) {
@@ -226,16 +196,13 @@ define(
             }
           }
         });
-
         editor.serializer.addAttributeFilter(contentEditableAttrName, function (nodes) {
           var i = nodes.length, node;
-
           while (i--) {
             node = nodes[i];
             if (!hasEditClass(node) && !hasNonEditClass(node)) {
               continue;
             }
-
             if (nonEditableRegExps && node.attr('data-mce-content')) {
               node.name = "#text";
               node.type = 3;
@@ -248,7 +215,6 @@ define(
         });
       });
     });
-
     return function () { };
   }
 );

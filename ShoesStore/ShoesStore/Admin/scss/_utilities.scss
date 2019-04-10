@@ -1,58 +1,47 @@
 /* Utilities */
-
 .grid-margin {
   margin-bottom: $grid-gutter-width;
 }
-
 .grid-margin-sm-0 {
   @media (min-width: 576px) {
     margin-bottom: 0;
   }
 }
-
 .grid-margin-md-0 {
   @media (min-width: 768px) {
     margin-bottom: 0;
   }
 }
-
 .grid-margin-lg-0 {
   @media (min-width: 992px) {
     margin-bottom: 0;
   }
 }
-
 .grid-margin-xl-0 {
   @media (min-width: 1200px) {
     margin-bottom: 0;
   }
 }
-
 .img-lg {
   width: 92px;
   height: 92px;
 }
-
 .img-md {
   width: 60px;
   height: 60px;
 }
-
 .img-sm {
   width: 43px;
   height: 43px;
 }
-
 .img-xs {
   width: 37px;
   height: 37px;
 }
-
 .img-ss {
   width: 26px;
   height: 26px;
 }
-
 .stretch-card {
   @include display-flex;
   @include align-items(stretch);
@@ -62,35 +51,29 @@
     min-width: 100%;
   }
 }
-
 .border-right-sm {
   @media (min-width: 576px) {
     border-right: $border-width solid $border-color;
   }
 }
-
 .border-right-md {
   @media (min-width: 768px) {
     border-right: $border-width solid $border-color;
   }
 }
-
 .border-right-lg {
   @media (min-width: 992px) {
     border-right: $border-width solid $border-color;
   }
 }
-
 .border-left-sm {
   @media (min-width: 576px) {
     border-left: $border-width solid $border-color;
   }
 }
-
 .border-strong {
   border-color: darken($border-color, 80%);
 }
-
 .count-wrapper {
   position: relative;
   .count {
@@ -123,42 +106,34 @@
     }
   }
 }
-
 .border-left-md {
   @media (min-width: 768px) {
     border-left: $border-width solid $border-color;
   }
 }
-
 .border-left-lg {
   @media (min-width: 992px) {
     border-left: $border-width solid $border-color;
   }
 }
-
 .text-gray {
   color: #969696;
 }
-
 .text-black {
   color: $black;
 }
-
 .flex-grow {
   flex-grow: 1;
 }
-
 .ellipsis {
   max-width: 95%;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
 .no-wrap {
   white-space: nowrap;
 }
-
 .status-indicator {
   border-width: 2px;
   border-style: solid;
@@ -177,11 +152,9 @@
     border-color: theme-color(warning);
   }
 }
-
 .bg-transparent {
   background: transparent;
 }
-
 @each $color,
 $value in $theme-colors {
   .bg-inverse-#{$color} {

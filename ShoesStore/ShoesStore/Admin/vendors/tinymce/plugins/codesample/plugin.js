@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.Env',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.Env');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * Prism.js
  *
@@ -135,9 +122,7 @@ define(
  *
  * Import of prism. Disabled DOMContentLoaded event listener.
  */
-
 /*eslint-disable*/
-
 define(
   'tinymce.plugins.codesample.core.Prism',
   [
@@ -145,7 +130,6 @@ define(
   function () {
     var window = {};
     // ------------------ Start wrap
-
     /* http://prismjs.com/download.html?themes=prism-dark&languages=markup+css+clike+javascript+c+csharp+cpp+java+php+python+ruby */
     var _self = (typeof window !== 'undefined')
       ? window   // if in browser
@@ -154,18 +138,14 @@ define(
           ? self // if in worker
           : {}   // if in node js
       );
-
     /**
      * Prism: Lightweight, robust, elegant syntax highlighting
      * MIT license http://www.opensource.org/licenses/mit-license.php/
      * @author Lea Verou http://lea.verou.me
      */
-
     var Prism = (function () {
-
       // Private helper vars
       var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
-
       var _ = _self.Prism = {
         util: {
           encode: function (tokens) {
@@ -177,47 +157,36 @@ define(
               return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
             }
           },
-
           type: function (o) {
             return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
           },
-
           // Deep clone a language definition (e.g. to extend it)
           clone: function (o) {
             var type = _.util.type(o);
-
             switch (type) {
               case 'Object':
                 var clone = {};
-
                 for (var key in o) {
                   if (o.hasOwnProperty(key)) {
                     clone[key] = _.util.clone(o[key]);
                   }
                 }
-
                 return clone;
-
               case 'Array':
                 // Check for existence for IE8
                 return o.map && o.map(function (v) { return _.util.clone(v); });
             }
-
             return o;
           }
         },
-
         languages: {
           extend: function (id, redef) {
             var lang = _.util.clone(_.languages[id]);
-
             for (var key in redef) {
               lang[key] = redef[key];
             }
-
             return lang;
           },
-
           /**
            * Insert a token before another token in a language literal
            * As this needs to recreate the object (we cannot actually insert before keys in object literals),
@@ -230,55 +199,41 @@ define(
           insertBefore: function (inside, before, insert, root) {
             root = root || _.languages;
             var grammar = root[inside];
-
             if (arguments.length == 2) {
               insert = arguments[1];
-
               for (var newToken in insert) {
                 if (insert.hasOwnProperty(newToken)) {
                   grammar[newToken] = insert[newToken];
                 }
               }
-
               return grammar;
             }
-
             var ret = {};
-
             for (var token in grammar) {
-
               if (grammar.hasOwnProperty(token)) {
-
                 if (token == before) {
-
                   for (var newToken in insert) {
-
                     if (insert.hasOwnProperty(newToken)) {
                       ret[newToken] = insert[newToken];
                     }
                   }
                 }
-
                 ret[token] = grammar[token];
               }
             }
-
             // Update references in other language definitions
             _.languages.DFS(_.languages, function (key, value) {
               if (value === root[inside] && key != inside) {
                 this[key] = ret;
               }
             });
-
             return root[inside] = ret;
           },
-
           // Traverse a language definition with Depth First Search
           DFS: function (o, callback, type) {
             for (var i in o) {
               if (o.hasOwnProperty(i)) {
                 callback.call(o, i, o[i], type || i);
-
                 if (_.util.type(o[i]) === 'Object') {
                   _.languages.DFS(o[i], callback);
                 }
@@ -290,69 +245,51 @@ define(
           }
         },
         plugins: {},
-
         highlightAll: function (async, callback) {
           var elements = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
-
           for (var i = 0, element; element = elements[i++];) {
             _.highlightElement(element, async === true, callback);
           }
         },
-
         highlightElement: function (element, async, callback) {
           // Find language
           var language, grammar, parent = element;
-
           while (parent && !lang.test(parent.className)) {
             parent = parent.parentNode;
           }
-
           if (parent) {
             language = (parent.className.match(lang) || [, ''])[1];
             grammar = _.languages[language];
           }
-
           // Set language on the element, if not present
           element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
-
           // Set language on the parent, for styling
           parent = element.parentNode;
-
           if (/pre/i.test(parent.nodeName)) {
             parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
           }
-
           var code = element.textContent;
-
           var env = {
             element: element,
             language: language,
             grammar: grammar,
             code: code
           };
-
           if (!code || !grammar) {
             _.hooks.run('complete', env);
             return;
           }
-
           _.hooks.run('before-highlight', env);
-
           if (async && _self.Worker) {
             var worker = new Worker(_.filename);
-
             worker.onmessage = function (evt) {
               env.highlightedCode = evt.data;
-
               _.hooks.run('before-insert', env);
-
               env.element.innerHTML = env.highlightedCode;
-
               callback && callback.call(env.element);
               _.hooks.run('after-highlight', env);
               _.hooks.run('complete', env);
             };
-
             worker.postMessage(JSON.stringify({
               language: env.language,
               code: env.code,
@@ -361,149 +298,109 @@ define(
           }
           else {
             env.highlightedCode = _.highlight(env.code, env.grammar, env.language);
-
             _.hooks.run('before-insert', env);
-
             env.element.innerHTML = env.highlightedCode;
-
             callback && callback.call(element);
-
             _.hooks.run('after-highlight', env);
             _.hooks.run('complete', env);
           }
         },
-
         highlight: function (text, grammar, language) {
           var tokens = _.tokenize(text, grammar);
           return Token.stringify(_.util.encode(tokens), language);
         },
-
         tokenize: function (text, grammar, language) {
           var Token = _.Token;
-
           var strarr = [text];
-
           var rest = grammar.rest;
-
           if (rest) {
             for (var token in rest) {
               grammar[token] = rest[token];
             }
-
             delete grammar.rest;
           }
-
           tokenloop: for (var token in grammar) {
             if (!grammar.hasOwnProperty(token) || !grammar[token]) {
               continue;
             }
-
             var patterns = grammar[token];
             patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
-
             for (var j = 0; j < patterns.length; ++j) {
               var pattern = patterns[j],
                 inside = pattern.inside,
                 lookbehind = !!pattern.lookbehind,
                 lookbehindLength = 0,
                 alias = pattern.alias;
-
               pattern = pattern.pattern || pattern;
-
               for (var i = 0; i < strarr.length; i++) { // Don’t cache length as it changes during the loop
-
                 var str = strarr[i];
-
                 if (strarr.length > text.length) {
                   // Something went terribly wrong, ABORT, ABORT!
                   break tokenloop;
                 }
-
                 if (str instanceof Token) {
                   continue;
                 }
-
                 pattern.lastIndex = 0;
-
                 var match = pattern.exec(str);
-
                 if (match) {
                   if (lookbehind) {
                     lookbehindLength = match[1].length;
                   }
-
                   var from = match.index - 1 + lookbehindLength,
                     match = match[0].slice(lookbehindLength),
                     len = match.length,
                     to = from + len,
                     before = str.slice(0, from + 1),
                     after = str.slice(to + 1);
-
                   var args = [i, 1];
-
                   if (before) {
                     args.push(before);
                   }
-
                   var wrapped = new Token(token, inside ? _.tokenize(match, inside) : match, alias);
-
                   args.push(wrapped);
-
                   if (after) {
                     args.push(after);
                   }
-
                   Array.prototype.splice.apply(strarr, args);
                 }
               }
             }
           }
-
           return strarr;
         },
-
         hooks: {
           all: {},
-
           add: function (name, callback) {
             var hooks = _.hooks.all;
-
             hooks[name] = hooks[name] || [];
-
             hooks[name].push(callback);
           },
-
           run: function (name, env) {
             var callbacks = _.hooks.all[name];
-
             if (!callbacks || !callbacks.length) {
               return;
             }
-
             for (var i = 0, callback; callback = callbacks[i++];) {
               callback(env);
             }
           }
         }
       };
-
       var Token = _.Token = function (type, content, alias) {
         this.type = type;
         this.content = content;
         this.alias = alias;
       };
-
       Token.stringify = function (o, language, parent) {
         if (typeof o == 'string') {
           return o;
         }
-
         if (_.util.type(o) === 'Array') {
           return o.map(function (element) {
             return Token.stringify(element, language, o);
           }).join('');
         }
-
         var env = {
           type: o.type,
           content: Token.stringify(o.content, language, parent),
@@ -513,28 +410,20 @@ define(
           language: language,
           parent: parent
         };
-
         if (env.type == 'comment') {
           env.attributes['spellcheck'] = 'true';
         }
-
         if (o.alias) {
           var aliases = _.util.type(o.alias) === 'Array' ? o.alias : [o.alias];
           Array.prototype.push.apply(env.classes, aliases);
         }
-
         _.hooks.run('wrap', env);
-
         var attributes = '';
-
         for (var name in env.attributes) {
           attributes += (attributes ? ' ' : '') + name + '="' + (env.attributes[name] || '') + '"';
         }
-
         return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributes + '>' + env.content + '</' + env.tag + '>';
-
       };
-
       if (!_self.document) {
         if (!_self.addEventListener) {
           // in Node.js
@@ -546,37 +435,29 @@ define(
             lang = message.language,
             code = message.code,
             immediateClose = message.immediateClose;
-
           _self.postMessage(_.highlight(code, _.languages[lang], lang));
           if (immediateClose) {
             _self.close();
           }
         }, false);
-
         return _self.Prism;
       }
       /*
       // Get current script and highlight
       var script = document.getElementsByTagName('script');
-
       script = script[script.length - 1];
-
       if (script) {
         _.filename = script.src;
-
         if (document.addEventListener && !script.hasAttribute('data-manual')) {
           document.addEventListener('DOMContentLoaded', _.highlightAll);
         }
       }
-
       return _self.Prism;
       */
     })();
-
     if (typeof module !== 'undefined' && module.exports) {
       module.exports = Prism;
     }
-
     // hack for components to work correctly in node.js
     if (typeof global !== 'undefined') {
       global.Prism = Prism;
@@ -610,25 +491,20 @@ define(
               'namespace': /^[^\s>\/:]+:/
             }
           }
-
         }
       },
       'entity': /&#?[\da-z]{1,8};/i
     };
-
     // Plugin to make entity title show the real entity, idea by Roman Komarov
     Prism.hooks.add('wrap', function (env) {
-
       if (env.type === 'entity') {
         env.attributes['title'] = env.content.replace(/&amp;/, '&');
       }
     });
-
     Prism.languages.xml = Prism.languages.markup;
     Prism.languages.html = Prism.languages.markup;
     Prism.languages.mathml = Prism.languages.markup;
     Prism.languages.svg = Prism.languages.markup;
-
     Prism.languages.css = {
       'comment': /\/\*[\w\W]*?\*\//,
       'atrule': {
@@ -646,9 +522,7 @@ define(
       'function': /[-a-z0-9]+(?=\()/i,
       'punctuation': /[(){};:]/
     };
-
     Prism.languages.css['atrule'].inside.rest = Prism.util.clone(Prism.languages.css);
-
     if (Prism.languages.markup) {
       Prism.languages.insertBefore('markup', 'tag', {
         'style': {
@@ -663,7 +537,6 @@ define(
           alias: 'language-css'
         }
       });
-
       Prism.languages.insertBefore('inside', 'attr-value', {
         'style-attr': {
           pattern: /\s*style=("|').*?\1/i,
@@ -708,21 +581,18 @@ define(
       'operator': /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,
       'punctuation': /[{}[\];(),.:]/
     };
-
     Prism.languages.javascript = Prism.languages.extend('clike', {
       'keyword': /\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|false|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)\b/,
       'number': /\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,
       // Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
       'function': /[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i
     });
-
     Prism.languages.insertBefore('javascript', 'keyword', {
       'regex': {
         pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,
         lookbehind: true
       }
     });
-
     Prism.languages.insertBefore('javascript', 'class-name', {
       'template-string': {
         pattern: /`(?:\\`|\\?[^`])*`/,
@@ -741,7 +611,6 @@ define(
         }
       }
     });
-
     if (Prism.languages.markup) {
       Prism.languages.insertBefore('markup', 'tag', {
         'script': {
@@ -757,14 +626,12 @@ define(
         }
       });
     }
-
     Prism.languages.js = Prism.languages.javascript;
     Prism.languages.c = Prism.languages.extend('clike', {
       'keyword': /\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,
       'operator': /\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,
       'number': /\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i
     });
-
     Prism.languages.insertBefore('c', 'string', {
       'macro': {
         // allow for multiline macro definitions
@@ -781,10 +648,8 @@ define(
         }
       }
     });
-
     delete Prism.languages.c['class-name'];
     delete Prism.languages.c['boolean'];
-
     Prism.languages.csharp = Prism.languages.extend('clike', {
       'keyword': /\b(abstract|as|async|await|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|do|double|else|enum|event|explicit|extern|false|finally|fixed|float|for|foreach|goto|if|implicit|in|int|interface|internal|is|lock|long|namespace|new|null|object|operator|out|override|params|private|protected|public|readonly|ref|return|sbyte|sealed|short|sizeof|stackalloc|static|string|struct|switch|this|throw|true|try|typeof|uint|ulong|unchecked|unsafe|ushort|using|virtual|void|volatile|while|add|alias|ascending|async|await|descending|dynamic|from|get|global|group|into|join|let|orderby|partial|remove|select|set|value|var|where|yield)\b/,
       'string': [
@@ -793,20 +658,17 @@ define(
       ],
       'number': /\b-?(0x[\da-f]+|\d*\.?\d+)\b/i
     });
-
     Prism.languages.insertBefore('csharp', 'keyword', {
       'preprocessor': {
         pattern: /(^\s*)#.*/m,
         lookbehind: true
       }
     });
-
     Prism.languages.cpp = Prism.languages.extend('c', {
       'keyword': /\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,
       'boolean': /\b(true|false)\b/,
       'operator': /[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/
     });
-
     Prism.languages.insertBefore('cpp', 'keyword', {
       'class-name': {
         pattern: /(class\s+)[a-z0-9_]+/i,
@@ -833,7 +695,6 @@ define(
      * Adds the following new token classes:
      *  constant, delimiter, variable, function, package
      */
-
     Prism.languages.php = Prism.languages.extend('clike', {
       'keyword': /\b(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|private|protected|parent|throw|null|echo|print|trait|namespace|final|yield|goto|instanceof|finally|try|catch)\b/i,
       'constant': /\b[A-Z0-9_]{2,}\b/,
@@ -842,7 +703,6 @@ define(
         lookbehind: true
       }
     });
-
     // Shell-like comments are matched after strings, because they are less
     // common than strings containing hashes...
     Prism.languages.insertBefore('php', 'class-name', {
@@ -852,7 +712,6 @@ define(
         alias: 'comment'
       }
     });
-
     Prism.languages.insertBefore('php', 'keyword', {
       'delimiter': /\?>|<\?(?:php)?/i,
       'variable': /\$\w+\b/i,
@@ -864,7 +723,6 @@ define(
         }
       }
     });
-
     // Must be defined after the function pattern
     Prism.languages.insertBefore('php', 'operator', {
       'property': {
@@ -872,27 +730,21 @@ define(
         lookbehind: true
       }
     });
-
     // Add HTML support of the markup language exists
     if (Prism.languages.markup) {
-
       // Tokenize all inline PHP blocks that are wrapped in <?php ?>
       // This allows for easy PHP + markup highlighting
       Prism.hooks.add('before-highlight', function (env) {
         if (env.language !== 'php') {
           return;
         }
-
         env.tokenStack = [];
-
         env.backupCode = env.code;
         env.code = env.code.replace(/(?:<\?php|<\?)[\w\W]*?(?:\?>)/ig, function (match) {
           env.tokenStack.push(match);
-
           return '{{{PHP' + env.tokenStack.length + '}}}';
         });
       });
-
       // Restore env.code for other plugins (e.g. line-numbers)
       Prism.hooks.add('before-insert', function (env) {
         if (env.language === 'php') {
@@ -900,28 +752,23 @@ define(
           delete env.backupCode;
         }
       });
-
       // Re-insert the tokens after highlighting
       Prism.hooks.add('after-highlight', function (env) {
         if (env.language !== 'php') {
           return;
         }
-
         for (var i = 0, t; t = env.tokenStack[i]; i++) {
           // The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
           env.highlightedCode = env.highlightedCode.replace('{{{PHP' + (i + 1) + '}}}', Prism.highlight(t, env.grammar, 'php').replace(/\$/g, '$$$$'));
         }
-
         env.element.innerHTML = env.highlightedCode;
       });
-
       // Wrap tokens in classes that are missing them
       Prism.hooks.add('wrap', function (env) {
         if (env.language === 'php' && env.type === 'markup') {
           env.content = env.content.replace(/(\{\{\{PHP[0-9]+\}\}\})/g, "<span class=\"token php\">$1</span>");
         }
       });
-
       // Add the rules before all others
       Prism.languages.insertBefore('php', 'comment', {
         'markup': {
@@ -952,7 +799,6 @@ define(
       'operator': /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]|\b(?:or|and|not)\b/,
       'punctuation': /[{}[\];(),.:]/
     };
-
     /**
      * Original by Samuel Flores
      *
@@ -964,7 +810,6 @@ define(
         'comment': /#(?!\{[^\r\n]*?\}).*/,
         'keyword': /\b(alias|and|BEGIN|begin|break|case|class|def|define_method|defined|do|each|else|elsif|END|end|ensure|false|for|if|in|module|new|next|nil|not|or|raise|redo|require|rescue|retry|return|self|super|then|throw|true|undef|unless|until|when|while|yield)\b/
       });
-
       var interpolation = {
         pattern: /#\{[^}]+\}/,
         inside: {
@@ -975,7 +820,6 @@ define(
           rest: Prism.util.clone(Prism.languages.ruby)
         }
       };
-
       Prism.languages.insertBefore('ruby', 'keyword', {
         'regex': [
           {
@@ -1017,12 +861,10 @@ define(
         'variable': /[@$]+[a-zA-Z_][a-zA-Z_0-9]*(?:[?!]|\b)/,
         'symbol': /:[a-zA-Z_][a-zA-Z_0-9]*(?:[?!]|\b)/
       });
-
       Prism.languages.insertBefore('ruby', 'number', {
         'builtin': /\b(Array|Bignum|Binding|Class|Continuation|Dir|Exception|FalseClass|File|Stat|File|Fixnum|Fload|Hash|Integer|IO|MatchData|Method|Module|NilClass|Numeric|Object|Proc|Range|Regexp|String|Struct|TMS|Symbol|ThreadGroup|Thread|Time|TrueClass)\b/,
         'constant': /\b[A-Z][a-zA-Z_0-9]*(?:[?!]|\b)/
       });
-
       Prism.languages.ruby.string = [
         {
           pattern: /%[qQiIwWxs]?([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[\s\S])*?\1/,
@@ -1063,14 +905,11 @@ define(
         }
       ];
     }(Prism));
-
     // ------------------ End wrap
     return Prism;
   }
 );
-
 /*eslint-enable */
-
 /**
  * ResolveGlobal.js
  *
@@ -1080,7 +919,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.dom.DOMUtils',
   [
@@ -1090,7 +928,6 @@ define(
     return resolve('tinymce.dom.DOMUtils');
   }
 );
-
 /**
  * Utils.js
  *
@@ -1100,7 +937,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * Various utility functions.
  *
@@ -1115,13 +951,11 @@ define(
     function isCodeSample(elm) {
       return elm && elm.nodeName == 'PRE' && elm.className.indexOf('language-') !== -1;
     }
-
     function trimArg(predicateFn) {
       return function (arg1, arg2) {
         return predicateFn(arg2);
       };
     }
-
     return {
       isCodeSample: isCodeSample,
       trimArg: trimArg
@@ -1137,7 +971,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * Contains all dialog logic.
  *
@@ -1153,7 +986,6 @@ define(
   ],
   function (DOMUtils, Prism, Utils) {
     var DOM = DOMUtils.DOM;
-
     function getLanguages(editor) {
       var defaultLanguages = [
         { text: 'HTML/XML', value: 'markup' },
@@ -1167,17 +999,13 @@ define(
         { text: 'C#', value: 'csharp' },
         { text: 'C++', value: 'cpp' }
       ];
-
       var customLanguages = editor.settings.codesample_languages;
       return customLanguages ? customLanguages : defaultLanguages;
     }
-
     function insertCodeSample(editor, language, code) {
       editor.undoManager.transact(function () {
         var node = getSelectedCodeSample(editor);
-
         code = DOM.encode(code);
-
         if (node) {
           editor.dom.setAttrib(node, 'class', 'language-' + language);
           node.innerHTML = code;
@@ -1189,38 +1017,28 @@ define(
         }
       });
     }
-
     function getSelectedCodeSample(editor) {
       var node = editor.selection.getNode();
-
       if (Utils.isCodeSample(node)) {
         return node;
       }
-
       return null;
     }
-
     function getCurrentCode(editor) {
       var node = getSelectedCodeSample(editor);
-
       if (node) {
         return node.textContent;
       }
-
       return '';
     }
-
     function getCurrentLanguage(editor) {
       var matches, node = getSelectedCodeSample(editor);
-
       if (node) {
         matches = node.className.match(/language-(\w+)/);
         return matches ? matches[1] : '';
       }
-
       return '';
     }
-
     return {
       open: function (editor) {
         editor.windowManager.open({
@@ -1239,7 +1057,6 @@ define(
               value: getCurrentLanguage(editor),
               values: getLanguages(editor)
             },
-
             {
               type: 'textbox',
               name: 'code',
@@ -1270,7 +1087,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the codesample plugin.
  *
@@ -1288,70 +1104,56 @@ define(
   ],
   function (Env, PluginManager, Prism, Dialog, Utils) {
     var addedInlineCss, trimArg = Utils.trimArg;
-
     PluginManager.add('codesample', function (editor, pluginUrl) {
       var $ = editor.$, addedCss;
-
       if (!Env.ceFalse) {
         return;
       }
-
       // Todo: use a proper css loader here
       function loadCss() {
         var linkElm, contentCss = editor.settings.codesample_content_css;
-
         if (editor.inline && addedInlineCss) {
           return;
         }
-
         if (!editor.inline && addedCss) {
           return;
         }
-
         if (editor.inline) {
           addedInlineCss = true;
         } else {
           addedCss = true;
         }
-
         if (contentCss !== false) {
           linkElm = editor.dom.create('link', {
             rel: 'stylesheet',
             href: contentCss ? contentCss : pluginUrl + '/css/prism.css'
           });
-
           editor.getDoc().getElementsByTagName('head')[0].appendChild(linkElm);
         }
       }
-
       editor.on('PreProcess', function (e) {
         $('pre[contenteditable=false]', e.node).
           filter(trimArg(Utils.isCodeSample)).
           each(function (idx, elm) {
             var $elm = $(elm), code = elm.textContent;
-
             $elm.attr('class', $.trim($elm.attr('class')));
             $elm.removeAttr('contentEditable');
-
             $elm.empty().append($('<code></code>').each(function () {
               // Needs to be textContent since innerText produces BR:s
               this.textContent = code;
             }));
           });
       });
-
       editor.on('SetContent', function () {
         var unprocessedCodeSamples = $('pre').filter(trimArg(Utils.isCodeSample)).filter(function (idx, elm) {
           return elm.contentEditable !== "false";
         });
-
         if (unprocessedCodeSamples.length) {
           editor.undoManager.transact(function () {
             unprocessedCodeSamples.each(function (idx, elm) {
               $(elm).find('br').each(function (idx, elm) {
                 elm.parentNode.replaceChild(editor.getDoc().createTextNode('\n'), elm);
               });
-
               elm.contentEditable = false;
               elm.innerHTML = editor.dom.encode(elm.textContent);
               Prism.highlightElement(elm);
@@ -1360,7 +1162,6 @@ define(
           });
         }
       });
-
       editor.addCommand('codesample', function () {
         var node = editor.selection.getNode();
         if (editor.selection.isCollapsed() || Utils.isCodeSample(node)) {
@@ -1369,15 +1170,12 @@ define(
           editor.formatter.toggle('code');
         }
       });
-
       editor.addButton('codesample', {
         cmd: 'codesample',
         title: 'Insert/Edit code sample'
       });
-
       editor.on('init', loadCss);
     });
-
     return function () { };
   }
 );

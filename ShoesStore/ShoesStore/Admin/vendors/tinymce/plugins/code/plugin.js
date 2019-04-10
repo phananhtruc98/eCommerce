@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.dom.DOMUtils',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.dom.DOMUtils');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the code plugin.
  *
@@ -165,29 +151,23 @@ define(
             // don't move the focus to the editor before creating an undo
             // transation since it tries to make a bookmark for the current selection
             editor.focus();
-
             editor.undoManager.transact(function () {
               editor.setContent(e.data.code);
             });
-
             editor.selection.setCursorLocation();
             editor.nodeChanged();
           }
         });
-
         // Gecko has a major performance issue with textarea
         // contents so we need to set it when all reflows are done
         win.find('#code').value(editor.getContent({ source_view: true }));
       }
-
       editor.addCommand("mceCodeEditor", showDialog);
-
       editor.addButton('code', {
         icon: 'code',
         tooltip: 'Source code',
         onclick: showDialog
       });
-
       editor.addMenuItem('code', {
         icon: 'code',
         text: 'Source code',
@@ -195,7 +175,6 @@ define(
         onclick: showDialog
       });
     });
-
     return function () { };
   }
 );

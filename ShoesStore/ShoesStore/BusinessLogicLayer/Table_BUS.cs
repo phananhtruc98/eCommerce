@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 
@@ -10,6 +8,7 @@ namespace ShoesStore.BusinessLogicLayer
     public class Table_BUS<T, U> : ITable<T> where T : class where U : Table_DAO<T>, new()
     {
         private readonly U _dao = new U();
+
         public void Delete(T obj)
         {
             _dao.Delete(obj);

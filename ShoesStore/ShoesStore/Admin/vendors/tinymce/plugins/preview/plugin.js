@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.Env',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.Env');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Tools',
   [
@@ -143,7 +129,6 @@ define(
     return resolve('tinymce.util.Tools');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -153,7 +138,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the preview plugin.
  *
@@ -170,7 +154,6 @@ define(
   function (PluginManager, Env, Tools) {
     PluginManager.add('preview', function (editor) {
       var settings = editor.settings, sandbox = !Env.ie;
-
       editor.addCommand('mcePreview', function () {
         editor.windowManager.open({
           title: 'Preview',
@@ -185,25 +168,20 @@ define(
           },
           onPostRender: function () {
             var previewHtml, headHtml = '', encode = editor.dom.encode;
-
             headHtml += '<base href="' + encode(editor.documentBaseURI.getURI()) + '">';
-
             Tools.each(editor.contentCSS, function (url) {
               headHtml += '<link type="text/css" rel="stylesheet" href="' + encode(editor.documentBaseURI.toAbsolute(url)) + '">';
             });
-
             var bodyId = settings.body_id || 'tinymce';
             if (bodyId.indexOf('=') != -1) {
               bodyId = editor.getParam('body_id', '', 'hash');
               bodyId = bodyId[editor.id] || bodyId;
             }
-
             var bodyClass = settings.body_class || '';
             if (bodyClass.indexOf('=') != -1) {
               bodyClass = editor.getParam('body_class', '', 'hash');
               bodyClass = bodyClass[editor.id] || '';
             }
-
             var preventClicksOnLinksScript = (
               '<script>' +
               'document.addEventListener && document.addEventListener("click", function(e) {' +
@@ -215,9 +193,7 @@ define(
               '}, false);' +
               '</script> '
             );
-
             var dirAttr = editor.settings.directionality ? ' dir="' + editor.settings.directionality + '"' : '';
-
             previewHtml = (
               '<!DOCTYPE html>' +
               '<html>' +
@@ -230,7 +206,6 @@ define(
               '</body>' +
               '</html>'
             );
-
             if (!sandbox) {
               // IE 6-11 doesn't support data uris on iframes
               // so I guess they will have to be less secure since we can't sandbox on those
@@ -245,19 +220,16 @@ define(
           }
         });
       });
-
       editor.addButton('preview', {
         title: 'Preview',
         cmd: 'mcePreview'
       });
-
       editor.addMenuItem('preview', {
         text: 'Preview',
         cmd: 'mcePreview',
         context: 'view'
       });
     });
-
     return function () { };
   }
 );

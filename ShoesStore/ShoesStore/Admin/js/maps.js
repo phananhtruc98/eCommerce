@@ -7,7 +7,6 @@ if ($('#map').length) {
       lat: 40.6971494,
       lng: -74.2598719
     };
-
     // Map Zooming
     var MapZoom = 14;
     var AppletThemeMap = new google.maps.Map(document.getElementById('map'), {

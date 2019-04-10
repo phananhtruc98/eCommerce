@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.Env',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.Env');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * Plugin.js
  *
@@ -133,7 +120,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 /**
  * This class contains all core logic for the anchor plugin.
  *
@@ -146,13 +132,11 @@ define(
     'tinymce.core.Env',
     'tinymce.core.PluginManager'
   ],
-
   function (Env, PluginManager) {
     PluginManager.add('anchor', function (editor) {
       var isAnchorNode = function (node) {
         return !node.attr('href') && (node.attr('id') || node.attr('name')) && !node.firstChild;
       };
-
       var setContentEditable = function (state) {
         return function (nodes) {
           for (var i = 0; i < nodes.length; i++) {
@@ -162,27 +146,22 @@ define(
           }
         };
       };
-
       var isValidId = function (id) {
         // Follows HTML4 rules: https://www.w3.org/TR/html401/types.html#type-id
         return /^[A-Za-z][A-Za-z0-9\-:._]*$/.test(id);
       };
-
       var showDialog = function () {
         var selectedNode = editor.selection.getNode();
         var isAnchor = selectedNode.tagName == 'A' && editor.dom.getAttrib(selectedNode, 'href') === '';
         var value = '';
-
         if (isAnchor) {
           value = selectedNode.id || selectedNode.name || '';
         }
-
         editor.windowManager.open({
           title: 'Anchor',
           body: { type: 'textbox', name: 'id', size: 40, label: 'Id', value: value },
           onsubmit: function (e) {
             var id = e.data.id;
-
             if (!isValidId(id)) {
               e.preventDefault();
               editor.windowManager.alert(
@@ -190,7 +169,6 @@ define(
               );
               return;
             }
-
             if (isAnchor) {
               selectedNode.removeAttribute('name');
               selectedNode.id = id;
@@ -203,23 +181,19 @@ define(
           }
         });
       };
-
       if (Env.ceFalse) {
         editor.on('PreInit', function () {
           editor.parser.addNodeFilter('a', setContentEditable('false'));
           editor.serializer.addNodeFilter('a', setContentEditable(null));
         });
       }
-
       editor.addCommand('mceAnchor', showDialog);
-
       editor.addButton('anchor', {
         icon: 'anchor',
         tooltip: 'Anchor',
         onclick: showDialog,
         stateSelector: 'a:not([href])'
       });
-
       editor.addMenuItem('anchor', {
         icon: 'anchor',
         text: 'Anchor',
@@ -227,7 +201,6 @@ define(
         onclick: showDialog
       });
     });
-
     return function () { };
   }
 );

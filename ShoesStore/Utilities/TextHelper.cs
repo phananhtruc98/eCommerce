@@ -254,6 +254,13 @@ namespace Utilities
             return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
         }
 
+        public static bool IsSpecialCharacters(string s)
+        {
+            var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
+            if (regexItem.IsMatch(s)) return false;
+            return true;
+        }
+
         public static void LoadMeta(HtmlHead headTag, string title, string description, string keyws, string category,
             string url, string img, string dateup, string datemf, string datecre)
         {
@@ -345,6 +352,15 @@ namespace Utilities
             foreach (ListItem listItem2 in lbDest.Items)
                 if (listItem2.Selected)
                     listItem2.Selected = false;
+        }
+
+        public static string RandomNumber(int length)
+        {
+            var s = "";
+            var random = new Random();
+            for (var i = 1; i <= length; i++) s += random.Next(0, 9);
+
+            return s;
         }
 
         public static string ShortDateText(string text)
@@ -449,23 +465,5 @@ namespace Utilities
 
             return textTrim;
         }
-
-        public static bool  IsSpecialCharacters(string s)
-        {
-            var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
-            if (regexItem.IsMatch(s)) return false;
-            return true;
-        }
-        public static string RandomNumber(int length)
-        {
-            string s = "";
-            Random random = new Random();
-            for (int i = 1; i <= length; i++)
-            {
-                s += random.Next(0, 9);
-            }
-
-            return s;
-        }  
     }
 }

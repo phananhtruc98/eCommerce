@@ -25,10 +25,11 @@ namespace Utilities
         /// </summary>
         private const int TimerPeriod = 240000;
 
-        private readonly string _unknownUser = "_'?Unknown\nUser?'_";
         private readonly Hashtable _fOnlineUsers = new Hashtable();
 
-        private Timer _thTimer;
+        private readonly Timer _thTimer;
+
+        private readonly string _unknownUser = "_'?Unknown\nUser?'_";
         //int imtoi
 
 

@@ -5,24 +5,20 @@
   display: block;
   margin-top: 15px;
   margin-bottom: 10px;
-
   .form-check-label {
     display: block;
     padding-left: 30px;
-
     .rtl & {
       padding-left: 0;
       padding-right: 30px;
     }
     line-height: 1.5;
-
     input {
       position: absolute;
       margin-left: -20px;
       margin-top: 4px\9;
       top: 0;
       left: 0;
-
       .rtl & {
         left: auto;
         right: 0;
@@ -35,20 +31,17 @@
     }
   }
 }
-
 .form-check {
   .form-check-label {
     font-size: $default-font-size;
     line-height: 1.5;
     padding-left: 10px;
-
     input {
       &:checked {
         +.input-helper {
           &:before {
             background-color: color(white);
           }
-
           &:after {
             width: 18px;
             opacity: 1;
@@ -61,14 +54,12 @@
           }
         }
       }
-
       &:disabled {
         + .input-helper {
           &:before {
             border-color: $border-color;
           }
         }
-
         &:checked {
           + .input-helper {
             &:after {
@@ -78,7 +69,6 @@
         }
       }
     }
-
     .input-helper {
       &:before {
         position: absolute;
@@ -89,7 +79,6 @@
         height: 18px;
         border-radius: 2px;
         left: 0;
-
         .rtl & {
           left: auto;
           right: 0;
@@ -102,7 +91,6 @@
         -webkit-transition-duration: 250ms;
         transition-duration: 250ms;
       }
-
       &:after {
         -webkit-transition: all;
         -o-transition: all;
@@ -122,7 +110,6 @@
         font-size: 0.9375rem;
         font-weight: bold;
         left: 0;
-
         .rtl & {
           left: auto;
           right: 0;
@@ -133,7 +120,6 @@
       }
     }
   }
-
   &.form-check-flat {
     label {
       input {
@@ -145,18 +131,15 @@
             }
           }
         }
-
         &:disabled {
           + .input-helper {
             &:after {
               color: color(white);
             }
-
             &:before {
               border-color: $border-color;
             }
           }
-
           &:checked {
             + .input-helper {
               &:before {
@@ -166,12 +149,10 @@
           }
         }
       }
-
       .input-helper {
         &:before {
           border: 2px solid $border-color;
         }
-
         &:after {
           color: color(white);
         }
@@ -179,7 +160,6 @@
     }
   }
 }
-
 .form-radio {
   label {
     input {
@@ -190,7 +170,6 @@
           top: 50%;
           @include transform(translateY(-50%));
           left: 0;
-
           .rtl & {
             left: auto;
             right: 0;
@@ -206,7 +185,6 @@
           -webkit-transition-duration: 250ms;
           transition-duration: 250ms;
         }
-
         &:after {
           content: "";
           width: 8px;
@@ -216,7 +194,6 @@
           top: 30%;
           @include transform(translateY(-30%));
           left: 6px;
-
           .rtl & {
             left: auto;
             right: 6px;
@@ -236,7 +213,6 @@
           position: absolute;
         }
       }
-
       &:checked {
         +.input-helper {
           &:before {
@@ -245,7 +221,6 @@
             top: 30%;
             @include transform(translateY(-30%));
           }
-
           &:after {
             opacity: 1;
             line-height: 1.5;
@@ -257,21 +232,18 @@
           }
         }
       }
-
       &:disabled {
         + .input-helper {
           &:before {
             border-color: $border-color;
           }
         }
-
         &:checked {
           + .input-helper {
             &:before {
               background-color: $white;
               border-color: $border-color;
             }
-
             &:after {
               background-color: $border-color;
             }
@@ -280,7 +252,6 @@
       }
     }
   }
-
   &.form-radio-flat {
     label {
       input {
@@ -292,14 +263,12 @@
               top: 50%;
               @include transform(translateY(-50%));
             }
-
             &:after {
               width: 20px;
               height: 20px;
               top: 50%;
               @include transform(translateY(-50%));
               left: -2px;
-
               .rtl & {
                 left: auto;
                 right: -2px;

@@ -6,10 +6,7 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Admin {
-    
-    
     public partial class Admin1 {
     }
 }

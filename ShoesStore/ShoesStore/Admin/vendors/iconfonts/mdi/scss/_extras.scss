@@ -7,7 +7,6 @@ $sizes: 18 24 36 48;
         }
     }
 }
-
 .#{$mdi-css-prefix}-dark {
     &:before {
         color: rgba(0, 0, 0, 0.54);
@@ -24,7 +23,6 @@ $sizes: 18 24 36 48;
         color: rgba(255, 255, 255, 0.3);
     }
 }
-
 $degrees: 45 90 135 180 225 270 315;
 @each $degree in $degrees {
     .#{$mdi-css-prefix}-rotate-#{$degree}{

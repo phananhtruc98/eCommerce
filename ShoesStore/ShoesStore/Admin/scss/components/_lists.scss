@@ -4,21 +4,17 @@ ol,
 ul {
   padding-left: 1rem;
   font-size: $default-font-size;
-
   li {
     line-height: 1.8;
   }
 }
-
 .list-arrow,
 .list-star,
 .list-ticked {
   list-style: none;
   padding: 0;
-
   li {
     padding-left: 1.5rem;
-
     &:before {
       font-family: "Material Design Icons";
       margin-left: -1.5rem;
@@ -27,7 +23,6 @@ ul {
     }
   }
 }
-
 .list-ticked {
   li {
     &:before {
@@ -36,7 +31,6 @@ ul {
     }
   }
 }
-
 .list-arrow {
   li {
     &:before {
@@ -45,7 +39,6 @@ ul {
     }
   }
 }
-
 .list-star {
   li {
     &:before {
@@ -54,22 +47,18 @@ ul {
     }
   }
 }
-
 .bullet-line-list {
   padding-left: 30px;
   margin-bottom: 0;
   position: relative;
   list-style-type: none;
-
   .rtl & {
     padding-right: 0px;
   }
-
   li {
     position: relative;
     line-height: 1;
     padding-bottom: 30px;
-
     &:before {
       width: 12px;
       height: 12px;
@@ -80,14 +69,12 @@ ul {
       z-index: 2;
       background: color(white);
     }
-
     &:before {
       content: "";
       position: absolute;
       border-radius: 100%;
       border-color: theme-color(primary);
     }
-
     &:after {
       content: "";
       border: 1px solid $border-color;
@@ -96,17 +83,14 @@ ul {
       left: -23px;
       height: 100%;
     }
-
     &:first-child {
       &:after {
         content: "";
         height: 80%;
       }
     }
-
     &:last-child {
       padding-bottom: 0;
-
       &:after {
         content: "";
         top: 0;

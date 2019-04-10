@@ -75,7 +75,6 @@ $(function() {
         radius: 0
       }
     }
-
   };
   var doughnutPieData = {
     datasets: [{
@@ -97,7 +96,6 @@ $(function() {
         'rgba(255, 159, 64, 1)'
       ],
     }],
-
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
       'Pink',
@@ -132,7 +130,6 @@ $(function() {
         'rgba(255, 159, 64, 1)'
       ],
     }],
-
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
       'Firefox',
@@ -171,7 +168,6 @@ $(function() {
       fill: '-2' // 4: fill to dataset 2
     }]
   };
-
   var areaOptions = {
     plugins: {
       filler: {
@@ -179,7 +175,6 @@ $(function() {
       }
     }
   }
-
   var multiAreaData = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [{
@@ -208,7 +203,6 @@ $(function() {
       }
     ]
   };
-
   var multiAreaOptions = {
     plugins: {
       filler: {
@@ -233,7 +227,6 @@ $(function() {
       }]
     }
   }
-
   var scatterChartData = {
     datasets: [{
         label: 'First Dataset',
@@ -291,7 +284,6 @@ $(function() {
       }
     ]
   }
-
   var scatterChartOptions = {
     scales: {
       xAxes: [{
@@ -310,7 +302,6 @@ $(function() {
       options: options
     });
   }
-
   if ($("#lineChart").length) {
     var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
     var lineChart = new Chart(lineChartCanvas, {
@@ -319,7 +310,6 @@ $(function() {
       options: options
     });
   }
-
   if ($("#linechart-multi").length) {
     var multiLineCanvas = $("#linechart-multi").get(0).getContext("2d");
     var lineChart = new Chart(multiLineCanvas, {
@@ -328,7 +318,6 @@ $(function() {
       options: options
     });
   }
-
   if ($("#areachart-multi").length) {
     var multiAreaCanvas = $("#areachart-multi").get(0).getContext("2d");
     var multiAreaChart = new Chart(multiAreaCanvas, {
@@ -337,7 +326,6 @@ $(function() {
       options: multiAreaOptions
     });
   }
-
   if ($("#doughnutChart").length) {
     var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
     var doughnutChart = new Chart(doughnutChartCanvas, {
@@ -346,7 +334,6 @@ $(function() {
       options: doughnutPieOptions
     });
   }
-
   if ($("#pieChart").length) {
     var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
     var pieChart = new Chart(pieChartCanvas, {
@@ -355,7 +342,6 @@ $(function() {
       options: doughnutPieOptions
     });
   }
-
   if ($("#areaChart").length) {
     var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
     var areaChart = new Chart(areaChartCanvas, {
@@ -364,7 +350,6 @@ $(function() {
       options: areaOptions
     });
   }
-
   if ($("#scatterChart").length) {
     var scatterChartCanvas = $("#scatterChart").get(0).getContext("2d");
     var scatterChart = new Chart(scatterChartCanvas, {
@@ -373,7 +358,6 @@ $(function() {
       options: scatterChartOptions
     });
   }
-
   if ($("#browserTrafficChart").length) {
     var doughnutChartCanvas = $("#browserTrafficChart").get(0).getContext("2d");
     var doughnutChart = new Chart(doughnutChartCanvas, {

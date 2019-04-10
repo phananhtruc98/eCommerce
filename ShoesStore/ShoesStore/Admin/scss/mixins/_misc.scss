@@ -1,12 +1,10 @@
 /* Miscellaneous Mixins */
-
 @mixin placeholder {
   &::-webkit-input-placeholder {@content}
   &:-moz-placeholder           {@content}
   &::-moz-placeholder          {@content}
   &:-ms-input-placeholder      {@content}
 }
-
 // generic transform
 @mixin transform($transforms) {
 	   -moz-transform: $transforms;
@@ -19,7 +17,6 @@
 @mixin rotate ($deg) {
   @include transform(rotate(#{$deg}deg));
 }
-
 // scale
 @mixin scale($scale) {
 	 @include transform(scale($scale));

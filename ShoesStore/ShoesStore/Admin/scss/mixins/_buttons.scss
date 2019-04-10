@@ -12,7 +12,6 @@
     }
   }
 }
-
 @mixin btn-social-outline-variant($color) {
   background: transparent;
   border-color: $color;
@@ -21,7 +20,6 @@
     background: rgba($color, 0.2);
   }
 }
-
 @mixin button-inverse-variant($color, $color-hover: $white) {
   color: $color;
   background-color: rgba($color, 0.2);
@@ -49,7 +47,6 @@
     border-color: $color;
   }
 }
-
 @mixin button-inverse-outline-variant($color, $color-hover: $white) {
   color: $color;
   background-image: none;

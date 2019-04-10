@@ -4,11 +4,8 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class ProCat_DAO :Table_DAO<ProCat>,IProCat
+    public class ProCat_DAO : Table_DAO<ProCat>, IProCat
     {
-
-
-
         public List<ProCat> GetPopularProCats(int n)
         {
             throw new NotImplementedException();
@@ -19,12 +16,12 @@ namespace ShoesStore.DataAccessLogicLayer
             return DataProvider.Instance.ProCat.Find(id);
         }
 
-        public override void SetActive(ProCat obj)
+        public override bool IsExist(ProCat obj)
         {
             throw new NotImplementedException();
         }
 
-        public override bool IsExist(ProCat obj)
+        public override void SetActive(ProCat obj)
         {
             throw new NotImplementedException();
         }

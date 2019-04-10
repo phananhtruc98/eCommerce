@@ -1,7 +1,5 @@
 (function () {
-
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
 // Used when there is no 'main' module.
 // The name is probably (hopefully) unique so minification removes for releases.
 var register_3795 = function (id) {
@@ -15,7 +13,6 @@ var register_3795 = function (id) {
   }
   target[fragments[fragments.length - 1]] = module;
 };
-
 var instantiate = function (id) {
   var actual = defs[id];
   var dependencies = actual.deps;
@@ -29,7 +26,6 @@ var instantiate = function (id) {
      throw 'module [' + id + '] returned undefined';
   actual.instance = defResult;
 };
-
 var def = function (id, dependencies, definition) {
   if (typeof id !== 'string')
     throw 'module id must be a string';
@@ -43,7 +39,6 @@ var def = function (id, dependencies, definition) {
     instance: undefined
   };
 };
-
 var dem = function (id) {
   var actual = defs[id];
   if (actual === undefined)
@@ -52,7 +47,6 @@ var dem = function (id) {
     instantiate(id);
   return actual.instance;
 };
-
 var req = function (ids, callback) {
   var len = ids.length;
   var instances = new Array(len);
@@ -60,9 +54,7 @@ var req = function (ids, callback) {
     instances.push(dem(ids[i]));
   callback.apply(null, callback);
 };
-
 var ephox = {};
-
 ephox.bolt = {
   module: {
     api: {
@@ -72,7 +64,6 @@ ephox.bolt = {
     }
   }
 };
-
 var define = def;
 var require = req;
 var demand = dem;
@@ -93,7 +84,6 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.PluginManager',
   [
@@ -103,7 +93,6 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
-
 /**
  * ResolveGlobal.js
  *
@@ -113,7 +102,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.core.util.Delay',
   [
@@ -123,7 +111,6 @@ define(
     return resolve('tinymce.util.Delay');
   }
 );
-
 /**
  * UnicodeData.js
  *
@@ -134,7 +121,6 @@ define(
  * Contributing: http://www.tinymce.com/contributing
  */
 /* eslint-disable max-len */
-
 define(
   'tinymce.plugins.wordcount.text.UnicodeData',
   [], function () {
@@ -153,7 +139,6 @@ define(
       extendnumlet: '[_\u203F\u2040\u2054\uFE33\uFE34\uFE4D-\uFE4F\uFF3F]',
       punctuation: '[!-#%-*,-\\/:;?@\\[-\\]_{}\u00A1\u00AB\u00B7\u00BB\u00BF;\u00B7\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1361-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u3008\u3009\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30\u2E31\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]'
     };
-
     var characterIndices = {
       ALETTER: 0,
       MIDNUMLET: 1,
@@ -170,7 +155,6 @@ define(
       AT: 12,
       OTHER: 13
     };
-
     // RegExp objects generated from code point data. Each regex matches a single
     // character against a set of Unicode code points. The index of each item in
     // this array must match its corresponding code point constant value defined
@@ -190,11 +174,9 @@ define(
       new RegExp(regExps.extendnumlet),
       new RegExp('@')
     ];
-
     var EMPTY_STRING = '';
     var PUNCTUATION = new RegExp('^' + regExps.punctuation + '$');
     var WHITESPACE = /\s/;
-
     return {
       characterIndices: characterIndices,
       SETS: SETS,
@@ -213,7 +195,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.plugins.wordcount.alien.Arr',
   [
@@ -221,13 +202,10 @@ define(
   function () {
     var each = function (o, cb, s) {
       var n, l;
-
       if (!o) {
         return 0;
       }
-
       s = s || o;
-
       if (o.length !== undefined) {
         // Indexed arrays, needed for Safari
         for (n = 0, l = o.length; n < l; n++) {
@@ -245,27 +223,21 @@ define(
           }
         }
       }
-
       return 1;
     };
-
     var map = function (array, callback) {
       var out = [];
-
       each(array, function (item, index) {
         out.push(callback(item, index, array));
       });
-
       return out;
     };
-
     return {
       each: each,
       map: map
     };
   }
 );
-
 /**
  * StringMapper.js
  *
@@ -284,13 +256,11 @@ define(
   function (UnicodeData, Arr) {
     var SETS = UnicodeData.SETS;
     var OTHER = UnicodeData.characterIndices.OTHER;
-
     var getType = function (char) {
       var j, set, type = OTHER;
       var setsLength = SETS.length;
       for (j = 0; j < setsLength; ++j) {
         set = SETS[j];
-
         if (set && set.test(char)) {
           type = j;
           break;
@@ -298,7 +268,6 @@ define(
       }
       return type;
     };
-
     var memoize = function (func) {
       var cache = {};
       return function (char) {
@@ -311,18 +280,15 @@ define(
         }
       };
     };
-
     var classify = function (string) {
       var memoized = memoize(getType);
       return Arr.map(string.split(''), memoized);
     };
-
     return {
       classify: classify
     };
   }
 );
-
 /**
  * IsWordBoundary.js
  *
@@ -332,7 +298,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.plugins.wordcount.text.WordBoundary',
   [
@@ -345,42 +310,34 @@ define(
       var type = map[index];
       var nextType = map[index + 1];
       var nextNextType;
-
       if (index < 0 || (index > map.length - 1 && index !== 0)) {
         // console.log('isWordBoundary: index out of bounds', 'warn', 'text-wordbreak');
         return false;
       }
-
       // WB5. Don't break between most letters.
       if (type === ci.ALETTER && nextType === ci.ALETTER) {
         return false;
       }
-
       nextNextType = map[index + 2];
-
       // WB6. Don't break letters across certain punctuation.
       if (type === ci.ALETTER &&
         (nextType === ci.MIDLETTER || nextType === ci.MIDNUMLET || nextType === ci.AT) &&
         nextNextType === ci.ALETTER) {
         return false;
       }
-
       prevType = map[index - 1];
-
       // WB7. Don't break letters across certain punctuation.
       if ((type === ci.MIDLETTER || type === ci.MIDNUMLET || nextType === ci.AT) &&
         nextType === ci.ALETTER &&
         prevType === ci.ALETTER) {
         return false;
       }
-
       // WB8/WB9/WB10. Don't break inside sequences of digits or digits
       // adjacent to letters.
       if ((type === ci.NUMERIC || type === ci.ALETTER) &&
         (nextType === ci.NUMERIC || nextType === ci.ALETTER)) {
         return false;
       }
-
       // WB11. Don't break inside numeric sequences like "3.2" or
       // "3,456.789".
       if ((type === ci.MIDNUM || type === ci.MIDNUMLET) &&
@@ -388,7 +345,6 @@ define(
         prevType === ci.NUMERIC) {
         return false;
       }
-
       // WB12. Don't break inside numeric sequences like "3.2" or
       // "3,456.789".
       if (type === ci.NUMERIC &&
@@ -396,56 +352,46 @@ define(
         nextNextType === ci.NUMERIC) {
         return false;
       }
-
       // WB4. Ignore format and extend characters.
       if (type === ci.EXTEND || type === ci.FORMAT ||
         prevType === ci.EXTEND || prevType === ci.FORMAT ||
         nextType === ci.EXTEND || nextType === ci.FORMAT) {
         return false;
       }
-
       // WB3. Don't break inside CRLF.
       if (type === ci.CR && nextType === ci.LF) {
         return false;
       }
-
       // WB3a. Break before newlines (including CR and LF).
       if (type === ci.NEWLINE || type === ci.CR || type === ci.LF) {
         return true;
       }
-
       // WB3b. Break after newlines (including CR and LF).
       if (nextType === ci.NEWLINE || nextType === ci.CR || nextType === ci.LF) {
         return true;
       }
-
       // WB13. Don't break between Katakana characters.
       if (type === ci.KATAKANA && nextType === ci.KATAKANA) {
         return false;
       }
-
       // WB13a. Don't break from extenders.
       if (nextType === ci.EXTENDNUMLET &&
         (type === ci.ALETTER || type === ci.NUMERIC || type === ci.KATAKANA ||
           type === ci.EXTENDNUMLET)) {
         return false;
       }
-
       // WB13b. Don't break from extenders.
       if (type === ci.EXTENDNUMLET &&
         (nextType === ci.ALETTER || nextType === ci.NUMERIC ||
           nextType === ci.KATAKANA)) {
         return false;
       }
-
       if (type === ci.AT) {
         return false;
       }
-
       // Break after any character not covered by the rules above.
       return true;
     };
-
     return {
       isWordBoundary: isWordBoundary
     };
@@ -460,7 +406,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.plugins.wordcount.text.WordGetter',
   [
@@ -472,23 +417,19 @@ define(
     var EMPTY_STRING = UnicodeData.EMPTY_STRING;
     var WHITESPACE = UnicodeData.WHITESPACE;
     var PUNCTUATION = UnicodeData.PUNCTUATION;
-
     var isProtocol = function (word) {
       return word === 'http' || word === 'https';
     };
-
     var findWordEnd = function (string, index) {
       var i;
       for (i = index; i < string.length; ++i) {
         var chr = string.charAt(i);
-
         if (WHITESPACE.test(chr)) {
           break;
         }
       }
       return i;
     };
-
     var extractUrl = function (word, string, index) {
       var endIndex = findWordEnd(string, index + 1);
       var peakedWord = string.substring(index + 1, endIndex);
@@ -498,13 +439,11 @@ define(
           index: endIndex
         };
       }
-
       return {
         word: word,
         index: index
       };
     };
-
     var getWords = function (string, options) {
       var i = 0;
       var map = StringMapper.classify(string);
@@ -514,33 +453,26 @@ define(
       var chr;
       var includePunctuation;
       var includeWhitespace;
-
       if (!options) {
         options = {};
       }
-
       if (options.ignoreCase) {
         string = string.toLowerCase();
       }
-
       includePunctuation = options.includePunctuation;
       includeWhitespace = options.includeWhitespace;
-
       // Loop through each character in the classification map and determine
       // whether it precedes a word boundary, building an array of distinct
       // words as we go.
       for (; i < len; ++i) {
         chr = string.charAt(i);
-
         // Append this character to the current word.
         word.push(chr);
-
         // If there's a word boundary between the current character and the
         // next character, append the current word to the words array and
         // start building a new word.
         if (WordBoundary.isWordBoundary(map, i)) {
           word = word.join(EMPTY_STRING);
-
           if (word &&
             (includeWhitespace || !WHITESPACE.test(word)) &&
             (includePunctuation || !PUNCTUATION.test(word))) {
@@ -552,14 +484,11 @@ define(
               words.push(word);
             }
           }
-
           word = [];
         }
       }
-
       return words;
     };
-
     return {
       getWords: getWords
     };
@@ -574,7 +503,6 @@ define(
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
-
 define(
   'tinymce.plugins.wordcount.Plugin',
   [
@@ -587,19 +515,15 @@ define(
       var getTextContent = function (editor) {
         return editor.removed ? '' : editor.getBody().innerText;
       };
-
       var getCount = function () {
         return WordGetter.getWords(getTextContent(editor)).length;
       };
-
       var update = function () {
         editor.theme.panel.find('#wordcount').text(['Words: {0}', getCount()]);
       };
-
       editor.on('init', function () {
         var statusbar = editor.theme.panel && editor.theme.panel.find('#statusbar')[0];
         var debouncedUpdate = Delay.debounce(update, 300);
-
         if (statusbar) {
           Delay.setEditorTimeout(editor, function () {
             statusbar.insert({
@@ -609,20 +533,16 @@ define(
               classes: 'wordcount',
               disabled: editor.settings.readonly
             }, 0);
-
             editor.on('setcontent beforeaddundo undo redo keyup', debouncedUpdate);
           }, 0);
         }
       });
-
       return {
         getCount: getCount
       };
     });
-
     return function () { };
   }
 );
-
 dem('tinymce.plugins.wordcount.Plugin')();
 })();

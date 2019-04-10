@@ -1,5 +1,4 @@
 /* Navbar */
-
 .navbar {
   &.default-layout {
     font-family: $type-2;
@@ -155,7 +154,6 @@
     }
   }
 }
-
 @media (max-width:991px) {
   .navbar {
     &.default-layout {

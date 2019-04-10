@@ -97,7 +97,6 @@
         undo: 'Krok vzad',
         redo: 'Krok vpřed'
       }
-
     }
   });
 })(jQuery);
