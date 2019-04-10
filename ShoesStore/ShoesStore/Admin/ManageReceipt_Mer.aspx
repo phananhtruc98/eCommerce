@@ -40,17 +40,8 @@
                         <ItemTemplate>
                             <%# Eval("Rcpt.DateAdd") %>
                         </ItemTemplate>
-                        <EditItemTemplate>
-                            <asp:TextBox runat="server" ID="EditDateAdd" Text='<%# Bind("Rcpt.DateAdd") %>' />
-                        </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox runat="server" type="date" ID="InsertDateAdd" Text='<%# Bind("Rcpt.DateAdd") %>' />
-                            <asp:RequiredFieldValidator ID="rfvEditDateAdd"
-                                runat="server"
-                                ErrorMessage="Chưa nhập ngày thêm"
-                                ControlToValidate="InsertDateAdd"
-                                Text="*" ForeColor="Red" ValidationGroup="Insert">
-                            </asp:RequiredFieldValidator>
+                            <asp:Label runat="server" ID="InsertDateAdd" />
                         </FooterTemplate>
                     </asp:TemplateField>
 
@@ -58,11 +49,8 @@
                         <ItemTemplate>
                             <%# Eval("Rcpt.DateEdit") %>
                         </ItemTemplate>
-                        <EditItemTemplate>
-                            <asp:TextBox runat="server" type="date" ID="EditDateEdit" Text='<%# Bind("Rcpt.DateEdit") %>' />
-                        </EditItemTemplate>
                         <FooterTemplate>
-                            <asp:TextBox runat="server" type="date" ID="InsertDateEdit" Text='<%# Bind("Rcpt.DateEdit") %>' />
+                          <asp:Label runat="server" ID="InsertDateEdit" />
                         </FooterTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Người thêm">
@@ -120,31 +108,25 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="InsertRow" ForeColor="#8C4510">Thêm</asp:LinkButton>
+                                <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="EInsertRow" ForeColor="#8C4510">Thêm</asp:LinkButton>
                             </td>
                             <td>
-                                <asp:Label runat="server" type="number" ID="InsertSupId" />
+                                <asp:Label runat="server" type="number" ID="EInsertSupId" />
                             <td>
-                                <asp:TextBox runat="server" type="date" ID="InsertDateAdd" Text='<%# Bind("DateAdd") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditDateAdd"
-                                    runat="server"
-                                    ErrorMessage="Chưa nhập ngày thêm"
-                                    ControlToValidate="InsertDateAdd"
-                                    Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator></td>
+                                 <asp:Label runat="server" ID="EInsertDateAdd" /></td>
                             <td>
-                                <asp:TextBox runat="server" type="date" ID="InsertDateEdit" Text='<%# Bind("DateEdit") %>' />
+                                <asp:TextBox runat="server" type="date" ID="EInsertDateEdit" Text='<%# Bind("DateEdit") %>' />
                             </td>
                             <td>
-                                <asp:TextBox runat="server"  ID="InsertUsrAdd" Text=' <%# Bind("UsrAdd") %>' />
+                                <asp:TextBox runat="server"  ID="EInsertUsrAdd" Text=' <%# Bind("UsrAdd") %>' />
                                 <asp:RequiredFieldValidator ID="rfvEditUsrAdd"
                                     runat="server"
                                     ErrorMessage="Chưa nhập người thêm"
-                                    ControlToValidate="InsertUsrAdd"
+                                    ControlToValidate="EInsertUsrAdd"
                                     Text="*" ForeColor="Red" ValidationGroup="Insert">
                                 </asp:RequiredFieldValidator></td>
                             <td>
-                                <asp:TextBox runat="server" ID="InsertUsrEdit" Text=' <%# Bind("UsrEdit") %>' /></td>
+                                <asp:TextBox runat="server" ID="EInsertUsrEdit" Text=' <%# Bind("UsrEdit") %>' /></td>
                         </tr>
                     </table>
                 </EmptyDataTemplate>
