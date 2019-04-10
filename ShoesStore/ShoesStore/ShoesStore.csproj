@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -2501,7 +2502,6 @@
     <Compile Include="BusinessLogicLayer\ProBrand_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProColor_BUS.cs" />
-    <Compile Include="BusinessLogicLayer\Pro_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptBuy_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptSubDet_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptSub_BUS.cs" />
@@ -2510,7 +2510,6 @@
     <Compile Include="BusinessLogicLayer\Table_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Usr_BUS.cs" />
     <Compile Include="BusinessLogicLayer\WebInfo_BUS.cs" />
-    <Compile Include="BusinessLogicLayer\WebSlide_BUS.cs" />
     <Compile Include="Customer\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2588,7 +2587,6 @@
     <Compile Include="DataAccessLogicLayer\ProSize.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLogicLayer\Pro_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Rcpt.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2739,7 +2737,6 @@
     <Compile Include="DataAccessLogicLayer\WebSlide.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLogicLayer\WebSlide_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\WebSlide_Insert_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
