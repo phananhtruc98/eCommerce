@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ShoesStore.Interfaces;
 
 namespace ShoesStore.DataAccessLogicLayer
