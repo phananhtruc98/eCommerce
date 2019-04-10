@@ -15,5 +15,6 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public int BrandId { get; set; }
         public string BrandName { get; set; }
+        public string Img { get; set; }
     }
 }
