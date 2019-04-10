@@ -7,13 +7,7 @@ using System.Web;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Rcpt_BUS : Table_BUS<Rcpt, Rcpt_DAO>, IRcpt
+    public class RcptSubDet_BUS: Table_BUS<RcptSubDet_Select_Result, RcptSubDet_DAO>, IRcptSubDet
     {
-        Rcpt_DAO _dao = new Rcpt_DAO();
-        public int getMaxRcptId()
-        {
-           return _dao.getMaxRcptId();
-        }
-     
     }
 }

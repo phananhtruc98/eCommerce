@@ -19,5 +19,14 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public int getMaxRcptId()
+        {
+            var result = (from rcpt in GetAll()
+                         select rcpt.RcptId).Max();
+
+            int maxRcptId = result;
+            return maxRcptId;
+        }
     }
 }
