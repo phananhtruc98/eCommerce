@@ -76,7 +76,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public override void SetActive(Mstr obj)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();    
         }
 
         public void Update(IMstr obj)
