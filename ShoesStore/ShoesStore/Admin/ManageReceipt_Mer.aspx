@@ -27,6 +27,12 @@
                         <ItemTemplate>
                             <asp:Label runat="server" ID="rcptsubid" Text='<%# Eval("RcptSubId") %>' />
                         </ItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="rcptsubid" Text='<%# Eval("RcptSubId") %>' />
+                        </ItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="rcptsubid" Text='<%# Eval("RcptSubId") %>' />
+                        </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox runat="server" ID="EditSupId" Text='<%# Bind("RcptSubId") %>' />
                         </EditItemTemplate>
@@ -137,38 +143,76 @@
 
         </div>
     </div>
+    <div><br /></div>
+    <div id="cthd" runat="server" class="btn btn-lg custom_bar ">Chi tiết hóa đơn</div>
     <div class="row">
         <div class="col-12 table-responsive">
-            <asp:DetailsView ID="dtviewRcptSubDet" CssClass="table table-bordered" runat="server" Height="50px" Width="125px" AutoGenerateRows="False">
-                <Fields>
-                    <asp:TemplateField HeaderText="Mã hóa đơn">
-                        <ItemTemplate>
-                            <asp:Label runat="server" Text='<%# Eval("RcptSubId") %>'></asp:Label>
-                        </ItemTemplate>
-                        <FooterStyle Wrap="False" />
-                        <HeaderStyle Wrap="False" />
-                        <ItemStyle Wrap="False" />
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Mã gói thường niên">
-                        <ItemTemplate>
-                            <%# Eval("SubId") %>
-                        </ItemTemplate>
-                        <FooterStyle Wrap="False" />
-                        <HeaderStyle Wrap="False" />
-                        <ItemStyle Wrap="False" />
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Mã người mua">
-                        <ItemTemplate>
-                            <%# Eval("MerId") %>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Số lượng">
-                        <ItemTemplate>
-                            <%# Eval("Quantity") %>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Fields>
-            </asp:DetailsView>
-        </div>
+                <asp:GridView ID="gvRcptSubDet" CssClass="table table-responsive table-striped"  runat="server" HtmlEncode="true" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowDataBound="gvRcptSubDet_RowDataBound" OnDataBound="gvRcptSubDet_DataBound">
+                    <Columns>
+                        <asp:TemplateField HeaderText="Mã hóa đơn">
+                            <ItemTemplate>
+                                <asp:Label runat="server" Text='<%# Eval("RcptId") %>'></asp:Label>
+                            </ItemTemplate>
+                            <FooterStyle Wrap="False" />
+                            <HeaderStyle Wrap="False" />
+                            <ItemStyle Wrap="False" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Tên cửa hàng">
+                            <ItemTemplate>
+                                <%# Eval("ShpName") %>
+                            </ItemTemplate>
+                            <FooterStyle Wrap="False" />
+                            <HeaderStyle Wrap="False" />
+                            <ItemStyle Wrap="False" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Tên người mua">
+                            <ItemTemplate>
+                                <%# Eval("UsrName") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Tên gói">
+                            <ItemTemplate>
+                                <%# Eval("SubContent") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Đơn giá">
+                            <ItemTemplate>
+                                <%# Eval("Price") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Số lượng gói">
+                            <ItemTemplate>
+                                <%# Eval("Quantity") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Số lượng ngày">
+                            <ItemTemplate>
+                                <%# Eval("Days") %>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                Tổng tiền:
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Giá">
+                            <ItemTemplate>
+                                 <asp:Label ID="lbl" runat="server" Text='<%# Eval("Subprice") %>'></asp:Label>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Label runat="server" ID="sumprice" Text=""></asp:Label>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+                    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+                    <RowStyle BackColor="White" ForeColor="#330099" />
+                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                    <SortedAscendingCellStyle BackColor="#FEFCEB" />
+                    <SortedAscendingHeaderStyle BackColor="#AF0101" />
+                    <SortedDescendingCellStyle BackColor="#F6F0C0" />
+                    <SortedDescendingHeaderStyle BackColor="#7E0000" />
+                </asp:GridView>
+            <asp:Label runat="server" ID="sumprice2" Text=""></asp:Label>
+            </div>
     </div>
 </asp:Content>

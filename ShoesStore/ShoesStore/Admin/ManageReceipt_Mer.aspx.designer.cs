@@ -31,12 +31,30 @@ namespace ShoesStore.Admin {
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationRcptSubId;
         
         /// <summary>
-        /// dtviewRcptSubDet control.
+        /// cthd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView dtviewRcptSubDet;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cthd;
+        
+        /// <summary>
+        /// gvRcptSubDet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvRcptSubDet;
+        
+        /// <summary>
+        /// sumprice2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sumprice2;
     }
 }

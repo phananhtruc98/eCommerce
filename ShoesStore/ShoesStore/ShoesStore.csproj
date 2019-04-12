@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -2506,6 +2507,7 @@
     <Compile Include="BusinessLogicLayer\RcptSubDet_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptSub_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Rcpt_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\Shp_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Sub_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Table_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Usr_BUS.cs" />
@@ -2635,6 +2637,7 @@
     <Compile Include="DataAccessLogicLayer\Shp.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\Shp_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\sp_Admin_Info_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2749,6 +2752,7 @@
     <Compile Include="Interfaces\IRcptBuy.cs" />
     <Compile Include="Interfaces\IRcptSub.cs" />
     <Compile Include="Interfaces\IRcptSubDet.cs" />
+    <Compile Include="Interfaces\IShp.cs" />
     <Compile Include="Interfaces\ITableOnePrimary.cs" />
     <Compile Include="DataAccessLogicLayer\Cart_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Cus_DAO.cs" />
