@@ -147,7 +147,7 @@
     <div id="cthd" runat="server" class="btn btn-lg custom_bar ">Chi tiết hóa đơn</div>
     <div class="row">
         <div class="col-12 table-responsive">
-                <asp:GridView ID="gvRcptSubDet" CssClass="table table-responsive table-striped"  runat="server" HtmlEncode="true" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowDataBound="gvRcptSubDet_RowDataBound" OnDataBound="gvRcptSubDet_DataBound">
+                <asp:GridView ID="gvRcptSubDet" CssClass="table table-responsive table-striped" runat="server" HtmlEncode="true" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowDataBound="gvRcptSubDet_RowDataBound">
                     <Columns>
                         <asp:TemplateField HeaderText="Mã hóa đơn">
                             <ItemTemplate>
@@ -177,7 +177,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Đơn giá">
                             <ItemTemplate>
-                                <%# Eval("Price") %>
+                                <%# Eval("Price","{0:N0}") %>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Số lượng gói">
@@ -195,10 +195,10 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Giá">
                             <ItemTemplate>
-                                 <asp:Label ID="lbl" runat="server" Text='<%# Eval("Subprice") %>'></asp:Label>
+                                 <asp:Label ID="lbl" runat="server" Text='<%# Eval("Subprice","{0:N0}") %>'></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
-                                <asp:Label runat="server" ID="sumprice" Text=""></asp:Label>
+                                <asp:Label runat="server" ID="sumprice2" Text=""></asp:Label>
                             </FooterTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -212,7 +212,7 @@
                     <SortedDescendingCellStyle BackColor="#F6F0C0" />
                     <SortedDescendingHeaderStyle BackColor="#7E0000" />
                 </asp:GridView>
-            <asp:Label runat="server" ID="sumprice2" Text=""></asp:Label>
+            <div  Class="text-right h2" id="sumprice" runat="server">Tổng tiền: <asp:Label runat="server" ID="sumprice2" Text=""></asp:Label></div>
             </div>
     </div>
 </asp:Content>
