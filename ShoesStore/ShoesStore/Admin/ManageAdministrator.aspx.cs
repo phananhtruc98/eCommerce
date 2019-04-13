@@ -5,17 +5,18 @@ using System.Data;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Linq.Dynamic;
 namespace ShoesStore.Admin
 {
     public partial class Manage_Administrator : Page
     {
+     
         private readonly Mstr_BUS mstr_BUS = new Mstr_BUS();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-              
+
                 BindDataGridView();
                 LoadDropDownList_TimKiem();
             }
@@ -52,19 +53,19 @@ namespace ShoesStore.Admin
                 }
             }
         }
-       
+
         protected void gvAdmin_Sorting(object sender, GridViewSortEventArgs e)
         {
-           
-            bool descending = e.SortDirection == SortDirection.Ascending ? false :true;
-         
+            string sortExpression = e.SortExpression;//Tên cột
+            string direction = MyLibrary.GetSortDirection();//Chiều (lấy theo viewstate)
+            var rs = mstr_BUS.Get_Admin_Info().OrderBy(sortExpression+direction).ToList();
+            gvAdmin.DataSource = rs.ToList();
+            gvAdmin.DataBind();
 
-                var rs = mstr_BUS.Get_Admin_Info().OrderByWithDirection(m => m.UsrId, descending);
-                         
-                gvAdmin.DataSource = rs.ToList();
-                gvAdmin.DataBind();
-                
-            }
+
+
         }
+    }
+
 }
-    
+
