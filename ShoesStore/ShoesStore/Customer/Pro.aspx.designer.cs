@@ -22,31 +22,22 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.SiteMapPath smp1;
         
         /// <summary>
-        /// rptProCat control.
+        /// rptProBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProCat;
+        protected global::ShoesStore.WebControls.RepeaterTable rptProBrand;
         
         /// <summary>
-        /// rptBrand control.
+        /// UcPro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptBrand;
-        
-        /// <summary>
-        /// rptPro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPro;
+        protected global::ShoesStore.UserControls.UcPro UcPro;
         
         /// <summary>
         /// Master property.

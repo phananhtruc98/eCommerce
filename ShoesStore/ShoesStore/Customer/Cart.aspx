@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title="Giỏ hàng" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="~/Cart.aspx.cs" Inherits="ShoesStore.Customer.GioHang" %>
+﻿<%@ Page Language="C#" Title="Giỏ hàng" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="~/Customer/Cart.aspx.cs" Inherits="ShoesStore.Customer.GioHang" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- site__body -->
     <div class="site__body">
@@ -11,7 +11,7 @@
                                 <a href="index.html">Trang chủ</a>
                                 <svg class="breadcrumb-arrow"
                                      width="6px" height="9px">
-                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
@@ -70,7 +70,7 @@
                             <button type="button"
                                     class="btn btn-light btn-sm btn-svg-icon">
                                 <svg width="12px" height="12px">
-                                    <use xlink:href="images/sprite.svg#cross-12"></use>
+                                    <use href="images/sprite.svg#cross-12"></use>
                                 </svg>
                             </button>
                         </td>

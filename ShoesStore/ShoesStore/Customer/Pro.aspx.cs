@@ -1,13 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ShoesStore.WebControls;
 
 namespace ShoesStore.Customer
 {
-    public partial class DS_SanPham : Page
+    public partial class DS_SanPham : BasePage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            {
+                //rptProCat.DataBind();
+                //listWc=new List<Tuple<Control, TableName>>()
+                //{
+                //    new Tuple<Control, TableName>(rptPro,TableName.Pro),
+                //    //new Tuple<Control, TableName>(rptProCat,TableName.ProCat),
+                //    new Tuple<Control, TableName>(rptProBrand,TableName.ProBrand),
+                //};
+                //Bind();
+            }
         }
 
         protected void smp1_ItemCreated(object sender, System.Web.UI.WebControls.SiteMapNodeItemEventArgs e)
@@ -18,20 +31,6 @@ namespace ShoesStore.Customer
                 e.Item.Visible = false;
             }
         }
-        protected void rptPro_Init(object sender, EventArgs e)
-        {
-            rptPro.DataSource = Master._pro.GetAll();// se sua thanh getBestSeller
-            rptPro.DataBind();
-        }
-        protected void rptProCat_Init(object sender, EventArgs e)
-        {
-            rptProCat.DataSource = Master._proCat.GetAll();// se sua thanh getBestSeller
-            rptProCat.DataBind();
-        }
-        protected void rptBrand_Init(object sender, EventArgs e)
-        {
-            rptBrand.DataSource = Master._proBrand.GetAll();// se sua thanh getBestSeller
-            rptBrand.DataBind();
-        }
+   
     }
 }
