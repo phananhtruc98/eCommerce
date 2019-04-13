@@ -14,7 +14,7 @@ namespace ShoesStore
             routes.EnableFriendlyUrls(settings);
 
             routes.MapPageRoute("Home", "", "~/Default.aspx");
-            routes.MapPageRoute("Product", "san-pham", "~/Customer/Pro_List.aspx");
+            routes.MapPageRoute("Product", "san-pham", "~/Customer/Pro.aspx");
             routes.MapPageRoute("Admin", "quan-tri", "~/Admin/Default.aspx");
             routes.MapPageRoute("ManagerAdministrator", "quan-tri/web-master", "~/Admin/ManageAdministrator.aspx");
             routes.MapPageRoute("ManagerCustomer", "quan-tri/customer", "~/Admin/ManageCustomer.aspx");

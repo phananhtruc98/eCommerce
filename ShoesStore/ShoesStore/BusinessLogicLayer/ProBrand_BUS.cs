@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 
@@ -32,6 +33,11 @@ namespace ShoesStore.BusinessLogicLayer
         public ProBrand GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public static int GetTotalPro(object brandId)
+        {
+            return new ProBrand_BUS().GetAll().FirstOrDefault(m=>brandId != null && m.BrandId==(int)brandId).Pro.Count;
         }
     }
 }

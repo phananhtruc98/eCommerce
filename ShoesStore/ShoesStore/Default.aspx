@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Trang chủ" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShoesStore.Default" %>
+<%@ Import Namespace="ShoesStore" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -134,7 +135,7 @@
                                 <div class="product-card__image">
                                     <a href="product.html">
                                         <img
-                                            src="<%# $"images/products/{Eval("ShpId")}/{Eval("Img")}" %>" alt="">
+                                            src="<%#MyLibrary.ProImgPath(Eval("shpId"),Eval("Img")) %>" alt="">
                                     </a>
                                 </div>
                                 <div class="product-card__info">
@@ -247,7 +248,7 @@
                                 </div>
                                 <div class="product-card__actions">
 
-                                    <div class="product-card__prices">$<%# string.Format("{0:n0}", int.Parse(Eval("Price").ToString())) %></div>
+                                    <div class="product-card__prices"><%#MyLibrary.ToFormatMoney(Eval("Price").ToString()) %></div>
                                     <div class="product-card__shop text-right small text-monospace">
                                         <a href="product.html"><%#Eval("Shp.ShpName") %></a>
                                     </div>
@@ -298,7 +299,7 @@
                                 <div class="product-card__image">
                                     <a href="product.html">
                                         <img
-                                            src="<%# $"images/products/{Eval("ShpId")}/{Eval("Img")}" %>" alt="">
+                                            src="<%# MyLibrary.ProImgPath(Eval("ShpId"),Eval("Img")) %>" alt="">
                                     </a>
                                     &nbsp;&nbsp;
                                 </div>
@@ -414,7 +415,7 @@
                                 </div>
                                 <div class="product-card__actions">
 
-                                    <div class="product-card__prices">$<%# string.Format("{0:n0}", int.Parse(Eval("Price").ToString())) %></div>
+                                    <div class="product-card__prices">$<%# MyLibrary.ToFormatMoney(Eval("Price")) %></div>
                                     <div class="product-card__buttons">
                                         <button
                                             class="btn btn-primary product-card__addtocart" type="button">

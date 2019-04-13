@@ -6,7 +6,58 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace ShoesStore.Customer {
+    
+    
     public partial class DS_SanPham {
+        
+        /// <summary>
+        /// smp1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SiteMapPath smp1;
+        
+        /// <summary>
+        /// rptProCat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptProCat;
+        
+        /// <summary>
+        /// rptBrand control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptBrand;
+        
+        /// <summary>
+        /// rptPro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptPro;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new ShoesStore.SiteMaster Master {
+            get {
+                return ((ShoesStore.SiteMaster)(base.Master));
+            }
+        }
     }
 }
