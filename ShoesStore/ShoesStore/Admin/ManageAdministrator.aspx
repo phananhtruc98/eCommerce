@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" Title="Quản lý người mua" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageAdministrator.aspx.cs" Inherits="ShoesStore.Admin.Manage_Administrator" %>
-
+<%@ MasterType VirtualPath="~/Admin/Admin.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="btn btn-lg custom_bar">Danh sách quản trị viên</div>
     <div class="btn btn-lg custom_bar">Tìm kiếm ở đây</div>
@@ -37,7 +37,7 @@
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Tên người bán" SortExpression="true">
+                        <asp:TemplateField HeaderText="Tên người bán" SortExpression="UsrName">
                             <ItemTemplate>
                                 <%# Eval("UsrName") %>
                             </ItemTemplate>
