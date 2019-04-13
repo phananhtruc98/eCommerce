@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -1956,8 +1955,8 @@
     <Content Include="Customer\Checkout.aspx" />
     <Content Include="Customer\CusHome.aspx" />
     <Content Include="Customer\GioHang.aspx" />
-    <Content Include="Customer\Pro_Detail.aspx" />
-    <Content Include="Customer\Pro_List.aspx" />
+    <Content Include="Customer\ProDet.aspx" />
+    <Content Include="Customer\Pro.aspx" />
     <Content Include="DataAccessLogicLayer\ShoesStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
@@ -2534,19 +2533,19 @@
     <Compile Include="Customer\CusHome.aspx.designer.cs">
       <DependentUpon>CusHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\Pro_Detail.aspx.cs">
-      <DependentUpon>Pro_Detail.aspx</DependentUpon>
+    <Compile Include="Customer\ProDet.aspx.cs">
+      <DependentUpon>ProDet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customer\Pro_Detail.aspx.designer.cs">
-      <DependentUpon>Pro_Detail.aspx</DependentUpon>
+    <Compile Include="Customer\ProDet.aspx.designer.cs">
+      <DependentUpon>ProDet.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\Pro_List.aspx.cs">
-      <DependentUpon>Pro_List.aspx</DependentUpon>
+    <Compile Include="Customer\Pro.aspx.cs">
+      <DependentUpon>Pro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customer\Pro_List.aspx.designer.cs">
-      <DependentUpon>Pro_List.aspx</DependentUpon>
+    <Compile Include="Customer\Pro.aspx.designer.cs">
+      <DependentUpon>Pro.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Cart.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
