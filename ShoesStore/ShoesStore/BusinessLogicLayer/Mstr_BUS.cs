@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Objects;
+using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 
@@ -89,5 +90,12 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public void getColumnsToSort(string ColName)
+        {
+            QueryExtensions.SortBy<sp_Admin_Info_Result>(Get_Admin_Info().AsQueryable<sp_Admin_Info_Result>(), ColName);
+        }
+
+        
     }
 }

@@ -17,13 +17,15 @@ namespace ShoesStore.Admin
         private readonly Sub_BUS sub = new Sub_BUS();
         private readonly Usr_BUS usr = new Usr_BUS();
         private readonly Shp_BUS shp = new Shp_BUS();
+
+        // PageLoad
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 cthd.Visible = false;
+                sumprice.Visible = false;
                 BindGridViewgvRcptSub();
-
             }
         }
 
@@ -38,32 +40,33 @@ namespace ShoesStore.Admin
         private void BindDetailsViewRcptSubDet(int RcptSubId)
         {
             cthd.Visible = true;
-            var src=
+            sumprice.Visible = true;
+            var src =
             (from r in rcpt.GetAll()
-                                       join s in rcptsub.GetAll() on r.RcptId equals s.RcptSubId
-                                       join d in rcptsubdet.GetAll() on s.RcptSubId equals d.RcptSubId
-                                       join sb in sub.GetAll() on d.SubId equals sb.SubId
-                                       join u in usr.GetAll() on d.MerId equals u.UsrId
-                                       join sp in shp.GetAll() on d.MerId equals sp.MerId
-                                       where r.RcptId == RcptSubId
-                                       select new
-                                       {
-                                           RcptId = r.RcptId,
-                                           ShpName = sp.ShpName,
-                                           UsrName = u.UsrName,
-                                           SubContent = sb.SubContent,
-                                           Price = sb.Price,
-                                           Quantity = d.Quantity,
-                                           Days = sb.DurDay * d.Quantity,
-                                           Subprice = Int32.Parse(sb.Price) * d.Quantity
-                                       }
+             join s in rcptsub.GetAll() on r.RcptId equals s.RcptSubId
+             join d in rcptsubdet.GetAll() on s.RcptSubId equals d.RcptSubId
+             join sb in sub.GetAll() on d.SubId equals sb.SubId
+             join u in usr.GetAll() on d.MerId equals u.UsrId
+             join sp in shp.GetAll() on d.MerId equals sp.MerId
+             where r.RcptId == RcptSubId
+             select new
+             {
+                 RcptId = r.RcptId,
+                 ShpName = sp.ShpName,
+                 UsrName = u.UsrName,
+                 SubContent = sb.SubContent,
+                 Price = Int32.Parse(sb.Price),
+                 Quantity = d.Quantity,
+                 Days = sb.DurDay * d.Quantity,
+                 Subprice = Int32.Parse(sb.Price) * d.Quantity
+             }
                                        ).ToList();
             gvRcptSubDet.DataSource = src;
             total = src.Sum(m => Convert.ToInt32(m.Subprice));
-            sumprice2.Text = total.ToString();
+            sumprice2.Text = total.ToString("#,##0");
             gvRcptSubDet.DataBind();
-            sumPrice();
         }
+
         // Ràng buộc và chức năng thêm xóa sửa dữ liệu
         protected void gvSub_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -181,7 +184,7 @@ namespace ShoesStore.Admin
                 BindGridViewgvRcptSub();
             }
         }
-        
+
         // Hàm gọi RcptSubDet
         protected void gvRcptSub_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -228,25 +231,7 @@ namespace ShoesStore.Admin
                     RowSpan = 2;
                 }
             }
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
-            //    for(int i = 0; i < 8; i++)
-            //    {
-            //        if (e.Row.Cells[i].Text != "")
-            //        {
-            //            total = total + Int32.Parse(e.Row.Cells[i].Text);
-            //        }
-            //    }
-            //}
         }
 
-        public void sumPrice()
-        {
-            //sumprice2.Text = total.ToString();
-        }
-
-        protected void gvRcptSubDet_DataBound(object sender, EventArgs e)
-        {
-        }
     }
 }

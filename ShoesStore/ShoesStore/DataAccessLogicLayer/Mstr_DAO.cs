@@ -83,5 +83,9 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public void getColumsToSort(string ColName)
+        {
+        }
     }
 }
