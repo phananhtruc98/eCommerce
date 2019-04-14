@@ -2,6 +2,15 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="btn btn-lg custom_bar">Danh sách người mua</div>
+    <div id="TimKiem" class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-9">
+                <asp:TextBox runat="server" placeholder="Gõ vào đây..." ID="txtTimKiem" ></asp:TextBox>
+               <asp:Button runat="server" ID="btnTimKiem" Text="Tìm"  CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click" />
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12 table-responsive">

@@ -2,6 +2,15 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="btn btn-lg custom_bar">Danh sách hóa đơn bán gói dịch vụ</div>
+    <div id="TimKiem" class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-9">
+                <asp:TextBox runat="server" placeholder="Gõ vào đây..." ID="txtTimKiem" ></asp:TextBox>
+               <asp:Button runat="server" ID="btnTimKiem" Text="Tìm"  CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click" />
+            </div>
+        </div>
+    </div>
 <%--    Thêm cột tình trạng đơn hàng hiện tại--%>
     <div class="row">
         <div class="col-12 table-responsive">
@@ -28,21 +37,12 @@
                         <ItemTemplate>
                             <asp:Label runat="server" ID="rcptsubid" Text='<%# Eval("RcptSubId") %>' />
                         </ItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label runat="server" ID="rcptsubid" Text='<%# Eval("RcptSubId") %>' />
-                        </ItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label runat="server" ID="rcptsubid" Text='<%# Eval("RcptSubId") %>' />
-                        </ItemTemplate>
                         <EditItemTemplate>
                             <asp:TextBox runat="server" ID="EditSupId" Text='<%# Bind("RcptSubId") %>' />
                         </EditItemTemplate>
                         <FooterTemplate>
                             <asp:Label runat="server" type="number" ID="InsertSupId" />
                         </FooterTemplate>
-                        <FooterStyle Wrap="False" />
-                        <HeaderStyle Wrap="False" />
-                        <ItemStyle Wrap="False" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Ngày thêm">
                         <ItemTemplate>
@@ -90,11 +90,11 @@
                         </FooterTemplate>
                     </asp:TemplateField>
                 </Columns>
-                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" Wrap="false" />
+                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC"  Wrap="false" />
                 <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-                <RowStyle BackColor="White" ForeColor="#330099" />
-                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                <RowStyle BackColor="White" ForeColor="#330099"  Wrap="false"/>
+                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="False" ForeColor="#990000" />
                 <SortedAscendingCellStyle BackColor="#FEFCEB" />
                 <SortedAscendingHeaderStyle BackColor="#AF0101" />
                 <SortedDescendingCellStyle BackColor="#F6F0C0" />

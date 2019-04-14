@@ -18,5 +18,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public int ProId { get; set; }
         public string Cmt { get; set; }
         public Nullable<int> Point { get; set; }
+        public Nullable<int> Quantity { get; set; }
     }
 }

@@ -13,15 +13,6 @@ namespace ShoesStore.Admin {
     public partial class Manage_User {
         
         /// <summary>
-        /// ddlTimKiemMerchant control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTimKiemMerchant;
-        
-        /// <summary>
         /// txtTimKiem control.
         /// </summary>
         /// <remarks>

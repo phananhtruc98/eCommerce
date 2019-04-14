@@ -61,9 +61,6 @@ namespace ShoesStore.Admin
             var rs = mstr_BUS.Get_Admin_Info().OrderBy(sortExpression+direction).ToList();
             gvAdmin.DataSource = rs.ToList();
             gvAdmin.DataBind();
-
-
-
         }
     }
 

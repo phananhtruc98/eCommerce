@@ -15,6 +15,15 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public ProColor GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetLastestId()
+        {
+            throw new NotImplementedException();
+        }
 
         public void SetActive()
         {

@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -2514,7 +2515,9 @@
     <Compile Include="BusinessLogicLayer\ProBrand_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProColor_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\ProSize_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Pro_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\RcptBuyDet_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptBuy_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptSubDet_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptSub_BUS.cs" />
@@ -2602,6 +2605,7 @@
     <Compile Include="DataAccessLogicLayer\ProSize.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\ProSize_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Pro_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Rcpt.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
@@ -2612,6 +2616,7 @@
     <Compile Include="DataAccessLogicLayer\RcptBuyDet.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptBuyDet_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\RcptBuySta.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2662,6 +2667,12 @@
     <Compile Include="DataAccessLogicLayer\sp_Cus_Info_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\sp_Mer_Info_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2704,6 +2715,9 @@
     <Compile Include="DataAccessLogicLayer\sp_Rcpt_Select_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\sp_Rcpt_Sub_Det_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\sp_Shp_Select_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2720,6 +2734,9 @@
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\SubDet.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\sysdiagrams.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Table_DAO.cs" />
@@ -2760,8 +2777,10 @@
     <Compile Include="Interfaces\IMstr.cs" />
     <Compile Include="Interfaces\IPro.cs" />
     <Compile Include="Interfaces\IProColor.cs" />
+    <Compile Include="Interfaces\IProSize.cs" />
     <Compile Include="Interfaces\IRcpt.cs" />
     <Compile Include="Interfaces\IRcptBuy.cs" />
+    <Compile Include="Interfaces\IRcptBuyDet.cs" />
     <Compile Include="Interfaces\IRcptSub.cs" />
     <Compile Include="Interfaces\IRcptSubDet.cs" />
     <Compile Include="Interfaces\IShp.cs" />
@@ -2853,6 +2872,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MyExtensions\QueryExtensions.cs" />
+    <Compile Include="MyExtensions\StringExtension.cs" />
     <Compile Include="MyLibrary.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

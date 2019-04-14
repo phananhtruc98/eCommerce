@@ -25,5 +25,15 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public ProCat GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetLastestId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

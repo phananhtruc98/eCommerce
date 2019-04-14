@@ -1,6 +1,8 @@
-﻿namespace ShoesStore.Interfaces
+﻿using ShoesStore.DataAccessLogicLayer;
+
+namespace ShoesStore.Interfaces
 {
-    interface IProColor
+    interface IProColor : ITableOnePrimary<ProColor>
     {
     }
 }

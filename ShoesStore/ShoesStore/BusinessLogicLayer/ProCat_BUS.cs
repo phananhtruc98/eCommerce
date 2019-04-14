@@ -32,5 +32,15 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return new ProCat_BUS().GetAll().FirstOrDefault(m=>catId != null && m.CatId==(int)catId).Pro.Count;
         }
+
+        public ProCat GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetLastestId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
