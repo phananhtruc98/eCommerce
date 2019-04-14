@@ -2502,6 +2502,8 @@
     <Compile Include="BusinessLogicLayer\Cart_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Cus_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Mer_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\MstrDet_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\MstrRole_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Mstr_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProBrand_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
@@ -2572,9 +2574,11 @@
     <Compile Include="DataAccessLogicLayer\MstrDet.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\MstrDet_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\MstrRole.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\MstrRole_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Mstr_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Mer_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Pro.cs">
@@ -2766,6 +2770,8 @@
     <Compile Include="Interfaces\ICart.cs" />
     <Compile Include="Interfaces\IMer.cs" />
     <Compile Include="Interfaces\IMstr.cs" />
+    <Compile Include="Interfaces\IMstrDet.cs" />
+    <Compile Include="Interfaces\IMstrRole.cs" />
     <Compile Include="Interfaces\IPro.cs" />
     <Compile Include="Interfaces\IProColor.cs" />
     <Compile Include="Interfaces\IProSize.cs" />
