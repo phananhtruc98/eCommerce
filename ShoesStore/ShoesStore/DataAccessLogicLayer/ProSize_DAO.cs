@@ -1,11 +1,14 @@
-﻿using System;
-using ShoesStore.Interfaces;
+﻿using ShoesStore.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace ShoesStore.DataAccessLogicLayer
 {
-    public class ProColor_DAO : Table_DAO<ProColor>, IProColor
+    public class ProSize_DAO : Table_DAO<ProSize>, IProSize
     {
-        public ProColor GetByPrimaryKeys(int id)
+        public ProSize GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();
         }
@@ -15,12 +18,12 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public override bool IsExist(ProColor obj)
+        public override bool IsExist(ProSize obj)
         {
             throw new NotImplementedException();
         }
 
-        public override void SetActive(ProColor obj)
+        public override void SetActive(ProSize obj)
         {
             throw new NotImplementedException();
         }
