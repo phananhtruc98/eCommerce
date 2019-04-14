@@ -12,16 +12,12 @@ namespace ShoesStore.DataAccessLogicLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class RcptBuyDet
+    public partial class sysdiagrams
     {
-        public int RcptBuyId { get; set; }
-        public int ShpId { get; set; }
-        public int ProId { get; set; }
-        public string Cmt { get; set; }
-        public Nullable<int> Point { get; set; }
-        public Nullable<int> Quantity { get; set; }
-    
-        public virtual Pro Pro { get; set; }
-        public virtual RcptBuy RcptBuy { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

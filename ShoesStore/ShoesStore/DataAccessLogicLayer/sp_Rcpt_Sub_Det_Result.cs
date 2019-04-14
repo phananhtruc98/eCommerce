@@ -10,18 +10,15 @@
 namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class RcptBuyDet
+    public partial class sp_Rcpt_Sub_Det_Result
     {
-        public int RcptBuyId { get; set; }
-        public int ShpId { get; set; }
-        public int ProId { get; set; }
-        public string Cmt { get; set; }
-        public Nullable<int> Point { get; set; }
+        public int RcptId { get; set; }
+        public string ShpName { get; set; }
+        public string UsrName { get; set; }
+        public string SubContent { get; set; }
+        public string Price { get; set; }
         public Nullable<int> Quantity { get; set; }
-    
-        public virtual Pro Pro { get; set; }
-        public virtual RcptBuy RcptBuy { get; set; }
+        public Nullable<int> Days { get; set; }
     }
 }

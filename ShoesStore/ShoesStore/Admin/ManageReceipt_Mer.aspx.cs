@@ -1,5 +1,6 @@
 ﻿using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
+using ShoesStore.MyExtensions;
 using System;
 using System.Linq;
 using System.Web.UI;
@@ -233,5 +234,23 @@ namespace ShoesStore.Admin
             }
         }
 
+        // Tìm kiếm
+        protected void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            TimKiem(txtTimKiem.Text.UnSign().ToLower());
+        }
+
+        public void TimKiem(string search_key)
+        {
+            var rs = (from a in rcptsub.GetAll().ToList()
+                      where a.RcptSubId.ToString().ContainsEx((search_key))
+                                      || a.Rcpt.UsrEdit.ToString().ContainsEx(search_key)
+                                      || a.Rcpt.UsrAdd.ToString().ContainsEx(search_key)
+                                      || (a.Rcpt.DateAdd != null && a.Rcpt.DateAdd.ToString().ContainsEx(search_key))
+                                      || (a.Rcpt.DateEdit != null && a.Rcpt.DateEdit.ToString().ContainsEx(search_key))
+                      select a).ToList();
+            gvRcptSub.DataSource = rs;
+            gvRcptSub.DataBind();
+        }
     }
 }

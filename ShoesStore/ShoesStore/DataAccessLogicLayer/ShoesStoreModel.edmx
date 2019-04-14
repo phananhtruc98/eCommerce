@@ -154,6 +154,7 @@
           <Property Name="ProId" Type="int" Nullable="false" />
           <Property Name="Cmt" Type="nvarchar" MaxLength="255" />
           <Property Name="Point" Type="int" />
+          <Property Name="Quantity" Type="int" />
         </EntityType>
         <EntityType Name="RcptBuySta">
           <Key>
@@ -224,6 +225,16 @@
           <Property Name="MerId" Type="int" Nullable="false" />
           <Property Name="DateStart" Type="datetime" />
           <Property Name="DateEnd" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Usr">
           <Key>
@@ -663,7 +674,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_Admin_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
         <Function Name="sp_Cart_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CartID" Type="int" Mode="In" />
         </Function>
@@ -701,6 +719,12 @@
           <Parameter Name="ProId" Type="int" Mode="In" />
           <Parameter Name="Qty" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
         <Function Name="sp_Cus_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CusId" Type="int" Mode="In" />
         </Function>
@@ -713,6 +737,18 @@
         </Function>
         <Function Name="sp_Cus_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CusId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Mer_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MerId" Type="int" Mode="In" />
@@ -862,6 +898,7 @@
         <Function Name="sp_Rcpt_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptId" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_Rcpt_Sub_Det" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Rcpt_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RcptId" Type="int" Mode="In" />
           <Parameter Name="UsrAdd" Type="int" Mode="In" />
@@ -985,6 +1022,11 @@
           <Parameter Name="SubId" Type="int" Mode="In" />
           <Parameter Name="MerId" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_Shp_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ShpId" Type="int" Mode="In" />
         </Function>
@@ -1043,6 +1085,7 @@
           <Parameter Name="DateStart" Type="datetime" Mode="In" />
           <Parameter Name="DateEnd" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Usr_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsrId" Type="int" Mode="In" />
         </Function>
@@ -1136,6 +1179,7 @@
           <EntitySet Name="Shp" EntityType="Self.Shp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sub" EntityType="Self.Sub" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubDet" EntityType="Self.SubDet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usr" EntityType="Self.Usr" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsrAct" EntityType="Self.UsrAct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebInfo" EntityType="Self.WebInfo" Schema="dbo" store:Type="Tables" />
@@ -1461,6 +1505,7 @@
           <Property Name="ProId" Type="Int32" Nullable="false" />
           <Property Name="Cmt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Point" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
           <NavigationProperty Name="Pro" Relationship="Self.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" FromRole="RcptBuyDet" ToRole="Pro" />
           <NavigationProperty Name="RcptBuy" Relationship="Self.FK_ReceiptsBuysDetails_ReceiptsBuys" FromRole="RcptBuyDet" ToRole="RcptBuy" />
         </EntityType>
@@ -1548,6 +1593,16 @@
           <NavigationProperty Name="Mer" Relationship="Self.FK_SubscriptionsDetails_UsersMerchants" FromRole="SubDet" ToRole="Mer" />
           <NavigationProperty Name="RcptSubDet" Relationship="Self.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" FromRole="SubDet" ToRole="RcptSubDet" />
           <NavigationProperty Name="Sub" Relationship="Self.FK_SubscriptionsDetails_Subscriptions" FromRole="SubDet" ToRole="Sub" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Usr">
           <Key>
@@ -2021,6 +2076,7 @@
           <EntitySet Name="Shp" EntityType="Self.Shp" />
           <EntitySet Name="Sub" EntityType="Self.Sub" />
           <EntitySet Name="SubDet" EntityType="Self.SubDet" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Usr" EntityType="Self.Usr" />
           <EntitySet Name="UsrAct" EntityType="Self.UsrAct" />
           <EntitySet Name="WebInfo" EntityType="Self.WebInfo" />
@@ -2154,6 +2210,12 @@
             <End Role="WebSlide" EntitySet="WebSlide" />
           </AssociationSet>
           <FunctionImport Name="sp_Admin_Info" ReturnType="Collection(ShoesStoreModel.sp_Admin_Info_Result)" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
           <FunctionImport Name="sp_Cart_Delete">
             <Parameter Name="CartID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2191,6 +2253,12 @@
             <Parameter Name="ProId" Mode="In" Type="Int32" />
             <Parameter Name="Qty" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
           <FunctionImport Name="sp_Cus_Delete">
             <Parameter Name="CusId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2203,6 +2271,18 @@
           </FunctionImport>
           <FunctionImport Name="sp_Cus_Update">
             <Parameter Name="CusId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ShoesStoreModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ShoesStoreModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Mer_Delete">
             <Parameter Name="MerId" Mode="In" Type="Int32" />
@@ -2352,6 +2432,7 @@
           <FunctionImport Name="sp_Rcpt_Select" ReturnType="Collection(ShoesStoreModel.sp_Rcpt_Select_Result)">
             <Parameter Name="RcptId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_Rcpt_Sub_Det" ReturnType="Collection(ShoesStoreModel.sp_Rcpt_Sub_Det_Result)" />
           <FunctionImport Name="sp_Rcpt_Update">
             <Parameter Name="RcptId" Mode="In" Type="Int32" />
             <Parameter Name="UsrAdd" Mode="In" Type="Int32" />
@@ -2475,6 +2556,11 @@
             <Parameter Name="SubId" Mode="In" Type="Int32" />
             <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_Shp_Delete">
             <Parameter Name="ShpId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2533,6 +2619,7 @@
             <Parameter Name="DateStart" Mode="In" Type="DateTime" />
             <Parameter Name="DateEnd" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="sp_Usr_Delete">
             <Parameter Name="UsrId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2638,6 +2725,17 @@
           <Property Type="DateTime" Name="DateAdd" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="DateEdit" Nullable="true" Precision="23" />
         </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="sp_Mer_Info_Result">
           <Property Type="Int32" Name="UsrId" Nullable="false" />
           <Property Type="String" Name="UsrName" Nullable="false" MaxLength="255" />
@@ -2690,6 +2788,15 @@
           <Property Type="DateTime" Name="DateAdd" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="DateEdit" Nullable="true" Precision="23" />
         </ComplexType>
+        <ComplexType Name="sp_Rcpt_Sub_Det_Result">
+          <Property Type="Int32" Name="RcptId" Nullable="false" />
+          <Property Type="String" Name="ShpName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="UsrName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="SubContent" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Price" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="Int32" Name="Days" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="sp_RcptBuy_Select_Result">
           <Property Type="Int32" Name="RcptBuyId" Nullable="false" />
           <Property Type="Int32" Name="CusId" Nullable="false" />
@@ -2700,6 +2807,7 @@
           <Property Type="Int32" Name="ProId" Nullable="false" />
           <Property Type="String" Name="Cmt" Nullable="true" MaxLength="255" />
           <Property Type="Int32" Name="Point" Nullable="true" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_RcptBuySta_Select_Result">
           <Property Type="Int32" Name="StaId" Nullable="false" />
@@ -2951,6 +3059,7 @@
                 <ScalarProperty Name="ProId" ColumnName="ProId" />
                 <ScalarProperty Name="Cmt" ColumnName="Cmt" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3028,6 +3137,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ShoesStoreModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Usr">
             <EntityTypeMapping TypeName="ShoesStoreModel.Usr">
               <MappingFragment StoreEntitySet="Usr">
@@ -3095,6 +3215,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ShoesStoreModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_Cart_Delete" FunctionName="ShoesStoreModel.Store.sp_Cart_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Cart_Insert" FunctionName="ShoesStoreModel.Store.sp_Cart_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Cart_Select" FunctionName="ShoesStoreModel.Store.sp_Cart_Select">
@@ -3120,6 +3241,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_CartDet_Update" FunctionName="ShoesStoreModel.Store.sp_CartDet_Update" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ShoesStoreModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_Cus_Delete" FunctionName="ShoesStoreModel.Store.sp_Cus_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Cus_Info" FunctionName="ShoesStoreModel.Store.sp_Cus_Info">
             <ResultMapping>
@@ -3140,6 +3262,26 @@
           <FunctionImportMapping FunctionImportName="sp_Cus_Insert" FunctionName="ShoesStoreModel.Store.sp_Cus_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Cus_Select" FunctionName="ShoesStoreModel.Store.sp_Cus_Select" />
           <FunctionImportMapping FunctionImportName="sp_Cus_Update" FunctionName="ShoesStoreModel.Store.sp_Cus_Update" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ShoesStoreModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ShoesStoreModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShoesStoreModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ShoesStoreModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShoesStoreModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Mer_Delete" FunctionName="ShoesStoreModel.Store.sp_Mer_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Mer_Info" FunctionName="ShoesStoreModel.Store.sp_Mer_Info">
             <ResultMapping>
@@ -3252,6 +3394,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Rcpt_Sub_Det" FunctionName="ShoesStoreModel.Store.sp_Rcpt_Sub_Det">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShoesStoreModel.sp_Rcpt_Sub_Det_Result">
+                <ScalarProperty Name="RcptId" ColumnName="RcptId" />
+                <ScalarProperty Name="ShpName" ColumnName="ShpName" />
+                <ScalarProperty Name="UsrName" ColumnName="UsrName" />
+                <ScalarProperty Name="SubContent" ColumnName="SubContent" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Days" ColumnName="Days" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Rcpt_Update" FunctionName="ShoesStoreModel.Store.sp_Rcpt_Update" />
           <FunctionImportMapping FunctionImportName="sp_RcptBuy_Delete" FunctionName="ShoesStoreModel.Store.sp_RcptBuy_Delete" />
           <FunctionImportMapping FunctionImportName="sp_RcptBuy_Insert" FunctionName="ShoesStoreModel.Store.sp_RcptBuy_Insert" />
@@ -3274,6 +3429,7 @@
                 <ScalarProperty Name="ProId" ColumnName="ProId" />
                 <ScalarProperty Name="Cmt" ColumnName="Cmt" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3330,6 +3486,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_RcptSubDet_Update" FunctionName="ShoesStoreModel.Store.sp_RcptSubDet_Update" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ShoesStoreModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_Shp_Delete" FunctionName="ShoesStoreModel.Store.sp_Shp_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Shp_Insert" FunctionName="ShoesStoreModel.Store.sp_Shp_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Shp_Select" FunctionName="ShoesStoreModel.Store.sp_Shp_Select">
@@ -3370,6 +3527,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_SubDet_Update" FunctionName="ShoesStoreModel.Store.sp_SubDet_Update" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ShoesStoreModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_Usr_Delete" FunctionName="ShoesStoreModel.Store.sp_Usr_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Usr_Insert" FunctionName="ShoesStoreModel.Store.sp_Usr_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Usr_Select" FunctionName="ShoesStoreModel.Store.sp_Usr_Select">
