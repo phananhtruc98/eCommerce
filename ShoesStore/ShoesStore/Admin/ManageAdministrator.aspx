@@ -69,9 +69,11 @@
                         <asp:TemplateField HeaderText="Tài khoản" SortExpression="Login">
                             <ItemTemplate>
                                 <%# Eval("Login") %>
+                                
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox runat="server" ID="EditLogin" Text='<%# Bind("Login") %>' />
+                                <asp:HiddenField ID="LoginOld" runat="server" Value='<%# Eval("Login") %>'></asp:HiddenField>
                             </EditItemTemplate>
                             <FooterTemplate>
                                 <asp:TextBox runat="server" ID="InsertLogin" Text=' <%# Bind("Login") %>' />
@@ -89,9 +91,11 @@
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <asp:TextBox runat="server" ID="EditPassword" Text='<%# Bind("Password") %>' />
+                                <asp:HiddenField ID="PasswordOld" runat="server" Value='<%# Eval("Password") %>'></asp:HiddenField>
                             </EditItemTemplate>
                             <FooterTemplate>
                                 <asp:TextBox runat="server" ID="InsertPassword" Text='<%# Bind("Password") %>' />
+                                
                                 <asp:RequiredFieldValidator ID="rfvEditPassword"
                                     runat="server"
                                     ErrorMessage="Chưa nhập mật khẩu"
@@ -158,28 +162,13 @@
                             <EditItemTemplate>
                                 <asp:TextBox runat="server" ID="EditDateAdd" Text='<%# Bind("DateAdd") %>' />
                             </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" type="date" ID="InsertDateAdd" Text='<%# Bind("DateAdd") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditDateAdd"
-                                    runat="server"
-                                    ErrorMessage="Chưa nhập địa chỉ"
-                                    ControlToValidate="InsertDateAdd"
-                                    Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Ngày sửa" SortExpression="DateEdit">
                             <ItemTemplate>
                                 <%# Eval("DateEdit") %>
                             </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditDateEdit" Text='<%# Bind("DateEdit") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" type="date" ID="InsertDateEdit" Text='<%# Bind("DateEdit") %>' />
-                            </FooterTemplate>
                         </asp:TemplateField>
-                         <asp:TemplateField HeaderText="Người thêm" SortExpression="AddBy">
+                        <asp:TemplateField HeaderText="Người thêm" SortExpression="AddBy">
                             <ItemTemplate>
                                 <%# Eval("AddBy") %>
                             </ItemTemplate>
