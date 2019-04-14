@@ -1,12 +1,12 @@
-﻿using System;
+﻿using ShoesStore.DataAccessLogicLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Pro_BUS : Table_BUS<Pro, Pro_DAO>
+    public class MstrDet_BUS : Table_BUS<MstrDet, MstrDet_DAO>
     {
     }
 }
