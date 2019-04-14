@@ -52,7 +52,7 @@
                     <div class="mobilemenu__title">Menu</div>
                     <button type="button" class="mobilemenu__close">
                         <svg width="20px" height="20px">
-                            <use xlink:href="images/sprite.svg#cross-20"></use></svg></button>
+                            <use href="images/sprite.svg#cross-20"></use></svg></button>
                 </div>
                 <div class="mobilemenu__content">
                     <ul class="mobile-links mobile-links--level--0" data-collapse data-collapse-opened-class="mobile-links__item--open">
@@ -61,7 +61,7 @@
                                 <a href="index.aspx" class="mobile-links__item-link">Home</a>
                                 <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                     <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                        <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                             </div>
                             <div class="mobile-links__item-sub-links" data-collapse-content>
                                 <ul class="mobile-links mobile-links--level--1">
@@ -79,7 +79,7 @@
                                 <a href="#" class="mobile-links__item-link">Categories</a>
                                 <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                     <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                        <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                             </div>
                             <div class="mobile-links__item-sub-links" data-collapse-content>
                                 <ul class="mobile-links mobile-links--level--1">
@@ -88,7 +88,7 @@
                                             <a href="#" class="mobile-links__item-link">Power Tools</a>
                                             <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                                 <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                                    <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                                         </div>
                                         <div class="mobile-links__item-sub-links" data-collapse-content>
                                             <ul class="mobile-links mobile-links--level--2">
@@ -112,7 +112,7 @@
                                             <a href="#" class="mobile-links__item-link">Machine Tools</a>
                                             <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                                 <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                                    <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                                         </div>
                                         <div class="mobile-links__item-sub-links" data-collapse-content>
                                             <ul class="mobile-links mobile-links--level--2">
@@ -145,7 +145,7 @@
                                 <a href="shop-grid-3-columns-sidebar.aspx" class="mobile-links__item-link">Shop</a>
                                 <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                     <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                        <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                             </div>
                             <div class="mobile-links__item-sub-links" data-collapse-content>
                                 <ul class="mobile-links mobile-links--level--1">
@@ -154,7 +154,7 @@
                                             <a href="shop-grid-3-columns-sidebar.aspx" class="mobile-links__item-link">Shop Grid</a>
                                             <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                                 <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                                    <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                                         </div>
                                         <div class="mobile-links__item-sub-links" data-collapse-content>
                                             <ul class="mobile-links mobile-links--level--2">
@@ -181,7 +181,7 @@
                                             <a href="product.aspx" class="mobile-links__item-link">Product</a>
                                             <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                                 <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                                    <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                                         </div>
                                         <div class="mobile-links__item-sub-links" data-collapse-content>
                                             <ul class="mobile-links mobile-links--level--2">
@@ -223,7 +223,7 @@
                                 <a href="blog-classic.aspx" class="mobile-links__item-link">Blog</a>
                                 <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                     <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                        <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                             </div>
                             <div class="mobile-links__item-sub-links" data-collapse-content>
                                 <ul class="mobile-links mobile-links--level--1">
@@ -253,7 +253,7 @@
                                 <a href="#" class="mobile-links__item-link">Pages</a>
                                 <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                     <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                        <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                             </div>
                             <div class="mobile-links__item-sub-links" data-collapse-content>
                                 <ul class="mobile-links mobile-links--level--1">
@@ -289,7 +289,7 @@
                                 <a data-collapse-trigger class="mobile-links__item-link">Currency</a>
                                 <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                     <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                        <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                             </div>
                             <div class="mobile-links__item-sub-links" data-collapse-content>
                                 <ul class="mobile-links mobile-links--level--1">
@@ -313,7 +313,7 @@
                                 <a data-collapse-trigger class="mobile-links__item-link">Language</a>
                                 <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                     <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
+                                        <use href="images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button>
                             </div>
                             <div class="mobile-links__item-sub-links" data-collapse-content>
                                 <ul class="mobile-links mobile-links--level--1">
@@ -350,7 +350,7 @@
                             <div class="mobile-header__body">
                                 <button class="mobile-header__menu-button">
                                     <svg width="18px" height="14px">
-                                        <use xlink:href="images/sprite.svg#menu-18x14"></use></svg></button>
+                                        <use href="images/sprite.svg#menu-18x14"></use></svg></button>
                                 <a class="mobile-header__logo" href="index.aspx">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="120px" height="20px">
                                         <path d="M118.5,20h-1.1c-0.6,0-1.2-0.4-1.4-1l-1.5-4h-6.1l-1.5,4c-0.2,0.6-0.8,1-1.4,1h-1.1c-1,0-1.8-1-1.4-2l1.1-3
@@ -375,10 +375,10 @@
                                                 <input class="mobile-header__search-input" name="search" placeholder="Search over 10,000 products" aria-label="Site search" type="text" autocomplete="off">
                                                 <button class="mobile-header__search-button mobile-header__search-button--submit" type="submit">
                                                     <svg width="20px" height="20px">
-                                                        <use xlink:href="images/sprite.svg#search-20"></use></svg></button>
+                                                        <use href="images/sprite.svg#search-20"></use></svg></button>
                                                 <button class="mobile-header__search-button mobile-header__search-button--close" type="button">
                                                     <svg width="20px" height="20px">
-                                                        <use xlink:href="images/sprite.svg#cross-20"></use></svg></button><div class="mobile-header__search-body"></div>
+                                                        <use href="images/sprite.svg#cross-20"></use></svg></button><div class="mobile-header__search-body"></div>
                                             </form>
                                         </div>
                                 <div class="mobile-header__indicators">
@@ -386,18 +386,18 @@
                                         <button class="indicator__button">
                                             <span class="indicator__area">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="images/sprite.svg#search-20"></use></svg></span></button>
+                                                    <use href="images/sprite.svg#search-20"></use></svg></span></button>
                                     </div>
                                     <div class="indicator indicator--mobile d-sm-flex d-none">
                                         <a href="wishlist.aspx" class="indicator__button"><span class="indicator__area">
                                             <svg width="20px" height="20px">
-                                                <use xlink:href="images/sprite.svg#heart-20"></use></svg>
+                                                <use href="images/sprite.svg#heart-20"></use></svg>
                                             <span class="indicator__value">0</span></span></a>
                                     </div>
                                     <div class="indicator indicator--mobile">
                                         <a href="cart.aspx" class="indicator__button"><span class="indicator__area">
                                             <svg width="20px" height="20px">
-                                                <use xlink:href="images/sprite.svg#cart-20"></use></svg>
+                                                <use href="images/sprite.svg#cart-20"></use></svg>
                                             <span class="indicator__value">3</span></span></a>
                                     </div>
                                 </div>
@@ -425,7 +425,7 @@
                                         <button class="topbar-dropdown__btn" type="button">
                                             My Account
                                         <svg width="7px" height="5px">
-                                            <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use></svg></button><div class="topbar-dropdown__body">
+                                            <use href="images/sprite.svg#arrow-rounded-down-7x5"></use></svg></button><div class="topbar-dropdown__body">
                                                 <!-- .menu -->
                                                 <ul class="menu menu--layout--topbar">
                                                     <li><a href="account.aspx">Login</a></li>
@@ -442,7 +442,7 @@
                                         <button class="topbar-dropdown__btn" type="button">
                                             Currency: <span class="topbar__item-value">USD</span>
                                             <svg width="7px" height="5px">
-                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use></svg></button><div class="topbar-dropdown__body">
+                                                <use href="images/sprite.svg#arrow-rounded-down-7x5"></use></svg></button><div class="topbar-dropdown__body">
                                                     <!-- .menu -->
                                                     <ul class="menu menu--layout--topbar">
                                                         <li><a href="#">€ Euro</a></li>
@@ -459,7 +459,7 @@
                                         <button class="topbar-dropdown__btn" type="button">
                                             Language: <span class="topbar__item-value">EN</span>
                                             <svg width="7px" height="5px">
-                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use></svg></button><div class="topbar-dropdown__body">
+                                                <use href="images/sprite.svg#arrow-rounded-down-7x5"></use></svg></button><div class="topbar-dropdown__body">
                                                     <!-- .menu -->
                                                     <ul class="menu menu--layout--topbar menu--with-icons">
                                                         <li><a href="#">
@@ -508,7 +508,7 @@
                                     <input class="search__input" name="search" placeholder="Search over 10,000 products" aria-label="Site search" type="text" autocomplete="off">
                                     <button class="search__button" type="submit">
                                         <svg width="20px" height="20px">
-                                            <use xlink:href="images/sprite.svg#search-20"></use></svg></button><div class="search__border"></div>
+                                            <use href="images/sprite.svg#search-20"></use></svg></button><div class="search__border"></div>
                                 </form>
                             </div>
                         </div>
@@ -529,7 +529,7 @@
                                                     <ul class="departments__links">
                                                         <li class="departments__item"><a href="#">Power Tools
                                                         <svg class="departments__link-arrow" width="6px" height="9px">
-                                                            <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="departments__megamenu departments__megamenu--xl">
+                                                            <use href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="departments__megamenu departments__megamenu--xl">
                                                                 <!-- .megamenu -->
                                                                 <div class="megamenu megamenu--departments" style="background-image: url('images/megamenu/megamenu-1.jpg');">
                                                                     <div class="row">
@@ -602,7 +602,7 @@
                                                         </li>
                                                         <li class="departments__item"><a href="#">Hand Tools
                                                         <svg class="departments__link-arrow" width="6px" height="9px">
-                                                            <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="departments__megamenu departments__megamenu--lg">
+                                                            <use href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="departments__megamenu departments__megamenu--lg">
                                                                 <!-- .megamenu -->
                                                                 <div class="megamenu megamenu--departments" style="background-image: url('images/megamenu/megamenu-2.jpg');">
                                                                     <div class="row">
@@ -657,7 +657,7 @@
                                                         </li>
                                                         <li class="departments__item"><a href="#">Machine Tools
                                                         <svg class="departments__link-arrow" width="6px" height="9px">
-                                                            <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="departments__megamenu departments__megamenu--nl">
+                                                            <use href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="departments__megamenu departments__megamenu--nl">
                                                                 <!-- .megamenu -->
                                                                 <div class="megamenu megamenu--departments" style="background-image: url('images/megamenu/megamenu-3.jpg');">
                                                                     <div class="row">
@@ -699,7 +699,7 @@
                                                         </li>
                                                         <li class="departments__item"><a href="#">Building Supplies
                                                         <svg class="departments__link-arrow" width="6px" height="9px">
-                                                            <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="departments__megamenu departments__megamenu--sm">
+                                                            <use href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="departments__megamenu departments__megamenu--sm">
                                                                 <!-- .megamenu -->
                                                                 <div class="megamenu megamenu--departments">
                                                                     <div class="row">
@@ -730,12 +730,12 @@
                                                         </li>
                                                         <li class="departments__item departments__item--menu"><a href="#">Electrical
                                                         <svg class="departments__link-arrow" width="6px" height="9px">
-                                                            <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="departments__menu">
+                                                            <use href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="departments__menu">
                                                                 <!-- .menu -->
                                                                 <ul class="menu menu--layout--classic">
                                                                     <li><a href="#">Soldering Equipment
                                                                         <svg class="menu__arrow" width="6px" height="9px">
-                                                                            <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="menu__submenu">
+                                                                            <use href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="menu__submenu">
                                                                                 <!-- .menu -->
                                                                                 <ul class="menu menu--layout--classic">
                                                                                     <li><a href="#">Soldering Station</a></li>
@@ -767,10 +767,10 @@
                                             </div>
                                             <button class="departments__button">
                                                 <svg class="departments__button-icon" width="18px" height="14px">
-                                                    <use xlink:href="images/sprite.svg#menu-18x14"></use></svg>
+                                                    <use href="images/sprite.svg#menu-18x14"></use></svg>
                                                 Shop By Category
                                             <svg class="departments__button-arrow" width="9px" height="6px">
-                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></button>
+                                                <use href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></button>
                                         </div>
                                         <!-- .departments / end -->
                                     </div>
@@ -779,7 +779,7 @@
                                         <ul class="nav-links__list">
                                             <li class="nav-links__item nav-links__item--with-submenu"><a href="index.aspx"><span>Home
                                             <svg class="nav-links__arrow" width="9px" height="6px">
-                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a><div class="nav-links__menu">
+                                                <use href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a><div class="nav-links__menu">
                                                     <!-- .menu -->
                                                     <ul class="menu menu--layout--classic">
                                                         <li><a href="index.aspx">Home 1</a></li>
@@ -790,7 +790,7 @@
                                             </li>
                                             <li class="nav-links__item nav-links__item--with-submenu"><a href="#"><span>Megamenu
                                             <svg class="nav-links__arrow" width="9px" height="6px">
-                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a><div class="nav-links__megamenu nav-links__megamenu--size--nl">
+                                                <use href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a><div class="nav-links__megamenu nav-links__megamenu--size--nl">
                                                     <!-- .megamenu -->
                                                     <div class="megamenu">
                                                         <div class="row">
@@ -841,12 +841,12 @@
                                             </li>
                                             <li class="nav-links__item nav-links__item--with-submenu"><a href="shop-grid-3-columns-sidebar.aspx"><span>Shop
                                             <svg class="nav-links__arrow" width="9px" height="6px">
-                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a><div class="nav-links__menu">
+                                                <use href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a><div class="nav-links__menu">
                                                     <!-- .menu -->
                                                     <ul class="menu menu--layout--classic">
                                                         <li><a href="shop-grid-3-columns-sidebar.aspx">Shop Grid
                                                             <svg class="menu__arrow" width="6px" height="9px">
-                                                                <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="menu__submenu">
+                                                                <use href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="menu__submenu">
                                                                     <!-- .menu -->
                                                                     <ul class="menu menu--layout--classic">
                                                                         <li><a href="shop-grid-3-columns-sidebar.aspx">3 Columns Sidebar</a></li>
@@ -860,7 +860,7 @@
                                                         <li><a href="shop-right-sidebar.aspx">Shop Right Sidebar</a></li>
                                                         <li><a href="product.aspx">Product
                                                             <svg class="menu__arrow" width="6px" height="9px">
-                                                                <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="menu__submenu">
+                                                                <use href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></a><div class="menu__submenu">
                                                                     <!-- .menu -->
                                                                     <ul class="menu menu--layout--classic">
                                                                         <li><a href="product.aspx">Product</a></li>
@@ -882,7 +882,7 @@
                                             </li>
                                             <li class="nav-links__item nav-links__item--with-submenu"><a href="blog-classic.aspx"><span>Blog
                                             <svg class="nav-links__arrow" width="9px" height="6px">
-                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a><div class="nav-links__menu">
+                                                <use href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a><div class="nav-links__menu">
                                                     <!-- .menu -->
                                                     <ul class="menu menu--layout--classic">
                                                         <li><a href="blog-classic.aspx">Blog Classic</a></li>
@@ -897,7 +897,7 @@
                                             </li>
                                             <li class="nav-links__item nav-links__item--with-submenu"><a href="#"><span>Pages
                                             <svg class="nav-links__arrow" width="9px" height="6px">
-                                                <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a><div class="nav-links__menu">
+                                                <use href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a><div class="nav-links__menu">
                                                     <!-- .menu -->
                                                     <ul class="menu menu--layout--classic">
                                                         <li><a href="about-us.aspx">About Us</a></li>
@@ -921,13 +921,13 @@
                                         <div class="indicator">
                                             <a href="wishlist.aspx" class="indicator__button"><span class="indicator__area">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="images/sprite.svg#heart-20"></use></svg>
+                                                    <use href="images/sprite.svg#heart-20"></use></svg>
                                                 <span class="indicator__value">0</span></span></a>
                                         </div>
                                         <div class="indicator indicator--trigger--click">
                                             <a href="cart.aspx" class="indicator__button"><span class="indicator__area">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="images/sprite.svg#cart-20"></use></svg>
+                                                    <use href="images/sprite.svg#cart-20"></use></svg>
                                                 <span class="indicator__value">3</span></span></a><div class="indicator__dropdown">
                                                     <!-- .dropcart -->
                                                     <div class="dropcart">
@@ -947,7 +947,7 @@
                                                                 </div>
                                                                 <button type="button" class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                     <svg width="10px" height="10px">
-                                                                        <use xlink:href="images/sprite.svg#cross-10"></use></svg></button>
+                                                                        <use href="images/sprite.svg#cross-10"></use></svg></button>
                                                             </div>
                                                             <div class="dropcart__product">
                                                                 <div class="dropcart__product-image">
@@ -960,7 +960,7 @@
                                                                 </div>
                                                                 <button type="button" class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                     <svg width="10px" height="10px">
-                                                                        <use xlink:href="images/sprite.svg#cross-10"></use></svg></button>
+                                                                        <use href="images/sprite.svg#cross-10"></use></svg></button>
                                                             </div>
                                                             <div class="dropcart__product">
                                                                 <div class="dropcart__product-image">
@@ -976,7 +976,7 @@
                                                                 </div>
                                                                 <button type="button" class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                     <svg width="10px" height="10px">
-                                                                        <use xlink:href="images/sprite.svg#cross-10"></use></svg></button>
+                                                                        <use href="images/sprite.svg#cross-10"></use></svg></button>
                                                             </div>
                                                         </div>
                                                         <div class="dropcart__totals">

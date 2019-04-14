@@ -14,8 +14,8 @@
                         <asp:Repeater runat="server" ID="rptSlides" OnInit="rptSlides_Init">
                             <ItemTemplate>
                                 <a class="block-slideshow__slide" href="#">
-                                    <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop"
-                                         style="<%# $"background-image: url('images/slides/{Eval("img")}')" %>">
+                                    <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="<%# $"background-image: url('{MyLibrary.SlidePath(Eval("img"))}')" %>">
+                                        
                                     </div>
                                 </a>
                             </ItemTemplate>

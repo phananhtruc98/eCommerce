@@ -5,10 +5,10 @@
         <path transform="translate(0 -.325)" d="M0 0v.5L1 0z"/>
         <path d="M0 0v-.5L1 0z" transform="rotate(-36 .5 -.162)"/>
       </g>
-      <use xlink:href="#a" transform="scale(-1 1)"/>
-      <use xlink:href="#a" transform="rotate(72 0 0)"/>
-      <use xlink:href="#a" transform="rotate(-72 0 0)"/>
-      <use xlink:href="#a" transform="scale(-1 1) rotate(72)"/>
+      <use href="#a" transform="scale(-1 1)"/>
+      <use href="#a" transform="rotate(72 0 0)"/>
+      <use href="#a" transform="rotate(-72 0 0)"/>
+      <use href="#a" transform="scale(-1 1) rotate(72)"/>
     </g>
     <clipPath id="c">
       <path d="M0 0h600v300H0z"/>

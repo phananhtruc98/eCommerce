@@ -4,12 +4,12 @@
       <g id="c">
         <g id="b">
           <path d="M0-5L-1.545-.245l2.853.927z" id="a" fill="#fff"/>
-          <use xlink:href="#a" transform="scale(-1 1)" width="180" height="120"/>
+          <use href="#a" transform="scale(-1 1)" width="180" height="120"/>
         </g>
-        <use xlink:href="#b" transform="rotate(72)" width="180" height="120"/>
+        <use href="#b" transform="rotate(72)" width="180" height="120"/>
       </g>
-      <use xlink:href="#b" transform="rotate(-72)" width="180" height="120"/>
-      <use xlink:href="#c" transform="rotate(144)" width="180" height="120"/>
+      <use href="#b" transform="rotate(-72)" width="180" height="120"/>
+      <use href="#c" transform="rotate(144)" width="180" height="120"/>
     </g>
   </defs>
   <path d="M0 0h512v512H0z" fill="#cf142b"/>

@@ -3,6 +3,7 @@ using ShoesStore.DataAccessLogicLayer;
 using System;
 using System.Linq;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using ShoesStore.Interfaces.Pages;
 using Utilities;
 
@@ -37,11 +38,16 @@ namespace ShoesStore
 
         public void rptProCat_Init(object sender, EventArgs e)
         {
-
+            
             rptProCat.DataSource = _proCat.GetAll();
             rptProCat.DataBind();
         }
 
+        public HtmlForm FormMaster
+        {
+            set => formWebPage = value;
+            get => formWebPage;
+        }
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
 

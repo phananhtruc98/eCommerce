@@ -14,26 +14,26 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="format-detection" content="telephone=no">
     <title><%: Page.Title %></title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
     <!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
     <!-- css -->
-    <link rel="stylesheet" href="vendor/bootstrap-4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/owl-carousel-2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/vendor/bootstrap-4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/owl-carousel-2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!-- js -->
-    <script src="vendor/jquery-3.3.1/jquery.min.js"></script>
-    <script src="vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/owl-carousel-2.3.4/owl.carousel.min.js"></script>
-    <script src="vendor/nouislider-12.1.0/nouislider.min.js"></script>
-    <script src="js/number.js"></script>
-    <script src="js/main.js"></script>
-    <script src="vendor/svg4everybody-2.1.9/svg4everybody.min.js"></script>
+    <script src="/vendor/jquery-3.3.1/jquery.min.js"></script>
+    <script src="/vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/owl-carousel-2.3.4/owl.carousel.min.js"></script>
+    <script src="/vendor/nouislider-12.1.0/nouislider.min.js"></script>
+    <script src="/js/number.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/vendor/svg4everybody-2.1.9/svg4everybody.min.js"></script>
     <script>svg4everybody();</script>
     <!-- font - fontawesome -->
-    <link rel="stylesheet" href="vendor/fontawesome-5.6.1/css/all.min.css">
+    <link rel="stylesheet" href="/vendor/fontawesome-5.6.1/css/all.min.css">
     <!-- font - stroyka -->
-    <link rel="stylesheet" href="fonts/stroyka/stroyka.css">
+    <link rel="stylesheet" href="/fonts/stroyka/stroyka.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97489509-6"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -41,15 +41,14 @@
         gtag('js', new Date());
         gtag('config', 'UA-97489509-6');
     </script>
-    <link rel="stylesheet" href="css/customstyle.css">
+    <link rel="stylesheet" href="/css/customstyle.css">
 </head>
 <body>
-    <form runat="server">
+    <form runat="server" ID="formWebPage">
         <asp:ScriptManager runat="server">
         </asp:ScriptManager>
         <!-- quickview-modal -->
-        <asp:UpdatePanel runat="server">
-            <ContentTemplate>
+   
                 <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-xl">
                         <div class="modal-content">
@@ -253,7 +252,7 @@
                                     <div class="topbar__row">
                                         <div class="topbar__item topbar__item--link">
                                             <a class="topbar-link"
-                                                href="#">Về The Shuz
+                                                href="/">Về The Shuz
                                             </a>
                                         </div>
                                         <div class="topbar__item topbar__item--link">
@@ -277,7 +276,7 @@
                                                 <button class="topbar-dropdown__btn" type="button">
                                                     <asp:Label runat="server" ID="lbAccount" Text="Tài khoản"></asp:Label>
                                                     <svg width="7px" height="5px">
-                                                        <use href="images/sprite.svg#arrow-rounded-down-7x5"></use>
+                                                        <use href="/images/sprite.svg#arrow-rounded-down-7x5"></use>
                                                     </svg>
                                                 </button>
                                                 <div class="topbar-dropdown__body">
@@ -309,21 +308,21 @@
                                     <div class="nav-panel__container container">
                                         <div class="nav-panel__row">
                                             <div class="nav-panel__logo">
-                                                <a href="/Default.aspx" class="logo_name">THE SHUZ</a>
+                                                <a href="/" class="logo_name">THE SHUZ</a>
                                             </div>
                                             <!-- .nav-links -->
                                             <div class="nav-panel__nav-links nav-links">
                                                 <ul class="nav-links__list">
                                                     <li class="nav-links__item nav-links__item--with-submenu">
                                                         <a
-                                                            href=".">
+                                                            href="/">
                                                             <span>Trang chủ
                                                             </span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-links__item nav-links__item--with-submenu">
                                                         <a
-                                                            href="san-pham">
+                                                            href="/san-pham">
                                                             <span>Sản phẩm
                                                             </span>
                                                         </a>
@@ -334,7 +333,7 @@
                                                             <span>Danh mục
                     <svg width="9px"
                         height="6px">
-                        <use href="images/sprite.svg#arrow-rounded-down-9x6">
+                        <use href="/images/sprite.svg#arrow-rounded-down-9x6">
                         </use>
                     </svg>
                                                             </span>
@@ -359,7 +358,7 @@
                                                             <span>Thương hiệu
                     <svg
                         width="9px" height="6px">
-                        <use href="images/sprite.svg#arrow-rounded-down-9x6"></use>
+                        <use href="/images/sprite.svg#arrow-rounded-down-9x6"></use>
                     </svg>
                                                             </span>
                                                         </a>
@@ -388,7 +387,7 @@
                                                         <span class="indicator__area">
                                                             <svg width="20px"
                                                                 height="20px">
-                                                                <use href="images/sprite.svg#cart-20"></use>
+                                                                <use href="/images/sprite.svg#cart-20"></use>
                                                             </svg>
                                                             <span class="indicator__value">3</span>
                                                         </span>
@@ -401,7 +400,7 @@
                                                                     <div class="dropcart__product-image">
                                                                         <a href="product.html">
                                                                             <img
-                                                                                src="images/products/product-1.jpg" alt="">
+                                                                                src="/images/products/product-1.jpg" alt="">
                                                                         </a>
                                                                     </div>
                                                                     <div class="dropcart__product-info">
@@ -427,7 +426,7 @@
                                                                         class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                         <svg
                                                                             width="10px" height="10px">
-                                                                            <use href="images/sprite.svg#cross-10"></use>
+                                                                            <use href="/images/sprite.svg#cross-10"></use>
                                                                         </svg>
                                                                     </button>
                                                                 </div>
@@ -435,7 +434,7 @@
                                                                     <div class="dropcart__product-image">
                                                                         <a href="product.html">
                                                                             <img
-                                                                                src="images/products/product-2.jpg" alt="">
+                                                                                src="/images/products/product-2.jpg" alt="">
                                                                         </a>
                                                                     </div>
                                                                     <div class="dropcart__product-info">
@@ -457,7 +456,7 @@
                                                                         class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                         <svg
                                                                             width="10px" height="10px">
-                                                                            <use href="images/sprite.svg#cross-10"></use>
+                                                                            <use href="/images/sprite.svg#cross-10"></use>
                                                                         </svg>
                                                                     </button>
                                                                 </div>
@@ -465,7 +464,7 @@
                                                                     <div class="dropcart__product-image">
                                                                         <a href="product.html">
                                                                             <img
-                                                                                src="images/products/product-5.jpg" alt="">
+                                                                                src="/images/products/product-5.jpg" alt="">
                                                                         </a>
                                                                     </div>
                                                                     <div class="dropcart__product-info">
@@ -490,7 +489,7 @@
                                                                         class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                         <svg
                                                                             width="10px" height="10px">
-                                                                            <use href="images/sprite.svg#cross-10"></use>
+                                                                            <use href="/images/sprite.svg#cross-10"></use>
                                                                         </svg>
                                                                     </button>
                                                                 </div>
@@ -631,7 +630,7 @@
                                             <div class="site-footer__widget footer-newsletter">
                                                 <h5 class="footer-newsletter__text">Thanh toán</h5>
                                                 <div class="site-footer__payments">
-                                                    <img src="images/payments.png" alt="">
+                                                    <img src="/images/payments.png" alt="">
                                                 </div>
                                                 <div class="footer-newsletter__text footer-newsletter__text--social">
                                                     <h5 class="footer-newsletter__text">Theo dõi chúng tôi trên</h5>
@@ -684,11 +683,7 @@
                     </footer>
                     <!-- site__footer / end -->
                 </div>
-            </ContentTemplate>
-            <Triggers>
-                <%--<asp:AsyncPostBackTrigger ControlID="btnSignUp" EventName="Click" />--%>
-            </Triggers>
-        </asp:UpdatePanel>
+    
     </form>
 </body>
 </html>

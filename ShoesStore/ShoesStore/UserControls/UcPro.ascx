@@ -2,11 +2,12 @@
 <%@ Import Namespace="ShoesStore" %>
 <%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
 
+
 <div class="products-view__list products-list" data-layout="grid-3-sidebar"
     data-with-features="false">
     <div class="products-list__body">
 
-        <wcCustom:RepeaterTable runat="server" ID="rptPro" TableName="Pro" >
+        <wcCustom:RepeaterTable runat="server" ID="rptPro" AllowPage="True" TableName="Pro">
             <ItemTemplate>
                 <div class="products-list__item">
                     <div class="product-card">
@@ -15,11 +16,22 @@
                             <div class="product-card__badge product-card__badge--new">New</div>
                         </div>
                         <div class="product-card__image">
-                            <a href="#">
-                                <img
-                                    src="<%#MyLibrary.ProImgPath(Eval("ShpId"),Eval("Img")) %>" alt="">
-                            </a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                            <%--PostBackUrl='  <%# ActionUrl(Eval("ProCat.CatName"),Eval("ProName")) %>'--%>
+
+                            <%--    OnCommand="proImgLink_OnClick"
+                                            CommandName="GuiLink"
+                                            data-rider-catId ='<%#Eval("CatId") %>'
+                                            data-rider-proId ='<%#Eval("ProId") %>'
+                                            data-rider-shpId ='<%#Eval("ShpId") %>'--%>
+                            <asp:LinkButton runat="server" ID="proImgLink"
+                                PostBackUrl='<%#MyLibrary.ProDetUrl(Eval("ProCat.CatName"),Eval("ProName"),Eval("Shp.ShpName")) %>'>
+
+                                <img src="<%#MyLibrary.ProImgPath(Eval("ShpId"),Eval("Img")) %>" alt="">
+                            </asp:LinkButton>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </div>
                         <div class="product-card__info">
                             <div class="product-card__name">
@@ -188,17 +200,17 @@
                 </svg>
             </a>
         </li>
-      
-        <asp:Repeater runat="server" id="rptProPage">
-            
+
+        <asp:Repeater runat="server" ID="rptProPage">
+
             <ItemTemplate>
-                
+
                 <asp:LinkButton runat="server" OnClick="MyBtnHandler" CssClass="page-link" CommandArgument='<%#Container.DataItem.ToString()%>' CommandName="ThisBtnClick" Text="<%#Container.ItemIndex +1 %>"></asp:LinkButton>
             </ItemTemplate>
         </asp:Repeater>
-            
-           
-      
+
+
+
 
 
         <li class="page-item">

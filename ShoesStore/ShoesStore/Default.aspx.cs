@@ -8,6 +8,11 @@ namespace ShoesStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string[] keys = Request.Form.AllKeys;
+            for (int i= 0; i < keys.Length; i++) 
+            {
+                Response.Write(keys[i] + ": " + Request.Form[keys[i]] + "<br>");
+            }
         }
         protected void rptProCat_Init(object sender, EventArgs e)
         {

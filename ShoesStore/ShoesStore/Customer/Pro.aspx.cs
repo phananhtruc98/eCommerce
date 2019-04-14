@@ -12,6 +12,7 @@ namespace ShoesStore.Customer
         {
             if(!IsPostBack)
             {
+                
                 //rptProCat.DataBind();
                 //listWc=new List<Tuple<Control, TableName>>()
                 //{
@@ -31,6 +32,10 @@ namespace ShoesStore.Customer
                 e.Item.Visible = false;
             }
         }
-   
+
+        protected void btnFilter_OnClick(object sender, EventArgs e)
+        {
+            UcPro.RptPro.PageCurrent = 5;
+        }
     }
 }

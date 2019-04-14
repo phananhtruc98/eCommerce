@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShoesStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ShoesStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="CartId" />
@@ -73,6 +73,7 @@
           <Property Name="ProName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Img" Type="varchar" MaxLength="255" />
           <Property Name="Desc" Type="text" />
+          <Property Name="DescShort" Type="text" />
           <Property Name="Price" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="PriceAfter" Type="varchar" MaxLength="255" />
           <Property Name="Active" Type="bit" />
@@ -125,6 +126,15 @@
           <Property Name="SizeId" Type="int" Nullable="false" />
           <Property Name="SizeName" Type="nvarchar" MaxLength="255" />
           <Property Name="SizeImg" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ProSlideImg">
+          <Key>
+            <PropertyRef Name="SlideImgId" />
+          </Key>
+          <Property Name="SlideImgId" Type="int" Nullable="false" />
+          <Property Name="ShpId" Type="int" />
+          <Property Name="ProId" Type="int" />
+          <Property Name="Img" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Rcpt">
           <Key>
@@ -389,6 +399,20 @@
             </Principal>
             <Dependent Role="ProDet">
               <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProSlideImg_Pro">
+          <End Role="Pro" Type="Self.Pro" Multiplicity="0..1" />
+          <End Role="ProSlideImg" Type="Self.ProSlideImg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pro">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Principal>
+            <Dependent Role="ProSlideImg">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1168,6 +1192,7 @@
           <EntitySet Name="ProColor" EntityType="Self.ProColor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProDet" EntityType="Self.ProDet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProSize" EntityType="Self.ProSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProSlideImg" EntityType="Self.ProSlideImg" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rcpt" EntityType="Self.Rcpt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RcptBuy" EntityType="Self.RcptBuy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RcptBuyDet" EntityType="Self.RcptBuyDet" Schema="dbo" store:Type="Tables" />
@@ -1219,6 +1244,10 @@
           <AssociationSet Name="FK_ProDet_ProSize" Association="Self.FK_ProDet_ProSize">
             <End Role="ProSize" EntitySet="ProSize" />
             <End Role="ProDet" EntitySet="ProDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProSlideImg_Pro" Association="Self.FK_ProSlideImg_Pro">
+            <End Role="Pro" EntitySet="Pro" />
+            <End Role="ProSlideImg" EntitySet="ProSlideImg" />
           </AssociationSet>
           <AssociationSet Name="FK_Rcpt_Usr" Association="Self.FK_Rcpt_Usr">
             <End Role="Usr" EntitySet="Usr" />
@@ -1313,902 +1342,11 @@
             <End Role="WebSlide" EntitySet="WebSlide" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShoesStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Cart">
-          <Key>
-            <PropertyRef Name="CartId" />
-          </Key>
-          <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CusId" Type="Int32" />
-          <Property Name="IpAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Cus" Relationship="Self.FK_UsersCustomersCarts_UsersCustomers" FromRole="Cart" ToRole="Cus" />
-          <NavigationProperty Name="CartDet" Relationship="Self.FK_UsersCustomersCartsDetails_UsersCustomersCarts" FromRole="Cart" ToRole="CartDet" />
-        </EntityType>
-        <EntityType Name="CartDet">
-          <Key>
-            <PropertyRef Name="CartId" />
-            <PropertyRef Name="ShpId" />
-            <PropertyRef Name="ProId" />
-          </Key>
-          <Property Name="CartId" Type="Int32" Nullable="false" />
-          <Property Name="ShpId" Type="Int32" Nullable="false" />
-          <Property Name="ProId" Type="Int32" Nullable="false" />
-          <Property Name="Qty" Type="Int32" />
-          <NavigationProperty Name="Cart" Relationship="Self.FK_UsersCustomersCartsDetails_UsersCustomersCarts" FromRole="CartDet" ToRole="Cart" />
-          <NavigationProperty Name="Pro" Relationship="Self.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" FromRole="CartDet" ToRole="Pro" />
-        </EntityType>
-        <EntityType Name="Cus">
-          <Key>
-            <PropertyRef Name="CusId" />
-          </Key>
-          <Property Name="CusId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cart" Relationship="Self.FK_UsersCustomersCarts_UsersCustomers" FromRole="Cus" ToRole="Cart" />
-          <NavigationProperty Name="RcptBuy" Relationship="Self.FK_RcptBuy_Cus" FromRole="Cus" ToRole="RcptBuy" />
-          <NavigationProperty Name="Usr" Relationship="Self.FK_UsersCustomers_Users" FromRole="Cus" ToRole="Usr" />
-        </EntityType>
-        <EntityType Name="Mer">
-          <Key>
-            <PropertyRef Name="MerId" />
-          </Key>
-          <Property Name="MerId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Shp" Relationship="Self.FK_Shp_Mer" FromRole="Mer" ToRole="Shp" />
-          <NavigationProperty Name="SubDet" Relationship="Self.FK_SubscriptionsDetails_UsersMerchants" FromRole="Mer" ToRole="SubDet" />
-          <NavigationProperty Name="Usr" Relationship="Self.FK_UsersMerchants_Users" FromRole="Mer" ToRole="Usr" />
-        </EntityType>
-        <EntityType Name="Mstr">
-          <Key>
-            <PropertyRef Name="MstrId" />
-          </Key>
-          <Property Name="MstrId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Usr" Relationship="Self.FK_Mstr_Usr" FromRole="Mstr" ToRole="Usr" />
-          <NavigationProperty Name="MstrDet" Relationship="Self.FK_MstrDet_Mstr" FromRole="Mstr" ToRole="MstrDet" />
-          <NavigationProperty Name="MstrDet1" Relationship="Self.FK_MstrDet_Mstr1" FromRole="Mstr" ToRole="MstrDet" />
-        </EntityType>
-        <EntityType Name="MstrDet">
-          <Key>
-            <PropertyRef Name="MstrId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="MstrId" Type="Int32" Nullable="false" />
-          <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <Property Name="AddDate" Type="DateTime" Precision="3" />
-          <Property Name="AddBy" Type="Int32" />
-          <NavigationProperty Name="Mstr" Relationship="Self.FK_MstrDet_Mstr" FromRole="MstrDet" ToRole="Mstr" />
-          <NavigationProperty Name="Mstr1" Relationship="Self.FK_MstrDet_Mstr1" FromRole="MstrDet" ToRole="Mstr" />
-          <NavigationProperty Name="MstrRole" Relationship="Self.FK_MstrDet_MstrRole" FromRole="MstrDet" ToRole="MstrRole" />
-        </EntityType>
-        <EntityType Name="MstrRole">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MstrDet" Relationship="Self.FK_MstrDet_MstrRole" FromRole="MstrRole" ToRole="MstrDet" />
-        </EntityType>
-        <EntityType Name="Pro">
-          <Key>
-            <PropertyRef Name="ShpId" />
-            <PropertyRef Name="ProId" />
-          </Key>
-          <Property Name="ShpId" Type="Int32" Nullable="false" />
-          <Property Name="ProId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CatId" Type="Int32" Nullable="false" />
-          <Property Name="BrandId" Type="Int32" Nullable="false" />
-          <Property Name="ProQuantity" Type="Int32" Nullable="false" />
-          <Property Name="IsOutOfStock" Type="Boolean" Nullable="false" />
-          <Property Name="ProName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Price" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PriceAfter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Active" Type="Boolean" />
-          <Property Name="DateAdd" Type="DateTime" Precision="3" />
-          <Property Name="DateEdit" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CartDet" Relationship="Self.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" FromRole="Pro" ToRole="CartDet" />
-          <NavigationProperty Name="ProBrand" Relationship="Self.FK_Pro_Brand" FromRole="Pro" ToRole="ProBrand" />
-          <NavigationProperty Name="ProCat" Relationship="Self.FK_Pro_ProCat" FromRole="Pro" ToRole="ProCat" />
-          <NavigationProperty Name="ProDet" Relationship="Self.FK_ProDet_Pro" FromRole="Pro" ToRole="ProDet" />
-          <NavigationProperty Name="RcptBuyDet" Relationship="Self.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" FromRole="Pro" ToRole="RcptBuyDet" />
-          <NavigationProperty Name="Shp" Relationship="Self.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" FromRole="Pro" ToRole="Shp" />
-        </EntityType>
-        <EntityType Name="ProBrand">
-          <Key>
-            <PropertyRef Name="BrandId" />
-          </Key>
-          <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BrandName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Pro" Relationship="Self.FK_Pro_Brand" FromRole="ProBrand" ToRole="Pro" />
-        </EntityType>
-        <EntityType Name="ProCat">
-          <Key>
-            <PropertyRef Name="CatId" />
-          </Key>
-          <Property Name="CatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CatName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateEdit" Type="DateTime" Precision="3" />
-          <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Pro" Relationship="Self.FK_Pro_ProCat" FromRole="ProCat" ToRole="Pro" />
-        </EntityType>
-        <EntityType Name="ProColor">
-          <Key>
-            <PropertyRef Name="ColorId" />
-          </Key>
-          <Property Name="ColorId" Type="Int32" Nullable="false" />
-          <Property Name="ColorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ColorImg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProDet" Relationship="Self.FK_ProDet_ProColor" FromRole="ProColor" ToRole="ProDet" />
-        </EntityType>
-        <EntityType Name="ProDet">
-          <Key>
-            <PropertyRef Name="ShpId" />
-            <PropertyRef Name="ProId" />
-            <PropertyRef Name="ColorId" />
-            <PropertyRef Name="SizeId" />
-          </Key>
-          <Property Name="ShpId" Type="Int32" Nullable="false" />
-          <Property Name="ProId" Type="Int32" Nullable="false" />
-          <Property Name="ColorId" Type="Int32" Nullable="false" />
-          <Property Name="SizeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Pro" Relationship="Self.FK_ProDet_Pro" FromRole="ProDet" ToRole="Pro" />
-          <NavigationProperty Name="ProColor" Relationship="Self.FK_ProDet_ProColor" FromRole="ProDet" ToRole="ProColor" />
-          <NavigationProperty Name="ProSize" Relationship="Self.FK_ProDet_ProSize" FromRole="ProDet" ToRole="ProSize" />
-        </EntityType>
-        <EntityType Name="ProSize">
-          <Key>
-            <PropertyRef Name="SizeId" />
-          </Key>
-          <Property Name="SizeId" Type="Int32" Nullable="false" />
-          <Property Name="SizeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SizeImg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProDet" Relationship="Self.FK_ProDet_ProSize" FromRole="ProSize" ToRole="ProDet" />
-        </EntityType>
-        <EntityType Name="Rcpt">
-          <Key>
-            <PropertyRef Name="RcptId" />
-          </Key>
-          <Property Name="RcptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsrAdd" Type="Int32" Nullable="false" />
-          <Property Name="UsrEdit" Type="Int32" />
-          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateEdit" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Usr" Relationship="Self.FK_Rcpt_Usr" FromRole="Rcpt" ToRole="Usr" />
-          <NavigationProperty Name="Usr1" Relationship="Self.FK_Rcpt_Usr1" FromRole="Rcpt" ToRole="Usr" />
-          <NavigationProperty Name="RcptBuy" Relationship="Self.FK_ReceiptBuys_Receipts" FromRole="Rcpt" ToRole="RcptBuy" />
-          <NavigationProperty Name="RcptSub" Relationship="Self.FK_ReceiptsSubscriptions_Receipts" FromRole="Rcpt" ToRole="RcptSub" />
-        </EntityType>
-        <EntityType Name="RcptBuy">
-          <Key>
-            <PropertyRef Name="RcptBuyId" />
-          </Key>
-          <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
-          <Property Name="CusId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cus" Relationship="Self.FK_RcptBuy_Cus" FromRole="RcptBuy" ToRole="Cus" />
-          <NavigationProperty Name="Rcpt" Relationship="Self.FK_ReceiptBuys_Receipts" FromRole="RcptBuy" ToRole="Rcpt" />
-          <NavigationProperty Name="RcptBuyDet" Relationship="Self.FK_ReceiptsBuysDetails_ReceiptsBuys" FromRole="RcptBuy" ToRole="RcptBuyDet" />
-          <NavigationProperty Name="RcptBuySta" Relationship="Self.FK_ReceiptsBuysStates_ReceiptsBuys" FromRole="RcptBuy" ToRole="RcptBuySta" />
-        </EntityType>
-        <EntityType Name="RcptBuyDet">
-          <Key>
-            <PropertyRef Name="RcptBuyId" />
-            <PropertyRef Name="ShpId" />
-            <PropertyRef Name="ProId" />
-          </Key>
-          <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
-          <Property Name="ShpId" Type="Int32" Nullable="false" />
-          <Property Name="ProId" Type="Int32" Nullable="false" />
-          <Property Name="Cmt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Point" Type="Int32" />
-          <Property Name="Quantity" Type="Int32" />
-          <NavigationProperty Name="Pro" Relationship="Self.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" FromRole="RcptBuyDet" ToRole="Pro" />
-          <NavigationProperty Name="RcptBuy" Relationship="Self.FK_ReceiptsBuysDetails_ReceiptsBuys" FromRole="RcptBuyDet" ToRole="RcptBuy" />
-        </EntityType>
-        <EntityType Name="RcptBuySta">
-          <Key>
-            <PropertyRef Name="StaId" />
-          </Key>
-          <Property Name="StaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="RcptBuy" Relationship="Self.FK_ReceiptsBuysStates_ReceiptsBuys" FromRole="RcptBuySta" ToRole="RcptBuy" />
-          <NavigationProperty Name="RcptBuyStaDet" Relationship="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" FromRole="RcptBuySta" ToRole="RcptBuyStaDet" />
-        </EntityType>
-        <EntityType Name="RcptBuyStaDet">
-          <Key>
-            <PropertyRef Name="StaId" />
-            <PropertyRef Name="StepId" />
-          </Key>
-          <Property Name="StaId" Type="Int32" Nullable="false" />
-          <Property Name="StepId" Type="Int32" Nullable="false" />
-          <Property Name="IsDone" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="RcptBuySta" Relationship="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" FromRole="RcptBuyStaDet" ToRole="RcptBuySta" />
-          <NavigationProperty Name="RcptBuyStaStep" Relationship="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" FromRole="RcptBuyStaDet" ToRole="RcptBuyStaStep" />
-        </EntityType>
-        <EntityType Name="RcptBuyStaStep">
-          <Key>
-            <PropertyRef Name="StepId" />
-          </Key>
-          <Property Name="StepId" Type="Int32" Nullable="false" />
-          <Property Name="StepCont" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="StepOrder" Type="Int32" />
-          <NavigationProperty Name="RcptBuyStaDet" Relationship="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" FromRole="RcptBuyStaStep" ToRole="RcptBuyStaDet" />
-        </EntityType>
-        <EntityType Name="RcptSub">
-          <Key>
-            <PropertyRef Name="RcptSubId" />
-          </Key>
-          <Property Name="RcptSubId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Rcpt" Relationship="Self.FK_ReceiptsSubscriptions_Receipts" FromRole="RcptSub" ToRole="Rcpt" />
-          <NavigationProperty Name="RcptSubDet" Relationship="Self.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" FromRole="RcptSub" ToRole="RcptSubDet" />
-        </EntityType>
-        <EntityType Name="RcptSubDet">
-          <Key>
-            <PropertyRef Name="RcptSubId" />
-            <PropertyRef Name="SubId" />
-            <PropertyRef Name="MerId" />
-          </Key>
-          <Property Name="RcptSubId" Type="Int32" Nullable="false" />
-          <Property Name="SubId" Type="Int32" Nullable="false" />
-          <Property Name="MerId" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" />
-          <NavigationProperty Name="RcptSub" Relationship="Self.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" FromRole="RcptSubDet" ToRole="RcptSub" />
-          <NavigationProperty Name="SubDet" Relationship="Self.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" FromRole="RcptSubDet" ToRole="SubDet" />
-        </EntityType>
-        <EntityType Name="Shp">
-          <Key>
-            <PropertyRef Name="ShpId" />
-          </Key>
-          <Property Name="ShpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MerId" Type="Int32" Nullable="false" />
-          <Property Name="ShpName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Mer" Relationship="Self.FK_Shp_Mer" FromRole="Shp" ToRole="Mer" />
-          <NavigationProperty Name="Pro" Relationship="Self.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" FromRole="Shp" ToRole="Pro" />
-        </EntityType>
-        <EntityType Name="Sub">
-          <Key>
-            <PropertyRef Name="SubId" />
-          </Key>
-          <Property Name="SubId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubContent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="DurDay" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="SubDet" Relationship="Self.FK_SubscriptionsDetails_Subscriptions" FromRole="Sub" ToRole="SubDet" />
-        </EntityType>
-        <EntityType Name="SubDet">
-          <Key>
-            <PropertyRef Name="SubId" />
-            <PropertyRef Name="MerId" />
-          </Key>
-          <Property Name="SubId" Type="Int32" Nullable="false" />
-          <Property Name="MerId" Type="Int32" Nullable="false" />
-          <Property Name="DateStart" Type="DateTime" Precision="3" />
-          <Property Name="DateEnd" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Mer" Relationship="Self.FK_SubscriptionsDetails_UsersMerchants" FromRole="SubDet" ToRole="Mer" />
-          <NavigationProperty Name="RcptSubDet" Relationship="Self.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" FromRole="SubDet" ToRole="RcptSubDet" />
-          <NavigationProperty Name="Sub" Relationship="Self.FK_SubscriptionsDetails_Subscriptions" FromRole="SubDet" ToRole="Sub" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Usr">
-          <Key>
-            <PropertyRef Name="UsrId" />
-          </Key>
-          <Property Name="UsrId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsrName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateEdit" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Cus" Relationship="Self.FK_UsersCustomers_Users" FromRole="Usr" ToRole="Cus" />
-          <NavigationProperty Name="Mer" Relationship="Self.FK_UsersMerchants_Users" FromRole="Usr" ToRole="Mer" />
-          <NavigationProperty Name="Mstr" Relationship="Self.FK_Mstr_Usr" FromRole="Usr" ToRole="Mstr" />
-          <NavigationProperty Name="Rcpt" Relationship="Self.FK_Rcpt_Usr" FromRole="Usr" ToRole="Rcpt" />
-          <NavigationProperty Name="Rcpt1" Relationship="Self.FK_Rcpt_Usr1" FromRole="Usr" ToRole="Rcpt" />
-          <NavigationProperty Name="UsrAct" Relationship="Self.FK_UsrAct_Usr" FromRole="Usr" ToRole="UsrAct" />
-        </EntityType>
-        <EntityType Name="UsrAct">
-          <Key>
-            <PropertyRef Name="ActId" />
-          </Key>
-          <Property Name="ActId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsrId" Type="Int32" />
-          <Property Name="ActCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="IsAct" Type="Boolean" />
-          <NavigationProperty Name="Usr" Relationship="Self.FK_UsrAct_Usr" FromRole="UsrAct" ToRole="Usr" />
-        </EntityType>
-        <EntityType Name="WebInfo">
-          <Key>
-            <PropertyRef Name="WebId" />
-          </Key>
-          <Property Name="WebId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="WorkTime" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="WebSlide" Relationship="Self.FK_WebSlide_WebInfo" FromRole="WebInfo" ToRole="WebSlide" />
-        </EntityType>
-        <EntityType Name="WebSlide">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="WebId" Type="Int32" />
-          <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Order" Type="Int32" />
-          <Property Name="DateAdd" Type="DateTime" Precision="3" />
-          <Property Name="DateEdit" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="WebInfo" Relationship="Self.FK_WebSlide_WebInfo" FromRole="WebSlide" ToRole="WebInfo" />
-        </EntityType>
-        <Association Name="FK_UsersCustomersCarts_UsersCustomers">
-          <End Role="Cus" Type="Self.Cus" Multiplicity="0..1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cus">
-              <PropertyRef Name="CusId" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="CusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UsersCustomersCartsDetails_UsersCustomersCarts">
-          <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
-          <End Role="CartDet" Type="Self.CartDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cart">
-              <PropertyRef Name="CartId" />
-            </Principal>
-            <Dependent Role="CartDet">
-              <PropertyRef Name="CartId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
-          <End Role="Pro" Type="Self.Pro" Multiplicity="1" />
-          <End Role="CartDet" Type="Self.CartDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pro">
-              <PropertyRef Name="ShpId" />
-              <PropertyRef Name="ProId" />
-            </Principal>
-            <Dependent Role="CartDet">
-              <PropertyRef Name="ShpId" />
-              <PropertyRef Name="ProId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RcptBuy_Cus">
-          <End Role="Cus" Type="Self.Cus" Multiplicity="1" />
-          <End Role="RcptBuy" Type="Self.RcptBuy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cus">
-              <PropertyRef Name="CusId" />
-            </Principal>
-            <Dependent Role="RcptBuy">
-              <PropertyRef Name="CusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UsersCustomers_Users">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
-          <End Role="Cus" Type="Self.Cus" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="Cus">
-              <PropertyRef Name="CusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Shp_Mer">
-          <End Role="Mer" Type="Self.Mer" Multiplicity="1" />
-          <End Role="Shp" Type="Self.Shp" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mer">
-              <PropertyRef Name="MerId" />
-            </Principal>
-            <Dependent Role="Shp">
-              <PropertyRef Name="MerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubscriptionsDetails_UsersMerchants">
-          <End Role="Mer" Type="Self.Mer" Multiplicity="1" />
-          <End Role="SubDet" Type="Self.SubDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mer">
-              <PropertyRef Name="MerId" />
-            </Principal>
-            <Dependent Role="SubDet">
-              <PropertyRef Name="MerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UsersMerchants_Users">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
-          <End Role="Mer" Type="Self.Mer" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="Mer">
-              <PropertyRef Name="MerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Mstr_Usr">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
-          <End Role="Mstr" Type="Self.Mstr" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="Mstr">
-              <PropertyRef Name="MstrId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MstrDet_Mstr">
-          <End Role="Mstr" Type="Self.Mstr" Multiplicity="1" />
-          <End Role="MstrDet" Type="Self.MstrDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mstr">
-              <PropertyRef Name="MstrId" />
-            </Principal>
-            <Dependent Role="MstrDet">
-              <PropertyRef Name="MstrId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MstrDet_Mstr1">
-          <End Role="Mstr" Type="Self.Mstr" Multiplicity="0..1" />
-          <End Role="MstrDet" Type="Self.MstrDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mstr">
-              <PropertyRef Name="MstrId" />
-            </Principal>
-            <Dependent Role="MstrDet">
-              <PropertyRef Name="AddBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MstrDet_MstrRole">
-          <End Role="MstrRole" Type="Self.MstrRole" Multiplicity="1" />
-          <End Role="MstrDet" Type="Self.MstrDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MstrRole">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="MstrDet">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pro_Brand">
-          <End Role="ProBrand" Type="Self.ProBrand" Multiplicity="1" />
-          <End Role="Pro" Type="Self.Pro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProBrand">
-              <PropertyRef Name="BrandId" />
-            </Principal>
-            <Dependent Role="Pro">
-              <PropertyRef Name="BrandId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pro_ProCat">
-          <End Role="ProCat" Type="Self.ProCat" Multiplicity="1" />
-          <End Role="Pro" Type="Self.Pro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProCat">
-              <PropertyRef Name="CatId" />
-            </Principal>
-            <Dependent Role="Pro">
-              <PropertyRef Name="CatId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProDet_Pro">
-          <End Role="Pro" Type="Self.Pro" Multiplicity="1" />
-          <End Role="ProDet" Type="Self.ProDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pro">
-              <PropertyRef Name="ShpId" />
-              <PropertyRef Name="ProId" />
-            </Principal>
-            <Dependent Role="ProDet">
-              <PropertyRef Name="ShpId" />
-              <PropertyRef Name="ProId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts">
-          <End Role="Pro" Type="Self.Pro" Multiplicity="1" />
-          <End Role="RcptBuyDet" Type="Self.RcptBuyDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pro">
-              <PropertyRef Name="ShpId" />
-              <PropertyRef Name="ProId" />
-            </Principal>
-            <Dependent Role="RcptBuyDet">
-              <PropertyRef Name="ShpId" />
-              <PropertyRef Name="ProId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UsersMerchantsShopsProducts_UsersMerchantsShops">
-          <End Role="Shp" Type="Self.Shp" Multiplicity="1" />
-          <End Role="Pro" Type="Self.Pro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shp">
-              <PropertyRef Name="ShpId" />
-            </Principal>
-            <Dependent Role="Pro">
-              <PropertyRef Name="ShpId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProDet_ProColor">
-          <End Role="ProColor" Type="Self.ProColor" Multiplicity="1" />
-          <End Role="ProDet" Type="Self.ProDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProColor">
-              <PropertyRef Name="ColorId" />
-            </Principal>
-            <Dependent Role="ProDet">
-              <PropertyRef Name="ColorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProDet_ProSize">
-          <End Role="ProSize" Type="Self.ProSize" Multiplicity="1" />
-          <End Role="ProDet" Type="Self.ProDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProSize">
-              <PropertyRef Name="SizeId" />
-            </Principal>
-            <Dependent Role="ProDet">
-              <PropertyRef Name="SizeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Rcpt_Usr">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
-          <End Role="Rcpt" Type="Self.Rcpt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="Rcpt">
-              <PropertyRef Name="UsrAdd" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Rcpt_Usr1">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="0..1" />
-          <End Role="Rcpt" Type="Self.Rcpt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="Rcpt">
-              <PropertyRef Name="UsrEdit" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptBuys_Receipts">
-          <End Role="Rcpt" Type="Self.Rcpt" Multiplicity="1" />
-          <End Role="RcptBuy" Type="Self.RcptBuy" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Rcpt">
-              <PropertyRef Name="RcptId" />
-            </Principal>
-            <Dependent Role="RcptBuy">
-              <PropertyRef Name="RcptBuyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptsSubscriptions_Receipts">
-          <End Role="Rcpt" Type="Self.Rcpt" Multiplicity="1" />
-          <End Role="RcptSub" Type="Self.RcptSub" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Rcpt">
-              <PropertyRef Name="RcptId" />
-            </Principal>
-            <Dependent Role="RcptSub">
-              <PropertyRef Name="RcptSubId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptsBuysDetails_ReceiptsBuys">
-          <End Role="RcptBuy" Type="Self.RcptBuy" Multiplicity="1" />
-          <End Role="RcptBuyDet" Type="Self.RcptBuyDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RcptBuy">
-              <PropertyRef Name="RcptBuyId" />
-            </Principal>
-            <Dependent Role="RcptBuyDet">
-              <PropertyRef Name="RcptBuyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptsBuysStates_ReceiptsBuys">
-          <End Role="RcptBuy" Type="Self.RcptBuy" Multiplicity="1" />
-          <End Role="RcptBuySta" Type="Self.RcptBuySta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RcptBuy">
-              <PropertyRef Name="RcptBuyId" />
-            </Principal>
-            <Dependent Role="RcptBuySta">
-              <PropertyRef Name="RcptBuyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates">
-          <End Role="RcptBuySta" Type="Self.RcptBuySta" Multiplicity="1" />
-          <End Role="RcptBuyStaDet" Type="Self.RcptBuyStaDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RcptBuySta">
-              <PropertyRef Name="StaId" />
-            </Principal>
-            <Dependent Role="RcptBuyStaDet">
-              <PropertyRef Name="StaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
-          <End Role="RcptBuyStaStep" Type="Self.RcptBuyStaStep" Multiplicity="1" />
-          <End Role="RcptBuyStaDet" Type="Self.RcptBuyStaDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RcptBuyStaStep">
-              <PropertyRef Name="StepId" />
-            </Principal>
-            <Dependent Role="RcptBuyStaDet">
-              <PropertyRef Name="StepId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
-          <End Role="RcptSub" Type="Self.RcptSub" Multiplicity="1" />
-          <End Role="RcptSubDet" Type="Self.RcptSubDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RcptSub">
-              <PropertyRef Name="RcptSubId" />
-            </Principal>
-            <Dependent Role="RcptSubDet">
-              <PropertyRef Name="RcptSubId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
-          <End Role="SubDet" Type="Self.SubDet" Multiplicity="1" />
-          <End Role="RcptSubDet" Type="Self.RcptSubDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubDet">
-              <PropertyRef Name="SubId" />
-              <PropertyRef Name="MerId" />
-            </Principal>
-            <Dependent Role="RcptSubDet">
-              <PropertyRef Name="SubId" />
-              <PropertyRef Name="MerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubscriptionsDetails_Subscriptions">
-          <End Role="Sub" Type="Self.Sub" Multiplicity="1" />
-          <End Role="SubDet" Type="Self.SubDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sub">
-              <PropertyRef Name="SubId" />
-            </Principal>
-            <Dependent Role="SubDet">
-              <PropertyRef Name="SubId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UsrAct_Usr">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="0..1" />
-          <End Role="UsrAct" Type="Self.UsrAct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="UsrAct">
-              <PropertyRef Name="UsrId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WebSlide_WebInfo">
-          <End Role="WebInfo" Type="Self.WebInfo" Multiplicity="0..1" />
-          <End Role="WebSlide" Type="Self.WebSlide" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WebInfo">
-              <PropertyRef Name="WebId" />
-            </Principal>
-            <Dependent Role="WebSlide">
-              <PropertyRef Name="WebId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ShoesStoreDBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cart" EntityType="Self.Cart" />
-          <EntitySet Name="CartDet" EntityType="Self.CartDet" />
-          <EntitySet Name="Cus" EntityType="Self.Cus" />
-          <EntitySet Name="Mer" EntityType="Self.Mer" />
-          <EntitySet Name="Mstr" EntityType="Self.Mstr" />
-          <EntitySet Name="MstrDet" EntityType="Self.MstrDet" />
-          <EntitySet Name="MstrRole" EntityType="Self.MstrRole" />
-          <EntitySet Name="Pro" EntityType="Self.Pro" />
-          <EntitySet Name="ProBrand" EntityType="Self.ProBrand" />
-          <EntitySet Name="ProCat" EntityType="Self.ProCat" />
-          <EntitySet Name="ProColor" EntityType="Self.ProColor" />
-          <EntitySet Name="ProDet" EntityType="Self.ProDet" />
-          <EntitySet Name="ProSize" EntityType="Self.ProSize" />
-          <EntitySet Name="Rcpt" EntityType="Self.Rcpt" />
-          <EntitySet Name="RcptBuy" EntityType="Self.RcptBuy" />
-          <EntitySet Name="RcptBuyDet" EntityType="Self.RcptBuyDet" />
-          <EntitySet Name="RcptBuySta" EntityType="Self.RcptBuySta" />
-          <EntitySet Name="RcptBuyStaDet" EntityType="Self.RcptBuyStaDet" />
-          <EntitySet Name="RcptBuyStaStep" EntityType="Self.RcptBuyStaStep" />
-          <EntitySet Name="RcptSub" EntityType="Self.RcptSub" />
-          <EntitySet Name="RcptSubDet" EntityType="Self.RcptSubDet" />
-          <EntitySet Name="Shp" EntityType="Self.Shp" />
-          <EntitySet Name="Sub" EntityType="Self.Sub" />
-          <EntitySet Name="SubDet" EntityType="Self.SubDet" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Usr" EntityType="Self.Usr" />
-          <EntitySet Name="UsrAct" EntityType="Self.UsrAct" />
-          <EntitySet Name="WebInfo" EntityType="Self.WebInfo" />
-          <EntitySet Name="WebSlide" EntityType="Self.WebSlide" />
-          <AssociationSet Name="FK_UsersCustomersCarts_UsersCustomers" Association="Self.FK_UsersCustomersCarts_UsersCustomers">
-            <End Role="Cus" EntitySet="Cus" />
-            <End Role="Cart" EntitySet="Cart" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersCustomersCarts" Association="Self.FK_UsersCustomersCartsDetails_UsersCustomersCarts">
-            <End Role="Cart" EntitySet="Cart" />
-            <End Role="CartDet" EntitySet="CartDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" Association="Self.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
-            <End Role="Pro" EntitySet="Pro" />
-            <End Role="CartDet" EntitySet="CartDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RcptBuy_Cus" Association="Self.FK_RcptBuy_Cus">
-            <End Role="Cus" EntitySet="Cus" />
-            <End Role="RcptBuy" EntitySet="RcptBuy" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomers_Users" Association="Self.FK_UsersCustomers_Users">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="Cus" EntitySet="Cus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Shp_Mer" Association="Self.FK_Shp_Mer">
-            <End Role="Mer" EntitySet="Mer" />
-            <End Role="Shp" EntitySet="Shp" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubscriptionsDetails_UsersMerchants" Association="Self.FK_SubscriptionsDetails_UsersMerchants">
-            <End Role="Mer" EntitySet="Mer" />
-            <End Role="SubDet" EntitySet="SubDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsersMerchants_Users" Association="Self.FK_UsersMerchants_Users">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="Mer" EntitySet="Mer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mstr_Usr" Association="Self.FK_Mstr_Usr">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="Mstr" EntitySet="Mstr" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MstrDet_Mstr" Association="Self.FK_MstrDet_Mstr">
-            <End Role="Mstr" EntitySet="Mstr" />
-            <End Role="MstrDet" EntitySet="MstrDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MstrDet_Mstr1" Association="Self.FK_MstrDet_Mstr1">
-            <End Role="Mstr" EntitySet="Mstr" />
-            <End Role="MstrDet" EntitySet="MstrDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MstrDet_MstrRole" Association="Self.FK_MstrDet_MstrRole">
-            <End Role="MstrRole" EntitySet="MstrRole" />
-            <End Role="MstrDet" EntitySet="MstrDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pro_Brand" Association="Self.FK_Pro_Brand">
-            <End Role="ProBrand" EntitySet="ProBrand" />
-            <End Role="Pro" EntitySet="Pro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pro_ProCat" Association="Self.FK_Pro_ProCat">
-            <End Role="ProCat" EntitySet="ProCat" />
-            <End Role="Pro" EntitySet="Pro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProDet_Pro" Association="Self.FK_ProDet_Pro">
-            <End Role="Pro" EntitySet="Pro" />
-            <End Role="ProDet" EntitySet="ProDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" Association="Self.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts">
-            <End Role="Pro" EntitySet="Pro" />
-            <End Role="RcptBuyDet" EntitySet="RcptBuyDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsersMerchantsShopsProducts_UsersMerchantsShops" Association="Self.FK_UsersMerchantsShopsProducts_UsersMerchantsShops">
-            <End Role="Shp" EntitySet="Shp" />
-            <End Role="Pro" EntitySet="Pro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProDet_ProColor" Association="Self.FK_ProDet_ProColor">
-            <End Role="ProColor" EntitySet="ProColor" />
-            <End Role="ProDet" EntitySet="ProDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProDet_ProSize" Association="Self.FK_ProDet_ProSize">
-            <End Role="ProSize" EntitySet="ProSize" />
-            <End Role="ProDet" EntitySet="ProDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Rcpt_Usr" Association="Self.FK_Rcpt_Usr">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="Rcpt" EntitySet="Rcpt" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Rcpt_Usr1" Association="Self.FK_Rcpt_Usr1">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="Rcpt" EntitySet="Rcpt" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptBuys_Receipts" Association="Self.FK_ReceiptBuys_Receipts">
-            <End Role="Rcpt" EntitySet="Rcpt" />
-            <End Role="RcptBuy" EntitySet="RcptBuy" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptions_Receipts" Association="Self.FK_ReceiptsSubscriptions_Receipts">
-            <End Role="Rcpt" EntitySet="Rcpt" />
-            <End Role="RcptSub" EntitySet="RcptSub" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysDetails_ReceiptsBuys" Association="Self.FK_ReceiptsBuysDetails_ReceiptsBuys">
-            <End Role="RcptBuy" EntitySet="RcptBuy" />
-            <End Role="RcptBuyDet" EntitySet="RcptBuyDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysStates_ReceiptsBuys" Association="Self.FK_ReceiptsBuysStates_ReceiptsBuys">
-            <End Role="RcptBuy" EntitySet="RcptBuy" />
-            <End Role="RcptBuySta" EntitySet="RcptBuySta" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" Association="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates">
-            <End Role="RcptBuySta" EntitySet="RcptBuySta" />
-            <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" Association="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
-            <End Role="RcptBuyStaStep" EntitySet="RcptBuyStaStep" />
-            <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" Association="Self.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
-            <End Role="RcptSub" EntitySet="RcptSub" />
-            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" Association="Self.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
-            <End Role="SubDet" EntitySet="SubDet" />
-            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubscriptionsDetails_Subscriptions" Association="Self.FK_SubscriptionsDetails_Subscriptions">
-            <End Role="Sub" EntitySet="Sub" />
-            <End Role="SubDet" EntitySet="SubDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsrAct_Usr" Association="Self.FK_UsrAct_Usr">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="UsrAct" EntitySet="UsrAct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WebSlide_WebInfo" Association="Self.FK_WebSlide_WebInfo">
-            <End Role="WebInfo" EntitySet="WebInfo" />
-            <End Role="WebSlide" EntitySet="WebSlide" />
-          </AssociationSet>
           <FunctionImport Name="sp_Admin_Info" ReturnType="Collection(ShoesStoreModel.sp_Admin_Info_Result)" />
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -2217,14 +1355,14 @@
             <Parameter Name="definition" Mode="In" Type="Binary" />
           </FunctionImport>
           <FunctionImport Name="sp_Cart_Delete">
-            <Parameter Name="CartID" Mode="In" Type="Int32" />
+          <Parameter Name="CartID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Cart_Insert">
             <Parameter Name="CusID" Mode="In" Type="Int32" />
             <Parameter Name="IpAddress" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Cart_Select" ReturnType="Collection(ShoesStoreModel.sp_Cart_Select_Result)">
-            <Parameter Name="CartID" Mode="In" Type="Int32" />
+          <Parameter Name="CartID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Cart_Update">
             <Parameter Name="CartID" Mode="In" Type="Int32" />
@@ -2260,17 +1398,17 @@
             <Parameter Name="definition" Mode="In" Type="Binary" />
           </FunctionImport>
           <FunctionImport Name="sp_Cus_Delete">
-            <Parameter Name="CusId" Mode="In" Type="Int32" />
+          <Parameter Name="CusId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Cus_Info" ReturnType="Collection(ShoesStoreModel.sp_Cus_Info_Result)" />
           <FunctionImport Name="sp_Cus_Insert">
-            <Parameter Name="CusId" Mode="In" Type="Int32" />
+          <Parameter Name="CusId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Cus_Select" ReturnType="Collection(Int32)">
-            <Parameter Name="CusID" Mode="In" Type="Int32" />
+          <Parameter Name="CusID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Cus_Update">
-            <Parameter Name="CusId" Mode="In" Type="Int32" />
+          <Parameter Name="CusId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_dropdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -2285,17 +1423,17 @@
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Mer_Delete">
-            <Parameter Name="MerId" Mode="In" Type="Int32" />
+          <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Mer_Info" ReturnType="Collection(ShoesStoreModel.sp_Mer_Info_Result)" />
           <FunctionImport Name="sp_Mer_Insert">
-            <Parameter Name="MerId" Mode="In" Type="Int32" />
+          <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Mer_Select" ReturnType="Collection(Int32)">
-            <Parameter Name="MerId" Mode="In" Type="Int32" />
+          <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Mer_Update">
-            <Parameter Name="MerId" Mode="In" Type="Int32" />
+          <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Mstr_Delete">
             <Parameter Name="MstrId" Mode="In" Type="Int32" />
@@ -2330,21 +1468,21 @@
             <Parameter Name="RoleName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ProBrand_Delete">
-            <Parameter Name="BrandId" Mode="In" Type="Int32" />
+          <Parameter Name="BrandId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProBrand_Insert">
             <Parameter Name="BrandId" Mode="In" Type="Int32" />
             <Parameter Name="BrandName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ProBrand_Select" ReturnType="Collection(ShoesStoreModel.sp_ProBrand_Select_Result)">
-            <Parameter Name="BrandId" Mode="In" Type="Int32" />
+          <Parameter Name="BrandId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProBrand_Update">
             <Parameter Name="BrandId" Mode="In" Type="Int32" />
             <Parameter Name="BrandName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ProCat_Delete">
-            <Parameter Name="CatId" Mode="In" Type="Int32" />
+          <Parameter Name="CatId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProCat_Insert">
             <Parameter Name="CatId" Mode="In" Type="Int32" />
@@ -2354,7 +1492,7 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="sp_ProCat_Select" ReturnType="Collection(ShoesStoreModel.sp_ProCat_Select_Result)">
-            <Parameter Name="CatId" Mode="In" Type="Int32" />
+          <Parameter Name="CatId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProCat_Update">
             <Parameter Name="CatId" Mode="In" Type="Int32" />
@@ -2364,7 +1502,7 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="sp_ProColor_Delete">
-            <Parameter Name="ColorId" Mode="In" Type="Int32" />
+          <Parameter Name="ColorId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProColor_Insert">
             <Parameter Name="ColorId" Mode="In" Type="Int32" />
@@ -2372,7 +1510,7 @@
             <Parameter Name="ColorImg" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ProColor_Select" ReturnType="Collection(ShoesStoreModel.sp_ProColor_Select_Result)">
-            <Parameter Name="ColorId" Mode="In" Type="Int32" />
+          <Parameter Name="ColorId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProColor_Update">
             <Parameter Name="ColorId" Mode="In" Type="Int32" />
@@ -2404,7 +1542,7 @@
             <Parameter Name="SizeId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProSize_Delete">
-            <Parameter Name="SizeId" Mode="In" Type="Int32" />
+          <Parameter Name="SizeId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProSize_Insert">
             <Parameter Name="SizeId" Mode="In" Type="Int32" />
@@ -2412,7 +1550,7 @@
             <Parameter Name="SizeImg" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ProSize_Select" ReturnType="Collection(ShoesStoreModel.sp_ProSize_Select_Result)">
-            <Parameter Name="SizeId" Mode="In" Type="Int32" />
+          <Parameter Name="SizeId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProSize_Update">
             <Parameter Name="SizeId" Mode="In" Type="Int32" />
@@ -2420,7 +1558,7 @@
             <Parameter Name="SizeImg" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Rcpt_Delete">
-            <Parameter Name="RcptId" Mode="In" Type="Int32" />
+          <Parameter Name="RcptId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Rcpt_Insert">
             <Parameter Name="RcptId" Mode="In" Type="Int32" />
@@ -2430,7 +1568,7 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="sp_Rcpt_Select" ReturnType="Collection(ShoesStoreModel.sp_Rcpt_Select_Result)">
-            <Parameter Name="RcptId" Mode="In" Type="Int32" />
+          <Parameter Name="RcptId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Rcpt_Sub_Det" ReturnType="Collection(ShoesStoreModel.sp_Rcpt_Sub_Det_Result)" />
           <FunctionImport Name="sp_Rcpt_Update">
@@ -2441,14 +1579,14 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptBuy_Delete">
-            <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
+          <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptBuy_Insert">
             <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
             <Parameter Name="CusId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptBuy_Select" ReturnType="Collection(ShoesStoreModel.sp_RcptBuy_Select_Result)">
-            <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
+          <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptBuy_Update">
             <Parameter Name="RcptBuyId" Mode="In" Type="Int32" />
@@ -2509,7 +1647,7 @@
             <Parameter Name="IsDone" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptBuyStaStep_Delete">
-            <Parameter Name="StepId" Mode="In" Type="Int32" />
+          <Parameter Name="StepId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptBuyStaStep_Insert">
             <Parameter Name="StepId" Mode="In" Type="Int32" />
@@ -2517,7 +1655,7 @@
             <Parameter Name="StepOrder" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptBuyStaStep_Select" ReturnType="Collection(ShoesStoreModel.sp_RcptBuyStaStep_Select_Result)">
-            <Parameter Name="StepId" Mode="In" Type="Int32" />
+          <Parameter Name="StepId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptBuyStaStep_Update">
             <Parameter Name="StepId" Mode="In" Type="Int32" />
@@ -2525,16 +1663,16 @@
             <Parameter Name="StepOrder" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptSub_Delete">
-            <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
+          <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptSub_Insert">
-            <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
+          <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptSub_Select" ReturnType="Collection(Int32)">
-            <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
+          <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptSub_Update">
-            <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
+          <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptSubDet_Delete">
             <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
@@ -2562,7 +1700,7 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Shp_Delete">
-            <Parameter Name="ShpId" Mode="In" Type="Int32" />
+          <Parameter Name="ShpId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Shp_Insert">
             <Parameter Name="ShpId" Mode="In" Type="Int32" />
@@ -2572,7 +1710,7 @@
             <Parameter Name="Active" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Shp_Select" ReturnType="Collection(ShoesStoreModel.sp_Shp_Select_Result)">
-            <Parameter Name="ShpId" Mode="In" Type="Int32" />
+          <Parameter Name="ShpId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Shp_Update">
             <Parameter Name="ShpId" Mode="In" Type="Int32" />
@@ -2582,7 +1720,7 @@
             <Parameter Name="Active" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Sub_Delete">
-            <Parameter Name="SubId" Mode="In" Type="Int32" />
+          <Parameter Name="SubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Sub_Insert">
             <Parameter Name="SubId" Mode="In" Type="Int32" />
@@ -2591,7 +1729,7 @@
             <Parameter Name="Price" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Sub_Select" ReturnType="Collection(ShoesStoreModel.sp_Sub_Select_Result)">
-            <Parameter Name="SubId" Mode="In" Type="Int32" />
+          <Parameter Name="SubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Sub_Update">
             <Parameter Name="SubId" Mode="In" Type="Int32" />
@@ -2621,7 +1759,7 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="sp_Usr_Delete">
-            <Parameter Name="UsrId" Mode="In" Type="Int32" />
+          <Parameter Name="UsrId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Usr_Insert">
             <Parameter Name="UsrId" Mode="In" Type="Int32" />
@@ -2636,7 +1774,7 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="sp_Usr_Select" ReturnType="Collection(ShoesStoreModel.sp_Usr_Select_Result)">
-            <Parameter Name="UsrId" Mode="In" Type="Int32" />
+          <Parameter Name="UsrId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Usr_Update">
             <Parameter Name="UsrId" Mode="In" Type="Int32" />
@@ -2651,7 +1789,7 @@
             <Parameter Name="DateEdit" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="WebInfo_Delete">
-            <Parameter Name="WebId" Mode="In" Type="Int32" />
+          <Parameter Name="WebId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="WebInfo_Insert" ReturnType="Collection(ShoesStoreModel.WebInfo_Insert_Result)">
             <Parameter Name="WebId" Mode="In" Type="Int32" />
@@ -2662,7 +1800,7 @@
             <Parameter Name="WorkTime" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="WebInfo_Select" ReturnType="Collection(ShoesStoreModel.WebInfo_Select_Result)">
-            <Parameter Name="WebId" Mode="In" Type="Int32" />
+          <Parameter Name="WebId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="WebInfo_Update" ReturnType="Collection(ShoesStoreModel.WebInfo_Update_Result)">
             <Parameter Name="WebId" Mode="In" Type="Int32" />
@@ -2673,7 +1811,7 @@
             <Parameter Name="WorkTime" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="WebSlide_Delete">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="WebSlide_Insert" ReturnType="Collection(ShoesStoreModel.WebSlide_Insert_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -2681,13 +1819,175 @@
             <Parameter Name="Img" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="WebSlide_Select" ReturnType="Collection(ShoesStoreModel.WebSlide_Select_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="WebSlide_Update" ReturnType="Collection(ShoesStoreModel.WebSlide_Update_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="WebId" Mode="In" Type="Int32" />
             <Parameter Name="Img" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Cart" EntityType="ShoesStoreModel.Cart" />
+          <EntitySet Name="CartDet" EntityType="ShoesStoreModel.CartDet" />
+          <EntitySet Name="Cus" EntityType="ShoesStoreModel.Cus" />
+          <EntitySet Name="Mer" EntityType="ShoesStoreModel.Mer" />
+          <EntitySet Name="Mstr" EntityType="ShoesStoreModel.Mstr" />
+          <EntitySet Name="MstrDet" EntityType="ShoesStoreModel.MstrDet" />
+          <EntitySet Name="MstrRole" EntityType="ShoesStoreModel.MstrRole" />
+          <EntitySet Name="Pro" EntityType="ShoesStoreModel.Pro" />
+          <EntitySet Name="ProBrand" EntityType="ShoesStoreModel.ProBrand" />
+          <EntitySet Name="ProCat" EntityType="ShoesStoreModel.ProCat" />
+          <EntitySet Name="ProColor" EntityType="ShoesStoreModel.ProColor" />
+          <EntitySet Name="ProDet" EntityType="ShoesStoreModel.ProDet" />
+          <EntitySet Name="ProSize" EntityType="ShoesStoreModel.ProSize" />
+          <EntitySet Name="ProSlideImg" EntityType="ShoesStoreModel.ProSlideImg" />
+          <EntitySet Name="Rcpt" EntityType="ShoesStoreModel.Rcpt" />
+          <EntitySet Name="RcptBuy" EntityType="ShoesStoreModel.RcptBuy" />
+          <EntitySet Name="RcptBuyDet" EntityType="ShoesStoreModel.RcptBuyDet" />
+          <EntitySet Name="RcptBuySta" EntityType="ShoesStoreModel.RcptBuySta" />
+          <EntitySet Name="RcptBuyStaDet" EntityType="ShoesStoreModel.RcptBuyStaDet" />
+          <EntitySet Name="RcptBuyStaStep" EntityType="ShoesStoreModel.RcptBuyStaStep" />
+          <EntitySet Name="RcptSub" EntityType="ShoesStoreModel.RcptSub" />
+          <EntitySet Name="RcptSubDet" EntityType="ShoesStoreModel.RcptSubDet" />
+          <EntitySet Name="Shp" EntityType="ShoesStoreModel.Shp" />
+          <EntitySet Name="Sub" EntityType="ShoesStoreModel.Sub" />
+          <EntitySet Name="SubDet" EntityType="ShoesStoreModel.SubDet" />
+          <EntitySet Name="sysdiagrams" EntityType="ShoesStoreModel.sysdiagrams" />
+          <EntitySet Name="Usr" EntityType="ShoesStoreModel.Usr" />
+          <EntitySet Name="UsrAct" EntityType="ShoesStoreModel.UsrAct" />
+          <EntitySet Name="WebInfo" EntityType="ShoesStoreModel.WebInfo" />
+          <EntitySet Name="WebSlide" EntityType="ShoesStoreModel.WebSlide" />
+          <AssociationSet Name="FK_UsersCustomersCarts_UsersCustomers" Association="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers">
+            <End Role="Cus" EntitySet="Cus" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersCustomersCarts" Association="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts">
+            <End Role="Cart" EntitySet="Cart" />
+            <End Role="CartDet" EntitySet="CartDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" Association="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
+            <End Role="Pro" EntitySet="Pro" />
+            <End Role="CartDet" EntitySet="CartDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RcptBuy_Cus" Association="ShoesStoreModel.FK_RcptBuy_Cus">
+            <End Role="Cus" EntitySet="Cus" />
+            <End Role="RcptBuy" EntitySet="RcptBuy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersCustomers_Users" Association="ShoesStoreModel.FK_UsersCustomers_Users">
+            <End Role="Usr" EntitySet="Usr" />
+            <End Role="Cus" EntitySet="Cus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shp_Mer" Association="ShoesStoreModel.FK_Shp_Mer">
+            <End Role="Mer" EntitySet="Mer" />
+            <End Role="Shp" EntitySet="Shp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionsDetails_UsersMerchants" Association="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants">
+            <End Role="Mer" EntitySet="Mer" />
+            <End Role="SubDet" EntitySet="SubDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersMerchants_Users" Association="ShoesStoreModel.FK_UsersMerchants_Users">
+            <End Role="Usr" EntitySet="Usr" />
+            <End Role="Mer" EntitySet="Mer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mstr_Usr" Association="ShoesStoreModel.FK_Mstr_Usr">
+            <End Role="Usr" EntitySet="Usr" />
+            <End Role="Mstr" EntitySet="Mstr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MstrDet_Mstr" Association="ShoesStoreModel.FK_MstrDet_Mstr">
+            <End Role="Mstr" EntitySet="Mstr" />
+            <End Role="MstrDet" EntitySet="MstrDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MstrDet_Mstr1" Association="ShoesStoreModel.FK_MstrDet_Mstr1">
+            <End Role="Mstr" EntitySet="Mstr" />
+            <End Role="MstrDet" EntitySet="MstrDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MstrDet_MstrRole" Association="ShoesStoreModel.FK_MstrDet_MstrRole">
+            <End Role="MstrRole" EntitySet="MstrRole" />
+            <End Role="MstrDet" EntitySet="MstrDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro_Brand" Association="ShoesStoreModel.FK_Pro_Brand">
+            <End Role="ProBrand" EntitySet="ProBrand" />
+            <End Role="Pro" EntitySet="Pro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro_ProCat" Association="ShoesStoreModel.FK_Pro_ProCat">
+            <End Role="ProCat" EntitySet="ProCat" />
+            <End Role="Pro" EntitySet="Pro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProDet_Pro" Association="ShoesStoreModel.FK_ProDet_Pro">
+            <End Role="Pro" EntitySet="Pro" />
+            <End Role="ProDet" EntitySet="ProDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProSlideImg_Pro" Association="ShoesStoreModel.FK_ProSlideImg_Pro">
+            <End Role="Pro" EntitySet="Pro" />
+            <End Role="ProSlideImg" EntitySet="ProSlideImg" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" Association="ShoesStoreModel.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts">
+            <End Role="Pro" EntitySet="Pro" />
+            <End Role="RcptBuyDet" EntitySet="RcptBuyDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersMerchantsShopsProducts_UsersMerchantsShops" Association="ShoesStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops">
+            <End Role="Shp" EntitySet="Shp" />
+            <End Role="Pro" EntitySet="Pro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProDet_ProColor" Association="ShoesStoreModel.FK_ProDet_ProColor">
+            <End Role="ProColor" EntitySet="ProColor" />
+            <End Role="ProDet" EntitySet="ProDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProDet_ProSize" Association="ShoesStoreModel.FK_ProDet_ProSize">
+            <End Role="ProSize" EntitySet="ProSize" />
+            <End Role="ProDet" EntitySet="ProDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rcpt_Usr" Association="ShoesStoreModel.FK_Rcpt_Usr">
+            <End Role="Usr" EntitySet="Usr" />
+            <End Role="Rcpt" EntitySet="Rcpt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rcpt_Usr1" Association="ShoesStoreModel.FK_Rcpt_Usr1">
+            <End Role="Usr" EntitySet="Usr" />
+            <End Role="Rcpt" EntitySet="Rcpt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptBuys_Receipts" Association="ShoesStoreModel.FK_ReceiptBuys_Receipts">
+            <End Role="Rcpt" EntitySet="Rcpt" />
+            <End Role="RcptBuy" EntitySet="RcptBuy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptsSubscriptions_Receipts" Association="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts">
+            <End Role="Rcpt" EntitySet="Rcpt" />
+            <End Role="RcptSub" EntitySet="RcptSub" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptsBuysDetails_ReceiptsBuys" Association="ShoesStoreModel.FK_ReceiptsBuysDetails_ReceiptsBuys">
+            <End Role="RcptBuy" EntitySet="RcptBuy" />
+            <End Role="RcptBuyDet" EntitySet="RcptBuyDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptsBuysStates_ReceiptsBuys" Association="ShoesStoreModel.FK_ReceiptsBuysStates_ReceiptsBuys">
+            <End Role="RcptBuy" EntitySet="RcptBuy" />
+            <End Role="RcptBuySta" EntitySet="RcptBuySta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" Association="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates">
+            <End Role="RcptBuySta" EntitySet="RcptBuySta" />
+            <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" Association="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
+            <End Role="RcptBuyStaStep" EntitySet="RcptBuyStaStep" />
+            <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" Association="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
+            <End Role="RcptSub" EntitySet="RcptSub" />
+            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" Association="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
+            <End Role="SubDet" EntitySet="SubDet" />
+            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionsDetails_Subscriptions" Association="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions">
+            <End Role="Sub" EntitySet="Sub" />
+            <End Role="SubDet" EntitySet="SubDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsrAct_Usr" Association="ShoesStoreModel.FK_UsrAct_Usr">
+            <End Role="Usr" EntitySet="Usr" />
+            <End Role="UsrAct" EntitySet="UsrAct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebSlide_WebInfo" Association="ShoesStoreModel.FK_WebSlide_WebInfo">
+            <End Role="WebInfo" EntitySet="WebInfo" />
+            <End Role="WebSlide" EntitySet="WebSlide" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_Admin_Info_Result">
           <Property Type="Int32" Name="UsrId" Nullable="false" />
@@ -2899,305 +2199,771 @@
           <Property Type="Int32" Name="WebId" Nullable="true" />
           <Property Type="String" Name="Img" Nullable="true" MaxLength="255" />
         </ComplexType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CusId" Type="Int32" />
+          <Property Name="IpAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers" FromRole="Cart" ToRole="Cus" />
+          <NavigationProperty Name="CartDet" Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts" FromRole="Cart" ToRole="CartDet" />
+        </EntityType>
+        <EntityType Name="CartDet">
+          <Key>
+            <PropertyRef Name="CartId" />
+            <PropertyRef Name="ShpId" />
+            <PropertyRef Name="ProId" />
+          </Key>
+          <Property Name="CartId" Type="Int32" Nullable="false" />
+          <Property Name="ShpId" Type="Int32" Nullable="false" />
+          <Property Name="ProId" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" />
+          <NavigationProperty Name="Cart" Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts" FromRole="CartDet" ToRole="Cart" />
+          <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" FromRole="CartDet" ToRole="Pro" />
+        </EntityType>
+        <EntityType Name="Cus">
+          <Key>
+            <PropertyRef Name="CusId" />
+          </Key>
+          <Property Name="CusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cart" Relationship="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers" FromRole="Cus" ToRole="Cart" />
+          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuy_Cus" FromRole="Cus" ToRole="RcptBuy" />
+          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_UsersCustomers_Users" FromRole="Cus" ToRole="Usr" />
+        </EntityType>
+        <EntityType Name="Mer">
+          <Key>
+            <PropertyRef Name="MerId" />
+          </Key>
+          <Property Name="MerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shp" Relationship="ShoesStoreModel.FK_Shp_Mer" FromRole="Mer" ToRole="Shp" />
+          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants" FromRole="Mer" ToRole="SubDet" />
+          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_UsersMerchants_Users" FromRole="Mer" ToRole="Usr" />
+        </EntityType>
+        <EntityType Name="Mstr">
+          <Key>
+            <PropertyRef Name="MstrId" />
+          </Key>
+          <Property Name="MstrId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_Mstr_Usr" FromRole="Mstr" ToRole="Usr" />
+          <NavigationProperty Name="MstrDet" Relationship="ShoesStoreModel.FK_MstrDet_Mstr" FromRole="Mstr" ToRole="MstrDet" />
+          <NavigationProperty Name="MstrDet1" Relationship="ShoesStoreModel.FK_MstrDet_Mstr1" FromRole="Mstr" ToRole="MstrDet" />
+        </EntityType>
+        <EntityType Name="MstrDet">
+          <Key>
+            <PropertyRef Name="MstrId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="MstrId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="AddBy" Type="Int32" />
+          <NavigationProperty Name="Mstr" Relationship="ShoesStoreModel.FK_MstrDet_Mstr" FromRole="MstrDet" ToRole="Mstr" />
+          <NavigationProperty Name="Mstr1" Relationship="ShoesStoreModel.FK_MstrDet_Mstr1" FromRole="MstrDet" ToRole="Mstr" />
+          <NavigationProperty Name="MstrRole" Relationship="ShoesStoreModel.FK_MstrDet_MstrRole" FromRole="MstrDet" ToRole="MstrRole" />
+        </EntityType>
+        <EntityType Name="MstrRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MstrDet" Relationship="ShoesStoreModel.FK_MstrDet_MstrRole" FromRole="MstrRole" ToRole="MstrDet" />
+        </EntityType>
+        <EntityType Name="Pro">
+          <Key>
+            <PropertyRef Name="ShpId" />
+            <PropertyRef Name="ProId" />
+          </Key>
+          <Property Name="ShpId" Type="Int32" Nullable="false" />
+          <Property Name="ProId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatId" Type="Int32" Nullable="false" />
+          <Property Name="BrandId" Type="Int32" Nullable="false" />
+          <Property Name="ProQuantity" Type="Int32" Nullable="false" />
+          <Property Name="IsOutOfStock" Type="Boolean" Nullable="false" />
+          <Property Name="ProName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescShort" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PriceAfter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateAdd" Type="DateTime" Precision="3" />
+          <Property Name="DateEdit" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CartDet" Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" FromRole="Pro" ToRole="CartDet" />
+          <NavigationProperty Name="ProBrand" Relationship="ShoesStoreModel.FK_Pro_Brand" FromRole="Pro" ToRole="ProBrand" />
+          <NavigationProperty Name="ProCat" Relationship="ShoesStoreModel.FK_Pro_ProCat" FromRole="Pro" ToRole="ProCat" />
+          <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_ProDet_Pro" FromRole="Pro" ToRole="ProDet" />
+          <NavigationProperty Name="ProSlideImg" Relationship="ShoesStoreModel.FK_ProSlideImg_Pro" FromRole="Pro" ToRole="ProSlideImg" />
+          <NavigationProperty Name="RcptBuyDet" Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" FromRole="Pro" ToRole="RcptBuyDet" />
+          <NavigationProperty Name="Shp" Relationship="ShoesStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" FromRole="Pro" ToRole="Shp" />
+        </EntityType>
+        <EntityType Name="ProBrand">
+          <Key>
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_Pro_Brand" FromRole="ProBrand" ToRole="Pro" />
+        </EntityType>
+        <EntityType Name="ProCat">
+          <Key>
+            <PropertyRef Name="CatId" />
+          </Key>
+          <Property Name="CatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEdit" Type="DateTime" Precision="3" />
+          <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_Pro_ProCat" FromRole="ProCat" ToRole="Pro" />
+        </EntityType>
+        <EntityType Name="ProColor">
+          <Key>
+            <PropertyRef Name="ColorId" />
+          </Key>
+          <Property Name="ColorId" Type="Int32" Nullable="false" />
+          <Property Name="ColorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ColorImg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_ProDet_ProColor" FromRole="ProColor" ToRole="ProDet" />
+        </EntityType>
+        <EntityType Name="ProDet">
+          <Key>
+            <PropertyRef Name="ShpId" />
+            <PropertyRef Name="ProId" />
+            <PropertyRef Name="ColorId" />
+            <PropertyRef Name="SizeId" />
+          </Key>
+          <Property Name="ShpId" Type="Int32" Nullable="false" />
+          <Property Name="ProId" Type="Int32" Nullable="false" />
+          <Property Name="ColorId" Type="Int32" Nullable="false" />
+          <Property Name="SizeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_ProDet_Pro" FromRole="ProDet" ToRole="Pro" />
+          <NavigationProperty Name="ProColor" Relationship="ShoesStoreModel.FK_ProDet_ProColor" FromRole="ProDet" ToRole="ProColor" />
+          <NavigationProperty Name="ProSize" Relationship="ShoesStoreModel.FK_ProDet_ProSize" FromRole="ProDet" ToRole="ProSize" />
+        </EntityType>
+        <EntityType Name="ProSize">
+          <Key>
+            <PropertyRef Name="SizeId" />
+          </Key>
+          <Property Name="SizeId" Type="Int32" Nullable="false" />
+          <Property Name="SizeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SizeImg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_ProDet_ProSize" FromRole="ProSize" ToRole="ProDet" />
+        </EntityType>
+        <EntityType Name="ProSlideImg">
+          <Key>
+            <PropertyRef Name="SlideImgId" />
+          </Key>
+          <Property Name="SlideImgId" Type="Int32" Nullable="false" />
+          <Property Name="ShpId" Type="Int32" />
+          <Property Name="ProId" Type="Int32" />
+          <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_ProSlideImg_Pro" FromRole="ProSlideImg" ToRole="Pro" />
+        </EntityType>
+        <EntityType Name="Rcpt">
+          <Key>
+            <PropertyRef Name="RcptId" />
+          </Key>
+          <Property Name="RcptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsrAdd" Type="Int32" Nullable="false" />
+          <Property Name="UsrEdit" Type="Int32" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEdit" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_Rcpt_Usr" FromRole="Rcpt" ToRole="Usr" />
+          <NavigationProperty Name="Usr1" Relationship="ShoesStoreModel.FK_Rcpt_Usr1" FromRole="Rcpt" ToRole="Usr" />
+          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_ReceiptBuys_Receipts" FromRole="Rcpt" ToRole="RcptBuy" />
+          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts" FromRole="Rcpt" ToRole="RcptSub" />
+        </EntityType>
+        <EntityType Name="RcptBuy">
+          <Key>
+            <PropertyRef Name="RcptBuyId" />
+          </Key>
+          <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
+          <Property Name="CusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_RcptBuy_Cus" FromRole="RcptBuy" ToRole="Cus" />
+          <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_ReceiptBuys_Receipts" FromRole="RcptBuy" ToRole="Rcpt" />
+          <NavigationProperty Name="RcptBuyDet" Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_ReceiptsBuys" FromRole="RcptBuy" ToRole="RcptBuyDet" />
+          <NavigationProperty Name="RcptBuySta" Relationship="ShoesStoreModel.FK_ReceiptsBuysStates_ReceiptsBuys" FromRole="RcptBuy" ToRole="RcptBuySta" />
+        </EntityType>
+        <EntityType Name="RcptBuyDet">
+          <Key>
+            <PropertyRef Name="RcptBuyId" />
+            <PropertyRef Name="ShpId" />
+            <PropertyRef Name="ProId" />
+          </Key>
+          <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
+          <Property Name="ShpId" Type="Int32" Nullable="false" />
+          <Property Name="ProId" Type="Int32" Nullable="false" />
+          <Property Name="Cmt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Point" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" FromRole="RcptBuyDet" ToRole="Pro" />
+          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_ReceiptsBuysDetails_ReceiptsBuys" FromRole="RcptBuyDet" ToRole="RcptBuy" />
+        </EntityType>
+        <EntityType Name="RcptBuySta">
+          <Key>
+            <PropertyRef Name="StaId" />
+          </Key>
+          <Property Name="StaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_ReceiptsBuysStates_ReceiptsBuys" FromRole="RcptBuySta" ToRole="RcptBuy" />
+          <NavigationProperty Name="RcptBuyStaDet" Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" FromRole="RcptBuySta" ToRole="RcptBuyStaDet" />
+        </EntityType>
+        <EntityType Name="RcptBuyStaDet">
+          <Key>
+            <PropertyRef Name="StaId" />
+            <PropertyRef Name="StepId" />
+          </Key>
+          <Property Name="StaId" Type="Int32" Nullable="false" />
+          <Property Name="StepId" Type="Int32" Nullable="false" />
+          <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RcptBuySta" Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates" FromRole="RcptBuyStaDet" ToRole="RcptBuySta" />
+          <NavigationProperty Name="RcptBuyStaStep" Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" FromRole="RcptBuyStaDet" ToRole="RcptBuyStaStep" />
+        </EntityType>
+        <EntityType Name="RcptBuyStaStep">
+          <Key>
+            <PropertyRef Name="StepId" />
+          </Key>
+          <Property Name="StepId" Type="Int32" Nullable="false" />
+          <Property Name="StepCont" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StepOrder" Type="Int32" />
+          <NavigationProperty Name="RcptBuyStaDet" Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" FromRole="RcptBuyStaStep" ToRole="RcptBuyStaDet" />
+        </EntityType>
+        <EntityType Name="RcptSub">
+          <Key>
+            <PropertyRef Name="RcptSubId" />
+          </Key>
+          <Property Name="RcptSubId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts" FromRole="RcptSub" ToRole="Rcpt" />
+          <NavigationProperty Name="RcptSubDet" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" FromRole="RcptSub" ToRole="RcptSubDet" />
+        </EntityType>
+        <EntityType Name="RcptSubDet">
+          <Key>
+            <PropertyRef Name="RcptSubId" />
+            <PropertyRef Name="SubId" />
+            <PropertyRef Name="MerId" />
+          </Key>
+          <Property Name="RcptSubId" Type="Int32" Nullable="false" />
+          <Property Name="SubId" Type="Int32" Nullable="false" />
+          <Property Name="MerId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" FromRole="RcptSubDet" ToRole="RcptSub" />
+          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" FromRole="RcptSubDet" ToRole="SubDet" />
+        </EntityType>
+        <EntityType Name="Shp">
+          <Key>
+            <PropertyRef Name="ShpId" />
+          </Key>
+          <Property Name="ShpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MerId" Type="Int32" Nullable="false" />
+          <Property Name="ShpName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_Shp_Mer" FromRole="Shp" ToRole="Mer" />
+          <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" FromRole="Shp" ToRole="Pro" />
+        </EntityType>
+        <EntityType Name="Sub">
+          <Key>
+            <PropertyRef Name="SubId" />
+          </Key>
+          <Property Name="SubId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubContent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DurDay" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions" FromRole="Sub" ToRole="SubDet" />
+        </EntityType>
+        <EntityType Name="SubDet">
+          <Key>
+            <PropertyRef Name="SubId" />
+            <PropertyRef Name="MerId" />
+          </Key>
+          <Property Name="SubId" Type="Int32" Nullable="false" />
+          <Property Name="MerId" Type="Int32" Nullable="false" />
+          <Property Name="DateStart" Type="DateTime" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants" FromRole="SubDet" ToRole="Mer" />
+          <NavigationProperty Name="RcptSubDet" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" FromRole="SubDet" ToRole="RcptSubDet" />
+          <NavigationProperty Name="Sub" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions" FromRole="SubDet" ToRole="Sub" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usr">
+          <Key>
+            <PropertyRef Name="UsrId" />
+          </Key>
+          <Property Name="UsrId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsrName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEdit" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_UsersCustomers_Users" FromRole="Usr" ToRole="Cus" />
+          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_UsersMerchants_Users" FromRole="Usr" ToRole="Mer" />
+          <NavigationProperty Name="Mstr" Relationship="ShoesStoreModel.FK_Mstr_Usr" FromRole="Usr" ToRole="Mstr" />
+          <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_Rcpt_Usr" FromRole="Usr" ToRole="Rcpt" />
+          <NavigationProperty Name="Rcpt1" Relationship="ShoesStoreModel.FK_Rcpt_Usr1" FromRole="Usr" ToRole="Rcpt" />
+          <NavigationProperty Name="UsrAct" Relationship="ShoesStoreModel.FK_UsrAct_Usr" FromRole="Usr" ToRole="UsrAct" />
+        </EntityType>
+        <EntityType Name="UsrAct">
+          <Key>
+            <PropertyRef Name="ActId" />
+          </Key>
+          <Property Name="ActId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsrId" Type="Int32" />
+          <Property Name="ActCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsAct" Type="Boolean" />
+          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_UsrAct_Usr" FromRole="UsrAct" ToRole="Usr" />
+        </EntityType>
+        <EntityType Name="WebInfo">
+          <Key>
+            <PropertyRef Name="WebId" />
+          </Key>
+          <Property Name="WebId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="WorkTime" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WebSlide" Relationship="ShoesStoreModel.FK_WebSlide_WebInfo" FromRole="WebInfo" ToRole="WebSlide" />
+        </EntityType>
+        <EntityType Name="WebSlide">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WebId" Type="Int32" />
+          <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="DateAdd" Type="DateTime" Precision="3" />
+          <Property Name="DateEdit" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="WebInfo" Relationship="ShoesStoreModel.FK_WebSlide_WebInfo" FromRole="WebSlide" ToRole="WebInfo" />
+        </EntityType>
+        <Association Name="FK_UsersCustomersCarts_UsersCustomers">
+          <End Type="ShoesStoreModel.Cus" Role="Cus" Multiplicity="0..1" />
+          <End Type="ShoesStoreModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cus">
+              <PropertyRef Name="CusId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="CusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersCustomersCartsDetails_UsersCustomersCarts">
+          <End Type="ShoesStoreModel.Cart" Role="Cart" Multiplicity="1" />
+          <End Type="ShoesStoreModel.CartDet" Role="CartDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cart">
+              <PropertyRef Name="CartId" />
+            </Principal>
+            <Dependent Role="CartDet">
+              <PropertyRef Name="CartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
+          <End Type="ShoesStoreModel.Pro" Role="Pro" Multiplicity="1" />
+          <End Type="ShoesStoreModel.CartDet" Role="CartDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pro">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Principal>
+            <Dependent Role="CartDet">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RcptBuy_Cus">
+          <End Type="ShoesStoreModel.Cus" Role="Cus" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptBuy" Role="RcptBuy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cus">
+              <PropertyRef Name="CusId" />
+            </Principal>
+            <Dependent Role="RcptBuy">
+              <PropertyRef Name="CusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersCustomers_Users">
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Cus" Role="Cus" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usr">
+              <PropertyRef Name="UsrId" />
+            </Principal>
+            <Dependent Role="Cus">
+              <PropertyRef Name="CusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shp_Mer">
+          <End Type="ShoesStoreModel.Mer" Role="Mer" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Shp" Role="Shp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mer">
+              <PropertyRef Name="MerId" />
+            </Principal>
+            <Dependent Role="Shp">
+              <PropertyRef Name="MerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionsDetails_UsersMerchants">
+          <End Type="ShoesStoreModel.Mer" Role="Mer" Multiplicity="1" />
+          <End Type="ShoesStoreModel.SubDet" Role="SubDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mer">
+              <PropertyRef Name="MerId" />
+            </Principal>
+            <Dependent Role="SubDet">
+              <PropertyRef Name="MerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersMerchants_Users">
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Mer" Role="Mer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usr">
+              <PropertyRef Name="UsrId" />
+            </Principal>
+            <Dependent Role="Mer">
+              <PropertyRef Name="MerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mstr_Usr">
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Mstr" Role="Mstr" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usr">
+              <PropertyRef Name="UsrId" />
+            </Principal>
+            <Dependent Role="Mstr">
+              <PropertyRef Name="MstrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MstrDet_Mstr">
+          <End Type="ShoesStoreModel.Mstr" Role="Mstr" Multiplicity="1" />
+          <End Type="ShoesStoreModel.MstrDet" Role="MstrDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mstr">
+              <PropertyRef Name="MstrId" />
+            </Principal>
+            <Dependent Role="MstrDet">
+              <PropertyRef Name="MstrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MstrDet_Mstr1">
+          <End Type="ShoesStoreModel.Mstr" Role="Mstr" Multiplicity="0..1" />
+          <End Type="ShoesStoreModel.MstrDet" Role="MstrDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mstr">
+              <PropertyRef Name="MstrId" />
+            </Principal>
+            <Dependent Role="MstrDet">
+              <PropertyRef Name="AddBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MstrDet_MstrRole">
+          <End Type="ShoesStoreModel.MstrRole" Role="MstrRole" Multiplicity="1" />
+          <End Type="ShoesStoreModel.MstrDet" Role="MstrDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MstrRole">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="MstrDet">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro_Brand">
+          <End Type="ShoesStoreModel.ProBrand" Role="ProBrand" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Pro" Role="Pro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProBrand">
+              <PropertyRef Name="BrandId" />
+            </Principal>
+            <Dependent Role="Pro">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro_ProCat">
+          <End Type="ShoesStoreModel.ProCat" Role="ProCat" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Pro" Role="Pro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProCat">
+              <PropertyRef Name="CatId" />
+            </Principal>
+            <Dependent Role="Pro">
+              <PropertyRef Name="CatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProDet_Pro">
+          <End Type="ShoesStoreModel.Pro" Role="Pro" Multiplicity="1" />
+          <End Type="ShoesStoreModel.ProDet" Role="ProDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pro">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Principal>
+            <Dependent Role="ProDet">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProSlideImg_Pro">
+          <End Type="ShoesStoreModel.Pro" Role="Pro" Multiplicity="0..1" />
+          <End Type="ShoesStoreModel.ProSlideImg" Role="ProSlideImg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pro">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Principal>
+            <Dependent Role="ProSlideImg">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts">
+          <End Type="ShoesStoreModel.Pro" Role="Pro" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptBuyDet" Role="RcptBuyDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pro">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Principal>
+            <Dependent Role="RcptBuyDet">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersMerchantsShopsProducts_UsersMerchantsShops">
+          <End Type="ShoesStoreModel.Shp" Role="Shp" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Pro" Role="Pro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shp">
+              <PropertyRef Name="ShpId" />
+            </Principal>
+            <Dependent Role="Pro">
+              <PropertyRef Name="ShpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProDet_ProColor">
+          <End Type="ShoesStoreModel.ProColor" Role="ProColor" Multiplicity="1" />
+          <End Type="ShoesStoreModel.ProDet" Role="ProDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProColor">
+              <PropertyRef Name="ColorId" />
+            </Principal>
+            <Dependent Role="ProDet">
+              <PropertyRef Name="ColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProDet_ProSize">
+          <End Type="ShoesStoreModel.ProSize" Role="ProSize" Multiplicity="1" />
+          <End Type="ShoesStoreModel.ProDet" Role="ProDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProSize">
+              <PropertyRef Name="SizeId" />
+            </Principal>
+            <Dependent Role="ProDet">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rcpt_Usr">
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Rcpt" Role="Rcpt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usr">
+              <PropertyRef Name="UsrId" />
+            </Principal>
+            <Dependent Role="Rcpt">
+              <PropertyRef Name="UsrAdd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rcpt_Usr1">
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="0..1" />
+          <End Type="ShoesStoreModel.Rcpt" Role="Rcpt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usr">
+              <PropertyRef Name="UsrId" />
+            </Principal>
+            <Dependent Role="Rcpt">
+              <PropertyRef Name="UsrEdit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptBuys_Receipts">
+          <End Type="ShoesStoreModel.Rcpt" Role="Rcpt" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptBuy" Role="RcptBuy" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Rcpt">
+              <PropertyRef Name="RcptId" />
+            </Principal>
+            <Dependent Role="RcptBuy">
+              <PropertyRef Name="RcptBuyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptsSubscriptions_Receipts">
+          <End Type="ShoesStoreModel.Rcpt" Role="Rcpt" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptSub" Role="RcptSub" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Rcpt">
+              <PropertyRef Name="RcptId" />
+            </Principal>
+            <Dependent Role="RcptSub">
+              <PropertyRef Name="RcptSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptsBuysDetails_ReceiptsBuys">
+          <End Type="ShoesStoreModel.RcptBuy" Role="RcptBuy" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptBuyDet" Role="RcptBuyDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RcptBuy">
+              <PropertyRef Name="RcptBuyId" />
+            </Principal>
+            <Dependent Role="RcptBuyDet">
+              <PropertyRef Name="RcptBuyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptsBuysStates_ReceiptsBuys">
+          <End Type="ShoesStoreModel.RcptBuy" Role="RcptBuy" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptBuySta" Role="RcptBuySta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RcptBuy">
+              <PropertyRef Name="RcptBuyId" />
+            </Principal>
+            <Dependent Role="RcptBuySta">
+              <PropertyRef Name="RcptBuyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStates">
+          <End Type="ShoesStoreModel.RcptBuySta" Role="RcptBuySta" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptBuyStaDet" Role="RcptBuyStaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RcptBuySta">
+              <PropertyRef Name="StaId" />
+            </Principal>
+            <Dependent Role="RcptBuyStaDet">
+              <PropertyRef Name="StaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
+          <End Type="ShoesStoreModel.RcptBuyStaStep" Role="RcptBuyStaStep" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptBuyStaDet" Role="RcptBuyStaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RcptBuyStaStep">
+              <PropertyRef Name="StepId" />
+            </Principal>
+            <Dependent Role="RcptBuyStaDet">
+              <PropertyRef Name="StepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
+          <End Type="ShoesStoreModel.RcptSub" Role="RcptSub" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptSubDet" Role="RcptSubDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RcptSub">
+              <PropertyRef Name="RcptSubId" />
+            </Principal>
+            <Dependent Role="RcptSubDet">
+              <PropertyRef Name="RcptSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
+          <End Type="ShoesStoreModel.SubDet" Role="SubDet" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptSubDet" Role="RcptSubDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubDet">
+              <PropertyRef Name="SubId" />
+              <PropertyRef Name="MerId" />
+            </Principal>
+            <Dependent Role="RcptSubDet">
+              <PropertyRef Name="SubId" />
+              <PropertyRef Name="MerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionsDetails_Subscriptions">
+          <End Type="ShoesStoreModel.Sub" Role="Sub" Multiplicity="1" />
+          <End Type="ShoesStoreModel.SubDet" Role="SubDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub">
+              <PropertyRef Name="SubId" />
+            </Principal>
+            <Dependent Role="SubDet">
+              <PropertyRef Name="SubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsrAct_Usr">
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="0..1" />
+          <End Type="ShoesStoreModel.UsrAct" Role="UsrAct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usr">
+              <PropertyRef Name="UsrId" />
+            </Principal>
+            <Dependent Role="UsrAct">
+              <PropertyRef Name="UsrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebSlide_WebInfo">
+          <End Type="ShoesStoreModel.WebInfo" Role="WebInfo" Multiplicity="0..1" />
+          <End Type="ShoesStoreModel.WebSlide" Role="WebSlide" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebInfo">
+              <PropertyRef Name="WebId" />
+            </Principal>
+            <Dependent Role="WebSlide">
+              <PropertyRef Name="WebId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ShoesStoreModelStoreContainer" CdmEntityContainer="ShoesStoreDBContext">
-          <EntitySetMapping Name="Cart">
-            <EntityTypeMapping TypeName="ShoesStoreModel.Cart">
-              <MappingFragment StoreEntitySet="Cart">
-                <ScalarProperty Name="CartId" ColumnName="CartId" />
-                <ScalarProperty Name="CusId" ColumnName="CusId" />
-                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CartDet">
-            <EntityTypeMapping TypeName="ShoesStoreModel.CartDet">
-              <MappingFragment StoreEntitySet="CartDet">
-                <ScalarProperty Name="CartId" ColumnName="CartId" />
-                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
-                <ScalarProperty Name="ProId" ColumnName="ProId" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cus">
-            <EntityTypeMapping TypeName="ShoesStoreModel.Cus">
-              <MappingFragment StoreEntitySet="Cus">
-                <ScalarProperty Name="CusId" ColumnName="CusId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Mer">
-            <EntityTypeMapping TypeName="ShoesStoreModel.Mer">
-              <MappingFragment StoreEntitySet="Mer">
-                <ScalarProperty Name="MerId" ColumnName="MerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Mstr">
-            <EntityTypeMapping TypeName="ShoesStoreModel.Mstr">
-              <MappingFragment StoreEntitySet="Mstr">
-                <ScalarProperty Name="MstrId" ColumnName="MstrId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MstrDet">
-            <EntityTypeMapping TypeName="ShoesStoreModel.MstrDet">
-              <MappingFragment StoreEntitySet="MstrDet">
-                <ScalarProperty Name="MstrId" ColumnName="MstrId" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
-                <ScalarProperty Name="AddBy" ColumnName="AddBy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MstrRole">
-            <EntityTypeMapping TypeName="ShoesStoreModel.MstrRole">
-              <MappingFragment StoreEntitySet="MstrRole">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pro">
-            <EntityTypeMapping TypeName="ShoesStoreModel.Pro">
-              <MappingFragment StoreEntitySet="Pro">
-                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
-                <ScalarProperty Name="ProId" ColumnName="ProId" />
-                <ScalarProperty Name="CatId" ColumnName="CatId" />
-                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
-                <ScalarProperty Name="ProQuantity" ColumnName="ProQuantity" />
-                <ScalarProperty Name="IsOutOfStock" ColumnName="IsOutOfStock" />
-                <ScalarProperty Name="ProName" ColumnName="ProName" />
-                <ScalarProperty Name="Img" ColumnName="Img" />
-                <ScalarProperty Name="Desc" ColumnName="Desc" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="PriceAfter" ColumnName="PriceAfter" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateEdit" ColumnName="DateEdit" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProBrand">
-            <EntityTypeMapping TypeName="ShoesStoreModel.ProBrand">
-              <MappingFragment StoreEntitySet="ProBrand">
-                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
-                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
-                <ScalarProperty Name="Img" ColumnName="Img" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProCat">
-            <EntityTypeMapping TypeName="ShoesStoreModel.ProCat">
-              <MappingFragment StoreEntitySet="ProCat">
-                <ScalarProperty Name="CatId" ColumnName="CatId" />
-                <ScalarProperty Name="CatName" ColumnName="CatName" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateEdit" ColumnName="DateEdit" />
-                <ScalarProperty Name="Img" ColumnName="Img" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProColor">
-            <EntityTypeMapping TypeName="ShoesStoreModel.ProColor">
-              <MappingFragment StoreEntitySet="ProColor">
-                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
-                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
-                <ScalarProperty Name="ColorImg" ColumnName="ColorImg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProDet">
-            <EntityTypeMapping TypeName="ShoesStoreModel.ProDet">
-              <MappingFragment StoreEntitySet="ProDet">
-                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
-                <ScalarProperty Name="ProId" ColumnName="ProId" />
-                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
-                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProSize">
-            <EntityTypeMapping TypeName="ShoesStoreModel.ProSize">
-              <MappingFragment StoreEntitySet="ProSize">
-                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
-                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
-                <ScalarProperty Name="SizeImg" ColumnName="SizeImg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Rcpt">
-            <EntityTypeMapping TypeName="ShoesStoreModel.Rcpt">
-              <MappingFragment StoreEntitySet="Rcpt">
-                <ScalarProperty Name="RcptId" ColumnName="RcptId" />
-                <ScalarProperty Name="UsrAdd" ColumnName="UsrAdd" />
-                <ScalarProperty Name="UsrEdit" ColumnName="UsrEdit" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateEdit" ColumnName="DateEdit" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RcptBuy">
-            <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuy">
-              <MappingFragment StoreEntitySet="RcptBuy">
-                <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
-                <ScalarProperty Name="CusId" ColumnName="CusId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RcptBuyDet">
-            <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuyDet">
-              <MappingFragment StoreEntitySet="RcptBuyDet">
-                <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
-                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
-                <ScalarProperty Name="ProId" ColumnName="ProId" />
-                <ScalarProperty Name="Cmt" ColumnName="Cmt" />
-                <ScalarProperty Name="Point" ColumnName="Point" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RcptBuySta">
-            <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuySta">
-              <MappingFragment StoreEntitySet="RcptBuySta">
-                <ScalarProperty Name="StaId" ColumnName="StaId" />
-                <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RcptBuyStaDet">
-            <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuyStaDet">
-              <MappingFragment StoreEntitySet="RcptBuyStaDet">
-                <ScalarProperty Name="StaId" ColumnName="StaId" />
-                <ScalarProperty Name="StepId" ColumnName="StepId" />
-                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RcptBuyStaStep">
-            <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuyStaStep">
-              <MappingFragment StoreEntitySet="RcptBuyStaStep">
-                <ScalarProperty Name="StepId" ColumnName="StepId" />
-                <ScalarProperty Name="StepCont" ColumnName="StepCont" />
-                <ScalarProperty Name="StepOrder" ColumnName="StepOrder" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RcptSub">
-            <EntityTypeMapping TypeName="ShoesStoreModel.RcptSub">
-              <MappingFragment StoreEntitySet="RcptSub">
-                <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RcptSubDet">
-            <EntityTypeMapping TypeName="ShoesStoreModel.RcptSubDet">
-              <MappingFragment StoreEntitySet="RcptSubDet">
-                <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
-                <ScalarProperty Name="SubId" ColumnName="SubId" />
-                <ScalarProperty Name="MerId" ColumnName="MerId" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Shp">
-            <EntityTypeMapping TypeName="ShoesStoreModel.Shp">
-              <MappingFragment StoreEntitySet="Shp">
-                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
-                <ScalarProperty Name="MerId" ColumnName="MerId" />
-                <ScalarProperty Name="ShpName" ColumnName="ShpName" />
-                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sub">
-            <EntityTypeMapping TypeName="ShoesStoreModel.Sub">
-              <MappingFragment StoreEntitySet="Sub">
-                <ScalarProperty Name="SubId" ColumnName="SubId" />
-                <ScalarProperty Name="SubContent" ColumnName="SubContent" />
-                <ScalarProperty Name="DurDay" ColumnName="DurDay" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SubDet">
-            <EntityTypeMapping TypeName="ShoesStoreModel.SubDet">
-              <MappingFragment StoreEntitySet="SubDet">
-                <ScalarProperty Name="SubId" ColumnName="SubId" />
-                <ScalarProperty Name="MerId" ColumnName="MerId" />
-                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
-                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ShoesStoreModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Usr">
-            <EntityTypeMapping TypeName="ShoesStoreModel.Usr">
-              <MappingFragment StoreEntitySet="Usr">
-                <ScalarProperty Name="UsrId" ColumnName="UsrId" />
-                <ScalarProperty Name="UsrName" ColumnName="UsrName" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateEdit" ColumnName="DateEdit" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UsrAct">
-            <EntityTypeMapping TypeName="ShoesStoreModel.UsrAct">
-              <MappingFragment StoreEntitySet="UsrAct">
-                <ScalarProperty Name="ActId" ColumnName="ActId" />
-                <ScalarProperty Name="UsrId" ColumnName="UsrId" />
-                <ScalarProperty Name="ActCode" ColumnName="ActCode" />
-                <ScalarProperty Name="IsAct" ColumnName="IsAct" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="WebInfo">
-            <EntityTypeMapping TypeName="ShoesStoreModel.WebInfo">
-              <MappingFragment StoreEntitySet="WebInfo">
-                <ScalarProperty Name="WebId" ColumnName="WebId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="WorkTime" ColumnName="WorkTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="WebSlide">
-            <EntityTypeMapping TypeName="ShoesStoreModel.WebSlide">
-              <MappingFragment StoreEntitySet="WebSlide">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="WebId" ColumnName="WebId" />
-                <ScalarProperty Name="Img" ColumnName="Img" />
-                <ScalarProperty Name="Order" ColumnName="Order" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateEdit" ColumnName="DateEdit" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_Admin_Info" FunctionName="ShoesStoreModel.Store.sp_Admin_Info">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.sp_Admin_Info_Result">
@@ -3612,6 +3378,310 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Cart">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="CusId" ColumnName="CusId" />
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartDet">
+            <EntityTypeMapping TypeName="ShoesStoreModel.CartDet">
+              <MappingFragment StoreEntitySet="CartDet">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ProId" ColumnName="ProId" />
+                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cus">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Cus">
+              <MappingFragment StoreEntitySet="Cus">
+                <ScalarProperty Name="CusId" ColumnName="CusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mer">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Mer">
+              <MappingFragment StoreEntitySet="Mer">
+                <ScalarProperty Name="MerId" ColumnName="MerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mstr">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Mstr">
+              <MappingFragment StoreEntitySet="Mstr">
+                <ScalarProperty Name="MstrId" ColumnName="MstrId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MstrDet">
+            <EntityTypeMapping TypeName="ShoesStoreModel.MstrDet">
+              <MappingFragment StoreEntitySet="MstrDet">
+                <ScalarProperty Name="AddBy" ColumnName="AddBy" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="MstrId" ColumnName="MstrId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MstrRole">
+            <EntityTypeMapping TypeName="ShoesStoreModel.MstrRole">
+              <MappingFragment StoreEntitySet="MstrRole">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pro">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Pro">
+              <MappingFragment StoreEntitySet="Pro">
+                <ScalarProperty Name="DateEdit" ColumnName="DateEdit" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="PriceAfter" ColumnName="PriceAfter" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DescShort" ColumnName="DescShort" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="IsOutOfStock" ColumnName="IsOutOfStock" />
+                <ScalarProperty Name="ProQuantity" ColumnName="ProQuantity" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+                <ScalarProperty Name="ProId" ColumnName="ProId" />
+                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProBrand">
+            <EntityTypeMapping TypeName="ShoesStoreModel.ProBrand">
+              <MappingFragment StoreEntitySet="ProBrand">
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProCat">
+            <EntityTypeMapping TypeName="ShoesStoreModel.ProCat">
+              <MappingFragment StoreEntitySet="ProCat">
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="DateEdit" ColumnName="DateEdit" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProColor">
+            <EntityTypeMapping TypeName="ShoesStoreModel.ProColor">
+              <MappingFragment StoreEntitySet="ProColor">
+                <ScalarProperty Name="ColorImg" ColumnName="ColorImg" />
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProDet">
+            <EntityTypeMapping TypeName="ShoesStoreModel.ProDet">
+              <MappingFragment StoreEntitySet="ProDet">
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+                <ScalarProperty Name="ProId" ColumnName="ProId" />
+                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProSize">
+            <EntityTypeMapping TypeName="ShoesStoreModel.ProSize">
+              <MappingFragment StoreEntitySet="ProSize">
+                <ScalarProperty Name="SizeImg" ColumnName="SizeImg" />
+                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProSlideImg">
+            <EntityTypeMapping TypeName="ShoesStoreModel.ProSlideImg">
+              <MappingFragment StoreEntitySet="ProSlideImg">
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="ProId" ColumnName="ProId" />
+                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
+                <ScalarProperty Name="SlideImgId" ColumnName="SlideImgId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rcpt">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Rcpt">
+              <MappingFragment StoreEntitySet="Rcpt">
+                <ScalarProperty Name="DateEdit" ColumnName="DateEdit" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="UsrEdit" ColumnName="UsrEdit" />
+                <ScalarProperty Name="UsrAdd" ColumnName="UsrAdd" />
+                <ScalarProperty Name="RcptId" ColumnName="RcptId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RcptBuy">
+            <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuy">
+              <MappingFragment StoreEntitySet="RcptBuy">
+                <ScalarProperty Name="CusId" ColumnName="CusId" />
+                <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RcptBuyDet">
+            <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuyDet">
+              <MappingFragment StoreEntitySet="RcptBuyDet">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Cmt" ColumnName="Cmt" />
+                <ScalarProperty Name="ProId" ColumnName="ProId" />
+                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
+                <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RcptBuySta">
+            <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuySta">
+              <MappingFragment StoreEntitySet="RcptBuySta">
+                <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
+                <ScalarProperty Name="StaId" ColumnName="StaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RcptBuyStaDet">
+            <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuyStaDet">
+              <MappingFragment StoreEntitySet="RcptBuyStaDet">
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+                <ScalarProperty Name="StepId" ColumnName="StepId" />
+                <ScalarProperty Name="StaId" ColumnName="StaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RcptBuyStaStep">
+            <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuyStaStep">
+              <MappingFragment StoreEntitySet="RcptBuyStaStep">
+                <ScalarProperty Name="StepOrder" ColumnName="StepOrder" />
+                <ScalarProperty Name="StepCont" ColumnName="StepCont" />
+                <ScalarProperty Name="StepId" ColumnName="StepId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RcptSub">
+            <EntityTypeMapping TypeName="ShoesStoreModel.RcptSub">
+              <MappingFragment StoreEntitySet="RcptSub">
+                <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RcptSubDet">
+            <EntityTypeMapping TypeName="ShoesStoreModel.RcptSubDet">
+              <MappingFragment StoreEntitySet="RcptSubDet">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MerId" ColumnName="MerId" />
+                <ScalarProperty Name="SubId" ColumnName="SubId" />
+                <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shp">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Shp">
+              <MappingFragment StoreEntitySet="Shp">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="ShpName" ColumnName="ShpName" />
+                <ScalarProperty Name="MerId" ColumnName="MerId" />
+                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sub">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Sub">
+              <MappingFragment StoreEntitySet="Sub">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DurDay" ColumnName="DurDay" />
+                <ScalarProperty Name="SubContent" ColumnName="SubContent" />
+                <ScalarProperty Name="SubId" ColumnName="SubId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubDet">
+            <EntityTypeMapping TypeName="ShoesStoreModel.SubDet">
+              <MappingFragment StoreEntitySet="SubDet">
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="MerId" ColumnName="MerId" />
+                <ScalarProperty Name="SubId" ColumnName="SubId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ShoesStoreModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usr">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Usr">
+              <MappingFragment StoreEntitySet="Usr">
+                <ScalarProperty Name="DateEdit" ColumnName="DateEdit" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="UsrName" ColumnName="UsrName" />
+                <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsrAct">
+            <EntityTypeMapping TypeName="ShoesStoreModel.UsrAct">
+              <MappingFragment StoreEntitySet="UsrAct">
+                <ScalarProperty Name="IsAct" ColumnName="IsAct" />
+                <ScalarProperty Name="ActCode" ColumnName="ActCode" />
+                <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+                <ScalarProperty Name="ActId" ColumnName="ActId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebInfo">
+            <EntityTypeMapping TypeName="ShoesStoreModel.WebInfo">
+              <MappingFragment StoreEntitySet="WebInfo">
+                <ScalarProperty Name="WorkTime" ColumnName="WorkTime" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="WebId" ColumnName="WebId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebSlide">
+            <EntityTypeMapping TypeName="ShoesStoreModel.WebSlide">
+              <MappingFragment StoreEntitySet="WebSlide">
+                <ScalarProperty Name="DateEdit" ColumnName="DateEdit" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="WebId" ColumnName="WebId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

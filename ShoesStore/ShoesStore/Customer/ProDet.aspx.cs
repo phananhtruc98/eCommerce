@@ -1,12 +1,33 @@
 ﻿using System;
+using System.Linq;
+using System.Linq.Dynamic;
+using System.Security.Cryptography;
+using System.Web;
 using System.Web.UI;
+using ShoesStore.DataAccessLogicLayer;
+using Utilities;
 
 namespace ShoesStore.Customer
 {
-    public partial class SanPham_ChiTiet : Page
+    public partial class SanPham_ChiTiet : BasePage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected Pro _proDet;
+        protected override void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                CollectUrl();
+            }
         }
+
+        private void CollectUrl()
+        {
+            _proDet = _pro.GetAll().ToList().FirstOrDefault(m =>
+                TextHelper.UrlFriendly(m.Shp.ShpName) == RouteData.Values["shpName"].ToString()
+                && TextHelper.UrlFriendly(m.ProName) == RouteData.Values["proName"].ToString());
+
+
+        }
+
     }
 }
