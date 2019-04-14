@@ -2431,6 +2431,7 @@
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\Default.aspx.cs">
@@ -2891,6 +2892,7 @@
     <Compile Include="Merchant\DefaultMer.aspx.designer.cs">
       <DependentUpon>DefaultMer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebControls\BreadCrumbs.cs" />
     <Compile Include="WebSession.cs" />
   </ItemGroup>
   <ItemGroup />
