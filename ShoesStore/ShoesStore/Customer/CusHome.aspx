@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="~/CusHome.aspx.cs" Inherits="ShoesStore.Customer.CusHome" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="~/Customer/CusHome.aspx.cs" Inherits="ShoesStore.Customer.CusHome" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="site__body">
         <div class="page-header">
@@ -10,7 +10,7 @@
                                 <a href="index.html">Trang chủ</a>
                                 <svg class="breadcrumb-arrow"
                                      width="6px" height="9px">
-                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Tài khoản của tôi</li>
@@ -38,7 +38,7 @@
                                                 Quản lý tài khoản
                                                 <svg
                                                     class="filter__arrow" width="12px" height="7px">
-                                                    <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7">
+                                                    <use href="images/sprite.svg#arrow-rounded-down-12x7">
                                                     </use>
                                                 </svg>
                                             </button>

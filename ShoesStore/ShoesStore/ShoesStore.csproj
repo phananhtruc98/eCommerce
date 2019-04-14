@@ -1948,6 +1948,7 @@
     <Content Include="Admin\vendors\tinymce\tinymce.jquery.min.js" />
     <Content Include="Admin\vendors\tinymce\tinymce.js" />
     <Content Include="Admin\vendors\tinymce\tinymce.min.js" />
+    <Content Include="BasePage.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2415,6 +2416,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="UserControls\UcPro.ascx" />
     <Content Include="vendor\bootstrap-4.2.1\css\bootstrap.min.css" />
     <Content Include="vendor\bootstrap-4.2.1\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\fontawesome-5.6.1\css\all.min.css" />
@@ -2499,6 +2501,13 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BasePage.aspx.cs">
+      <DependentUpon>BasePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BasePage.aspx.designer.cs">
+      <DependentUpon>BasePage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BusinessLogicLayer\Cart_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Cus_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Mer_BUS.cs" />
@@ -2863,6 +2872,7 @@
     <Compile Include="Merchant\sub.aspx.designer.cs">
       <DependentUpon>sub.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyEnum.cs" />
     <Compile Include="MyExtensions\ProExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2887,6 +2897,13 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcPro.ascx.cs">
+      <DependentUpon>UcPro.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcPro.ascx.designer.cs">
+      <DependentUpon>UcPro.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2902,6 +2919,7 @@
       <DependentUpon>DefaultMer.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebControls\BreadCrumbs.cs" />
+    <Compile Include="WebControls\RepeaterTable.cs" />
     <Compile Include="WebSession.cs" />
   </ItemGroup>
   <ItemGroup />
