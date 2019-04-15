@@ -18,10 +18,14 @@
             <PropertyRef Name="CartId" />
             <PropertyRef Name="ShpId" />
             <PropertyRef Name="ProId" />
+            <PropertyRef Name="ColorId" />
+            <PropertyRef Name="SizeId" />
           </Key>
           <Property Name="CartId" Type="int" Nullable="false" />
           <Property Name="ShpId" Type="int" Nullable="false" />
           <Property Name="ProId" Type="int" Nullable="false" />
+          <Property Name="ColorId" Type="int" Nullable="false" />
+          <Property Name="SizeId" Type="int" Nullable="false" />
           <Property Name="Qty" Type="int" />
         </EntityType>
         <EntityType Name="Cus">
@@ -307,6 +311,24 @@
           <Property Name="DateAdd" Type="datetime" />
           <Property Name="DateEdit" Type="datetime" />
         </EntityType>
+        <Association Name="FK_CartDet_ProDet">
+          <End Role="ProDet" Type="Self.ProDet" Multiplicity="1" />
+          <End Role="CartDet" Type="Self.CartDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProDet">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+              <PropertyRef Name="ColorId" />
+              <PropertyRef Name="SizeId" />
+            </Principal>
+            <Dependent Role="CartDet">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+              <PropertyRef Name="ColorId" />
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Mstr_Usr">
           <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
           <End Role="Mstr" Type="Self.Mstr" Multiplicity="0..1" />
@@ -648,20 +670,6 @@
             </Principal>
             <Dependent Role="CartDet">
               <PropertyRef Name="CartId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
-          <End Role="Pro" Type="Self.Pro" Multiplicity="1" />
-          <End Role="CartDet" Type="Self.CartDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pro">
-              <PropertyRef Name="ShpId" />
-              <PropertyRef Name="ProId" />
-            </Principal>
-            <Dependent Role="CartDet">
-              <PropertyRef Name="ShpId" />
-              <PropertyRef Name="ProId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1225,6 +1233,10 @@
           <EntitySet Name="UsrAct" EntityType="Self.UsrAct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebInfo" EntityType="Self.WebInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebSlide" EntityType="Self.WebSlide" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CartDet_ProDet" Association="Self.FK_CartDet_ProDet">
+            <End Role="ProDet" EntitySet="ProDet" />
+            <End Role="CartDet" EntitySet="CartDet" />
+          </AssociationSet>
           <AssociationSet Name="FK_Mstr_Usr" Association="Self.FK_Mstr_Usr">
             <End Role="Usr" EntitySet="Usr" />
             <End Role="Mstr" EntitySet="Mstr" />
@@ -1337,10 +1349,6 @@
             <End Role="Cart" EntitySet="Cart" />
             <End Role="CartDet" EntitySet="CartDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" Association="Self.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
-            <End Role="Pro" EntitySet="Pro" />
-            <End Role="CartDet" EntitySet="CartDet" />
-          </AssociationSet>
           <AssociationSet Name="FK_UsersMerchants_Users" Association="Self.FK_UsersMerchants_Users">
             <End Role="Usr" EntitySet="Usr" />
             <End Role="Mer" EntitySet="Mer" />
@@ -1378,13 +1386,17 @@
             <PropertyRef Name="CartId" />
             <PropertyRef Name="ShpId" />
             <PropertyRef Name="ProId" />
+            <PropertyRef Name="ColorId" />
+            <PropertyRef Name="SizeId" />
           </Key>
           <Property Name="CartId" Type="Int32" Nullable="false" />
           <Property Name="ShpId" Type="Int32" Nullable="false" />
           <Property Name="ProId" Type="Int32" Nullable="false" />
+          <Property Name="ColorId" Type="Int32" Nullable="false" />
+          <Property Name="SizeId" Type="Int32" Nullable="false" />
           <Property Name="Qty" Type="Int32" />
           <NavigationProperty Name="Cart" Relationship="Self.FK_UsersCustomersCartsDetails_UsersCustomersCarts" FromRole="CartDet" ToRole="Cart" />
-          <NavigationProperty Name="Pro" Relationship="Self.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" FromRole="CartDet" ToRole="Pro" />
+          <NavigationProperty Name="ProDet" Relationship="Self.FK_CartDet_ProDet" FromRole="CartDet" ToRole="ProDet" />
         </EntityType>
         <EntityType Name="Cus">
           <Key>
@@ -1454,7 +1466,6 @@
           <Property Name="Active" Type="Boolean" />
           <Property Name="DateAdd" Type="DateTime" Precision="3" />
           <Property Name="DateEdit" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CartDet" Relationship="Self.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" FromRole="Pro" ToRole="CartDet" />
           <NavigationProperty Name="ProBrand" Relationship="Self.FK_Pro_Brand" FromRole="Pro" ToRole="ProBrand" />
           <NavigationProperty Name="ProCat" Relationship="Self.FK_Pro_ProCat" FromRole="Pro" ToRole="ProCat" />
           <NavigationProperty Name="ProDet" Relationship="Self.FK_ProDet_Pro" FromRole="Pro" ToRole="ProDet" />
@@ -1503,6 +1514,7 @@
           <Property Name="ProId" Type="Int32" Nullable="false" />
           <Property Name="ColorId" Type="Int32" Nullable="false" />
           <Property Name="SizeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CartDet" Relationship="Self.FK_CartDet_ProDet" FromRole="ProDet" ToRole="CartDet" />
           <NavigationProperty Name="Pro" Relationship="Self.FK_ProDet_Pro" FromRole="ProDet" ToRole="Pro" />
           <NavigationProperty Name="ProColor" Relationship="Self.FK_ProDet_ProColor" FromRole="ProDet" ToRole="ProColor" />
           <NavigationProperty Name="ProSize" Relationship="Self.FK_ProDet_ProSize" FromRole="ProDet" ToRole="ProSize" />
@@ -1755,17 +1767,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
-          <End Role="Pro" Type="Self.Pro" Multiplicity="1" />
+        <Association Name="FK_CartDet_ProDet">
+          <End Role="ProDet" Type="Self.ProDet" Multiplicity="1" />
           <End Role="CartDet" Type="Self.CartDet" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Pro">
+            <Principal Role="ProDet">
               <PropertyRef Name="ShpId" />
               <PropertyRef Name="ProId" />
+              <PropertyRef Name="ColorId" />
+              <PropertyRef Name="SizeId" />
             </Principal>
             <Dependent Role="CartDet">
               <PropertyRef Name="ShpId" />
               <PropertyRef Name="ProId" />
+              <PropertyRef Name="ColorId" />
+              <PropertyRef Name="SizeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2177,8 +2193,8 @@
             <End Role="Cart" EntitySet="Cart" />
             <End Role="CartDet" EntitySet="CartDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts" Association="Self.FK_UsersCustomersCartsDetails_UsersMerchantsShopsProducts">
-            <End Role="Pro" EntitySet="Pro" />
+          <AssociationSet Name="FK_CartDet_ProDet" Association="Self.FK_CartDet_ProDet">
+            <End Role="ProDet" EntitySet="ProDet" />
             <End Role="CartDet" EntitySet="CartDet" />
           </AssociationSet>
           <AssociationSet Name="FK_RcptBuy_Cus" Association="Self.FK_RcptBuy_Cus">
@@ -2803,6 +2819,8 @@
           <Property Type="Int32" Name="CartId" Nullable="false" />
           <Property Type="Int32" Name="ShpId" Nullable="false" />
           <Property Type="Int32" Name="ProId" Nullable="false" />
+          <Property Type="Int32" Name="ColorId" Nullable="false" />
+          <Property Type="Int32" Name="SizeId" Nullable="false" />
           <Property Type="Int32" Name="Qty" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_Cus_Info_Result">
@@ -3014,6 +3032,8 @@
                 <ScalarProperty Name="CartId" ColumnName="CartId" />
                 <ScalarProperty Name="ShpId" ColumnName="ShpId" />
                 <ScalarProperty Name="ProId" ColumnName="ProId" />
+                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
                 <ScalarProperty Name="Qty" ColumnName="Qty" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3353,6 +3373,8 @@
                 <ScalarProperty Name="CartId" ColumnName="CartId" />
                 <ScalarProperty Name="ShpId" ColumnName="ShpId" />
                 <ScalarProperty Name="ProId" ColumnName="ProId" />
+                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
                 <ScalarProperty Name="Qty" ColumnName="Qty" />
               </ComplexTypeMapping>
             </ResultMapping>

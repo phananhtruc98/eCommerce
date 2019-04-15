@@ -7,6 +7,12 @@ namespace ShoesStore.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                rptCartDetCheckout.DataSource = Master.CartDetPreview.DataSource;
+                rptCartDetCheckout.DataBind();
+
+            }
         }
     }
 }

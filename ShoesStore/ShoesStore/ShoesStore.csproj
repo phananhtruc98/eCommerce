@@ -1965,7 +1965,6 @@
     <Content Include="Customer\Cart.aspx" />
     <Content Include="Customer\Checkout.aspx" />
     <Content Include="Customer\CusHome.aspx" />
-    <Content Include="Customer\GioHang.aspx" />
     <Content Include="Customer\ProDet.aspx" />
     <Content Include="Customer\Pro.aspx" />
     <Content Include="DataAccessLogicLayer\ShoesStoreModel.Context.tt">
@@ -2515,6 +2514,7 @@
     <Compile Include="BasePage.aspx.designer.cs">
       <DependentUpon>BasePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BusinessLogicLayer\CartDet_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Cart_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Cus_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Mer_BUS.cs" />
@@ -2579,6 +2579,7 @@
     <Compile Include="DataAccessLogicLayer\CartDet.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\CartDet_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Cus.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2847,6 +2848,7 @@
     </Compile>
     <Compile Include="Merchant\CheckOut.aspx.cs">
       <DependentUpon>CheckOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Merchant\CheckOut.aspx.designer.cs">
       <DependentUpon>CheckOut.aspx</DependentUpon>
@@ -2881,12 +2883,14 @@
     </Compile>
     <Compile Include="Merchant\SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Merchant\SignIn.aspx.designer.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\Sub.aspx.cs">
       <DependentUpon>Sub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Merchant\Sub.aspx.designer.cs">
       <DependentUpon>Sub.aspx</DependentUpon>

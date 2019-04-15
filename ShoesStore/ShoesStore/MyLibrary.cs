@@ -70,14 +70,15 @@ namespace ShoesStore
             return moneyPrefix + string.Format("{0:n0}", Convert.ToInt32(money));
         }
 
-        public static string ProImgPath(object shpId, object proId, object img)
+        public static string ProImgPath(object ipro)
         {
-            return Path.Combine(proImgPath, shpId.ToString(), proId.ToString(), img.ToString());
+            Pro pro = (Pro)ipro;
+            return Path.Combine(proImgPath, pro.Shp.ShpName.ToString(), pro.ProName.ToString(), pro.Img.ToString());
         }
         public static string CusImgPath(object cus)
         {
             Cus _cus = (Cus)cus;
-            if(_cus.Usr.Avatar==null || _cus.Usr.Avatar=="") 
+            if (_cus.Usr.Avatar == null || _cus.Usr.Avatar == "")
                 return Path.Combine(usrPath, "default.jpg");
             return Path.Combine(cusPath, _cus.CusId.ToString(), _cus.Usr.Avatar);
         }

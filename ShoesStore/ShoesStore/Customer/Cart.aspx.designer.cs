@@ -6,7 +6,31 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace ShoesStore.Customer {
+    
+    
     public partial class GioHang {
+        
+        /// <summary>
+        /// rptCartDetCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCartDetCart;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new ShoesStore.SiteMaster Master {
+            get {
+                return ((ShoesStore.SiteMaster)(base.Master));
+            }
+        }
     }
 }

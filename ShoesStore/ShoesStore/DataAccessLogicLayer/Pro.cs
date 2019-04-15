@@ -16,7 +16,6 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public Pro()
         {
-            this.CartDet = new HashSet<CartDet>();
             this.ProDet = new HashSet<ProDet>();
             this.ProSlideImg = new HashSet<ProSlideImg>();
             this.RcptBuyDet = new HashSet<RcptBuyDet>();
@@ -38,7 +37,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public Nullable<System.DateTime> DateAdd { get; set; }
         public Nullable<System.DateTime> DateEdit { get; set; }
     
-        public virtual ICollection<CartDet> CartDet { get; set; }
         public virtual ProBrand ProBrand { get; set; }
         public virtual ProCat ProCat { get; set; }
         public virtual ICollection<ProDet> ProDet { get; set; }

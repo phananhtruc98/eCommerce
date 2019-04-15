@@ -17,9 +17,11 @@ namespace ShoesStore.DataAccessLogicLayer
         public int CartId { get; set; }
         public int ShpId { get; set; }
         public int ProId { get; set; }
+        public int ColorId { get; set; }
+        public int SizeId { get; set; }
         public Nullable<int> Qty { get; set; }
     
         public virtual Cart Cart { get; set; }
-        public virtual Pro Pro { get; set; }
+        public virtual ProDet ProDet { get; set; }
     }
 }

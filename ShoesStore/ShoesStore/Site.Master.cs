@@ -1,9 +1,11 @@
 ﻿using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 using ShoesStore.Interfaces.Pages;
 using Utilities;
 
@@ -14,10 +16,24 @@ namespace ShoesStore
         internal readonly ProCat_BUS _proCat = new ProCat_BUS();
         internal readonly ProBrand_BUS _proBrand = new ProBrand_BUS();
         internal readonly Usr_BUS _usr = new Usr_BUS();
+        internal readonly Cus_BUS _cus = new Cus_BUS();
         internal readonly WebInfo_BUS _webInfo = new WebInfo_BUS();
         internal readonly WebSlide_BUS _webSlide = new WebSlide_BUS();
         internal readonly Pro_BUS _pro = new Pro_BUS();
+        internal readonly CartDet_BUS _cartDet = new CartDet_BUS();
+        internal readonly Cart_BUS _cart = new Cart_BUS();
         private static string _actCode = "";
+
+        private List<CartDet> _listCartDetPreview = new List<CartDet>();
+
+        public Repeater CartDetPreview
+        {
+            get
+            {
+                LoadCartPreview();
+                return rptCartDetPreview;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,16 +49,34 @@ namespace ShoesStore
                 usr_register.Visible = false;
                 lbAccount.Text = $"Chào {(WebSession.LoginUsr as Usr)?.UsrName}";
                 usr_logout.Visible = true;
+                LoadCartPreview();
+                GetCurrentCartItemsNumber();
             }
         }
 
         public void rptProCat_Init(object sender, EventArgs e)
         {
-            
+
             rptProCat.DataSource = _proCat.GetAll();
             rptProCat.DataBind();
         }
 
+
+        public int GetCurrentCartItemsNumber()
+        {
+            if (_listCartDetPreview != null)
+                return _listCartDetPreview.Count;
+            return 0;
+        }
+
+        public void LoadCartPreview()
+        {
+            Cus cus = _cus.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
+            Cart cusCart = _cart.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+            _listCartDetPreview = _cartDet.GetAll().Where(m => cusCart != null && m.CartId == cusCart.CartId).ToList();
+            rptCartDetPreview.DataSource = _listCartDetPreview;
+            rptCartDetPreview.DataBind();
+        }
         public HtmlForm FormMaster
         {
             set => formWebPage = value;
