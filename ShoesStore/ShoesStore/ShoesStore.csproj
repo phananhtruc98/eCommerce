@@ -274,6 +274,7 @@
     <Content Include="Admin\js\maps.js" />
     <Content Include="Admin\js\misc.js" />
     <Content Include="Admin\js\off-canvas.js" />
+    <Content Include="Admin\Login_Mstr.aspx" />
     <Content Include="Admin\ManageAdministrator.aspx" />
     <Content Include="Admin\ManageCustomer.aspx" />
     <Content Include="Admin\ManageMerchant.aspx" />
@@ -2455,6 +2456,13 @@
     </Compile>
     <Compile Include="Admin\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Login_Mstr.aspx.cs">
+      <DependentUpon>Login_Mstr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Login_Mstr.aspx.designer.cs">
+      <DependentUpon>Login_Mstr.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageAdministrator.aspx.cs">
       <DependentUpon>ManageAdministrator.aspx</DependentUpon>
