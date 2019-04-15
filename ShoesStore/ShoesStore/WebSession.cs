@@ -12,6 +12,7 @@ namespace ShoesStore
         }
 
         public static WebSession Instance => _instance ?? new WebSession();
+
     }
 
 }

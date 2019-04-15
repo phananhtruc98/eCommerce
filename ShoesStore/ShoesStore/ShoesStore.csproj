@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -127,11 +128,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\css\logincss.css" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\css\customstyle.css" />
     <Content Include="Admin\css\style.css" />
     <Content Include="Admin\fonts\Roboto\LICENSE.txt" />
     <Content Include="Admin\gulpfile.js" />
+    <Content Include="Admin\images\logo.png" />
     <Content Include="Admin\images\auth\login_1.jpg" />
     <Content Include="Admin\images\auth\register.jpg" />
     <Content Include="Admin\images\faces-clipart\pic-1.png" />
@@ -274,6 +277,7 @@
     <Content Include="Admin\js\maps.js" />
     <Content Include="Admin\js\misc.js" />
     <Content Include="Admin\js\off-canvas.js" />
+    <Content Include="Admin\Login_Mstr.aspx" />
     <Content Include="Admin\ManageAdministrator.aspx" />
     <Content Include="Admin\ManageCustomer.aspx" />
     <Content Include="Admin\ManageMerchant.aspx" />
@@ -2181,23 +2185,17 @@
     <Content Include="Admin\package.json" />
     <Content Include="Admin\css\maps\style.css.map" />
     <Content Include="Admin\scss\_navbar.scss" />
-    <Content Include="Merchant\about-us.aspx" />
+    <Content Include="images\usrs\cus\2\1.jpg" />
+    <Content Include="images\usrs\default.jpg" />
     <Content Include="Merchant\About.aspx" />
     <Content Include="Merchant\Cart.aspx" />
-    <Content Include="Merchant\checkout.aspx" />
-    <Content Include="Merchant\contact-us.aspx" />
     <Content Include="Merchant\Contact.aspx" />
     <Content Include="Merchant\css\style.css" />
     <Content Include="Merchant\DefaultMer.aspx" />
     <Content Include="Merchant\fonts\stroyka\stroyka.ttf" />
     <Content Include="Merchant\fonts\stroyka\stroyka.woff" />
-    <Content Include="Merchant\giohang.aspx" />
-    <Content Include="Merchant\index-2.aspx" />
-    <Content Include="Merchant\merchant.aspx" />
     <Content Include="Merchant\MerHome.aspx" />
     <Content Include="Merchant\MerProfile.aspx" />
-    <Content Include="Merchant\signin.aspx" />
-    <Content Include="Merchant\sub.aspx" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.eot" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.ttf" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.woff" />
@@ -2461,6 +2459,13 @@
     </Compile>
     <Compile Include="Admin\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Login_Mstr.aspx.cs">
+      <DependentUpon>Login_Mstr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Login_Mstr.aspx.designer.cs">
+      <DependentUpon>Login_Mstr.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageAdministrator.aspx.cs">
       <DependentUpon>ManageAdministrator.aspx</DependentUpon>
@@ -2836,13 +2841,6 @@
     </Compile>
     <Compile Include="Interfaces\Pages\IMaster.cs" />
     <Compile Include="Interfaces\Pages\IValidation.cs" />
-    <Compile Include="Merchant\about-us.aspx.cs">
-      <DependentUpon>about-us.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\about-us.aspx.designer.cs">
-      <DependentUpon>about-us.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Merchant\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2857,47 +2855,12 @@
     <Compile Include="Merchant\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Merchant\checkout.aspx.cs">
-      <DependentUpon>checkout.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\checkout.aspx.designer.cs">
-      <DependentUpon>checkout.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Merchant\contact-us.aspx.cs">
-      <DependentUpon>contact-us.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\contact-us.aspx.designer.cs">
-      <DependentUpon>contact-us.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Merchant\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Merchant\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Merchant\giohang.aspx.cs">
-      <DependentUpon>giohang.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\giohang.aspx.designer.cs">
-      <DependentUpon>giohang.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Merchant\index-2.aspx.cs">
-      <DependentUpon>index-2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\index-2.aspx.designer.cs">
-      <DependentUpon>index-2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Merchant\merchant.aspx.cs">
-      <DependentUpon>merchant.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\merchant.aspx.designer.cs">
-      <DependentUpon>merchant.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\Merchant.Master.cs">
       <DependentUpon>Merchant.Master</DependentUpon>
@@ -2919,20 +2882,6 @@
     </Compile>
     <Compile Include="Merchant\MerProfile.aspx.designer.cs">
       <DependentUpon>MerProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Merchant\signin.aspx.cs">
-      <DependentUpon>signin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\signin.aspx.designer.cs">
-      <DependentUpon>signin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Merchant\sub.aspx.cs">
-      <DependentUpon>sub.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\sub.aspx.designer.cs">
-      <DependentUpon>sub.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyEnum.cs" />
     <Compile Include="MyExtensions\ProExtension.cs" />
