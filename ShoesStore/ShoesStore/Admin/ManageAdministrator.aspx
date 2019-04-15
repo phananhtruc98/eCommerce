@@ -185,6 +185,23 @@
                                 </asp:RequiredFieldValidator>
                             </FooterTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Ảnh đại diện" SortExpression="Avatar">
+                            <ItemTemplate>
+                                <%# Eval("Avatar") %>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox runat="server" ID="EditAvatar" Text='<%# Bind("Avatar") %>' />
+                            </EditItemTemplate>
+                            <FooterTemplate>
+                                <asp:TextBox runat="server" type="number" ID="InsertAvatar" Text='<%# Bind("Avatar") %>' />
+                                <asp:RequiredFieldValidator ID="rfvEditAvatar"
+                                    runat="server"
+                                    ErrorMessage="Chưa nhập người thêm"
+                                    ControlToValidate="InsertAvatar"
+                                    Text="*" ForeColor="Red" ValidationGroup="Insert">
+                                </asp:RequiredFieldValidator>
+                            </FooterTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Kích hoạt" SortExpression="Active">
                             <ItemTemplate>
                                 <asp:CheckBox Enabled="false" runat="server" Checked='<%# Eval("Active") %>' />

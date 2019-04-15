@@ -23,6 +23,12 @@ namespace ShoesStore.BusinessLogicLayer
             return _dao.Login(login, EncryptHelper.Encrypt(pwd));
         }
 
+        public Usr LoginAdmin(string login, string pwd)
+        {
+            return _dao.CheckAdmin(login, EncryptHelper.Encrypt(pwd));
+        }
+
+
         public void Register(Usr obj)
         {
             throw new NotImplementedException();

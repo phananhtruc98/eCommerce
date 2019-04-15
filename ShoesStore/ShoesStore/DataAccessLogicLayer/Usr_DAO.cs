@@ -8,7 +8,7 @@ namespace ShoesStore.DataAccessLogicLayer
     public class Usr_DAO : Table_DAO<Usr>, IUsr<Usr>
     {
         private UsrAct_DAO _usrAct_DAO = new UsrAct_DAO();
-
+        private readonly Mstr_DAO _mstr_DAO = new Mstr_DAO();
         public UsrAct GetUsrAct(int usrId)
         {
             return _usrAct_DAO.GetAll().FirstOrDefault(m => m.UsrId == usrId);
@@ -55,5 +55,23 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public Usr CheckAdmin(string login, string pwd)
+        {
+            Usr usr = Login(login, pwd);
+            // tu day tro xuong kt
+            int usrId = usr.UsrId;
+            var rs = _mstr_DAO.GetAll().Any(m => m.MstrId == usrId);
+            if(rs)
+            {
+                usr = Login(login, pwd);
+            }
+            else
+            {
+                return null;
+            }
+            return usr;
+        }
+
     }
 }

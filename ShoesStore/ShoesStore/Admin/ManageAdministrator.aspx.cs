@@ -47,7 +47,8 @@ namespace ShoesStore.Admin
                           DateAdd = u.DateAdd,
                           DateEdit = u.DateEdit,
                           Active = u.Active,
-                          AddBy = d.AddBy
+                          AddBy = d.AddBy,
+                          Avatar = u.Avatar
                       }).ToList();
             gvAdmin.DataSource = rs;
             gvAdmin.DataBind();
@@ -129,7 +130,7 @@ namespace ShoesStore.Admin
                 string LoginOld = ((HiddenField)gvAdmin.Rows[rowIndex].FindControl("LoginOld")).Value;
                 string PasswordOld = ((HiddenField)gvAdmin.Rows[rowIndex].FindControl("PasswordOld")).Value;
                 bool Active = ((CheckBox)gvAdmin.Rows[rowIndex].FindControl("EditActive")).Checked;
-
+                string Avatar = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditAvatar")).Text;
                 // kiểm tra password nếu thay đổi thì mới encrypt
                 if (Password != PasswordOld)
                 {
@@ -159,6 +160,7 @@ namespace ShoesStore.Admin
                     result.Phone = Phone;
                     result.DateEdit = DateTime.Now;
                     result.Active = Active;
+                    result.Avatar = Avatar;
                     usr.Update(result);
                 }
 
@@ -187,17 +189,21 @@ namespace ShoesStore.Admin
                 string Address = ((TextBox)gvAdmin.FooterRow.FindControl("InsertAddress")).Text;
                 string Email = ((TextBox)gvAdmin.FooterRow.FindControl("InsertEmail")).Text;
                 bool Active = ((CheckBox)gvAdmin.FooterRow.FindControl("InsertActive")).Checked;
-
-                if (UsrName == "")
+                string Avatar = ((TextBox)gvAdmin.FooterRow.FindControl("InsertAvatar")).Text;
+                if (UsrName == "" || Address == "" || Phone == "" || Email == "" || Password == "" || Login=="" || AddBy=="" )
                 {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Chưa nhập đủ thông tin')", true);
                     return;
                 }
-                if (AddBy == "")
+                if(Avatar==null)
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Chưa thêm người thêm')", true);
+                    Avatar = "default.jpg";
+                }
+                if(!MyLibrary.IsValidEmailAddress(Email))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Email chưa đúng')", true);
                     return;
                 }
-
                 Usr result = new Usr
                 {
                     Password = Password,
@@ -206,18 +212,22 @@ namespace ShoesStore.Admin
                     Login = Login,
                     Email = Email,
                     Phone = Phone,
-                    DateEdit = DateTime.Now,
-                    Active = Active
+                    DateEdit = null,
+                    Active = Active,
+                    Avatar = Avatar,
+                    DateAdd = DateTime.Now
+                    
                 };
                 usr.Insert(result);
-                Mstr mstr = new Mstr
+                Mstr rs1 = new Mstr
                 {
-                    MstrId = usr.GetLastestId() + 1
+                    MstrId = usr.GetLastestId()
                 };
 
+                mstr.Insert(rs1);
                 MstrDet mstrDet = new MstrDet
                 {
-                    MstrId = usr.GetLastestId() + 1,
+                    MstrId = usr.GetLastestId(),
                     RoleId = RoleId,
                     AddDate = DateTime.Now,
                     AddBy = Int32.Parse(AddBy)
@@ -225,41 +235,7 @@ namespace ShoesStore.Admin
 
                 mstrDet_bus.Insert(mstrDet);
                 BindDataGridView();
-            }
-            //else if (e.CommandName == "EInsertRow")
-            //{
-            //    string dateAdd = DateTime.Now.ToString();
-            //    string usrAdd = ((TextBox)gvRcptSub.Controls[0].Controls[0].FindControl("EInsertUsrAdd")).Text;
-            //    string usrEdit = null;
-            //    if (usrEdit == null)
-            //    {
-            //        usrEdit = "0";
-            //    }
-
-            //    if (usrAdd == "")
-            //    {
-            //        return;
-            //    }
-
-
-            //    Rcpt rcpt1 = new Rcpt
-            //    {
-            //        DateAdd = DateTime.Now,
-            //        DateEdit = null,
-            //        UsrAdd = Int32.Parse(usrAdd),
-            //        UsrEdit = null
-            //    };
-
-            //    rcpt.Insert(rcpt1);
-            //    RcptSub newRcptSub = new RcptSub
-            //    {
-            //        RcptSubId = rcpt.getMaxRcptId()
-            //    };
-
-            //    rcptsub.Insert(newRcptSub);
-
-            //    BindGridViewgvRcptSub();
-            //}
+            } 
         }
 
         protected void gvAdmin_RowDataBound(object sender, GridViewRowEventArgs e)
