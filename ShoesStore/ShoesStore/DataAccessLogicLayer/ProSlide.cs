@@ -12,13 +12,11 @@ namespace ShoesStore.DataAccessLogicLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class ProSlideImg
+    public partial class ProSlide
     {
         public int SlideId { get; set; }
         public int ShpId { get; set; }
         public int ProId { get; set; }
         public string Img { get; set; }
-    
-        public virtual Pro Pro { get; set; }
     }
 }

@@ -17,9 +17,17 @@ namespace ShoesStore.Customer
             if (!IsPostBack)
             {
                 CollectUrl();
+                Bind_Slides();
             }
         }
 
+        private void Bind_Slides()
+        {
+            rptProSlidePresent.DataSource = rptProSlideCarousel.DataSource = _proSlideImg.GetAll()
+                .Where(m => m.ProId == _proDet.ProId && m.ShpId == _proDet.ShpId);
+            rptProSlideCarousel.DataBind();
+            rptProSlidePresent.DataBind();
+        }
         private void CollectUrl()
         {
             _proDet = _pro.GetAll().ToList().FirstOrDefault(m =>

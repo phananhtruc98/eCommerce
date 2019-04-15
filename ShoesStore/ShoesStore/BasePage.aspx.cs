@@ -20,6 +20,7 @@ namespace ShoesStore
         internal readonly WebInfo_BUS _webInfo = new WebInfo_BUS();
         internal readonly WebSlide_BUS _webSlide = new WebSlide_BUS();
         internal readonly Pro_BUS _pro = new Pro_BUS();
+        internal readonly ProSlide_BUS _proSlideImg = new ProSlide_BUS();
         protected virtual void Page_Load(object sender, EventArgs e)
         {
 

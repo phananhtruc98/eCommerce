@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" Title="Sản phẩm chi tiết" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ProDet.aspx.cs" Inherits="ShoesStore.Customer.SanPham_ChiTiet" %>
 
+<%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
 <%@ Import Namespace="ShoesStore" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- site__body -->
@@ -40,65 +41,35 @@
                             <div class="product-gallery">
                                 <div class="product-gallery__featured">
                                     <div class="owl-carousel" id="product-image">
-                                        <a
-                                            href="/images/products/product-16.html" target="_blank">
-                                            <img
-                                                src="/images/products/product-16.jpg" alt="">
-                                        </a>
-                                        <a
-                                            href="/images/products/product-16-1.html" target="_blank">
-                                            <img
-                                                src="/images/products/product-16-1.jpg" alt="">
-                                        </a>
-                                        <a
-                                            href="/images/products/product-16-2.html" target="_blank">
-                                            <img
-                                                src="/images/products/product-16-2.jpg" alt="">
-                                        </a>
-                                        <a
-                                            href="/images/products/product-16-3.html" target="_blank">
-                                            <img
-                                                src="/images/products/product-16-3.jpg" alt="">
-                                        </a>
-                                        <a
-                                            href="/images/products/product-16-4.html" target="_blank">
-                                            <img
-                                                src="/images/products/product-16-4.jpg" alt="">
-                                        </a>
+                                        <asp:Repeater runat="server" ID="rptProSlidePresent">
+
+                                            <ItemTemplate>
+                                                <a
+                                                    href="#" target="_blank">
+                                                    <img
+                                                        src="<%# MyLibrary.ProSlidePath(Eval("ShpId"),Eval("ProId"),Eval("Img")) %>" alt="">
+                                                </a>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
                                     </div>
                                 </div>
                                 <div class="product-gallery__carousel">
                                     <div class="owl-carousel" id="product-carousel">
-                                        <a href="/#"
-                                            class="product-gallery__carousel-item">
-                                            <img
-                                                class="product-gallery__carousel-image"
-                                                src="/images/products/product-16.jpg" alt="">
-                                        </a>
-                                        <a href="/#"
-                                            class="product-gallery__carousel-item">
-                                            <img
-                                                class="product-gallery__carousel-image"
-                                                src="/images/products/product-16-1.jpg" alt="">
-                                        </a>
-                                        <a href="/#"
-                                            class="product-gallery__carousel-item">
-                                            <img
-                                                class="product-gallery__carousel-image"
-                                                src="/images/products/product-16-2.jpg" alt="">
-                                        </a>
-                                        <a href="/#"
-                                            class="product-gallery__carousel-item">
-                                            <img
-                                                class="product-gallery__carousel-image"
-                                                src="/images/products/product-16-3.jpg" alt="">
-                                        </a>
-                                        <a href="/#"
-                                            class="product-gallery__carousel-item">
-                                            <img
-                                                class="product-gallery__carousel-image"
-                                                src="/images/products/product-16-4.jpg" alt="">
-                                        </a>
+
+                                        <asp:Repeater runat="server" ID="rptProSlideCarousel">
+
+                                            <ItemTemplate>
+
+                                                <a href="/#"
+                                                    class="product-gallery__carousel-item">
+                                                    <img
+                                                        class="product-gallery__carousel-image"
+                                                        src="<%# MyLibrary.ProSlidePath(Eval("ShpId"),Eval("ProId"),Eval("Img")) %>" alt="">
+                                                </a>
+
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +93,9 @@
                                     </svg>
                                 </button>
                             </div>
-                            <h1 class="product__name"><%:_proDet.ProName %></h1>
+                            <h1 class="product__name"><%:_proDet.ProName %>
+                                
+                            </h1>
                             <div class="product__rating">
                                 <div class="product__rating-stars">
                                     <div class="rating">
@@ -425,7 +398,7 @@
                                                 <div class="review">
                                                     <div class="review__avatar">
                                                         <img
-                                                            src="<%: MyLibrary.ProImgPath(_proDet.ShpId,_proDet.Img) %>" alt="">
+                                                            src="<%: MyLibrary.ProImgPath(_proDet.ShpId,_proDet.ProId,_proDet.Img) %>" alt="">
                                                     </div>
                                                     <div class="review__content">
                                                         <div class="review__author">Samantha Smith</div>

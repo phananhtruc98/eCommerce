@@ -2524,6 +2524,7 @@
     <Compile Include="BusinessLogicLayer\ProCat_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProColor_BUS.cs" />
     <Compile Include="BusinessLogicLayer\ProSize_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\ProSlide_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Pro_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptBuyDet_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptBuy_BUS.cs" />
@@ -2616,9 +2617,13 @@
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\ProSize_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\ProSlide.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\ProSlideImg.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\ProSlide_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Pro_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Rcpt.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>

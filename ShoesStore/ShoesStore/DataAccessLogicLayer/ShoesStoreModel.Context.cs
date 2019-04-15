@@ -41,6 +41,8 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<ProColor> ProColor { get; set; }
         public DbSet<ProDet> ProDet { get; set; }
         public DbSet<ProSize> ProSize { get; set; }
+        public DbSet<ProSlide> ProSlide { get; set; }
+        public DbSet<ProSlideImg> ProSlideImg { get; set; }
         public DbSet<Rcpt> Rcpt { get; set; }
         public DbSet<RcptBuy> RcptBuy { get; set; }
         public DbSet<RcptBuyDet> RcptBuyDet { get; set; }

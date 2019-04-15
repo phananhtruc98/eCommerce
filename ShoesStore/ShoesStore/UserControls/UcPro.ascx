@@ -28,7 +28,7 @@
                             <asp:LinkButton runat="server" ID="proImgLink"
                                 PostBackUrl='<%#MyLibrary.ProDetUrl(Eval("ProCat.CatName"),Eval("ProName"),Eval("Shp.ShpName")) %>'>
 
-                                <img src="<%#MyLibrary.ProImgPath(Eval("ShpId"),Eval("Img")) %>" alt="">
+                                <img src="<%#MyLibrary.ProImgPath(Eval("ShpId"),Eval("ProId"),Eval("Img")) %>" alt="">
                             </asp:LinkButton>
 
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -135,7 +135,7 @@
                                 <div class="product-card__image">
                                     <a href="product.html">
                                         <img
-                                            src="<%#MyLibrary.ProImgPath(Eval("shpId"),Eval("Img")) %>" alt="">
+                                            src="<%#MyLibrary.ProImgPath(Eval("shpId"),Eval("ProId"),Eval("Img")) %>" alt="">
                                     </a>
                                 </div>
                                 <div class="product-card__info">
@@ -299,7 +299,7 @@
                                 <div class="product-card__image">
                                     <a href="product.html">
                                         <img
-                                            src="<%# MyLibrary.ProImgPath(Eval("ShpId"),Eval("Img")) %>" alt="">
+                                            src="<%# MyLibrary.ProImgPath(Eval("ShpId"),Eval("ProId"),Eval("Img")) %>" alt="">
                                     </a>
                                     &nbsp;&nbsp;
                                 </div>

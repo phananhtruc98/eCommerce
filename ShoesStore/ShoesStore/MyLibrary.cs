@@ -67,18 +67,22 @@ namespace ShoesStore
             return moneyPrefix + string.Format("{0:n0}", Convert.ToInt32(money));
         }
 
-        public static string ProImgPath(object shpId, object img)
+        public static string ProImgPath(object shpId, object proId, object img)
         {
-            return Path.Combine(proImgPath, shpId.ToString(), img.ToString());
+            return Path.Combine(proImgPath, shpId.ToString(), proId.ToString(), img.ToString());
         }
 
+        public static string ProSlidePath(object shpId, object proId, object proSlideId)
+        {
+            return Path.Combine(proImgPath, shpId.ToString(), proId.ToString(), "Slides", proSlideId.ToString());
+        }
         public static string SlidePath(object img)
         {
-            return Path.Combine(slidePath, img.ToString()).Replace(@"\",@"/");
+            return Path.Combine(slidePath, img.ToString()).Replace(@"\", @"/");
         }
-        public static string ProDetUrl(object catName, object proName,object shpName)
+        public static string ProDetUrl(object catName, object proName, object shpName)
         {
-            return Path.Combine(proDetUrl, TextHelper.UrlFriendly(catName.ToString()), TextHelper.UrlFriendly(proName.ToString()),TextHelper.UrlFriendly(shpName.ToString()));
+            return Path.Combine(proDetUrl, TextHelper.UrlFriendly(catName.ToString()), TextHelper.UrlFriendly(proName.ToString()), TextHelper.UrlFriendly(shpName.ToString()));
         }
     }
 }
