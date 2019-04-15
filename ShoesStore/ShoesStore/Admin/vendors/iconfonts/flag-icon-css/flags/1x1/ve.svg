@@ -17,10 +17,10 @@
   <path d="M0 0h512v170.665H0z" fill="#fc0"/>
   <g id="f" transform="translate(256.335 358.4) scale(4.265)">
     <g id="e">
-      <use height="120" width="180" transform="rotate(10)" xlink:href="#d"/>
-      <use height="120" width="180" transform="rotate(30)" xlink:href="#d"/>
+      <use height="120" width="180" transform="rotate(10)" href="#d"/>
+      <use height="120" width="180" transform="rotate(30)" href="#d"/>
     </g>
-    <use height="120" width="180" transform="rotate(40)" xlink:href="#e"/>
+    <use height="120" width="180" transform="rotate(40)" href="#e"/>
   </g>
-  <use height="120" width="180" transform="rotate(-80 256.335 358.4)" xlink:href="#f"/>
+  <use height="120" width="180" transform="rotate(-80 256.335 358.4)" href="#f"/>
 </svg>

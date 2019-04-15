@@ -1,0 +1,235 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Merchant.master.cs" Inherits="ShoesStore.Merchant.Merchant1" %>
+
+<!DOCTYPE html>
+
+<html>
+
+<head runat="server">
+    
+        <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>The Shuz</title>
+    <link rel="icon" type="image/png" href="images/shoeicon.png"/>
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i"/>
+    <!-- css -->
+    <link rel="stylesheet" href="vendor/bootstrap-4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="vendor/owl-carousel-2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <!-- js -->
+    <script src="vendor/jquery-3.3.1/jquery.min.js"></script>
+    <script src="vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/owl-carousel-2.3.4/owl.carousel.min.js"></script>
+    <script src="vendor/nouislider-12.1.0/nouislider.min.js"></script>
+    <script src="js/number.js"></script>
+    <script src="js/main.js"></script>
+    <script src="vendor/svg4everybody-2.1.9/svg4everybody.min.js"></script>
+    <script>svg4everybody();</script>
+    <!-- font - fontawesome -->
+    <link rel="stylesheet" href="vendor/fontawesome-5.6.1/css/all.min.css"/>
+    <!-- font - stroyka -->
+    <link rel="stylesheet" href="fonts/stroyka/stroyka.css"/>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97489509-6"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'UA-97489509-6');</script>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <!-- mobile site__header -->
+        <header class="site__header d-lg-none">
+            <div class="mobile-header mobile-header--sticky mobile-header--stuck">
+                <div class="mobile-header__panel">
+                    <div class="container">
+                        <div class="mobile-header__body">
+                            <button class="mobile-header__menu-button">
+                                <svg width="18px" height="14px">
+                                    <use href="images/sprite.svg#menu-18x14"></use></svg></button>
+                            <a class="mobile-header__logo" href="MerHome.aspx">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="120px" height="20px">
+                                </svg>
+                            </a>
+
+                            <div class="mobile-header__indicators">
+                                <div class="indicator indicator--mobile-search indicator--mobile d-sm-none">
+                                    <button class="indicator__button">
+                                        <span class="indicator__area">
+                                            <svg width="20px" height="20px">
+                                                <use href="images/sprite.svg#search-20"></use></svg></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- mobile site__header / end -->
+        <!-- desktop site__header -->
+        <header class="site__header d-lg-block d-none">
+            <div class="site-header">
+                <!-- .topbar -->
+                <!-- .topbar / end -->
+                <div class="site-header__nav-panel">
+                    <div class="nav-panel">
+                        <div class="nav-panel__container container">
+                            <div class="nav-panel__row">
+                                <div class="nav-panel__logo">
+                                    <a href="MerHome.aspx">
+                                        <img src="images/shuz.png" style="height: 70px">
+                                        <!--Chỗ Này Để Logo-->
+
+                                    </a>
+                                </div>
+                                <!-- .nav-links -->
+                                <div class="nav-panel__nav-links nav-links">
+                                    <ul class="nav-links__list">
+                                        <li class="nav-links__item nav-links__item--with-submenu"><a href="MerHome.aspx"><span>Home
+                                                </span></a>
+                                            <div class="nav-links__menu"></div>
+                                        </li>
+
+                                        <li class="nav-links__item nav-links__item--with-submenu"><a href="MerProfile.aspx"><span>Personal Page
+                                                
+                                                   
+
+                                            <use href="images/sprite.svg#arrow-rounded-down-9x6"></use>
+                                            </svg></span></a><div class="nav-links__menu">
+                                                <!-- .menu -->
+
+                                                <!-- .menu / end -->
+                                            </div>
+                                        </li>
+                                        <li class="nav-links__item nav-links__item--with-submenu"><a href="sub.aspx"><span>Sub
+                                                
+                                                   
+
+                                            <use href="images/sprite.svg#arrow-rounded-down-9x6"></use>
+                                            </svg></span></a><div class="nav-links__menu">
+                                                <!-- .menu -->
+
+                                                <!-- .menu / end -->
+                                            </div>
+                                        </li>
+                                        <li class="nav-links__item nav-links__item--with-submenu"><a href="SignIn.aspx"><span>Sign In
+                                                
+                                                   
+
+                                            <use href="images/sprite.svg#arrow-rounded-down-9x6"></use>
+                                            </svg></span></a><div class="nav-links__menu">
+                                                <!-- .menu -->
+
+                                                <!-- .menu / end -->
+                                            </div>
+                                        </li>
+                                        <li class="nav-links__item"><a href="Contact.aspx"><span>Contact Us</span></a></li>
+                                        <li class="nav-links__item"></li>
+                                    </ul>
+                                </div>
+                                <!-- .nav-links / end -->
+                                <div class="nav-panel__indicators">
+                                    <div class="indicator indicator--trigger--click">
+                                        <div class="indicator__dropdown">
+                                            <!-- .dropcart -->
+
+                                            <!-- .dropcart / end -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- desktop site__header / end -->
+
+        <!-- ***Content*** -->
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <!--Content/end -->
+
+        <!-- ***site__footer*** -->
+        <footer class="site__footer">
+            <div class="site-footer">
+                <div class="container">
+                    <div class="site-footer__widgets">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="site-footer__widget footer-contacts">
+                                    <h5 class="footer-contacts__title">Contact Us</h5>
+                                    <div class="footer-contacts__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in feugiat lorem. Pellentque ac placerat tellus.</div>
+                                    <ul class="footer-contacts__contacts">
+                                        <li><i class="footer-contacts__icon fas fa-globe-americas"></i>715 Fake Street, New York 10021 USA</li>
+                                        <li><i class="footer-contacts__icon far fa-envelope"></i>stroyka@example.com</li>
+                                        <li><i class="footer-contacts__icon fas fa-mobile-alt"></i>(800) 060-0730, (800) 060-0730</li>
+                                        <li><i class="footer-contacts__icon far fa-clock"></i>Mon-Sat 10:00pm - 7:00pm</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3 col-lg-2">
+                                <div class="site-footer__widget footer-links">
+                                    <h5 class="footer-links__title">Information</h5>
+                                    <ul class="footer-links__list">
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">About Us</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Delivery Information</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Privacy Policy</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Brands</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Contact Us</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Returns</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Site Map</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3 col-lg-2">
+                                <div class="site-footer__widget footer-links">
+                                    <h5 class="footer-links__title">My Account</h5>
+                                    <ul class="footer-links__list">
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Store Location</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Order History</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Wish List</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Newsletter</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Specials</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Gift Certificates</a></li>
+                                        <li class="footer-links__item"><a href="#" class="footer-links__link">Affiliate</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-4">
+                                <div class="site-footer__widget footer-newsletter">
+                                    <h5 class="footer-newsletter__title">Newsletter</h5>
+                                    <div class="footer-newsletter__text">Praesent pellentesque volutpat ex, vitae auctor lorem pulvinar mollis felis at lacinia.</div>
+                                    <form action="#" class="footer-newsletter__form">
+                                        <label class="sr-only" for="footer-newsletter-address">Email Address</label>
+                                        <input type="text" class="footer-newsletter__form-input form-control" id="footer-newsletter-address" placeholder="Email Address...">
+                                        <button class="footer-newsletter__form-button btn btn-primary">Subscribe</button>
+                                    </form>
+                                    <div class="footer-newsletter__text footer-newsletter__text--social">Follow us on social networks</div>
+                                    <ul class="footer-newsletter__social-links">
+                                        <li class="footer-newsletter__social-link footer-newsletter__social-link--facebook"><a href="https://themeforest.net/user/kos9" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li class="footer-newsletter__social-link footer-newsletter__social-link--twitter"><a href="https://themeforest.net/user/kos9" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                        <li class="footer-newsletter__social-link footer-newsletter__social-link--youtube"><a href="https://themeforest.net/user/kos9" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                        <li class="footer-newsletter__social-link footer-newsletter__social-link--instagram"><a href="https://themeforest.net/user/kos9" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                        <li class="footer-newsletter__social-link footer-newsletter__social-link--rss"><a href="https://themeforest.net/user/kos9" target="_blank"><i class="fas fa-rss"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="site-footer__bottom">
+                        <div class="site-footer__copyright"><a href="templatespoint.net" target="_blank">Templates Point</a></div>
+                        <div class="site-footer__payments">
+                            <img src="images/payments.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- site__footer / end -->
+
+    </form>
+</body>
+
+</html>

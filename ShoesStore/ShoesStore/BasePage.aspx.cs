@@ -8,11 +8,11 @@ using ShoesStore.BusinessLogicLayer;
 
 namespace ShoesStore
 {
-    
-    
+
+
     public partial class BasePage : System.Web.UI.Page
-    {  
-        public List<Tuple<Control,TableName>> listWc = new List<Tuple<Control, TableName>>();
+    {
+        public List<Tuple<Control, TableName>> listWc = new List<Tuple<Control, TableName>>();
 
         internal readonly ProCat_BUS _proCat = new ProCat_BUS();
         internal readonly ProBrand_BUS _proBrand = new ProBrand_BUS();
@@ -21,6 +21,7 @@ namespace ShoesStore
         internal readonly WebSlide_BUS _webSlide = new WebSlide_BUS();
         internal readonly Pro_BUS _pro = new Pro_BUS();
         internal readonly ProSlide_BUS _proSlideImg = new ProSlide_BUS();
+        internal readonly RcptBuyDet_BUS _rpcptBuyDet = new RcptBuyDet_BUS();
         protected virtual void Page_Load(object sender, EventArgs e)
         {
 
@@ -28,35 +29,35 @@ namespace ShoesStore
 
         public void Bind()
         {
-            foreach(var wc in listWc)
+            foreach (var wc in listWc)
             {
-            if (wc.Item1 is Repeater)
-            {
-                Repeater rptWc = (Repeater) wc.Item1;
-                switch (wc.Item2)
+                if (wc.Item1 is Repeater)
                 {
-                    case TableName.Pro:
+                    Repeater rptWc = (Repeater)wc.Item1;
+                    switch (wc.Item2)
                     {
-                        rptWc.DataSource = _pro.GetAll();
-                        break;
+                        case TableName.Pro:
+                            {
+                                rptWc.DataSource = _pro.GetAll();
+                                break;
+                            }
+                        case TableName.ProCat:
+                            {
+                                rptWc.DataSource = _proCat.GetAll();
+                                break;
+                            }
+                        case TableName.ProBrand:
+                            {
+                                rptWc.DataSource = _proBrand.GetAll();
+                                break;
+                            }
                     }
-                    case TableName.ProCat:
-                    {
-                        rptWc.DataSource = _proCat.GetAll();
-                        break;
-                    }
-                    case TableName.ProBrand:
-                    {
-                        rptWc.DataSource = _proBrand.GetAll();
-                        break;
-                    }
-                }
-                
 
-                rptWc.DataBind();
-            }
+
+                    rptWc.DataBind();
+                }
             }
         }
-       
+
     }
 }

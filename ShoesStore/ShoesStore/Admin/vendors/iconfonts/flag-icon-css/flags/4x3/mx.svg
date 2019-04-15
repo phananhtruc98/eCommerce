@@ -4,9 +4,9 @@
       <stop offset="0" stop-color="#fff"/>
       <stop offset="1" stop-color="#f15770"/>
     </linearGradient>
-    <radialGradient gradientTransform="matrix(.14152 .03595 -.03453 .14198 213.144 162.444)" r="25.859" cy="103.66" cx="842.31" gradientUnits="userSpaceOnUse" xlink:href="#a" id="b"/>
-    <radialGradient gradientTransform="matrix(-.13441 -.05384 .04964 -.12489 397.879 -24.245)" r="25.859" cy="550.46" cx="651.52" gradientUnits="userSpaceOnUse" xlink:href="#a" id="c"/>
-    <radialGradient gradientTransform="matrix(.07536 .00282 -.00343 .14804 412.4 -203.629)" r="25.859" cy="740.37" cx="380.84" gradientUnits="userSpaceOnUse" xlink:href="#a" id="d"/>
+    <radialGradient gradientTransform="matrix(.14152 .03595 -.03453 .14198 213.144 162.444)" r="25.859" cy="103.66" cx="842.31" gradientUnits="userSpaceOnUse" href="#a" id="b"/>
+    <radialGradient gradientTransform="matrix(-.13441 -.05384 .04964 -.12489 397.879 -24.245)" r="25.859" cy="550.46" cx="651.52" gradientUnits="userSpaceOnUse" href="#a" id="c"/>
+    <radialGradient gradientTransform="matrix(.07536 .00282 -.00343 .14804 412.4 -203.629)" r="25.859" cy="740.37" cx="380.84" gradientUnits="userSpaceOnUse" href="#a" id="d"/>
   </defs>
   <path fill="#ce1126" d="M426.667 0H640v480H426.667z"/>
   <path fill="#fff" d="M213.333 0h213.333v480H213.333z"/>

@@ -5,10 +5,10 @@
         <path transform="translate(0 -.325)" d="M0 0v.5L1 0z"/>
         <path transform="rotate(-36 .5 -.162)" d="M0 0v-.5L1 0z"/>
       </g>
-      <use transform="scale(-1 1)" xlink:href="#a"/>
-      <use transform="rotate(72 0 0)" xlink:href="#a"/>
-      <use transform="rotate(-72 0 0)" xlink:href="#a"/>
-      <use transform="scale(-1 1) rotate(72)" xlink:href="#a"/>
+      <use transform="scale(-1 1)" href="#a"/>
+      <use transform="rotate(72 0 0)" href="#a"/>
+      <use transform="rotate(-72 0 0)" href="#a"/>
+      <use transform="scale(-1 1) rotate(72)" href="#a"/>
     </g>
     <clipPath id="c">
       <path d="M0 0h600v300H0z"/>
@@ -19,20 +19,20 @@
   </defs>
   <path d="M.004 0h640v480h-640z" fill="#00247d" fill-rule="evenodd"/>
   <g transform="translate(-92.947 36.115) scale(.66825)">
-    <use fill="#fff" height="100%" width="100%" xlink:href="#b" transform="matrix(45.4 0 0 45.4 900 120)"/>
-    <use fill="#cc142b" height="100%" width="100%" xlink:href="#b" transform="matrix(30 0 0 30 900 120)"/>
+    <use fill="#fff" height="100%" width="100%" href="#b" transform="matrix(45.4 0 0 45.4 900 120)"/>
+    <use fill="#cc142b" height="100%" width="100%" href="#b" transform="matrix(30 0 0 30 900 120)"/>
   </g>
   <g transform="rotate(82 534.179 124.977) scale(.66825)">
-    <use fill="#fff" height="100%" width="100%" xlink:href="#b" transform="rotate(-82 519.022 -457.666) scale(40.4)"/>
-    <use fill="#cc142b" height="100%" width="100%" xlink:href="#b" transform="rotate(-82 519.022 -457.666) scale(25)"/>
+    <use fill="#fff" height="100%" width="100%" href="#b" transform="rotate(-82 519.022 -457.666) scale(40.4)"/>
+    <use fill="#cc142b" height="100%" width="100%" href="#b" transform="rotate(-82 519.022 -457.666) scale(25)"/>
   </g>
   <g transform="rotate(82 534.179 124.977) scale(.66825)">
-    <use fill="#fff" height="100%" width="100%" xlink:href="#b" transform="rotate(-82 668.57 -327.666) scale(45.4)"/>
-    <use fill="#cc142b" height="100%" width="100%" xlink:href="#b" transform="rotate(-82 668.57 -327.666) scale(30)"/>
+    <use fill="#fff" height="100%" width="100%" href="#b" transform="rotate(-82 668.57 -327.666) scale(45.4)"/>
+    <use fill="#cc142b" height="100%" width="100%" href="#b" transform="rotate(-82 668.57 -327.666) scale(30)"/>
   </g>
   <g transform="translate(-92.947 36.115) scale(.66825)">
-    <use fill="#fff" height="100%" width="100%" xlink:href="#b" transform="matrix(50.4 0 0 50.4 900 480)"/>
-    <use fill="#cc142b" height="100%" width="100%" xlink:href="#b" transform="matrix(35 0 0 35 900 480)"/>
+    <use fill="#fff" height="100%" width="100%" href="#b" transform="matrix(50.4 0 0 50.4 900 480)"/>
+    <use fill="#cc142b" height="100%" width="100%" href="#b" transform="matrix(35 0 0 35 900 480)"/>
   </g>
   <path clip-path="url(#c)" d="M0 0l600 300M0 300L600 0" transform="matrix(.60681 0 0 .73139 .004 0)" stroke="#fff" stroke-width="60"/>
   <path clip-path="url(#d)" d="M0 0l600 300M0 300L600 0" transform="matrix(.60681 0 0 .73139 .004 0)" stroke="#cc142b" stroke-width="40"/>

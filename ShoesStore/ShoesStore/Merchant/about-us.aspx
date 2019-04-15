@@ -36,7 +36,7 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'UA-97489509-6');</script>
 </head>
 <body>
-    <form id="form1" runat="server">
+    
         <!-- quickview-modal -->
         <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -371,7 +371,7 @@
                                  c-0.4,0.7-1.2,1-1.8,0.6c-0.6-0.3-1.2-0.7-1.6-1.2C0.6,8.9,0,7.5,0,6c0-3.3,2.9-6,6.5-6c2.8,0,5.5,1.7,6.4,4C13.3,4.9,12.6,6,11.6,6
                                  z">
                                         </path></svg></a><div class="mobile-header__search">
-                                            <form class="mobile-header__search-form" action="#">
+                                            <div class="mobile-header__search-form" >
                                                 <input class="mobile-header__search-input" name="search" placeholder="Search over 10,000 products" aria-label="Site search" type="text" autocomplete="off">
                                                 <button class="mobile-header__search-button mobile-header__search-button--submit" type="submit">
                                                     <svg width="20px" height="20px">
@@ -379,7 +379,7 @@
                                                 <button class="mobile-header__search-button mobile-header__search-button--close" type="button">
                                                     <svg width="20px" height="20px">
                                                         <use href="images/sprite.svg#cross-20"></use></svg></button><div class="mobile-header__search-body"></div>
-                                            </form>
+                                            </div>
                                         </div>
                                 <div class="mobile-header__indicators">
                                     <div class="indicator indicator--mobile-search indicator--mobile d-sm-none">
@@ -504,12 +504,12 @@
                         </div>
                         <div class="site-header__search">
                             <div class="search">
-                                <form class="search__form" action="#">
+                                <div class="search__form" action="#">
                                     <input class="search__input" name="search" placeholder="Search over 10,000 products" aria-label="Site search" type="text" autocomplete="off">
                                     <button class="search__button" type="submit">
                                         <svg width="20px" height="20px">
                                             <use href="images/sprite.svg#search-20"></use></svg></button><div class="search__border"></div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                         <div class="site-header__phone">
@@ -1114,11 +1114,11 @@
                                     <div class="site-footer__widget footer-newsletter">
                                         <h5 class="footer-newsletter__title">Newsletter</h5>
                                         <div class="footer-newsletter__text">Praesent pellentesque volutpat ex, vitae auctor lorem pulvinar mollis felis at lacinia.</div>
-                                        <form action="#" class="footer-newsletter__form">
+                                        <div action="#" class="footer-newsletter__form">
                                             <label class="sr-only" for="footer-newsletter-address">Email Address</label>
                                             <input type="text" class="footer-newsletter__form-input form-control" id="footer-newsletter-address" placeholder="Email Address...">
                                             <button class="footer-newsletter__form-button btn btn-primary">Subscribe</button>
-                                        </form>
+                                        </div>
                                         <div class="footer-newsletter__text footer-newsletter__text--social">Follow us on social networks</div>
                                         <ul class="footer-newsletter__social-links">
                                             <li class="footer-newsletter__social-link footer-newsletter__social-link--facebook"><a href="https://themeforest.net/user/kos9" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
@@ -1143,7 +1143,7 @@
             <!-- site__footer / end -->
         </div>
         <!-- site / end -->
-    </form>
+    </div>
 </body>
 
 </html>

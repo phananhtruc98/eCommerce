@@ -178,6 +178,7 @@
           <Property Name="Cmt" Type="nvarchar" MaxLength="255" />
           <Property Name="Point" Type="int" />
           <Property Name="Quantity" Type="int" />
+          <Property Name="DateAdd" Type="datetime" />
         </EntityType>
         <EntityType Name="RcptBuySta">
           <Key>
@@ -265,6 +266,7 @@
           </Key>
           <Property Name="UsrId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UsrName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="255" />
           <Property Name="Login" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
@@ -1574,6 +1576,7 @@
           <Property Name="Cmt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Point" Type="Int32" />
           <Property Name="Quantity" Type="Int32" />
+          <Property Name="DateAdd" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Pro" Relationship="Self.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" FromRole="RcptBuyDet" ToRole="Pro" />
           <NavigationProperty Name="RcptBuy" Relationship="Self.FK_ReceiptsBuysDetails_ReceiptsBuys" FromRole="RcptBuyDet" ToRole="RcptBuy" />
         </EntityType>
@@ -1678,6 +1681,7 @@
           </Key>
           <Property Name="UsrId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UsrName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
@@ -2896,6 +2900,7 @@
           <Property Type="String" Name="Cmt" Nullable="true" MaxLength="255" />
           <Property Type="Int32" Name="Point" Nullable="true" />
           <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="DateTime" Name="DateAdd" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="sp_RcptBuySta_Select_Result">
           <Property Type="Int32" Name="StaId" Nullable="false" />
@@ -2939,6 +2944,7 @@
         <ComplexType Name="sp_Usr_Select_Result">
           <Property Type="Int32" Name="UsrId" Nullable="false" />
           <Property Type="String" Name="UsrName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Avatar" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="Login" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="255" />
           <Property Type="Boolean" Name="Active" Nullable="false" />
@@ -3169,6 +3175,7 @@
                 <ScalarProperty Name="Cmt" ColumnName="Cmt" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3262,6 +3269,7 @@
               <MappingFragment StoreEntitySet="Usr">
                 <ScalarProperty Name="UsrId" ColumnName="UsrId" />
                 <ScalarProperty Name="UsrName" ColumnName="UsrName" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
@@ -3539,6 +3547,7 @@
                 <ScalarProperty Name="Cmt" ColumnName="Cmt" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3644,6 +3653,7 @@
               <ComplexTypeMapping TypeName="ShoesStoreModel.sp_Usr_Select_Result">
                 <ScalarProperty Name="UsrId" ColumnName="UsrId" />
                 <ScalarProperty Name="UsrName" ColumnName="UsrName" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Active" ColumnName="Active" />

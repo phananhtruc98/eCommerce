@@ -12,15 +12,22 @@ namespace ShoesStore.Customer
     public partial class SanPham_ChiTiet : BasePage
     {
         protected Pro _proDet;
+
         protected override void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 CollectUrl();
                 Bind_Slides();
+                Bind_CusReview();
             }
         }
 
+        private void Bind_CusReview()
+        {
+            rptCusReview.DataSource = _rpcptBuyDet.GetAll().Where(m => m.ShpId == _proDet.ShpId && m.ProId == _proDet.ProId);
+            rptCusReview.DataBind();
+        }
         private void Bind_Slides()
         {
             rptProSlidePresent.DataSource = rptProSlideCarousel.DataSource = _proSlideImg.GetAll()

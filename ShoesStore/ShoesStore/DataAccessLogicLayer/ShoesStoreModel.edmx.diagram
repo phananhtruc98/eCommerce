@@ -4,36 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2a3e7a3b742e4a88b843816beeccec88" Name="Diagram1">
-        <EntityTypeShape EntityType="ShoesStoreModel.Cart" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.CartDet" Width="1.5" PointX="7.5" PointY="9" IsExpanded="true" />
+      <Diagram DiagramId="2ac452379d5c4589afdaa2cc7b3f7bf2" Name="Diagram1" ZoomLevel="103">
+        <EntityTypeShape EntityType="ShoesStoreModel.Cart" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.CartDet" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Cus" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Mer" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Mstr" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.MstrDet" Width="1.5" PointX="8.25" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.MstrRole" Width="1.5" PointX="6" PointY="24.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Pro" Width="1.5" PointX="10.5" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProBrand" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProCat" Width="1.5" PointX="8.25" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProColor" Width="1.5" PointX="13.5" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProDet" Width="1.5" PointX="15.75" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProSize" Width="1.5" PointX="13.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Mer" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Mstr" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.MstrDet" Width="1.5" PointX="8.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.MstrRole" Width="1.5" PointX="6" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Pro" Width="1.5" PointX="10.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProBrand" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProCat" Width="1.5" PointX="8.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProColor" Width="1.5" PointX="13.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProDet" Width="1.5" PointX="15.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProSize" Width="1.5" PointX="13.5" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.ProSlide" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProSlideImg" Width="1.5" PointX="12.75" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Rcpt" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuy" Width="1.5" PointX="8.25" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyDet" Width="1.5" PointX="12.75" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuySta" Width="1.5" PointX="10.5" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyStaDet" Width="1.5" PointX="12.75" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyStaStep" Width="1.5" PointX="10.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProSlideImg" Width="1.5" PointX="12.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Rcpt" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuy" Width="1.5" PointX="8.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyDet" Width="1.5" PointX="12.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuySta" Width="1.5" PointX="10.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyStaDet" Width="1.5" PointX="12.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyStaStep" Width="1.5" PointX="10.5" PointY="23.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.RcptSub" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptSubDet" Width="1.5" PointX="10.5" PointY="20.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Shp" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Sub" Width="1.5" PointX="6" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.SubDet" Width="1.5" PointX="8.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptSubDet" Width="1.5" PointX="10.5" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Shp" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Sub" Width="1.5" PointX="6" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.SubDet" Width="1.5" PointX="8.25" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Usr" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.UsrAct" Width="1.5" PointX="3" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.UsrAct" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.WebInfo" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.WebSlide" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers" ManuallyRouted="false" />

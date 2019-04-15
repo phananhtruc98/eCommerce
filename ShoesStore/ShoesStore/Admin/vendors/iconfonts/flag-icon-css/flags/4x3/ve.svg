@@ -17,10 +17,10 @@
   <path d="M0 0h640v160H0z" fill="#fc0"/>
   <g id="f" transform="matrix(4 0 0 4 320 336)">
     <g id="e">
-      <use height="120" width="180" transform="rotate(10)" xlink:href="#d"/>
-      <use height="120" width="180" transform="rotate(30)" xlink:href="#d"/>
+      <use height="120" width="180" transform="rotate(10)" href="#d"/>
+      <use height="120" width="180" transform="rotate(30)" href="#d"/>
     </g>
-    <use height="120" width="180" transform="rotate(40)" xlink:href="#e"/>
+    <use height="120" width="180" transform="rotate(40)" href="#e"/>
   </g>
-  <use height="120" width="180" transform="rotate(-80 320 336)" xlink:href="#f"/>
+  <use height="120" width="180" transform="rotate(-80 320 336)" href="#f"/>
 </svg>

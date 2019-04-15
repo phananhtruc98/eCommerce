@@ -4,15 +4,15 @@
       <stop stop-color="#a43907" stop-opacity=".996" offset="0"/>
       <stop stop-color="#fff" offset="1"/>
     </linearGradient>
-    <linearGradient id="b" y2="577.14" xlink:href="#a" gradientUnits="userSpaceOnUse" x2="470.9" y1="592.2" x1="444.4"/>
-    <linearGradient id="c" y2="552.83" xlink:href="#a" gradientUnits="userSpaceOnUse" x2="520.55" gradientTransform="scale(.94 1.07)" y1="562.51" x1="458.24"/>
-    <linearGradient id="d" y2="580.2" xlink:href="#a" gradientUnits="userSpaceOnUse" x2="445.28" y1="578.68" x1="472.38"/>
-    <linearGradient id="e" y2="558.12" xlink:href="#a" gradientUnits="userSpaceOnUse" x2="456.44" gradientTransform="scale(.94 1.07)" y1="553.74" x1="517.97"/>
-    <linearGradient id="f" y2="369.94" xlink:href="#a" gradientUnits="userSpaceOnUse" x2="646.19" y1="369.94" x1="851.78"/>
-    <linearGradient id="g" y2="508.75" xlink:href="#a" gradientUnits="userSpaceOnUse" x2="677.4" gradientTransform="scale(.82 1.22)" y1="507.23" x1="388.53"/>
-    <linearGradient id="h" y2="505.86" xlink:href="#a" gradientUnits="userSpaceOnUse" x2="556.8" gradientTransform="scale(.84 1.2)" y1="504.94" x1="579.84"/>
-    <linearGradient id="i" y2="514.33" xlink:href="#a" gradientUnits="userSpaceOnUse" x2="558.88" gradientTransform="scale(.82 1.22)" y1="512.01" x1="581.43"/>
-    <linearGradient id="j" y2="503.9" xlink:href="#a" gradientUnits="userSpaceOnUse" x2="589.77" gradientTransform="scale(.84 1.2)" y1="517.88" x1="552"/>
+    <linearGradient id="b" y2="577.14" href="#a" gradientUnits="userSpaceOnUse" x2="470.9" y1="592.2" x1="444.4"/>
+    <linearGradient id="c" y2="552.83" href="#a" gradientUnits="userSpaceOnUse" x2="520.55" gradientTransform="scale(.94 1.07)" y1="562.51" x1="458.24"/>
+    <linearGradient id="d" y2="580.2" href="#a" gradientUnits="userSpaceOnUse" x2="445.28" y1="578.68" x1="472.38"/>
+    <linearGradient id="e" y2="558.12" href="#a" gradientUnits="userSpaceOnUse" x2="456.44" gradientTransform="scale(.94 1.07)" y1="553.74" x1="517.97"/>
+    <linearGradient id="f" y2="369.94" href="#a" gradientUnits="userSpaceOnUse" x2="646.19" y1="369.94" x1="851.78"/>
+    <linearGradient id="g" y2="508.75" href="#a" gradientUnits="userSpaceOnUse" x2="677.4" gradientTransform="scale(.82 1.22)" y1="507.23" x1="388.53"/>
+    <linearGradient id="h" y2="505.86" href="#a" gradientUnits="userSpaceOnUse" x2="556.8" gradientTransform="scale(.84 1.2)" y1="504.94" x1="579.84"/>
+    <linearGradient id="i" y2="514.33" href="#a" gradientUnits="userSpaceOnUse" x2="558.88" gradientTransform="scale(.82 1.22)" y1="512.01" x1="581.43"/>
+    <linearGradient id="j" y2="503.9" href="#a" gradientUnits="userSpaceOnUse" x2="589.77" gradientTransform="scale(.84 1.2)" y1="517.88" x1="552"/>
   </defs>
   <path fill="#006" d="M0 0h640v480H0z"/>
   <path fill-rule="evenodd" fill="#006" d="M0 0h400v200H0z"/>

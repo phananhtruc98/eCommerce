@@ -33,7 +33,7 @@
     <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'UA-97489509-6');</script>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <div id="form1" runat="server">
         <!-- quickview-modal -->
         <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -348,7 +348,7 @@
                                     </svg>
                                 </a>
                                 <div class="mobile-header__search">
-                                    <form class="mobile-header__search-form" action="#">
+                                    <div class="mobile-header__search-form" action="#">
                                         <input class="mobile-header__search-input" name="search" placeholder="Search over 10,000 products" aria-label="Site search" type="text" autocomplete="off">
                                         <button class="mobile-header__search-button mobile-header__search-button--submit" type="submit">
                                             <svg width="20px" height="20px">
@@ -356,7 +356,7 @@
                                         <button class="mobile-header__search-button mobile-header__search-button--close" type="button">
                                             <svg width="20px" height="20px">
                                                 <use href="images/sprite.svg#cross-20"></use></svg></button><div class="mobile-header__search-body"></div>
-                                    </form>
+                                    </div>
                                 </div>
                                 <div class="mobile-header__indicators">
                                     <div class="indicator indicator--mobile-search indicator--mobile d-sm-none">
@@ -645,7 +645,7 @@
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <h4 class="contact-us__header card-title">Leave us a Message</h4>
-                                            <form>
+                                            <div>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <label for="form-name">Your Name</label>
@@ -665,7 +665,7 @@
                                                     <textarea id="form-message" class="form-control" rows="4"></textarea>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Send Message</button>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -725,11 +725,11 @@
                                     <div class="site-footer__widget footer-newsletter">
                                         <h5 class="footer-newsletter__title">Newsletter</h5>
                                         <div class="footer-newsletter__text">Praesent pellentesque volutpat ex, vitae auctor lorem pulvinar mollis felis at lacinia.</div>
-                                        <form action="#" class="footer-newsletter__form">
+                                        <div action="#" class="footer-newsletter__form">
                                             <label class="sr-only" for="footer-newsletter-address">Email Address</label>
                                             <input type="text" class="footer-newsletter__form-input form-control" id="footer-newsletter-address" placeholder="Email Address...">
                                             <button class="footer-newsletter__form-button btn btn-primary">Subscribe</button>
-                                        </form>
+                                        </div>
                                         <div class="footer-newsletter__text footer-newsletter__text--social">Follow us on social networks</div>
                                         <ul class="footer-newsletter__social-links">
                                             <li class="footer-newsletter__social-link footer-newsletter__social-link--facebook"><a href="https://themeforest.net/user/kos9" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
@@ -754,7 +754,7 @@
             <!-- site__footer / end -->
         </div>
         <!-- site / end -->
-    </form>
+    </div>
 </body>
 
 </html>

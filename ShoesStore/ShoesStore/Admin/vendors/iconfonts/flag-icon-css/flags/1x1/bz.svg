@@ -8,10 +8,10 @@
       <stop offset="0" stop-color="#952d1a"/>
       <stop offset="1" stop-color="#570a00"/>
     </radialGradient>
-    <radialGradient xlink:href="#a" id="c" gradientTransform="scale(1.22624 .8155)" cx="247.075" cy="238.328" fx="247.075" fy="238.328" r="35.95" gradientUnits="userSpaceOnUse"/>
-    <radialGradient xlink:href="#a" id="d" gradientTransform="scale(.93615 1.06821)" cx="321.991" cy="152.954" fx="321.991" fy="152.954" r="10.578" gradientUnits="userSpaceOnUse"/>
-    <radialGradient xlink:href="#b" id="e" gradientTransform="scale(1.2242 .81686)" cx="364.21" cy="237.789" fx="364.21" fy="237.789" r="36.034" gradientUnits="userSpaceOnUse"/>
-    <radialGradient xlink:href="#b" id="f" gradientTransform="scale(.95596 1.04607)" cx="468.154" cy="156.129" fx="468.154" fy="156.129" r="10.739" gradientUnits="userSpaceOnUse"/>
+    <radialGradient href="#a" id="c" gradientTransform="scale(1.22624 .8155)" cx="247.075" cy="238.328" fx="247.075" fy="238.328" r="35.95" gradientUnits="userSpaceOnUse"/>
+    <radialGradient href="#a" id="d" gradientTransform="scale(.93615 1.06821)" cx="321.991" cy="152.954" fx="321.991" fy="152.954" r="10.578" gradientUnits="userSpaceOnUse"/>
+    <radialGradient href="#b" id="e" gradientTransform="scale(1.2242 .81686)" cx="364.21" cy="237.789" fx="364.21" fy="237.789" r="36.034" gradientUnits="userSpaceOnUse"/>
+    <radialGradient href="#b" id="f" gradientTransform="scale(.95596 1.04607)" cx="468.154" cy="156.129" fx="468.154" fy="156.129" r="10.739" gradientUnits="userSpaceOnUse"/>
   </defs>
   <path fill="#ce1126" d="M0 0h512v512H0z"/>
   <path fill="#003f87" d="M0 36.571h512v438.856H0z"/>
@@ -115,7 +115,7 @@
       <path d="M456.44 160.14c-.712-.1-1.018-.916-3.153.306-1.119.61 1.832 1.426 1.425 1.324 1.22.202 1.628-.508 1.729-1.122-.001-.203.203-.508-.001-.508zm-8.34.81c0-.816-1.829-1.119-2.847-.816-1.019.306-.61.105-1.526.613 1.02.203.712.303 1.526.71.914.408 1.12.814 2.339.206.306-.105.712-.508.813-.916-.101.101-.202.203-.305.203z" fill="#fff" stroke-width=".305"/>
       <path d="M455.12 161.36a.802.802 0 0 1-.813-.814c0-.508.307-.916.813-.916.405 0 .712.408.712.916 0 .408-.307.814-.712.814zm-8.75.2c-.406 0-.712-.403-.712-.916 0-.508.403-.811.812-.811.409 0 .712.303.712.811 0 .514-.303.916-.812.916z" fill="#000" stroke-width=".305"/>
     </g>
-    <use height="100%" width="100%" xlink:href="#g" transform="matrix(-1 0 0 1 748.816 0)" fill="#730000"/>
+    <use height="100%" width="100%" href="#g" transform="matrix(-1 0 0 1 748.816 0)" fill="#730000"/>
     <g fill="none">
       <path d="M491.64 193.51c.508.206 1.934-2.033.508-3.051 0 0-.508-1.932-2.136-2.034 0 0-1.322-1.933-3.257-1.63 0 0-2.136-1.524-2.948-1.421-.916.202-2.951 2.237-3.053 2.95-.102.609 0 1.832.508 2.441.61.51 1.02-.104 1.119-1.02 0 0-.405 1.529.813 2.24 1.221.71 1.119.1 1.221-.71 0 0 .306 1.626 1.12 1.932.812.303 1.321-.408 1.934-.408 0 0-1.018.815-.305 1.324.713.61 1.525.303 2.035-.104.61-.404.306-1.727 2.441-.509z" fill="#730000"/>
       <path d="M482.49 189.75c.506-1.73 2.235-3.153 4.067-2.849m-2.137 4.379c.203-.411.305-.816.61-1.224.915-1.524 2.948-1.524 4.576-1.832m-2.546 4.476c.61-.408.814-1.118 1.426-1.421 1.018-.512 2.136-.916 3.256-.714"/>

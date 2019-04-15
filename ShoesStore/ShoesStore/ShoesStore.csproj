@@ -2182,8 +2182,11 @@
     <Content Include="Admin\css\maps\style.css.map" />
     <Content Include="Admin\scss\_navbar.scss" />
     <Content Include="Merchant\about-us.aspx" />
+    <Content Include="Merchant\About.aspx" />
+    <Content Include="Merchant\Cart.aspx" />
     <Content Include="Merchant\checkout.aspx" />
     <Content Include="Merchant\contact-us.aspx" />
+    <Content Include="Merchant\Contact.aspx" />
     <Content Include="Merchant\css\style.css" />
     <Content Include="Merchant\DefaultMer.aspx" />
     <Content Include="Merchant\fonts\stroyka\stroyka.ttf" />
@@ -2191,6 +2194,8 @@
     <Content Include="Merchant\giohang.aspx" />
     <Content Include="Merchant\index-2.aspx" />
     <Content Include="Merchant\merchant.aspx" />
+    <Content Include="Merchant\MerHome.aspx" />
+    <Content Include="Merchant\MerProfile.aspx" />
     <Content Include="Merchant\signin.aspx" />
     <Content Include="Merchant\sub.aspx" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.eot" />
@@ -2208,6 +2213,7 @@
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900.woff" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900.woff2" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900d41d.eot" />
+    <Content Include="Merchant\Merchant.Master" />
     <EntityDeploy Include="DataAccessLogicLayer\ShoesStoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ShoesStoreModel.Designer.cs</LastGenOutput>
@@ -2837,6 +2843,20 @@
     <Compile Include="Merchant\about-us.aspx.designer.cs">
       <DependentUpon>about-us.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Merchant\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Merchant\checkout.aspx.cs">
       <DependentUpon>checkout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2850,6 +2870,13 @@
     </Compile>
     <Compile Include="Merchant\contact-us.aspx.designer.cs">
       <DependentUpon>contact-us.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\giohang.aspx.cs">
       <DependentUpon>giohang.aspx</DependentUpon>
@@ -2871,6 +2898,27 @@
     </Compile>
     <Compile Include="Merchant\merchant.aspx.designer.cs">
       <DependentUpon>merchant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\Merchant.Master.cs">
+      <DependentUpon>Merchant.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\Merchant.Master.designer.cs">
+      <DependentUpon>Merchant.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\MerHome.aspx.cs">
+      <DependentUpon>MerHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\MerHome.aspx.designer.cs">
+      <DependentUpon>MerHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\MerProfile.aspx.cs">
+      <DependentUpon>MerProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\MerProfile.aspx.designer.cs">
+      <DependentUpon>MerProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\signin.aspx.cs">
       <DependentUpon>signin.aspx</DependentUpon>
@@ -2894,6 +2942,9 @@
     <Compile Include="MyExtensions\QueryExtensions.cs" />
     <Compile Include="MyExtensions\StringExtension.cs" />
     <Compile Include="MyLibrary.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyLibrary_Truc.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

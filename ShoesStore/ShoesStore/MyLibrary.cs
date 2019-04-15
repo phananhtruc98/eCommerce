@@ -8,17 +8,20 @@ using System.Web.UI.WebControls;
 using System.Linq.Dynamic;
 using System.Reflection;
 using System.Web;
+using ShoesStore.DataAccessLogicLayer;
 using Utilities;
 using Convert = System.Convert;
 
 namespace ShoesStore
 {
-    public class MyLibrary : System.Web.UI.Page
+    public partial class MyLibrary : System.Web.UI.Page
     {
         private static string moneyPrefix = "";
         private static string proImgPath = "/images/products";
         private static string proDetUrl = "/san-pham/";
         private static string slidePath = "/images/slides";
+        private static string cusPath = "/images/usrs/cus";
+        private static string usrPath = "/images/usrs";
         public static System.Web.UI.StateBag GetCurrentPageViewState()
         {
             Page page = HttpContext.Current.Handler as Page;
@@ -71,7 +74,13 @@ namespace ShoesStore
         {
             return Path.Combine(proImgPath, shpId.ToString(), proId.ToString(), img.ToString());
         }
-
+        public static string CusImgPath(object cus)
+        {
+            Cus _cus = (Cus)cus;
+            if(_cus.Usr.Avatar==null || _cus.Usr.Avatar=="") 
+                return Path.Combine(usrPath, "default.jpg");
+            return Path.Combine(cusPath, _cus.CusId.ToString(), _cus.Usr.Avatar);
+        }
         public static string ProSlidePath(object shpId, object proId, object proSlideId)
         {
             return Path.Combine(proImgPath, shpId.ToString(), proId.ToString(), "Slides", proSlideId.ToString());

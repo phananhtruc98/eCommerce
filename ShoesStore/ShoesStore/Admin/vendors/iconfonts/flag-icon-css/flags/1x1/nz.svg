@@ -19,20 +19,20 @@
   </defs>
   <path fill-rule="evenodd" fill="#00247d" d="M.004 0h512v512h-512z"/>
   <g transform="translate(-148.654 134.473) scale(.60566)">
-    <use fill="#fff" height="100%" width="100%" xlink:href="#b" transform="matrix(45.4 0 0 45.4 900 120)"/>
-    <use fill="#cc142b" height="100%" width="100%" xlink:href="#b" transform="matrix(30 0 0 30 900 120)"/>
+    <use fill="#fff" height="100%" width="100%" href="#b" transform="matrix(45.4 0 0 45.4 900 120)"/>
+    <use fill="#cc142b" height="100%" width="100%" href="#b" transform="matrix(30 0 0 30 900 120)"/>
   </g>
   <g transform="rotate(82 393.421 127.092) scale(.60566)">
-    <use fill="#fff" height="100%" width="100%" xlink:href="#b" transform="rotate(-82 519.022 -457.666) scale(40.4)"/>
-    <use fill="#cc142b" height="100%" width="100%" xlink:href="#b" transform="rotate(-82 519.022 -457.666) scale(25)"/>
+    <use fill="#fff" height="100%" width="100%" href="#b" transform="rotate(-82 519.022 -457.666) scale(40.4)"/>
+    <use fill="#cc142b" height="100%" width="100%" href="#b" transform="rotate(-82 519.022 -457.666) scale(25)"/>
   </g>
   <g transform="rotate(82 393.421 127.092) scale(.60566)">
-    <use fill="#fff" height="100%" width="100%" xlink:href="#b" transform="rotate(-82 668.57 -327.666) scale(45.4)"/>
-    <use fill="#cc142b" height="100%" width="100%" xlink:href="#b" transform="rotate(-82 668.57 -327.666) scale(30)"/>
+    <use fill="#fff" height="100%" width="100%" href="#b" transform="rotate(-82 668.57 -327.666) scale(45.4)"/>
+    <use fill="#cc142b" height="100%" width="100%" href="#b" transform="rotate(-82 668.57 -327.666) scale(30)"/>
   </g>
   <g transform="translate(-148.654 134.473) scale(.60566)">
-    <use fill="#fff" height="100%" width="100%" xlink:href="#b" transform="matrix(50.4 0 0 50.4 900 480)"/>
-    <use fill="#cc142b" height="100%" width="100%" xlink:href="#b" transform="matrix(35 0 0 35 900 480)"/>
+    <use fill="#fff" height="100%" width="100%" href="#b" transform="matrix(50.4 0 0 50.4 900 480)"/>
+    <use fill="#cc142b" height="100%" width="100%" href="#b" transform="matrix(35 0 0 35 900 480)"/>
   </g>
   <path transform="matrix(.52004 0 0 .78924 .002 0)" d="M0 0l600 300M0 300L600 0" clip-path="url(#c)" stroke="#fff" stroke-width="60"/>
   <path transform="matrix(.52004 0 0 .78924 .002 0)" d="M0 0l600 300M0 300L600 0" clip-path="url(#d)" stroke="#cc142b" stroke-width="40"/>
