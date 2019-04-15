@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login_Mstr.aspx.cs" Inherits="ShoesStore.Admin.Login_Mstr" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login_Mstr.aspx.cs" Inherits="ShoesStore.Admin.Login_Mstr" %>
 
 <!DOCTYPE html>
 
@@ -22,10 +22,11 @@
     <title></title>
 </head>
 <body>
-    <div class="login">
-        <h1 class="fc-center">
-            <img src="images/logo.png" width="200" /></h1>
-        <form runat="server">
+    <form runat="server">
+        <div class="login">
+            <h1 class="fc-center">
+                <img src="images/logo.png" width="200" /></h1>
+
             <input type="text" name="u" placeholder="Tên đăng nhập" required="required" id="login_login" runat="server" />
             <asp:RequiredFieldValidator
                 Display="Dynamic"
@@ -47,8 +48,9 @@
                 ForeColor="Red">
             </asp:RequiredFieldValidator>
             <asp:Button runat="server" type="submit" class="btn btn-primary btn-block btn-large" ValidationGroup="Login" Text="Đăng nhập" ID="btnLogin" OnClick="btnLogin_Click" />
-        </form>
-    </div>
+
+        </div>
+    </form>
 </body>
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
 <script />

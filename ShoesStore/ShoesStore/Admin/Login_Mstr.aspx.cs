@@ -25,7 +25,7 @@ namespace ShoesStore.Admin
                 Usr loginUsr = _usr.LoginAdmin(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
                 WebSession.LoginUsr = loginUsr;
-                Response.Redirect("/quan-tri");
+               
             }
             catch (Exception exception)
             {
