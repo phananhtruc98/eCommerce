@@ -13,15 +13,6 @@ namespace ShoesStore.Admin {
     public partial class Admin {
         
         /// <summary>
-        /// upSetSession control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upSetSession;
-        
-        /// <summary>
         /// lbAccount control.
         /// </summary>
         /// <remarks>

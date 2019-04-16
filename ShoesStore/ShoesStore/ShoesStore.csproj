@@ -136,6 +136,16 @@
     <Content Include="Admin\images\auth\login_1.jpg" />
     <Content Include="Admin\images\auth\register.jpg" />
     <Content Include="Admin\images\avatar\1.jpg" />
+    <Content Include="Admin\images\avatar\default.jpg" />
+    <Content Include="Admin\images\avatar\face11.jpg" />
+    <Content Include="Admin\images\avatar\face13.jpg" />
+    <Content Include="Admin\images\avatar\face16.jpg" />
+    <Content Include="Admin\images\avatar\face18.jpg" />
+    <Content Include="Admin\images\avatar\face2.jpg" />
+    <Content Include="Admin\images\avatar\face20.jpg" />
+    <Content Include="Admin\images\avatar\face23.jpg" />
+    <Content Include="Admin\images\avatar\face26.jpg" />
+    <Content Include="Admin\images\avatar\face920190416.jpg" />
     <Content Include="Admin\images\default.jpg" />
     <Content Include="Admin\images\faces-clipart\pic-1.png" />
     <Content Include="Admin\images\faces-clipart\pic-2.png" />
