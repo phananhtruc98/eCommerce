@@ -175,17 +175,14 @@
                             </div>
                         </div>
                     </a>
-                    <a class="dropdown-item mt-2" href="#">
-                        Quản lý tài khoản
-                    </a>
-                    <a class="dropdown-item" href="#">
+                        <asp:LinkButton runat="server"  class="dropdown-item" Text="Quản lý tài khoản" ID="lbtnAccount" OnClick="lbtnAccount_Click"></asp:LinkButton>
+                   <a class="dropdown-item" href="#">
                         Thay đổi mật khẩu
                     </a>
                     <a class="dropdown-item" href="#">
                         Tin nhắn
                     </a>
                         <asp:LinkButton runat="server"  class="dropdown-item" Text="Đăng xuất" ID="lbtnLogout" OnClick="lbtnLogout_Click"></asp:LinkButton>
-                    
                 </div>
             </li>
         </ul>

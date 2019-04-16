@@ -49,7 +49,9 @@ namespace ShoesStore.Admin
             Response.Redirect("~/quan-tri/dang-nhap");
         }
 
-        
-
+        protected void lbtnAccount_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/quan-tri/thong-tin-ca-nhan");
+        }
     }
 }
