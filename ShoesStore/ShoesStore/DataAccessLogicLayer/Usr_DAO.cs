@@ -56,21 +56,23 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
-        public Usr CheckAdmin(string login, string pwd)
+        public Mstr CheckAdmin(string login, string pwd)
         {
             Usr usr = Login(login, pwd);
             // tu day tro xuong kt
             int usrId = usr.UsrId;
-            var rs = _mstr_DAO.GetAll().Any(m => m.MstrId == usrId);
-            if(rs)
+            Mstr rs = _mstr_DAO.GetAll().FirstOrDefault(m => m.MstrId == usrId);
+            if(rs!=null)
             {
-                usr = Login(login, pwd);
+                return rs;
             }
             else
             {
                 return null;
             }
-            return usr;
+
+
+           
         }
 
     }

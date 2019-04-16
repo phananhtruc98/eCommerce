@@ -22,7 +22,7 @@ namespace ShoesStore.Admin
         {
             try
             {
-                Usr loginUsr = _usr.LoginAdmin(login_login.Value, login_pwd.Value);
+                Mstr loginUsr = _usr.LoginAdmin(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
                 AdminSession.LoginAdmin = loginUsr;
                 Response.Redirect("~/quan-tri");

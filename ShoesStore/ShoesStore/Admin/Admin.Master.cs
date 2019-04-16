@@ -9,7 +9,8 @@ namespace ShoesStore.Admin
 {
     public partial class Admin : MasterPage
     {
-        private readonly Mstr_BUS mstr_BUS = new Mstr_BUS(); 
+        private readonly Mstr_BUS mstr_BUS = new Mstr_BUS();
+        public Usr_BUS usr_BUS = new Usr_BUS();
         private readonly MstrDet_BUS mstrDet_BUS = new MstrDet_BUS(); 
         private readonly MstrRole_BUS mstrRole_BUS = new MstrRole_BUS(); 
         protected void Page_Load(object sender, EventArgs e)
@@ -17,13 +18,39 @@ namespace ShoesStore.Admin
 
         }
 
+        int UsrId = 0;
+        string UsrName = "";
+        string Address = "";
+        string Avatar = "";
+        string Email = "";
+        string Phone = "";
+        string login = "";
+        string password = "";
+
+        public int UsrId1 { get => UsrId; set => UsrId = value; }
+        public string UsrName1 { get => UsrName; set => UsrName = value; }
+        public string Address1 { get => Address; set => Address = value; }
+        public string Avatar1 { get => Avatar; set => Avatar = value; }
+        public string Email1 { get => Email; set => Email = value; }
+        public string Phone1 { get => Phone; set => Phone = value; }
+        public string Login { get => login; set => login = value; }
+        public string Password { get => password; set => password = value; }
 
         protected void Page_Init(object sender, EventArgs e)
         {
             if (AdminSession.LoginAdmin != null)
             {
-                int UsrId = (AdminSession.LoginAdmin as Usr).UsrId;
-                string avaImg = (AdminSession.LoginAdmin as Usr)?.Avatar;
+                Mstr mstr = (Mstr)AdminSession.LoginAdmin;
+                Usr mstrUsr = usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mstr.MstrId);
+                UsrId = mstrUsr.UsrId;
+                 UsrName = mstrUsr.UsrName;
+                 Address = mstrUsr.Address;
+                 Avatar = mstrUsr.Avatar;
+                 Email = mstrUsr.Email;
+                 Phone = mstrUsr.Phone;
+                 login = mstrUsr.Login;
+                 password = mstrUsr.Password;
+                string avaImg = Avatar;
                 lbAccount.Text = $"Chào {(AdminSession.LoginAdmin as Usr)?.UsrName}";
                 lbAccount2.Text = $"Chào {(AdminSession.LoginAdmin as Usr)?.UsrName}";
                 avaImg1.Attributes["src"] = "/Admin/images/avatar/" + avaImg + ".jpg";
