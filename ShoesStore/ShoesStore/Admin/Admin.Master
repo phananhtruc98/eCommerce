@@ -24,8 +24,7 @@
 <asp:ScriptManager runat="server">
 </asp:ScriptManager>
 
-<asp:UpdatePanel ID="upSetSession" runat="server">
-<ContentTemplate>
+
 <div class="container-scroller">
 <!-- partial:partials/_navbar.html -->
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row nav_custom">
@@ -57,7 +56,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
-                            <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+                            <img src="Admin/images/default.jpg" alt="image" class="profile-pic">
                         </div>
                         <div class="preview-item-content flex-grow">
                             <h6 class="preview-subject ellipsis font-weight-medium text-dark">
@@ -159,8 +158,8 @@
             </li>
             <li class="nav-item dropdown d-none d-xl-inline-block">
                 <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                    <span class="profile-text">Xin chào, Mèo :))</span>
-                    <img class="img-xs rounded-circle" src="images/faces/face1.jpg" alt="Profile image">
+                    <span class="profile-text"><asp:Label runat="server" ID="lbAccount"></asp:Label></span>
+                    <asp:Image runat="server" class="img-xs rounded-circle" ID="avaImg2" alt="Profile image" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                     <a class="dropdown-item p-0">
@@ -176,18 +175,14 @@
                             </div>
                         </div>
                     </a>
-                    <a class="dropdown-item mt-2" href="#">
-                        Quản lý tài khoản
-                    </a>
-                    <a class="dropdown-item" href="#">
+                        <asp:LinkButton runat="server"  class="dropdown-item" Text="Quản lý tài khoản" ID="lbtnAccount" OnClick="lbtnAccount_Click"></asp:LinkButton>
+                   <a class="dropdown-item" href="#">
                         Thay đổi mật khẩu
                     </a>
                     <a class="dropdown-item" href="#">
                         Tin nhắn
                     </a>
-                    <a class="dropdown-item" href="#">
-                        Đăng xuất
-                    </a>
+                        <asp:LinkButton runat="server"  class="dropdown-item" Text="Đăng xuất" ID="lbtnLogout" OnClick="lbtnLogout_Click"></asp:LinkButton>
                 </div>
             </li>
         </ul>
@@ -205,12 +200,12 @@
                 <div class="nav-link">
                     <div class="user-wrapper">
                         <div class="profile-image">
-                            <img src="images/faces/face1.jpg" alt="profile image">
+                            <asp:Image runat="server" ID="avaImg1" alt="profile image" />
                         </div>
                         <div class="text-wrapper">
-                            <p class="profile-name">Mèo</p>
+                            <p class="profile-name"><asp:Label runat="server" ID="lbAccount2"></asp:Label></p>
                             <div>
-                                <small class="designation text-muted">Admin</small>
+                                <small class="designation text-muted"><asp:Label runat="server" ID="lbrolename"></asp:Label></small>
                                 <span class="status-indicator online"></span>
                             </div>
                         </div>
@@ -297,11 +292,7 @@
 </div>
 <!-- page-body-wrapper ends -->
 </div>
-</ContentTemplate>
-<Triggers>
-    
-</Triggers>
-</asp:UpdatePanel>
+
 <!-- container-scroller -->
 <!-- plugins:js -->
 <script src="/Admin/vendors/js/vendor.bundle.base.js"></script>

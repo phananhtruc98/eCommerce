@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -127,6 +128,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Account_Mstr.aspx" />
+    <Content Include="Admin\css\logincss.css" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\css\customstyle.css" />
     <Content Include="Admin\css\style.css" />
@@ -134,6 +137,18 @@
     <Content Include="Admin\gulpfile.js" />
     <Content Include="Admin\images\auth\login_1.jpg" />
     <Content Include="Admin\images\auth\register.jpg" />
+    <Content Include="Admin\images\avatar\1.jpg" />
+    <Content Include="Admin\images\avatar\default.jpg" />
+    <Content Include="Admin\images\avatar\face11.jpg" />
+    <Content Include="Admin\images\avatar\face13.jpg" />
+    <Content Include="Admin\images\avatar\face16.jpg" />
+    <Content Include="Admin\images\avatar\face18.jpg" />
+    <Content Include="Admin\images\avatar\face2.jpg" />
+    <Content Include="Admin\images\avatar\face20.jpg" />
+    <Content Include="Admin\images\avatar\face23.jpg" />
+    <Content Include="Admin\images\avatar\face26.jpg" />
+    <Content Include="Admin\images\avatar\face920190416.jpg" />
+    <Content Include="Admin\images\default.jpg" />
     <Content Include="Admin\images\faces-clipart\pic-1.png" />
     <Content Include="Admin\images\faces-clipart\pic-2.png" />
     <Content Include="Admin\images\faces-clipart\pic-3.png" />
@@ -267,6 +282,7 @@
     <Content Include="Admin\images\flags\VN.png" />
     <Content Include="Admin\images\flags\YE.png" />
     <Content Include="Admin\images\logo-mini.svg" />
+    <Content Include="Admin\images\logo.png" />
     <Content Include="Admin\images\logo.svg" />
     <Content Include="Admin\images\samples\weather.svg" />
     <Content Include="Admin\js\chart.js" />
@@ -2182,6 +2198,8 @@
     <Content Include="Admin\package.json" />
     <Content Include="Admin\css\maps\style.css.map" />
     <Content Include="Admin\scss\_navbar.scss" />
+    <Content Include="images\usrs\cus\2\1.jpg" />
+    <Content Include="images\usrs\default.jpg" />
     <Content Include="Merchant\About.aspx" />
     <Content Include="Merchant\Cart.aspx" />
     <Content Include="Merchant\CheckOut.aspx" />
@@ -2444,6 +2462,14 @@
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Account_Mstr.aspx.cs">
+      <DependentUpon>Account_Mstr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Account_Mstr.aspx.designer.cs">
+      <DependentUpon>Account_Mstr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminSession.cs" />
     <Compile Include="Admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

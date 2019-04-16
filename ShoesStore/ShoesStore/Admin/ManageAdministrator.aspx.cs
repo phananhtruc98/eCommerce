@@ -9,12 +9,12 @@ using System.Linq.Dynamic;
 using ShoesStore.MyExtensions;
 using ShoesStore.DataAccessLogicLayer;
 using Utilities;
+using System.IO;
 
 namespace ShoesStore.Admin
 {
     public partial class Manage_Administrator : Page
     {
-        string tmp = "";
         private readonly MstrRole_BUS mstrRole = new MstrRole_BUS();
         private readonly Mstr_BUS mstr = new Mstr_BUS();
         private readonly MstrDet_BUS mstrDet_bus = new MstrDet_BUS();
@@ -24,9 +24,10 @@ namespace ShoesStore.Admin
             if (!IsPostBack)
             {
                 BindDataGridView();
+                BindDataGridViewMstrRole();
             }
         }
-
+        // Load bảng danh sách người quản trị
         private void BindDataGridView()
         {
             var rs = (from u in usr.GetAll()
@@ -52,6 +53,14 @@ namespace ShoesStore.Admin
                       }).ToList();
             gvAdmin.DataSource = rs;
             gvAdmin.DataBind();
+        }
+
+        // Load bảng danh sách chức vụ
+        private void BindDataGridViewMstrRole()
+        {
+            var rs = mstrRole.GetAll();
+            gvMstrRole.DataSource = rs;
+            gvMstrRole.DataBind();
         }
 
         // Btn Tìm kiếm 
@@ -119,6 +128,7 @@ namespace ShoesStore.Admin
             {
 
                 int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
+                FileUpload file = ((FileUpload)gvAdmin.Rows[rowIndex].FindControl("fuploadEdit"));
                 string UsrName = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditUsrName")).Text;
                 string Login = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditLogin")).Text;
                 string Phone = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditPhone")).Text;
@@ -130,7 +140,43 @@ namespace ShoesStore.Admin
                 string LoginOld = ((HiddenField)gvAdmin.Rows[rowIndex].FindControl("LoginOld")).Value;
                 string PasswordOld = ((HiddenField)gvAdmin.Rows[rowIndex].FindControl("PasswordOld")).Value;
                 bool Active = ((CheckBox)gvAdmin.Rows[rowIndex].FindControl("EditActive")).Checked;
-                string Avatar = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditAvatar")).Text;
+                string Avatar = "";
+                HiddenField avaold = (HiddenField)gvAdmin.Rows[rowIndex].FindControl("EditAvatar");
+                string AvatarOld = "";
+                if (avaold == null)
+                {
+                    AvatarOld = "";
+                }
+                else { AvatarOld = avaold.Value; }
+                if (file.HasFile)
+                {
+                    string fname = file.FileName;
+                    string fpath = Server.MapPath("/Admin/Images/avatar/");
+                    fpath = fpath + @"/" + file.FileName;
+                    string getext = Path.GetExtension(file.PostedFile.FileName);
+                    string filename = Path.GetFileNameWithoutExtension(file.PostedFile.FileName);
+                    Avatar = filename;
+                    string strFilePath = filename + getext;
+                    if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" && getext != ".png" && getext != ".tif" && getext != ".tiff")
+                    {
+                        Page.ClientScript.RegisterStartupScript(typeof(Page), "successfull", "alert('Please upload only jpeg, jpg,png,tif,tiff'); window.location = 'ParivarRegistration.aspx';", true);
+                    }
+                    else
+                    {
+                        file.SaveAs(Server.MapPath(@"~/Admin/Images/avatar/" + strFilePath));
+                        ViewState["fname"] = fname;
+                        ViewState["fPath"] = @"~/Admin/Images/avatar/" + strFilePath;
+                    }
+                }
+                else if (Avatar == AvatarOld)
+                {
+                    Avatar = AvatarOld;
+                }
+                else if (Avatar == "")
+                {
+                    Avatar = "default.jpg";
+                }
+
                 // kiểm tra password nếu thay đổi thì mới encrypt
                 if (Password != PasswordOld)
                 {
@@ -176,10 +222,14 @@ namespace ShoesStore.Admin
                 }
                 gvAdmin.EditIndex = -1;
                 BindDataGridView();
+                Response.Redirect(Request.RawUrl);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thành công')", true);
             }
             else if (e.CommandName == "InsertRow")
             {
+
                 int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
+                FileUpload fileInsert = ((FileUpload)gvAdmin.FooterRow.FindControl("fuploadInsert"));
                 string UsrName = ((TextBox)gvAdmin.FooterRow.FindControl("InsertUsrName")).Text;
                 string Login = ((TextBox)gvAdmin.FooterRow.FindControl("InsertLogin")).Text;
                 string Phone = ((TextBox)gvAdmin.FooterRow.FindControl("InsertPhone")).Text;
@@ -189,17 +239,39 @@ namespace ShoesStore.Admin
                 string Address = ((TextBox)gvAdmin.FooterRow.FindControl("InsertAddress")).Text;
                 string Email = ((TextBox)gvAdmin.FooterRow.FindControl("InsertEmail")).Text;
                 bool Active = ((CheckBox)gvAdmin.FooterRow.FindControl("InsertActive")).Checked;
-                string Avatar = ((TextBox)gvAdmin.FooterRow.FindControl("InsertAvatar")).Text;
-                if (UsrName == "" || Address == "" || Phone == "" || Email == "" || Password == "" || Login=="" || AddBy=="" )
+                if (UsrName == "" || Address == "" || Phone == "" || Email == "" || Password == "" || Login == "" || AddBy == "")
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Chưa nhập đủ thông tin')", true);
                     return;
                 }
-                if(Avatar==null)
+
+                string Avatar = "";
+                if (fileInsert.HasFile)
                 {
-                    Avatar = "default.jpg";
+                    string fname = fileInsert.FileName;
+                    string fpath = Server.MapPath("/Admin/Images/avatar/");
+                    fpath = fpath + @"/" + fileInsert.FileName;
+                    string getext = Path.GetExtension(fileInsert.PostedFile.FileName);
+                    string filename = Path.GetFileNameWithoutExtension(fileInsert.PostedFile.FileName);
+                    Avatar = filename;
+                    string strFilePath = filename + getext;
+                    if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" && getext != ".png" && getext != ".tif" && getext != ".tiff")
+                    {
+                        Page.ClientScript.RegisterStartupScript(typeof(Page), "successfull", "alert('Please upload only jpeg, jpg,png,tif,tiff'); window.location = 'ParivarRegistration.aspx';", true);
+                    }
+                    else
+                    {
+                        fileInsert.SaveAs(Server.MapPath(@"~/Admin/Images/avatar/" + strFilePath));
+                        ViewState["fname"] = fname;
+                        ViewState["fPath"] = @"~/Admin/Images/avatar/" + strFilePath;
+                    }
                 }
-                if(!MyLibrary.IsValidEmailAddress(Email))
+
+                if (Avatar == "")
+                {
+                    Avatar = "default";
+                }
+                if (!MyLibrary.IsValidEmailAddress(Email))
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Email chưa đúng')", true);
                     return;
@@ -216,7 +288,7 @@ namespace ShoesStore.Admin
                     Active = Active,
                     Avatar = Avatar,
                     DateAdd = DateTime.Now
-                    
+
                 };
                 usr.Insert(result);
                 Mstr rs1 = new Mstr
@@ -235,7 +307,7 @@ namespace ShoesStore.Admin
 
                 mstrDet_bus.Insert(mstrDet);
                 BindDataGridView();
-            } 
+            }
         }
 
         protected void gvAdmin_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -266,6 +338,62 @@ namespace ShoesStore.Admin
                 kq = false;
             }
             return kq;
+        }
+
+        protected void gvMstrRole_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            if (e.CommandName == "EditRow")
+            {
+                int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
+                gvMstrRole.EditIndex = rowIndex;
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "DeleteRow")
+            {
+                MstrRole result = (from c in mstrRole.GetAll()
+                              where c.RoleId == System.Convert.ToInt32(e.CommandArgument)
+                              select c).FirstOrDefault();
+                mstrRole.Delete(result);
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "CancelUpdate")
+            {
+                gvMstrRole.EditIndex = -1;
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "UpdateRow")
+            {
+                int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
+                int subId = System.Convert.ToInt32(e.CommandArgument);
+                string roleName = ((TextBox)gvMstrRole.Rows[rowIndex].FindControl("EditRoleName")).Text;
+
+                MstrRole result = (from c in mstrRole.GetAll()
+                              where c.RoleId == System.Convert.ToInt32(e.CommandArgument)
+                              select c).FirstOrDefault();
+                if (result != null)
+                {
+                    result.RoleName = roleName;
+                    mstrRole.Update(result);
+                }
+
+                gvMstrRole.EditIndex = -1;
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "InsertRow")
+            {
+                string roleName = ((TextBox)gvMstrRole.FooterRow.FindControl("InsertRoleName")).Text;
+                if (roleName == "" )
+                {
+                    return;
+                }
+
+                MstrRole newSub = new  MstrRole { RoleName = roleName};
+
+                mstrRole.Insert(newSub);
+
+                BindDataGridViewMstrRole();
+            }
         }
     }
 }

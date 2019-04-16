@@ -27,3 +27,24 @@
 .custom_table{
     padding:0;
 }
+.table-by-truc td{
+    font-size: 20px;
+
+}
+.table-by-truc th {
+    text-align: center;
+}
+
+.table-by-truc {
+    margin: auto;
+    width: 50% !important;
+}
+.txt-by-truc{
+    font-size:20px;
+}
+.lbtn-center-truc{
+    text-align:right;
+}
+.my-info__save {
+    text-align: center;
+}

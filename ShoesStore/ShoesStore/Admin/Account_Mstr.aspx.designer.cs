@@ -10,72 +10,51 @@
 namespace ShoesStore.Admin {
     
     
-    public partial class Manage_Administrator {
+    public partial class Account_Mstr {
         
         /// <summary>
-        /// txtTimKiem control.
+        /// upava control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTimKiem;
+        protected global::System.Web.UI.WebControls.FileUpload upava;
         
         /// <summary>
-        /// btnTimKiem control.
+        /// LinkButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTimKiem;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
         
         /// <summary>
-        /// gvAdmin control.
+        /// LinkButton2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAdmin;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
         
         /// <summary>
-        /// ValidationSummary1 control.
+        /// lbtnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnSave;
         
         /// <summary>
-        /// gvMstrRole control.
+        /// lbtnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMstrRole;
-        
-        /// <summary>
-        /// ValidationSummary2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new ShoesStore.Admin.Admin Master {
-            get {
-                return ((ShoesStore.Admin.Admin)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.LinkButton lbtnCancel;
     }
 }

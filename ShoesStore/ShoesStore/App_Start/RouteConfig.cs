@@ -27,6 +27,7 @@ namespace ShoesStore
             routes.MapPageRoute("ManagerReceipt-Merchant", "quan-tri/hoa-don-goi-thuong-nien", "~/Admin/ManageReceipt_Mer.aspx");
             routes.MapPageRoute("ManagerService", "quan-tri/goi-thuong-nien", "~/Admin/ManageService.aspx");
             routes.MapPageRoute("LoginMstr", "quan-tri/dang-nhap", "~/Admin/Login_Mstr.aspx");
+            routes.MapPageRoute("AccountMstr", "quan-tri/thong-tin-ca-nhan", "~/Admin/Account_Mstr.aspx");
         }
     }
 }
