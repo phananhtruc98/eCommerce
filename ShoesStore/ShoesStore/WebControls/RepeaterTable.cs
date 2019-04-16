@@ -15,10 +15,10 @@ using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.WebControls
 {
-   
+
     public class RepeaterTable : Repeater
     {
-        
+
         public TableName TableName;
         private int _pageCurrent = 1;
 
@@ -27,7 +27,7 @@ namespace ShoesStore.WebControls
             get => _pageCurrent;
             set
             {
-                _pageCurrent = value; 
+                _pageCurrent = value;
                 BindRptPaged();
 
             }
@@ -39,7 +39,17 @@ namespace ShoesStore.WebControls
         {
             get => _pageTotal;
         }
-        private int _pageSize=1;
+
+        private int _pageSize;
+
+        public int PageSize
+        {
+            set
+            {
+                _pageSize = value;
+                BindRptPaged();
+            }
+        }
         private bool _allowPage;
         public bool AllowPage
         {
@@ -49,30 +59,30 @@ namespace ShoesStore.WebControls
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-           new BasePage()
+            new BasePage()
             {
-                listWc =new List<Tuple<Control, TableName>>()
+                listWc = new List<Tuple<Control, TableName>>()
                {
                     new Tuple<Control, TableName>(this,TableName)
                 }
             }.Bind();
-           _pageTotal = (this.DataSource as IEnumerable<object>).Count();
-           if (_allowPage)
-           {
-               this.DataSource = (this.DataSource as IEnumerable<object>).Skip(_pageCurrent - 1).Take(_pageSize);
-               DataBind();
-           }
+            _pageTotal = (int) Math.Ceiling((double) (this.DataSource as IEnumerable<object>).Count() / _pageSize);;
+            if (_allowPage)
+            {
+                this.DataSource = (this.DataSource as IEnumerable<object>).Skip(_pageCurrent - 1).Take(_pageSize);
+                DataBind();
+            }
         }
 
         private void BindRptPaged()
         {
-          OnLoad(null);
+            OnLoad(null);
         }
 
         protected override void Render(HtmlTextWriter output)
         {
             base.Render(output);
-            
+
         }
     }
 }

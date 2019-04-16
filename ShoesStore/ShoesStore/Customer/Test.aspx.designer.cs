@@ -10,81 +10,78 @@
 namespace ShoesStore.Customer {
     
     
-    public partial class SanPham_ChiTiet {
+    public partial class Test {
         
         /// <summary>
-        /// rptProSlidePresent control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProSlidePresent;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// rptProSlideCarousel control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProSlideCarousel;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// rptProColor control.
+        /// uiPageTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProColor;
+        protected global::System.Web.UI.WebControls.Label uiPageTime;
         
         /// <summary>
-        /// rptProSize control.
+        /// update control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProSize;
+        protected global::System.Web.UI.UpdatePanel update;
         
         /// <summary>
-        /// product_quantity control.
+        /// uiTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl product_quantity;
+        protected global::System.Web.UI.WebControls.Label uiTime;
         
         /// <summary>
-        /// btnAddCart control.
+        /// uiInternalButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddCart;
+        protected global::System.Web.UI.WebControls.Button uiInternalButton;
         
         /// <summary>
-        /// rptCusReview control.
+        /// uiPostback control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptCusReview;
+        protected global::System.Web.UI.WebControls.Button uiPostback;
         
         /// <summary>
-        /// Master property.
+        /// uiAsynch control.
         /// </summary>
         /// <remarks>
-        /// Auto-generated property.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        public new ShoesStore.SiteMaster Master {
-            get {
-                return ((ShoesStore.SiteMaster)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.Button uiAsynch;
     }
 }

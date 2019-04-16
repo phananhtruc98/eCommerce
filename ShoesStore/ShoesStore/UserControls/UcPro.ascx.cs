@@ -11,6 +11,7 @@ using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.WebControls;
 
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -19,31 +20,7 @@ using ShoesStore.Customer;
 
 namespace ShoesStore.UserControls
 {
-    public class RemotePost
-    {
-        private System.Collections.Specialized.NameValueCollection Inputs = new System.Collections.Specialized.NameValueCollection();
-        public string Url = "";
-        public string Method = "post";
-        public string FormName = "form1";
-        public void Add(string name, string value)
-        {
-            Inputs.Add(name, value);
-        }
-        public void Post()
-        {
-            System.Web.HttpContext.Current.Response.Clear();
-            System.Web.HttpContext.Current.Response.Write("");
-            System.Web.HttpContext.Current.Response.Write(string.Format("", FormName));
-            System.Web.HttpContext.Current.Response.Write(string.Format("", FormName, Method, Url));
-            for (int i = 0; i < Inputs.Keys.Count; i++)
-            {
-                System.Web.HttpContext.Current.Response.Write(string.Format("", Inputs.Keys[i], Inputs[Inputs.Keys[i]]));
-            }
-            System.Web.HttpContext.Current.Response.Write("");
-            System.Web.HttpContext.Current.Response.Write("");
-            System.Web.HttpContext.Current.Response.End();
-        }
-    }
+
     public partial class UcPro : System.Web.UI.UserControl
     {
         private Pro_BUS _pro = new Pro_BUS();
@@ -54,7 +31,10 @@ namespace ShoesStore.UserControls
             get => rptPro;
         }
 
-
+        public int PageSize
+        {
+            set { rptPro.PageSize = value; }
+        }
 
         public int GetCurrent()
         {
@@ -102,47 +82,15 @@ namespace ShoesStore.UserControls
             }
         }
 
-
-
-
-        //protected void rptProPage_ItemCreated(object sender, RepeaterItemEventArgs e)
-        //{
-        //    ScriptManager scriptMan = ScriptManager.GetCurrent(this.Page);
-        //    LinkButton btn = e.Item.FindControl("lbPage") as LinkButton;
-        //    if(btn != null)
-        //    {
-        //        btn.Click += MyBtnHandler;
-        //        scriptMan.RegisterAsyncPostBackControl(btn);
-        //    }
-        //}
-        private static readonly HttpClient client = new HttpClient();
-
-        protected void proImgLink_OnClick(object sender, CommandEventArgs e)
+        protected void rptProPage_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (e.CommandName == "GuiLink")
+           
+            if (e.Item.ItemType == ListItemType.Footer)
             {
+                LinkButton btnPagingLast =  (LinkButton)e.Item.FindControl("btnPagingLast");
+                btnPagingLast.CommandArgument = rptProPage.Items.Count+"";
 
-
-
-                //LinkButton btnSender = (LinkButton)sender;
-                //var catId = btnSender.Attributes["data-rider-catId"];
-                //var proId = btnSender.Attributes["data-rider-proId"];
-                //var shpId = btnSender.Attributes["data-rider-shpId"];
-                //Context.Items["catId"] = catId;
-                //Context.Items["proId"] = proId;
-                //Context.Items["shpId"] = shpId;
-                //Server.Transfer("customer/prodet.aspx", true);
-                ////// Do something here
-                //RemotePost myremotepost = new RemotePost();
-                //myremotepost.Url = Url.Combine(HttpContext.Current.Request.Url.Authority, "/san-pham/", $"/{catId}/",
-                //    $"/{proId}/");
-
-                //myremotepost.Add("field1", "Huckleberry");
-                //myremotepost.Add("field2", "Finn");
-                //myremotepost.Post();
             }
         }
-
-
     }
 }

@@ -2000,7 +2000,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
         padding-bottom: 100%;
         position: relative;
     }
-
+  
     .product-card__image img {
         max-width: 100%;
         display: block;
@@ -9021,14 +9021,14 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin: -6px;
+    width: 100%;
 }
 
 .block-products__list-item {
     display: -ms-flexbox;
     display: flex;
-    width: calc(33.3333% - 12px);
-    margin: 6px;
+    /*width: calc(33.3333% - 12px);
+    margin: 6px;*/
 }
 
     .block-products__list-item .product-card {

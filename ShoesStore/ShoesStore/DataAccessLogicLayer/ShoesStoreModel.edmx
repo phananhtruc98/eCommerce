@@ -439,6 +439,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProSlide_Pro">
+          <End Role="Pro" Type="Self.Pro" Multiplicity="1" />
+          <End Role="ProSlide" Type="Self.ProSlide" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pro">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Principal>
+            <Dependent Role="ProSlide">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProSlideImg_Pro">
           <End Role="Pro" Type="Self.Pro" Multiplicity="1" />
           <End Role="ProSlideImg" Type="Self.ProSlideImg" Multiplicity="*" />
@@ -1273,6 +1287,10 @@
             <End Role="ProSize" EntitySet="ProSize" />
             <End Role="ProDet" EntitySet="ProDet" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProSlide_Pro" Association="Self.FK_ProSlide_Pro">
+            <End Role="Pro" EntitySet="Pro" />
+            <End Role="ProSlide" EntitySet="ProSlide" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProSlideImg_Pro" Association="Self.FK_ProSlideImg_Pro">
             <End Role="Pro" EntitySet="Pro" />
             <End Role="ProSlideImg" EntitySet="ProSlideImg" />
@@ -1469,6 +1487,7 @@
           <NavigationProperty Name="ProBrand" Relationship="Self.FK_Pro_Brand" FromRole="Pro" ToRole="ProBrand" />
           <NavigationProperty Name="ProCat" Relationship="Self.FK_Pro_ProCat" FromRole="Pro" ToRole="ProCat" />
           <NavigationProperty Name="ProDet" Relationship="Self.FK_ProDet_Pro" FromRole="Pro" ToRole="ProDet" />
+          <NavigationProperty Name="ProSlide" Relationship="Self.FK_ProSlide_Pro" FromRole="Pro" ToRole="ProSlide" />
           <NavigationProperty Name="ProSlideImg" Relationship="Self.FK_ProSlideImg_Pro" FromRole="Pro" ToRole="ProSlideImg" />
           <NavigationProperty Name="RcptBuyDet" Relationship="Self.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" FromRole="Pro" ToRole="RcptBuyDet" />
           <NavigationProperty Name="Shp" Relationship="Self.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" FromRole="Pro" ToRole="Shp" />
@@ -1538,6 +1557,7 @@
           <Property Name="ShpId" Type="Int32" Nullable="false" />
           <Property Name="ProId" Type="Int32" Nullable="false" />
           <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pro" Relationship="Self.FK_ProSlide_Pro" FromRole="ProSlide" ToRole="Pro" />
         </EntityType>
         <EntityType Name="ProSlideImg">
           <Key>
@@ -1931,6 +1951,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProSlide_Pro">
+          <End Role="Pro" Type="Self.Pro" Multiplicity="1" />
+          <End Role="ProSlide" Type="Self.ProSlide" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pro">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Principal>
+            <Dependent Role="ProSlide">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProSlideImg_Pro">
           <End Role="Pro" Type="Self.Pro" Multiplicity="1" />
           <End Role="ProSlideImg" Type="Self.ProSlideImg" Multiplicity="*" />
@@ -2244,6 +2278,10 @@
           <AssociationSet Name="FK_ProDet_Pro" Association="Self.FK_ProDet_Pro">
             <End Role="Pro" EntitySet="Pro" />
             <End Role="ProDet" EntitySet="ProDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProSlide_Pro" Association="Self.FK_ProSlide_Pro">
+            <End Role="Pro" EntitySet="Pro" />
+            <End Role="ProSlide" EntitySet="ProSlide" />
           </AssociationSet>
           <AssociationSet Name="FK_ProSlideImg_Pro" Association="Self.FK_ProSlideImg_Pro">
             <End Role="Pro" EntitySet="Pro" />

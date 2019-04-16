@@ -17,7 +17,7 @@ namespace ShoesStore
     public partial class MyLibrary : System.Web.UI.Page
     {
         private static string moneyPrefix = "";
-        private static string proImgPath = "/images/products";
+        private static string proPath = "/images/products";
         private static string proDetUrl = "/san-pham/";
         private static string slidePath = "/images/slides";
         private static string cusPath = "/images/usrs/cus";
@@ -73,26 +73,43 @@ namespace ShoesStore
         public static string ProImgPath(object ipro)
         {
             Pro pro = (Pro)ipro;
-            return Path.Combine(proImgPath, pro.Shp.ShpName.ToString(), pro.ProName.ToString(), pro.Img.ToString());
+            if (string.IsNullOrEmpty(pro.Img))
+                return Path.Combine(proPath, "default.png");
+            return Path.Combine(proPath, pro.Shp.ShpName, pro.ProName, pro.Img);
         }
         public static string CusImgPath(object cus)
         {
             Cus _cus = (Cus)cus;
-            if (_cus.Usr.Avatar == null || _cus.Usr.Avatar == "")
+            if (string.IsNullOrEmpty(_cus.Usr.Avatar))
                 return Path.Combine(usrPath, "default.jpg");
             return Path.Combine(cusPath, _cus.CusId.ToString(), _cus.Usr.Avatar);
         }
-        public static string ProSlidePath(object shpId, object proId, object proSlideId)
+        public static string ProSlidePath(object iProSlide)
         {
-            return Path.Combine(proImgPath, shpId.ToString(), proId.ToString(), "Slides", proSlideId.ToString());
+            ProSlide proSlide = (ProSlide)iProSlide;
+            return Path.Combine(proPath, proSlide.Pro.Shp.ShpName, proSlide.Pro.ProName, "Slides", proSlide.Img);
+        }
+
+        public static string ProColorPath(object iProDet)
+        {
+            ProDet proDet = (ProDet)iProDet;
+
+            return Path.Combine(proPath, proDet.Pro.Shp.ShpName, proDet.Pro.ProName, "color", proDet.ProColor.ColorImg);
+        }
+        public static string ProSizePath(object iProDet)
+        {
+            ProDet proDet = (ProDet)iProDet;
+
+            return Path.Combine(proPath, proDet.Pro.Shp.ShpName, proDet.Pro.ProName, "size", proDet.ProSize.SizeImg);
         }
         public static string SlidePath(object img)
         {
             return Path.Combine(slidePath, img.ToString()).Replace(@"\", @"/");
         }
-        public static string ProDetUrl(object catName, object proName, object shpName)
+        public static string ProDetUrl(object ipro)
         {
-            return Path.Combine(proDetUrl, TextHelper.UrlFriendly(catName.ToString()), TextHelper.UrlFriendly(proName.ToString()), TextHelper.UrlFriendly(shpName.ToString()));
+            Pro pro = (Pro)ipro;
+            return Path.Combine(proDetUrl, TextHelper.UrlFriendly(pro.ProCat.CatName), TextHelper.UrlFriendly(pro.ProName), TextHelper.UrlFriendly(pro.Shp.ShpName));
         }
     }
 }

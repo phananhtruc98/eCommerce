@@ -687,7 +687,7 @@
 
                                         </div>
                                     </div>
-                                    <uc1:UcPro runat="server" ID="UcPro" />
+                                    <uc1:UcPro runat="server" ID="UcPro" RptPro-PageSize="2" />
 
                                 </div>
                             </div>

@@ -7,7 +7,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="index.html">Trang chủ</a>
+                                <a href="/">Trang chủ</a>
                                 <svg class="breadcrumb-arrow"
                                      width="6px" height="9px">
                                     <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>

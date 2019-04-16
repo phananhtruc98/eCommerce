@@ -1,9 +1,29 @@
 ﻿<%@ Page Language="C#" Title="Sản phẩm chi tiết" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ProDet.aspx.cs" Inherits="ShoesStore.Customer.SanPham_ChiTiet" %>
 
 <%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
+<%@ Register TagPrefix="wsCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
 <%@ Import Namespace="System.ComponentModel" %>
 <%@ Import Namespace="ShoesStore" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<script type="text/javascript" language="javascript">  
+
+    function setExclusiveRadioButton(name, current)
+    {
+        regex = new RegExp(name);  
+
+        for (i = 0; i < document.forms[0].elements.length; i++)
+        {
+            var elem = document.forms[0].elements[i];
+            if (elem.type == 'radio')
+            {
+                elem.checked = false;
+            }
+        }
+        current.checked = true;
+    }
+</script>
     <!-- site__body -->
     <div class="site__body">
         <div class="page-header">
@@ -26,7 +46,7 @@
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                <%:_proDet.ProName %>
+                                <%:_proDetView.ProName %>
                             </li>
                         </ol>
                     </nav>
@@ -48,7 +68,7 @@
                                                 <a
                                                     href="#" target="_blank">
                                                     <img
-                                                        src="<%# MyLibrary.ProSlidePath(Eval("ShpId"),Eval("ProId"),Eval("Img")) %>" alt="">
+                                                        src="<%# MyLibrary.ProSlidePath(Container.DataItem) %>" alt="">
                                                 </a>
                                             </ItemTemplate>
                                         </asp:Repeater>
@@ -65,7 +85,7 @@
                                                     class="product-gallery__carousel-item">
                                                     <img
                                                         class="product-gallery__carousel-image"
-                                                        src="<%# MyLibrary.ProSlidePath(Eval("ShpId"),Eval("ProId"),Eval("Img")) %>" alt="">
+                                                        src="<%# MyLibrary.ProSlidePath(Container.DataItem) %>" alt="">
                                                 </a>
 
                                             </ItemTemplate>
@@ -94,7 +114,7 @@
                                     </svg>
                                 </button>
                             </div>
-                            <h1 class="product__name"><%:_proDet.ProName %>
+                            <h1 class="product__name"><%:_proDetView.ProName %>
                                 
                             </h1>
                             <div class="product__rating">
@@ -197,7 +217,7 @@
                                 </div>
                             </div>
                             <div class="product__description">
-                                <%:_proDet.DescShort %>
+                                <%:_proDetView.DescShort %>
                             </div>
 
                             <ul class="product__meta">
@@ -206,7 +226,7 @@
                 Stock
             </span>
                                 </li>
-                                <li>Thương hiệu: <a href="/#"><%:_proDet.ProBrand.BrandName %></a></li>
+                                <li>Thương hiệu: <a href="/#"><%:_proDetView.ProBrand.BrandName %></a></li>
                                 <li>SKU: 83690/32</li>
                             </ul>
                         </div>
@@ -219,43 +239,51 @@
             Stock
         </span>
                             </div>
-                            <div class="product__prices"><%:MyLibrary.ToFormatMoney(_proDet.Price) %></div>
+                            <div class="product__prices"><%:MyLibrary.ToFormatMoney(_proDetView.Price) %></div>
                             <!-- .product__options -->
-                            <form class="product__options">
+                            <div class="product__options">
                                 <div class="form-group product__option">
                                     <label
                                         class="product__option-label">
                                         Màu
                                     </label>
                                     <div class="input-radio-color">
+
                                         <div class="input-radio-color__list">
-                                            <label
-                                                class="input-radio-color__item input-radio-color__item--white"
-                                                style="color: #fff;" data-toggle="tooltip" title="White">
-                                                <input
-                                                    type="radio" name="color">
-                                                <span></span>
-                                            </label>
-                                            <label
-                                                class="input-radio-color__item" style="color: #ffd333;"
-                                                data-toggle="tooltip" title="Yellow">
-                                                <input type="radio"
-                                                    name="color">
-                                                <span></span>
-                                            </label>
-                                            <label
-                                                class="input-radio-color__item" style="color: #ff4040;"
-                                                data-toggle="tooltip" title="Red">
-                                                <input type="radio" name="color">
-                                                <span></span>
-                                            </label>
-                                            <label
-                                                class="input-radio-color__item input-radio-color__item--disabled"
-                                                style="color: #4080ff;" data-toggle="tooltip" title="Blue">
-                                                <input
-                                                    type="radio" name="color" disabled="disabled">
-                                                <span></span>
-                                            </label>
+
+                                            <asp:Repeater runat="server" ID="rptProColor" OnItemDataBound="rptProColor_ItemDataBound">
+                                                <ItemTemplate>
+                                                    <asp:RadioButton runat="server" ID="rdbColor"  GroupName="Color" />
+                                                    <asp:HiddenField runat="server" ID="hdfColorId"/>
+                                                    <asp:Image runat="server" ImageUrl='<%# MyLibrary.ProColorPath(Container.DataItem) %>' />
+                                                    <asp:Label runat="server" ID="lbColorName" Text='<%# Eval("ProColor.ColorName") %>'> </asp:Label>
+                                                </ItemTemplate>
+
+                                            </asp:Repeater>
+
+
+
+                                        </div>
+                                    </div>
+                                    <label class="product__option-label">
+                                        Màu sắc
+                                    </label>
+                                    <div class="input-radio-color">
+
+                                        <div class="input-radio-color__list">
+                                            <asp:Repeater runat="server" ID="rptProSize">
+                                                <ItemTemplate>
+                                                    <wsCustom:MyRadioButton runat="server" ID="rdbSize" GroupName="Size" />
+
+                                                    <asp:HiddenField runat="server" ID="hdfSizeId"/>
+                                                    <asp:Image runat="server" ImageUrl='<%# MyLibrary.ProSizePath(Container.DataItem) %>' />
+                                                    <asp:Label runat="server" ID="lbSizeName" Text='<%# Eval("ProSize.SizeName") %>'> </asp:Label>
+                                                </ItemTemplate>
+
+                                            </asp:Repeater>
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -268,23 +296,20 @@
                                     <div class="product__actions">
                                         <div class="product__actions-item">
                                             <div class="input-number product__quantity">
-                                                <input id="product-quantity"
+                                                <input id="product_quantity" runat="server"
                                                     class="input-number__input form-control form-control-lg"
-                                                    type="number" min="1" value="1">
+                                                    type="number" min="1" value="1" />
                                                 <div class="input-number__add"></div>
                                                 <div class="input-number__sub"></div>
                                             </div>
                                         </div>
                                         <div class="product__actions-item product__actions-item--addtocart">
-                                            <button
-                                                class="btn btn-primary btn-lg">
-                                                Add to cart
-                                            </button>
+                                            <asp:Button runat="server" ID="btnAddCart" OnClick="btnAddCart_OnClick" CssClass="btn btn-primary btn-lg" Text="Thêm giỏ hàng"></asp:Button>
                                         </div>
 
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                             <!-- .product__options / end -->
                         </div>
                         <!-- .product__end -->
@@ -329,7 +354,7 @@
                         <div class="product-tabs__pane product-tabs__pane--active" id="tab-description">
                             <div class="typography">
                                 <h3>Chi tiết sản phẩm</h3>
-                                <%:_proDet.Desc %>
+                                <%:_proDetView.Desc %>
                             </div>
                         </div>
                         <div class="product-tabs__pane" id="tab-specification">
@@ -529,7 +554,7 @@
                                                                 <div class="review__text">
                                                                     <%# Eval("Cmt") %>
                                                                 </div>
-                                                                <div class="review__date">  <%# Eval("DateAdd") %></div>
+                                                                <div class="review__date"><%# Eval("DateAdd") %></div>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -3426,4 +3451,5 @@
         <!-- .block-products-carousel / end -->
     </div>
     <!-- site__body / end -->
+
 </asp:Content>

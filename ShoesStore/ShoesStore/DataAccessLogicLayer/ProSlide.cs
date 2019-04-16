@@ -18,5 +18,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public int ShpId { get; set; }
         public int ProId { get; set; }
         public string Img { get; set; }
+    
+        public virtual Pro Pro { get; set; }
     }
 }

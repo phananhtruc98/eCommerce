@@ -12,7 +12,7 @@ namespace ShoesStore.Customer
         {
             if(!IsPostBack)
             {
-                
+         
                 //rptProCat.DataBind();
                 //listWc=new List<Tuple<Control, TableName>>()
                 //{

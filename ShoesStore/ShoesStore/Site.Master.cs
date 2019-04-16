@@ -25,7 +25,16 @@ namespace ShoesStore
         private static string _actCode = "";
 
         private List<CartDet> _listCartDetPreview = new List<CartDet>();
+        private Cart cusCart;
 
+        public Cart CusCart
+        {
+            get
+            {
+                LoadCartPreview();
+                return cusCart;
+            }
+        }
         public Repeater CartDetPreview
         {
             get
@@ -72,7 +81,7 @@ namespace ShoesStore
         public void LoadCartPreview()
         {
             Cus cus = _cus.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
-            Cart cusCart = _cart.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+             cusCart = _cart.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
             _listCartDetPreview = _cartDet.GetAll().Where(m => cusCart != null && m.CartId == cusCart.CartId).ToList();
             rptCartDetPreview.DataSource = _listCartDetPreview;
             rptCartDetPreview.DataBind();
