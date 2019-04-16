@@ -58,5 +58,15 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public override bool IsExist(Usr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(Usr obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

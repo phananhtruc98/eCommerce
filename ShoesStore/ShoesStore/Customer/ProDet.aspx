@@ -9,14 +9,14 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript" language="javascript">  
 
-    function setExclusiveRadioButton(name, current)
-    {
-        regex = new RegExp(name);  
+    function setExclusiveRadioButton(name, current) {
+        debugger;
+       var regex = new RegExp(name);  
 
         for (i = 0; i < document.forms[0].elements.length; i++)
         {
             var elem = document.forms[0].elements[i];
-            if (elem.type == 'radio')
+            if (elem.type == 'radio' && regex.test(elem.id))
             {
                 elem.checked = false;
             }
@@ -254,7 +254,7 @@
                                             <asp:Repeater runat="server" ID="rptProColor" OnItemDataBound="rptProColor_ItemDataBound">
                                                 <ItemTemplate>
                                                     <asp:RadioButton runat="server" ID="rdbColor"  GroupName="Color" />
-                                                    <asp:HiddenField runat="server" ID="hdfColorId"/>
+                                                    <asp:HiddenField runat="server" ID="hdfColorId" Value='<%# Eval("ColorId") %>'/>
                                                     <asp:Image runat="server" ImageUrl='<%# MyLibrary.ProColorPath(Container.DataItem) %>' />
                                                     <asp:Label runat="server" ID="lbColorName" Text='<%# Eval("ProColor.ColorName") %>'> </asp:Label>
                                                 </ItemTemplate>
@@ -271,11 +271,11 @@
                                     <div class="input-radio-color">
 
                                         <div class="input-radio-color__list">
-                                            <asp:Repeater runat="server" ID="rptProSize">
+                                            <asp:Repeater runat="server" ID="rptProSize" OnItemDataBound="rptProSize_ItemDataBound">
                                                 <ItemTemplate>
-                                                    <wsCustom:MyRadioButton runat="server" ID="rdbSize" GroupName="Size" />
-
-                                                    <asp:HiddenField runat="server" ID="hdfSizeId"/>
+                                                    <asp:RadioButton runat="server" ID="rdbSize" GroupName="Size" />
+                                                 
+                                                    <asp:HiddenField runat="server" ID="hdfSizeId" Value='<%# Eval("SizeId") %>'/>
                                                     <asp:Image runat="server" ImageUrl='<%# MyLibrary.ProSizePath(Container.DataItem) %>' />
                                                     <asp:Label runat="server" ID="lbSizeName" Text='<%# Eval("ProSize.SizeName") %>'> </asp:Label>
                                                 </ItemTemplate>

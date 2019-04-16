@@ -42,5 +42,15 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public override bool IsExist(ProCat obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(ProCat obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

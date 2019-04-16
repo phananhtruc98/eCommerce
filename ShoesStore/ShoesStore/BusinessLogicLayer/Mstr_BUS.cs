@@ -96,6 +96,15 @@ namespace ShoesStore.BusinessLogicLayer
             QueryExtensions.SortBy<sp_Admin_Info_Result>(Get_Admin_Info().AsQueryable<sp_Admin_Info_Result>(), ColName);
         }
 
-        
+
+        public override bool IsExist(Mstr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(Mstr obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

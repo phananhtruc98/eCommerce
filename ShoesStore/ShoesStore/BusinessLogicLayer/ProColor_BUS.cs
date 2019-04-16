@@ -29,5 +29,15 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public override bool IsExist(ProColor obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(ProColor obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

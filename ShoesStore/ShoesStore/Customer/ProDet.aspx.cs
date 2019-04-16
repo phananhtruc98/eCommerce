@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Ajax.Utilities;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.WebControls;
 using Utilities;
@@ -13,9 +14,20 @@ namespace ShoesStore.Customer
 {
     public partial class SanPham_ChiTiet : BasePage
     {
-        protected Pro _proDetView;
+        protected static Pro _proDetView;
 
         private CartDet _cartDetView;
+        public Pro ProDetView
+        {
+            get
+            {
+                if (this.ViewState["_proDetView"] == null)
+                    return _proDetView;
+
+                return (Pro)this.ViewState["_proDetView"];
+            }
+            set { this.ViewState["_proDetView"] = value; }
+        }
         protected override void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -30,12 +42,12 @@ namespace ShoesStore.Customer
 
         private void Bind_ProSizes()
         {
-            rptProSize.DataSource = _proDet.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId);
+            rptProSize.DataSource = _proDet.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId).DistinctBy(m => m.SizeId);
             rptProSize.DataBind();
         }
         private void Bind_ProColors()
         {
-            rptProColor.DataSource = _proDet.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId);
+            rptProColor.DataSource = _proDet.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId).DistinctBy(m => m.ColorId);
             rptProColor.DataBind();
         }
         private void Bind_CusReview()
@@ -61,6 +73,7 @@ namespace ShoesStore.Customer
         {
             Cart myCart = Master.CusCart;
 
+
             string value;
             int colorId = 0;
             int sizeId = 0;
@@ -68,38 +81,43 @@ namespace ShoesStore.Customer
             {
                 if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
                 {
-                    var rdbColor= (RadioButton)item.FindControl("rdbColor");
+                    var rdbColor = (RadioButton)item.FindControl("rdbColor");
                     if (rdbColor.Checked)
                     {
-                        colorId = System.Convert.ToInt32(((HiddenField) item.FindControl("hdfColorId")).Value);
+                        colorId = System.Convert.ToInt32(((HiddenField)item.FindControl("hdfColorId")).Value);
                     }
-                  
+
                 }
             }
             foreach (RepeaterItem item in rptProSize.Items)
             {
                 if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
                 {
-                   
-                    var rdbSize= (MyRadioButton)item.FindControl("rdbSize");
+
+                    var rdbSize = (RadioButton)item.FindControl("rdbSize");
                     if (rdbSize.Checked)
                     {
-                        sizeId = System.Convert.ToInt32(((HiddenField) item.FindControl("hdfSizeId")).Value);
+                        sizeId = System.Convert.ToInt32(((HiddenField)item.FindControl("hdfSizeId")).Value);
                     }
-                  
+
                 }
             }
             _cartDetView = new CartDet()
             {
-              CartId = myCart.CartId,
-              ShpId = _proDetView.ShpId,
-              ProId = _proDetView.ProId,
-              ColorId = colorId,
-              SizeId = sizeId,
-              Qty = System.Convert.ToInt32(product_quantity.Value)
-             
+                CartId = myCart.CartId,
+                ShpId = _proDetView.ShpId,
+                ProId = _proDetView.ProId,
+                ColorId = colorId,
+                SizeId = sizeId,
+                Qty = System.Convert.ToInt32(product_quantity.Value)
+
             };
-            _cartDet.Insert(_cartDetView);
+            if (!_cartDet.IsExist(_cartDetView))
+            {
+                _cartDet.Insert(_cartDetView);
+                Master.LoadCartPreview();
+            }
+
         }
 
         protected void rptProColor_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
@@ -108,17 +126,50 @@ namespace ShoesStore.Customer
             {
                 if (e.Item.ItemType == ListItemType.AlternatingItem | e.Item.ItemType == ListItemType.Item)
                 {
-                 
-                        ((RadioButton)e.Item.FindControl("rdbColor")).Visible = true;
-                        ((RadioButton) e.Item.FindControl("rdbColor")).GroupName = "Color";
+                    if (e.Item.ItemIndex == 0)
+                        ((RadioButton)e.Item.FindControl("rdbColor")).Checked = true;
+                    ((RadioButton)e.Item.FindControl("rdbColor")).Visible = true;
+                    ((RadioButton)e.Item.FindControl("rdbColor")).GroupName = "Color";
+
+                    RadioButton radioColor = (RadioButton)e.Item.FindControl("rdbColor");
+
+                    string scriptColor = "setExclusiveRadioButton('rptProColor.*Color', this)";
+
+                    radioColor.Attributes.Add("onclick", scriptColor);
+                }
+
+                // put the proper client-side handler for RadioButton
+
+
+
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        protected void rptProSize_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        {
+            try
+            {
+                if (e.Item.ItemType == ListItemType.AlternatingItem | e.Item.ItemType == ListItemType.Item)
+                {
+
+                    if (e.Item.ItemIndex == 0)
+                        ((RadioButton)e.Item.FindControl("rdbSize")).Checked = true;
+                    ((RadioButton)e.Item.FindControl("rdbSize")).Visible = true;
+                    ((RadioButton)e.Item.FindControl("rdbSize")).GroupName = "Size";
 
                 }
 
                 // put the proper client-side handler for RadioButton
-                RadioButton radio = (RadioButton)e.Item.FindControl("rdbColor");
-                string script = "setExclusiveRadioButton('rptProColor.*Color', this)";
 
-                radio.Attributes.Add("onclick", script);
+                RadioButton radioSize = (RadioButton)e.Item.FindControl("rdbSize");
+
+
+                string scriptSize = "setExclusiveRadioButton('rptProSize.*Size', this)";
+
+                radioSize.Attributes.Add("onclick", scriptSize);
+
             }
             catch (Exception ex)
             {

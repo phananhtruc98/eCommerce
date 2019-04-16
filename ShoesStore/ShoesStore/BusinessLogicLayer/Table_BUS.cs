@@ -5,9 +5,9 @@ using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class Table_BUS<T, U> : ITable<T> where T : class where U : Table_DAO<T>, new()
+    public abstract class Table_BUS<T, U> : ITable<T> where T : class where U : Table_DAO<T>, new()
     {
-        private readonly U _dao = new U();
+        protected readonly U _dao = new U();
 
         public void Delete(T obj)
         {
@@ -29,14 +29,8 @@ namespace ShoesStore.BusinessLogicLayer
             _dao.Update(obj);
         }
 
-        public bool IsExist(T obj)
-        {
-            return _dao.IsExist(obj);
-        }
+        public abstract bool IsExist(T obj);
 
-        public void SetActive(T obj)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void SetActive(T obj);
     }
 }

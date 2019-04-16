@@ -13,5 +13,15 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public override bool IsExist(WebInfo obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(WebInfo obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

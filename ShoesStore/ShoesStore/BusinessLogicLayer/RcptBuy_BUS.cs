@@ -45,5 +45,15 @@ namespace ShoesStore.BusinessLogicLayer
 
             return rcptBuy_lst;
         }
+
+        public override bool IsExist(RcptBuy obj)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void SetActive(RcptBuy obj)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

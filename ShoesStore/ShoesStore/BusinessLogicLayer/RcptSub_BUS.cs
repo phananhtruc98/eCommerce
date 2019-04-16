@@ -7,5 +7,14 @@ namespace ShoesStore.BusinessLogicLayer
     {
         private readonly RcptSub_DAO _dao = new RcptSub_DAO();
         private readonly Rcpt_DAO rcpt_dao = new Rcpt_DAO();
+        public override bool IsExist(RcptSub obj)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void SetActive(RcptSub obj)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -14,6 +14,15 @@ namespace ShoesStore.BusinessLogicLayer
         {
            return _dao.getMaxRcptId();
         }
-     
+
+        public override bool IsExist(Rcpt obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(Rcpt obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

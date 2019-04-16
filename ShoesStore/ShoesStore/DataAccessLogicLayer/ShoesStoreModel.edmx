@@ -60,7 +60,7 @@
           <Key>
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Pro">
@@ -107,7 +107,7 @@
           <Key>
             <PropertyRef Name="ColorId" />
           </Key>
-          <Property Name="ColorId" Type="int" Nullable="false" />
+          <Property Name="ColorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ColorName" Type="nvarchar" MaxLength="255" />
           <Property Name="ColorImg" Type="nvarchar" MaxLength="255" />
         </EntityType>
@@ -127,7 +127,7 @@
           <Key>
             <PropertyRef Name="SizeId" />
           </Key>
-          <Property Name="SizeId" Type="int" Nullable="false" />
+          <Property Name="SizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SizeName" Type="nvarchar" MaxLength="255" />
           <Property Name="SizeImg" Type="nvarchar" MaxLength="255" />
         </EntityType>
@@ -1460,7 +1460,7 @@
           <Key>
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MstrDet" Relationship="Self.FK_MstrDet_MstrRole" FromRole="MstrRole" ToRole="MstrDet" />
         </EntityType>
@@ -1517,7 +1517,7 @@
           <Key>
             <PropertyRef Name="ColorId" />
           </Key>
-          <Property Name="ColorId" Type="Int32" Nullable="false" />
+          <Property Name="ColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ColorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ColorImg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProDet" Relationship="Self.FK_ProDet_ProColor" FromRole="ProColor" ToRole="ProDet" />
@@ -1542,7 +1542,7 @@
           <Key>
             <PropertyRef Name="SizeId" />
           </Key>
-          <Property Name="SizeId" Type="Int32" Nullable="false" />
+          <Property Name="SizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SizeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="SizeImg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProDet" Relationship="Self.FK_ProDet_ProSize" FromRole="ProSize" ToRole="ProDet" />

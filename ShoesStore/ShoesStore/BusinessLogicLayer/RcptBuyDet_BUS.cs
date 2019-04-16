@@ -9,5 +9,14 @@ namespace ShoesStore.BusinessLogicLayer
 {
     public class RcptBuyDet_BUS : Table_BUS<RcptBuyDet, RcptBuyDet_DAO>, IRcptBuyDet
     {
+        public override bool IsExist(RcptBuyDet obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(RcptBuyDet obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -17,5 +17,14 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
 
+        public override bool IsExist(RcptSubDet obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(RcptSubDet obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
