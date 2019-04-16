@@ -21,7 +21,7 @@
     <form runat="server">
         <div class="login">
             <h1 class="fc-center">
-                <img src="images/logo.png" width="200" /></h1>
+                <img src="/Admin/images/logo.png" width="200" /></h1>
 
             <input type="text" name="u" placeholder="Tên đăng nhập" required="required" id="login_login" runat="server" />
             <asp:RequiredFieldValidator
