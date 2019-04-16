@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" Title="Đăng Nhập" MasterPageFile="~/Merchant/Merchant.Master" AutoEventWireup="true" CodeFile="SignIn.aspx.cs" Inherits="ShoesStore.Merchant.SignIn" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
     <!-- site__body -->
@@ -94,7 +94,7 @@
                 <p>Our map</p>
                 <div class="card">
                     <article class="card-body">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15916.085640414378!2d33.185751550000006!3d-4.2160796!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stz!4v1538627227928" width="320" height="330" frameborder="0" style="border: 0" allowfullscreen></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15916.085640414378!2d33.185751550000006!3d-4.2160796!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stz!4v1538627227928" width="220" height="200" frameborder="0" style="border: 0" allowfullscreen></iframe>
                     </article>
                 </div>
                 <!-- card.// -->

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" Title="Giỏ Hàng" MasterPageFile="~/Merchant/Merchant.Master" AutoEventWireup="true" CodeFile="Cart.aspx.cs" Inherits="ShoesStore.Merchant.Cart" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
             <!-- site__body -->

@@ -9839,7 +9839,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .block-slideshow__slide {
     position: relative;
     display: block;
-    color: inherit
+    color: inherit;
 }
 
     .block-slideshow__slide:hover {
@@ -9893,12 +9893,12 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 .block-slideshow--layout--full {
-    margin-top: 20px
+    margin-top: 0px
 }
 
 @media (min-width:768px) {
     .block-slideshow--layout--full .block-slideshow__body, .block-slideshow--layout--full .block-slideshow__slide {
-        height: 440px
+        height: 350px
     }
 
     .block-slideshow--layout--full .block-slideshow__slide-content {
