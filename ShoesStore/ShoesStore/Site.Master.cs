@@ -109,6 +109,7 @@ namespace ShoesStore
             {
                 Usr loginUsr = _usr.Login(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
+
                 WebSession.LoginUsr = loginUsr;
                 Response.Redirect(Request.RawUrl);
             }
@@ -187,6 +188,7 @@ namespace ShoesStore
                                     && m.ColorId == System.Convert.ToInt32(primaryKeys[3])
                                     && m.SizeId == System.Convert.ToInt32(primaryKeys[4])
             ));
+            LoadCartPreview();
         }
 
     }

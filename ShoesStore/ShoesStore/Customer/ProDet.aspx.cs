@@ -39,7 +39,7 @@ namespace ShoesStore.Customer
                 Bind_ProSizes();
             }
         }
-
+        
         private void Bind_ProSizes()
         {
             rptProSize.DataSource = _proDet.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId).DistinctBy(m => m.SizeId);
@@ -116,6 +116,12 @@ namespace ShoesStore.Customer
             {
                 _cartDet.Insert(_cartDetView);
                 Master.LoadCartPreview();
+                MessageBoxShow("Đã thêm");
+            }
+            else
+            {
+                MessageBoxShow("Đã tồn tại, mời bạn vào giỏ hàng để cập nhật số lượng");
+             
             }
 
         }
@@ -174,6 +180,11 @@ namespace ShoesStore.Customer
             catch (Exception ex)
             {
             }
+        }
+        private void MessageBoxShow(string message)
+        {
+            
+
         }
     }
 }

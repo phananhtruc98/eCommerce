@@ -382,7 +382,7 @@
                                     </div>
                                     <!-- .nav-links / end -->
                                     <div class="nav-panel__indicators">
-
+                                      
                                         <div class="indicator indicator--trigger--click">
                                             <a href="/gio-hang"
                                                 class="indicator__button">
@@ -398,6 +398,7 @@
                                                 <!-- .dropcart -->
                                                 <div class="dropcart">
                                                     <div class="dropcart__products-list">
+                                                        
                                                         <asp:Repeater runat="server" ID="rptCartDetPreview" ItemType="ShoesStore.DataAccessLogicLayer.CartDet">
 
 

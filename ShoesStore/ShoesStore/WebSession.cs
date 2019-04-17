@@ -1,4 +1,7 @@
-﻿using System.Web;
+﻿using System.Linq;
+using System.Web;
+using ShoesStore.BusinessLogicLayer;
+using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore
 {
@@ -13,6 +16,17 @@ namespace ShoesStore
 
         public static WebSession Instance => _instance ?? new WebSession();
 
+        public static Cus LoginCus
+        {
+            get
+            {
+                Usr usr = (Usr) HttpContext.Current.Session["LoginUsr"];
+                Cus cus = new Cus_BUS().GetAll().FirstOrDefault(m => m.CusId == usr.UsrId);
+                return cus;
+
+
+            }
+        }
     }
 
 }

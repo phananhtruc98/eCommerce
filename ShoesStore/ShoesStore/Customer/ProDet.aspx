@@ -7,24 +7,42 @@
 <%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<script type="text/javascript" language="javascript">  
-
-    function setExclusiveRadioButton(name, current) {
-        debugger;
-       var regex = new RegExp(name);  
-
-        for (i = 0; i < document.forms[0].elements.length; i++)
-        {
-            var elem = document.forms[0].elements[i];
-            if (elem.type == 'radio' && regex.test(elem.id))
-            {
-                elem.checked = false;
-            }
+    <style type="text/css">
+        .alertBox {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            width: 500px;
+            margin-left: -250px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            padding: 4px 8px;
         }
-        current.checked = true;
-    }
-</script>
+    </style>
+    <script type="text/javascript" language="javascript">  
+
+        function setExclusiveRadioButton(name, current) {
+            debugger;
+            var regex = new RegExp(name);
+
+            for (i = 0; i < document.forms[0].elements.length; i++) {
+                var elem = document.forms[0].elements[i];
+                if (elem.type == 'radio' && regex.test(elem.id)) {
+                    elem.checked = false;
+                }
+            }
+            current.checked = true;
+        }
+
+        function closeAlert(e) {
+            e.preventDefault();
+            this.parentNode.style.display = "none";
+        }
+    </script>
     <!-- site__body -->
+
+
     <div class="site__body">
         <div class="page-header">
             <div class="page-header__container container">
@@ -253,8 +271,8 @@
 
                                             <asp:Repeater runat="server" ID="rptProColor" OnItemDataBound="rptProColor_ItemDataBound">
                                                 <ItemTemplate>
-                                                    <asp:RadioButton runat="server" ID="rdbColor"  GroupName="Color" />
-                                                    <asp:HiddenField runat="server" ID="hdfColorId" Value='<%# Eval("ColorId") %>'/>
+                                                    <asp:RadioButton runat="server" ID="rdbColor" GroupName="Color" />
+                                                    <asp:HiddenField runat="server" ID="hdfColorId" Value='<%# Eval("ColorId") %>' />
                                                     <asp:Image runat="server" ImageUrl='<%# MyLibrary.ProColorPath(Container.DataItem) %>' />
                                                     <asp:Label runat="server" ID="lbColorName" Text='<%# Eval("ProColor.ColorName") %>'> </asp:Label>
                                                 </ItemTemplate>
@@ -274,8 +292,8 @@
                                             <asp:Repeater runat="server" ID="rptProSize" OnItemDataBound="rptProSize_ItemDataBound">
                                                 <ItemTemplate>
                                                     <asp:RadioButton runat="server" ID="rdbSize" GroupName="Size" />
-                                                 
-                                                    <asp:HiddenField runat="server" ID="hdfSizeId" Value='<%# Eval("SizeId") %>'/>
+
+                                                    <asp:HiddenField runat="server" ID="hdfSizeId" Value='<%# Eval("SizeId") %>' />
                                                     <asp:Image runat="server" ImageUrl='<%# MyLibrary.ProSizePath(Container.DataItem) %>' />
                                                     <asp:Label runat="server" ID="lbSizeName" Text='<%# Eval("ProSize.SizeName") %>'> </asp:Label>
                                                 </ItemTemplate>
@@ -304,7 +322,14 @@
                                             </div>
                                         </div>
                                         <div class="product__actions-item product__actions-item--addtocart">
+
                                             <asp:Button runat="server" ID="btnAddCart" OnClick="btnAddCart_OnClick" CssClass="btn btn-primary btn-lg" Text="Thêm giỏ hàng"></asp:Button>
+
+
+
+
+
+
                                         </div>
 
                                     </div>
