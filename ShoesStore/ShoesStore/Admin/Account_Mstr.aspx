@@ -35,8 +35,8 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="my-info__save"  >
-                        <asp:LinkButton runat="server" ID="lbtnLuu" Text="Lưu" CssClass="txt-by-truc center"></asp:LinkButton>
-                        <asp:LinkButton runat="server" ID="lbtnHuy" Text="Hủy" CssClass="txt-by-truc center"></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="lbtnLuu" Text="Lưu" CssClass="txt-by-truc center" OnClick="lbtnLuu_Click"></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="lbtnHuy" Text="Hủy" CssClass="txt-by-truc center" OnClick="lbtnHuy_Click"></asp:LinkButton>
                     </td>
                 </tr>
             </table>
@@ -71,8 +71,8 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="my-info__save"  >
-                        <asp:LinkButton runat="server" ID="lbtnSave" Text="Lưu" CssClass="txt-by-truc center"></asp:LinkButton>
-                        <asp:LinkButton runat="server" ID="lbtnCancel" Text="Hủy" CssClass="txt-by-truc center"></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="lbtnSave" Text="Lưu" CssClass="txt-by-truc center" OnClick="lbtnSave_Click"></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="lbtnCancel" Text="Hủy" CssClass="txt-by-truc center" OnClick="lbtnCancel_Click"></asp:LinkButton>
                     </td>
                 </tr>
             </table>

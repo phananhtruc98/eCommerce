@@ -51,10 +51,10 @@ namespace ShoesStore.Admin
                  login = mstrUsr.Login;
                  password = mstrUsr.Password;
                 string avaImg = Avatar;
-                lbAccount.Text = $"Chào {(AdminSession.LoginAdmin as Usr)?.UsrName}";
-                lbAccount2.Text = $"Chào {(AdminSession.LoginAdmin as Usr)?.UsrName}";
-                avaImg1.Attributes["src"] = "/Admin/images/avatar/" + avaImg + ".jpg";
-                avaImg2.Attributes["src"] = "/Admin/images/avatar/" + avaImg + ".jpg";
+                lbAccount.Text = $"Chào "+UsrName;
+                lbAccount2.Text = $"Chào " + UsrName;
+                avaImg1.Attributes["src"] = "/Admin/images/avatar/" + avaImg;
+                avaImg2.Attributes["src"] = "/Admin/images/avatar/" + avaImg;
                 var rs = (from m in mstr_BUS.GetAll()
                           join d in mstrDet_BUS.GetAll() on m.MstrId equals d.MstrId
                           join r in mstrRole_BUS.GetAll() on d.RoleId equals r.RoleId
