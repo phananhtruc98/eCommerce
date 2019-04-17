@@ -171,18 +171,6 @@
                             <ItemTemplate>
                                 <%# Eval("AddBy") %>
                             </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditAddBy" Text='<%# Bind("AddBy") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" type="number" ID="InsertAddBy" Text='<%# Bind("AddBy") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditAddBy"
-                                    runat="server"
-                                    ErrorMessage="Chưa nhập người thêm"
-                                    ControlToValidate="InsertAddBy"
-                                    Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Ảnh đại diện" SortExpression="Avatar">
                             <ItemTemplate>
