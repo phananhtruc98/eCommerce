@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ShoesStore.SiteMaster" %>
+
 <%@ Import Namespace="ShoesStore" %>
 
 <!DOCTYPE html>
@@ -397,7 +398,7 @@
                                                 <!-- .dropcart -->
                                                 <div class="dropcart">
                                                     <div class="dropcart__products-list">
-                                                        <asp:Repeater runat="server" ID="rptCartDetPreview">
+                                                        <asp:Repeater runat="server" ID="rptCartDetPreview" ItemType="ShoesStore.DataAccessLogicLayer.CartDet">
 
 
                                                             <ItemTemplate>
@@ -405,34 +406,38 @@
                                                                     <div class="dropcart__product-image">
                                                                         <a href="product.html">
                                                                             <img
-                                                                                src="<%# MyLibrary.ProImgPath(Eval("ProDet.Pro")) %>" alt="">
+                                                                                src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                                                         </a>
                                                                     </div>
                                                                     <div class="dropcart__product-info">
                                                                         <div class="dropcart__product-name">
                                                                             <a
-                                                                                href="product.html"><%# Eval("ProDet.Pro.ProName") %>
+                                                                                href="product.html"><%# Item.ProDet.Pro.ProName %>
                                                                             </a>
                                                                         </div>
                                                                         <ul class="dropcart__product-options">
-                                                                            <li><%# Eval("ProDet.ProColor.ColorName") %></li>
-                                                                            
+                                                                            <li><%# Item.ProDet.ProColor.ColorName %></li>
+
                                                                         </ul>
                                                                         <div class="dropcart__product-meta">
-                                                                            <span><%# Eval("Qty") %>
+                                                                            <span><%# Item.Qty %>
                                                                             </span>x
                                 <span
-                                    class="dropcart__product-price"><%# MyLibrary.ToFormatMoney(Eval("ProDet.Pro.Price")) %>
+                                    class="dropcart__product-price"><%# MyLibrary.ToFormatMoney(Item.ProDet.Pro.Price) %>
                                 </span>
                                                                         </div>
                                                                     </div>
-                                                                    <button type="button"
-                                                                        class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
+
+                                                                    <asp:LinkButton runat="server"
+                                                                        ID="btnCartDetPreviewClose"
+                                                                        CommandArgument='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId},{Item}" %>'
+                                                                        OnCommand="btnCartDetPreviewClose_OnCommand"
+                                                                        CssClass="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                         <svg
                                                                             width="10px" height="10px">
                                                                             <use href="/images/sprite.svg#cross-10"></use>
                                                                         </svg>
-                                                                    </button>
+                                                                    </asp:LinkButton>
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
@@ -443,16 +448,16 @@
                                                         <table>
                                                             <tr>
                                                                 <th>Tổng tiền sản phẩm</th>
-                                                                <td>$5,877.00</td>
+                                                                <td><%:SumCartDetPrice %></td>
                                                             </tr>
-                                                            <tr>
+                                                            <%-- <tr>
                                                                 <th>Phí giao hàng</th>
                                                                 <td>$25.00</td>
-                                                            </tr>
-                                                          
+                                                            </tr>--%>
+
                                                             <tr>
                                                                 <th>Thành tiền</th>
-                                                                <td>$5,902.00</td>
+                                                                <td><%:SumCartDetPrice %></td>
                                                             </tr>
                                                         </table>
                                                     </div>
