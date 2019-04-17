@@ -19,21 +19,22 @@ namespace ShoesStore.Admin
             }
         }
 
+        // Load bảng mer    
         private void BindGridViewData()
         {
-
             gvMerchant.DataSource = mer_BUS.Get_Mer_Info().ToList();
             gvMerchant.DataBind();
         }
+
         protected void gvSub_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
         }
 
         protected void gvMerchant_RowDataBound(object sender, GridViewRowEventArgs e)
         {
         }
 
+        // Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
@@ -53,6 +54,13 @@ namespace ShoesStore.Admin
                       select a).ToList();
             gvMerchant.DataSource = rs;
             gvMerchant.DataBind();
+        }
+
+        //Phân trang
+        protected void gvMerchant_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvMerchant.PageIndex = e.NewPageIndex;
+            BindGridViewData();
         }
     }
 }

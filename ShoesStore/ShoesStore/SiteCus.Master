@@ -1,0 +1,105 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="SiteCus.master.cs" Inherits="ShoesStore.SiteCus" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="site__body">
+        <div class="page-header">
+            <div class="page-header__container container">
+                <div class="page-header__breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">Trang chủ</a>
+                                <svg class="breadcrumb-arrow"
+                                    width="6px" height="9px">
+                                    <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                </svg>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Tài khoản của tôi</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="shop-layout shop-layout--sidebar--start">
+                        <div class="shop-layout__sidebar col-3">
+                            <div class="block block-sidebar">
+                                <div class="block-sidebar__item">
+                                    <div class="widget-filters widget" data-collapse
+                                        data-collapse-opened-class="filter--opened">
+                                        <h4 class="widget__title">Xin chào, Tên người dùng</h4>
+                                        <div class="widget-filters__list">
+                                            <div class="widget-filters__item">
+                                                <div class="filter filter--opened" data-collapse-item>
+                                                    <button type="button"
+                                                        class="filter__title" data-collapse-trigger>
+                                                        Tài khoản của tôi
+                                                    </button>
+                                                    <div class="filter__body" data-collapse-content>
+                                                        <div class="filter__container">
+                                                            <div class="filter-categories">
+                                                                <ul class="filter-categories__list">
+                                                                    <li class="filter-categories__item filter-categories__item--parent">
+                                                                        <a href="#">Thông tin cá nhân</a>
+                                                                    </li>
+                                                                    <li class="filter-categories__item filter-categories__item--parent">
+                                                                        <a href="#">Đổi mật khẩu</a>
+                                                                    </li>
+                                                                    <li class="filter-categories__item filter-categories__item--parent">
+                                                                        <a href="#">Sổ địa chỉ</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter filter--opened" data-collapse-item>
+                                                    <button type="button"
+                                                        class="filter__title" data-collapse-trigger>
+                                                        Đơn hàng của tôi
+                                                    </button>
+                                                    <div class="filter__body" data-collapse-content>
+                                                        <div class="filter__container">
+                                                            <div class="filter-categories">
+                                                                <ul class="filter-categories__list">
+                                                                    <li class="filter-categories__item filter-categories__item--parent">
+                                                                        <a href="#">Đơn hàng đổi trả</a>
+                                                                    </li>
+                                                                    <li class="filter-categories__item filter-categories__item--parent">
+                                                                        <a href="#">Đơn hàng hủy</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter filter--opened" data-collapse-item>
+                                                    <button type="button"
+                                                        class="filter__title" data-collapse-trigger>
+                                                        Nhận xét của tôi
+                                                    </button>
+                                                </div>
+                                                <div class="filter filter--opened" data-collapse-item>
+                                                    <button type="button"
+                                                        class="filter__title" data-collapse-trigger>
+                                                        Yêu thích
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <asp:ContentPlaceHolder ID="MainContent2" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>
