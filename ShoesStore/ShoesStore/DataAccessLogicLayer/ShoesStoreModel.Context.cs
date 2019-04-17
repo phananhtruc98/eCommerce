@@ -21,6 +21,8 @@ namespace ShoesStore.DataAccessLogicLayer
         public ShoesStoreDBContext()
             : base("name=ShoesStoreDBContext")
         {
+            
+
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

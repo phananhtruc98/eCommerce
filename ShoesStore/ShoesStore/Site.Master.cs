@@ -27,6 +27,11 @@ namespace ShoesStore
         private List<CartDet> _listCartDetPreview = new List<CartDet>();
         private Cart cusCart;
 
+
+        public string SumCartDetPrice
+        {
+            get { return MyLibrary.ToFormatMoney(_cartDet.SumCartDetPrice()); }
+        }
         public Cart CusCart
         {
             get
@@ -81,7 +86,7 @@ namespace ShoesStore
         public void LoadCartPreview()
         {
             Cus cus = _cus.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
-             cusCart = _cart.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+            cusCart = _cart.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
             _listCartDetPreview = _cartDet.GetAll().Where(m => cusCart != null && m.CartId == cusCart.CartId).ToList();
             rptCartDetPreview.DataSource = _listCartDetPreview;
             rptCartDetPreview.DataBind();
@@ -170,5 +175,19 @@ namespace ShoesStore
                     $"Mã kích hoạt của bạn là {_actCode}");
             }
         }
+        protected void btnCartDetPreviewClose_OnCommand(object sender, CommandEventArgs e)
+        {
+
+            string[] primaryKeys = e.CommandArgument.ToString().Split(',');
+            _cartDet.Delete(_cartDet.GetAll().FirstOrDefault(
+                                m =>
+                                    m.CartId == System.Convert.ToInt32(primaryKeys[0])
+                                   && m.ShpId == System.Convert.ToInt32(primaryKeys[1])
+                                    && m.ProId == System.Convert.ToInt32(primaryKeys[2])
+                                    && m.ColorId == System.Convert.ToInt32(primaryKeys[3])
+                                    && m.SizeId == System.Convert.ToInt32(primaryKeys[4])
+            ));
+        }
+
     }
 }

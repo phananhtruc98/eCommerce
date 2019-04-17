@@ -17,5 +17,11 @@ namespace ShoesStore.BusinessLogicLayer
         {
             _dao.SetActive(obj);
         }
+
+        public string SumCartDetPrice()
+        {
+            int? money = GetAll().Sum(m => Convert.ToInt32(m.ProDet.Pro.Price)*m.Qty);
+            return money.ToString();
+        }
     }
 }
