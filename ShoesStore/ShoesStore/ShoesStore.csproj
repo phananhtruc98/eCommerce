@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -1976,6 +1977,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\CusHome_style.css" />
     <Content Include="css\customstyle.css" />
     <Content Include="css\style.css" />
     <Content Include="Customer\Cart.aspx" />
@@ -2966,6 +2968,13 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="SiteCus.Master.cs">
+      <DependentUpon>SiteCus.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteCus.Master.designer.cs">
+      <DependentUpon>SiteCus.Master</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcPro.ascx.cs">
       <DependentUpon>UcPro.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3012,6 +3021,7 @@
     <Content Include="vendor\fontawesome-5.6.1\webfonts\fa-solid-900.woff" />
     <Content Include="vendor\fontawesome-5.6.1\webfonts\fa-solid-900.woff2" />
     <Content Include="vendor\fontawesome-5.6.1\webfonts\fa-solid-900d41d.eot" />
+    <Content Include="SiteCus.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

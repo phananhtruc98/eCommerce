@@ -19,6 +19,8 @@ namespace ShoesStore.Admin
         private readonly Mstr_BUS mstr = new Mstr_BUS();
         private readonly MstrDet_BUS mstrDet_bus = new MstrDet_BUS();
         private readonly Usr_BUS usr = new Usr_BUS();
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -30,7 +32,10 @@ namespace ShoesStore.Admin
         // Load bảng danh sách người quản trị
         private void BindDataGridView()
         {
-            var rs = (from u in usr.GetAll()
+
+
+
+                      var rs = (from u in usr.GetAll()
                       join m in mstr.GetAll() on u.UsrId equals m.MstrId
                       join d in mstrDet_bus.GetAll() on m.MstrId equals d.MstrId
                       join r in mstrRole.GetAll() on d.RoleId equals r.RoleId
@@ -51,6 +56,7 @@ namespace ShoesStore.Admin
                           AddBy = d.AddBy,
                           Avatar = u.Avatar
                       }).ToList();
+            //var rs = mstr.GetAll();
             gvAdmin.DataSource = rs;
             gvAdmin.DataBind();
         }
@@ -305,98 +311,108 @@ namespace ShoesStore.Admin
                     RoleId = RoleId,
                     AddDate = DateTime.Now,
                     AddBy = Master.UsrId1
-            };
+                };
 
-            mstrDet_bus.Insert(mstrDet);
+                mstrDet_bus.Insert(mstrDet);
+                BindDataGridView();
+            }
+        }
+
+        // Sắp xếp từng cột
+        protected void gvAdmin_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            var rs = (from r in mstrRole.GetAll()
+                      select r).ToList();
+            var rsId = (from r in mstrRole.GetAll()
+                        select r.RoleId).ToString().ToList();
+            if (e.Row.RowType == DataControlRowType.Footer && gvAdmin.EditIndex == e.Row.RowIndex)
+            {
+                DropDownList ddlRoleName = (DropDownList)e.Row.FindControl("InsertRoleName");
+                ddlRoleName.DataSource = rs;
+                ddlRoleName.DataTextField = "RoleName";
+                ddlRoleName.DataValueField = "RoleId";
+                ddlRoleName.DataBind();
+            }
+        }
+
+        // Kiểm tra tên đăng nhặp tồn tại
+        public bool IsExists(string Login)
+        {
+            bool kq = true;
+            var data = (from u in usr.GetAll()
+                        where u.Login == Login
+                        select u.Login).ToList().Count;
+            if (data == 0)
+            {
+                kq = false;
+            }
+            return kq;
+        }
+
+        // thêm xóa sửa bảng chức vụ
+        protected void gvMstrRole_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            if (e.CommandName == "EditRow")
+            {
+                int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
+                gvMstrRole.EditIndex = rowIndex;
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "DeleteRow")
+            {
+                MstrRole result = (from c in mstrRole.GetAll()
+                                   where c.RoleId == System.Convert.ToInt32(e.CommandArgument)
+                                   select c).FirstOrDefault();
+                mstrRole.Delete(result);
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "CancelUpdate")
+            {
+                gvMstrRole.EditIndex = -1;
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "UpdateRow")
+            {
+                int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
+                int subId = System.Convert.ToInt32(e.CommandArgument);
+                string roleName = ((TextBox)gvMstrRole.Rows[rowIndex].FindControl("EditRoleName")).Text;
+
+                MstrRole result = (from c in mstrRole.GetAll()
+                                   where c.RoleId == System.Convert.ToInt32(e.CommandArgument)
+                                   select c).FirstOrDefault();
+                if (result != null)
+                {
+                    result.RoleName = roleName;
+                    mstrRole.Update(result);
+                }
+
+                gvMstrRole.EditIndex = -1;
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "InsertRow")
+            {
+                string roleName = ((TextBox)gvMstrRole.FooterRow.FindControl("InsertRoleName")).Text;
+                if (roleName == "")
+                {
+                    return;
+                }
+
+                MstrRole newSub = new MstrRole { RoleName = roleName };
+
+                mstrRole.Insert(newSub);
+
+                BindDataGridViewMstrRole();
+            }
+        }
+
+        //Phân trang
+        protected void gvAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAdmin.PageIndex = e.NewPageIndex;
             BindDataGridView();
         }
-    }
-
-    protected void gvAdmin_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        var rs = (from r in mstrRole.GetAll()
-                  select r).ToList();
-        var rsId = (from r in mstrRole.GetAll()
-                    select r.RoleId).ToString().ToList();
-        if (e.Row.RowType == DataControlRowType.Footer && gvAdmin.EditIndex == e.Row.RowIndex)
-        {
-            DropDownList ddlRoleName = (DropDownList)e.Row.FindControl("InsertRoleName");
-            ddlRoleName.DataSource = rs;
-            ddlRoleName.DataTextField = "RoleName";
-            ddlRoleName.DataValueField = "RoleId";
-            ddlRoleName.DataBind();
-        }
 
     }
-
-    public bool IsExists(string Login)
-    {
-        bool kq = true;
-        var data = (from u in usr.GetAll()
-                    where u.Login == Login
-                    select u.Login).ToList().Count;
-        if (data == 0)
-        {
-            kq = false;
-        }
-        return kq;
-    }
-
-    protected void gvMstrRole_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-
-        if (e.CommandName == "EditRow")
-        {
-            int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
-            gvMstrRole.EditIndex = rowIndex;
-            BindDataGridViewMstrRole();
-        }
-        else if (e.CommandName == "DeleteRow")
-        {
-            MstrRole result = (from c in mstrRole.GetAll()
-                               where c.RoleId == System.Convert.ToInt32(e.CommandArgument)
-                               select c).FirstOrDefault();
-            mstrRole.Delete(result);
-            BindDataGridViewMstrRole();
-        }
-        else if (e.CommandName == "CancelUpdate")
-        {
-            gvMstrRole.EditIndex = -1;
-            BindDataGridViewMstrRole();
-        }
-        else if (e.CommandName == "UpdateRow")
-        {
-            int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
-            int subId = System.Convert.ToInt32(e.CommandArgument);
-            string roleName = ((TextBox)gvMstrRole.Rows[rowIndex].FindControl("EditRoleName")).Text;
-
-            MstrRole result = (from c in mstrRole.GetAll()
-                               where c.RoleId == System.Convert.ToInt32(e.CommandArgument)
-                               select c).FirstOrDefault();
-            if (result != null)
-            {
-                result.RoleName = roleName;
-                mstrRole.Update(result);
-            }
-
-            gvMstrRole.EditIndex = -1;
-            BindDataGridViewMstrRole();
-        }
-        else if (e.CommandName == "InsertRow")
-        {
-            string roleName = ((TextBox)gvMstrRole.FooterRow.FindControl("InsertRoleName")).Text;
-            if (roleName == "")
-            {
-                return;
-            }
-
-            MstrRole newSub = new MstrRole { RoleName = roleName };
-
-            mstrRole.Insert(newSub);
-
-            BindDataGridViewMstrRole();
-        }
-    }
-}
 }
 
