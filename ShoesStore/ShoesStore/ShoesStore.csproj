@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -1982,8 +1983,8 @@
     <Content Include="Customer\Cart.aspx" />
     <Content Include="Customer\Checkout.aspx" />
     <Content Include="Customer\CusHome.aspx" />
-    <Content Include="Customer\CusHome_Address.aspx" />
     <Content Include="Customer\CusHome_ChangePassword.aspx" />
+    <Content Include="Customer\CusHome_Cmt.aspx" />
     <Content Include="Customer\ProDet.aspx" />
     <Content Include="Customer\Pro.aspx" />
     <Content Include="Customer\Test.aspx" />
@@ -2598,19 +2599,19 @@
     <Compile Include="Customer\CusHome.aspx.designer.cs">
       <DependentUpon>CusHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\CusHome_Address.aspx.cs">
-      <DependentUpon>CusHome_Address.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer\CusHome_Address.aspx.designer.cs">
-      <DependentUpon>CusHome_Address.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Customer\CusHome_ChangePassword.aspx.cs">
       <DependentUpon>CusHome_ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Customer\CusHome_ChangePassword.aspx.designer.cs">
       <DependentUpon>CusHome_ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusHome_Cmt.aspx.cs">
+      <DependentUpon>CusHome_Cmt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusHome_Cmt.aspx.designer.cs">
+      <DependentUpon>CusHome_Cmt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\ProDet.aspx.cs">
       <DependentUpon>ProDet.aspx</DependentUpon>

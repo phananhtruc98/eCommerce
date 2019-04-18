@@ -22,13 +22,13 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.TextBox txtLogin;
         
         /// <summary>
-        /// txtPasswordOld control.
+        /// lblLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPasswordOld;
+        protected global::System.Web.UI.WebControls.Label lblLogin;
         
         /// <summary>
         /// txtPassword control.
@@ -40,6 +40,33 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
         
         /// <summary>
+        /// lblPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPassword;
+        
+        /// <summary>
+        /// txtNewPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
+        
+        /// <summary>
+        /// lblNewPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNewPassword;
+        
+        /// <summary>
         /// txtRePassword control.
         /// </summary>
         /// <remarks>
@@ -49,22 +76,31 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.TextBox txtRePassword;
         
         /// <summary>
-        /// lbtnSave control.
+        /// lblRePassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnSave;
+        protected global::System.Web.UI.WebControls.Label lblRePassword;
         
         /// <summary>
-        /// lbtnCancel control.
+        /// lbtnLuu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnCancel;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnLuu;
+        
+        /// <summary>
+        /// lbtnHuy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnHuy;
         
         /// <summary>
         /// Master property.

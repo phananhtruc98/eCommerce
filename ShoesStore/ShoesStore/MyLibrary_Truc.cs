@@ -14,5 +14,17 @@
                 return false;
             }
         }
+        public static string DrawStar(int star)
+        {
+            string s = "_____";
+            //string[] arr = s.ToCharArray(); 
+            for(int i = 0; i< star; i++)
+            {
+
+            }
+            return s;
+        }
     }
+
+    
 }
