@@ -63,6 +63,7 @@ namespace ShoesStore
                 usr_register.Visible = false;
                 lbAccount.Text = $"Chào {(WebSession.LoginUsr as Usr)?.UsrName}";
                 usr_logout.Visible = true;
+                lbtnCusHome.Visible = true;
                 LoadCartPreview();
                 GetCurrentCartItemsNumber();
             }
@@ -160,6 +161,12 @@ namespace ShoesStore
             WebSession.LoginUsr = null;
             Response.Redirect(Request.RawUrl);
         }
+
+        protected void lbtnCusHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Customer/CusHome.aspx");
+        }
+        
 
         protected void btnActCodeSender_Click(object sender, EventArgs e)
         {
