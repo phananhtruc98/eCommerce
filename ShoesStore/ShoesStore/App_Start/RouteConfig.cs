@@ -28,7 +28,7 @@ namespace ShoesStore
             routes.MapPageRoute("ManagerService", "quan-tri/goi-thuong-nien", "~/Admin/ManageService.aspx");
             routes.MapPageRoute("LoginMstr", "quan-tri/dang-nhap", "~/Admin/Login_Mstr.aspx");
             routes.MapPageRoute("AccountMstr", "quan-tri/thong-tin-ca-nhan", "~/Admin/Account_Mstr.aspx");
-            routes.MapPageRoute("CusHome", "customer/thong-tin-ca-nhan", "~/Customer/CusHome.aspx");
+            routes.MapPageRoute("CusHome", "nguoi-dung", "~/Customer/CusHome.aspx");
         }
     }
 }

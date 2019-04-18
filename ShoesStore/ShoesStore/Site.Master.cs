@@ -63,6 +63,7 @@ namespace ShoesStore
                 usr_register.Visible = false;
                 lbAccount.Text = $"Chào {(WebSession.LoginUsr as Usr)?.UsrName}";
                 usr_logout.Visible = true;
+                lbtnCusHome.Visible = true;
                 LoadCartPreview();
                 GetCurrentCartItemsNumber();
             }
@@ -91,7 +92,7 @@ namespace ShoesStore
             rptCartDetPreview.DataSource = _listCartDetPreview;
             rptCartDetPreview.DataBind();
         }
-    
+
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
 
@@ -129,7 +130,7 @@ namespace ShoesStore
             if (!Email.IsValidEmail(email.Value)) return false;
             //if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
             if (TextHelper.IsSpecialCharacters(login.Value)) return false;
-            if (active_code.Value != _actCode) return false;
+            if (active_code.Value != _actCode) {return false;}
             return password.Value == re_password.Value;
         }
 
@@ -137,6 +138,7 @@ namespace ShoesStore
 
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
+
             if (!IsValidRegister()) return;
             var usr = new Usr()
             {
@@ -146,8 +148,9 @@ namespace ShoesStore
                 Password = EncryptHelper.Encrypt(password.Value),
                 DateAdd = DateTime.Now
             };
-            if (_usr.IsExist(usr)) return;
+            if (_usr.IsExist(usr)) {lbStatus.InnerText="Đã tồn tại";return;}
             _usr.Insert(usr);
+            _cus.Insert(new Cus(){CusId = usr.UsrId});
             _usr.CreateActCode(usr);
             Response.Redirect(Request.RawUrl);
 
@@ -170,7 +173,14 @@ namespace ShoesStore
                 _actCode = TextHelper.RandomNumber(4);
                 Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
                     $"Mã kích hoạt của bạn là {_actCode}");
+
+                Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
+
             }
+        }
+        public void Alert(string message)
+        {
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alertMessage", message, true);
         }
         protected void btnCartDetPreviewClose_OnCommand(object sender, CommandEventArgs e)
         {
@@ -187,5 +197,13 @@ namespace ShoesStore
             LoadCartPreview();
         }
 
+        protected void customValidator_ActivateCode_OnServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (args.Value != _actCode)
+            {
+                args.IsValid = false;
+            }
+            else args.IsValid = true;
+        }
     }
 }
