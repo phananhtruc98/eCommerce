@@ -20,7 +20,7 @@
                 </LayoutTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td><%# Eval("ShpId")%></td>
+                        <td><%# Eval("ShpName")%></td>
                         <td><%# Eval("ProName")%></td>
                         <td><%# Eval("Cmt")%></td>
                         <td><%#MyLibrary.DrawStar(int.Parse(Eval("Point").ToString())) %></td>
