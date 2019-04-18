@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilities;
 
 namespace ShoesStore.Customer
 {
@@ -12,41 +13,64 @@ namespace ShoesStore.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            LoadThongTin();
         }
-
-
-        protected void lblThaydoi_Click(object sender, EventArgs e)
+        public void LoadThongTin()
         {
             Usr usr = (Usr)WebSession.LoginUsr;
             Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
-            
-            lbtnLuu.Visible = true;
-            lbtnHuy.Visible = true;
-            lblThaydoi.Visible = false;
-
-            txtLogin.Visible = true;
+            lblLogin.Text = usr1.Login;
             txtPassword.Visible = true;
             txtNewPassword.Visible = true;
             txtRePassword.Visible = true;
-            txtLogin.Text = usr1.Login;
-            txtPassword.Text = usr1.Password;
-
-            lblUsrName.Visible = false;
-            lblPhone.Visible = false;
-            lblEmail.Visible = false;
-            lblAddress.Visible = false;
-
         }
 
         protected void lbtnLuu_Click(object sender, EventArgs e)
         {
+            Usr usr = (Usr)WebSession.LoginUsr;
+            Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
+            Usr rs1 = (from c in Master._usr.GetAll()
+                       where c.UsrId == usr1.UsrId
+                       select c).FirstOrDefault();
+            if (EncryptHelper.Encrypt(txtPassword.Text) == rs1.Password)
+            {
+                if (txtNewPassword.Text == txtRePassword.Text)
+                {
+                    rs1.Password = EncryptHelper.Encrypt(txtNewPassword.Text);
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Mật khẩu không khớp!!! Xin nhập lại')", true);
+                    return;
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Mật khẩu không đúng!!! Xin nhập lại')", true);
+                return;
+            }
+            rs1.UsrName = usr1.UsrName;
+            rs1.Address = usr1.Address;
+            rs1.Phone = usr1.Phone;
+            rs1.Email = usr1.Email;
+            rs1.DateEdit = DateTime.Now;
+            rs1.DateAdd = usr1.DateAdd;
+            rs1.Active = usr1.Active;
+            rs1.Login = usr1.Login;
+            rs1.Password = usr1.Password;
+            Master._usr.Update(rs1);
+            txtPassword.Visible = true;
+            txtNewPassword.Visible = true;
+            txtRePassword.Visible = true;
+
+
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
 
         }
 
         protected void lbtnHuy_Click(object sender, EventArgs e)
         {
-            lblThaydoi.Visible = true;
+           
             lbtnLuu.Visible = false;
             lbtnHuy.Visible = false;
 

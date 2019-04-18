@@ -3,6 +3,8 @@
 <asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
     <div class="row">
         <div class="col-12">
+            <h3>Hồ sơ của tôi</h3>
+            <div class="float-left">Ảnh đại diện</div>
             <div class="float-left">
                 <asp:Image runat="server" ID="avaimg" class="img-circle" />
             </div>

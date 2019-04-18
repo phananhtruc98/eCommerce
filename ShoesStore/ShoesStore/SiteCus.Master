@@ -47,9 +47,6 @@
                                                                     <li class="filter-categories__item filter-categories__item--parent">
                                                                         <a href="<%= ResolveUrl("~/Customer/CusHome_ChangePassword.aspx") %>">Đổi mật khẩu</a>
                                                                     </li>
-                                                                    <li class="filter-categories__item filter-categories__item--parent">
-                                                                        <a href="<%= ResolveUrl("~/Customer/CusHome_Address.aspx") %>">Sổ địa chỉ</a>
-                                                                    </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -84,7 +81,7 @@
                                                 <div class="filter filter--opened" data-collapse-item>
                                                     <button type="button"
                                                         class="filter__title" data-collapse-trigger>
-                                                        Yêu thích
+                                                        <a href="<%= ResolveUrl("~/Customer/CusHome_Cmt.aspx") %>">Yêu thích</a>
                                                     </button>
                                                 </div>
                                             </div>
