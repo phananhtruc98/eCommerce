@@ -1,4 +1,7 @@
-﻿namespace ShoesStore
+﻿using System;
+using System.Collections.Generic;
+
+namespace ShoesStore
 {
     public partial class MyLibrary
     {
@@ -16,12 +19,14 @@
         }
         public static string DrawStar(int star)
         {
-            string s = "_____";
-            //string[] arr = s.ToCharArray(); 
-            for(int i = 0; i< star; i++)
+            string s = "";
+            List<string> list = new List<string>();
+            
+            for (int i = 0; i< star; i++)
             {
-
+                list.Add("*");
             }
+            s = string.Join(Environment.NewLine, list.ToArray());
             return s;
         }
     }
