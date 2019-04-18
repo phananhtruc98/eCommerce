@@ -12,8 +12,13 @@ body, html {
     height: 100%;
 }
 
+@font-face {
+    font-family: 'stroyka';
+    src: url('/fonts/stroyka/stroyka.woff') format('woff');
+}
 body {
-    font-family: Roboto,"sans-serif";
+
+    font-family: "stroyka" !important;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
@@ -9921,7 +9926,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 
 @media (min-width:992px) and (max-width:1199px) {
     .block-slideshow--layout--full .block-slideshow__slide-image--desktop {
-        background-position: -70px top;
+        
     }
 
     .block-slideshow--layout--full .block-slideshow__slide-content {

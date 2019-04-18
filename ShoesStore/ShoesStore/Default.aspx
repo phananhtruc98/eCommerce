@@ -1,9 +1,13 @@
 ﻿<%@ Page Title="Trang chủ" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShoesStore.Default" %>
+
 <%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
+<%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
 <%@ Import Namespace="ShoesStore" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+
     <!-- site__body -->
     <!-- .block-slideshow -->
     <div class="block-slideshow block-slideshow--layout--full block">
@@ -137,7 +141,7 @@
                                             <img
                                                 src="<%# MyLibrary.ProImgPath(Container.DataItem) %>" alt="">
                                         </a>
-                                    &nbsp;&nbsp;&nbsp;</div>
+                                    </div>
                                     <div class="product-card__info">
                                         <div class="product-card__name">
                                             <a href="product.html"><%#Eval("ProName") %></a>
@@ -280,9 +284,8 @@
     <!-- .block-products -->
     <div class="block block-products block-products--layout--large-last">
         <div class="container">
-           
-            <asp:UpdatePanel runat="server">
-                <ContentTemplate>
+
+          
                     <div class="block-header">
                         <h3 class="block-header__title">Bán chạy</h3>
                         <div class="block-header__divider"></div>
@@ -305,7 +308,7 @@
                                                     <img
                                                         src="<%# MyLibrary.ProImgPath(Container.DataItem) %>" alt="">
                                                 </a>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
@@ -457,8 +460,7 @@
                         </asp:Repeater>
 
                     </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+ 
         </div>
     </div>
     <!-- .block-products / end -->
@@ -471,7 +473,7 @@
             </div>
             <div class="block-categories__list">
 
-                <asp:Repeater runat="server" ID="rptPopularCategories" OnInit="rptPopularCategories_Init">
+                <asp:Repeater runat="server" ID="rptPopularCategories" OnInit="rptPopularCategories_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProCat">
 
                     <ItemTemplate>
                         <div class="block-categories__item category-card category-card--layout--compact">
@@ -479,9 +481,9 @@
                                 <div class="category-card__image">
                                     <a href="#">
                                         <img
-                                            src="images/categories/<%#Eval("Img") %>" alt="">
+                                            src="<%# MyLibrary.ProCatImgPath(Item) %>" alt="">
                                     </a>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                                 </div>
                                 <div class="category-card__content">
                                     <div class="category-card__name">
@@ -512,7 +514,7 @@
                                 <a href="#">
                                     <img src="images/logos/<%# Eval("Img") %>" alt="">
                                 </a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
+
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>

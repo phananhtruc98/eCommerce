@@ -3,8 +3,11 @@ using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
+using System.Web;
+using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.FriendlyUrls.Resolvers;
 
 namespace ShoesStore
 {
@@ -12,7 +15,7 @@ namespace ShoesStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+       
         }
         public int PageNumber
         {

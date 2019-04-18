@@ -91,11 +91,7 @@ namespace ShoesStore
             rptCartDetPreview.DataSource = _listCartDetPreview;
             rptCartDetPreview.DataBind();
         }
-        public HtmlForm FormMaster
-        {
-            set => formWebPage = value;
-            get => formWebPage;
-        }
+    
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
 

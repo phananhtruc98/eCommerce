@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -2009,6 +2008,7 @@
     <Content Include="images\logos\reebok.png" />
     <Content Include="images\logos\shuzlogo.jpg" />
     <Content Include="images\logos\vans.png" />
+    <Content Include="images\no_img.png" />
     <Content Include="images\slides\home_slide_1.jpeg" />
     <Content Include="images\slides\home_slide_1.jpg" />
     <Content Include="images\slides\home_slide_2.jpeg" />

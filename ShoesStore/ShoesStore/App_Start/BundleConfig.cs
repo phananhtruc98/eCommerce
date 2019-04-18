@@ -29,6 +29,17 @@ namespace ShoesStore
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/ShoesStore").Include(
+
+                    "~/vendor/jquery-3.3.1/jquery.min.js",
+                    "~/vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js",
+                    "~/vendor/owl-carousel-2.3.4/owl.carousel.min.js",
+                    "~/vendor/nouislider-12.1.0/nouislider.min.js",
+                    "~/js/number.js",
+                    "~/js/main.js",
+                    "~/vendor/svg4everybody-2.1.9/svg4everybody.min.js"
+                    ));
+                
         }
     }
 }
