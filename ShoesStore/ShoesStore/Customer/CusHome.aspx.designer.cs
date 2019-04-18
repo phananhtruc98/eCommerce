@@ -13,13 +13,13 @@ namespace ShoesStore.Customer {
     public partial class CusHome {
         
         /// <summary>
-        /// upava control.
+        /// avaimg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image upava;
+        protected global::System.Web.UI.WebControls.Image avaimg;
         
         /// <summary>
         /// fupava control.
@@ -58,6 +58,15 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.TextBox txtPhone;
         
         /// <summary>
+        /// lblPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPhone;
+        
+        /// <summary>
         /// txtAddress control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.TextBox txtAddress;
         
         /// <summary>
+        /// lblAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddress;
+        
+        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,24 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        
+        /// <summary>
+        /// lblEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmail;
+        
+        /// <summary>
+        /// lblThaydoi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lblThaydoi;
         
         /// <summary>
         /// lbtnLuu control.
@@ -92,5 +128,17 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnHuy;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new ShoesStore.SiteCus Master {
+            get {
+                return ((ShoesStore.SiteCus)(base.Master));
+            }
+        }
     }
 }

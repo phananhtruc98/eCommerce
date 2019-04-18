@@ -285,6 +285,9 @@
                                         <div class="topbar-dropdown__body">
                                             <!-- .menu -->
                                             <ul class="menu menu--layout--topbar">
+                                                <li id="lbtnCusHome" runat="server" visible="false">
+                                                    <asp:LinkButton runat="server" OnClick="lbtnCusHome_Click" >Thông tin tài khoản</asp:LinkButton>
+                                                </li>
                                                 <li id="usr_logout" runat="server" visible="false">
                                                     <asp:LinkButton runat="server" ID="lbtnLogout" OnClick="lbtnLogout_Click">Đăng xuất</asp:LinkButton>
                                                 </li>
@@ -409,7 +412,7 @@
                                                                             <img
                                                                                 src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                                                         </a>
-                                                                    </div>
+                                                                    &nbsp;</div>
                                                                     <div class="dropcart__product-info">
                                                                         <div class="dropcart__product-name">
                                                                             <a
@@ -436,8 +439,8 @@
                                                                         CssClass="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                                         <svg
                                                                             width="10px" height="10px">
-                                                                            <use href="/images/sprite.svg#cross-10"></use>
-                                                                        </svg>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <use href="/images/sprite.svg#cross-10"></use>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </svg>
                                                                     </asp:LinkButton>
                                                                 </div>
                                                             </ItemTemplate>
@@ -448,18 +451,7 @@
                                                     <div class="dropcart__totals">
                                                         <table>
                                                             <tr>
-                                                                <th>Tổng tiền sản phẩm</th>
-                                                                <td><%:SumCartDetPrice %></td>
-                                                            </tr>
-                                                            <%-- <tr>
-                                                                <th>Phí giao hàng</th>
-                                                                <td>$25.00</td>
-                                                            </tr>--%>
-
-                                                            <tr>
-                                                                <th>Thành tiền</th>
-                                                                <td><%:SumCartDetPrice %></td>
-                                                            </tr>
+                                                                <th>Tổng tiền sản phẩm                                                      </tr>
                                                         </table>
                                                     </div>
                                                     <div class="dropcart__buttons">

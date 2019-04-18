@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="SiteCus.master.cs" Inherits="ShoesStore.SiteCus" %>
-
+<%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="site__body">
         <div class="page-header">
@@ -29,7 +29,7 @@
                                 <div class="block-sidebar__item">
                                     <div class="widget-filters widget" data-collapse
                                         data-collapse-opened-class="filter--opened">
-                                        <h4 class="widget__title">Xin chào, Tên người dùng</h4>
+                                        <h4 class="widget__title"><asp:Label runat="server" ID="lbXinChao"></asp:Label></h4>
                                         <div class="widget-filters__list">
                                             <div class="widget-filters__item">
                                                 <div class="filter filter--opened" data-collapse-item>

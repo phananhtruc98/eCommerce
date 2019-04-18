@@ -27,7 +27,8 @@ namespace ShoesStore
         private List<CartDet> _listCartDetPreview = new List<CartDet>();
         private Cart cusCart;
 
-
+        string avatar = "";
+        
         public string SumCartDetPrice
         {
             get { return MyLibrary.ToFormatMoney(_cartDet.SumCartDetPrice()); }
@@ -63,6 +64,7 @@ namespace ShoesStore
                 usr_register.Visible = false;
                 lbAccount.Text = $"Chào {(WebSession.LoginUsr as Usr)?.UsrName}";
                 usr_logout.Visible = true;
+                lbtnCusHome.Visible = true;
                 LoadCartPreview();
                 GetCurrentCartItemsNumber();
             }
@@ -96,6 +98,8 @@ namespace ShoesStore
             set => formWebPage = value;
             get => formWebPage;
         }
+        public string Avatar { get => avatar; set => avatar = value; }
+
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
 
@@ -162,6 +166,10 @@ namespace ShoesStore
         {
             WebSession.LoginUsr = null;
             Response.Redirect(Request.RawUrl);
+        }
+        protected void lbtnCusHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Customer/CusHome.aspx");
         }
 
         protected void btnActCodeSender_Click(object sender, EventArgs e)
