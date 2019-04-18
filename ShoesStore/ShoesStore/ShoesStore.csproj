@@ -1983,6 +1983,8 @@
     <Content Include="Customer\Cart.aspx" />
     <Content Include="Customer\Checkout.aspx" />
     <Content Include="Customer\CusHome.aspx" />
+    <Content Include="Customer\CusHome_Address.aspx" />
+    <Content Include="Customer\CusHome_ChangePassword.aspx" />
     <Content Include="Customer\ProDet.aspx" />
     <Content Include="Customer\Pro.aspx" />
     <Content Include="Customer\Test.aspx" />
@@ -2595,6 +2597,20 @@
     </Compile>
     <Compile Include="Customer\CusHome.aspx.designer.cs">
       <DependentUpon>CusHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusHome_Address.aspx.cs">
+      <DependentUpon>CusHome_Address.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusHome_Address.aspx.designer.cs">
+      <DependentUpon>CusHome_Address.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusHome_ChangePassword.aspx.cs">
+      <DependentUpon>CusHome_ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusHome_ChangePassword.aspx.designer.cs">
+      <DependentUpon>CusHome_ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\ProDet.aspx.cs">
       <DependentUpon>ProDet.aspx</DependentUpon>

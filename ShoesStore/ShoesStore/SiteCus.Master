@@ -42,13 +42,13 @@
                                                             <div class="filter-categories">
                                                                 <ul class="filter-categories__list">
                                                                     <li class="filter-categories__item filter-categories__item--parent">
-                                                                        <a href="#">Thông tin cá nhân</a>
+                                                                        <a href="<%= ResolveUrl("~/Customer/CusHome.aspx") %>">Thông tin cá nhân</a>
                                                                     </li>
                                                                     <li class="filter-categories__item filter-categories__item--parent">
-                                                                        <a href="#">Đổi mật khẩu</a>
+                                                                        <a href="<%= ResolveUrl("~/Customer/CusHome_ChangePassword.aspx") %>">Đổi mật khẩu</a>
                                                                     </li>
                                                                     <li class="filter-categories__item filter-categories__item--parent">
-                                                                        <a href="#">Sổ địa chỉ</a>
+                                                                        <a href="<%= ResolveUrl("~/Customer/CusHome_Address.aspx") %>">Sổ địa chỉ</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
