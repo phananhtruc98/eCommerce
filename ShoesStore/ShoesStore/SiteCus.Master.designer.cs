@@ -13,6 +13,15 @@ namespace ShoesStore {
     public partial class SiteCus {
         
         /// <summary>
+        /// lbXinChao control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbXinChao;
+        
+        /// <summary>
         /// MainContent2 control.
         /// </summary>
         /// <remarks>
@@ -20,5 +29,17 @@ namespace ShoesStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent2;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new ShoesStore.SiteMaster Master {
+            get {
+                return ((ShoesStore.SiteMaster)(base.Master));
+            }
+        }
     }
 }
