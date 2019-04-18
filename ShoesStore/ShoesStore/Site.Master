@@ -450,14 +450,23 @@
                                                     <div class="dropcart__totals">
                                                         <table>
                                                             <tr>
-                                                                <th>
-                                                                Tổng tiền sản phẩm                                                     
+                                                                <th>Tổng tiền sản phẩm</th>
+                                                                <td><%:SumCartDetPrice %></td>
+                                                            </tr>
+                                                            <%-- <tr>
+                                                                <th>Phí giao hàng</th>
+                                                                <td>$25.00</td>
+                                                            </tr>--%>
+
+                                                            <tr>
+                                                                <th>Thành tiền</th>
+                                                                <td><%:SumCartDetPrice %></td>
                                                             </tr>
                                                         </table>
                                                     </div>
                                                     <div class="dropcart__buttons">
-                                                        <a class="btn btn-secondary" href="<%:Server.MapPath("gio-hang") %>">Vào giỏ hàng</a>
-                                                        <a class="btn btn-primary" href="<%:Server.MapPath("gio-hang/thanh-toan") %>">Thanh toán</a>
+                                                        <a class="btn btn-secondary" href="/gio-hang">Vào giỏ hàng</a>
+                                                        <a class="btn btn-primary" href="/gio-hang/thanh-toan">Thanh toán</a>
                                                     </div>
                                                 </div>
                                                 <!-- .dropcart / end -->

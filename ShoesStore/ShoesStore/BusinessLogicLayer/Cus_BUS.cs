@@ -8,7 +8,7 @@ namespace ShoesStore.BusinessLogicLayer
 {
     public class Cus_BUS : Table_BUS<Cus, Cus_DAO>, ICus
     {
-        private readonly Cus_DAO _dao = new Cus_DAO();
+        
 
         public UsrAct_DAO UsrAct { get; set; }
 

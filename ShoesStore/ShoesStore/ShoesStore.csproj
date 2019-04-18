@@ -2633,6 +2633,9 @@
     <Compile Include="Customer\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\Adv.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\Cart.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2640,6 +2643,12 @@
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\CartDet_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\Config.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\Coupon.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\Cus.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -2928,6 +2937,7 @@
     <Compile Include="Merchant\Merchant.Master.designer.cs">
       <DependentUpon>Merchant.Master</DependentUpon>
     </Compile>
+    <Compile Include="Merchant\MerchantSession.cs" />
     <Compile Include="Merchant\MerHome.aspx.cs">
       <DependentUpon>MerHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

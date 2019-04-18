@@ -27,7 +27,10 @@ namespace ShoesStore
         private List<CartDet> _listCartDetPreview = new List<CartDet>();
         private Cart cusCart;
 
-
+        public List<CartDet> ListCartDetPreview
+        {
+            get { return _listCartDetPreview; }
+        }
         public string SumCartDetPrice
         {
             get { return MyLibrary.ToFormatMoney(_cartDet.SumCartDetPrice()); }
@@ -88,6 +91,12 @@ namespace ShoesStore
         {
             Cus cus = _cus.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
             cusCart = _cart.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+            if (cusCart == null)
+            {
+                Cart cart = new Cart() { CusId = cus.CusId };
+                _cart.Insert(cart);
+                cusCart = _cart.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+            }
             _listCartDetPreview = _cartDet.GetAll().Where(m => cusCart != null && m.CartId == cusCart.CartId).ToList();
             rptCartDetPreview.DataSource = _listCartDetPreview;
             rptCartDetPreview.DataBind();
@@ -130,7 +139,7 @@ namespace ShoesStore
             if (!Email.IsValidEmail(email.Value)) return false;
             //if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
             if (TextHelper.IsSpecialCharacters(login.Value)) return false;
-            if (active_code.Value != _actCode) {return false;}
+            if (active_code.Value != _actCode) { return false; }
             return password.Value == re_password.Value;
         }
 
@@ -148,9 +157,9 @@ namespace ShoesStore
                 Password = EncryptHelper.Encrypt(password.Value),
                 DateAdd = DateTime.Now
             };
-            if (_usr.IsExist(usr)) {lbStatus.InnerText="Đã tồn tại";return;}
+            if (_usr.IsExist(usr)) { lbStatus.InnerText = "Đã tồn tại"; return; }
             _usr.Insert(usr);
-            _cus.Insert(new Cus(){CusId = usr.UsrId});
+            _cus.Insert(new Cus() { CusId = usr.UsrId });
             _usr.CreateActCode(usr);
             Response.Redirect(Request.RawUrl);
 

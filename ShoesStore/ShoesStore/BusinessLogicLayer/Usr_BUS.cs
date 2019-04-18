@@ -27,6 +27,10 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return _dao.CheckAdmin(login, EncryptHelper.Encrypt(pwd));
         }
+        public Mer LoginMerchant(string login, string pwd)
+        {
+            return _dao.CheckMerchant(login, EncryptHelper.Encrypt(pwd));
+        }
 
 
         public void Register(Usr obj)
@@ -61,7 +65,7 @@ namespace ShoesStore.BusinessLogicLayer
 
         public override bool IsExist(Usr obj)
         {
-            return _dao.IsExist(obj);
+             return _dao.IsExist(obj);
         }
 
         public override void SetActive(Usr obj)

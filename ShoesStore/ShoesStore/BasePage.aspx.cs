@@ -28,7 +28,7 @@ namespace ShoesStore
         internal readonly ProColor_BUS _proColor = new ProColor_BUS();
         internal readonly ProSlide_BUS _proSlideImg = new ProSlide_BUS();
         internal readonly RcptBuyDet_BUS _rpcptBuyDet = new RcptBuyDet_BUS();
-
+        internal  readonly Shp_BUS _shp = new Shp_BUS();
         protected virtual void Page_Load(object sender, EventArgs e)
         {
             // Determine current view

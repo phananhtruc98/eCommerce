@@ -10,7 +10,7 @@ namespace ShoesStore.BusinessLogicLayer
 {
     public class ProCat_BUS : Table_BUS<ProCat, ProCat_DAO>, IProCat
     {
-        private readonly ProCat_DAO _dao = new ProCat_DAO();
+        
         public List<ProCat> GetPopularProCats(int n)
         {
             throw new NotImplementedException();

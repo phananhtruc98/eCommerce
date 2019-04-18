@@ -21,8 +21,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public ShoesStoreDBContext()
             : base("name=ShoesStoreDBContext")
         {
-            
-
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,8 +28,11 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Adv> Adv { get; set; }
         public DbSet<Cart> Cart { get; set; }
         public DbSet<CartDet> CartDet { get; set; }
+        public DbSet<Config> Config { get; set; }
+        public DbSet<Coupon> Coupon { get; set; }
         public DbSet<Cus> Cus { get; set; }
         public DbSet<Mer> Mer { get; set; }
         public DbSet<Mstr> Mstr { get; set; }

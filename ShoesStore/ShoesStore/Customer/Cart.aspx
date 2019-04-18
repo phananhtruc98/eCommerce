@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" Title="Giỏ hàng" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="~/Customer/Cart.aspx.cs" Inherits="ShoesStore.Customer.GioHang" %>
 
+<%@ Import Namespace="System.Linq.Dynamic" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -40,70 +41,100 @@
                         </tr>
                     </thead>
                     <tbody class="cart-table__body">
-                        <asp:Repeater runat="server" ID="rptCartDetCart" ItemType="ShoesStore.DataAccessLogicLayer.CartDet" >
 
+                        <asp:Repeater runat="server" ID="rptCartDetShp" ItemType="ShoesStore.DataAccessLogicLayer.Shp" OnItemDataBound="rptCartDetShp_OnItemDataBound">
                             <ItemTemplate>
-                                <asp:HiddenField runat="server" ID="hdfPrimaryKeys" Value='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId}" %>'/>
-                                <asp:HiddenField runat="server" id="hdfPrice" Value="<%# Item.ProDet.Pro.Price %>"/>
-                                <tr class="cart-table__row">
-                                    <td class="cart-table__column cart-table__column--image">
-                                        <a href="#">
-                                            <img
-                                                src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
-                                        </a>
+                                <asp:HiddenField runat="server" ID="hdfShpId" Value="<%# Item.ShpId %>" />
+
+                                <tr>
+                                    <td>Shop : <%# Item.ShpName %>
                                     </td>
-                                    <td class="cart-table__column cart-table__column--product">
-                                        <a href="#"
-                                            class="cart-table__product-name"><%# Item.ProDet.Pro.ProName %>
-                                        </a>
-                                        <ul class="cart-table__options">
-                                            <li>Màu: <%# Item.ProDet.ProColor.ColorName%></li>
-                                            <li>Kích cỡ: <%# Item.ProDet.ProSize.SizeName %></li>
-                                            
-                                        </ul>
-                                    </td>
-                                    <td class="cart-table__column cart-table__column--price" data-title="Price"><%# MyLibrary.ToFormatMoney(Item.ProDet.Pro.Price) %></td>
-                                    <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
-                                        <div class="input-number">
-                                            <asp:TextBox runat="server" type="number" ID="txtQty" CssClass="form-control input-number__input" 
-                                                       OnTextChanged="txtQty_OnTextChanged" AutoPostBack="True" min="1" value='<%# Item.Qty%>'></asp:TextBox>
-                                           
-                                            <div class="input-number__add"></div>
-                                            <div class="input-number__sub"></div>
-                                        </div>
-                                    </td>
-                                    <td class="cart-table__column cart-table__column--total" data-title="Total">
-                                        <asp:Literal runat="server" id="ltrObjSumPrice" Text=' <%# MyLibrary.ToFormatMoney(Convert.ToDouble(Item.ProDet.Pro.Price)*Convert.ToDouble(Item.Qty.ToString())) %>'>
+                                </tr>
+                                <asp:Repeater runat="server" ID="rptCartDetCart" ItemType="ShoesStore.DataAccessLogicLayer.CartDet" OnItemDataBound="rptCartDetCart_OnItemDataBound">
+                                    <ItemTemplate>
+                                        <tr class="cart-table__row">
+
+                                            <td class="cart-table__column cart-table__column--image">
+                                                <a href="#">
+                                                    <img
+                                                        src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
+                                                </a>
+                                            </td>
+                                            <td class="cart-table__column cart-table__column--product">
+                                                <a href="#"
+                                                    class="cart-table__product-name"><%# Item.ProDet.Pro.ProName %>
+                                                </a>
+                                                <ul class="cart-table__options">
+                                                    <li>Màu: <%# Item.ProDet.ProColor.ColorName%></li>
+                                                    <li>Kích cỡ: <%# Item.ProDet.ProSize.SizeName %></li>
+
+                                                </ul>
+                                            </td>
+                                            <td class="cart-table__column cart-table__column--price" data-title="Price">
+                                                <asp:Literal runat="server" Text='<%# MyLibrary.ToFormatMoney(Item.ProDet.Pro.Price) %>' ID="ltrPrice" /></td>
+                                            <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
+                                                <div class="input-number">
+                                                    <asp:TextBox runat="server" type="number" ID="txtQty" CssClass="form-control input-number__input"
+                                                        OnTextChanged="txtQty_OnTextChanged" AutoPostBack="True" min="1" value='<%# Item.Qty%>'></asp:TextBox>
+
+                                                    <div class="input-number__add"></div>
+                                                    <div class="input-number__sub"></div>
+                                                </div>
+                                            </td>
+                                            <td class="cart-table__column cart-table__column--total" data-title="Total">
+                                                <asp:Literal runat="server" ID="ltrObjSumPrice" Text=' <%# MyLibrary.ToFormatMoney(Convert.ToDouble(Item.ProDet.Pro.Price)*Convert.ToDouble(Item.Qty.ToString())) %>'>
                                             
 
-                                        </asp:Literal>
-                                       
+                                                </asp:Literal>
 
-                                    </td>
-                                    <td class="cart-table__column cart-table__column--remove">
-                                        <asp:LinkButton runat="server"
-                                                        ID="btnCartDetPreviewClose"
-                                                        CommandArgument='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId},{Item}" %>'
-                                                        OnCommand="btnCartDetPreviewClose_OnCommand"
-                                                        CssClass="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
+
+                                            </td>
+                                            <td class="cart-table__column cart-table__column--remove">
+                                                <asp:LinkButton runat="server"
+                                                    ID="btnCartDetPreviewClose"
+                                                    CommandArgument='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId},{Item}" %>'
+                                                    OnCommand="btnCartDetPreviewClose_OnCommand"
+                                                    CssClass="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                             <svg
                                                 width="10px" height="10px">
                                                 <use href="/images/sprite.svg#cross-10"></use>
                                             </svg>
-                                        </asp:LinkButton>
+                                                </asp:LinkButton>
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                                <tr class="cart-table__row">
+                                    <td colspan="6" class="cart-table__column cart-table__column--total" data-title="Total">Tổng tiền:
+                                                <asp:Literal runat="server" ID="ltrSumPerShp" Text='<%# MyLibrary.ToFormatMoney(Item.Pro.Sum(p=>p.ProDet.Sum(pd=>Convert.ToInt32(pd.Pro.Price)))) %>' />
                                     </td>
                                 </tr>
                             </ItemTemplate>
-                         
+                            <FooterTemplate>
+                                <tr>
+                                    <td>Tổng cha:
+                                        <asp:Literal runat="server" ID="rptCartDetShp_Sum" />
+                                    </td>
+                                </tr>
+                            </FooterTemplate>
+                            <SeparatorTemplate>
+                                <tr>
+                                    <td>
+                                        <hr />
+                                    </td>
+                                </tr>
+                            </SeparatorTemplate>
                         </asp:Repeater>
 
                     </tbody>
                 </table>
                 <div class="cart__actions">
                     <a href="/san-pham" class="btn btn-secondary btn-lg custom_font">Tiếp tục mua sắm</a>
-                  
-                    <asp:Button runat="server" Text="Cập nhật giỏ hàng" ID="btnUpdateCart" OnClick="btnUpdateCart_OnClick" CssClass="btn btn-primary cart__update-button btn-lg custom_font"/>
-                    
+
+                    <asp:Button runat="server" Text="Cập nhật giỏ hàng" ID="btnUpdateCart" OnClick="btnUpdateCart_OnClick" CssClass="btn btn-primary cart__update-button btn-lg custom_font" />
+
                 </div>
                 <div class="row justify-content-end pt-5">
                     <div class="col-12 col-md-7 col-lg-6 col-xl-5">
@@ -130,10 +161,11 @@
                                     <tfoot class="cart__totals-footer">
                                         <tr>
                                             <th>Tổng</th>
-                                            <td>$5,902.00</td>
+                                            <td><%:Master.SumCartDetPrice %></td>
                                         </tr>
                                     </tfoot>
                                 </table>
+
                                 <a class="btn btn-primary btn-xl btn-block cart__checkout-button"
                                     href="/gio-hang/thanh-toan">Thanh toán
                                 </a>

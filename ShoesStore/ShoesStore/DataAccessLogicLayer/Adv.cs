@@ -12,16 +12,16 @@ namespace ShoesStore.DataAccessLogicLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Sd
+    public partial class Adv
     {
-        public int MaSd { get; set; }
-        public Nullable<int> MaHd { get; set; }
-        public Nullable<int> MaSim { get; set; }
-        public Nullable<System.DateTime> TgBd { get; set; }
-        public Nullable<System.DateTime> TgKt { get; set; }
-        public string TongTien { get; set; }
-    
-        public virtual Hd Hd { get; set; }
-        public virtual Sim Sim { get; set; }
+        public int AdvId { get; set; }
+        public string AdvName { get; set; }
+        public string Desc { get; set; }
+        public string ImageUrl { get; set; }
+        public string Link { get; set; }
+        public Nullable<int> Width { get; set; }
+        public Nullable<int> Height { get; set; }
+        public string Position { get; set; }
+        public Nullable<bool> Active { get; set; }
     }
 }

@@ -1,113 +1,53 @@
-﻿<%@ Page Language="C#" Title="Đăng Nhập" MasterPageFile="~/Merchant/Merchant.Master" AutoEventWireup="true" CodeFile="SignIn.aspx.cs" Inherits="ShoesStore.Merchant.SignIn" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="~/Merchant/SignIn.aspx.cs"Inherits="ShoesStore.Merchant.SignIn" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta charset='UTF-8'>
+<meta name="robots" content="noindex">
+<link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+<link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+<link rel="canonical" href="https://codepen.io/frytyler/pen/EGdtg" />
 
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
 
-    <!-- site__body -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <div class="container">
-        <br>
-        <p class="text-center">More bootstrap 4 components on <a href="http://webublogoverflow.com/">webublogoverflow.com</a></p>
-        <hr>
-        <div class="row">
-            <aside class="col-sm-4">
-                <p>with us</p>
-                <div class="card">
-                    <article class="card-body">
-                        <a href="" class="float-right btn btn-outline-primary">Sign up</a>
-                        <h4 class="card-title mb-4 mt-1">Choose us</h4>
-                        <form>
-                            <div class="form-group">
-                                <label>Your email</label>
-                                <input name="" class="form-control" placeholder="Email" type="email">
-                            </div>
-                            <!-- form-group// -->
-                            <div class="form-group">
-                                <a class="float-right" href="#">Forgot?</a>
-                                <label>Your password</label>
-                                <input class="form-control" placeholder="******" type="password">
-                            </div>
-                            <!-- form-group// -->
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                        Save password
-                                    </label>
-                                </div>
-                                <!-- checkbox .// -->
-                            </div>
-                            <!-- form-group// -->
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">Login  </button>
-                            </div>
-                            <!-- form-group// -->
-                        </form>
-                    </article>
-                </div>
-                <!-- card.// -->
-            </aside>
-            <!-- col.// -->
-            <aside class="col-sm-4">
-                <p>Inter in</p>
-                <div class="card">
-                    <article class="card-body">
-                        <a href="" class="float-right btn btn-outline-primary">Sign up</a>
-                        <h4 class="card-title mb-4 mt-1">Sign in</h4>
-                        <p>
-                            <a href="" class="btn btn-block btn-outline-info"><i class="fab fa-twitter"></i>Login via Twitter</a>
-                            <a href="" class="btn btn-block btn-outline-primary"><i class="fab fa-facebook-f"></i>Login via facebook</a>
-                        </p>
-                        <hr>
-                        <form>
-                            <div class="form-group">
-                                <input name="" class="form-control" placeholder="Email or login" type="email">
-                            </div>
-                            <!-- form-group// -->
-                            <div class="form-group">
-                                <input class="form-control" placeholder="******" type="password">
-                            </div>
-                            <!-- form-group// -->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block">Login  </button>
-                                    </div>
-                                    <!-- form-group// -->
-                                </div>
-                                <div class="col-md-6 text-right">
-                                    <a class="small" href="#">Forgot password?</a>
-                                </div>
-                            </div>
-                            <!-- .row// -->
-                        </form>
-                    </article>
-                </div>
-                <!-- card.// -->
-            </aside>
-            <!-- col.// -->
-            <aside class="col-sm-4">
-                <p>Our map</p>
-                <div class="card">
-                    <article class="card-body">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15916.085640414378!2d33.185751550000006!3d-4.2160796!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stz!4v1538627227928" width="220" height="200" frameborder="0" style="border: 0" allowfullscreen></iframe>
-                    </article>
-                </div>
-                <!-- card.// -->
-            </aside>
-            <!-- col.// -->
+<link rel="stylesheet" href="/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.addons.css">
+<link rel="stylesheet" href="/Admin/css/logincss.css">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form runat="server">
+        <div class="login">
+            <h1 class="fc-center">
+                <img src="/Admin/images/logo.png" width="200" /></h1>
+
+            <input type="text" name="u" placeholder="Tên đăng nhập" required="required" id="login_login" runat="server" />
+
+            <asp:RequiredFieldValidator
+                Display="Dynamic"
+                ID="RequiredLoginUsername"
+                runat="server"
+                ErrorMessage="Chưa nhập tài khoản!"
+                ControlToValidate="login_login"
+                ValidationGroup="Login"
+                ForeColor="Red"/>
+
+            <input type="password" name="p" placeholder="Mật khẩu" required="required" id="login_pwd" runat="server" />
+
+            <asp:RequiredFieldValidator
+                Display="Dynamic"
+                ID="RequiredLoginPassword"
+                runat="server"
+                ErrorMessage="Chưa nhập mật khẩu!"
+                ControlToValidate="login_pwd"
+                ValidationGroup="Login"
+                ForeColor="Red"/>
+
+            <asp:Button runat="server" class="btn btn-primary btn-block btn-large" ValidationGroup="Login" Text="Đăng nhập" ID="btnLogin" OnClick="btnLogin_Click" />
+
         </div>
-        <!-- row.// -->
-    </div>
-    <!--container end.//-->
-    <br>
-    <br>
-    <br>
-
-
-    <!-- site__body / end -->
-</asp:Content>
+    </form>
+</body>
+</html>

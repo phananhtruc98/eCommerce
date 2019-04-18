@@ -6,7 +6,7 @@ using System.Web.UI;
 
 namespace ShoesStore.Customer
 {
-    public partial class CusHome : Page
+    public partial class CusHome : BasePage
     {
         string avaimgstr = "";
         protected void Page_Load(object sender, EventArgs e)

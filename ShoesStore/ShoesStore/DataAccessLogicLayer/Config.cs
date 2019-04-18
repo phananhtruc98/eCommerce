@@ -12,11 +12,11 @@ namespace ShoesStore.DataAccessLogicLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Kg
+    public partial class Config
     {
-        public int MaKg { get; set; }
-        public Nullable<System.TimeSpan> GioBd { get; set; }
-        public Nullable<System.TimeSpan> GioKt { get; set; }
-        public string GiaCuoc { get; set; }
+        public int ConfigId { get; set; }
+        public string ConfigName { get; set; }
+        public string Value { get; set; }
+        public string Desc { get; set; }
     }
 }

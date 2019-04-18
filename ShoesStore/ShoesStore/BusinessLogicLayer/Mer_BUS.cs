@@ -8,7 +8,7 @@ namespace ShoesStore.BusinessLogicLayer
 {
     public class Mer_BUS : Table_BUS<Mer, Mer_DAO>, IMer
     {
-        private readonly Mer_DAO _dao = new Mer_DAO();
+        
 
         public UsrAct_DAO UsrAct
         {

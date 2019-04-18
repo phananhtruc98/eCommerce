@@ -9,6 +9,7 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         private UsrAct_DAO _usrAct_DAO = new UsrAct_DAO();
         private readonly Mstr_DAO _mstr_DAO = new Mstr_DAO();
+        private readonly Mer_DAO _mer_DAO = new Mer_DAO();
         public UsrAct GetUsrAct(int usrId)
         {
             return _usrAct_DAO.GetAll().FirstOrDefault(m => m.UsrId == usrId);
@@ -70,9 +71,21 @@ namespace ShoesStore.DataAccessLogicLayer
             {
                 return null;
             }
-
-
-           
+        }
+        public Mer CheckMerchant(string login, string pwd)
+        {
+            Usr usr = Login(login, pwd);
+            // tu day tro xuong kt
+            int usrId = usr.UsrId;
+            Mer rs = _mer_DAO.GetAll().FirstOrDefault(m => m.MerId == usrId);
+            if (rs != null)
+            {
+                return rs;
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }

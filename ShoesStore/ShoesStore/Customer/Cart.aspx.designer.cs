@@ -13,13 +13,13 @@ namespace ShoesStore.Customer {
     public partial class GioHang {
         
         /// <summary>
-        /// rptCartDetCart control.
+        /// rptCartDetShp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptCartDetCart;
+        protected global::System.Web.UI.WebControls.Repeater rptCartDetShp;
         
         /// <summary>
         /// btnUpdateCart control.

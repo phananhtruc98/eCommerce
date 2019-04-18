@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteCus.Master" CodeBehind="~/Customer/CusHome.aspx.cs" Inherits="ShoesStore.Customer.CusHome" %>
+
 <%@ MasterType VirtualPath="~/SiteCus.Master" %>
 <asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
     <div class="row">
@@ -7,7 +8,7 @@
                 <asp:Image runat="server" ID="avaimg" class="img-circle" />
             </div>
             <div>
-                <asp:FileUpload runat="server" ID="fupava" CssClass="file-upload"  Visible="false"/>
+                <asp:FileUpload runat="server" ID="fupava" CssClass="file-upload" Visible="false" />
             </div>
             <table id="ttcn" class="table table-responsive-sm table-responsive-xl table-by-truc">
                 <tr>
@@ -26,13 +27,13 @@
                     <td>Địa chỉ</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" CssClass="form-control-lg txt-by-truc" ID="txtAddress" Visible="false"></asp:TextBox>
-                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblAddress" ></asp:Label></td>
+                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblAddress"></asp:Label></td>
                 </tr>
                 <tr>
                     <td>Email</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" CssClass="form-control-lg txt-by-truc" ID="txtEmail" Visible="false"></asp:TextBox>
-                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblEmail" ></asp:Label></td>
+                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblEmail"></asp:Label></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="my-info__save">

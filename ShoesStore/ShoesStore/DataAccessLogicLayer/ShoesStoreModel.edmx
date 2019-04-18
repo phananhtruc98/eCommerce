@@ -5,13 +5,27 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="ShoesStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adv">
+          <Key>
+            <PropertyRef Name="AdvId" />
+          </Key>
+          <Property Name="AdvId" Type="int" Nullable="false" />
+          <Property Name="AdvName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="Link" Type="nvarchar" MaxLength="255" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Position" Type="varchar" MaxLength="255" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="CartId" />
           </Key>
           <Property Name="CartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CusId" Type="int" />
-          <Property Name="IpAddress" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IpAddress" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="CartDet">
           <Key>
@@ -27,6 +41,39 @@
           <Property Name="ColorId" Type="int" Nullable="false" />
           <Property Name="SizeId" Type="int" Nullable="false" />
           <Property Name="Qty" Type="int" />
+        </EntityType>
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="ConfigId" />
+          </Key>
+          <Property Name="ConfigId" Type="int" Nullable="false" />
+          <Property Name="ConfigName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="CouponID" />
+          </Key>
+          <Property Name="CouponID" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="10" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="Type" Type="varchar" MaxLength="10" />
+          <Property Name="FreeShip" Type="bit" />
+          <Property Name="StartDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="EndDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="Indefinite" Type="bit" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="CouponDet">
+          <Key>
+            <PropertyRef Name="CouponId" />
+            <PropertyRef Name="ShpId" />
+            <PropertyRef Name="ProId" />
+          </Key>
+          <Property Name="CouponId" Type="int" Nullable="false" />
+          <Property Name="ShpId" Type="int" Nullable="false" />
+          <Property Name="ProId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Cus">
           <Key>
@@ -110,6 +157,7 @@
           <Property Name="ColorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ColorName" Type="nvarchar" MaxLength="255" />
           <Property Name="ColorImg" Type="nvarchar" MaxLength="255" />
+          <Property Name="HexCode" Type="char" MaxLength="6" />
         </EntityType>
         <EntityType Name="ProDet">
           <Key>
@@ -326,6 +374,32 @@
               <PropertyRef Name="ProId" />
               <PropertyRef Name="ColorId" />
               <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CouponDet_Coupon">
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
+          <End Role="CouponDet" Type="Self.CouponDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coupon">
+              <PropertyRef Name="CouponID" />
+            </Principal>
+            <Dependent Role="CouponDet">
+              <PropertyRef Name="CouponId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CouponDet_Pro">
+          <End Role="Pro" Type="Self.Pro" Multiplicity="1" />
+          <End Role="CouponDet" Type="Self.CouponDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pro">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
+            </Principal>
+            <Dependent Role="CouponDet">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="ProId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1216,8 +1290,12 @@
           <Parameter Name="Img" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="ShoesStoreModelStoreContainer">
+          <EntitySet Name="Adv" EntityType="Self.Adv" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CartDet" EntityType="Self.CartDet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Config" EntityType="Self.Config" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CouponDet" EntityType="Self.CouponDet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cus" EntityType="Self.Cus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mer" EntityType="Self.Mer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mstr" EntityType="Self.Mstr" Schema="dbo" store:Type="Tables" />
@@ -1250,6 +1328,14 @@
           <AssociationSet Name="FK_CartDet_ProDet" Association="Self.FK_CartDet_ProDet">
             <End Role="ProDet" EntitySet="ProDet" />
             <End Role="CartDet" EntitySet="CartDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CouponDet_Coupon" Association="Self.FK_CouponDet_Coupon">
+            <End Role="Coupon" EntitySet="Coupon" />
+            <End Role="CouponDet" EntitySet="CouponDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CouponDet_Pro" Association="Self.FK_CouponDet_Pro">
+            <End Role="Pro" EntitySet="Pro" />
+            <End Role="CouponDet" EntitySet="CouponDet" />
           </AssociationSet>
           <AssociationSet Name="FK_Mstr_Usr" Association="Self.FK_Mstr_Usr">
             <End Role="Usr" EntitySet="Usr" />
@@ -1389,13 +1475,27 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShoesStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adv">
+          <Key>
+            <PropertyRef Name="AdvId" />
+          </Key>
+          <Property Name="AdvId" Type="Int32" Nullable="false" />
+          <Property Name="AdvName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Position" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="CartId" />
           </Key>
           <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CusId" Type="Int32" />
-          <Property Name="IpAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IpAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cus" Relationship="Self.FK_UsersCustomersCarts_UsersCustomers" FromRole="Cart" ToRole="Cus" />
           <NavigationProperty Name="CartDet" Relationship="Self.FK_UsersCustomersCartsDetails_UsersCustomersCarts" FromRole="Cart" ToRole="CartDet" />
         </EntityType>
@@ -1415,6 +1515,30 @@
           <Property Name="Qty" Type="Int32" />
           <NavigationProperty Name="Cart" Relationship="Self.FK_UsersCustomersCartsDetails_UsersCustomersCarts" FromRole="CartDet" ToRole="Cart" />
           <NavigationProperty Name="ProDet" Relationship="Self.FK_CartDet_ProDet" FromRole="CartDet" ToRole="ProDet" />
+        </EntityType>
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="ConfigId" />
+          </Key>
+          <Property Name="ConfigId" Type="Int32" Nullable="false" />
+          <Property Name="ConfigName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="CouponID" />
+          </Key>
+          <Property Name="CouponID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FreeShip" Type="Boolean" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Indefinite" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="Pro" Relationship="Self.CouponDet" FromRole="Coupon" ToRole="Pro" />
         </EntityType>
         <EntityType Name="Cus">
           <Key>
@@ -1491,6 +1615,7 @@
           <NavigationProperty Name="ProSlideImg" Relationship="Self.FK_ProSlideImg_Pro" FromRole="Pro" ToRole="ProSlideImg" />
           <NavigationProperty Name="RcptBuyDet" Relationship="Self.FK_ReceiptsBuysDetails_UsersMerchantsShopsProducts" FromRole="Pro" ToRole="RcptBuyDet" />
           <NavigationProperty Name="Shp" Relationship="Self.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" FromRole="Pro" ToRole="Shp" />
+          <NavigationProperty Name="Coupon" Relationship="Self.CouponDet" FromRole="Pro" ToRole="Coupon" />
         </EntityType>
         <EntityType Name="ProBrand">
           <Key>
@@ -1520,6 +1645,7 @@
           <Property Name="ColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ColorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ColorImg" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HexCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="ProDet" Relationship="Self.FK_ProDet_ProColor" FromRole="ProColor" ToRole="ProDet" />
         </EntityType>
         <EntityType Name="ProDet">
@@ -2187,9 +2313,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="CouponDet">
+          <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+          <End Role="Pro" Type="Self.Pro" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="ShoesStoreDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adv" EntityType="Self.Adv" />
           <EntitySet Name="Cart" EntityType="Self.Cart" />
           <EntitySet Name="CartDet" EntityType="Self.CartDet" />
+          <EntitySet Name="Config" EntityType="Self.Config" />
+          <EntitySet Name="Coupon" EntityType="Self.Coupon" />
           <EntitySet Name="Cus" EntityType="Self.Cus" />
           <EntitySet Name="Mer" EntityType="Self.Mer" />
           <EntitySet Name="Mstr" EntityType="Self.Mstr" />
@@ -2354,6 +2487,10 @@
           <AssociationSet Name="FK_WebSlide_WebInfo" Association="Self.FK_WebSlide_WebInfo">
             <End Role="WebInfo" EntitySet="WebInfo" />
             <End Role="WebSlide" EntitySet="WebSlide" />
+          </AssociationSet>
+          <AssociationSet Name="CouponDet" Association="Self.CouponDet">
+            <End Role="Coupon" EntitySet="Coupon" />
+            <End Role="Pro" EntitySet="Pro" />
           </AssociationSet>
           <FunctionImport Name="sp_Admin_Info" ReturnType="Collection(ShoesStoreModel.sp_Admin_Info_Result)" />
           <FunctionImport Name="sp_alterdiagram">
@@ -2851,7 +2988,7 @@
         <ComplexType Name="sp_Cart_Select_Result">
           <Property Type="Int32" Name="CartId" Nullable="false" />
           <Property Type="Int32" Name="CusId" Nullable="true" />
-          <Property Type="String" Name="IpAddress" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="IpAddress" Nullable="true" MaxLength="255" />
         </ComplexType>
         <ComplexType Name="sp_CartDet_Select_Result">
           <Property Type="Int32" Name="CartId" Nullable="false" />
@@ -2917,6 +3054,7 @@
           <Property Type="Int32" Name="ColorId" Nullable="false" />
           <Property Type="String" Name="ColorName" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="ColorImg" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="HexCode" Nullable="true" MaxLength="6" />
         </ComplexType>
         <ComplexType Name="sp_ProDet_Select_Result">
           <Property Type="Int32" Name="ShpId" Nullable="false" />
@@ -3055,6 +3193,21 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ShoesStoreModelStoreContainer" CdmEntityContainer="ShoesStoreDBContext">
+          <EntitySetMapping Name="Adv">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Adv">
+              <MappingFragment StoreEntitySet="Adv">
+                <ScalarProperty Name="AdvId" ColumnName="AdvId" />
+                <ScalarProperty Name="AdvName" ColumnName="AdvName" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Cart">
             <EntityTypeMapping TypeName="ShoesStoreModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
@@ -3073,6 +3226,31 @@
                 <ScalarProperty Name="ColorId" ColumnName="ColorId" />
                 <ScalarProperty Name="SizeId" ColumnName="SizeId" />
                 <ScalarProperty Name="Qty" ColumnName="Qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Config">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Config">
+              <MappingFragment StoreEntitySet="Config">
+                <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
+                <ScalarProperty Name="ConfigName" ColumnName="ConfigName" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coupon">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Coupon">
+              <MappingFragment StoreEntitySet="Coupon">
+                <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FreeShip" ColumnName="FreeShip" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Indefinite" ColumnName="Indefinite" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3163,6 +3341,7 @@
                 <ScalarProperty Name="ColorId" ColumnName="ColorId" />
                 <ScalarProperty Name="ColorName" ColumnName="ColorName" />
                 <ScalarProperty Name="ColorImg" ColumnName="ColorImg" />
+                <ScalarProperty Name="HexCode" ColumnName="HexCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3373,6 +3552,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="CouponDet" TypeName="ShoesStoreModel.CouponDet" StoreEntitySet="CouponDet">
+            <EndProperty Name="Coupon">
+              <ScalarProperty Name="CouponID" ColumnName="CouponId" />
+            </EndProperty>
+            <EndProperty Name="Pro">
+              <ScalarProperty Name="ShpId" ColumnName="ShpId" />
+              <ScalarProperty Name="ProId" ColumnName="ProId" />
+            </EndProperty>
+          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_Admin_Info" FunctionName="ShoesStoreModel.Store.sp_Admin_Info">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShoesStoreModel.sp_Admin_Info_Result">
@@ -3529,6 +3717,7 @@
                 <ScalarProperty Name="ColorId" ColumnName="ColorId" />
                 <ScalarProperty Name="ColorName" ColumnName="ColorName" />
                 <ScalarProperty Name="ColorImg" ColumnName="ColorImg" />
+                <ScalarProperty Name="HexCode" ColumnName="HexCode" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
