@@ -74,7 +74,6 @@ namespace ShoesStore.Customer
             Cart myCart = Master.CusCart;
 
 
-            string value;
             int colorId = 0;
             int sizeId = 0;
             foreach (RepeaterItem item in rptProColor.Items)
@@ -149,7 +148,7 @@ namespace ShoesStore.Customer
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -177,7 +176,7 @@ namespace ShoesStore.Customer
                 radioSize.Attributes.Add("onclick", scriptSize);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

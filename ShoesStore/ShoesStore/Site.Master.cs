@@ -31,10 +31,8 @@ namespace ShoesStore
         {
             get { return _listCartDetPreview; }
         }
-        public string SumCartDetPrice
-        {
-            get { return MyLibrary.ToFormatMoney(_cartDet.SumCartDetPrice()); }
-        }
+      
+        
         public Cart CusCart
         {
             get

@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" Title="Thanh toán" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="~/Customer/Checkout.aspx.cs" Inherits="ShoesStore.Customer.ThanhToan" %>
 <%@ Import Namespace="ShoesStore" %>
+<%@ Import Namespace="ShoesStore.MyExtensions" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -111,7 +112,7 @@
                                             <ItemTemplate>
                                                 <tr>
                                                     <td><%# Eval("Prodet.Pro.ProName") %></td>
-                                                    <td><%# MyLibrary.ToFormatMoney(Eval("Prodet.Pro.Price")) %></td>
+                                                    <td><%# Eval("Prodet.Pro.Price").ToFormatMoney() %></td>
                                                 </tr>
                                             </ItemTemplate>
                                         </asp:Repeater>

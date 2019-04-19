@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" Title="Giỏ hàng" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="~/Customer/Cart.aspx.cs" Inherits="ShoesStore.Customer.GioHang" %>
 <%@ Import Namespace="ShoesStore" %>
+<%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- site__body -->
@@ -24,6 +25,7 @@
                     <h1>Giỏ hàng</h1>
                 </div>
             </div>
+            </div>
         </div>
         <div class="cart block">
             <div class="container">
@@ -45,12 +47,13 @@
                             <asp:HiddenField runat="server" ID="hdfShpId" Value="<%# Item.ShpId %>"/>
 
                             <tr>
-                                <td>
+                                <td class="cart-table__column--shop">
                                     Shop : <%# Item.ShpName %>
                                 </td>
                             </tr>
                             <asp:Repeater runat="server" ID="rptCartDetCart" ItemType="ShoesStore.DataAccessLogicLayer.CartDet" OnItemDataBound="rptCartDetCart_OnItemDataBound">
                                 <ItemTemplate>
+                                    <asp:HiddenField runat="server" ID="hdfPrimaryKeys" Value='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId}" %>'/>
                                     <tr class="cart-table__row">
 
                                         <td class="cart-table__column cart-table__column--image">
@@ -71,7 +74,7 @@
                                             </ul>
                                         </td>
                                         <td class="cart-table__column cart-table__column--price" data-title="Price">
-                                            <asp:Literal runat="server" Text="<%# MyLibrary.ToFormatMoney(Item.ProDet.Pro.Price) %>" ID="ltrPrice"/>
+                                            <asp:Literal runat="server" Text="<%# Item.ProDet.Pro.Price.ToFormatMoney() %>" ID="ltrPrice"/>
                                         </td>
                                         <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
                                             <div class="input-number">
@@ -84,7 +87,7 @@
                                             </div>
                                         </td>
                                         <td class="cart-table__column cart-table__column--total" data-title="Total">
-                                            <asp:Literal runat="server" ID="ltrObjSumPrice" Text=" <%# MyLibrary.ToFormatMoney(Convert.ToDouble(Item.ProDet.Pro.Price) * Convert.ToDouble(Item.Qty.ToString())) %>">
+                                            <asp:Literal runat="server" ID="ltrObjSumPrice" Text=" <%# (Convert.ToDouble(Item.ProDet.Pro.Price) * Convert.ToDouble(Item.Qty.ToString())).ToFormatMoney() %>">
 
 
                                             </asp:Literal>
@@ -111,7 +114,7 @@
                             <tr class="cart-table__row">
                                 <td colspan="6" class="cart-table__column cart-table__column--total" data-title="Total">
                                     Tổng tiền:
-                                    <asp:Literal runat="server" ID="ltrSumPerShp" Text="<%# MyLibrary.ToFormatMoney(Item.Pro.Where(pro=>pro.ProDet.Any(pd=>pd.CartDet.Any(cd=>cd.ProId==pro.ProId))).Sum(pro=>Convert.ToInt32(pro.Price))) %>"/>
+                                    <asp:Literal runat="server" ID="ltrSumPerShp" Text="<%# (MyLibrary.CartDet_BUS.SumCartDetPrice_Shop(Item.ShpId)).ToFormatMoney() %>"/>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -119,13 +122,13 @@
                             <tr>
                                 <td>
                                     Tổng cha:
-                                    <asp:Literal runat="server" ID="rptCartDetShp_Sum"/>
+                                    <asp:Literal runat="server" ID="rptCartDetShp_Sum" Text='<%#(MyLibrary.CartDet_BUS.SumCartDetPrice()).ToFormatMoney() %>'/>
                                 </td>
                             </tr>
                         </FooterTemplate>
                         <SeparatorTemplate>
                             <tr>
-                                <td>
+                                <td colspan="6">
                                     <hr/>
                                 </td>
                             </tr>
@@ -166,7 +169,7 @@
                                     <tfoot class="cart__totals-footer">
                                     <tr>
                                         <th>Tổng</th>
-                                        <td><%: Master.SumCartDetPrice %></td>
+                                        <td><%: MyLibrary.CartDet_BUS.SumCartDetPrice() %></td>
                                     </tr>
                                     </tfoot>
                                 </table>

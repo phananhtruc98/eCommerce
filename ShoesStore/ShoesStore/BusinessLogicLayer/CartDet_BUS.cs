@@ -6,7 +6,7 @@ using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.BusinessLogicLayer
 {
-    public class CartDet_BUS:Table_BUS<CartDet,CartDet_DAO>
+    public class CartDet_BUS : Table_BUS<CartDet, CartDet_DAO>
     {
         public override bool IsExist(CartDet obj)
         {
@@ -20,8 +20,34 @@ namespace ShoesStore.BusinessLogicLayer
 
         public string SumCartDetPrice()
         {
-            int? money = GetAll().Sum(m => Convert.ToInt32(m.ProDet.Pro.Price)*m.Qty);
-            return money.ToString();
+            try
+            {
+                int? money = GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId).Sum(m => Convert.ToInt32(m.ProDet.Pro.Price) * m.Qty);
+                return money.ToString();
+            }
+            catch (Exception e)
+            {
+                return "0";
+            }
+
+
+        }
+
+        public string SumCartDetPrice_Shop(int shpId)
+        {
+            try
+            {
+                int? money = GetAll().Where(m => m.ProDet.Pro.ShpId == shpId && m.Cart.CusId == WebSession.LoginCus.CusId)
+                    .Sum(m => Convert.ToInt32(m.ProDet.Pro.Price) * m.Qty);
+                var s = GetAll().Where(m => m.ProDet.Pro.ShpId == shpId && m.Cart.CusId == WebSession.LoginCus.CusId);
+                return money.ToString();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return "0";
+            }
+       
         }
     }
 }
