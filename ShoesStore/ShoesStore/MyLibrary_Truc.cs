@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoesStore.DataAccessLogicLayer;
+using System;
 using System.Collections.Generic;
 
 namespace ShoesStore
@@ -29,6 +30,18 @@ namespace ShoesStore
             s = string.Join(Environment.NewLine, list.ToArray());
             return s;
         }
+        public static string DisplayImg (List<string> lst)
+        {
+            string s = "";
+            string p = "";
+            foreach(string item in lst)
+            {
+                p = "<img class='img-thumbnail' style='width:50px; height:50px' src= '/images/products/kickz/UltraBoost 19/slides/" + item + "'>";
+                s = s + p;
+            }
+            return s;
+        }
+
     }
 
     

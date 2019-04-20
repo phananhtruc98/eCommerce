@@ -1985,6 +1985,8 @@
     <Content Include="Customer\CusHome.aspx" />
     <Content Include="Customer\CusHome_ChangePassword.aspx" />
     <Content Include="Customer\CusHome_Cmt.aspx" />
+    <Content Include="Customer\CusHome_RcptSuccess.aspx" />
+    <Content Include="Customer\CusHome_RcptSuccess_Det.aspx" />
     <Content Include="Customer\ProDet.aspx" />
     <Content Include="Customer\Pro.aspx" />
     <Content Include="Customer\Test.aspx" />
@@ -2612,6 +2614,20 @@
     </Compile>
     <Compile Include="Customer\CusHome_Cmt.aspx.designer.cs">
       <DependentUpon>CusHome_Cmt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusHome_RcptSuccess.aspx.cs">
+      <DependentUpon>CusHome_RcptSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusHome_RcptSuccess.aspx.designer.cs">
+      <DependentUpon>CusHome_RcptSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusHome_RcptSuccess_Det.aspx.cs">
+      <DependentUpon>CusHome_RcptSuccess_Det.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusHome_RcptSuccess_Det.aspx.designer.cs">
+      <DependentUpon>CusHome_RcptSuccess_Det.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\ProDet.aspx.cs">
       <DependentUpon>ProDet.aspx</DependentUpon>
