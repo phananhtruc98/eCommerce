@@ -3,6 +3,7 @@
 <%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
 <%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
 <%@ Import Namespace="ShoesStore" %>
+<%@ Import Namespace="ShoesStore.MyExtensions" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -252,7 +253,7 @@
                                     </div>
                                     <div class="product-card__actions">
 
-                                        <div class="product-card__prices"><%#MyLibrary.ToFormatMoney(Eval("Price").ToString()) %></div>
+                                        <div class="product-card__prices"><%#Eval("Price").ToFormatMoney() %></div>
                                         <div class="product-card__shop text-right small text-monospace">
                                             <a href="product.html"><%#Eval("Shp.ShpName") %></a>
                                         </div>
@@ -422,7 +423,7 @@
                                             </div>
                                             <div class="product-card__actions">
 
-                                                <div class="product-card__prices">$<%# MyLibrary.ToFormatMoney(Eval("Price")) %></div>
+                                                <div class="product-card__prices">$<%# Eval("Price").ToFormatMoney() %></div>
                                                 <div class="product-card__buttons">
                                                     <button
                                                         class="btn btn-primary product-card__addtocart" type="button">

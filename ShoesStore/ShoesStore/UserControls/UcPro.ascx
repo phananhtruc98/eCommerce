@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcPro.ascx.cs" Inherits="ShoesStore.UserControls.UcPro" %>
 <%@ Import Namespace="ShoesStore" %>
+<%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
 
 <asp:UpdatePanel runat="server" ID="updatePanel">
@@ -188,7 +189,7 @@
                              class="text-success">In Stock
                          </span>
                                     </div>
-                                    <div class="product-card__prices"><%# MyLibrary.ToFormatMoney(Eval("Price")) %></div>
+                                    <div class="product-card__prices"><%# Eval("Price").ToFormatMoney() %></div>
                                     <div class="product-card__shop text-right small text-monospace">
                                         <a href="product.html"><%#Eval("Shp.ShpName") %></a>
                                     </div>

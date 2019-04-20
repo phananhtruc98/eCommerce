@@ -9,7 +9,7 @@ namespace ShoesStore.Customer
     public partial class CusHome : BasePage
     {
         string avaimgstr = "";
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
 
             LoadThongTin();

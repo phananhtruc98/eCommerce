@@ -39,7 +39,7 @@ namespace ShoesStore.Customer
                 Bind_ProSizes();
             }
         }
-        
+
         private void Bind_ProSizes()
         {
             rptProSize.DataSource = _proDet.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId).DistinctBy(m => m.SizeId);
@@ -71,10 +71,9 @@ namespace ShoesStore.Customer
 
         protected void btnAddCart_OnClick(object sender, EventArgs e)
         {
-            Cart myCart = Master.CusCart;
 
 
-            string value;
+
             int colorId = 0;
             int sizeId = 0;
             foreach (RepeaterItem item in rptProColor.Items)
@@ -104,7 +103,7 @@ namespace ShoesStore.Customer
             }
             _cartDetView = new CartDet()
             {
-                CartId = myCart.CartId,
+                CartId = MyLibrary.Cart_BUS.GetMyCart().CartId,
                 ShpId = _proDetView.ShpId,
                 ProId = _proDetView.ProId,
                 ColorId = colorId,
@@ -121,7 +120,7 @@ namespace ShoesStore.Customer
             else
             {
                 MessageBoxShow("Đã tồn tại, mời bạn vào giỏ hàng để cập nhật số lượng");
-             
+
             }
 
         }
@@ -149,7 +148,7 @@ namespace ShoesStore.Customer
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -177,13 +176,13 @@ namespace ShoesStore.Customer
                 radioSize.Attributes.Add("onclick", scriptSize);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
         private void MessageBoxShow(string message)
         {
-            
+
 
         }
     }

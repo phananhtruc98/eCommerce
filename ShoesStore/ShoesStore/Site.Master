@@ -3,6 +3,7 @@
 <%@ Register TagPrefix="friendlyUrls" TagName="ViewSwitcher" Src="~/ViewSwitcher.ascx" %>
 
 <%@ Import Namespace="ShoesStore" %>
+<%@ Import Namespace="ShoesStore.MyExtensions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -426,7 +427,7 @@
                                                                             <span><%# Item.Qty %>
                                                                             </span>x
                                 <span
-                                    class="dropcart__product-price"><%# MyLibrary.ToFormatMoney(Item.ProDet.Pro.Price) %>
+                                    class="dropcart__product-price"><%# Item.ProDet.Pro.Price.ToFormatMoney() %>
                                 </span>
                                                                         </div>
                                                                     </div>
@@ -451,7 +452,7 @@
                                                         <table>
                                                             <tr>
                                                                 <th>Tổng tiền sản phẩm</th>
-                                                                <td><%:SumCartDetPrice %></td>
+                                                                <td><%:(MyLibrary.CartDet_BUS.SumCartDetPrice()).ToFormatMoney() %></td>
                                                             </tr>
                                                             <%-- <tr>
                                                                 <th>Phí giao hàng</th>
@@ -460,7 +461,7 @@
 
                                                             <tr>
                                                                 <th>Thành tiền</th>
-                                                                <td><%:SumCartDetPrice %></td>
+                                                                <td><%:MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
                                                             </tr>
                                                         </table>
                                                     </div>

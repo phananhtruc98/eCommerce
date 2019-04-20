@@ -3,9 +3,12 @@ using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using Utilities;
 using Convert = System.Convert;
+using System.Numerics;
+
 
 namespace ShoesStore
 {
@@ -26,14 +29,14 @@ namespace ShoesStore
             {
                 if (GetCurrentPageViewState()["SortDirection"] == null)
                     GetCurrentPageViewState()["SortDirection"] = SortDirection.Ascending;
-                return (SortDirection) GetCurrentPageViewState()["SortDirection"];
+                return (SortDirection)GetCurrentPageViewState()["SortDirection"];
             }
             set => GetCurrentPageViewState()["SortDirection"] = value;
         }
 
         public static string CusImgPath(object cus)
         {
-            var _cus = (Cus) cus;
+            var _cus = (Cus)cus;
             if (string.IsNullOrEmpty(_cus.Usr.Avatar))
                 return Path.Combine(usrPath, "default.jpg");
             return Path.Combine(cusPath, _cus.CusId.ToString(), _cus.Usr.Avatar);
@@ -46,7 +49,7 @@ namespace ShoesStore
                 BindingFlags.FlattenHierarchy |
                 BindingFlags.Instance |
                 BindingFlags.NonPublic);
-            return (StateBag) viewStateProp?.GetValue(page);
+            return (StateBag)viewStateProp?.GetValue(page);
         }
 
         public static string GetSortDirection()
@@ -68,7 +71,7 @@ namespace ShoesStore
 
         public static string ProCatImgPath(object iProCat)
         {
-            var proCat = (ProCat) iProCat;
+            var proCat = (ProCat)iProCat;
 
             string[] path =
             {
@@ -80,21 +83,21 @@ namespace ShoesStore
 
         public static string ProColorPath(object iProDet)
         {
-            var proDet = (ProDet) iProDet;
+            var proDet = (ProDet)iProDet;
 
             return Path.Combine(proPath, proDet.Pro.Shp.ShpName, proDet.Pro.ProName, "color", proDet.ProColor.ColorImg);
         }
 
         public static string ProDetUrl(object ipro)
         {
-            var pro = (Pro) ipro;
+            var pro = (Pro)ipro;
             return Path.Combine(proDetUrl, TextHelper.UrlFriendly(pro.ProCat.CatName),
                 TextHelper.UrlFriendly(pro.ProName), TextHelper.UrlFriendly(pro.Shp.ShpName));
         }
 
         public static string ProImgPath(object ipro)
         {
-            var pro = (Pro) ipro;
+            var pro = (Pro)ipro;
             //if (string.IsNullOrEmpty(pro.Img))
 
             //return Path.Combine(proPath, "default.png");
@@ -117,14 +120,14 @@ namespace ShoesStore
 
         public static string ProSizePath(object iProDet)
         {
-            var proDet = (ProDet) iProDet;
+            var proDet = (ProDet)iProDet;
 
             return Path.Combine(proPath, proDet.Pro.Shp.ShpName, proDet.Pro.ProName, "size", proDet.ProSize.SizeImg);
         }
 
         public static string ProSlidePath(object iProSlide)
         {
-            var proSlide = (ProSlide) iProSlide;
+            var proSlide = (ProSlide)iProSlide;
             return Path.Combine(proPath, proSlide.Pro.Shp.ShpName, proSlide.Pro.ProName, "Slides", proSlide.Img);
         }
 
@@ -143,12 +146,61 @@ namespace ShoesStore
             return Path.Combine(slidePath, img.ToString()).Replace(@"\", @"/");
         }
 
-        public static string ToFormatMoney(object money)
+
+
+
+        public static CartDet_BUS CartDet_BUS
         {
-            return moneyPrefix + $"{Convert.ToInt32(money):n0}";
+            get { return new CartDet_BUS(); }
         }
 
-     
+        public static ProCat_BUS ProCat_BUS
+        {
+            get { return new ProCat_BUS(); }
+        }
+        public static ProBrand_BUS ProBrand_BUS
+        {
+            get { return new ProBrand_BUS(); }
+        }
+
+        public static Usr_BUS Usr_BUS
+        {
+            get { return new Usr_BUS(); }
+        }
+
+        public static Cus_BUS Cus_BUS
+        {
+            get { return new Cus_BUS(); }
+        }
+
+        public static WebInfo_BUS WebInfo_BUS
+        {
+            get { return new WebInfo_BUS(); }
+        }
+
+        public static WebSlide_BUS WebSlide_BUS
+        {
+            get { return new WebSlide_BUS(); }
+        }
+
+        public static Pro_BUS Pro_BUS
+        {
+            get { return new Pro_BUS(); }
+        }
+
+
+        public static Cart_BUS Cart_BUS
+        {
+            get { return new Cart_BUS(); }
+        }
+        public static Shp_BUS Shp_Bus
+        {
+            get { return new Shp_BUS(); }
+        }
+
+
+
+
 
     }
 }

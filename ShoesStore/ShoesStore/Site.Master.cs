@@ -13,44 +13,10 @@ namespace ShoesStore
 {
     public partial class SiteMaster : MasterPage, IMaster
     {
-        internal readonly ProCat_BUS _proCat = new ProCat_BUS();
-        internal readonly ProBrand_BUS _proBrand = new ProBrand_BUS();
-        internal readonly Usr_BUS _usr = new Usr_BUS();
-        internal readonly Cus_BUS _cus = new Cus_BUS();
-        internal readonly WebInfo_BUS _webInfo = new WebInfo_BUS();
-        internal readonly WebSlide_BUS _webSlide = new WebSlide_BUS();
-        internal readonly Pro_BUS _pro = new Pro_BUS();
-        internal readonly CartDet_BUS _cartDet = new CartDet_BUS();
-        internal readonly Cart_BUS _cart = new Cart_BUS();
+
         private static string _actCode = "";
 
-        private List<CartDet> _listCartDetPreview = new List<CartDet>();
-        private Cart cusCart;
 
-        public List<CartDet> ListCartDetPreview
-        {
-            get { return _listCartDetPreview; }
-        }
-        public string SumCartDetPrice
-        {
-            get { return MyLibrary.ToFormatMoney(_cartDet.SumCartDetPrice()); }
-        }
-        public Cart CusCart
-        {
-            get
-            {
-                LoadCartPreview();
-                return cusCart;
-            }
-        }
-        public Repeater CartDetPreview
-        {
-            get
-            {
-                LoadCartPreview();
-                return rptCartDetPreview;
-            }
-        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -75,37 +41,26 @@ namespace ShoesStore
         public void rptProCat_Init(object sender, EventArgs e)
         {
 
-            rptProCat.DataSource = _proCat.GetAll();
+            rptProCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
             rptProCat.DataBind();
         }
 
 
         public int GetCurrentCartItemsNumber()
         {
-            if (_listCartDetPreview != null)
-                return _listCartDetPreview.Count;
-            return 0;
+            return MyLibrary.CartDet_BUS.ListCartPreviewNumber();
         }
 
         public void LoadCartPreview()
         {
-            Cus cus = _cus.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
-            cusCart = _cart.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
-            if (cusCart == null)
-            {
-                Cart cart = new Cart() { CusId = cus.CusId };
-                _cart.Insert(cart);
-                cusCart = _cart.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
-            }
-            _listCartDetPreview = _cartDet.GetAll().Where(m => cusCart != null && m.CartId == cusCart.CartId).ToList();
-            rptCartDetPreview.DataSource = _listCartDetPreview;
+            rptCartDetPreview.DataSource = MyLibrary.CartDet_BUS.ListCartPreview();
             rptCartDetPreview.DataBind();
         }
 
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
 
-            rptProBrand.DataSource = _proBrand.GetAll().ToList();
+            rptProBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll().ToList();
             rptProBrand.DataBind();
         }
 
@@ -113,7 +68,7 @@ namespace ShoesStore
         {
             try
             {
-                Usr loginUsr = _usr.Login(login_login.Value, login_pwd.Value);
+                Usr loginUsr = MyLibrary.Usr_BUS.Login(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
 
                 WebSession.LoginUsr = loginUsr;
@@ -151,16 +106,16 @@ namespace ShoesStore
             if (!IsValidRegister()) return;
             var usr = new Usr()
             {
-                UsrId = _usr.GetLastestId() + 1,
+                UsrId = MyLibrary.Usr_BUS.GetLastestId() + 1,
                 UsrName = username.Value,
                 Login = login.Value,
                 Password = EncryptHelper.Encrypt(password.Value),
                 DateAdd = DateTime.Now
             };
-            if (_usr.IsExist(usr)) { lbStatus.InnerText = "Đã tồn tại"; return; }
-            _usr.Insert(usr);
-            _cus.Insert(new Cus() { CusId = usr.UsrId });
-            _usr.CreateActCode(usr);
+            if (MyLibrary.Usr_BUS.IsExist(usr)) { lbStatus.InnerText = "Đã tồn tại"; return; }
+            MyLibrary.Usr_BUS.Insert(usr);
+            MyLibrary.Cus_BUS.Insert(new Cus() { CusId = usr.UsrId });
+            MyLibrary.Usr_BUS.CreateActCode(usr);
             Response.Redirect(Request.RawUrl);
 
 
@@ -177,7 +132,7 @@ namespace ShoesStore
         {
             Response.Redirect("~/Customer/CusHome.aspx");
         }
-        
+
 
         protected void btnActCodeSender_Click(object sender, EventArgs e)
         {
@@ -201,7 +156,7 @@ namespace ShoesStore
         {
 
             string[] primaryKeys = e.CommandArgument.ToString().Split(',');
-            _cartDet.Delete(_cartDet.GetAll().FirstOrDefault(
+            MyLibrary.CartDet_BUS.Delete(MyLibrary.CartDet_BUS.GetAll().FirstOrDefault(
                                 m =>
                                     m.CartId == System.Convert.ToInt32(primaryKeys[0])
                                    && m.ShpId == System.Convert.ToInt32(primaryKeys[1])

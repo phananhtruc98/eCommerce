@@ -14,8 +14,6 @@ body, html {
 
 
 body {
-
-
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
@@ -2002,7 +2000,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
         padding-bottom: 100%;
         position: relative;
     }
-  
+
     .product-card__image img {
         max-width: 100%;
         display: block;
@@ -2100,7 +2098,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     .product-card__name a {
         color: inherit;
         transition: .15s;
-  
     }
 
         .product-card__name a:hover {
@@ -5584,6 +5581,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
+}
+
+.cart-table__column--shop {
+    color: red;
 }
 
 .cart-table__product-name {
@@ -9846,10 +9847,12 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     .block-slideshow__slide:hover {
         color: inherit;
     }
+
 .product-card__shop a {
     color: inherit;
     transition: .15s;
 }
+
 .block-slideshow__slide-image {
     position: absolute;
     left: 0;
@@ -9923,7 +9926,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 
 @media (min-width:992px) and (max-width:1199px) {
     .block-slideshow--layout--full .block-slideshow__slide-image--desktop {
-        
     }
 
     .block-slideshow--layout--full .block-slideshow__slide-content {

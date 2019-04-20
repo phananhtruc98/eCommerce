@@ -18,7 +18,14 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public List<T> GetAll()
         {
-            return DataProvider.Instance.Set<T>().ToList();
+            try
+            {
+                return DataProvider.Instance.Set<T>().ToList();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public void Insert(T obj)

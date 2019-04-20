@@ -4,6 +4,7 @@
 <%@ Register TagPrefix="wsCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
 <%@ Import Namespace="System.ComponentModel" %>
 <%@ Import Namespace="ShoesStore" %>
+<%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -257,7 +258,7 @@
             Stock
         </span>
                             </div>
-                            <div class="product__prices"><%:MyLibrary.ToFormatMoney(_proDetView.Price) %></div>
+                            <div class="product__prices"><%:_proDetView.Price.ToFormatMoney() %></div>
                             <!-- .product__options -->
                             <div class="product__options">
                                 <div class="form-group product__option">

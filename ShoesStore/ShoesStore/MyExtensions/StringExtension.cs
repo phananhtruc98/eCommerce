@@ -7,7 +7,7 @@ using System.Web;
 
 namespace ShoesStore.MyExtensions
 {
-    public static class StringExtension
+    public static partial class MyExtensions
     {
         public static string UnSign(this string s)
         {

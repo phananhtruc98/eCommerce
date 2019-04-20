@@ -20,10 +20,16 @@ namespace ShoesStore
         {
             get
             {
-                Usr usr = (Usr) HttpContext.Current.Session["LoginUsr"];
-                Cus cus = new Cus_BUS().GetAll().FirstOrDefault(m => m.CusId == usr.UsrId);
-                return cus;
-
+                try
+                {
+                    Usr usr = (Usr) HttpContext.Current.Session["LoginUsr"];
+                    Cus cus = new Cus_BUS().GetAll().FirstOrDefault(m => m.CusId == usr.UsrId);
+                    return cus;
+                }
+                catch
+                {
+                    return null;
+                }
 
             }
         }

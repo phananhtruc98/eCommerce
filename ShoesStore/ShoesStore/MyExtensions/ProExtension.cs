@@ -5,7 +5,7 @@ using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.MyExtensions
 {
-    public static class ProExtension
+    public static partial class MyExtensions
     {
         public static List<Pro> FilterByName(this List<Pro> listPro, string name)
         {
