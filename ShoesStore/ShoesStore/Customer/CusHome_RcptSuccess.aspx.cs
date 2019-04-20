@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using ShoesStore.MyExtensions;
 namespace ShoesStore.Customer
 {
     public partial class CusHome_RcptSuccess : System.Web.UI.Page
@@ -17,6 +17,7 @@ namespace ShoesStore.Customer
         private readonly Usr_BUS usr = new Usr_BUS();
         private readonly Pro_BUS pro = new Pro_BUS();
         private readonly Shp_BUS shp = new Shp_BUS();
+        int rcptTemp = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -63,11 +64,17 @@ namespace ShoesStore.Customer
             lbDonHangChiTiet.Visible = true;
             lvRcptBuyDet.Visible = true;
             int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
+            rcptTemp = RcptBuyId;
+            BindDataLvRcptBuyDet(RcptBuyId);
+        }
+
+        public void BindDataLvRcptBuyDet(int RcptId)
+        {
             var rs = from r in rcptBuy.GetAll()
                      join d in rcptBuyDet.GetAll() on r.RcptBuyId equals d.RcptBuyId
                      join p in pro.GetAll() on d.ProId equals p.ProId
                      join s in rcpt.GetAll() on r.RcptBuyId equals s.RcptId
-                     where r.RcptBuyId == RcptBuyId
+                     where r.RcptBuyId == RcptId
                      select new
                      {
                          RcptBuyId = r.RcptBuyId,
@@ -79,6 +86,11 @@ namespace ShoesStore.Customer
                      };
             lvRcptBuyDet.DataSource = rs;
             lvRcptBuyDet.DataBind();
+        }
+
+        protected void lvRcptBuyDet_DataBound(object sender, EventArgs e)
+        {
+            ((Label)lvRcptBuyDet.FindControl("lbRcptId")).Text = rcptTemp.ToString();
         }
     }
 }

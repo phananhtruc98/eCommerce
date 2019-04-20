@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteCus.Master" CodeBehind="CusHome_RcptSuccess.aspx.cs" Inherits="ShoesStore.Customer.CusHome_RcptSuccess" %>
 
 <%@ MasterType VirtualPath="~/SiteCus.Master" %>
-
+<%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
     <div class="row">
@@ -25,7 +25,7 @@
                         <td><%# Eval("RcptBuyId1")%></td>
                         <td><%# Eval("DateAddRcpt")%></td>
                         <td><%# MyLibrary.DisplayImg((List<string>)Eval("ImgPro"))%></td>
-                        <td><%# Eval("Sum")%></td>
+                        <td><%# Eval("Sum").ToFormatMoney()%></td>
                         <td>
                             <asp:LinkButton ID="Link1" runat="server" CommandName="sel" CommandArgument='<%#Eval("RcptBuyId1")%>'
                                 Text="Select" /></td>
@@ -39,14 +39,11 @@
     <div class="row">
         <asp:Label runat="server" Text="Chi tiết đơn hàng" ID="lbDonHangChiTiet" CssClass="h3" Visible="false"></asp:Label>
         <div class="col-12">
-            <asp:ListView ID="lvRcptBuyDet" runat="server" Visible="false">
+            <asp:ListView ID="lvRcptBuyDet" runat="server" Visible="false" OnDataBound="lvRcptBuyDet_DataBound" >
                 <LayoutTemplate>
                     <table class="table">
                         <tr>
-                            <td colspan="4"><%# Eval("RcptBuyId")%></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><%# Eval("DateAddRcpt")%></td>
+                            <td colspan="4"><asp:Label runat="server" ID="lbRcptId"></asp:Label></td>
                         </tr>
                         <tr class="">
                             <th class="">Mã đơn hàng </th>
@@ -60,10 +57,9 @@
                 </LayoutTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td><%# Eval("RcptBuyId")%></td>
                         <td><%# Eval("ProName")%></td>
                         <td><%# Eval("Quantity")%></td>
-                        <td><%# Eval("SubPrice")%></td>
+                        <td><%# Eval("SubPrice").ToFormatMoney()%></td>
                         <td><%# Eval("Img")%></td>
                     </tr>
                 </ItemTemplate>

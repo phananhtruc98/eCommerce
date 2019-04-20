@@ -2984,11 +2984,13 @@
       <DependentUpon>Sub.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyEnum.cs" />
+    <Compile Include="MyExtensions\ObjectExtension.cs" />
     <Compile Include="MyExtensions\ProExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MyExtensions\QueryExtensions.cs" />
+    <Compile Include="MyExtensions\RepeaterExtension.cs" />
     <Compile Include="MyExtensions\StringExtension.cs" />
     <Compile Include="MyLibrary.cs">
       <SubType>ASPXCodeBehind</SubType>
