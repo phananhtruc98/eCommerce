@@ -22,9 +22,9 @@ namespace ShoesStore.Customer
 
         private void rptCartDetShp_Bind()
         {
-            int[] shopIds = Master.ListCartDetPreview.Select(m => m.ShpId).OrderBy(x => x).Distinct().ToArray();
-            List<Shp> listShp = _shp.GetAll().Where(m => shopIds.Contains(m.ShpId)).ToList();
-            rptCartDetShp.DataSource = listShp;
+            
+            
+            rptCartDetShp.DataSource = MyLibrary.CartDet_BUS.ListCartPreview_Shop();
             rptCartDetShp.DataBind();
         }
         protected void txtQty_OnTextChanged(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace ShoesStore.Customer
                 Literal ltrSumPerShp = (Literal)e.Item.FindControl("ltrSumPerShp");
                 Repeater rptCartDetCart = (Repeater)e.Item.FindControl("rptCartDetCart");
                 sumParent += Convert.ToInt32(ltrSumPerShp.Text.Replace(",", ""));
-                rptCartDetCart.DataSource = Master.ListCartDetPreview.Where(m => m.ShpId + "" == hdfShpId.Value);
+                rptCartDetCart.DataSource = MyLibrary.CartDet_BUS.ListCartPreview().Where(m => m.ShpId + "" == hdfShpId.Value);
                 rptCartDetCart.DataBind();
                 //get the person object that is bound to the current row.
                 // access person here

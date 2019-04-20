@@ -9,8 +9,16 @@ namespace ShoesStore.Customer
         {
             if (!IsPostBack)
             {
-                rptCartDetCheckout.DataSource = Master.CartDetPreview.DataSource;
+                rptCartDetCheckout.DataSource = MyLibrary.CartDet_BUS.ListCartPreview();
                 rptCartDetCheckout.DataBind();
+
+            }
+        }
+
+        protected void btnOrder_OnClick(object sender, EventArgs e)
+        {
+            if (checkout_terms.Checked)
+            {
 
             }
         }

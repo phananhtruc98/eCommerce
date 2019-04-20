@@ -1985,6 +1985,7 @@
     <Content Include="Customer\CusHome.aspx" />
     <Content Include="Customer\CusHome_ChangePassword.aspx" />
     <Content Include="Customer\CusHome_Cmt.aspx" />
+    <Content Include="Customer\PaypalOrder.aspx" />
     <Content Include="Customer\ProDet.aspx" />
     <Content Include="Customer\Pro.aspx" />
     <Content Include="Customer\Test.aspx" />
@@ -2612,6 +2613,13 @@
     </Compile>
     <Compile Include="Customer\CusHome_Cmt.aspx.designer.cs">
       <DependentUpon>CusHome_Cmt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\PaypalOrder.aspx.cs">
+      <DependentUpon>PaypalOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\PaypalOrder.aspx.designer.cs">
+      <DependentUpon>PaypalOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\ProDet.aspx.cs">
       <DependentUpon>ProDet.aspx</DependentUpon>

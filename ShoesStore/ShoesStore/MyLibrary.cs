@@ -146,13 +146,61 @@ namespace ShoesStore
             return Path.Combine(slidePath, img.ToString()).Replace(@"\", @"/");
         }
 
- 
+
 
 
         public static CartDet_BUS CartDet_BUS
         {
             get { return new CartDet_BUS(); }
         }
+
+        public static ProCat_BUS ProCat_BUS
+        {
+            get { return new ProCat_BUS(); }
+        }
+        public static ProBrand_BUS ProBrand_BUS
+        {
+            get { return new ProBrand_BUS(); }
+        }
+
+        public static Usr_BUS Usr_BUS
+        {
+            get { return new Usr_BUS(); }
+        }
+
+        public static Cus_BUS Cus_BUS
+        {
+            get { return new Cus_BUS(); }
+        }
+
+        public static WebInfo_BUS WebInfo_BUS
+        {
+            get { return new WebInfo_BUS(); }
+        }
+
+        public static WebSlide_BUS WebSlide_BUS
+        {
+            get { return new WebSlide_BUS(); }
+        }
+
+        public static Pro_BUS Pro_BUS
+        {
+            get { return new Pro_BUS(); }
+        }
+
+
+        public static Cart_BUS Cart_BUS
+        {
+            get { return new Cart_BUS(); }
+        }
+        public static Shp_BUS Shp_Bus
+        {
+            get { return new Shp_BUS(); }
+        }
+
+
+
+
 
     }
 }

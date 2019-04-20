@@ -15,7 +15,7 @@ namespace ShoesStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-       
+
         }
         public int PageNumber
         {
@@ -35,31 +35,31 @@ namespace ShoesStore
         protected void rptProCat_Init(object sender, EventArgs e)
         {
 
-            //rptProCat.DataSource = Master._proCat.GetAll();
+            //rptProCat.DataSource = MyLibrary._proCat.GetAll();
             //rptProCat.DataBind();
         }
 
         protected void featuredProducts_Init(object sender, EventArgs e)
         {
-            featuredProducts.DataSource = Master._proCat.GetAll();
+            featuredProducts.DataSource = MyLibrary.ProCat_BUS.GetAll();
             featuredProducts.DataBind();
         }
 
         protected void rptSlides_Init(object sender, EventArgs e)
         {
-            rptSlides.DataSource = Master._webSlide.GetAll();
+            rptSlides.DataSource = MyLibrary.WebSlide_BUS.GetAll();
             rptSlides.DataBind();
         }
 
         protected void rptFeatureProducts_Init(object sender, EventArgs e)
         {
-            rptFeatureProducts.DataSource = Master._pro.GetAll();
+            rptFeatureProducts.DataSource = MyLibrary.Pro_BUS.GetAll();
             rptFeatureProducts.DataBind();
         }
 
         protected void rptPopularCategories_Init(object sender, EventArgs e)
         {
-            rptPopularCategories.DataSource = Master._proCat.GetAll();
+            rptPopularCategories.DataSource = MyLibrary.ProCat_BUS.GetAll();
             rptPopularCategories.DataBind();
 
         }
@@ -67,22 +67,22 @@ namespace ShoesStore
         protected void rptBestSellers_Init(object sender, EventArgs e)
         {
             BindRepeater();
-            //rptBestSellers.DataSource = Master._pro.GetAll();// se sua thanh getBestSeller
+            //rptBestSellers.DataSource = MyLibrary._pro.GetAll();// se sua thanh getBestSeller
             //rptBestSellers.DataBind();
         }
 
         protected void brandLogos_Init(object sender, EventArgs e)
         {
-            rptBrandLogos.DataSource = Master._proBrand.GetAll();
+            rptBrandLogos.DataSource = MyLibrary.ProBrand_BUS.GetAll();
             rptBrandLogos.DataBind();
         }
         private void BindRepeater()
         {
             //Do your database connection stuff and get your data
             // se sua thanh getBestSeller
-         
+
             PagedDataSource pgitems = new PagedDataSource();
-            pgitems.DataSource =Master._pro.GetAll();
+            pgitems.DataSource = MyLibrary.Pro_BUS.GetAll();
             pgitems.AllowPaging = true;
 
             //Control page size from here 
