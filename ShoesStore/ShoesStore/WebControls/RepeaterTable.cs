@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Dynamic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ShoesStore.BusinessLogicLayer;
-using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.WebControls
 {
@@ -59,6 +50,7 @@ namespace ShoesStore.WebControls
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            
             new BasePage()
             {
                 listWc = new List<Tuple<Control, TableName>>()
@@ -66,10 +58,10 @@ namespace ShoesStore.WebControls
                     new Tuple<Control, TableName>(this,TableName)
                 }
             }.Bind();
-            _pageTotal = (int) Math.Ceiling((double) (this.DataSource as IEnumerable<object>).Count() / _pageSize);;
+            _pageTotal = (int) Math.Ceiling((double) (DataSource as IEnumerable<object>).Count() / _pageSize);;
             if (_allowPage)
             {
-                this.DataSource = (this.DataSource as IEnumerable<object>).Skip(_pageCurrent - 1).Take(_pageSize);
+                DataSource = (DataSource as IEnumerable<object>).Skip((_pageCurrent - 1)*_pageSize).Take(_pageSize);
                 DataBind();
             }
         }

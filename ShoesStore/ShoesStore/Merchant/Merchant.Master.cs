@@ -2,9 +2,7 @@
 using ShoesStore.DataAccessLogicLayer;
 using System;
 using System.Linq;
-using System.Web.UI;
 using System.Web.UI.HtmlControls;
-using ShoesStore.Interfaces.Pages;
 using Utilities;
 
 namespace ShoesStore.Merchant

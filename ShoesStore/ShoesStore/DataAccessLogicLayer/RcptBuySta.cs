@@ -14,15 +14,10 @@ namespace ShoesStore.DataAccessLogicLayer
     
     public partial class RcptBuySta
     {
-        public RcptBuySta()
-        {
-            this.RcptBuyStaDet = new HashSet<RcptBuyStaDet>();
-        }
-    
         public int StaId { get; set; }
         public int RcptBuyId { get; set; }
+        public int ShpId { get; set; }
     
         public virtual RcptBuy RcptBuy { get; set; }
-        public virtual ICollection<RcptBuyStaDet> RcptBuyStaDet { get; set; }
     }
 }

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Dynamic;
-using System.Security.Cryptography;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Ajax.Utilities;
 using ShoesStore.DataAccessLogicLayer;
-using ShoesStore.WebControls;
 using Utilities;
 
 namespace ShoesStore.Customer
@@ -21,12 +16,12 @@ namespace ShoesStore.Customer
         {
             get
             {
-                if (this.ViewState["_proDetView"] == null)
+                if (ViewState["_proDetView"] == null)
                     return _proDetView;
 
-                return (Pro)this.ViewState["_proDetView"];
+                return (Pro)ViewState["_proDetView"];
             }
-            set { this.ViewState["_proDetView"] = value; }
+            set { ViewState["_proDetView"] = value; }
         }
         protected override void Page_Load(object sender, EventArgs e)
         {
@@ -125,7 +120,7 @@ namespace ShoesStore.Customer
 
         }
 
-        protected void rptProColor_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        protected void rptProColor_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
             {
@@ -152,7 +147,7 @@ namespace ShoesStore.Customer
             {
             }
         }
-        protected void rptProSize_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        protected void rptProSize_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
             {

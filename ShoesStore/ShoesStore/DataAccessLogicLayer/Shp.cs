@@ -17,6 +17,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public Shp()
         {
             this.Pro = new HashSet<Pro>();
+            this.RcptBuy = new HashSet<RcptBuy>();
         }
     
         public int ShpId { get; set; }
@@ -27,5 +28,6 @@ namespace ShoesStore.DataAccessLogicLayer
     
         public virtual Mer Mer { get; set; }
         public virtual ICollection<Pro> Pro { get; set; }
+        public virtual ICollection<RcptBuy> RcptBuy { get; set; }
     }
 }

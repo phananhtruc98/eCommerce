@@ -14,6 +14,7 @@ namespace ShoesStore.DataAccessLogicLayer
     public partial class sp_RcptBuy_Select_Result
     {
         public int RcptBuyId { get; set; }
+        public int ShpId { get; set; }
         public int CusId { get; set; }
     }
 }

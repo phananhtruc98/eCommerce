@@ -1,9 +1,7 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
-using System.Collections.Generic;
 using System;
 using System.Linq;
-using System.Web;
 
 namespace ShoesStore.BusinessLogicLayer
 {
@@ -17,6 +15,12 @@ namespace ShoesStore.BusinessLogicLayer
         public override void SetActive(RcptBuyDet obj)
         {
             throw new NotImplementedException();
+        }
+
+        public int GetNumberReview(int ShpId, int ProId)
+
+        {
+            return GetAll().Count(m => m.ShpId == ShpId && m.ProId == ProId);
         }
     }
 }

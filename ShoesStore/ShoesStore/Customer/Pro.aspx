@@ -2,9 +2,6 @@
 
 <%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
 <%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
-
-
-<%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.BusinessLogicLayer" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -21,7 +18,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="index.html">Home</a>
+                                <a href="/">Trang chủ</a>
                                 <svg class="breadcrumb-arrow"
                                     width="6px" height="9px">
                                     <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
@@ -687,7 +684,7 @@
 
                                         </div>
                                     </div>
-                                    <uc1:UcPro runat="server" ID="UcPro" RptPro-PageSize="2" />
+                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="9" NumberOnRow="3"  />
 
                                 </div>
                             </div>

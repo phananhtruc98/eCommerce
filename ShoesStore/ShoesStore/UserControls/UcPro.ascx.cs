@@ -1,22 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
-using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.WebControls;
-
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.IO;
-using System.Net.Http;
-using System.Text;
-using Flurl;
-using ShoesStore.Customer;
 
 namespace ShoesStore.UserControls
 {
@@ -24,8 +11,13 @@ namespace ShoesStore.UserControls
     public partial class UcPro : System.Web.UI.UserControl
     {
         private Pro_BUS _pro = new Pro_BUS();
+        private int _numberOnRow;
 
-
+        public int NumberOnRow
+        {
+            get { return _numberOnRow==0?1:_numberOnRow; }
+            set { _numberOnRow = value; }
+        }
         public RepeaterTable RptPro
         {
             get => rptPro;
@@ -33,7 +25,10 @@ namespace ShoesStore.UserControls
 
         public int PageSize
         {
-            set { rptPro.PageSize = value; }
+            set
+            {
+                if (rptPro != null) rptPro.PageSize = value;
+            }
         }
 
         public int GetCurrent()
@@ -45,9 +40,11 @@ namespace ShoesStore.UserControls
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+
             if (!IsPostBack)
             {
-
+                
                 Page.LoadComplete += Page_LoadComplete;
             }
 
@@ -57,11 +54,14 @@ namespace ShoesStore.UserControls
         {
             List<int> listPage = new List<int>();
 
-            for (int i = 1; i <= rptPro.PageTotal; i++)
-                listPage.Add(i);
-
-            rptProPage.DataSource = listPage;
-            rptProPage.DataBind();
+            if (rptPro != null)
+                for (int i = 1; i <= rptPro.PageTotal; i++)
+                    listPage.Add(i);
+            if (rptProPage != null)
+            {
+                rptProPage.DataSource = listPage;
+                rptProPage.DataBind();
+            }
         }
 
 
@@ -84,11 +84,11 @@ namespace ShoesStore.UserControls
 
         protected void rptProPage_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-           
+
             if (e.Item.ItemType == ListItemType.Footer)
             {
-                LinkButton btnPagingLast =  (LinkButton)e.Item.FindControl("btnPagingLast");
-                btnPagingLast.CommandArgument = rptProPage.Items.Count+"";
+                LinkButton btnPagingLast = (LinkButton)e.Item.FindControl("btnPagingLast");
+                btnPagingLast.CommandArgument = rptProPage.Items.Count + "";
 
             }
         }

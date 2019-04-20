@@ -7,55 +7,46 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore {
+namespace ShoesStore.Merchant {
     
     
-    public partial class Default {
+    public partial class MerShop {
         
         /// <summary>
-        /// rptSlides control.
+        /// featuredProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSlides;
+        protected global::System.Web.UI.WebControls.Repeater featuredProducts;
         
         /// <summary>
-        /// ucProCarousel control.
+        /// rptFeatureProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ShoesStore.UserControls.UcProCarousel ucProCarousel;
+        protected global::System.Web.UI.WebControls.Repeater rptFeatureProducts;
         
         /// <summary>
-        /// ucPro control.
+        /// rptBestSellers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ShoesStore.UserControls.UcPro ucPro;
+        protected global::System.Web.UI.WebControls.Repeater rptBestSellers;
         
         /// <summary>
-        /// rptPopularCategories control.
+        /// rptPagingBestSellers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPopularCategories;
-        
-        /// <summary>
-        /// rptBrandLogos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptBrandLogos;
+        protected global::System.Web.UI.WebControls.Repeater rptPagingBestSellers;
         
         /// <summary>
         /// Master property.
@@ -63,9 +54,9 @@ namespace ShoesStore {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new ShoesStore.SiteMaster Master {
+        public new ShoesStore.Merchant.Merchant1 Master {
             get {
-                return ((ShoesStore.SiteMaster)(base.Master));
+                return ((ShoesStore.Merchant.Merchant1)(base.Master));
             }
         }
     }

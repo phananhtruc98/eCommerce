@@ -6728,10 +6728,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     margin: -8px -6px;
 }
 
-.products-list[data-layout=grid-3-sidebar] .products-list__item {
+/*.products-list[data-layout=grid-3-sidebar] .products-list__item {
     width: calc(33.33333% - 12px);
     margin: 8px 6px;
-}
+}*/
 
 .products-list[data-layout=grid-3-sidebar] .product-card .product-card__buttons .btn {
     font-size: .875rem;

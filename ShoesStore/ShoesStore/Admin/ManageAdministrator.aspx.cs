@@ -1,7 +1,5 @@
 ﻿using ShoesStore.BusinessLogicLayer;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -165,7 +163,7 @@ namespace ShoesStore.Admin
 
                     if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" && getext != ".png" && getext != ".tif" && getext != ".tiff")
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Chọn ảnh!!')", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Chọn ảnh!!')", true);
                         return;
                     }
                     else
@@ -194,7 +192,7 @@ namespace ShoesStore.Admin
                 {
                     if (IsExists(Login))
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Bị trùng')", true);
+                        ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Bị trùng')", true);
                         return;
                     }
                 }
@@ -231,7 +229,7 @@ namespace ShoesStore.Admin
                 gvAdmin.EditIndex = -1;
                 BindDataGridView();
                 Response.Redirect(Request.RawUrl);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Thành công')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Thành công')", true);
             }
             else if (e.CommandName == "InsertRow")
             {
@@ -249,7 +247,7 @@ namespace ShoesStore.Admin
                 bool Active = ((CheckBox)gvAdmin.FooterRow.FindControl("InsertActive")).Checked;
                 if (UsrName == "" || Address == "" || Phone == "" || Email == "" || Password == "" || Login == "" || AddBy == "")
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Chưa nhập đủ thông tin')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Chưa nhập đủ thông tin')", true);
                     return;
                 }
 
@@ -281,7 +279,7 @@ namespace ShoesStore.Admin
                 }
                 if (!MyLibrary.IsValidEmailAddress(Email))
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Email chưa đúng')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Email chưa đúng')", true);
                     return;
                 }
                 Usr result = new Usr

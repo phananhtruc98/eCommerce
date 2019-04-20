@@ -1,21 +1,53 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcPro.ascx.cs" Inherits="ShoesStore.UserControls.UcPro" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcProCarousel.ascx.cs" Inherits="ShoesStore.UserControls.UcProCarousel" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
+<%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
 <%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
-<div style="width: 100%">
+<div class="block block-products-carousel" data-layout="grid-5">
+    <div class="container">
+        <div class="block-header">
+            <h3 class="block-header__title">Featured Products</h3>
+            <div class="block-header__divider"></div>
+            <ul class="block-header__groups-list">
+                <li>
+                    <button type="button"
+                        class="block-header__group block-header__group--active">
+                        Tất cả
+                    </button>
+                </li>
+                <asp:Repeater runat="server" ID="featuredProducts" OnInit="featuredProducts_Init">
+                    <ItemTemplate>
+                        <li>
+                            <button type="button" class="block-header__group"><%#Eval("CatName") %></button>
+                        </li>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </ul>
+            <div class="block-header__arrows-list">
+                <button
+                    class="block-header__arrow block-header__arrow--left" type="button">
+                    <svg width="7px"
+                        height="11px">
+                        <use href="images/sprite.svg#arrow-rounded-left-7x11"></use>
+                    </svg>
+                </button>
+                <button class="block-header__arrow block-header__arrow--right"
+                    type="button">
+                    <svg width="7px" height="11px">
+                        <use href="images/sprite.svg#arrow-rounded-right-7x11"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="block-products-carousel__slider">
+            <div class="block-products-carousel__preloader"></div>
+            <div class="owl-carousel">
 
+                <wccustom:repeatertable runat="server" id="rptPro" allowpage="True" tablename="Pro">
+                    <ItemTemplate>
 
-    <asp:UpdatePanel runat="server" ID="updatePanel">
-        <ContentTemplate>
-            <div class="products-view__list products-list" data-layout="grid-3-sidebar"
-                data-with-features="false">
-                <div class="products-list__body">
-
-                    <wcCustom:RepeaterTable runat="server" ID="rptPro" AllowPage="True" TableName="Pro" ItemType="ShoesStore.DataAccessLogicLayer.Pro">
-                        <ItemTemplate>
-                            <div class="products-list__item col-xs-<%:12/NumberOnRow %> <%# NumberOnRow==5&&(Container.ItemIndex+5)%5==0?"col-xs-offset-1":"" %>">
-                             
-                                <div class="product-card">
+                        <div class="block-products-carousel__cell">
+                            <div class="product-card">
 
                                     <div class="product-card__badges-list">
                                         <div class="product-card__badge product-card__badge--new">New</div>
@@ -180,7 +212,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="product-card__rating-legend"><%# MyLibrary.RcptBuyDet_BUS.GetNumberReview(Item.ShpId,Item.ProId) %> Đánh giá</div>
+                                            <div class="product-card__rating-legend">9 Đánh giá</div>
                                         </div>
 
                                     </div>
@@ -204,46 +236,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </ItemTemplate>
-                    </wcCustom:RepeaterTable>
+                        </div>
+                    </ItemTemplate>
+                </wccustom:repeatertable>
 
-                </div>
+
+
             </div>
-            <div class="products-view__pagination">
-                <ul class="pagination justify-content-center">
-
-
-                    <asp:Repeater runat="server" ID="rptProPage" OnItemDataBound="rptProPage_ItemDataBound">
-                        <HeaderTemplate>
-                            <li class="page-item">
-                                <asp:LinkButton runat="server" ID="btnPagingFirst" OnClick="MyBtnHandler" CssClass="page-link" CommandArgument="1" CommandName="ThisBtnClick" Text="Về đầu">
-                               
-                                </asp:LinkButton>
-
-                            </li>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-
-                            <asp:LinkButton runat="server" OnClick="MyBtnHandler" CssClass="page-link" CommandArgument='<%#Container.DataItem.ToString()%>' CommandName="ThisBtnClick" Text="<%#Container.ItemIndex +1 %>"></asp:LinkButton>
-                        </ItemTemplate>
-                        <FooterTemplate>
-
-
-                            <li class="page-item">
-                                <asp:LinkButton runat="server" ID="btnPagingLast" OnClick="MyBtnHandler" CssClass="page-link" CommandName="ThisBtnClick" Text="Về cuối">
-                             
-                                </asp:LinkButton>
-                            </li>
-                        </FooterTemplate>
-                    </asp:Repeater>
-
-
-
-
-                </ul>
-            </div>
-        </ContentTemplate>
-
-    </asp:UpdatePanel>
+        </div>
+    </div>
 </div>

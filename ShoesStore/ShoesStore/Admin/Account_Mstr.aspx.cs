@@ -1,14 +1,11 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Utilities;
 namespace ShoesStore.Admin
 {
-    public partial class Account_Mstr : System.Web.UI.Page
+    public partial class Account_Mstr : Page
     {
         string avaimg = "";
 
@@ -60,7 +57,7 @@ namespace ShoesStore.Admin
             rs1.Password = mstrUsr.Password;
             Master.usr_BUS.Update(rs1);
             Response.Redirect(Request.RawUrl);
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
 
         }
 
@@ -84,13 +81,13 @@ namespace ShoesStore.Admin
                 }
                 else
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Mật khẩu không khớp!!! Xin nhập lại')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Mật khẩu không khớp!!! Xin nhập lại')", true);
                     return;
                 }
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Mật khẩu không đúng!!! Xin nhập lại')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Mật khẩu không đúng!!! Xin nhập lại')", true);
                 return;
             }
             rs1.UsrName = mstrUsr.UsrName;
@@ -104,7 +101,7 @@ namespace ShoesStore.Admin
             rs1.Password = mstrUsr.Password;
             Master.usr_BUS.Update(rs1);
             Response.Redirect(Request.RawUrl);
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
         }
 
         protected void lbtnCancel_Click(object sender, EventArgs e)

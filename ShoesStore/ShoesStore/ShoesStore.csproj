@@ -2205,6 +2205,7 @@
     <Content Include="Admin\scss\_navbar.scss" />
     <Content Include="images\usrs\cus\2\1.jpg" />
     <Content Include="images\usrs\default.jpg" />
+    <Content Include="js\customscript.js" />
     <Content Include="Merchant\About.aspx" />
     <Content Include="Merchant\Cart.aspx" />
     <Content Include="Merchant\CheckOut.aspx" />
@@ -2215,6 +2216,7 @@
     <Content Include="Merchant\fonts\stroyka\stroyka.woff" />
     <Content Include="Merchant\MerHome.aspx" />
     <Content Include="Merchant\MerProfile.aspx" />
+    <Content Include="Merchant\MerShop.aspx" />
     <Content Include="Merchant\SignIn.aspx" />
     <Content Include="Merchant\Sub.aspx" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.eot" />
@@ -2448,6 +2450,8 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="UserControls\UcPro.ascx" />
+    <Content Include="UserControls\UcProCarousel.ascx" />
+    <Content Include="UserControls\UcTest.ascx" />
     <Content Include="vendor\bootstrap-4.2.1\css\bootstrap.min.css" />
     <Content Include="vendor\bootstrap-4.2.1\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\fontawesome-5.6.1\css\all.min.css" />
@@ -2961,6 +2965,16 @@
     <Compile Include="Merchant\MerProfile.aspx.designer.cs">
       <DependentUpon>MerProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Merchant\MerShop.aspx.cs">
+      <DependentUpon>MerShop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\MerShop.aspx.designer.cs">
+      <DependentUpon>MerShop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\MyLibrary_Merchant.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Merchant\SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3018,6 +3032,20 @@
     </Compile>
     <Compile Include="UserControls\UcPro.ascx.designer.cs">
       <DependentUpon>UcPro.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcProCarousel.ascx.cs">
+      <DependentUpon>UcProCarousel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcProCarousel.ascx.designer.cs">
+      <DependentUpon>UcProCarousel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcTest.ascx.cs">
+      <DependentUpon>UcTest.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcTest.ascx.designer.cs">
+      <DependentUpon>UcTest.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

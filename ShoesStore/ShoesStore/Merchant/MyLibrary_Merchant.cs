@@ -3,16 +3,15 @@ using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using Utilities;
-
+using Convert = System.Convert;
 
 namespace ShoesStore
 {
-    public partial class MyLibrary : Page
+    public partial class MyLibrary_Merchant : Page
     {
-        private static readonly string MoneyPrefix = "";
+        private static readonly string moneyPrefix = "";
         private static readonly string proPath = "/images/products";
         private static readonly string proCatPath = "/images/categories";
         private static readonly string proDetUrl = "/san-pham/";
@@ -32,12 +31,12 @@ namespace ShoesStore
             set => GetCurrentPageViewState()["SortDirection"] = value;
         }
 
-        public static string CusImgPath(object iCus)
+        public static string CusImgPath(object cus)
         {
-            var cus = (Cus)iCus;
-            if (string.IsNullOrEmpty(cus.Usr.Avatar))
+            var _cus = (Cus)cus;
+            if (string.IsNullOrEmpty(_cus.Usr.Avatar))
                 return Path.Combine(usrPath, "default.jpg");
-            return Path.Combine(cusPath, cus.CusId.ToString(), cus.Usr.Avatar);
+            return Path.Combine(cusPath, _cus.CusId.ToString(), _cus.Usr.Avatar);
         }
 
         public static StateBag GetCurrentPageViewState()
@@ -144,26 +143,12 @@ namespace ShoesStore
             return Path.Combine(slidePath, img.ToString()).Replace(@"\", @"/");
         }
 
+        public static string ToFormatMoney(object money)
+        {
+            return moneyPrefix + $"{Convert.ToInt32(money):n0}";
+        }
 
 
 
-        public static CartDet_BUS CartDet_BUS => new CartDet_BUS();
-
-        public static ProCat_BUS ProCat_BUS => new ProCat_BUS();
-        public static ProBrand_BUS ProBrand_BUS => new ProBrand_BUS();
-
-        public static Usr_BUS Usr_BUS => new Usr_BUS();
-
-        public static Cus_BUS Cus_BUS => new Cus_BUS();
-
-        public static WebInfo_BUS WebInfo_BUS => new WebInfo_BUS();
-
-        public static WebSlide_BUS WebSlide_BUS => new WebSlide_BUS();
-
-        public static Pro_BUS Pro_BUS => new Pro_BUS();
-
-        public static RcptBuyDet_BUS RcptBuyDet_BUS => new RcptBuyDet_BUS();
-        public static Cart_BUS Cart_BUS => new Cart_BUS();
-        public static Shp_BUS Shp_Bus => new Shp_BUS();
     }
 }

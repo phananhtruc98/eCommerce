@@ -18,5 +18,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public Nullable<int> UsrEdit { get; set; }
         public System.DateTime DateAdd { get; set; }
         public Nullable<System.DateTime> DateEdit { get; set; }
+        public Nullable<bool> IsCompleted { get; set; }
     }
 }

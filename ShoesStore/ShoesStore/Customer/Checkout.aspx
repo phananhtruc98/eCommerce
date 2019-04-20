@@ -156,21 +156,7 @@
                                                 <div class="payment-methods__item-description text-muted">Thành toán bằng tiền mặt khi nhận hàng</div>
                                             </div>
                                         </li>
-                                        <li class="payment-methods__item">
-                                            <label
-                                                class="payment-methods__item-header">
-                                                <span
-                                                    class="payment-methods__item-radio input-radio"><span
-                                                        class="input-radio__body">
-                                                        <input class="input-radio__input"
-                                                            name="checkout_payment_method" type="radio">
-                                                        <span
-                                                            class="input-radio__circle"></span></span></span><span
-                                                                class="payment-methods__item-title">PayPal</span></label>
-                                            <div class="payment-methods__item-container">
-                                                <div class="payment-methods__item-description text-muted">Thông qua tài khoản paypal</div>
-                                            </div>
-                                        </li>
+                                       
                                     </ul>
                                 </div>
 

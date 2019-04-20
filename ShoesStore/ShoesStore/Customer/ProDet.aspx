@@ -1,8 +1,4 @@
 ﻿<%@ Page Language="C#" Title="Sản phẩm chi tiết" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ProDet.aspx.cs" Inherits="ShoesStore.Customer.SanPham_ChiTiet" %>
-
-<%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
-<%@ Register TagPrefix="wsCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
-<%@ Import Namespace="System.ComponentModel" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>

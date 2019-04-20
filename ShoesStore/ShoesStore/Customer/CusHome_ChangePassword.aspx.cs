@@ -1,15 +1,12 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Utilities;
 
 namespace ShoesStore.Customer
 {
-    public partial class CusHome_ChangePassword : System.Web.UI.Page
+    public partial class CusHome_ChangePassword : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,13 +37,13 @@ namespace ShoesStore.Customer
                 }
                 else
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Mật khẩu không khớp!!! Xin nhập lại')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Mật khẩu không khớp!!! Xin nhập lại')", true);
                     return;
                 }
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Mật khẩu không đúng!!! Xin nhập lại')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Mật khẩu không đúng!!! Xin nhập lại')", true);
                 return;
             }
             rs1.UsrName = usr1.UsrName;
@@ -64,7 +61,7 @@ namespace ShoesStore.Customer
             txtRePassword.Visible = true;
 
 
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
 
         }
 
