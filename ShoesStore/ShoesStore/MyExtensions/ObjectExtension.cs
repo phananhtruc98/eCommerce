@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ShoesStore.MyExtensions
+﻿namespace ShoesStore.MyExtensions
 {
     public static partial class MyExtensions
     {

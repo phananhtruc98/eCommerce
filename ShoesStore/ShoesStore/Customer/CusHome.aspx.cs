@@ -45,7 +45,7 @@ namespace ShoesStore.Customer
 
                 if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" && getext != ".png" && getext != ".tif" && getext != ".tiff")
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Chọn ảnh!!')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Chọn ảnh!!')", true);
                     return;
                 }
                 else
@@ -73,7 +73,7 @@ namespace ShoesStore.Customer
             rs1.Password = usr1.Password;
             
             Master._usr.Update(rs1);
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
             lblThaydoi.Visible = true;
             lbtnLuu.Visible = false;
             lbtnHuy.Visible = false;

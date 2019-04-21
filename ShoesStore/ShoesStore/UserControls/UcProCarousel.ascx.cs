@@ -11,7 +11,7 @@ namespace ShoesStore.UserControls
     {
         protected void featuredProducts_Init(object sender, EventArgs e)
         {
-            featuredProducts.DataSource = MyLibrary_Merchant.ProCat_BUS.GetAll();
+            featuredProducts.DataSource = MyLibrary.ProCat_BUS.GetAll();
             featuredProducts.DataBind();
         }
      

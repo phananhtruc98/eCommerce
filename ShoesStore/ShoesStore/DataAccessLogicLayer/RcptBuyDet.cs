@@ -17,12 +17,14 @@ namespace ShoesStore.DataAccessLogicLayer
         public int RcptBuyId { get; set; }
         public int ShpId { get; set; }
         public int ProId { get; set; }
+        public int ColorId { get; set; }
+        public int SizeId { get; set; }
         public string Cmt { get; set; }
         public Nullable<int> Point { get; set; }
         public Nullable<int> Quantity { get; set; }
         public Nullable<System.DateTime> DateAdd { get; set; }
     
-        public virtual Pro Pro { get; set; }
+        public virtual ProDet ProDet { get; set; }
         public virtual RcptBuy RcptBuy { get; set; }
     }
 }

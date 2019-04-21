@@ -4,7 +4,6 @@ using System.Data.Objects;
 using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
-using static ShoesStore.MyExtensions.MyExtensions;
 
 namespace ShoesStore.BusinessLogicLayer
 {

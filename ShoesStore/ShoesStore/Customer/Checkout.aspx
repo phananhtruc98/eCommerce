@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" Title="Thanh toán" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="~/Customer/Checkout.aspx.cs" Inherits="ShoesStore.Customer.ThanhToan" %>
+
 <%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 
@@ -44,6 +45,7 @@
                                             Họ và tên
                                         </label>
                                         <input type="text" class="form-control form-control-lg"
+                                            value="<%:WebSession.LoginCus.Usr.UsrName %>"
                                             id="checkout-first-name">
                                     </div>
                                 </div>
@@ -53,32 +55,26 @@
                                             Địa chỉ
                                         </label>
                                         <input type="text" class="form-control form-control-lg"
+                                            value="<%:WebSession.LoginCus.Usr.Address %>"
                                             id="checkout-last-name">
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <label for="checkout-country">Thành phố</label>
-                                        <select
-                                            id="checkout-country" class="form-control form-control-lg">
-                                            <option>--Chọn thành phố--</option>
-                                            <option>Hồ Chí Minh</option>
-                                        </select>
-                                    </div>
-                                </div>
+
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="checkout-email">
                                             Email
                                         </label>
                                         <input type="email" class="form-control form-control-lg"
+                                            value="<%:WebSession.LoginCus.Usr.Email %>"
                                             id="checkout-email">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="checkout-phone">Số điện thoại</label>
-                                        <input type="text" class="form-control form-control-lg" id="checkout-phone">
+                                        <input type="text" class="form-control form-control-lg" id="checkout-phone"
+                                            value="<%:WebSession.LoginCus.Usr.Phone %>">
                                     </div>
                                 </div>
                             </div>
@@ -102,24 +98,26 @@
                                     <thead class="checkout__totals-header">
                                         <tr>
                                             <th>Sản phẩm</th>
-                                            <th>Tổng</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>
                                         </tr>
                                     </thead>
                                     <tbody class="checkout__totals-products">
 
-                                        <asp:Repeater runat="server" ID="rptCartDetCheckout">
+                                        <asp:Repeater runat="server" ID="rptCartDetCheckout" ItemType="ShoesStore.DataAccessLogicLayer.CartDet">
 
                                             <ItemTemplate>
                                                 <tr>
-                                                    <td><%# Eval("Prodet.Pro.ProName") %></td>
-                                                    <td><%# Eval("Prodet.Pro.Price").ToFormatMoney() %></td>
+                                                    <td><%# Item.ProDet.Pro.ProName %></td>
+                                                    <td><%# Item.Qty %></td>
+                                                    <td><%# (Decimal.Parse(Item.ProDet.Pro.Price)*Item.Qty.Value).ToFormatMoney() %></td>
                                                 </tr>
                                             </ItemTemplate>
                                         </asp:Repeater>
 
                                     </tbody>
                                     <tbody class="checkout__totals-subtotals">
-                                        <tr>
+                                        <%--   <tr>
                                             <th>Tổng con</th>
                                             <td>$5,877.00</td>
                                         </tr>
@@ -130,22 +128,45 @@
                                         <tr>
                                             <th>Tiền ship</th>
                                             <td>$25.00</td>
-                                        </tr>
+                                        </tr>--%>
                                     </tbody>
                                     <tfoot class="checkout__totals-footer">
                                         <tr>
                                             <th>Tổng</th>
-                                            <td>$5,882.00</td>
+                                            <td><%:MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
                                         </tr>
                                     </tfoot>
                                 </table>
+                                <div class="payment-methods">
+                                    <ul class="payment-methods__list">
+
+                                        <li class="payment-methods__item">
+                                            <label
+                                                class="payment-methods__item-header">
+                                                <span
+                                                    class="payment-methods__item-radio input-radio"><span
+                                                        class="input-radio__body">
+                                                        <input class="input-radio__input"
+                                                            checked="checked"
+                                                            name="checkout_payment_method" type="radio">
+                                                        <span
+                                                            class="input-radio__circle"></span></span></span><span
+                                                                class="payment-methods__item-title">Thanh toán khi nhận hàng</span></label>
+                                            <div class="payment-methods__item-container">
+                                                <div class="payment-methods__item-description text-muted">Thành toán bằng tiền mặt khi nhận hàng</div>
+                                            </div>
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+
                                 <div class="checkout__agree form-group">
                                     <div class="form-check">
                                         <span class="form-check-input input-check">
                                             <span
                                                 class="input-check__body">
-                                                <input class="input-check__input"
-                                                    type="checkbox" id="checkout-terms">
+                                                <input class="input-check__input" runat="server"
+                                                    type="checkbox" id="checkout_terms" />
                                                 <span
                                                     class="input-check__box"></span>
                                                 <svg class="input-check__icon"
@@ -162,9 +183,8 @@
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-xl btn-block">
-                                    Đặt hàng
-                                </button>
+                                <asp:Button runat="server" Text="Đặt hàng" ID="btnOrder" OnClick="btnOrder_OnClick" CssClass="btn btn-primary btn-xl btn-block" />
+
                             </div>
                         </div>
                     </div>

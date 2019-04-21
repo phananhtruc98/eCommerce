@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Dynamic;
-using System.Security.Cryptography;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Ajax.Utilities;
 using ShoesStore.DataAccessLogicLayer;
-using ShoesStore.WebControls;
 using Utilities;
 
 namespace ShoesStore.Customer
@@ -21,17 +16,22 @@ namespace ShoesStore.Customer
         {
             get
             {
-                if (this.ViewState["_proDetView"] == null)
+                if (ViewState["_proDetView"] == null)
+                {
+                    CollectUrl();
                     return _proDetView;
+                }
 
-                return (Pro)this.ViewState["_proDetView"];
+                return (Pro)ViewState["_proDetView"];
             }
-            set { this.ViewState["_proDetView"] = value; }
+            set { ViewState["_proDetView"] = value; }
         }
         protected override void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+
             {
+                BindData();
                 CollectUrl();
                 Bind_Slides();
                 Bind_CusReview();
@@ -39,39 +39,43 @@ namespace ShoesStore.Customer
                 Bind_ProSizes();
             }
         }
-        
+
+        private void BindData()
+        {
+            ltrCommentLeft.DataBind();
+        }
         private void Bind_ProSizes()
         {
-            rptProSize.DataSource = _proDet.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId).DistinctBy(m => m.SizeId);
+            rptProSize.DataSource = MyLibrary.ProDet_BUS.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId).DistinctBy(m => m.SizeId);
             rptProSize.DataBind();
         }
         private void Bind_ProColors()
         {
-            rptProColor.DataSource = _proDet.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId).DistinctBy(m => m.ColorId);
+            rptProColor.DataSource = MyLibrary.ProDet_BUS.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId).DistinctBy(m => m.ColorId);
             rptProColor.DataBind();
         }
         private void Bind_CusReview()
         {
-            rptCusReview.DataSource = _rpcptBuyDet.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId);
+            rptCusReview.DataSource = MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId);
             rptCusReview.DataBind();
         }
         private void Bind_Slides()
         {
-            rptProSlidePresent.DataSource = rptProSlideCarousel.DataSource = _proSlideImg.GetAll()
+            rptProSlidePresent.DataSource = rptProSlideCarousel.DataSource = MyLibrary.ProSlide_BUS.GetAll()
                 .Where(m => m.ProId == _proDetView.ProId && m.ShpId == _proDetView.ShpId);
             rptProSlideCarousel.DataBind();
             rptProSlidePresent.DataBind();
         }
         private void CollectUrl()
         {
-            _proDetView = _pro.GetAll().ToList().FirstOrDefault(m =>
+            _proDetView = MyLibrary.Pro_BUS.GetAll().ToList().FirstOrDefault(m =>
                 TextHelper.UrlFriendly(m.Shp.ShpName) == RouteData.Values["shpName"].ToString()
                 && TextHelper.UrlFriendly(m.ProName) == RouteData.Values["proName"].ToString());
         }
 
         protected void btnAddCart_OnClick(object sender, EventArgs e)
         {
-            Cart myCart = Master.CusCart;
+
 
 
             int colorId = 0;
@@ -103,7 +107,7 @@ namespace ShoesStore.Customer
             }
             _cartDetView = new CartDet()
             {
-                CartId = myCart.CartId,
+                CartId = MyLibrary.Cart_BUS.GetMyCart().CartId,
                 ShpId = _proDetView.ShpId,
                 ProId = _proDetView.ProId,
                 ColorId = colorId,
@@ -111,21 +115,20 @@ namespace ShoesStore.Customer
                 Qty = System.Convert.ToInt32(product_quantity.Value)
 
             };
-            if (!_cartDet.IsExist(_cartDetView))
+            if (!MyLibrary.CartDet_BUS.IsExist(_cartDetView))
             {
-                _cartDet.Insert(_cartDetView);
+                MyLibrary.CartDet_BUS.Insert(_cartDetView);
                 Master.LoadCartPreview();
-                MessageBoxShow("Đã thêm");
+                
             }
             else
             {
-                MessageBoxShow("Đã tồn tại, mời bạn vào giỏ hàng để cập nhật số lượng");
-             
+              
             }
 
         }
 
-        protected void rptProColor_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        protected void rptProColor_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
             {
@@ -150,9 +153,10 @@ namespace ShoesStore.Customer
             }
             catch (Exception)
             {
+                // ignored
             }
         }
-        protected void rptProSize_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        protected void rptProSize_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
             {
@@ -178,12 +182,14 @@ namespace ShoesStore.Customer
             }
             catch (Exception)
             {
+                // ignored
             }
         }
-        private void MessageBoxShow(string message)
+       
+
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
             
-
         }
     }
 }

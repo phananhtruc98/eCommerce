@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Web.UI;
 using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.Interfaces

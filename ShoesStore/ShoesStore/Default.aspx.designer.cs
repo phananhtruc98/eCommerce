@@ -22,40 +22,22 @@ namespace ShoesStore {
         protected global::System.Web.UI.WebControls.Repeater rptSlides;
         
         /// <summary>
-        /// featuredProducts control.
+        /// ucProCarousel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater featuredProducts;
+        protected global::ShoesStore.UserControls.UcProCarousel ucProCarousel;
         
         /// <summary>
-        /// rptFeatureProducts control.
+        /// ucPro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptFeatureProducts;
-        
-        /// <summary>
-        /// rptBestSellers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptBestSellers;
-        
-        /// <summary>
-        /// rptPagingBestSellers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPagingBestSellers;
+        protected global::ShoesStore.UserControls.UcPro ucPro;
         
         /// <summary>
         /// rptPopularCategories control.

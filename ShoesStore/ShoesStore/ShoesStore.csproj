@@ -64,7 +64,6 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
@@ -1985,6 +1984,8 @@
     <Content Include="Customer\CusHome.aspx" />
     <Content Include="Customer\CusHome_ChangePassword.aspx" />
     <Content Include="Customer\CusHome_Cmt.aspx" />
+    <Content Include="Customer\CusHome_RcptSuccess.aspx" />
+    <Content Include="Customer\CusHome_RcptSuccess_Det.aspx" />
     <Content Include="Customer\ProDet.aspx" />
     <Content Include="Customer\Pro.aspx" />
     <Content Include="Customer\Test.aspx" />
@@ -2204,6 +2205,7 @@
     <Content Include="Admin\scss\_navbar.scss" />
     <Content Include="images\usrs\cus\2\1.jpg" />
     <Content Include="images\usrs\default.jpg" />
+    <Content Include="js\customscript.js" />
     <Content Include="Merchant\About.aspx" />
     <Content Include="Merchant\Cart.aspx" />
     <Content Include="Merchant\CheckOut.aspx" />
@@ -2462,6 +2464,8 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="UserControls\UcPro.ascx" />
+    <Content Include="UserControls\UcProCarousel.ascx" />
+    <Content Include="UserControls\UcTest.ascx" />
     <Content Include="vendor\bootstrap-4.2.1\css\bootstrap.min.css" />
     <Content Include="vendor\bootstrap-4.2.1\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\fontawesome-5.6.1\css\all.min.css" />
@@ -2627,6 +2631,20 @@
     </Compile>
     <Compile Include="Customer\CusHome_Cmt.aspx.designer.cs">
       <DependentUpon>CusHome_Cmt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusHome_RcptSuccess.aspx.cs">
+      <DependentUpon>CusHome_RcptSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusHome_RcptSuccess.aspx.designer.cs">
+      <DependentUpon>CusHome_RcptSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusHome_RcptSuccess_Det.aspx.cs">
+      <DependentUpon>CusHome_RcptSuccess_Det.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusHome_RcptSuccess_Det.aspx.designer.cs">
+      <DependentUpon>CusHome_RcptSuccess_Det.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\ProDet.aspx.cs">
       <DependentUpon>ProDet.aspx</DependentUpon>
@@ -3045,6 +3063,20 @@
     </Compile>
     <Compile Include="UserControls\UcPro.ascx.designer.cs">
       <DependentUpon>UcPro.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcProCarousel.ascx.cs">
+      <DependentUpon>UcProCarousel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcProCarousel.ascx.designer.cs">
+      <DependentUpon>UcProCarousel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcTest.ascx.cs">
+      <DependentUpon>UcTest.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcTest.ascx.designer.cs">
+      <DependentUpon>UcTest.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

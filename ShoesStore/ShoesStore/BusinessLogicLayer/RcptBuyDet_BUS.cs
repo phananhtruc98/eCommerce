@@ -1,9 +1,7 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
-using System.Collections.Generic;
 using System;
 using System.Linq;
-using System.Web;
 
 namespace ShoesStore.BusinessLogicLayer
 {
@@ -18,5 +16,21 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public int GetNumberReview(int ShpId, int ProId)
+
+        {
+            return GetAll().Count(m => m.ShpId == ShpId && m.ProId == ProId);
+        }
+
+        public int GetCommentLeft(Pro iPro)
+        {
+               var v = GetAll().ToList().Where(m =>
+                m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt));
+
+            return v.Count();
+        }
+
+        
     }
 }

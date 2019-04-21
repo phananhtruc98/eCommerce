@@ -671,6 +671,7 @@
     */
     $(function () {
         $('[name="checkout_payment_method"]').on('change', function () {
+	        debugger;
             const currentItem = $(this).closest('.payment-methods__item');
 
             $(this).closest('.payment-methods__list').find('.payment-methods__item').each(function (i, element) {
@@ -821,7 +822,7 @@
     });
 
 
-    /*
+    /*payment-methods__item-container
     // layout switcher
     */
     $(function () {

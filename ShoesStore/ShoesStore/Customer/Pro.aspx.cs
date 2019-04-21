@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using ShoesStore.WebControls;
 
 namespace ShoesStore.Customer
 {
@@ -24,7 +21,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        protected void smp1_ItemCreated(object sender, System.Web.UI.WebControls.SiteMapNodeItemEventArgs e)
+        protected void smp1_ItemCreated(object sender, SiteMapNodeItemEventArgs e)
         {
             if (e.Item.ItemType == SiteMapNodeItemType.Root ||
                 (e.Item.ItemType == SiteMapNodeItemType.PathSeparator && e.Item.ItemIndex == 1))

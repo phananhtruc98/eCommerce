@@ -17,6 +17,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public ProDet()
         {
             this.CartDet = new HashSet<CartDet>();
+            this.RcptBuyDet = new HashSet<RcptBuyDet>();
         }
     
         public int ShpId { get; set; }
@@ -28,5 +29,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public virtual Pro Pro { get; set; }
         public virtual ProColor ProColor { get; set; }
         public virtual ProSize ProSize { get; set; }
+        public virtual ICollection<RcptBuyDet> RcptBuyDet { get; set; }
     }
 }

@@ -39,8 +39,8 @@ namespace ShoesStore.DataAccessLogicLayer
                 DataProvider.Instance.Set<T>().Add(obj);
                 DataProvider.Instance.SaveChanges();
             }
-        
-                catch (DbEntityValidationException e)
+
+            catch (DbEntityValidationException e)
             {
                 foreach (var eve in e.EntityValidationErrors)
                 {
