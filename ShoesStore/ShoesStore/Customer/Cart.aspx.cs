@@ -12,15 +12,18 @@ namespace ShoesStore.Customer
         {
             if (!IsPostBack)
             {
-
+                carDetails.DataBind();
                 rptCartDetShp_Bind();
+                if (WebSession.LoginCus == null)
+                    carDetails.InnerText = "Không có sản phẩm trong giỏ hàng!";
+
             }
         }
 
         private void rptCartDetShp_Bind()
         {
-            
-            
+
+
             rptCartDetShp.DataSource = MyLibrary.CartDet_BUS.ListCartPreview_Shop();
             rptCartDetShp.DataBind();
         }
@@ -96,6 +99,9 @@ namespace ShoesStore.Customer
                 }
 
             }
+
+            
+            ltrSumAll.Text = MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney();
         }
 
         protected void btnCartDetPreviewClose_OnCommand(object sender, CommandEventArgs e)

@@ -13,6 +13,15 @@ namespace ShoesStore.Customer {
     public partial class GioHang {
         
         /// <summary>
+        /// carDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl carDetails;
+        
+        /// <summary>
         /// rptCartDetShp control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdateCart;
+        
+        /// <summary>
+        /// ltrSumAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrSumAll;
         
         /// <summary>
         /// Master property.

@@ -56,7 +56,7 @@ namespace ShoesStore.Customer
         }
         private void Bind_CusReview()
         {
-            rptCusReview.DataSource = MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId);
+            rptCusReview.DataSource = MyLibrary.RcptBuyDet_BUS.GetProComments(_proDetView);
             rptCusReview.DataBind();
         }
         private void Bind_Slides()
@@ -75,7 +75,9 @@ namespace ShoesStore.Customer
 
         protected void btnAddCart_OnClick(object sender, EventArgs e)
         {
-
+            if(WebSession.LoginCus==null) {MyLibrary.Show("Bạn chưa đăng nhập");
+                return;
+            } 
 
 
             int colorId = 0;

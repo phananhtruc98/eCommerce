@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="cart block">
+    <div class="cart block" id="carDetails" runat="server">
         <div class="container">
             <table class="cart__table cart-table">
                 <thead class="cart-table__head">
@@ -163,7 +163,7 @@
                                 <tfoot class="cart__totals-footer">
                                     <tr>
                                         <th>Tổng</th>
-                                        <td><%: MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
+                                        <td><asp:Literal runat="server" ID="ltrSumAll" Text='<%# MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %>'/></td>
                                     </tr>
                                 </tfoot>
                             </table>

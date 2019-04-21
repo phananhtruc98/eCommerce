@@ -1,6 +1,7 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ShoesStore.BusinessLogicLayer
@@ -25,12 +26,15 @@ namespace ShoesStore.BusinessLogicLayer
 
         public int GetCommentLeft(Pro iPro)
         {
-               var v = GetAll().ToList().Where(m =>
-                m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt));
+            var v = GetAll().ToList().Where(m =>
+             m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt));
 
             return v.Count();
         }
 
-        
+        public IEnumerable<RcptBuyDet> GetProComments(Pro iPro)
+        {
+            return GetAll().Where(m => m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt));
+        }
     }
 }
