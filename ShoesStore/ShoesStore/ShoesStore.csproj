@@ -2214,6 +2214,7 @@
     <Content Include="Merchant\DefaultMer.aspx" />
     <Content Include="Merchant\fonts\stroyka\stroyka.ttf" />
     <Content Include="Merchant\fonts\stroyka\stroyka.woff" />
+    <Content Include="Merchant\MerAddProd.aspx" />
     <Content Include="Merchant\MerHome.aspx" />
     <Content Include="Merchant\MerProfile.aspx" />
     <Content Include="Merchant\MerShop.aspx" />
@@ -2242,6 +2243,13 @@
     <Content Include="DataAccessLogicLayer\ShoesStoreModel.edmx.diagram">
       <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
     </Content>
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\DataAccessLogicLayer\ShoesStoreModel.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\DataAccessLogicLayer\ShoesStoreModel.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\DataAccessLogicLayer\ShoesStoreModel.ssdl" />
+    <Content Include="obj\Debug\ShoesStore.csproj.CopyComplete" />
+    <Content Include="obj\Debug\ShoesStore.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\ShoesStore.csprojAssemblyReference.cache" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="images\aboutus.jpg" />
     <Content Include="images\avatars\avatar-1.jpg" />
@@ -2420,6 +2428,12 @@
     <Content Include="Merchant\vendor\owl-carousel-2.3.4\assets\owl.video.play.png" />
     <Content Include="Merchant\vendor\owl-carousel-2.3.4\owl.carousel.min.js" />
     <Content Include="Merchant\vendor\svg4everybody-2.1.9\svg4everybody.min.js" />
+    <Content Include="obj\Debug\ShoesStore.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\ShoesStore.dll" />
+    <Content Include="obj\Debug\ShoesStore.pdb" />
+    <Content Include="obj\Debug\TempPE\DataAccessLogicLayer.ShoesStoreModel.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\DataAccessLogicLayer.ShoesStoreModel.cs.dll" />
+    <Content Include="obj\Debug\TempPE\DataAccessLogicLayer.ShoesStoreModel.Designer.cs.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -2950,6 +2964,13 @@
     <Compile Include="Merchant\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Merchant\MerAddProd.aspx.cs">
+      <DependentUpon>MerAddProd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\MerAddProd.aspx.designer.cs">
+      <DependentUpon>MerAddProd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Merchant\Merchant.Master.cs">
       <DependentUpon>Merchant.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3011,6 +3032,9 @@
     <Compile Include="MyLibrary_Truc.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

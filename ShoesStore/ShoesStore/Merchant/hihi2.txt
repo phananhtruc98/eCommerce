@@ -1,12 +1,8 @@
 ﻿using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
 using Utilities;
 
 namespace ShoesStore.Merchant
@@ -51,7 +47,7 @@ namespace ShoesStore.Merchant
             if (MerchantSession.LoginMerchant != null)
             {
                 Mer mer = (Mer)MerchantSession.LoginMerchant;
-                Usr merUsr = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
+                Usr merUsr = MyLibrary_Merchant.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
                 UsrId = merUsr.UsrId;
                 UsrName = merUsr.UsrName;
                 Address = merUsr.Address;
@@ -61,16 +57,17 @@ namespace ShoesStore.Merchant
                 login1 = merUsr.Login;
                 password1 = merUsr.Password;
                 string avaImg = Avatar;
-                lbAccount.Text = $"Chào " + UsrName; 
-                //avaImg1.Attributes["src"] = "/Merchant/images/avatar/" + avaImg;
-                
+                lbAccount.Text = $"Chào " + UsrName;
+                lbAccount2.Text = $"Chào " + UsrName;
+                avaImg1.Attributes["src"] = "/Merchant/images/avatar/" + avaImg;
+                avaImg2.Attributes["src"] = "/Merchant/images/avatar/" + avaImg;
                 var rs = (from m in mer_BUS.GetAll()
                           where m.MerId == UsrId
                           select new
                           {
                               MerId = m.MerId
                           }).FirstOrDefault();
-                //lbrolename.Text = rs.MerId.ToString();
+                lbrolename.Text = rs.MerId.ToString();
             }
             else
             {
@@ -80,7 +77,7 @@ namespace ShoesStore.Merchant
 
         public void rptProCat_Init(object sender, EventArgs e)
         {
-
+            
             rptProCat.DataSource = _proCat.GetAll();
             rptProCat.DataBind();
         }
@@ -121,18 +118,54 @@ namespace ShoesStore.Merchant
             throw new NotImplementedException();
         }
 
-        
+        public bool IsValidRegister()
+        {
+            if (!Email.IsValidEmail(email.Value)) return false;
+            //if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
+            if (TextHelper.IsSpecialCharacters(login.Value)) return false;
+            if (active_code.Value != _actCode) return false;
+            return password.Value == re_password.Value;
+        }
 
 
 
-        
+        protected void btnSignUp_Click(object sender, EventArgs e)
+        {
+            if (!IsValidRegister()) return;
+            var usr = new Usr()
+            {
+                UsrId = _usr.GetLastestId() + 1,
+                UsrName = username.Value,
+                Login = login.Value,
+                Password = EncryptHelper.Encrypt(password.Value),
+                DateAdd = DateTime.Now
+            };
+            if (_usr.IsExist(usr)) return;
+            _usr.Insert(usr);
+            _usr.CreateActCode(usr);
+            Response.Redirect(Request.RawUrl);
+
+
+
+        }
+
         protected void lbtnLogout_Click(object sender, EventArgs e)
         {
             WebSession.LoginUsr = null;
             Response.Redirect(Request.RawUrl);
         }
 
-        
+        protected void btnActCodeSender_Click(object sender, EventArgs e)
+        {
+            RequiredEmail.Validate();
+            RegularExpressionValidator.Validate();
+            if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
+            {
+                _actCode = TextHelper.RandomNumber(4);
+                Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
+                    $"Mã kích hoạt của bạn là {_actCode}");
+            }
+        }
 
+        }
     }
-}

@@ -4,7 +4,7 @@
 <%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
 <%@ Import Namespace="ShoesStore" %>
 
-<%@ MasterType VirtualPath="Merchant.Master" %>
+<%@ MasterType VirtualPath="~/Merchant/Merchant1.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <!--Thông Tin Shop-->
     <div>
@@ -106,7 +106,7 @@
                                     <div class="product-card__image">
                                         <a href="product.html">
                                             <img
-                                                src="<%# MyLibrary_Merchant.ProImgPath(Container.DataItem) %>" alt="">
+                                                src="<%# MyLibrary.ProImgPath(Container.DataItem) %>" alt="">
                                         </a>
                                     </div>
                                     <div class="product-card__info">
@@ -219,7 +219,7 @@
                                     </div>
                                     <div class="product-card__actions">
 
-                                        <div class="product-card__prices"><%# MyLibrary_Merchant.ToFormatMoney(Eval("Price").ToString()) %></div>
+                                        <div class="product-card__prices"><%# Eval("Price") %></div>
                                         <div class="product-card__shop text-right small text-monospace">
                                             <a href="product.html"><%#Eval("Shp.ShpName") %></a>
                                         </div>
@@ -270,7 +270,7 @@
                                     <div class="product-card__image">
                                         <a href="product.html">
                                             <img
-                                                src="<%# MyLibrary_Merchant.ProImgPath(Container.DataItem) %>" alt="">
+                                                src="<%# MyLibrary.ProImgPath(Container.DataItem) %>" alt="">
                                         </a>
 
                                     </div>
@@ -386,7 +386,7 @@
                                     </div>
                                     <div class="product-card__actions">
 
-                                        <div class="product-card__prices">$<%# MyLibrary_Merchant.ToFormatMoney(Eval("Price")) %></div>
+                                        <div class="product-card__prices">$<%# Eval("Price") %></div>
                                         <div class="product-card__buttons">
                                             <button
                                                 class="btn btn-primary product-card__addtocart" type="button">

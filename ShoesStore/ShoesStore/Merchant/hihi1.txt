@@ -1,0 +1,855 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="~/Merchant/Merchant.master.cs" Inherits="ShoesStore.Merchant.Merchant1" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title><%: Page.Title %></title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Merchant/images/shoeicon.png"/>
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i"/>
+    <!-- css -->
+    <link rel="stylesheet" href="/vendor/bootstrap-4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/vendor/owl-carousel-2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <!-- js -->
+    <script src="/vendor/jquery-3.3.1/jquery.min.js"></script>
+    <script src="/vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/owl-carousel-2.3.4/owl.carousel.min.js"></script>
+    <script src="/vendor/nouislider-12.1.0/nouislider.min.js"></script>
+    <script src="/js/number.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/vendor/svg4everybody-2.1.9/svg4everybody.min.js"></script>
+    <script>svg4everybody();</script>
+    <!-- font - fontawesome -->
+    <link rel="stylesheet" href="/vendor/fontawesome-5.6.1/css/all.min.css"/>
+    <!-- font - stroyka -->
+    <link rel="stylesheet" href="/fonts/stroyka/stroyka.css"/>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97489509-6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-97489509-6');
+    </script>
+    <link rel="stylesheet" href="/css/customstyle.css"/>
+</head>
+<body>
+    <form runat="server" id="formWebPage">
+        <asp:ScriptManager runat="server">
+        </asp:ScriptManager>
+        <!-- quickview-modal -->
+
+        <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <!-- quickview-modal / end -->
+        <!-- Dang Nhap modal-->
+        <div id="DangNhap" class="modal">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content  p-4 m-5 ">
+                    <div class="modal-header">
+                        <h3>Đăng nhập</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <a href="#" class="float-right" data-dismiss="modal" data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
+                            <label for="login_login">Tài khoản</label>
+                            <input type="text" class="form-control form-control-lg" id="login_login" runat="server" />
+                            <asp:RequiredFieldValidator
+                                Display="Dynamic"
+                                ID="RequiredLoginUsername"
+                                runat="server"
+                                ErrorMessage="Chưa nhập tài khoản!"
+                                ControlToValidate="login_login"
+                                ValidationGroup="Login"
+                                ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <label for="login_pwd">Mật khẩu</label>
+                            <input type="password" class="form-control form-control-lg" id="login_pwd" runat="server" />
+                            <asp:RequiredFieldValidator
+                                Display="Dynamic"
+                                ID="RequiredLoginPassword"
+                                runat="server"
+                                ErrorMessage="Chưa nhập mật khẩu!"
+                                ControlToValidate="login_pwd"
+                                ValidationGroup="Login"
+                                ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group py-4">
+                            <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
+                            <asp:Button runat="server" ID="btnLogin" Text="Đăng nhập" ValidationGroup="Login" CssClass="btn btn-primary btn-lg float-right custom_font" OnClick="btnLogin_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Dang Nhap modal/end-->
+        <!-- Dang Ky modal-->
+        <div id="DangKy" class="modal">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content  p-4 m-5 ">
+                    <div class="modal-header">
+                        <h3>Đăng ký</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <a href="#" data-dismiss="modal" class="float-right" data-toggle="modal" data-target="#DangNhap">Đăng nhập</a>
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control form-control-lg" name="uname1" id="email" runat="server" />
+                            <div class="mt-1">
+                                <%--   <asp:UpdatePanel runat="server">
+                            <ContentTemplate>--%>
+                                <asp:Button type="button" ID="btnActCodeSender" class="btn btn-primary" Text="Gửi mã xác minh" runat="server" OnClick="btnActCodeSender_Click" />
+                                <%-- </ContentTemplate>--%>
+                                <%--     <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="btnActCodeSender" EventName="Click"/>
+                            </Triggers>
+                        </asp:UpdatePanel>--%>
+                            </div>
+                            <asp:RequiredFieldValidator
+                                Display="Dynamic"
+                                ID="RequiredEmail"
+                                runat="server"
+                                ErrorMessage="Chưa nhập Email!"
+                                ControlToValidate="email"
+                                ValidationGroup="Register"
+                                ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator
+                                ID="RegularExpressionValidator"
+                                runat="server"
+                                ErrorMessage="Email không đúng!"
+                                ControlToValidate="email"
+                                ForeColor="Red"
+                                ValidationGroup="Register"
+                                ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+                                    </asp:RegularExpressionValidator>
+                        </div>
+                        <div class="form-group">
+                            <label for="active_code">Mã xác minh</label>
+                            <input type="number" class="form-control form-control-lg" id="active_code" runat="server" />
+                            <asp:RequiredFieldValidator
+                                Display="Dynamic"
+                                ID="RequiredActiveCode"
+                                runat="server"
+                                ErrorMessage="Chưa nhập mã xác minh!"
+                                ControlToValidate="active_code"
+                                ValidationGroup="Register"
+                                ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator
+                                ID="RegularExpressionValidator1"
+                                runat="server"
+                                ErrorMessage="Mã xác minh không đúng!"
+                                ControlToValidate="active_code"
+                                ValidationGroup="Register"
+                                ForeColor="Red"
+                                ValidationExpression="^(\d{4})$">
+                                    </asp:RegularExpressionValidator>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Họ và tên</label>
+                            <input type="text" class="form-control form-control-lg" id="username" runat="server" />
+                            <asp:RequiredFieldValidator
+                                Display="Dynamic"
+                                ID="RequiredFullname"
+                                runat="server"
+                                ErrorMessage="Chưa nhập họ tên!"
+                                ControlToValidate="username"
+                                ValidationGroup="Register"
+                                ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <label for="login">Tên đăng nhập</label>
+                            <input type="text" class="form-control form-control-lg" id="login" runat="server" />
+                            <asp:RequiredFieldValidator
+                                Display="Dynamic"
+                                ID="RequiredUsername"
+                                runat="server"
+                                ErrorMessage="Chưa nhập tên đăng nhập!"
+                                ControlToValidate="login"
+                                ValidationGroup="Register"
+                                ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mật khẩu</label>
+                            <input type="password" class="form-control form-control-lg" id="password" runat="server" />
+                            <asp:RequiredFieldValidator
+                                ID="RequiredPassword"
+                                Display="Dynamic"
+                                runat="server"
+                                ErrorMessage="Chưa nhập mật khẩu!"
+                                ControlToValidate="password"
+                                ValidationGroup="Register"
+                                ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator
+                                ID="RegularExpressionValidator3"
+                                runat="server"
+                                ErrorMessage="Mật khẩu yếu"
+                                ControlToValidate="password"
+                                ValidationGroup="Register"
+                                ForeColor="Red"
+                                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$">
+                                    </asp:RegularExpressionValidator>
+                        </div>
+                        <div class="form-group">
+                            <label for="re_password">Xác nhận mật khẩu</label>
+                            <input type="password" class="form-control form-control-lg" id="re_password" runat="server" />
+                            <asp:RequiredFieldValidator
+                                Display="Dynamic"
+                                ID="RequiredRePassword"
+                                runat="server"
+                                ErrorMessage="Chưa nhập lại mật khẩu!"
+                                ControlToValidate="re_password"
+                                ValidationGroup="Register"
+                                ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group py-4">
+                            <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
+                            <%--   <asp:UpdatePanel runat="server">
+                        <ContentTemplate>--%>
+                            <asp:Button Text="Đăng ký" CssClass="btn btn-primary btn-lg float-right custom_font" ID="btnSignUp" runat="server" ValidationGroup="Register" OnClick="btnSignUp_Click" />
+                            <%--  </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="btnSignUp" EventName="Click"/>
+                        </Triggers>
+                    </asp:UpdatePanel>--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="site">
+
+            <header class="site__header d-lg-block d-none">
+                <div class="site-header">
+                    <!-- .topbar -->
+                    <div class=" topbar">
+                        <div class="topbar__container container">
+                            <div class="topbar__row">
+                                <div class="topbar__item topbar__item--link">
+                                    <a class="topbar-link"
+                                        href="/">Về The Shuz
+                                            </a>
+                                </div>
+                                <div class="topbar__item topbar__item--link">
+                                    <a class="topbar-link"
+                                        href="#">Liên hệ
+                                            </a>
+                                </div>
+                                <div class="topbar__item topbar__item--link">
+                                    <a class="topbar-link"
+                                        href="#">Theo dõi đơn hàng
+                                            </a>
+                                </div>
+                                <div class="topbar__item topbar__item--link">
+                                    <a class="topbar-link"
+                                        href="#">Kênh người bán
+                                            </a>
+                                </div>
+                                <div class="topbar__spring"></div>
+                                <div class="topbar__item">
+                                    <div class="topbar-dropdown">
+                                        <button class="topbar-dropdown__btn" type="button">
+                                            <asp:Label runat="server" ID="lbAccount" Text="Tài khoản"></asp:Label>
+                                            <svg width="7px" height="5px">
+                                                <use href="/images/sprite.svg#arrow-rounded-down-7x5"></use>
+                                            </svg>
+                                        </button>
+                                        <div class="topbar-dropdown__body">
+                                            <!-- .menu -->
+                                            <ul class="menu menu--layout--topbar">
+                                                <li id="usr_logout" runat="server" visible="false">
+                                                    <asp:LinkButton runat="server" ID="lbtnLogout" OnClick="lbtnLogout_Click">Đăng xuất</asp:LinkButton>
+                                                </li>
+                                                <li id="usr_login" runat="server">
+                                                    <a href="#" data-toggle="modal" data-target="#DangNhap">Đăng nhập</a>
+                                                </li>
+                                                <li id="usr_register" runat="server">
+                                                    <a href="#" data-toggle="modal" data-target="#DangKy">Đăng ký</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Đặt hàng</a>
+                                                </li>
+                                            </ul>
+                                            <!-- .menu / end -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .topbar / end -->
+                    <div class="site-header__nav-panel">
+                        <div class="nav-panel">
+                            <div class="nav-panel__container container">
+                                <div class="nav-panel__row">
+                                    <div class="nav-panel__logo">
+                                        <a href="/" class="logo_name">THE SHUZ</a>
+                                    </div>
+                                    <!-- .nav-links -->
+                                    <div class="nav-panel__nav-links nav-links">
+                                        <ul class="nav-links__list">
+                                            <li class="nav-links__item nav-links__item--with-submenu">
+                                                <a
+                                                    href="/">
+                                                    <span>Trang chủ
+                                                            </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-links__item nav-links__item--with-submenu">
+                                                <a
+                                                    href="/san-pham">
+                                                    <span>Sản phẩm
+                                                            </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-links__item nav-links__item--with-submenu">
+                                                <a
+                                                    href="#">
+                                                    <span>Danh mục
+                   
+                                                        <svg width="9px"
+                                                            height="6px">
+                                                            <use href="/images/sprite.svg#arrow-rounded-down-9x6">
+                                                            </use>
+                                                        </svg>
+                                                    </span>
+                                                </a>
+                                                <div class="nav-links__menu">
+                                                    <!-- .megamenu -->
+                                                    <ul class="menu ">
+                                                        <asp:Repeater ID="rptProCat" runat="server" OnInit="rptProCat_Init">
+                                                            <ItemTemplate>
+                                                                <li>
+                                                                    <a href="#"><%# Eval("CatName") %></a>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                    </ul>
+                                                </div>
+                                                <!-- .megamenu / end -->
+                                            </li>
+                                            <li class="nav-links__item nav-links__item--with-submenu">
+                                                <a
+                                                    href="<%= ResolveUrl("~/Customer/Pro_List.aspx") %>">
+                                                    <span>Thương hiệu
+                   
+                                                        <svg
+                                                            width="9px" height="6px">
+                                                            <use href="/images/sprite.svg#arrow-rounded-down-9x6"></use>
+                                                        </svg>
+                                                    </span>
+                                                </a>
+                                                <div class="nav-links__menu">
+                                                    <!-- .menu -->
+                                                    <ul class="menu ">
+                                                        <asp:Repeater ID="rptProBrand" runat="server" OnInit="rptProBrand_Init">
+                                                            <ItemTemplate>
+                                                                <li>
+                                                                    <a href="#"><%# Eval("BrandName") %></a>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                    </ul>
+                                                    <!-- .menu / end -->
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- .nav-links / end -->
+                                    <div class="nav-panel__indicators">
+
+                                        <div class="indicator indicator--trigger--click">
+                                            <a href="<%= ResolveUrl("~/Customer/GioHang.aspx") %>"
+                                                class="indicator__button">
+                                                <span class="indicator__area">
+                                                    <svg width="20px"
+                                                        height="20px">
+                                                        <use href="/images/sprite.svg#cart-20"></use>
+                                                    </svg>
+                                                    <span class="indicator__value">3</span>
+                                                </span>
+                                            </a>
+                                            <div class="indicator__dropdown">
+                                                <!-- .dropcart -->
+                                                <div class="dropcart">
+                                                    <div class="dropcart__products-list">
+                                                        <div class="dropcart__product">
+                                                            <div class="dropcart__product-image">
+                                                                <a href="product.html">
+                                                                    <img
+                                                                        src="/images/products/product-1.jpg" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="dropcart__product-info">
+                                                                <div class="dropcart__product-name">
+                                                                    <a
+                                                                        href="product.html">Electric Planer Brandix
+                                    KL370090G 300 Watts
+                                                                            </a>
+                                                                </div>
+                                                                <ul class="dropcart__product-options">
+                                                                    <li>Color: Yellow</li>
+                                                                    <li>Material: Aluminium</li>
+                                                                </ul>
+                                                                <div class="dropcart__product-meta">
+                                                                    <span>2
+                                                                            </span>x
+                               
+                                                                    <span
+                                                                        class="dropcart__product-price">$699.00
+                                </span>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button"
+                                                                class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
+                                                                <svg
+                                                                    width="10px" height="10px">
+                                                                    <use href="/images/sprite.svg#cross-10"></use>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                        <div class="dropcart__product">
+                                                            <div class="dropcart__product-image">
+                                                                <a href="product.html">
+                                                                    <img
+                                                                        src="/images/products/product-2.jpg" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="dropcart__product-info">
+                                                                <div class="dropcart__product-name">
+                                                                    <a
+                                                                        href="product.html">Undefined Tool IRadix DPS3000SY
+                                    2700 watts
+                                                                            </a>
+                                                                </div>
+                                                                <div class="dropcart__product-meta">
+                                                                    <span>1
+                                                                            </span>x
+                               
+                                                                    <span
+                                                                        class="dropcart__product-price">$849.00
+                                </span>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button"
+                                                                class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
+                                                                <svg
+                                                                    width="10px" height="10px">
+                                                                    <use href="/images/sprite.svg#cross-10"></use>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                        <div class="dropcart__product">
+                                                            <div class="dropcart__product-image">
+                                                                <a href="product.html">
+                                                                    <img
+                                                                        src="/images/products/product-5.jpg" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="dropcart__product-info">
+                                                                <div class="dropcart__product-name">
+                                                                    <a
+                                                                        href="product.html">Brandix Router Power Tool
+                                    2017ERXPK
+                                                                            </a>
+                                                                </div>
+                                                                <ul class="dropcart__product-options">
+                                                                    <li>Color: True Red</li>
+                                                                </ul>
+                                                                <div class="dropcart__product-meta">
+                                                                    <span>3
+                                                                            </span>x
+                               
+                                                                    <span
+                                                                        class="dropcart__product-price">$1,210.00
+                                </span>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button"
+                                                                class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
+                                                                <svg
+                                                                    width="10px" height="10px">
+                                                                    <use href="/images/sprite.svg#cross-10"></use>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="dropcart__totals">
+                                                        <table>
+                                                            <tr>
+                                                                <th>Subtotal</th>
+                                                                <td>$5,877.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Shipping</th>
+                                                                <td>$25.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Tax</th>
+                                                                <td>$0.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Total</th>
+                                                                <td>$5,902.00</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="dropcart__buttons">
+                                                        <a class="btn btn-secondary" href="<%= ResolveUrl("~/Customer/Cart.aspx") %>">Vào giỏ hàng</a>
+                                                        <a class="btn btn-primary" href="<%= ResolveUrl("~/Customer/Checkout.aspx") %>">Thanh toán</a>
+                                                    </div>
+                                                </div>
+                                                <!-- .dropcart / end -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- desktop site__header / end -->
+        </div>
+
+
+
+        <!--Body-->
+        <div class="site__body">
+            <div class="container">
+
+                <div class="shop-layout shop-layout--sidebar--start">
+                    <div class="shop-layout__sidebar">
+                        <div style="margin-top:50px;" class="block block-sidebar">
+                            <div class="block-sidebar__item">
+                                <div class="widget-categories widget-categories--location--shop widget">
+                                    <h4 class="widget__title">Categories</h4>
+                                    <ul class="widget-categories__list" data-collapse data-collapse-opened-class="widget-categories__item--open">
+                                        <li class="widget-categories__item" data-collapse-item>
+                                            <div class="widget-categories__row">
+                                                <a href="MerProfile.aspx">
+                                                    <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                        <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
+                                                    Merchant </a>
+                                                    <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
+                                            </div>
+                                            <div class="widget-categories__subs" data-collapse-content>
+                                                <ul>
+                                                    <li><a href="MerHome.aspx">Home Merchant</a></li>
+                                                    <li><a href="MerProfile.aspx">Profile</a></li>
+
+                                                </ul>
+                                            </div>
+
+                                        </li>
+                                        <li class="widget-categories__item" data-collapse-item>
+                                            <div class="widget-categories__row">
+                                                <a href="Sub.aspx">
+                                                    <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                        <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
+                                                    Các Gói Sub </a>
+                                                <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
+                                            </div>
+                                            <div class="widget-categories__subs" data-collapse-content>
+                                                <ul>
+                                                    <li><a href="#">Sub1</a></li>
+                                                    <li><a href="#">Sub2</a></li>
+                                                    <li><a href="#">Sub3</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="widget-categories__item" data-collapse-item>
+                                            <div class="widget-categories__row">
+                                                <a href="#">
+                                                    <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                        <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
+                                                    Shop Cá Nhân </a>
+                                                <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
+                                            </div>
+                                            <div class="widget-categories__subs" data-collapse-content>
+                                                <ul>
+                                                    <li><a href="#">Xem Sản Phẩm</a></li>
+                                                    <li><a href="#">Thêm Sản Phẩm</a></li>
+                                                    <li><a href="#">Sửa Thông Tin</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="widget-categories__item" data-collapse-item>
+                                            <div class="widget-categories__row">
+                                                <a href="SignIn.aspx">
+                                                    <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                        <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
+                                                    Sign In </a>
+
+                                            </div>
+
+                                        </li>
+                                        <li class="widget-categories__item" data-collapse-item>
+                                            <div class="widget-categories__row">
+                                                <a href="Contact.aspx">
+                                                    <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                        <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
+                                                    Liên hệ</a>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="block-sidebar__item">
+                                <div class="widget-products widget">
+                                    <h4 class="widget__title">Latest Products</h4>
+                                    <div class="widget-products__list">
+                                        <div class="widget-products__item">
+                                            <div class="widget-products__image">
+                                                <a href="product.html">
+                                                    <img src="images/products/product-1.jpg" alt=""></a>
+                                            </div>
+                                            <div class="widget-products__info">
+                                                <div class="widget-products__name"><a href="product.html">Electric Planer Brandix KL370090G 300 Watts</a></div>
+                                                <div class="widget-products__prices">$749.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="widget-products__item">
+                                            <div class="widget-products__image">
+                                                <a href="product.html">
+                                                    <img src="images/products/product-2.jpg" alt=""></a>
+                                            </div>
+                                            <div class="widget-products__info">
+                                                <div class="widget-products__name"><a href="product.html">Undefined Tool IRadix DPS3000SY 2700 Watts</a></div>
+                                                <div class="widget-products__prices">$1,019.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="widget-products__item">
+                                            <div class="widget-products__image">
+                                                <a href="product.html">
+                                                    <img src="images/products/product-3.jpg" alt=""></a>
+                                            </div>
+                                            <div class="widget-products__info">
+                                                <div class="widget-products__name"><a href="product.html">Drill Screwdriver Brandix ALX7054 200 Watts</a></div>
+                                                <div class="widget-products__prices">$850.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="widget-products__item">
+                                            <div class="widget-products__image">
+                                                <a href="product.html">
+                                                    <img src="images/products/product-4.jpg" alt="" /></a>
+                                            </div>
+                                            <div class="widget-products__info">
+                                                <div class="widget-products__name"><a href="product.html">Drill Series 3 Brandix KSR4590PQS 1500 Watts</a></div>
+                                                <div class="widget-products__prices"><span class="widget-products__new-price">$949.00</span> <span class="widget-products__old-price">$1189.00</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="widget-products__item">
+                                            <div class="widget-products__image">
+                                                <a href="product.html">
+                                                    <img src="images/products/product-5.jpg" alt=""></a>
+                                            </div>
+                                            <div class="widget-products__info">
+                                                <div class="widget-products__name"><a href="product.html">Brandix Router Power Tool 2017ERXPK</a></div>
+                                                <div class="widget-products__prices">$1,700.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sidebar/end-->
+                    <!--PlaceHolder-Content-->
+                    <div style="margin-top:50px" class="shop-layout__content">
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                        <hr />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--PlaceHolder-Content-->
+
+
+
+
+
+
+
+        <div>
+            <!-- site__footer -->
+            <footer class="site__footer">
+                <div class="site-footer">
+                    <div class="container">
+                        <div class="site-footer__widgets">
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="site-footer__widget footer-contacts">
+                                        <h5 class="footer-links__title">Chăm sóc khách hàng</h5>
+                                        <ul class="footer-links__list">
+                                            <li>
+                                                <a href="#">Vận chuyển</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Trung Tâm Trợ Giúp</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Hướng Dẫn Mua Hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Hướng Dẫn Bán Hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chăm Sóc Khách Hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chính Sách Bảo Hành</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Trả Hàng & Hoàn Tiền</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2">
+                                    <div class="site-footer__widget footer-links">
+                                        <h5 class="footer-links__title">Về The Shuz</h5>
+                                        <ul class="footer-links__list">
+                                            <li>
+                                                <a href="#">Giới thiệu về The Shuz</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Tuyển Dụng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Điều Khoản The Shuz</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chính Sách Bảo Mật</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chính Hãng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Kênh Người Bán</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Q & A</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2">
+                                    <div class="site-footer__widget footer-links">
+                                        <h5 class="footer-links__title">Tài khoản của tôi</h5>
+                                        <ul class="footer-links__list">
+                                            <li>
+                                                <a href="#">Cửa hàng của tôi</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Lịch sử đơn hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Danh sách yêu thích</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Đặc biệt</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chứng nhận</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Liên kết tổ chức</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12 col-lg-4">
+                                    <div class="site-footer__widget footer-newsletter">
+                                        <h5 class="footer-newsletter__text">Thanh toán</h5>
+                                        <div class="site-footer__payments">
+                                            <img src="/images/payments.png" alt="">
+                                        </div>
+                                        <div class="footer-newsletter__text footer-newsletter__text--social">
+                                            <h5 class="footer-newsletter__text">Theo dõi chúng tôi trên</h5>
+                                        </div>
+                                        <ul class="footer-newsletter__social-links">
+                                            <li
+                                                class="footer-newsletter__social-link footer-newsletter__social-link--facebook">
+                                                <a href="#" target="_blank">
+                                                    <i
+                                                        class="fab fa-facebook-f"></i>
+                                                </a>
+                                            </li>
+                                            <li
+                                                class="footer-newsletter__social-link footer-newsletter__social-link--twitter">
+                                                <a href="#" target="_blank">
+                                                    <i
+                                                        class="fab fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li
+                                                class="footer-newsletter__social-link footer-newsletter__social-link--youtube">
+                                                <a href="#" target="_blank">
+                                                    <i
+                                                        class="fab fa-youtube"></i>
+                                                </a>
+                                            </li>
+                                            <li
+                                                class="footer-newsletter__social-link footer-newsletter__social-link--instagram">
+                                                <a href="#" target="_blank">
+                                                    <i
+                                                        class="fab fa-instagram"></i>
+                                                </a>
+                                            </li>
+                                            <li class="footer-newsletter__social-link footer-newsletter__social-link--rss">
+                                                <a href="#" target="_blank">
+                                                    <i
+                                                        class="fas fa-rss"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="site-footer__bottom">
+                            © 2019 The Shuz. Tất cả các quyền được bảo lưu.
+                               
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- site__footer / end -->
+        </div>
+
+    </form>
+</body>
+</html>
