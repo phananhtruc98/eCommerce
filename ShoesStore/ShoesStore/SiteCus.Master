@@ -62,7 +62,7 @@
                                                             <div class="filter-categories">
                                                                 <ul class="filter-categories__list">
                                                                     <li class="filter-categories__item filter-categories__item--parent">
-                                                                        <a href="#">Đơn hàng đổi trả</a>
+                                                                        <a href="<%= ResolveUrl("~/Customer/CusHome_RcptSuccess.aspx") %>">Đơn hàng thành công</a>
                                                                     </li>
                                                                     <li class="filter-categories__item filter-categories__item--parent">
                                                                         <a href="#">Đơn hàng hủy</a>
@@ -75,13 +75,7 @@
                                                 <div class="filter filter--opened" data-collapse-item>
                                                     <button type="button"
                                                         class="filter__title" data-collapse-trigger>
-                                                        Nhận xét của tôi
-                                                    </button>
-                                                </div>
-                                                <div class="filter filter--opened" data-collapse-item>
-                                                    <button type="button"
-                                                        class="filter__title" data-collapse-trigger>
-                                                        <a href="<%= ResolveUrl("~/Customer/CusHome_Cmt.aspx") %>">Yêu thích</a>
+                                                         <a href="<%= ResolveUrl("~/Customer/CusHome_Cmt.aspx") %>">Nhận xét của tôi</a>
                                                     </button>
                                                 </div>
                                             </div>

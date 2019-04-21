@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -64,7 +65,6 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
@@ -1985,7 +1985,8 @@
     <Content Include="Customer\CusHome.aspx" />
     <Content Include="Customer\CusHome_ChangePassword.aspx" />
     <Content Include="Customer\CusHome_Cmt.aspx" />
-    <Content Include="Customer\PaypalOrder.aspx" />
+    <Content Include="Customer\CusHome_RcptSuccess.aspx" />
+    <Content Include="Customer\CusHome_RcptSuccess_Det.aspx" />
     <Content Include="Customer\ProDet.aspx" />
     <Content Include="Customer\Pro.aspx" />
     <Content Include="Customer\Test.aspx" />
@@ -2618,12 +2619,19 @@
     <Compile Include="Customer\CusHome_Cmt.aspx.designer.cs">
       <DependentUpon>CusHome_Cmt.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\PaypalOrder.aspx.cs">
-      <DependentUpon>PaypalOrder.aspx</DependentUpon>
+    <Compile Include="Customer\CusHome_RcptSuccess.aspx.cs">
+      <DependentUpon>CusHome_RcptSuccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customer\PaypalOrder.aspx.designer.cs">
-      <DependentUpon>PaypalOrder.aspx</DependentUpon>
+    <Compile Include="Customer\CusHome_RcptSuccess.aspx.designer.cs">
+      <DependentUpon>CusHome_RcptSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusHome_RcptSuccess_Det.aspx.cs">
+      <DependentUpon>CusHome_RcptSuccess_Det.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusHome_RcptSuccess_Det.aspx.designer.cs">
+      <DependentUpon>CusHome_RcptSuccess_Det.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\ProDet.aspx.cs">
       <DependentUpon>ProDet.aspx</DependentUpon>

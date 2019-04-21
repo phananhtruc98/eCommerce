@@ -7,9 +7,9 @@
         <div class="col-12">
             <asp:ListView ID="ListView1" runat="server">
                 <LayoutTemplate>
-                    <table>
+                    <table class="table">
                         <tr>
-                            <th>Tên cửa hàng</th>
+                             <th>Tên cửa hàng</th>
                             <th>Tên sản phẩm</th>
                             <th>Nhận xét</th>
                             <th>Đánh giá</th>
