@@ -36,34 +36,75 @@
         </div>
     </div>
 
-    <div class="row">
+    <%--<div class="row">
         <asp:Label runat="server" Text="Chi tiết đơn hàng" ID="lbDonHangChiTiet" CssClass="h3" Visible="false"></asp:Label>
         <div class="col-12">
-            <asp:ListView ID="lvRcptBuyDet" runat="server" Visible="false" OnDataBound="lvRcptBuyDet_DataBound" >
+            <asp:ListView ID="lvRcptBuyDet" runat="server" Visible="false" OnDataBound="lvRcptBuyDet_DataBound">
                 <LayoutTemplate>
                     <table class="table">
                         <tr>
-                            <td colspan="4"><asp:Label runat="server" ID="lbRcptId"></asp:Label></td>
+                            <td colspan="4">
+                                <asp:Label runat="server" ID="lbRcptId"></asp:Label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <asp:Label runat="server" ID="lbDateAdd"></asp:Label></td>
                         </tr>
                         <tr class="">
-                            <th class="">Mã đơn hàng </th>
-                            <th class="">Ngày đặt hàng</th>
-                            <th class="">Sản phẩm</th>
-                            <th class="">Tổng tiền</th>
-                            <th class=""></th>
+                            <th class="">Ảnh </th>
+                            <th class="">Tên sản phẩm</th>
+                            <th class="">Số lượng</th>
+                            <th class="">Giá</th>
                         </tr>
                         <tr id="itemPlaceholder" runat="server" />
                     </table>
                 </LayoutTemplate>
                 <ItemTemplate>
                     <tr>
+                        <td><%# Eval("Img")%></td>
                         <td><%# Eval("ProName")%></td>
                         <td><%# Eval("Quantity")%></td>
                         <td><%# Eval("SubPrice").ToFormatMoney()%></td>
-                        <td><%# Eval("Img")%></td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
+        </div>
+    </div>--%>
+
+    <div class="row">
+        <asp:Label runat="server" Text="Chi tiết đơn hàng" ID="Label1" CssClass="h3" Visible="false"></asp:Label>
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td colspan="4">
+                        <th class="">Ảnh </th>
+                        <th class="">Tên sản phẩm</th>
+                        <th class="">Số lượng</th>
+                        <th class="">Giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rptRcptShp" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td><%# Eval("ShpName")%></td>
+                            </tr>
+                            <asp:Repeater runat="server" ID="rptRcptShpDet">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><%# Eval("Img")%></td>
+                                        <td><%# Eval("ProName")%></td>
+                                        <td><%# Eval("Quantity")%></td>
+                                        <td><%# Eval("SubPrice").ToFormatMoney()%></td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </ItemTemplate>
+
+                    </asp:Repeater>
+                </tbody>
+            </table>
         </div>
     </div>
 </asp:Content>

@@ -18,6 +18,7 @@ namespace ShoesStore.Customer
         private readonly Pro_BUS pro = new Pro_BUS();
         private readonly Shp_BUS shp = new Shp_BUS();
         int rcptTemp = 0;
+        string dateadd = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -61,10 +62,14 @@ namespace ShoesStore.Customer
         {
             lvRcptBuy.Visible = false;
             lbDonHang.Visible = false;
-            lbDonHangChiTiet.Visible = true;
-            lvRcptBuyDet.Visible = true;
+            //lbDonHangChiTiet.Visible = true;
+            //lvRcptBuyDet.Visible = true;
             int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
             rcptTemp = RcptBuyId;
+            var d = (from r in rcpt.GetAll()
+                    where r.RcptId == RcptBuyId
+                    select r.DateAdd).Single();
+            dateadd = d.ToString();
             BindDataLvRcptBuyDet(RcptBuyId);
         }
 
@@ -74,23 +79,28 @@ namespace ShoesStore.Customer
                      join d in rcptBuyDet.GetAll() on r.RcptBuyId equals d.RcptBuyId
                      join p in pro.GetAll() on d.ProId equals p.ProId
                      join s in rcpt.GetAll() on r.RcptBuyId equals s.RcptId
+                     join h in shp.GetAll() on p.ShpId equals h.ShpId
                      where r.RcptBuyId == RcptId
                      select new
                      {
                          RcptBuyId = r.RcptBuyId,
                          DateAddRcpt = s.DateAdd,
+                         ShpName = h.ShpName,
                          ProName = p.ProName,
                          Quantity = d.Quantity,
                          SubPrice = d.Quantity * Int32.Parse(p.Price),
                          Img = p.Img
                      };
-            lvRcptBuyDet.DataSource = rs;
-            lvRcptBuyDet.DataBind();
+            rptRcptShp.DataSource = rs;
+            rptRcptShp.DataBind();
         }
 
         protected void lvRcptBuyDet_DataBound(object sender, EventArgs e)
         {
-            ((Label)lvRcptBuyDet.FindControl("lbRcptId")).Text = rcptTemp.ToString();
+            //((Label)lvRcptBuyDet.FindControl("lbRcptId")).Text = "Đơn hàng #" + rcptTemp.ToString();
+            //((Label)lvRcptBuyDet.FindControl("lbDateAdd")).Text = "Ngày đặt hàng: " + dateadd;
         }
+
+        
     }
 }
