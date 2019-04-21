@@ -2212,8 +2212,10 @@
     <Content Include="Merchant\DefaultMer.aspx" />
     <Content Include="Merchant\fonts\stroyka\stroyka.ttf" />
     <Content Include="Merchant\fonts\stroyka\stroyka.woff" />
+    <Content Include="Merchant\MerAddProd.aspx" />
     <Content Include="Merchant\MerHome.aspx" />
     <Content Include="Merchant\MerProfile.aspx" />
+    <Content Include="Merchant\MerShop.aspx" />
     <Content Include="Merchant\SignIn.aspx" />
     <Content Include="Merchant\Sub.aspx" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.eot" />
@@ -2931,6 +2933,13 @@
     <Compile Include="Merchant\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Merchant\MerAddProd.aspx.cs">
+      <DependentUpon>MerAddProd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\MerAddProd.aspx.designer.cs">
+      <DependentUpon>MerAddProd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Merchant\Merchant.Master.cs">
       <DependentUpon>Merchant.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2952,6 +2961,16 @@
     </Compile>
     <Compile Include="Merchant\MerProfile.aspx.designer.cs">
       <DependentUpon>MerProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\MerShop.aspx.cs">
+      <DependentUpon>MerShop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\MerShop.aspx.designer.cs">
+      <DependentUpon>MerShop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\MyLibrary_Merchant.cs">
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Merchant\SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>

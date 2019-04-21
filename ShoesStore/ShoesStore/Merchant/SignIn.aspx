@@ -24,7 +24,6 @@
                 <img src="/Admin/images/logo.png" width="200" /></h1>
 
             <input type="text" name="u" placeholder="Tên đăng nhập" required="required" id="login_login" runat="server" />
-
             <asp:RequiredFieldValidator
                 Display="Dynamic"
                 ID="RequiredLoginUsername"
@@ -32,10 +31,9 @@
                 ErrorMessage="Chưa nhập tài khoản!"
                 ControlToValidate="login_login"
                 ValidationGroup="Login"
-                ForeColor="Red"/>
-
+                ForeColor="Red">
+            </asp:RequiredFieldValidator>
             <input type="password" name="p" placeholder="Mật khẩu" required="required" id="login_pwd" runat="server" />
-
             <asp:RequiredFieldValidator
                 Display="Dynamic"
                 ID="RequiredLoginPassword"
@@ -43,8 +41,8 @@
                 ErrorMessage="Chưa nhập mật khẩu!"
                 ControlToValidate="login_pwd"
                 ValidationGroup="Login"
-                ForeColor="Red"/>
-
+                ForeColor="Red">
+            </asp:RequiredFieldValidator>
             <asp:Button runat="server" class="btn btn-primary btn-block btn-large" ValidationGroup="Login" Text="Đăng nhập" ID="btnLogin" OnClick="btnLogin_Click" />
 
         </div>
