@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ShoesStore
 {
@@ -19,17 +20,49 @@ namespace ShoesStore
         }
         public static string DrawStar(int star)
         {
-            string s = "";
-            List<string> list = new List<string>();
-            
-            for (int i = 0; i< star; i++)
+            StringBuilder sb = new StringBuilder();
+            sb.Append(" <div class='rating__body'>");
+            for (int i = 1; i <= 5; i++)
             {
-                list.Add("*");
+                string hasStar=(i<=star)?"rating__star--active":"";
+                sb.Append($@"<svg
+                                                                                class='rating__star {hasStar}'
+                                                                                width='13px' height='12px'>
+                                                                                <g class='rating__fill'>
+                                                                                    <use
+                                                                                        href='/images/sprite.svg#star-normal'>
+                                                                                    </use>
+                                                                                </g>
+                                                                                <g class='rating__stroke'>
+                                                                                    <use
+                                                                                        href='/images/sprite.svg#star-normal-stroke'>
+                                                                                    </use>
+                                                                                </g>
+                                                                            </svg>
+                                                                            <div
+                                                                                class='rating__star rating__star--only-edge rating__star--active'>
+                                                                                <div class='rating__fill'>
+                                                                                    <div class='fake-svg-icon'></div>
+                                                                                </div>
+                                                                                <div class='rating__stroke'>
+                                                                                    <div class='fake-svg-icon'></div>
+                                                                                </div>
+                                                                            </div>");
             }
-            s = string.Join(Environment.NewLine, list.ToArray());
-            return s;
+
+            sb.Append("</div>");
+            //string s = "";
+            //List<string> list = new List<string>();
+
+            //for (int i = 0; i < star; i++)
+            //{
+            //    list.Add("*");
+            //}
+            //s = string.Join(Environment.NewLine, list.ToArray());
+            //return s;
+            return sb.ToString();
         }
     }
 
-    
+
 }

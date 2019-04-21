@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" Title="Sản phẩm chi tiết" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ProDet.aspx.cs" Inherits="ShoesStore.Customer.SanPham_ChiTiet" %>
+
 <%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
@@ -439,10 +440,10 @@
                         <div class="product-tabs__pane" id="tab-reviews">
                             <div class="reviews-view">
                                 <div class="reviews-view__list">
-                                    <h3 class="reviews-view__header">Người mua nhận xét</h3>
+                                    <h3 class="reviews-view__header">Người mua nhận xét </h3>
                                     <div class="reviews-list">
                                         <ol class="reviews-list__content">
-                                            <asp:Repeater runat="server" ID="rptCusReview">
+                                            <asp:Repeater runat="server" ID="rptCusReview" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet">
 
                                                 <ItemTemplate>
                                                     <li class="reviews-list__item">
@@ -452,125 +453,10 @@
                                                                     src="<%# MyLibrary.CusImgPath( Eval("RcptBuy.Cus")) %>" alt="">
                                                             </div>
                                                             <div class="review__content">
-                                                                <div class="review__author"><%# Eval("RcptBuy.Cus.Usr.UsrName") %></div>
+                                                                <div class="review__author"><%# Eval("RcptBuy.Cus.Usr.UsrName") %> </div>
                                                                 <div class="review__rating">
                                                                     <div class="rating">
-                                                                        <div class="rating__body">
-                                                                            <svg
-                                                                                class="rating__star rating__star--active"
-                                                                                width="13px" height="12px">
-                                                                                <g class="rating__fill">
-                                                                                    <use
-                                                                                        href="/images/sprite.svg#star-normal">
-                                                                                    </use>
-                                                                                </g>
-                                                                                <g class="rating__stroke">
-                                                                                    <use
-                                                                                        href="/images/sprite.svg#star-normal-stroke">
-                                                                                    </use>
-                                                                                </g>
-                                                                            </svg>
-                                                                            <div
-                                                                                class="rating__star rating__star--only-edge rating__star--active">
-                                                                                <div class="rating__fill">
-                                                                                    <div class="fake-svg-icon"></div>
-                                                                                </div>
-                                                                                <div class="rating__stroke">
-                                                                                    <div class="fake-svg-icon"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <svg
-                                                                                class="rating__star rating__star--active"
-                                                                                width="13px" height="12px">
-                                                                                <g class="rating__fill">
-                                                                                    <use
-                                                                                        href="/images/sprite.svg#star-normal">
-                                                                                    </use>
-                                                                                </g>
-                                                                                <g class="rating__stroke">
-                                                                                    <use
-                                                                                        href="/images/sprite.svg#star-normal-stroke">
-                                                                                    </use>
-                                                                                </g>
-                                                                            </svg>
-                                                                            <div
-                                                                                class="rating__star rating__star--only-edge rating__star--active">
-                                                                                <div class="rating__fill">
-                                                                                    <div class="fake-svg-icon"></div>
-                                                                                </div>
-                                                                                <div class="rating__stroke">
-                                                                                    <div class="fake-svg-icon"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <svg
-                                                                                class="rating__star rating__star--active"
-                                                                                width="13px" height="12px">
-                                                                                <g class="rating__fill">
-                                                                                    <use
-                                                                                        href="/images/sprite.svg#star-normal">
-                                                                                    </use>
-                                                                                </g>
-                                                                                <g class="rating__stroke">
-                                                                                    <use
-                                                                                        href="/images/sprite.svg#star-normal-stroke">
-                                                                                    </use>
-                                                                                </g>
-                                                                            </svg>
-                                                                            <div
-                                                                                class="rating__star rating__star--only-edge rating__star--active">
-                                                                                <div class="rating__fill">
-                                                                                    <div class="fake-svg-icon"></div>
-                                                                                </div>
-                                                                                <div class="rating__stroke">
-                                                                                    <div class="fake-svg-icon"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <svg
-                                                                                class="rating__star rating__star--active"
-                                                                                width="13px" height="12px">
-                                                                                <g class="rating__fill">
-                                                                                    <use
-                                                                                        href="/images/sprite.svg#star-normal">
-                                                                                    </use>
-                                                                                </g>
-                                                                                <g class="rating__stroke">
-                                                                                    <use
-                                                                                        href="/images/sprite.svg#star-normal-stroke">
-                                                                                    </use>
-                                                                                </g>
-                                                                            </svg>
-                                                                            <div
-                                                                                class="rating__star rating__star--only-edge rating__star--active">
-                                                                                <div class="rating__fill">
-                                                                                    <div class="fake-svg-icon"></div>
-                                                                                </div>
-                                                                                <div class="rating__stroke">
-                                                                                    <div class="fake-svg-icon"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <svg class="rating__star" width="13px"
-                                                                                height="12px">
-                                                                                <g class="rating__fill">
-                                                                                    <use
-                                                                                        href="/images/sprite.svg#star-normal">
-                                                                                    </use>
-                                                                                </g>
-                                                                                <g class="rating__stroke">
-                                                                                    <use
-                                                                                        href="/images/sprite.svg#star-normal-stroke">
-                                                                                    </use>
-                                                                                </g>
-                                                                            </svg>
-                                                                            <div
-                                                                                class="rating__star rating__star--only-edge">
-                                                                                <div class="rating__fill">
-                                                                                    <div class="fake-svg-icon"></div>
-                                                                                </div>
-                                                                                <div class="rating__stroke">
-                                                                                    <div class="fake-svg-icon"></div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                       <%#MyLibrary.DrawStar(Item.Point.Value) %>
                                                                     </div>
                                                                 </div>
                                                                 <div class="review__text">
@@ -629,7 +515,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form class="reviews-view__form">
+                                <div class="reviews-view__form">
                                     <h3 class="reviews-view__header">Viết đánh giá</h3>
                                     <div class="row">
                                         <div class="col-12 col-lg-9 col-xl-8">
@@ -647,34 +533,20 @@
                                                         <option>1 Sao</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="review-author">
-                                                        Tên của bạn
-                                                    </label>
-                                                    <input type="text" class="form-control"
-                                                        id="review-author" placeholder="Your Name">
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="review-email">
-                                                        Địa chỉ Email
-                                                    </label>
-                                                    <input type="text" class="form-control"
-                                                        id="review-email" placeholder="Email Address">
-                                                </div>
+
                                             </div>
                                             <div class="form-group">
-                                                <label for="review-text">Nội dung đánh giá</label>
-                                                <textarea class="form-control" id="review-text" rows="6"></textarea>
+                                                <label for="review-text">Nội dung đánh giá</label><small> Số lượt đánh giá:
+                                                    <asp:Literal runat="server" ID="ltrCommentLeft" Text='<%#MyLibrary.RcptBuyDet_BUS.GetCommentLeft(ProDetView) %>' /></small>
+                                                <textarea runat="server" class="form-control" id="review_text" rows="6"></textarea>
+
                                             </div>
                                             <div class="form-group mb-0">
-                                                <button type="submit"
-                                                    class="btn btn-primary btn-lg">
-                                                    Gửi đánh giá    
-                                                </button>
+                                                <asp:Button runat="server" ID="btnSubmit" Text="Gửi đánh giá" OnClick="btnSubmit_OnClick" CssClass="btn btn-primary btn-lg" />
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>

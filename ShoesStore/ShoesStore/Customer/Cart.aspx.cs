@@ -81,7 +81,7 @@ namespace ShoesStore.Customer
                     HiddenField hdfPrimaryKeys = (HiddenField)rptCartDetItem.FindControl("hdfPrimaryKeys");
 
                     string[] key = hdfPrimaryKeys.Value.Split(',');
-                    CartDet obj = _cartDet.GetAll().FirstOrDefault(m => m.CartId + "" == key[0]
+                    CartDet obj = MyLibrary.CartDet_BUS.GetAll().FirstOrDefault(m => m.CartId + "" == key[0]
                                                                         && m.ShpId + "" == key[1]
                                                                         && m.ProId + "" == key[2]
                                                                         && m.ColorId + "" == key[3]
@@ -91,7 +91,7 @@ namespace ShoesStore.Customer
                     if (obj != null)
                     {
                         obj.Qty = Convert.ToInt32(qty.Text);
-                        _cartDet.Update(obj);
+                        MyLibrary.CartDet_BUS.Update(obj);
                     }
                 }
 
@@ -102,7 +102,7 @@ namespace ShoesStore.Customer
         {
 
             string[] primaryKeys = e.CommandArgument.ToString().Split(',');
-            _cartDet.Delete(_cartDet.GetAll().FirstOrDefault(
+            MyLibrary.CartDet_BUS.Delete(MyLibrary.CartDet_BUS.GetAll().FirstOrDefault(
                 m =>
                     m.CartId == Convert.ToInt32(primaryKeys[0])
                     && m.ShpId == Convert.ToInt32(primaryKeys[1])

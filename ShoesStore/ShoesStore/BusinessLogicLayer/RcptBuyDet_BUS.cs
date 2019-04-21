@@ -22,5 +22,15 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return GetAll().Count(m => m.ShpId == ShpId && m.ProId == ProId);
         }
+
+        public int GetCommentLeft(Pro iPro)
+        {
+               var v = GetAll().ToList().Where(m =>
+                m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt));
+
+            return v.Count();
+        }
+
+        
     }
 }

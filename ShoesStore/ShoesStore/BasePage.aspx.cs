@@ -15,18 +15,7 @@ namespace ShoesStore
     {
         public List<Tuple<Control, TableName>> listWc = new List<Tuple<Control, TableName>>();
 
-        internal readonly ProCat_BUS _proCat = new ProCat_BUS();
-        internal readonly ProBrand_BUS _proBrand = new ProBrand_BUS();
-        internal readonly ProDet_BUS _proDet = new ProDet_BUS();
-        internal readonly CartDet_BUS _cartDet = new CartDet_BUS();
-        internal readonly Usr_BUS _usr = new Usr_BUS();
-        internal readonly WebInfo_BUS _webInfo = new WebInfo_BUS();
-        internal readonly WebSlide_BUS _webSlide = new WebSlide_BUS();
-        internal readonly Pro_BUS _pro = new Pro_BUS();
-        internal readonly ProColor_BUS _proColor = new ProColor_BUS();
-        internal readonly ProSlide_BUS _proSlideImg = new ProSlide_BUS();
-        internal readonly RcptBuyDet_BUS _rpcptBuyDet = new RcptBuyDet_BUS();
-        internal  readonly Shp_BUS _shp = new Shp_BUS();
+  
         protected virtual void Page_Load(object sender, EventArgs e)
         {
             // Determine current view
@@ -65,17 +54,17 @@ namespace ShoesStore
                     {
                         case TableName.Pro:
                             {
-                                rptWc.DataSource = _pro.GetAll();
+                                rptWc.DataSource = MyLibrary.Pro_BUS.GetAll();
                                 break;
                             }
                         case TableName.ProCat:
                             {
-                                rptWc.DataSource = _proCat.GetAll();
+                                rptWc.DataSource = MyLibrary.ProCat_BUS.GetAll();
                                 break;
                             }
                         case TableName.ProBrand:
                             {
-                                rptWc.DataSource = _proBrand.GetAll();
+                                rptWc.DataSource = MyLibrary.ProBrand_BUS.GetAll();
                                 break;
                             }
                     }

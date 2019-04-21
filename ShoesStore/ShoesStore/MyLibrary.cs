@@ -148,8 +148,9 @@ namespace ShoesStore
 
 
         public static CartDet_BUS CartDet_BUS => new CartDet_BUS();
-
+        public static ProDet_BUS ProDet_BUS => new ProDet_BUS();
         public static ProCat_BUS ProCat_BUS => new ProCat_BUS();
+        public static ProSlide_BUS ProSlide_BUS => new ProSlide_BUS();
         public static ProBrand_BUS ProBrand_BUS => new ProBrand_BUS();
 
         public static Usr_BUS Usr_BUS => new Usr_BUS();
@@ -165,5 +166,7 @@ namespace ShoesStore
         public static RcptBuyDet_BUS RcptBuyDet_BUS => new RcptBuyDet_BUS();
         public static Cart_BUS Cart_BUS => new Cart_BUS();
         public static Shp_BUS Shp_Bus => new Shp_BUS();
+
+       
     }
 }
