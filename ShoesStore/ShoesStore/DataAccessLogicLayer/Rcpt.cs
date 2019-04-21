@@ -14,11 +14,6 @@ namespace ShoesStore.DataAccessLogicLayer
     
     public partial class Rcpt
     {
-        public Rcpt()
-        {
-            this.RcptBuy = new HashSet<RcptBuy>();
-        }
-    
         public int RcptId { get; set; }
         public int UsrAdd { get; set; }
         public Nullable<int> UsrEdit { get; set; }
@@ -28,7 +23,7 @@ namespace ShoesStore.DataAccessLogicLayer
     
         public virtual Usr Usr { get; set; }
         public virtual Usr Usr1 { get; set; }
-        public virtual ICollection<RcptBuy> RcptBuy { get; set; }
+        public virtual RcptBuy RcptBuy { get; set; }
         public virtual RcptSub RcptSub { get; set; }
     }
 }

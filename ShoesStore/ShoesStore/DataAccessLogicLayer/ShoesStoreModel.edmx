@@ -215,7 +215,6 @@
         <EntityType Name="RcptBuy">
           <Key>
             <PropertyRef Name="RcptBuyId" />
-            <PropertyRef Name="ShpId" />
           </Key>
           <Property Name="RcptBuyId" Type="int" Nullable="false" />
           <Property Name="ShpId" Type="int" Nullable="false" />
@@ -237,17 +236,14 @@
           <Property Name="Cmt" Type="nvarchar" MaxLength="255" />
           <Property Name="Point" Type="int" />
           <Property Name="Quantity" Type="int" />
-          <Property Name="DateAdd" Type="datetime" />
         </EntityType>
         <EntityType Name="RcptBuySta">
           <Key>
             <PropertyRef Name="StaId" />
             <PropertyRef Name="RcptBuyId" />
-            <PropertyRef Name="ShpId" />
           </Key>
           <Property Name="StaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RcptBuyId" Type="int" Nullable="false" />
-          <Property Name="ShpId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RcptBuyStaDet">
           <Key>
@@ -593,7 +589,7 @@
         </Association>
         <Association Name="FK_RcptBuy_Rcpt">
           <End Role="Rcpt" Type="Self.Rcpt" Multiplicity="1" />
-          <End Role="RcptBuy" Type="Self.RcptBuy" Multiplicity="*" />
+          <End Role="RcptBuy" Type="Self.RcptBuy" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Rcpt">
               <PropertyRef Name="RcptId" />
@@ -639,11 +635,9 @@
           <ReferentialConstraint>
             <Principal Role="RcptBuy">
               <PropertyRef Name="RcptBuyId" />
-              <PropertyRef Name="ShpId" />
             </Principal>
             <Dependent Role="RcptBuyDet">
               <PropertyRef Name="RcptBuyId" />
-              <PropertyRef Name="ShpId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -653,11 +647,23 @@
           <ReferentialConstraint>
             <Principal Role="RcptBuy">
               <PropertyRef Name="RcptBuyId" />
-              <PropertyRef Name="ShpId" />
             </Principal>
             <Dependent Role="RcptBuySta">
               <PropertyRef Name="RcptBuyId" />
-              <PropertyRef Name="ShpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RcptBuyStaDet_RcptBuySta">
+          <End Role="RcptBuySta" Type="Self.RcptBuySta" Multiplicity="1" />
+          <End Role="RcptBuyStaDet" Type="Self.RcptBuyStaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RcptBuySta">
+              <PropertyRef Name="StaId" />
+              <PropertyRef Name="RcptBuyId" />
+            </Principal>
+            <Dependent Role="RcptBuyStaDet">
+              <PropertyRef Name="StaId" />
+              <PropertyRef Name="RcptBuyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1435,6 +1441,10 @@
             <End Role="RcptBuy" EntitySet="RcptBuy" />
             <End Role="RcptBuySta" EntitySet="RcptBuySta" />
           </AssociationSet>
+          <AssociationSet Name="FK_RcptBuyStaDet_RcptBuySta" Association="Self.FK_RcptBuyStaDet_RcptBuySta">
+            <End Role="RcptBuySta" EntitySet="RcptBuySta" />
+            <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
+          </AssociationSet>
           <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" Association="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
             <End Role="RcptBuyStaStep" EntitySet="RcptBuyStaStep" />
             <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
@@ -2122,6 +2132,10 @@
             <End Role="RcptBuy" EntitySet="RcptBuy" />
             <End Role="RcptBuySta" EntitySet="RcptBuySta" />
           </AssociationSet>
+          <AssociationSet Name="FK_RcptBuyStaDet_RcptBuySta" Association="ShoesStoreModel.FK_RcptBuyStaDet_RcptBuySta">
+            <End Role="RcptBuySta" EntitySet="RcptBuySta" />
+            <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
+          </AssociationSet>
           <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" Association="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
             <End Role="RcptBuyStaStep" EntitySet="RcptBuyStaStep" />
             <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
@@ -2282,7 +2296,6 @@
         <ComplexType Name="sp_RcptBuySta_Select_Result">
           <Property Type="Int32" Name="StaId" Nullable="false" />
           <Property Type="Int32" Name="RcptBuyId" Nullable="false" />
-          <Property Type="Int32" Name="ShpId" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_RcptBuyStaDet_Select_Result">
           <Property Type="Int32" Name="StaId" Nullable="false" />
@@ -2613,7 +2626,6 @@
         <EntityType Name="RcptBuy">
           <Key>
             <PropertyRef Name="RcptBuyId" />
-            <PropertyRef Name="ShpId" />
           </Key>
           <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
           <Property Name="ShpId" Type="Int32" Nullable="false" />
@@ -2640,7 +2652,6 @@
           <Property Name="Cmt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Point" Type="Int32" />
           <Property Name="Quantity" Type="Int32" />
-          <Property Name="DateAdd" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_RcptBuyDet_ProDet" FromRole="RcptBuyDet" ToRole="ProDet" />
           <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuyDet_RcptBuy" FromRole="RcptBuyDet" ToRole="RcptBuy" />
         </EntityType>
@@ -2648,12 +2659,11 @@
           <Key>
             <PropertyRef Name="StaId" />
             <PropertyRef Name="RcptBuyId" />
-            <PropertyRef Name="ShpId" />
           </Key>
           <Property Name="StaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
-          <Property Name="ShpId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuySta_RcptBuy" FromRole="RcptBuySta" ToRole="RcptBuy" />
+          <NavigationProperty Name="RcptBuyStaDet" Relationship="ShoesStoreModel.FK_RcptBuyStaDet_RcptBuySta" FromRole="RcptBuySta" ToRole="RcptBuyStaDet" />
         </EntityType>
         <EntityType Name="RcptBuyStaDet">
           <Key>
@@ -2667,6 +2677,7 @@
           <Property Name="ShpId" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="StepId" Type="Int32" Nullable="false" />
           <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RcptBuySta" Relationship="ShoesStoreModel.FK_RcptBuyStaDet_RcptBuySta" FromRole="RcptBuyStaDet" ToRole="RcptBuySta" />
           <NavigationProperty Name="RcptBuyStaStep" Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" FromRole="RcptBuyStaDet" ToRole="RcptBuyStaStep" />
         </EntityType>
         <EntityType Name="RcptBuyStaStep">
@@ -3097,7 +3108,7 @@
         </Association>
         <Association Name="FK_RcptBuy_Rcpt">
           <End Type="ShoesStoreModel.Rcpt" Role="Rcpt" Multiplicity="1" />
-          <End Type="ShoesStoreModel.RcptBuy" Role="RcptBuy" Multiplicity="*" />
+          <End Type="ShoesStoreModel.RcptBuy" Role="RcptBuy" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Rcpt">
               <PropertyRef Name="RcptId" />
@@ -3137,11 +3148,9 @@
           <ReferentialConstraint>
             <Principal Role="RcptBuy">
               <PropertyRef Name="RcptBuyId" />
-              <PropertyRef Name="ShpId" />
             </Principal>
             <Dependent Role="RcptBuyDet">
               <PropertyRef Name="RcptBuyId" />
-              <PropertyRef Name="ShpId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3151,11 +3160,23 @@
           <ReferentialConstraint>
             <Principal Role="RcptBuy">
               <PropertyRef Name="RcptBuyId" />
-              <PropertyRef Name="ShpId" />
             </Principal>
             <Dependent Role="RcptBuySta">
               <PropertyRef Name="RcptBuyId" />
-              <PropertyRef Name="ShpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RcptBuyStaDet_RcptBuySta">
+          <End Type="ShoesStoreModel.RcptBuySta" Role="RcptBuySta" Multiplicity="1" />
+          <End Type="ShoesStoreModel.RcptBuyStaDet" Role="RcptBuyStaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RcptBuySta">
+              <PropertyRef Name="StaId" />
+              <PropertyRef Name="RcptBuyId" />
+            </Principal>
+            <Dependent Role="RcptBuyStaDet">
+              <PropertyRef Name="StaId" />
+              <PropertyRef Name="RcptBuyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3494,7 +3515,6 @@
               <ComplexTypeMapping TypeName="ShoesStoreModel.sp_RcptBuySta_Select_Result">
                 <ScalarProperty Name="StaId" ColumnName="StaId" />
                 <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
-                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3884,7 +3904,6 @@
           <EntitySetMapping Name="RcptBuyDet">
             <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuyDet">
               <MappingFragment StoreEntitySet="RcptBuyDet">
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="Cmt" ColumnName="Cmt" />
@@ -3899,7 +3918,6 @@
           <EntitySetMapping Name="RcptBuySta">
             <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuySta">
               <MappingFragment StoreEntitySet="RcptBuySta">
-                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
                 <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
                 <ScalarProperty Name="StaId" ColumnName="StaId" />
               </MappingFragment>

@@ -166,7 +166,8 @@ namespace ShoesStore
         public static RcptBuyDet_BUS RcptBuyDet_BUS => new RcptBuyDet_BUS();
         public static Cart_BUS Cart_BUS => new Cart_BUS();
         public static Shp_BUS Shp_Bus => new Shp_BUS();
-
+        public static Rcpt_BUS Rcpt_BUS => new Rcpt_BUS();
+        public static RcptBuy_BUS RcptBuy_BUS => new RcptBuy_BUS();
        
     }
 }

@@ -20,6 +20,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public int StepId { get; set; }
         public bool IsDone { get; set; }
     
+        public virtual RcptBuySta RcptBuySta { get; set; }
         public virtual RcptBuyStaStep RcptBuyStaStep { get; set; }
     }
 }
