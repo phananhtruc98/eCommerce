@@ -12,7 +12,7 @@ namespace ShoesStore
 {
     public partial class MyLibrary
     {
-        public static Usr_BUS Usr_BUS => new Usr_BUS();
+        
         
 
 

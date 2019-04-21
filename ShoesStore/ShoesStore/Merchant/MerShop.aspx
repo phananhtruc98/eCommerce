@@ -4,7 +4,7 @@
 <%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
 <%@ Import Namespace="ShoesStore" %>
 
-<%@ MasterType VirtualPath="~/Merchant/Merchant1.Master" %>
+<%@ MasterType VirtualPath="~/Merchant/Merchant.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <!--Thông Tin Shop-->
     <div>
