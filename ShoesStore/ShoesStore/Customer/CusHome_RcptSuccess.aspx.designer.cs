@@ -40,22 +40,22 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.Label TestLabel;
         
         /// <summary>
-        /// lbDonHangChiTiet control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDonHangChiTiet;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// lvRcptBuyDet control.
+        /// rptRcptShp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvRcptBuyDet;
+        protected global::System.Web.UI.WebControls.Repeater rptRcptShp;
         
         /// <summary>
         /// Master property.
