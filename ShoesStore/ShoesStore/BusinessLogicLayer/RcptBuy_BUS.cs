@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
+using Microsoft.Ajax.Utilities;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 
@@ -59,7 +61,8 @@ namespace ShoesStore.BusinessLogicLayer
         public List<RcptBuy> ListRcptBuyPreview_Shop(int RcptId)
         {
             int[] shpIds = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(RcptId).Select(m => m.ShpId).OrderBy(x => x).Distinct().ToArray();
-            return MyLibrary.RcptBuy_BUS.GetAll().Where(m => shpIds.Contains(m.ShpId)).ToList();
+            var tmp = MyLibrary.RcptBuy_BUS.GetAll().Where(m => shpIds.Contains(m.ShpId) && m.RcptBuyId.Equals(RcptId)).ToList();
+            return tmp;
         }
     }
 }
