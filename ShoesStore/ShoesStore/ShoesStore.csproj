@@ -2235,6 +2235,7 @@
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900.woff" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900.woff2" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-solid-900d41d.eot" />
+    <Content Include="Merchant\SiteMerchant.Master" />
     <EntityDeploy Include="DataAccessLogicLayer\ShoesStoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ShoesStoreModel.Designer.cs</LastGenOutput>
@@ -2242,7 +2243,6 @@
     <Content Include="DataAccessLogicLayer\ShoesStoreModel.edmx.diagram">
       <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Merchant\SiteMerchant.Master" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="images\aboutus.jpg" />
     <Content Include="images\avatars\avatar-1.jpg" />
@@ -2574,6 +2574,9 @@
     <Compile Include="BusinessLogicLayer\ProSlide_BUS.cs" />
     <Compile Include="BusinessLogicLayer\Pro_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptBuyDet_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\RcptBuyStaDet_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\RcptBuyStaStep_BUS.cs" />
+    <Compile Include="BusinessLogicLayer\RcptBuySta_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptBuy_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptSubDet_BUS.cs" />
     <Compile Include="BusinessLogicLayer\RcptSub_BUS.cs" />
@@ -2734,9 +2737,12 @@
     <Compile Include="DataAccessLogicLayer\RcptBuyStaDet.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptBuyStaDet_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\RcptBuyStaStep.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\RcptBuyStaStep_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\RcptBuySta_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\RcptBuy_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\RcptSub.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>

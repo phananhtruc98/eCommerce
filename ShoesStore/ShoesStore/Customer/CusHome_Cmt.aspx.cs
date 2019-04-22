@@ -18,7 +18,7 @@ namespace ShoesStore.Customer
             Usr usr = (Usr)WebSession.LoginUsr;
             Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
             BindDataListview(usr1.UsrId);
-            
+
         }
 
         public void BindDataListview(int CusId)
@@ -38,10 +38,10 @@ namespace ShoesStore.Customer
                          SizeName = z.SizeName,
                          Cmt = d.Cmt,
                          Point = d.Point,
-                         DateAdd = d.DateAdd
+
                      };
             var rs1 = from a in rs.ToList()
-                      group a by new { a.ShpName, a.ProName, a.ColorName, a.SizeName, a.Cmt, a.Point,a.DateAdd } into t
+                      group a by new { a.ShpName, a.ProName, a.ColorName, a.SizeName, a.Cmt, a.Point } into t
                       select new
                       {
                           ShpName = t.Key.ShpName,
@@ -50,7 +50,7 @@ namespace ShoesStore.Customer
                           SizeName = t.Key.SizeName,
                           Cmt = t.Key.Cmt,
                           Point = t.Key.Point,
-                          DateAdd = t.Key.DateAdd
+
                       };
 
             if (rs1.Count() == 0)

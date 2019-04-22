@@ -50,7 +50,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<RcptBuy> RcptBuy { get; set; }
         public DbSet<RcptBuyDet> RcptBuyDet { get; set; }
         public DbSet<RcptBuySta> RcptBuySta { get; set; }
-        public DbSet<RcptBuyStaDet> RcptBuyStaDet { get; set; }
         public DbSet<RcptBuyStaStep> RcptBuyStaStep { get; set; }
         public DbSet<RcptSub> RcptSub { get; set; }
         public DbSet<RcptSubDet> RcptSubDet { get; set; }

@@ -249,14 +249,12 @@
           <Key>
             <PropertyRef Name="StaId" />
             <PropertyRef Name="RcptBuyId" />
-            <PropertyRef Name="ShpId" />
             <PropertyRef Name="StepId" />
           </Key>
           <Property Name="StaId" Type="int" Nullable="false" />
           <Property Name="RcptBuyId" Type="int" Nullable="false" />
-          <Property Name="ShpId" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="StepId" Type="int" Nullable="false" />
-          <Property Name="IsDone" Type="bit" Nullable="false" />
+          <Property Name="AddDate" Type="datetime" />
         </EntityType>
         <EntityType Name="RcptBuyStaStep">
           <Key>
@@ -2291,7 +2289,6 @@
           <Property Type="String" Name="Cmt" Nullable="true" MaxLength="255" />
           <Property Type="Int32" Name="Point" Nullable="true" />
           <Property Type="Int32" Name="Quantity" Nullable="true" />
-          <Property Type="DateTime" Name="DateAdd" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="sp_RcptBuySta_Select_Result">
           <Property Type="Int32" Name="StaId" Nullable="false" />
@@ -2300,9 +2297,7 @@
         <ComplexType Name="sp_RcptBuyStaDet_Select_Result">
           <Property Type="Int32" Name="StaId" Nullable="false" />
           <Property Type="Int32" Name="RcptBuyId" Nullable="false" />
-          <Property Type="String" Name="ShpId" Nullable="false" MaxLength="10" />
           <Property Type="Int32" Name="StepId" Nullable="false" />
-          <Property Type="Boolean" Name="IsDone" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_RcptBuyStaStep_Select_Result">
           <Property Type="Int32" Name="StepId" Nullable="false" />
@@ -2669,14 +2664,12 @@
           <Key>
             <PropertyRef Name="StaId" />
             <PropertyRef Name="RcptBuyId" />
-            <PropertyRef Name="ShpId" />
             <PropertyRef Name="StepId" />
           </Key>
           <Property Name="StaId" Type="Int32" Nullable="false" />
           <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
-          <Property Name="ShpId" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="StepId" Type="Int32" Nullable="false" />
-          <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="RcptBuySta" Relationship="ShoesStoreModel.FK_RcptBuyStaDet_RcptBuySta" FromRole="RcptBuyStaDet" ToRole="RcptBuySta" />
           <NavigationProperty Name="RcptBuyStaStep" Relationship="ShoesStoreModel.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" FromRole="RcptBuyStaDet" ToRole="RcptBuyStaStep" />
         </EntityType>
@@ -3503,7 +3496,6 @@
                 <ScalarProperty Name="Cmt" ColumnName="Cmt" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3526,9 +3518,7 @@
               <ComplexTypeMapping TypeName="ShoesStoreModel.sp_RcptBuyStaDet_Select_Result">
                 <ScalarProperty Name="StaId" ColumnName="StaId" />
                 <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
-                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
                 <ScalarProperty Name="StepId" ColumnName="StepId" />
-                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3926,9 +3916,8 @@
           <EntitySetMapping Name="RcptBuyStaDet">
             <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuyStaDet">
               <MappingFragment StoreEntitySet="RcptBuyStaDet">
-                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
                 <ScalarProperty Name="StepId" ColumnName="StepId" />
-                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
                 <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />
                 <ScalarProperty Name="StaId" ColumnName="StaId" />
               </MappingFragment>

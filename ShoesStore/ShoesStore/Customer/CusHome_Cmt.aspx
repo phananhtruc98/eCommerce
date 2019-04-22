@@ -10,13 +10,13 @@
                 <LayoutTemplate>
                     <table class="table">
                         <tr>
-                             <th>Tên cửa hàng</th>
+                            <th>Tên cửa hàng</th>
                             <th>Tên sản phẩm</th>
                             <th>Màu</th>
                             <th>Kích cỡ</th>
                             <th>Nhận xét</th>
                             <th>Đánh giá</th>
-                            <th>Ngày thêm</th>
+                            <%--  <th>Ngày thêm</th>--  Hiện đã bỏ cột DateAdd  (Sẽ là ngày thêm của hóa đơn trong bảng Rcpt --%>
                         </tr>
                         <tr id="itemPlaceholder" runat="server" />
                     </table>
@@ -30,9 +30,9 @@
                         <td><%# Eval("ProName")%></td>
                         <td><%# Eval("Cmt")%></td>
                         <td><%#MyLibrary.DrawStar(int.Parse(Eval("Point").ToString())) %></td>
-                        <td><%# Eval("DateAdd")%></td>
+                        <%--<td><%# Eval("DateAdd")%></td> --%>
                     </tr>
-                </ItemTemplate>
+</ItemTemplate>
             </asp:ListView>
         </div>
     </div>
