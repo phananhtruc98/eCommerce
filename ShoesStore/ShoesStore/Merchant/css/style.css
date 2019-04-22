@@ -10603,7 +10603,7 @@ h1 {
     text-decoration: none;
 }
 /*********footer*******************/
-. kilimanjaro_area {
+.kilimanjaro_area {
     position: relative;
     z-index: 1;
 }
@@ -10840,7 +10840,7 @@ p, ul li, ol li {
 }
 
 /* Clear floats after the columns */
-.row:after 
+.row:after {
     content: "";
     display: table;
     clear: both;
@@ -10976,20 +10976,6 @@ p, ul li, ol li {
     padding: 20px;
 }
 
-h1 {
-    font-size: 20px;
-    text-align: center;
-    margin: 20px 0 20px;
-    small
-
-{
-    display: block;
-    font-size: 15px;
-    padding-top: 8px;
-    color: gray;
-}
-
-}
 
 .avatar-upload {
     position: relative;

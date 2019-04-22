@@ -35,7 +35,7 @@
                                 </ItemTemplate>
                             </asp:ListView>
                         </td>
-                        <td><%#/*  MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() */%></td>
+                        <td><%/*  MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() */%></td>
                         <td>
                             <asp:LinkButton ID="Link1" runat="server" CommandName="sel" CommandArgument='<%# Item.RcptBuyId%>'
                                 Text="CHI TIẾT" /></td>

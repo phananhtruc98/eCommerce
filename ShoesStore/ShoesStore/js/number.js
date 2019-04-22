@@ -2,10 +2,11 @@
     "use strict";
     // CustomEvent polyfill
     try {
-        new CustomEvent('IE has CustomEvent, but doesn\'t support constructor');
+	    let rtcDtlsTransportStateChangedEvent = new CustomEvent('IE has CustomEvent, but doesn\'t support constructor');
     } catch (e) {
         window.CustomEvent = function(event, params) {
-            let evt;
+	        "use strict";
+	        let evt;
             params = params || {
                 bubbles: false,
                 cancelable: false,

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Dynamic;
-using Microsoft.Ajax.Utilities;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Web.UI.WebControls;
-
-namespace ShoesStore.Merchant
+﻿namespace ShoesStore.Merchant
 {
     public partial class MerShop : System.Web.UI.Page
     {

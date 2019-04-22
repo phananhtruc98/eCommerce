@@ -1,7 +1,4 @@
 ﻿<%@ Page Language="C#" Title="Trang Shop Cá Nhân" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerShop.aspx.cs" Inherits="ShoesStore.Merchant.MerShop" %>
-
-<%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
-<%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
 <%@ Import Namespace="ShoesStore" %>
 
 <%@ MasterType VirtualPath="~/Merchant/SiteMerchant.Master" %>
@@ -66,7 +63,7 @@
                        
                         </button>
                     </li>
-                    <asp:Repeater runat="server" ID="featuredProducts" OnInit="featuredProducts_Init">
+                    <asp:Repeater runat="server" ID="featuredProducts">
                         <ItemTemplate>
                             <li>
                                 <button type="button" class="block-header__group"><%#Eval("CatName") %></button>
@@ -94,7 +91,7 @@
                 <div class="block-products-carousel__preloader"></div>
                 <div class="owl-carousel">
 
-                    <asp:Repeater runat="server" ID="rptFeatureProducts" OnInit="rptFeatureProducts_Init">
+                    <asp:Repeater runat="server" ID="rptFeatureProducts">
                         <ItemTemplate>
 
                             <div class="block-products-carousel__cell">
@@ -258,7 +255,7 @@
             <div class="block-products__body">
                 <div class="block-products__list">
 
-                    <asp:Repeater runat="server" ID="rptBestSellers" OnInit="rptBestSellers_Init">
+                    <asp:Repeater runat="server" ID="rptBestSellers">
 
                         <ItemTemplate>
                             <div style="width: 212.667px;" class="block-products__list-item col-xs-6 col-sm-4 col-md-3 col-lg-2 ">
@@ -410,7 +407,7 @@
                 </div>
             </div>
             <div style="overflow: hidden;">
-                <asp:Repeater ID="rptPagingBestSellers" runat="server" OnItemCommand="rptPagingBestSellers_ItemCommand">
+                <asp:Repeater ID="rptPagingBestSellers" runat="server">
                     <ItemTemplate>
                         <asp:LinkButton ID="btnPage"
                             Style="padding: 8px; margin: 2px; background: #ffa100; border: solid 1px #666; font: 8pt tahoma;"

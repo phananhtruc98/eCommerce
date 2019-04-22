@@ -5,7 +5,6 @@ using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.FriendlyUrls.Resolvers;
-using ShoesStore.BusinessLogicLayer;
 
 namespace ShoesStore
 {

@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Trang chủ" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShoesStore.Default" %>
 
 <%@ Import Namespace="ShoesStore" %>
-<%@ Import Namespace="ShoesStore.MyExtensions" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>

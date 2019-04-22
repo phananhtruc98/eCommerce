@@ -1,12 +1,9 @@
 ﻿using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using ShoesStore.MyExtensions;
+
 namespace ShoesStore.Customer
 {
     public partial class CusHome_RcptSuccess : System.Web.UI.Page
