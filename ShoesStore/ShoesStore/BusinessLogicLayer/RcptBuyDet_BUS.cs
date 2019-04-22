@@ -42,7 +42,6 @@ namespace ShoesStore.BusinessLogicLayer
             try
             {
                 Cus cus = MyLibrary.Cus_BUS.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
-                //RcptBuyDet rcptBuyDet = MyLibrary.RcptBuyDet_BUS.GetAll().FirstOrDefault(m => cus != null && m.RcptBuyId == RcptId);
                 RcptBuyDet rcptBuyDet = MyLibrary.RcptBuyDet_BUS.GetAll().FirstOrDefault(m => cus != null && m.RcptBuyId == RcptId);
                 return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuyDet != null && m.RcptBuyId == rcptBuyDet.RcptBuyId).ToList();
             }
@@ -50,6 +49,14 @@ namespace ShoesStore.BusinessLogicLayer
             {
                 return null;
             }
+        }
+
+        public List<RcptBuyDet> ListRcptBuyDet_Ìmg()
+        {
+             Cus cus = MyLibrary.Cus_BUS.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
+             RcptBuy rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+            //List<RcptBuy> rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == cus.CusId).ToList();
+            return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && m.RcptBuyId == rcptBuy.RcptBuyId).ToList();
         }
     }
 }

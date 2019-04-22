@@ -8,9 +8,10 @@
         <asp:Label runat="server" Text="Đơn hàng gần đây" ID="lbDonHang" CssClass="h3"></asp:Label>
         <div class="col-12">
             <asp:Label ID="lbEmpty" runat="server" Text="Không có đơn hàng nào" Visible="false"></asp:Label>
-            <asp:ListView ID="lvRcptBuy" runat="server" OnItemCommand="lvRcptBuy_ItemCommand">
+            <asp:ListView ID="lvRcptBuy" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" runat="server" OnItemCommand="lvRcptBuy_ItemCommand" OnItemDataBound="lvRcptBuy_ItemDataBound">
                 <LayoutTemplate>
                     <table class="table">
+                       
                         <tr class="">
                             <th class="">Mã đơn hàng </th>
                             <th class="">Ngày đặt hàng</th>
@@ -22,13 +23,21 @@
                     </table>
                 </LayoutTemplate>
                 <ItemTemplate>
+                     <asp:HiddenField ID="hdfRcptBuyId" runat="server" Value="<%# Item.RcptBuyId %>" />
                     <tr>
-                        <td><%# Eval("RcptBuyId1")%></td>
-                        <td><%# Eval("DateAddRcpt")%></td>
-                        <td><%# MyLibrary.DisplayImg((List<string>)Eval("ImgPro"))%></td>
-                        <td><%# Eval("Sum").ToFormatMoney()%></td>
+                        <td><%# Item.RcptBuyId %></td>
+                        <td><%# Item.Rcpt.DateAdd %></td>
+                        <asp:ListView ID="lvRcptBuyDet" runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet">
+                            <ItemTemplate>
+                                <td>
+                                    <img style="width: 80px; height: 80px"
+                                        src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
+                                </td>
+                            </ItemTemplate>
+                        </asp:ListView>
+                        <%--<td><%# Eval("Sum").ToFormatMoney()%></td>--%>
                         <td>
-                            <asp:LinkButton ID="Link1" runat="server" CommandName="sel" CommandArgument='<%#Eval("RcptBuyId1")%>'
+                            <asp:LinkButton ID="Link1" runat="server" CommandName="sel" CommandArgument='<%# Item.RcptBuyId%>'
                                 Text="Select" /></td>
                     </tr>
                 </ItemTemplate>
@@ -87,7 +96,7 @@
                 <tbody>
                     <asp:Repeater ID="rptRcptShp" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" runat="server" OnItemDataBound="rptRcptShp_ItemDataBound">
                         <ItemTemplate>
-                            <asp:HiddenField runat="server" ID="hdfShpId" Value="<%# Item.ShpId %>"/>
+                            <asp:HiddenField runat="server" ID="hdfShpId" Value="<%# Item.ShpId %>" />
                             <tr>
                                 <td colspan="4"><%# Item.Shp.ShpName%></td>
                             </tr>
@@ -95,9 +104,9 @@
                                 <ItemTemplate>
                                     <tr>
                                         <td><a href="#">
-                                                <img style="width:80px; height:80px"
-                                                    src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
-                                            </a></td>
+                                            <img style="width: 80px; height: 80px"
+                                                src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
+                                        </a></td>
                                         <td><%# Item.ProDet.Pro.ProName %></td>
                                         <td><%# Item.Quantity%></td>
                                         <td><%# (Item.Quantity * Int32.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>

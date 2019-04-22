@@ -31,46 +31,89 @@ namespace ShoesStore.Customer
 
         private void BindGridViewgvRcptBuy(int CusId)
         {
-            var rs = from r in rcptBuy.GetAll()
-                     join d in rcptBuyDet.GetAll() on r.RcptBuyId equals d.RcptBuyId
-                     join p in pro.GetAll() on d.ProId equals p.ProId
-                     join s in rcpt.GetAll() on r.RcptBuyId equals s.RcptId
-                     where r.CusId == CusId
-                     select new
-                     {
-                         RcptBuyId = r.RcptBuyId,
-                         DateAddRcpt = s.DateAdd,
-                         SumPrice = d.Quantity * Int32.Parse(p.Price),
-                         Img = p.Img
-                     };
-            var rs1 = from a in rs.ToList()
-                      group a by new { a.RcptBuyId, a.DateAddRcpt, a.SumPrice, a.Img } into t
-                      select new
-                      {
-                          RcptBuyId = t.Key.RcptBuyId,
-                          DateAddRcpt = t.Key.DateAddRcpt,
-                          SumPrice = t.Key.SumPrice,
-                          Img = t.Key.Img,
-                      };
+            //var rs = from r in rcptBuy.GetAll()
+            //         join d in rcptBuyDet.GetAll() on r.RcptBuyId equals d.RcptBuyId
+            //         join p in pro.GetAll() on d.ProId equals p.ProId
+            //         join s in rcpt.GetAll() on r.RcptBuyId equals s.RcptId
+            //         where r.CusId == CusId
+            //         select new
+            //         {
+            //             RcptBuyId = r.RcptBuyId,
+            //             DateAddRcpt = s.DateAdd,
+            //             SumPrice = d.Quantity * Int32.Parse(p.Price),
+            //             Img = p.Img
+            //         };
+            //var rs1 = from a in rs.ToList()
+            //          group a by new { a.RcptBuyId, a.DateAddRcpt, a.SumPrice, a.Img } into t
+            //          select new
+            //          {
+            //              RcptBuyId = t.Key.RcptBuyId,
+            //              DateAddRcpt = t.Key.DateAddRcpt,
+            //              SumPrice = t.Key.SumPrice,
+            //              Img = t.Key.Img,
+            //          };
 
-            var rs2 = (from a in rs1.ToList()
-                      group a by new { a.RcptBuyId, a.DateAddRcpt } into p
-                      select new
-                      {
-                          RcptBuyId1 = p.Key.RcptBuyId,
-                          Sum = p.Sum(x => x.SumPrice),
-                          DateAddRcpt = p.Key.DateAddRcpt,
-                          ImgPro = p.Select(x => x.Img).ToList()
-                      }).ToList();
-            if (rs2.Count() == 0)
-            {
-                lbEmpty.Visible = true;
-            }
-            else
-            {
-                lvRcptBuy.DataSource = rs2;
-                lvRcptBuy.DataBind();
-            }
+            //var rs2 = (from a in rs1.ToList()
+            //          group a by new { a.RcptBuyId, a.DateAddRcpt } into p
+            //          select new
+            //          {
+            //              RcptBuyId1 = p.Key.RcptBuyId,
+            //              Sum = p.Sum(x => x.SumPrice),
+            //              DateAddRcpt = p.Key.DateAddRcpt,
+            //              ImgPro = p.Select(x => x.Img).ToList()
+            //          }).OrderByDescending(x=>x.DateAddRcpt).ToList();
+            //if (rs2.Count() == 0)
+            //{
+            //    lbEmpty.Visible = true;
+            //}
+            //else
+            //{
+            //    lvRcptBuy.DataSource = rs2;
+            //    lvRcptBuy.DataBind();
+            //}
+            //var rs = from r in rcptBuy.GetAll()
+            //         join d in rcptBuyDet.GetAll() on r.RcptBuyId equals d.RcptBuyId
+            //         join p in pro.GetAll() on d.ProId equals p.ProId
+            //         join s in rcpt.GetAll() on r.RcptBuyId equals s.RcptId
+            //         where r.CusId == CusId
+            //         select new
+            //         {
+            //             RcptBuyId = r.RcptBuyId,
+            //             DateAddRcpt = s.DateAdd,
+            //             SumPrice = d.Quantity * Int32.Parse(p.Price),
+            //             Pro = p
+            //         };
+            //var rs1 = from a in rs.ToList()
+            //          group a by new { a.RcptBuyId, a.DateAddRcpt, a.SumPrice, a.Pro } into t
+            //          select new
+            //          {
+            //              RcptBuyId = t.Key.RcptBuyId,
+            //              DateAddRcpt = t.Key.DateAddRcpt,
+            //              SumPrice = t.Key.SumPrice,
+            //              Pro = t.Key.Pro
+            //          };
+
+            //var rs2 = (from a in rs1.ToList()
+            //           group a by new { a.RcptBuyId, a.DateAddRcpt, a.Pro } into p
+            //           select new
+            //           {
+            //               RcptBuyId1 = p.Key.RcptBuyId,
+            //               Sum = p.Sum(x => x.SumPrice),
+            //               DateAddRcpt = p.Key.DateAddRcpt,
+            //               Pro = p.Key.Pro
+            //           }).ToList();
+            //if (rs2.Count() == 0)
+            //{
+            //    lbEmpty.Visible = true;
+            //}
+            //else
+            //{
+            //    lvRcptBuy.DataSource = rs2;
+            //    lvRcptBuy.DataBind();
+            //}
+
+            lvRcptBuy.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            lvRcptBuy.DataBind();
         }
 
         protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -111,6 +154,19 @@ namespace ShoesStore.Customer
 
                 rptRcptShpDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(rcptTemp).Where(m => m.ShpId + "" == hdfShpId.Value);
                 rptRcptShpDet.DataBind();
+            }
+        }
+
+        protected void lvRcptBuy_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                HiddenField hdfRcptBuyId = (HiddenField)e.Item.FindControl("hdfRcptBuyId");
+                int RcptBuyId = Int32.Parse(hdfRcptBuyId.Value);
+                ListView lvRcptBuyDet = (ListView)e.Item.FindControl("lvRcptBuyDet");
+
+                lvRcptBuyDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
+                lvRcptBuyDet.DataBind();
             }
         }
     }
