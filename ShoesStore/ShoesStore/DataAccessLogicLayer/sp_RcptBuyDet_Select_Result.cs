@@ -21,6 +21,5 @@ namespace ShoesStore.DataAccessLogicLayer
         public string Cmt { get; set; }
         public Nullable<int> Point { get; set; }
         public Nullable<int> Quantity { get; set; }
-        public Nullable<System.DateTime> DateAdd { get; set; }
     }
 }

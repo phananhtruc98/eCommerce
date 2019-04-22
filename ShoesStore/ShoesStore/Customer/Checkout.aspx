@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="checkout block">
+        <div class="checkout block" runat="server" id="checkoutContent">
             <div class="container">
                 <div class="row">
                     <div class="col-12 mb-3">
@@ -45,7 +45,7 @@
                                             Họ và tên
                                         </label>
                                         <input type="text" class="form-control form-control-lg"
-                                            value="<%:WebSession.LoginCus.Usr.UsrName %>"
+                                            value="<%#WebSession.LoginCus?.Usr.UsrName %>"
                                             id="checkout-first-name">
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                             Địa chỉ
                                         </label>
                                         <input type="text" class="form-control form-control-lg"
-                                            value="<%:WebSession.LoginCus.Usr.Address %>"
+                                            value="<%#WebSession.LoginCus?.Usr.Address %>"
                                             id="checkout-last-name">
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                             Email
                                         </label>
                                         <input type="email" class="form-control form-control-lg"
-                                            value="<%:WebSession.LoginCus.Usr.Email %>"
+                                            value="<%#WebSession.LoginCus?.Usr.Email %>"
                                             id="checkout-email">
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                                     <div class="form-group col-md-12">
                                         <label for="checkout-phone">Số điện thoại</label>
                                         <input type="text" class="form-control form-control-lg" id="checkout-phone"
-                                            value="<%:WebSession.LoginCus.Usr.Phone %>">
+                                            value="<%#WebSession.LoginCus?.Usr.Phone %>">
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                     <tfoot class="checkout__totals-footer">
                                         <tr>
                                             <th>Tổng</th>
-                                            <td><%:MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
+                                            <td><%#MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
                                         </tr>
                                     </tfoot>
                                 </table>

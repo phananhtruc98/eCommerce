@@ -168,15 +168,18 @@ namespace ShoesStore
         public static Shp_BUS Shp_Bus => new Shp_BUS();
         public static Rcpt_BUS Rcpt_BUS => new Rcpt_BUS();
         public static RcptBuy_BUS RcptBuy_BUS => new RcptBuy_BUS();
-        public static void Show(string message) 
-        {                
-            string cleanMessage = message.Replace("'", "\'");                               
-            Page page = HttpContext.Current.CurrentHandler as Page; 
+        public static RcptBuySta_BUS RcptBuySta_BUS => new RcptBuySta_BUS();
+        public static RcptBuyStaDet_BUS RcptBuyStaDet_BUS => new RcptBuyStaDet_BUS();
+        public static RcptBuyStaStep_BUS RcptBuyStaStep_BUS => new RcptBuyStaStep_BUS();
+        public static void Show(string message)
+        {
+            string cleanMessage = message.Replace("'", "\'");
+            Page page = HttpContext.Current.CurrentHandler as Page;
             string script = string.Format("alert('{0}');", cleanMessage);
-            if (page != null && !page.ClientScript.IsClientScriptBlockRegistered("alert")) 
+            if (page != null && !page.ClientScript.IsClientScriptBlockRegistered("alert"))
             {
                 page.ClientScript.RegisterClientScriptBlock(page.GetType(), "alert", script, true /* addScriptTags */);
-            } 
-        } 
+            }
+        }
     }
 }
