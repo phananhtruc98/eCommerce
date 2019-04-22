@@ -55,5 +55,11 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new System.NotImplementedException();
         }
+
+        public List<RcptBuy> ListRcptBuyPreview_Shop(int RcptId)
+        {
+            int[] shpIds = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(RcptId).Select(m => m.ShpId).OrderBy(x => x).Distinct().ToArray();
+            return MyLibrary.RcptBuy_BUS.GetAll().Where(m => shpIds.Contains(m.ShpId)).ToList();
+        }
     }
 }

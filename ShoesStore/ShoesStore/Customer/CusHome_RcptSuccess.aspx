@@ -7,6 +7,7 @@
     <div class="row">
         <asp:Label runat="server" Text="Đơn hàng gần đây" ID="lbDonHang" CssClass="h3"></asp:Label>
         <div class="col-12">
+            <asp:Label ID="lbEmpty" runat="server" Text="Không có đơn hàng nào" Visible="false"></asp:Label>
             <asp:ListView ID="lvRcptBuy" runat="server" OnItemCommand="lvRcptBuy_ItemCommand">
                 <LayoutTemplate>
                     <table class="table">
@@ -77,7 +78,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td colspan="4">
                         <th class="">Ảnh </th>
                         <th class="">Tên sản phẩm</th>
                         <th class="">Số lượng</th>
@@ -85,18 +85,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <asp:Repeater ID="rptRcptShp" runat="server">
+                    <asp:Repeater ID="rptRcptShp" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" runat="server" OnItemDataBound="rptRcptShp_ItemDataBound">
                         <ItemTemplate>
+                            <asp:HiddenField runat="server" ID="hdfShpId" Value="<%# Item.ShpId %>"/>
                             <tr>
-                                <td><%# Eval("ShpName")%></td>
+                                <td colspan="4"><%# Item.Shp.ShpName%></td>
                             </tr>
-                            <asp:Repeater runat="server" ID="rptRcptShpDet">
+                            <asp:Repeater runat="server" ID="rptRcptShpDet" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet">
                                 <ItemTemplate>
                                     <tr>
-                                        <td><%# Eval("Img")%></td>
-                                        <td><%# Eval("ProName")%></td>
-                                        <td><%# Eval("Quantity")%></td>
-                                        <td><%# Eval("SubPrice").ToFormatMoney()%></td>
+                                        <td><a href="#">
+                                                <img style="width:80px; height:80px"
+                                                    src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
+                                            </a></td>
+                                        <td><%# Item.ProDet.Pro.ProName %></td>
+                                        <td><%# Item.Quantity%></td>
+                                        <td><%# (Item.Quantity * Int32.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>

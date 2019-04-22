@@ -44,6 +44,16 @@ namespace ShoesStore.Customer
                          Img = p.Img
                      };
             var rs1 = from a in rs.ToList()
+                      group a by new { a.RcptBuyId, a.DateAddRcpt, a.SumPrice, a.Img } into t
+                      select new
+                      {
+                          RcptBuyId = t.Key.RcptBuyId,
+                          DateAddRcpt = t.Key.DateAddRcpt,
+                          SumPrice = t.Key.SumPrice,
+                          Img = t.Key.Img,
+                      };
+
+            var rs2 = (from a in rs1.ToList()
                       group a by new { a.RcptBuyId, a.DateAddRcpt } into p
                       select new
                       {
@@ -51,11 +61,16 @@ namespace ShoesStore.Customer
                           Sum = p.Sum(x => x.SumPrice),
                           DateAddRcpt = p.Key.DateAddRcpt,
                           ImgPro = p.Select(x => x.Img).ToList()
-                      };
-
-
-            lvRcptBuy.DataSource = rs1;
-            lvRcptBuy.DataBind();
+                      }).ToList();
+            if (rs2.Count() == 0)
+            {
+                lbEmpty.Visible = true;
+            }
+            else
+            {
+                lvRcptBuy.DataSource = rs2;
+                lvRcptBuy.DataBind();
+            }
         }
 
         protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -70,28 +85,13 @@ namespace ShoesStore.Customer
                     where r.RcptId == RcptBuyId
                     select r.DateAdd).Single();
             dateadd = d.ToString();
-            BindDataLvRcptBuyDet(RcptBuyId);
+            BindDataLvRcptBuyDet(rcptTemp);
         }
 
         public void BindDataLvRcptBuyDet(int RcptId)
         {
-            var rs = from r in rcptBuy.GetAll()
-                     join d in rcptBuyDet.GetAll() on r.RcptBuyId equals d.RcptBuyId
-                     join p in pro.GetAll() on d.ProId equals p.ProId
-                     join s in rcpt.GetAll() on r.RcptBuyId equals s.RcptId
-                     join h in shp.GetAll() on p.ShpId equals h.ShpId
-                     where r.RcptBuyId == RcptId
-                     select new
-                     {
-                         RcptBuyId = r.RcptBuyId,
-                         DateAddRcpt = s.DateAdd,
-                         ShpName = h.ShpName,
-                         ProName = p.ProName,
-                         Quantity = d.Quantity,
-                         SubPrice = d.Quantity * Int32.Parse(p.Price),
-                         Img = p.Img
-                     };
-            rptRcptShp.DataSource = rs;
+            
+            rptRcptShp.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(RcptId);
             rptRcptShp.DataBind();
         }
 
@@ -101,6 +101,17 @@ namespace ShoesStore.Customer
             //((Label)lvRcptBuyDet.FindControl("lbDateAdd")).Text = "Ngày đặt hàng: " + dateadd;
         }
 
-        
+        protected void rptRcptShp_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                HiddenField hdfShpId = (HiddenField)e.Item.FindControl("hdfShpId");
+                int ShpId = Int32.Parse(hdfShpId.Value);
+                Repeater rptRcptShpDet = (Repeater)e.Item.FindControl("rptRcptShpDet");
+
+                rptRcptShpDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(rcptTemp).Where(m => m.ShpId + "" == hdfShpId.Value);
+                rptRcptShpDet.DataBind();
+            }
+        }
     }
 }
