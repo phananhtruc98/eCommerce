@@ -11,34 +11,34 @@
             <asp:ListView ID="lvRcptBuy" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" runat="server" OnItemCommand="lvRcptBuy_ItemCommand" OnItemDataBound="lvRcptBuy_ItemDataBound">
                 <LayoutTemplate>
                     <table class="table">
-                       
                         <tr class="">
                             <th class="">Mã đơn hàng </th>
                             <th class="">Ngày đặt hàng</th>
                             <th class="">Sản phẩm</th>
                             <th class="">Tổng tiền</th>
-                            <th class=""></th>
+                            <th class="">Thao tác</th>
                         </tr>
                         <tr id="itemPlaceholder" runat="server" />
                     </table>
                 </LayoutTemplate>
                 <ItemTemplate>
-                     <asp:HiddenField ID="hdfRcptBuyId" runat="server" Value="<%# Item.RcptBuyId %>" />
+                    <asp:HiddenField ID="hdfRcptBuyId" runat="server" Value="<%# Item.RcptBuyId %>" />
                     <tr>
                         <td><%# Item.RcptBuyId %></td>
                         <td><%# Item.Rcpt.DateAdd %></td>
-                        <asp:ListView ID="lvRcptBuyDet" runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet">
-                            <ItemTemplate>
-                                <td>
-                                    <img style="width: 80px; height: 80px"
+                        <td>
+                            <asp:ListView ID="lvRcptBuyDet" runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet">
+                                <ItemTemplate>
+                                    <img style="width: 100px; height: 100px"
                                         src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
-                                </td>
-                            </ItemTemplate>
-                        </asp:ListView>
-                        <%--<td><%# Eval("Sum").ToFormatMoney()%></td>--%>
+                                    <br />
+                                </ItemTemplate>
+                            </asp:ListView>
+                        </td>
+                        <td><%#/*  MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() */%></td>
                         <td>
                             <asp:LinkButton ID="Link1" runat="server" CommandName="sel" CommandArgument='<%# Item.RcptBuyId%>'
-                                Text="Select" /></td>
+                                Text="CHI TIẾT" /></td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
@@ -84,7 +84,7 @@
     <div class="row">
         <asp:Label runat="server" Text="Chi tiết đơn hàng" ID="Label1" CssClass="h3" Visible="false"></asp:Label>
         <div class="col-12">
-            <table class="table">
+            <table class="table" ID="tblRcptBuyDet" runat="server" visible="false">
                 <thead>
                     <tr>
                         <th class="">Ảnh </th>
