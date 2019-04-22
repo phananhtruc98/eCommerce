@@ -20,7 +20,7 @@ namespace ShoesStore.Merchant
                 Mer loginUsr = _usr.LoginMerchant(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
                 MerchantSession.LoginMerchant = loginUsr;
-                Response.Redirect("~/quan-tri");
+                Response.Redirect("~/merchant/trang-chu");
             }
             catch (Exception exception)
             {
