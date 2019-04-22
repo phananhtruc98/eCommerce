@@ -54,6 +54,10 @@ namespace ShoesStore.Merchant {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-   
+        public new ShoesStore.Merchant.SiteMerchant Master {
+            get {
+                return ((ShoesStore.Merchant.SiteMerchant)(base.Master));
+            }
+        }
     }
 }

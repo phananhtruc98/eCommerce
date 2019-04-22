@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" Title="Trang Shop Cá Nhân" MasterPageFile="~/Merchant/Merchant.Master" AutoEventWireup="true" CodeBehind="MerShop.aspx.cs" Inherits="ShoesStore.Merchant.MerShop" %>
+﻿<%@ Page Language="C#" Title="Trang Shop Cá Nhân" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerShop.aspx.cs" Inherits="ShoesStore.Merchant.MerShop" %>
 
 <%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
 <%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
 <%@ Import Namespace="ShoesStore" %>
 
-<%@ MasterType VirtualPath="~/Merchant/Merchant.Master" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<%@ MasterType VirtualPath="~/Merchant/SiteMerchant.Master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <!--Thông Tin Shop-->
     <div>
         <div class="col-lg-4 order-lg-1 text-center">

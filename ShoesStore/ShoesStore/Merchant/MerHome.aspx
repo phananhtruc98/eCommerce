@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" Title="Trang Chủ" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeFile="MerHome.aspx.cs" Inherits="ShoesStore.Merchant.MerHome" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="MainContent" ContentPlaceHolderID="MainPlaceHolder" runat="server">
 
                     <!-- .block-slideshow -->
 
@@ -15,12 +15,12 @@
                                             <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background-image: url('images/slides/slide-1-mobile.jpg')"></div>
                                             <div class="block-slideshow__slide-content">
                                                 <div class="block-slideshow__slide-title">
-                                                    Big choice of<br>
+                                                    Big choice of<br/>
                                                     Hypebeast Sale
                                        
                                                 </div>
                                                 <div class="block-slideshow__slide-text">
-                                                    We provide a marketplace for many kinds of sneakers<br>
+                                                    We provide a marketplace for many kinds of sneakers<br/>
                                                     And Yes ! Hypebeast included
                                        
                                                 </div>
@@ -31,12 +31,12 @@
                                             <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background-image: url('images/slides/slide-2-mobile.jpg')"></div>
                                             <div class="block-slideshow__slide-content">
                                                 <div class="block-slideshow__slide-title">
-                                                    And Even<br>
+                                                    And Even<br/>
                                                     More Luxury Brands
                                        
                                                 </div>
                                                 <div class="block-slideshow__slide-text">
-                                                    We also care for the trading , saling<br>
+                                                    We also care for the trading , saling<br/>
                                                     Of many more top trending fashion brand
                                        
                                                 </div>
@@ -48,7 +48,7 @@
                                             <div class="block-slideshow__slide-content">
                                                 <div class="block-slideshow__slide-title">To The Most Casual Brands</div>
                                                 <div class="block-slideshow__slide-text">
-                                                    We also support all of your goods.<br>
+                                                    We also support all of your goods.<br/>
                                                     Because this place is for everyone.
                                        
                                                 </div>

@@ -1,19 +1,161 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMerchant.master.cs" Inherits="ShoesStore.Merchant.SiteMerchant" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SiteMerchant.master.cs" Inherits="ShoesStore.Merchant.SiteMerchant" %>
 
-<!DOCTYPE html>
+<%@ MasterType VirtualPath="~/Site.Master" %>
 
-<html>
-<head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">
+    <div class="site__body">
+        <div class="container">
+            <div class="shop-layout shop-layout--sidebar--start">
+                <div class="shop-layout__sidebar">
+                    <div style="margin-top: 50px;" class="block block-sidebar">
+                        <div class="block-sidebar__item">
+                            <div class="widget-categories widget-categories--location--shop widget">
+                                <h4 class="widget__title">Categories</h4>
+                                <ul class="widget-categories__list" data-collapse data-collapse-opened-class="widget-categories__item--open">
+                                    <li class="widget-categories__item" data-collapse-item>
+                                        <div class="widget-categories__row">
+                                            <a href="MerProfile.aspx">
+                                                <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
+                                                Merchant </a>
+                                            <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
+                                        </div>
+                                        <div class="widget-categories__subs" data-collapse-content>
+                                            <ul>
+                                                <li><a href="MerHome.aspx">Home Merchant</a></li>
+                                                <li><a href="MerProfile.aspx">Your Profile</a></li>
+
+                                            </ul>
+                                        </div>
+
+                                    </li>
+                                    <li class="widget-categories__item" data-collapse-item>
+                                        <div class="widget-categories__row">
+                                            <a href="Sub.aspx">
+                                                <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
+                                                Các Gói Sub </a>
+                                            <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
+                                        </div>
+                                        <div class="widget-categories__subs" data-collapse-content>
+                                            <ul>
+                                                <li><a href="#">Đăng ký gói Subscription</a></li>
+                                                <li><a href="#">Thông Tin Các Gói Subscription</a></li>
+
+
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                    <li class="widget-categories__item" data-collapse-item>
+                                        <div class="widget-categories__row">
+                                            <a href="#">
+                                                <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
+                                                Shop Cá Nhân </a>
+                                            <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
+                                        </div>
+                                        <div class="widget-categories__subs" data-collapse-content>
+                                            <ul>
+                                                <li><a href="MerShop.aspx">Your Shop</a></li>
+                                                <li><a href="MerAddProd.aspx">Thêm Sản Phẩm</a></li>
+                                                <li><a href="#">Quản Lý Sản Phẩm</a></li>
+                                                <li><a href="#">Quản Lý Hóa Đơn</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="widget-categories__item" data-collapse-item>
+                                        <div class="widget-categories__row">
+                                            <a href="About.aspx">
+                                                <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
+                                                About Us</a>
+                                        </div>
+                                    </li>
+
+                                    <li class="widget-categories__item" data-collapse-item>
+                                        <div class="widget-categories__row">
+                                            <a href="Contact.aspx">
+                                                <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
+                                                Liên hệ</a>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="block-sidebar__item">
+                            <div class="widget-products widget">
+                                <h4 class="widget__title">Latest Products</h4>
+                                <div class="widget-products__list">
+                                    <div class="widget-products__item">
+                                        <div class="widget-products__image">
+                                            <a href="product.html">
+                                                <img src="images/products/product-1.jpg" alt=""></a>
+                                        </div>
+                                        <div class="widget-products__info">
+                                            <div class="widget-products__name"><a href="product.html">Electric Planer Brandix KL370090G 300 Watts</a></div>
+                                            <div class="widget-products__prices">$749.00</div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-products__item">
+                                        <div class="widget-products__image">
+                                            <a href="product.html">
+                                                <img src="images/products/product-2.jpg" alt=""></a>
+                                        </div>
+                                        <div class="widget-products__info">
+                                            <div class="widget-products__name"><a href="product.html">Undefined Tool IRadix DPS3000SY 2700 Watts</a></div>
+                                            <div class="widget-products__prices">$1,019.00</div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-products__item">
+                                        <div class="widget-products__image">
+                                            <a href="product.html">
+                                                <img src="images/products/product-3.jpg" alt=""></a>
+                                        </div>
+                                        <div class="widget-products__info">
+                                            <div class="widget-products__name"><a href="product.html">Drill Screwdriver Brandix ALX7054 200 Watts</a></div>
+                                            <div class="widget-products__prices">$850.00</div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-products__item">
+                                        <div class="widget-products__image">
+                                            <a href="product.html">
+                                                <img src="images/products/product-4.jpg" alt="" /></a>
+                                        </div>
+                                        <div class="widget-products__info">
+                                            <div class="widget-products__name"><a href="product.html">Drill Series 3 Brandix KSR4590PQS 1500 Watts</a></div>
+                                            <div class="widget-products__prices"><span class="widget-products__new-price">$949.00</span> <span class="widget-products__old-price">$1189.00</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-products__item">
+                                        <div class="widget-products__image">
+                                            <a href="product.html">
+                                                <img src="images/products/product-5.jpg" alt=""></a>
+                                        </div>
+                                        <div class="widget-products__info">
+                                            <div class="widget-products__name"><a href="product.html">Brandix Router Power Tool 2017ERXPK</a></div>
+                                            <div class="widget-products__prices">$1,700.00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Side bar-->
+
+                <!--PlaceHolder-Content-->
+                <div style="margin-top: 50px" class="shop-layout__content">
+                    <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <hr />
+                </div>
+                <!--PlaceHolder-Content-->
+
+            </div>
         </div>
-    </form>
-</body>
-</html>
+    </div>
+</asp:Content>
