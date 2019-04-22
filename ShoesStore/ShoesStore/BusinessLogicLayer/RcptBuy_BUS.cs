@@ -67,8 +67,8 @@ namespace ShoesStore.BusinessLogicLayer
 
         public List<RcptBuy> ListRcptBuyPreview_Rcpt(int CusId)
         {
-            int[] RcptId = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Select(m => m.RcptBuyId).OrderByDescending(x => x).Distinct().ToArray();
-            var tmp = MyLibrary.RcptBuy_BUS.GetAll().Where(m => RcptId.Contains(m.RcptBuyId) && m.CusId.Equals(CusId)).ToList();
+            int[] RcptId = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Select(m => m.RcptBuyId).OrderBy(x => x).Distinct().ToArray();
+            var tmp = MyLibrary.RcptBuy_BUS.GetAll().Where(m => RcptId.Contains(m.RcptBuyId) && m.CusId.Equals(CusId)).OrderByDescending(x=>x.Rcpt.DateAdd).ToList();
             return tmp;
         }
     }

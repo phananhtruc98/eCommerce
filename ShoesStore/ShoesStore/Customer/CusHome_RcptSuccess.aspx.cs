@@ -120,6 +120,7 @@ namespace ShoesStore.Customer
         {
             lvRcptBuy.Visible = false;
             lbDonHang.Visible = false;
+            tblRcptBuyDet.Visible = true;
             //lbDonHangChiTiet.Visible = true;
             //lvRcptBuyDet.Visible = true;
             int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
