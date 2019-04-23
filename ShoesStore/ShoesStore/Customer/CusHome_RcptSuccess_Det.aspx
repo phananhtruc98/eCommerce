@@ -29,7 +29,7 @@
                         </ItemTemplate>
                     </asp:ListView>
                 </tbody>
-            </table>
+            </asp:Table>
         </div>
     </div>
 </asp:Content>

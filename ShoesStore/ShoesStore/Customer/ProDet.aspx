@@ -376,7 +376,7 @@
                                                                 <div class="review__text">
                                                                     <%# Eval("Cmt") %>
                                                                 </div>
-                                                                <div class="review__date"><%# Eval("DateAdd") %></div>
+                                                                <div class="review__date"><%# Item.RcptBuy.Rcpt.DateAdd %></div>
                                                             </div>
                                                         </div>
                                                     </li>

@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" Title="Trang Shop Cá Nhân" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerAddProd.aspx.cs" Inherits="ShoesStore.Merchant.MerAddProd" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-    <div style="margin-top:-30px;" class="container1">
+    <div style="margin-top: -30px;" class="container1">
         <div class="row">
             <div class="col-lg-50    col-xl-50 mx-auto">
                 <div class="card card-signin flex-row my-5">
@@ -13,7 +13,7 @@
                         <form class="form-signin">
                             <div class="dropdown">
                                 <label for="inputCatId">Mã Loại Sản Phẩm</label>
-                                <button style="float:right" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <button style="float: right" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                                     x
                                     <span class="caret"></span>
                                 </button>
@@ -27,7 +27,7 @@
 
                             <div class="dropdown">
                                 <label for="inputBrandId">Mã Thương Hiệu</label>
-                                <button style="float:right" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <button style="float: right" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                                     x
                                     <span class="caret"></span>
                                 </button>
@@ -59,12 +59,12 @@
                                 <input type="text" id="inputProName" class="form-control" placeholder="ProName" required />
                             </div>
                             <hr />
-     
+
                             <div class="form-label-group1">
                                 <label for="imageUpload">Upload Hình</label>
                                 <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
                             </div>
-                            
+
 
                             <hr />
 
@@ -85,13 +85,13 @@
                             </div>
                             <hr />
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Gửi</button>
-                            
-                            
-                            
+
+
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    
+    </div>
 </asp:Content>
