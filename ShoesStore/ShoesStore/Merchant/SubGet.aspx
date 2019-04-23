@@ -77,8 +77,9 @@
                     <SortedDescendingCellStyle BackColor="#F6F0C0" />
                     <SortedDescendingHeaderStyle BackColor="#7E0000" />
                 </asp:GridView>
-                <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert"
-                    ForeColor="Red" runat="server" />
+
+
+                
             </div>
         </div>
     </div>

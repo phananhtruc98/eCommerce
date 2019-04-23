@@ -11,9 +11,9 @@ namespace ShoesStore.Merchant
 {
 
 
-    public partial class sub
+    public partial class SubGet
     {
-
+        protected global::System.Web.UI.WebControls.GridView gvSub;
         /// <summary>
         /// form1 control.
         /// </summary>
