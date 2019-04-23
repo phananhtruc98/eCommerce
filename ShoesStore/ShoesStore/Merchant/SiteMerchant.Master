@@ -246,7 +246,7 @@
                                         </li>
                                         <li class="widget-categories__item" data-collapse-item>
                                             <div class="widget-categories__row">
-                                                <a href="Sub.aspx">
+                                                <a href="#">
                                                     <svg class="widget-categories__arrow" width="6px" height="9px">
                                                         <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg>
                                                     Các Gói Sub </a>
@@ -254,7 +254,7 @@
                                             </div>
                                             <div class="widget-categories__subs" data-collapse-content>
                                                 <ul>
-                                                    <li><a href="#">Đăng ký gói Subscription</a></li>
+                                                    <li><a href="SubGet.aspx">Đăng ký gói Subscription</a></li>
                                                     <li><a href="#">Thông Tin Các Gói Subscription</a></li>
 
 
