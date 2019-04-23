@@ -18,8 +18,11 @@
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
-
+    <script src="jquery.min.js" type="text/javascript"></script>
+    <link href="bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/cusHome_RcptSuccess.js"></script>
+   
 </head>
 <body>
     <form runat="server">

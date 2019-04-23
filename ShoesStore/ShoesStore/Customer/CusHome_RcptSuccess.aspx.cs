@@ -23,6 +23,7 @@ namespace ShoesStore.Customer
                 Usr usr = (Usr)WebSession.LoginUsr;
                 Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
                 BindGridViewgvRcptBuy(usr1.UsrId);
+                
             }
         }
 
@@ -113,50 +114,33 @@ namespace ShoesStore.Customer
             lvRcptBuy.DataBind();
         }
 
-        protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
-        {
-            lvRcptBuy.Visible = false;
-            lbDonHang.Visible = false;
-            Label1.Visible = true;
-            int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
-            var d = (from r in rcpt.GetAll()
-                     where r.RcptId == RcptBuyId
-                     select r.DateAdd).Single();
-            dateadd = d.ToString();
-            lbRcptBuyId.Text = "Đơn hàng #" +RcptBuyId;
-            lvRcptBuyDate.Text = "Ngày đặt hàng: "+dateadd;
-            lbRcptBuyId.Visible = true;
-            lvRcptBuyDate.Visible = true;
-            rowRcptBuyDet.Visible = true;
-            rcptTemp = RcptBuyId;
-            BindDataLvRcptBuyDet(rcptTemp);
-        }
+        //protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
+        //{
+        //    lvRcptBuy.Visible = false;
+        //    lbDonHang.Visible = false;
+        //    Label1.Visible = true;
+        //    int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
+        //    var d = (from r in rcpt.GetAll()
+        //             where r.RcptId == RcptBuyId
+        //             select r.DateAdd).Single();
+        //    dateadd = d.ToString();
+        //    lbRcptBuyId.Text = "Đơn hàng #" +RcptBuyId;
+        //    lvRcptBuyDate.Text = "Ngày đặt hàng: "+dateadd;
+        //    lbRcptBuyId.Visible = true;
+        //    lvRcptBuyDate.Visible = true;
+        //    rowRcptBuyDet.Visible = true;
+        //    rcptTemp = RcptBuyId;
+        //    BindDataLvRcptBuyDet(rcptTemp);
 
-        public void BindDataLvRcptBuyDet(int RcptId)
-        {
+        //}
+
+        //public void BindDataLvRcptBuyDet(int RcptId)
+        //{
             
-            rptRcptShp.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(RcptId);
-            rptRcptShp.DataBind();
-        }
+        //    rptRcptShp.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(RcptId);
+        //    rptRcptShp.DataBind();
+        //}
 
-        protected void lvRcptBuyDet_DataBound(object sender, EventArgs e)
-        {
-            //((Label)lvRcptBuyDet.FindControl("lbRcptId")).Text = "Đơn hàng #" + rcptTemp.ToString();
-            //((Label)lvRcptBuyDet.FindControl("lbDateAdd")).Text = "Ngày đặt hàng: " + dateadd;
-        }
-
-        protected void rptRcptShp_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                HiddenField hdfShpId = (HiddenField)e.Item.FindControl("hdfShpId");
-                int ShpId = Int32.Parse(hdfShpId.Value);
-                Repeater rptRcptShpDet = (Repeater)e.Item.FindControl("rptRcptShpDet");
-
-                rptRcptShpDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(rcptTemp).Where(m => m.ShpId + "" == hdfShpId.Value);
-                rptRcptShpDet.DataBind();
-            }
-        }
 
         protected void lvRcptBuy_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
@@ -165,10 +149,33 @@ namespace ShoesStore.Customer
                 HiddenField hdfRcptBuyId = (HiddenField)e.Item.FindControl("hdfRcptBuyId");
                 int RcptBuyId = Int32.Parse(hdfRcptBuyId.Value);
                 ListView lvRcptBuyDet = (ListView)e.Item.FindControl("lvRcptBuyDet");
-
+                //LinkButton lbtnChitiet = (LinkButton)e.Item.FindControl("Link1");
+                //lbtnChitiet.Attributes.Add("onClick", "return false;");
                 lvRcptBuyDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
                 lvRcptBuyDet.DataBind();
+               
             }
+        }
+
+        protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if(e.CommandName=="sel")
+            {
+                int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
+                var d = (from r in rcpt.GetAll()
+                         where r.RcptId == RcptBuyId
+                         select r.DateAdd).Single();
+                dateadd = d.ToString();
+                rcptTemp = RcptBuyId;
+                LinkButton lbtnChiTiet = (LinkButton)e.Item.FindControl("lbtnChiTiet");
+                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "");
+            }
+            
+        }
+
+        private void LbtnChiTiet_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

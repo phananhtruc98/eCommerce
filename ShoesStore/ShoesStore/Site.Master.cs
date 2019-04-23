@@ -122,7 +122,7 @@ namespace ShoesStore
         protected void lbtnLogout_Click(object sender, EventArgs e)
         {
             WebSession.LoginUsr = null;
-            Response.Redirect(Request.RawUrl);
+            Response.Redirect("/");
         }
 
         protected void lbtnCusHome_Click(object sender, EventArgs e)

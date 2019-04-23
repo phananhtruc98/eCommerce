@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="SiteCus.master.cs" Inherits="ShoesStore.SiteCus" %>
+
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="site__body">
@@ -29,7 +30,8 @@
                                 <div class="block-sidebar__item">
                                     <div class="widget-filters widget" data-collapse
                                         data-collapse-opened-class="filter--opened">
-                                        <h4 class="widget__title"><asp:Label runat="server" ID="lbXinChao"></asp:Label></h4>
+                                        <h4 class="widget__title">
+                                            <asp:Label runat="server" ID="lbXinChao"></asp:Label></h4>
                                         <div class="widget-filters__list">
                                             <div class="widget-filters__item">
                                                 <div class="filter filter--opened" data-collapse-item>
@@ -55,27 +57,13 @@
                                                 <div class="filter filter--opened" data-collapse-item>
                                                     <button type="button"
                                                         class="filter__title" data-collapse-trigger>
-                                                        Đơn hàng của tôi
+                                                        <a href="<%= ResolveUrl("~/Customer/CusHome_RcptSuccess.aspx") %>">Đơn hàng của tôi</a>
                                                     </button>
-                                                    <div class="filter__body" data-collapse-content>
-                                                        <div class="filter__container">
-                                                            <div class="filter-categories">
-                                                                <ul class="filter-categories__list">
-                                                                    <li class="filter-categories__item filter-categories__item--parent">
-                                                                        <a href="<%= ResolveUrl("~/Customer/CusHome_RcptSuccess.aspx") %>">Đơn hàng thành công</a>
-                                                                    </li>
-                                                                    <li class="filter-categories__item filter-categories__item--parent">
-                                                                        <a href="#">Đơn hàng hủy</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="filter filter--opened" data-collapse-item>
                                                     <button type="button"
                                                         class="filter__title" data-collapse-trigger>
-                                                         <a href="<%= ResolveUrl("~/Customer/CusHome_Cmt.aspx") %>">Nhận xét của tôi</a>
+                                                        <a href="<%= ResolveUrl("~/Customer/CusHome_Cmt.aspx") %>">Nhận xét của tôi</a>
                                                     </button>
                                                 </div>
                                             </div>

@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -1985,7 +1986,7 @@
     <Content Include="Customer\CusHome_ChangePassword.aspx" />
     <Content Include="Customer\CusHome_Cmt.aspx" />
     <Content Include="Customer\CusHome_RcptSuccess.aspx" />
-    <Content Include="Customer\CusHome_RcptSuccess_Det.aspx" />
+    <Content Include="Customer\CusHome_Rcpt_Det.aspx" />
     <Content Include="Customer\ProDet.aspx" />
     <Content Include="Customer\Pro.aspx" />
     <Content Include="Customer\Test.aspx" />
@@ -2205,6 +2206,7 @@
     <Content Include="Admin\scss\_navbar.scss" />
     <Content Include="images\usrs\cus\2\1.jpg" />
     <Content Include="images\usrs\default.jpg" />
+    <Content Include="js\cusHome_RcptSuccess.js" />
     <Content Include="js\customscript.js" />
     <Content Include="Merchant\About.aspx" />
     <Content Include="Merchant\Cart.aspx" />
@@ -2629,12 +2631,12 @@
     <Compile Include="Customer\CusHome_RcptSuccess.aspx.designer.cs">
       <DependentUpon>CusHome_RcptSuccess.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\CusHome_RcptSuccess_Det.aspx.cs">
-      <DependentUpon>CusHome_RcptSuccess_Det.aspx</DependentUpon>
+    <Compile Include="Customer\CusHome_Rcpt_Det.aspx.cs">
+      <DependentUpon>CusHome_Rcpt_Det.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customer\CusHome_RcptSuccess_Det.aspx.designer.cs">
-      <DependentUpon>CusHome_RcptSuccess_Det.aspx</DependentUpon>
+    <Compile Include="Customer\CusHome_Rcpt_Det.aspx.designer.cs">
+      <DependentUpon>CusHome_Rcpt_Det.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\ProDet.aspx.cs">
       <DependentUpon>ProDet.aspx</DependentUpon>
