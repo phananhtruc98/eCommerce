@@ -120,15 +120,18 @@ namespace ShoesStore.Customer
         {
             lvRcptBuy.Visible = false;
             lbDonHang.Visible = false;
-            tblRcptBuyDet.Visible = true;
-            //lbDonHangChiTiet.Visible = true;
-            //lvRcptBuyDet.Visible = true;
+            Label1.Visible = true;
             int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
-            rcptTemp = RcptBuyId;
             var d = (from r in rcpt.GetAll()
-                    where r.RcptId == RcptBuyId
-                    select r.DateAdd).Single();
+                     where r.RcptId == RcptBuyId
+                     select r.DateAdd).Single();
             dateadd = d.ToString();
+            lbRcptBuyId.Text = "Đơn hàng #" +RcptBuyId;
+            lvRcptBuyDate.Text = "Ngày đặt hàng: "+dateadd;
+            lbRcptBuyId.Visible = true;
+            lvRcptBuyDate.Visible = true;
+            rowRcptBuyDet.Visible = true;
+            rcptTemp = RcptBuyId;
             BindDataLvRcptBuyDet(rcptTemp);
         }
 

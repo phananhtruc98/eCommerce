@@ -49,6 +49,15 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.Label TestLabel;
         
         /// <summary>
+        /// rowRcptBuyDet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rowRcptBuyDet;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -58,13 +67,22 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// tblRcptBuyDet control.
+        /// lbRcptBuyId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tblRcptBuyDet;
+        protected global::System.Web.UI.WebControls.Label lbRcptBuyId;
+        
+        /// <summary>
+        /// lvRcptBuyDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lvRcptBuyDate;
         
         /// <summary>
         /// rptRcptShp control.

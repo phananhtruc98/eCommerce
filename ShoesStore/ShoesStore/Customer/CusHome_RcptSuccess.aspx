@@ -35,7 +35,7 @@
                                 </ItemTemplate>
                             </asp:ListView>
                         </td>
-                        <td><%#/*  MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() */%></td>
+                        <td><%#  MyLibrary.RcptBuyDet_BUS.SumRcptBuyPrice_Shop(Item.ShpId).ToFormatMoney() %></td>
                         <td>
                             <asp:LinkButton ID="Link1" runat="server" CommandName="sel" CommandArgument='<%# Item.RcptBuyId%>'
                                 Text="CHI TIẾT" /></td>
@@ -81,16 +81,31 @@
         </div>
     </div>--%>
 
-    <div class="row">
+    <div class="row" runat="server" visible="false" id="rowRcptBuyDet">
         <asp:Label runat="server" Text="Chi tiết đơn hàng" ID="Label1" CssClass="h3" Visible="false"></asp:Label>
+
         <div class="col-12">
-            <table class="table" ID="tblRcptBuyDet" runat="server" visible="false">
+            <table class="table">
                 <thead>
+                    <tr>
+                        <th colspan="7">
+                            <asp:Label ID="lbRcptBuyId" runat="server"></asp:Label>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="7">
+                            <asp:Label ID="lvRcptBuyDate" runat="server"></asp:Label>
+                        </th>
+                    </tr>
                     <tr>
                         <th class="">Ảnh </th>
                         <th class="">Tên sản phẩm</th>
+                        <th class="">Màu</th>
+                        <th class="">Kích cỡ</th>
                         <th class="">Số lượng</th>
                         <th class="">Giá</th>
+                        <th class="">Đánh giá</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -98,7 +113,7 @@
                         <ItemTemplate>
                             <asp:HiddenField runat="server" ID="hdfShpId" Value="<%# Item.ShpId %>" />
                             <tr>
-                                <td colspan="4"><%# Item.Shp.ShpName%></td>
+                                <td colspan="7">Cửa hàng: <%# Item.Shp.ShpName%></td>
                             </tr>
                             <asp:Repeater runat="server" ID="rptRcptShpDet" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet">
                                 <ItemTemplate>
@@ -108,11 +123,17 @@
                                                 src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                         </a></td>
                                         <td><%# Item.ProDet.Pro.ProName %></td>
+                                        <td><%# Item.ProDet.ProColor.ColorName %></td>
+                                        <td><%# Item.ProDet.ProSize.SizeName %></td>
                                         <td><%# Item.Quantity%></td>
                                         <td><%# (Item.Quantity * Int32.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>
+                                        <td>Đánh giá</td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
+                            <tr>
+                                <td colspan="7" style="text-align:right; font-size:30px" >Tổng cộng: <%# MyLibrary.RcptBuyDet_BUS.SumRcptBuyPrice_Shop(Item.ShpId).ToFormatMoney() %></td>
+                            </tr>
                         </ItemTemplate>
 
                     </asp:Repeater>
