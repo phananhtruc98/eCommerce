@@ -27,7 +27,8 @@ namespace ShoesStore.BusinessLogicLayer
         public RcptSubDet GetMyRcptSubDet()
         {
             Mer mer = ShoesStore.Merchant.MerchantSession.LoginMer;
-            return MyLibrary.RcptSubDet_BUS.GetAll().FirstOrDefault(m => mer != null && m.MerId == mer.MerId);
+            //  return MyLibrary.RcptSubDet_BUS.GetAll().FirstOrDefault(m => mer != null && m.MerId == mer.MerId);
+            return null;//xoa di
         }
     }
 }

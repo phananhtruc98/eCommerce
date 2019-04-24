@@ -73,7 +73,7 @@ namespace ShoesStore.Merchant
                 }
             }
             */
-           
+
             //Gọi CartDet() lấy các thuộc tính trong dtb, gán những cái thuộc tính đó , cho những cái đã bắt từ link ở trên sau khi bấm nút, Qty là số lượng
             // Nếu đã tồn tại cái giỏ hàng đó thì đẩy qua else, còn không thì Load vào trong CartDet
             _cartDetView = new CartDet()
@@ -83,13 +83,13 @@ namespace ShoesStore.Merchant
                 ProId = _proDetView.ProId,
                 ColorId = colorId,
                 SizeId = sizeId,
-                Qty = System.Convert.ToInt32(product_quantity.Value)
+                //   Qty = System.Convert.ToInt32(product_quantity.Value)
 
             };
             if (!MyLibrary.CartDet_BUS.IsExist(_cartDetView))
             {
                 MyLibrary.CartDet_BUS.Insert(_cartDetView);
-                Master.LoadCartPreview();
+                //   Master.LoadCartPreview();
 
             }
             else
@@ -101,9 +101,9 @@ namespace ShoesStore.Merchant
 
 
     }
-        
-        
 
 
-    }
+
+
 }
+

@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -2221,7 +2220,6 @@
     <Content Include="Merchant\MerProfile.aspx" />
     <Content Include="Merchant\MerShop.aspx" />
     <Content Include="Merchant\SignIn.aspx" />
-    <Content Include="Merchant\Sub.aspx" />
     <Content Include="Merchant\SubGet.aspx" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.eot" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.ttf" />
@@ -3007,10 +3005,6 @@
     </Compile>
     <Compile Include="Merchant\SiteMerchant.Master.designer.cs">
       <DependentUpon>SiteMerchant.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Merchant\Sub.aspx.cs">
-      <DependentUpon>Sub.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Merchant\SubGet.aspx.cs">
       <DependentUpon>SubGet.aspx</DependentUpon>
