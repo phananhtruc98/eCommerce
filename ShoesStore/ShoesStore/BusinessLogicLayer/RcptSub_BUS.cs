@@ -1,4 +1,5 @@
-﻿using ShoesStore.DataAccessLogicLayer;
+﻿using System.Linq;
+using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 
 namespace ShoesStore.BusinessLogicLayer
@@ -16,5 +17,7 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new System.NotImplementedException();
         }
+
+        
     }
 }

@@ -2,6 +2,7 @@
 using ShoesStore.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ShoesStore.BusinessLogicLayer
 {
@@ -13,8 +14,6 @@ namespace ShoesStore.BusinessLogicLayer
             return _dao.SelectedRowById(RcptSubId);
 
         }
-
-
         public override bool IsExist(RcptSubDet obj)
         {
             throw new NotImplementedException();
@@ -23,6 +22,12 @@ namespace ShoesStore.BusinessLogicLayer
         public override void SetActive(RcptSubDet obj)
         {
             throw new NotImplementedException();
+        }
+        // Hàm này lấy id của merchant đang đăng nhập bỏ vô RcptSubId
+        public RcptSubDet GetMyRcptSubDet()
+        {
+            Mer mer = ShoesStore.Merchant.MerchantSession.LoginMer;
+            return MyLibrary.RcptSubDet_BUS.GetAll().FirstOrDefault(m => mer != null && m.MerId == mer.MerId);
         }
     }
 }

@@ -13,7 +13,13 @@
 
                     <Columns>
 
+                        <asp:TemplateField HeaderStyle-Width="200px" HeaderText="Chọn gói">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lbChoose" CommandArgument='<%# Eval("SubId") %>' CommandName="EditRow" ForeColor="#8C4510" runat="server">Chọn</asp:LinkButton>
 
+                            </ItemTemplate>
+
+                        </asp:TemplateField>
 
                         <asp:TemplateField HeaderStyle-Width="100px" HeaderText="Mã gói">
                             <ItemTemplate>
@@ -61,12 +67,7 @@
 
 
 
-                        <asp:TemplateField HeaderStyle-Width="200px" HeaderText="Số Lượng Đăng Ký">
 
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="Quantity" Text='<%# Bind("Quantity") %>' />
-                            </EditItemTemplate>
-                        </asp:TemplateField>
 
                     </Columns>
 
@@ -86,6 +87,10 @@
 
 
             </div>
+        </div>
+        <div class="product__actions-item product__actions-item--addtocart">
+            <asp:Button runat="server" ID="btnAddCart" OnClick="btnAddCart_OnClick" CssClass="btn btn-primary btn-lg" Text="Xác Nhận"></asp:Button>
+
         </div>
     </div>
     <!-- site__body / end -->
