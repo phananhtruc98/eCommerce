@@ -42,7 +42,7 @@
                                 <ItemTemplate>
                                     <tr>
                                         <td><a href="#">
-                                            <img style="width: 80px; height: 80px"
+                                            <img style="width: 200px; height:200px"
                                                 src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                         </a></td>
                                         <td><%# Item.ProDet.Pro.ProName %></td>
@@ -50,7 +50,7 @@
                                         <td><%# Item.ProDet.ProSize.SizeName %></td>
                                         <td><%# Item.Quantity%></td>
                                         <td><%# (Item.Quantity * Int32.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>
-                                        <td>Đánh giá</td>
+                                        <td><asp:LinkButton runat="server" ID="lbtnDanhGia">Đánh giá</asp:LinkButton></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>

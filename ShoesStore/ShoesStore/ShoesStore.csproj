@@ -3009,9 +3009,6 @@
       <DependentUpon>Sub.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Merchant\Sub.aspx.designer.cs">
-      <DependentUpon>Sub.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MyEnum.cs" />
     <Compile Include="MyExtensions\ObjectExtension.cs" />
     <Compile Include="MyExtensions\ProExtension.cs" />
