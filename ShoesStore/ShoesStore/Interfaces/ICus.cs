@@ -1,6 +1,5 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
 using System.Data.Objects;
-
 namespace ShoesStore.Interfaces
 {
     internal interface ICus : IUsr<Cus>

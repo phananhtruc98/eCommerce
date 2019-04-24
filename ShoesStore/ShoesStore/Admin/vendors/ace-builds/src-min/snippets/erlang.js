@@ -6,4 +6,4 @@ define("ace/snippets/erlang",["require","exports","module"],function(e,t,n){"use
                         }
                     });
                 })();
-            
+

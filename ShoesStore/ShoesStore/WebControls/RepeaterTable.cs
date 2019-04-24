@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace ShoesStore.WebControls
 {
-
     public class RepeaterTable : Repeater
     {
-
         public TableName TableName;
         private int _pageCurrent = 1;
-
         public int PageCurrent
         {
             get => _pageCurrent;
@@ -20,19 +16,14 @@ namespace ShoesStore.WebControls
             {
                 _pageCurrent = value;
                 BindRptPaged();
-
             }
         }
-
         private int _pageTotal;
-
         public int PageTotal
         {
             get => _pageTotal;
         }
-
         private int _pageSize;
-
         public int PageSize
         {
             set
@@ -50,7 +41,6 @@ namespace ShoesStore.WebControls
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            
             new BasePage()
             {
                 listWc = new List<Tuple<Control, TableName>>()
@@ -65,16 +55,13 @@ namespace ShoesStore.WebControls
                 DataBind();
             }
         }
-
         private void BindRptPaged()
         {
             OnLoad(null);
         }
-
         protected override void Render(HtmlTextWriter output)
         {
             base.Render(output);
-
         }
     }
 }

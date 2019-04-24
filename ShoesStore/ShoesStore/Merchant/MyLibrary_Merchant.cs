@@ -2,10 +2,5 @@
 {
     public partial class MyLibrary
     {
-        
-        
-
-
-
     }
 }

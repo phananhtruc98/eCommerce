@@ -2,7 +2,6 @@
 using System.Web;
 using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
-
 namespace ShoesStore.Merchant
 {
     public class MerchantSession
@@ -13,9 +12,7 @@ namespace ShoesStore.Merchant
             get => HttpContext.Current.Session["LoginMerchant"];
             set => HttpContext.Current.Session["LoginMerchant"] = value;
         }
-
         public static MerchantSession Instance => _instance ?? new MerchantSession();
-
         public static Mer LoginMer
         {
             get
@@ -30,7 +27,6 @@ namespace ShoesStore.Merchant
                 {
                     return null;
                 }
-
             }
         }
     }

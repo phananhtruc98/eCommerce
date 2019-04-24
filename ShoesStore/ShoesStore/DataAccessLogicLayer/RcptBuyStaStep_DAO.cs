@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class RcptBuyStaStep_DAO:Table_DAO<RcptBuyStaStep>
@@ -8,7 +7,6 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
-
         public override bool IsExist(RcptBuyStaStep obj)
         {
             throw new NotImplementedException();

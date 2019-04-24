@@ -5,22 +5,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.Interfaces.Pages;
 using Utilities;
-
 namespace ShoesStore
 {
     public partial class SiteMaster : MasterPage, IMaster
     {
-
         private static string _actCode = "";
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
             }
         }
-
         private void Page_Init(object sender, EventArgs e)
         {
             if (WebSession.LoginUsr != null)
@@ -34,40 +29,31 @@ namespace ShoesStore
                 GetCurrentCartItemsNumber();
             }
         }
-
         public void rptProCat_Init(object sender, EventArgs e)
         {
-
             rptProCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
             rptProCat.DataBind();
         }
-
-
         public int GetCurrentCartItemsNumber()
         {
             return MyLibrary.CartDet_BUS.ListCartPreviewNumber();
         }
-
         public void LoadCartPreview()
         {
             rptCartDetPreview.DataSource = MyLibrary.CartDet_BUS.ListCartPreview();
             rptCartDetPreview.DataBind();
         }
-
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
-
             rptProBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll().ToList();
             rptProBrand.DataBind();
         }
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
                 Usr loginUsr = MyLibrary.Usr_BUS.Login(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
-
                 WebSession.LoginUsr = loginUsr;
                 Response.Redirect(Request.RawUrl);
             }
@@ -76,16 +62,11 @@ namespace ShoesStore
                 Console.WriteLine(exception);
                 throw;
             }
-
-
-
         }
-
         public bool IsValidLogin()
         {
             throw new NotImplementedException();
         }
-
         public bool IsValidRegister()
         {
             if (!Email.IsValidEmail(email.Value)) return false;
@@ -94,12 +75,8 @@ namespace ShoesStore
             if (active_code.Value != _actCode) { return false; }
             return password.Value == re_password.Value;
         }
-
-
-
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-
             if (!IsValidRegister()) return;
             var usr = new Usr()
             {
@@ -114,23 +91,16 @@ namespace ShoesStore
             MyLibrary.Cus_BUS.Insert(new Cus() { CusId = usr.UsrId });
             MyLibrary.Usr_BUS.CreateActCode(usr);
             Response.Redirect(Request.RawUrl);
-
-
-
         }
-
         protected void lbtnLogout_Click(object sender, EventArgs e)
         {
             WebSession.LoginUsr = null;
             Response.Redirect("/");
         }
-
         protected void lbtnCusHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Customer/CusHome.aspx");
         }
-
-
         protected void btnActCodeSender_Click(object sender, EventArgs e)
         {
             RequiredEmail.Validate();
@@ -140,9 +110,7 @@ namespace ShoesStore
                 _actCode = TextHelper.RandomNumber(4);
                 Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
                     $"Mã kích hoạt của bạn là {_actCode}");
-
                 Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
-
             }
         }
         public void Alert(string message)
@@ -151,7 +119,6 @@ namespace ShoesStore
         }
         protected void btnCartDetPreviewClose_OnCommand(object sender, CommandEventArgs e)
         {
-
             string[] primaryKeys = e.CommandArgument.ToString().Split(',');
             MyLibrary.CartDet_BUS.Delete(MyLibrary.CartDet_BUS.GetAll().FirstOrDefault(
                                 m =>
@@ -163,7 +130,6 @@ namespace ShoesStore
             ));
             LoadCartPreview();
         }
-
         protected void customValidator_ActivateCode_OnServerValidate(object source, ServerValidateEventArgs args)
         {
             if (args.Value != _actCode)

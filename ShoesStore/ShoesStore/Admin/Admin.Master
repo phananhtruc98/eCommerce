@@ -23,8 +23,6 @@
 <form runat="server">
 <asp:ScriptManager runat="server">
 </asp:ScriptManager>
-
-
 <div class="container-scroller">
 <!-- partial:partials/_navbar.html -->
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row nav_custom">
@@ -292,7 +290,6 @@
 </div>
 <!-- page-body-wrapper ends -->
 </div>
-
 <!-- container-scroller -->
 <!-- plugins:js -->
 <script src="/Admin/vendors/js/vendor.bundle.base.js"></script>

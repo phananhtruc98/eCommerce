@@ -6,4 +6,4 @@ define("ace/snippets/red",["require","exports","module"],function(e,t,n){"use st
                         }
                     });
                 })();
-            
+

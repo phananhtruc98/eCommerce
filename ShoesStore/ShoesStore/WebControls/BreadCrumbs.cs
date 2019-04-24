@@ -18,14 +18,11 @@
  * 
  * Compile: csc /out:..\bin\BreadCrumbs.dll /target:library BreadCrumbs.cs
  * ============================================================================================= */
-
 using System;
 using System.Collections.Specialized;
 using System.IO;
 using System.Text;
 using System.Web.UI;
-
-
 namespace ShoesStore
 {
     namespace BreadCrumbs
@@ -35,8 +32,6 @@ namespace ShoesStore
 			StringBuilder sbResult = new StringBuilder ();				// Holds the Breadcrumb HTML.
 			StringBuilder sbBcUrl = new StringBuilder ();				// Holds the URL of the breadcrumb.  Directories are appended in succession to the root.
 			private HybridDictionary labels = new HybridDictionary ();	// Holds the "friendly" directory names.
-
-
 			/*
 			 *	Constructor
 			 *	Hook up the Control_Load event handler.
@@ -44,7 +39,6 @@ namespace ShoesStore
 			public BreadCrumbControl ()
 			{
 				Load += new EventHandler (Control_Load);
-
 				//
 				// Initialize properties to default values.
 				//
@@ -52,7 +46,6 @@ namespace ShoesStore
 				Separator		= ">";
 				RootUrl			= "/";
 				RootName		= "Trang chủ";
-
 				//
 				// Give the directories "friendly" names.  Given the dynamic nature of directory structures, list them 
 				// alphabetically by key.
@@ -60,10 +53,7 @@ namespace ShoesStore
 				labels.Add ("subdir", "Sub Directory");
 				labels.Add ("subsubdir", "Sub Sub Directory");
 			}
-
-
 			// PROPERTIES
-
 			// ShowFileName.  Set to true if you want to append an extra separator character and
 			// the current file's name; false if not.  Default is false.  
 			private bool showFileName;
@@ -78,7 +68,6 @@ namespace ShoesStore
 					showFileName = value;
 				}
 			}
-
 			// Separator.  Contains the character(s) that separate each directory and/or file name
 			// in the breadcrumb HTML.  Default is ">".
 			private string separator;
@@ -93,7 +82,6 @@ namespace ShoesStore
 					separator = value;
 				}
 			}
-
 			// RootUrl.  URL of the root directory.  Default is "/".
 			private string rootUrl;
 			public string RootUrl
@@ -107,7 +95,6 @@ namespace ShoesStore
 					rootUrl = value;
 				}
 			}
-
 			// RootName.  "Friendly" name of the root directory.  Default is "Home".
 			private string rootName;
 			public string RootName
@@ -121,15 +108,11 @@ namespace ShoesStore
 					rootName = value;
 				}
 			}
-
-
 			// EVENT HANDLERS
-
 			protected override void Render (HtmlTextWriter output)
 			{
 				output.Write (sbResult.ToString () + "<br>");
 			}
-
 			/*
 			 *	EventHandler: Control_Load
 			 *	This event handler contains the meat of the control's functionality.
@@ -140,21 +123,18 @@ namespace ShoesStore
 				// Create the root breadcrumb (corresponds to the root directory).
 				//
 				sbResult.Append ("<a href=\"" + RootUrl + "\">" + RootName + "</a>");
-
 				//
 				// Get the site URL.  Use a StringBuilder to hold the URL so that we can append 
 				// directory names in succession.
 				//
 				string strHostUrl = "http://" + Page.Request.ServerVariables["HTTP_HOST"] + "/";
 				sbBcUrl.Append (strHostUrl);
-
 				//
 				// Break up the path parts into an array (directory name(s) and/or file name).
 				//
 				string scriptName = Page.Request.ServerVariables["SCRIPT_NAME"];
 				string strScriptDir = Path.GetDirectoryName (scriptName);
 				bool bHasExtension = Path.HasExtension (scriptName);
-
 				//
 				// Create breadcrumb HTML for the directory name(s).
 				// *** 	Note: Remove the first "\"; otherwise, when you split the string, the first item in the
@@ -163,7 +143,6 @@ namespace ShoesStore
 				strScriptDir = strScriptDir.Substring (1);
 				string[] strDirs = strScriptDir.Split ('\\');
 				int nNumDirs = strDirs.Length;
-
 				//
 				// Splitting the string "\" (root directory) produces an array with an empty string as its only element.  If there is
 				// only one element and it is the empty string, then we are in the root directory.  If the user has chosen
@@ -182,13 +161,11 @@ namespace ShoesStore
 				{
 					strSeparator = String.Format (" {0} ", Separator);
 				}
-
 				foreach (string strDirName in strDirs)
 				{
 					sbResult.Append (strSeparator + "<a href=\"" + sbBcUrl.ToString () + strDirName + "/\">" + labels[strDirName] + "</a>");
 					sbBcUrl.Append (strDirName + "/");
 				}
-
 				//
 				// If the user wants to display file names, do it now.
 				//
@@ -200,4 +177,3 @@ namespace ShoesStore
 		}
 	}
 }
-

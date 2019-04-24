@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.UserControls {
-    
-    
     public partial class UcProCarousel {
-        
         /// <summary>
         /// featuredProducts control.
         /// </summary>

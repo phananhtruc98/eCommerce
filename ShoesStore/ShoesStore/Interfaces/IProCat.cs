@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ShoesStore.DataAccessLogicLayer;
-
 namespace ShoesStore.Interfaces
 {
     public interface IProCat : ITableOnePrimary<ProCat>

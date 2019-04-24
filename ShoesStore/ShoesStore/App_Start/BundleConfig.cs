@@ -1,5 +1,4 @@
 ﻿using System.Web.Optimization;
-
 namespace ShoesStore
 {
     public class BundleConfig
@@ -16,20 +15,17 @@ namespace ShoesStore
                             "~/Scripts/WebForms/DetailsView.js",
                             "~/Scripts/WebForms/TreeView.js",
                             "~/Scripts/WebForms/WebParts.js"));
-
             // Order is very important for these files to work, they have explicit dependencies
             bundles.Add(new ScriptBundle("~/bundles/MsAjaxJs").Include(
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
-
             // Use the Development version of Modernizr to develop with and learn from. Then, when you’re
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
             bundles.Add(new ScriptBundle("~/bundles/ShoesStore").Include(
-
                     "~/vendor/jquery-3.3.1/jquery.min.js",
                     "~/vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js",
                     "~/vendor/owl-carousel-2.3.4/owl.carousel.min.js",
@@ -38,7 +34,6 @@ namespace ShoesStore
                     "~/js/main.js",
                     "~/vendor/svg4everybody-2.1.9/svg4everybody.min.js"
                     ));
-                
         }
     }
 }

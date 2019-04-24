@@ -2,7 +2,6 @@
 using ShoesStore.DataAccessLogicLayer;
 using System;
 using System.Linq;
-
 namespace ShoesStore.Customer
 {
     public partial class CusHome_Cmt : System.Web.UI.Page
@@ -18,9 +17,7 @@ namespace ShoesStore.Customer
             Usr usr = (Usr)WebSession.LoginUsr;
             Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
             BindDataListview(usr1.UsrId);
-
         }
-
         public void BindDataListview(int CusId)
         {
             var rs = from d in rcptBuyDet.GetAll()
@@ -38,7 +35,6 @@ namespace ShoesStore.Customer
                          SizeName = z.SizeName,
                          Cmt = d.Cmt,
                          Point = d.Point,
-
                      };
             var rs1 = from a in rs.ToList()
                       group a by new { a.ShpName, a.ProName, a.ColorName, a.SizeName, a.Cmt, a.Point } into t
@@ -50,9 +46,7 @@ namespace ShoesStore.Customer
                           SizeName = t.Key.SizeName,
                           Cmt = t.Key.Cmt,
                           Point = t.Key.Point,
-
                       };
-
             if (rs1.Count() == 0 || rs1.Any(x=>x.Cmt == null))
             {
                 lbEmpty.Visible = true;

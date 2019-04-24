@@ -8,7 +8,6 @@ namespace ShoesStore.Admin
     public partial class Account_Mstr : Page
     {
         string avaimg = "";
-
         int accountId;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,7 +16,6 @@ namespace ShoesStore.Admin
                 LoadThongTin();
             }
         }
-
         public void LoadThongTin()
         {
             Mstr mstr = (Mstr)AdminSession.LoginAdmin;
@@ -30,11 +28,8 @@ namespace ShoesStore.Admin
             txtPhone.Text = mstrUsr.Phone;
             txtLogin.Text = mstrUsr.Login;
             txtPassword.Text = mstrUsr.Password;
-
-
             upava.Attributes["src"] = "/Admin/images/avatar/" + Master.Avatar1;
         }
-
         protected void lbtnLuu_Click(object sender, EventArgs e)
         {
             Mstr mstr = (Mstr)AdminSession.LoginAdmin;
@@ -58,14 +53,11 @@ namespace ShoesStore.Admin
             Master.usr_BUS.Update(rs1);
             Response.Redirect(Request.RawUrl);
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
-
         }
-
         protected void lbtnHuy_Click(object sender, EventArgs e)
         {
             return;
         }
-
         protected void lbtnSave_Click(object sender, EventArgs e)
         {
             Mstr mstr = (Mstr)AdminSession.LoginAdmin;
@@ -103,7 +95,6 @@ namespace ShoesStore.Admin
             Response.Redirect(Request.RawUrl);
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
         }
-
         protected void lbtnCancel_Click(object sender, EventArgs e)
         {
             return;

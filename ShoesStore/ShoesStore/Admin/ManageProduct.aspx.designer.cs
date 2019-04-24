@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Admin {
-    
-    
     public partial class ManageProduct {
-        
         /// <summary>
         /// gvPro control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvPro;
-        
         /// <summary>
         /// ValidationSummary4 control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary4;
-        
         /// <summary>
         /// gvProColor control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvProColor;
-        
         /// <summary>
         /// ValidationSummary1 control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
-        
         /// <summary>
         /// gvBrand control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvBrand;
-        
         /// <summary>
         /// ValidationBrand control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationBrand;
-        
         /// <summary>
         /// gvProSize control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvProSize;
-        
         /// <summary>
         /// ValidationSummary2 control.
         /// </summary>
@@ -83,7 +72,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
-        
         /// <summary>
         /// gvProCat control.
         /// </summary>
@@ -92,7 +80,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvProCat;
-        
         /// <summary>
         /// ValidationSummary3 control.
         /// </summary>

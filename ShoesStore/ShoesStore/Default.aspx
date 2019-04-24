@@ -1,15 +1,9 @@
 ﻿<%@ Page Title="Trang chủ" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShoesStore.Default" %>
-
 <%@ Import Namespace="ShoesStore" %>
-
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
 <%@ Register Src="~/UserControls/UcProCarousel.ascx" TagPrefix="uc1" TagName="UcProCarousel" %>
-
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-
     <!-- site__body -->
     <!-- .block-slideshow -->
     <div class="block-slideshow block-slideshow--layout--full block">
@@ -18,10 +12,10 @@
                 <div class="col-12">
                     <div class="block-slideshow__body">
                         <div class="owl-carousel">
-                            <asp:Repeater runat="server" ID="rptSlides" OnInit="rptSlides_Init">
+                            <asp:Repeater runat="server" ID="rptSlides" OnInit="rptSlides_Init" ItemType="ShoesStore.DataAccessLogicLayer.WebSlide">
                                 <ItemTemplate>
                                     <a class="block-slideshow__slide" href="#">
-                                        <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="<%# $"background-image: url('{MyLibrary.SlidePath(Eval("img"))}')" %>">
+                                        <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="background-image:<%# $" url('{MyLibrary.SlidePath(Item.Img)}')" %>">
                                         </div>
                                     </a>
                                 </ItemTemplate>
@@ -94,26 +88,17 @@
     <!-- .block-products -->
     <div class="block block-products block-products--layout--large-last">
         <div class="container">
-
-
             <div class="block-header">
                 <h3 class="block-header__title">Bán chạy</h3>
                 <div class="block-header__divider"></div>
             </div>
-
             <div class="block-products__body">
                 <div class="block-products__list">
-
                     <uc1:UcPro runat="server" ID="ucPro" PageSize="8" NumberOnRow="4" />
-                    
-
-
                 </div>
-
             </div>
             <div style="overflow: hidden;">
             </div>
-
         </div>
     </div>
     <!-- .block-products / end -->
@@ -125,9 +110,7 @@
                 <div class="block-header__divider"></div>
             </div>
             <div class="block-categories__list">
-
                 <asp:Repeater runat="server" ID="rptPopularCategories" OnInit="rptPopularCategories_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProCat">
-
                     <ItemTemplate>
                         <div class="block-categories__item category-card category-card--layout--compact">
                             <div class="category-card__body">
@@ -136,7 +119,6 @@
                                         <img
                                             src="<%# MyLibrary.ProCatImgPath(Item) %>" alt="">
                                     </a>
-
                                 </div>
                                 <div class="category-card__content">
                                     <div class="category-card__name">
@@ -146,33 +128,24 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </ItemTemplate>
                 </asp:Repeater>
-
-
             </div>
         </div>
     </div>
-
     <div class="block block-brands">
         <div class="container">
             <div class="block-brands__slider">
                 <div class="owl-carousel">
-
                     <asp:Repeater runat="server" ID="rptBrandLogos" OnInit="brandLogos_Init">
                         <ItemTemplate>
                             <div class="block-brands__item">
                                 <a href="#">
                                     <img src="images/logos/<%# Eval("Img") %>" alt="">
                                 </a>
-
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
-
-
                 </div>
             </div>
         </div>

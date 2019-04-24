@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace ShoesStore.UserControls
 {
     public partial class UcProCarousel : UcPro
@@ -9,6 +8,5 @@ namespace ShoesStore.UserControls
             featuredProducts.DataSource = MyLibrary.ProCat_BUS.GetAll();
             featuredProducts.DataBind();
         }
-     
     }
 }

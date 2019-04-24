@@ -1,11 +1,7 @@
 ﻿<%@ Page Language="C#" Title="Trang Chủ" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeFile="MerHome.aspx.cs" Inherits="ShoesStore.Merchant.MerHome" %>
-
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-
                     <!-- .block-slideshow -->
-
                     <div class="block-slideshow block-slideshow--layout--full block">
-
                         <div class="row">
                             <div class="col-12">
                                 <div class="block-slideshow__body">
@@ -17,12 +13,10 @@
                                                 <div class="block-slideshow__slide-title">
                                                     Big choice of<br/>
                                                     Hypebeast Sale
-                                       
                                                 </div>
                                                 <div class="block-slideshow__slide-text">
                                                     We provide a marketplace for many kinds of sneakers<br/>
                                                     And Yes ! Hypebeast included
-                                       
                                                 </div>
                                                 <div class="block-slideshow__slide-button"><span class="btn btn-primary btn-lg">Join Us</span></div>
                                             </div>
@@ -33,12 +27,10 @@
                                                 <div class="block-slideshow__slide-title">
                                                     And Even<br/>
                                                     More Luxury Brands
-                                       
                                                 </div>
                                                 <div class="block-slideshow__slide-text">
                                                     We also care for the trading , saling<br/>
                                                     Of many more top trending fashion brand
-                                       
                                                 </div>
                                                 <div class="block-slideshow__slide-button"><span class="btn btn-primary btn-lg">Join Us</span></div>
                                             </div>
@@ -50,7 +42,6 @@
                                                 <div class="block-slideshow__slide-text">
                                                     We also support all of your goods.<br/>
                                                     Because this place is for everyone.
-                                       
                                                 </div>
                                                 <div class="block-slideshow__slide-button"><span class="btn btn-primary btn-lg">Join Us</span></div>
                                             </div>
@@ -123,7 +114,6 @@
                                 <div class="block-banner__title">
                                     Thousands<br class="block-banner__mobile-br">
                                     Salers Believed
-                   
                                 </div>
                                 <div class="block-banner__text">Luxury, Hypebeast, Sporting, Casual, Trending</div>
                                 <div class="block-banner__button"><span class="btn btn-sm btn-primary">Join Us Now</span></div>
@@ -322,6 +312,4 @@
                             </div>
                         </div>
                     </div>
-
-
 </asp:Content>

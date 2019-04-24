@@ -6,4 +6,4 @@ define("ace/snippets/nsis",["require","exports","module"],function(e,t,n){"use s
                         }
                     });
                 })();
-            
+

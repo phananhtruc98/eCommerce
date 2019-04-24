@@ -6,4 +6,4 @@ define("ace/snippets/redshift",["require","exports","module"],function(e,t,n){"u
                         }
                     });
                 })();
-            
+

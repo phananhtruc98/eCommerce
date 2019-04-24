@@ -7,7 +7,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Logger;
 using sd = System.Drawing;
-
 namespace Utilities
 {
     public class FileHelper
@@ -22,11 +21,9 @@ namespace Utilities
                 bl = true;
                 return bl;
             }
-
             bl = false;
             return bl;
         }
-
         public string DeleteFile(string filePath)
         {
             var msg = "";
@@ -43,25 +40,20 @@ namespace Utilities
                 return msg + ex;
             }
         }
-
         public void DrawImageToWithHeight(string pathAvatars, string fileName, Stream fileStream, int width, int height)
         {
             try
             {
                 var thumbWidth = width;
                 var thumbHeight = height;
-
                 var oImg = sd.Image.FromStream(fileStream);
                 sd.Image oThumbNail = new sd.Bitmap(thumbWidth, thumbHeight, oImg.PixelFormat);
-
                 var oGraphic = sd.Graphics.FromImage(oThumbNail);
                 oGraphic.CompositingQuality = CompositingQuality.HighQuality;
                 oGraphic.SmoothingMode = SmoothingMode.HighQuality;
                 oGraphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
                 var oRectangle = new sd.Rectangle(0, 0, thumbWidth, thumbHeight);
                 oGraphic.DrawImage(oImg, oRectangle);
-
                 oThumbNail.Save(pathAvatars + fileName, ImageFormat.Png);
                 oImg.Dispose();
             }
@@ -70,7 +62,6 @@ namespace Utilities
                 Log.error("DrawImageToWithHeight error:" + ex.Message);
             }
         }
-
         public void Drawing(sd.Graphics gr, string s, sd.PointF p, Random rnd)
         {
             var x = p.X;
@@ -90,7 +81,6 @@ namespace Utilities
                 x = x + sf.Width / 2;
             }
         }
-
         //EXPORT EXCEL FILE
         public void ExportGridView(string fileName, string filePath, DataGrid gv)
         {
@@ -99,19 +89,16 @@ namespace Utilities
             var hw = new HtmlTextWriter(tw);
             gv.RenderControl(hw);
             var htmlInfo = tw.ToString().Trim();
-
             var xlsFileName = fileName + ".xls";
             var filePathName = filePath + xlsFileName;
             if (File.Exists(filePathName))
                 File.Delete(filePathName);
             var Fs = new FileStream(filePathName, FileMode.Create);
             var BWriter = new BinaryWriter(Fs, Encoding.GetEncoding("UTF-8"));
-
             BWriter.Write(htmlInfo);
             BWriter.Close();
             Fs.Close();
         }
-
         public sd.Brush GetBrush(Random rnd)
         {
             var brush = sd.Brushes.Black;
@@ -140,10 +127,8 @@ namespace Utilities
                     brush = sd.Brushes.DarkTurquoise;
                     break;
             }
-
             return brush;
         }
-
         //get Current Page Name
         /// <summary>
         ///     Request.Url.AbsolutePath
@@ -156,7 +141,6 @@ namespace Utilities
             var sRet = oInfo.Name;
             return sRet;
         }
-
         public sd.Font GetFont(Random rnd)
         {
             float sz = 15 + rnd.Next(4);
@@ -174,10 +158,8 @@ namespace Utilities
                     f = new sd.Font("Times New Roman", sz, sd.FontStyle.Bold);
                     break;
             }
-
             return f;
         }
-
         public sd.Pen GetPen(Random rnd)
         {
             var p = sd.Pens.Black;
@@ -194,10 +176,8 @@ namespace Utilities
                     p = sd.Pens.DarkOliveGreen;
                     break;
             }
-
             return p;
         }
-
         //Resize the Height image
         public void
             ResizeImageHeight(string imgPath, string saveTo, int resizeHeight) //, int Width, int Height, int X, int Y)
@@ -210,7 +190,6 @@ namespace Utilities
                      * chia theo tỉ lể tìm ra chiều cao mới
                      * int originalImage_H -----------> resizeHeight
                      * int originalImage_W ----------->???NewWidth
-                     
                      */
                 var newWidth = originalWidth * resizeHeight / originalHeight;
                 using (var bmp = new sd.Bitmap(newWidth, resizeHeight)) //(Width, Height))
@@ -237,18 +216,14 @@ namespace Utilities
                                 //string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
                                 imageResized.Save(saveTo, imageResized.RawFormat);
                             }
-
                             msWrite.Dispose();
                         }
-
                         graphic.Dispose();
                     }
-
                     bmp.Dispose();
                 }
             }
         }
-
         //Resize the Width image
         public void
             ResizeImageWidth(string imgPath, string saveTo, int resizeWidth) //, int Width, int Height, int X, int Y)
@@ -287,18 +262,14 @@ namespace Utilities
                                 //string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
                                 imageResized.Save(saveTo, imageResized.RawFormat);
                             }
-
                             msWrite.Dispose();
                         }
-
                         graphic.Dispose();
                     }
-
                     bmp.Dispose();
                 }
             }
         }
-
         //Resize the Height and Width image
         public byte[]
             ResizeImageWidthHeight(string imgPath, int resizeWidth,
@@ -326,14 +297,12 @@ namespace Utilities
                 }
             }
         }
-
         //CAPCHA Drawing
         public sd.Bitmap TransformImage(sd.Bitmap bmp, Random rnd)
         {
             var width = bmp.Width;
             var height = bmp.Height;
             double distort = rnd.Next(5, 15) * (rnd.Next(10) == 1 ? 1 : -1);
-
             // Copy the image so that we're always using the original for source color
             using (var copy = (sd.Bitmap) bmp.Clone())
             {
@@ -348,7 +317,6 @@ namespace Utilities
                     bmp.SetPixel(x, y, copy.GetPixel(newX, newY));
                 }
             }
-
             return bmp;
         }
     }

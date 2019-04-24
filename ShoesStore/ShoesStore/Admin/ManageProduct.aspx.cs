@@ -2,7 +2,6 @@
 using System;
 using System.Web.UI;
 using System.Linq;
-
 namespace ShoesStore.Admin
 {
     public partial class ManageProduct : Page
@@ -13,7 +12,6 @@ namespace ShoesStore.Admin
         private readonly ProCat_BUS proCat_BUS = new ProCat_BUS();
         private readonly Pro_BUS pro_BUS = new Pro_BUS();
         private readonly Shp_BUS shp_BUS = new Shp_BUS();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             BindDataGridViewColor();
@@ -22,35 +20,30 @@ namespace ShoesStore.Admin
             BindDataGridViewCat();
             BindDataGridViewPro();
         }
-
         // Load Bảng Màu
         private void BindDataGridViewColor()
         {
             gvProColor.DataSource = proColor_BUS.GetAll();
             gvProColor.DataBind();
         }
-
         // Load Bảng Thương hiệu
         private void BindDataGridViewBrand()
         {
             gvBrand.DataSource = proBrand_BUS.GetAll();
             gvBrand.DataBind();
         }
-
         // Load Bảng Kích cỡ
         private void BindDataGridViewSize()
         {
             gvProSize.DataSource = proSize_BUS.GetAll();
             gvProSize.DataBind();
         }
-
         // Load Bảng Loại sản phẩm
         private void BindDataGridViewCat()
         {
             gvProCat.DataSource = proCat_BUS.GetAll();
             gvProCat.DataBind();
         }
-
         // Load Bảng Pro
         private void BindDataGridViewPro()
         {

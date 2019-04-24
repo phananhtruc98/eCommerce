@@ -2,24 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 namespace ShoesStore.BusinessLogicLayer
 {
     public class CartDet_BUS : Table_BUS<CartDet, CartDet_DAO>
     {
         readonly Cart_BUS _cartBus = new Cart_BUS();
         readonly Cus_BUS _cusBus = new Cus_BUS();
-
         public override bool IsExist(CartDet obj)
         {
             return _dao.IsExist(obj);
         }
-
         public override void SetActive(CartDet obj)
         {
             _dao.SetActive(obj);
         }
-
         public string SumCartDetPrice()
         {
             try
@@ -31,10 +27,7 @@ namespace ShoesStore.BusinessLogicLayer
             {
                 return "0";
             }
-
-
         }
-
         public string SumCartDetPrice_Shop(int shpId)
         {
             try
@@ -49,9 +42,7 @@ namespace ShoesStore.BusinessLogicLayer
                 Console.WriteLine(e);
                 return "0";
             }
-
         }
-
         public List<CartDet> ListCartPreview()
         {
             try
@@ -64,7 +55,6 @@ namespace ShoesStore.BusinessLogicLayer
                     _cartBus.Insert(cart);
                     cart = _cartBus.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
                 }
-
                 return GetAll().Where(m => cart != null && m.CartId == cart.CartId).ToList();
             }
             catch
@@ -77,7 +67,6 @@ namespace ShoesStore.BusinessLogicLayer
             int[] shpIds = ListCartPreview().Select(m => m.ShpId).OrderBy(x => x).Distinct().ToArray();
             return MyLibrary.Shp_Bus.GetAll().Where(m => shpIds.Contains(m.ShpId)).ToList();
         }
-
         public int ListCartPreviewNumber()
         {
             return ListCartPreview().GroupBy(m => new { m.ProDet.Pro.ShpId, m.ProDet.Pro.ProId }).Count();

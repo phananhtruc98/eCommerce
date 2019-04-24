@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Admin {
-    
-    
     public partial class Admin {
-        
         /// <summary>
         /// lbAccount control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbAccount;
-        
         /// <summary>
         /// avaImg2 control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image avaImg2;
-        
         /// <summary>
         /// lbtnAccount control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnAccount;
-        
         /// <summary>
         /// lbtnLogout control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnLogout;
-        
         /// <summary>
         /// avaImg1 control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image avaImg1;
-        
         /// <summary>
         /// lbAccount2 control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbAccount2;
-        
         /// <summary>
         /// lbrolename control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbrolename;
-        
         /// <summary>
         /// MainContent control.
         /// </summary>

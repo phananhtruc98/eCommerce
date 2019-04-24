@@ -8,10 +8,7 @@
 //------------------------------------------------------------------------------
 
 namespace ShoesStore.Merchant {
-    
-    
     public partial class about_us {
-        
         /// <summary>
         /// form1 control.
         /// </summary>

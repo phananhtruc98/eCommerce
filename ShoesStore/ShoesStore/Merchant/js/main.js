@@ -12,16 +12,12 @@
 
         window.addEventListener('test', null, options);
     } catch(err) {}
-
-
     /*
     // initialize custom numbers
     */
     $(function () {
         $('.input-number').customNumber();
     });
-
-
     /*
     // topbar dropdown
     */
@@ -36,8 +32,6 @@
                 .removeClass('topbar-dropdown--opened');
         });
     });
-
-
     /*
     // dropcart, drop search
     */
@@ -67,8 +61,6 @@
                 .removeClass('indicator--opened');
         });
     });
-
-
     /*
     // product tabs
     */
@@ -99,8 +91,6 @@
             }
         });
     });
-
-
     /*
     // megamenu position
     */
@@ -119,8 +109,6 @@
             }
         });
     });
-
-
     /*
     // mobile search
     */
@@ -148,8 +136,6 @@
             }, true);
         }
     });
-
-
     /*
     // departments, sticky header
     */
@@ -246,8 +232,6 @@
         };
 
         const departments = new CDepartments($('.departments'));
-
-
         /*
         // sticky header
         */
@@ -281,8 +265,6 @@
             }, passiveSupported ? {passive: true} : false);
         }
     });
-
-
     /*
     // block slideshow
     */
@@ -294,8 +276,6 @@
             loop: true
         });
     });
-
-
     /*
     // block brands carousel
     */
@@ -313,8 +293,6 @@
             }
         });
     });
-
-
     /*
     // block posts carousel
     */
@@ -355,8 +333,6 @@
             });
         });
     });
-
-
     /*
     // teammates
     */
@@ -440,8 +416,6 @@
             quickview.clickHandler.apply(this, arguments);
         });
     });
-
-
     /*
     // products carousel
     */
@@ -563,8 +537,6 @@
             });
         });
     });
-
-
     /*
     // product gallery
     */
@@ -664,8 +636,6 @@
             }
         });
     });
-
-
     /*
     // Checkout payment methods
     */
@@ -703,8 +673,6 @@
             }
         });
     });
-
-
     /*
     // collapse
     */
@@ -746,8 +714,6 @@
             });
         });
     });
-
-
     /*
     // price filter
     */
@@ -778,8 +744,6 @@
             });
         });
     });
-
-
     /*
     // mobilemenu
     */
@@ -801,8 +765,6 @@
 
                 mobilemenu.removeClass('mobilemenu--open');
             };
-
-
             $('.mobile-header__menu-button').on('click', function() {
                 open();
             });
@@ -811,16 +773,12 @@
             });
         }
     });
-
-
     /*
     // tooltips
     */
     $(function () {
         $('[data-toggle="tooltip"]').tooltip({trigger: 'hover'});
     });
-
-
     /*
     // layout switcher
     */

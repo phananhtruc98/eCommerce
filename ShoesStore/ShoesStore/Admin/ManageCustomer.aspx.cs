@@ -3,7 +3,6 @@ using ShoesStore.MyExtensions;
 using System;
 using System.Linq;
 using System.Web.UI;
-
 namespace ShoesStore.Admin
 {
     public partial class Manage_Customer : Page
@@ -16,20 +15,17 @@ namespace ShoesStore.Admin
                 BindDataGridView();
             }
         }
-
         // Load bảng cus
         private void BindDataGridView()
         {
             gvCustomer.DataSource = cus_BUS.Get_Cus_Info();
             gvCustomer.DataBind();
         }
-
         // btn Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
-
         // Tìm kiếm
         public void TimKiem(string search_key)
         {
@@ -46,7 +42,6 @@ namespace ShoesStore.Admin
             gvCustomer.DataSource = rs;
             gvCustomer.DataBind();
         }
-
         protected void gvCustomer_PageIndexChanging(object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
         {
             gvCustomer.PageIndex = e.NewPageIndex;

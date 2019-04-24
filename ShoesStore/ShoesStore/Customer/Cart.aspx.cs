@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.MyExtensions;
-
 namespace ShoesStore.Customer
 {
     public partial class GioHang : BasePage
@@ -16,49 +15,36 @@ namespace ShoesStore.Customer
                 rptCartDetShp_Bind();
                 if (WebSession.LoginCus == null)
                     carDetails.InnerText = "Không có sản phẩm trong giỏ hàng!";
-
             }
         }
-
         private void rptCartDetShp_Bind()
         {
-
-
             rptCartDetShp.DataSource = MyLibrary.CartDet_BUS.ListCartPreview_Shop();
             rptCartDetShp.DataBind();
         }
         protected void txtQty_OnTextChanged(object sender, EventArgs e)
         {
-
-
             TextBox qty = (TextBox)sender;
             RepeaterItem thisRptItem = ((RepeaterItem)(qty.NamingContainer));
             Repeater thisRpt = (Repeater)thisRptItem.NamingContainer;
             Literal ltrPrice = (Literal)thisRptItem.FindControl("ltrPrice");
             Literal ltrObjSumPrice = (Literal)thisRptItem.FindControl("ltrObjSumPrice");
-
             ltrObjSumPrice.Text = (Convert.ToDouble(ltrPrice.Text) * Convert.ToDouble(qty.Text)).ToFormatMoney();
-
             RepeaterItem thisRptItemParentItem = (RepeaterItem)thisRptItem.NamingContainer.NamingContainer;
             Repeater thisRptItemParent = (Repeater)thisRptItem.NamingContainer.NamingContainer.NamingContainer;
-
             Literal ltrSumPerShp = (Literal)thisRptItemParent.Items[thisRptItemParentItem.ItemIndex].FindControl("ltrSumPerShp");
             ltrSumPerShp.Text = SumPerShp(thisRpt).ToFormatMoney();
             UpdateSum(thisRptItemParent);
             //string price = thisRptItem.FindControl("");
         }
-
         private void UpdateSum(Repeater rptParent)
         {
             decimal sumPerShp = 0;
             foreach (RepeaterItem rptParentItem in rptParent.Items)
             {
-
                 Literal ltrSumPerShp = (Literal)rptParentItem.FindControl("ltrSumPerShp");
                 sumPerShp += Convert.ToDecimal(ltrSumPerShp.Text.Replace(",", ""));
-
             }
-
             Literal rptCartDetShpSum = (Literal)rptParent.FindControlInFooter("rptCartDetShp_Sum");
             rptCartDetShpSum.Text = sumPerShp.ToFormatMoney().ToFormatMoney();
         }
@@ -70,10 +56,8 @@ namespace ShoesStore.Customer
                 Literal ltrObjSumPrice = (Literal)rptProduct.FindControl("ltrObjSumPrice");
                 sumShpPro += Convert.ToDecimal(ltrObjSumPrice.Text);
             }
-
             return sumShpPro.ToString();
         }
-
         protected void btnUpdateCart_OnClick(object sender, EventArgs e)
         {
             foreach (RepeaterItem rptCartDetShpItem in rptCartDetShp.Items)
@@ -82,7 +66,6 @@ namespace ShoesStore.Customer
                 foreach (RepeaterItem rptCartDetItem in rptCartDetCart.Items)
                 {
                     HiddenField hdfPrimaryKeys = (HiddenField)rptCartDetItem.FindControl("hdfPrimaryKeys");
-
                     string[] key = hdfPrimaryKeys.Value.Split(',');
                     CartDet obj = MyLibrary.CartDet_BUS.GetAll().FirstOrDefault(m => m.CartId + "" == key[0]
                                                                         && m.ShpId + "" == key[1]
@@ -97,16 +80,11 @@ namespace ShoesStore.Customer
                         MyLibrary.CartDet_BUS.Update(obj);
                     }
                 }
-
             }
-
-            
             ltrSumAll.Text = MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney();
         }
-
         protected void btnCartDetPreviewClose_OnCommand(object sender, CommandEventArgs e)
         {
-
             string[] primaryKeys = e.CommandArgument.ToString().Split(',');
             MyLibrary.CartDet_BUS.Delete(MyLibrary.CartDet_BUS.GetAll().FirstOrDefault(
                 m =>
@@ -120,7 +98,6 @@ namespace ShoesStore.Customer
             //rptCartDetCart_Bind();
             rptCartDetShp_Bind();
         }
-
         protected void rptCartDetCart_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Footer)
@@ -128,7 +105,6 @@ namespace ShoesStore.Customer
                 //ltrSumPerShp.Text=rptCartDetCart.Items.
             }
         }
-
         protected void rptCartDetShp_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -141,7 +117,5 @@ namespace ShoesStore.Customer
                 // access person here
             }
         }
-
-
     }
 }

@@ -3,7 +3,6 @@ using ShoesStore.DataAccessLogicLayer;
 using System;
 using System.Linq;
 using System.Web.UI.WebControls;
-
 namespace ShoesStore.Admin
 {
     public partial class Manage_Services : System.Web.UI.Page
@@ -16,14 +15,11 @@ namespace ShoesStore.Admin
                 BindGridViewData();
             }
         }
-
         private void BindGridViewData()
         {
             gvSub.DataSource = sub_BUS.GetAll();
             gvSub.DataBind();
         }
-
-
         protected void gvSub_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditRow")
@@ -52,7 +48,6 @@ namespace ShoesStore.Admin
                 string subContent = ((TextBox)gvSub.Rows[rowIndex].FindControl("EditSubContent")).Text;
                 string durDay = ((TextBox)gvSub.Rows[rowIndex].FindControl("EditDurDay")).Text;
                 string price = ((TextBox)gvSub.Rows[rowIndex].FindControl("EditPrice")).Text;
-
                 Sub result = (from c in sub_BUS.GetAll()
                               where c.SubId == Convert.ToInt32(e.CommandArgument)
                               select c).FirstOrDefault();
@@ -63,7 +58,6 @@ namespace ShoesStore.Admin
                     result.Price = price;
                     sub_BUS.Update(result);
                 }
-
                 gvSub.EditIndex = -1;
                 BindGridViewData();
             }
@@ -76,17 +70,10 @@ namespace ShoesStore.Admin
                 {
                     return;
                 }
-
                 Sub newSub = new Sub {SubContent = subContent, DurDay = Convert.ToInt32(durDay), Price = price};
-
                 sub_BUS.Insert(newSub);
-
                 BindGridViewData();
             }
         }
-
-        
-
-        
     }
 }

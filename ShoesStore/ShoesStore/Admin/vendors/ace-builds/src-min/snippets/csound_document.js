@@ -6,4 +6,4 @@ define("ace/snippets/csound_document",["require","exports","module"],function(e,
                         }
                     });
                 })();
-            
+

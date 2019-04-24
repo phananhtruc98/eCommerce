@@ -6,4 +6,4 @@ define("ace/mode/maze_highlight_rules",["require","exports","module","ace/lib/oo
                         }
                     });
                 })();
-            
+

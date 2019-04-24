@@ -1,9 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteCus.Master" CodeBehind="CusHome_Rcpt_Det.aspx.cs" Inherits="ShoesStore.Customer.CusHome_Rcpt_Det" %>
-
 <%@ MasterType VirtualPath="~/SiteCus.Master" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
-
 <asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
     <div class="row" runat="server" visible="false" id="rowRcptBuyDet">
         <asp:Label runat="server" Text="Chi tiết đơn hàng" ID="Label1" CssClass="h3" Visible="false"></asp:Label>
@@ -33,7 +31,6 @@
                         <th class="">Số lượng</th>
                         <th class="">Giá</th>
                         <th class="">Đánh giá</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -63,11 +60,9 @@
                                 <td colspan="7" style="text-align: right; font-size: 30px">Tổng cộng: <%# MyLibrary.RcptBuyDet_BUS.SumRcptBuyPrice_Shop(Item.ShpId).ToFormatMoney() %></td>
                             </tr>
                         </ItemTemplate>
-
                     </asp:Repeater>
                 </tbody>
             </table>
         </div>
     </div>
-
 </asp:Content>

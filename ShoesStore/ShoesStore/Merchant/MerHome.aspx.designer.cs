@@ -8,10 +8,7 @@
 //------------------------------------------------------------------------------
 
 namespace ShoesStore.Contact {
-    
-    
     public partial class index_2 {
-        
         /// <summary>
         /// form1 control.
         /// </summary>

@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Web.UI;
 using Utilities;
-
 namespace ShoesStore.Customer
 {
     public partial class CusHome_ChangePassword : Page
@@ -21,7 +20,6 @@ namespace ShoesStore.Customer
             txtNewPassword.Visible = true;
             txtRePassword.Visible = true;
         }
-
         protected void lbtnLuu_Click(object sender, EventArgs e)
         {
             Usr usr = (Usr)WebSession.LoginUsr;
@@ -59,18 +57,12 @@ namespace ShoesStore.Customer
             txtPassword.Visible = true;
             txtNewPassword.Visible = true;
             txtRePassword.Visible = true;
-
-
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
-
         }
-
         protected void lbtnHuy_Click(object sender, EventArgs e)
         {
-           
             lbtnLuu.Visible = false;
             lbtnHuy.Visible = false;
-
             txtLogin.Visible = false;
             txtPassword.Visible = false;
             txtNewPassword.Visible = false;

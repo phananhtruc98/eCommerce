@@ -5,25 +5,18 @@ using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.FriendlyUrls.Resolvers;
-
 namespace ShoesStore
 {
-
-
     public partial class BasePage : Page
     {
         public List<Tuple<Control, TableName>> listWc = new List<Tuple<Control, TableName>>();
-
-  
         protected virtual void Page_Load(object sender, EventArgs e)
         {
             // Determine current view
             var isMobile = WebFormsFriendlyUrlResolver.IsMobileView(new HttpContextWrapper(Context));
             var CurrentView = isMobile ? "Mobile" : "Desktop";
-
             // Determine alternate view
             var AlternateView = isMobile ? "Desktop" : "Mobile";
-
             string strSwitchViewRouteName = "AspNet.FriendlyUrls.SwitchView";
             var SwitchViewRoute = RouteTable.Routes;
             if (SwitchViewRoute == null)
@@ -41,7 +34,6 @@ namespace ShoesStore
             url += "?ReturnUrl=" + HttpUtility.UrlEncode(Request.RawUrl);
             var SwitchUrl = url;
         }
-
         public void Bind()
         {
             foreach (var wc in listWc)
@@ -67,12 +59,9 @@ namespace ShoesStore
                                 break;
                             }
                     }
-
-
                     rptWc.DataBind();
                 }
             }
         }
-
     }
 }

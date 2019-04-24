@@ -6,4 +6,4 @@ define("ace/mode/mixal_highlight_rules",["require","exports","module","ace/lib/o
                         }
                     });
                 })();
-            
+

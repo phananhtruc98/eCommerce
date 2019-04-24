@@ -6,4 +6,4 @@ define("ace/snippets/smarty",["require","exports","module"],function(e,t,n){"use
                         }
                     });
                 })();
-            
+

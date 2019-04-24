@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using ShoesStore.Interfaces;
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class ProCat_DAO : Table_DAO<ProCat>, IProCat
@@ -10,27 +9,22 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
-
         public ProCat GetById(int id)
         {
             return DataProvider.Instance.ProCat.Find(id);
         }
-
         public override bool IsExist(ProCat obj)
         {
             throw new NotImplementedException();
         }
-
         public override void SetActive(ProCat obj)
         {
             throw new NotImplementedException();
         }
-
         public ProCat GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();
         }
-
         public int GetLastestId()
         {
             throw new NotImplementedException();

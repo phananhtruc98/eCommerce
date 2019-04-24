@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Admin {
-    
-    
     public partial class ManageReceipt_Mer {
-        
         /// <summary>
         /// txtTimKiem control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTimKiem;
-        
         /// <summary>
         /// btnTimKiem control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnTimKiem;
-        
         /// <summary>
         /// gvRcptSub control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRcptSub;
-        
         /// <summary>
         /// ValidationRcptSubId control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationRcptSubId;
-        
         /// <summary>
         /// cthd control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl cthd;
-        
         /// <summary>
         /// gvRcptSubDet control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRcptSubDet;
-        
         /// <summary>
         /// sumprice control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl sumprice;
-        
         /// <summary>
         /// sumprice2 control.
         /// </summary>

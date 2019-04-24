@@ -3,7 +3,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Web.UI;
-
 namespace ShoesStore.Customer
 {
     public partial class CusHome : BasePage
@@ -11,9 +10,7 @@ namespace ShoesStore.Customer
         string avaimgstr = "";
         protected override void Page_Load(object sender, EventArgs e)
         {
-
             LoadThongTin();
-
         }
         public void LoadThongTin()
         {
@@ -42,7 +39,6 @@ namespace ShoesStore.Customer
                 string filename = Path.GetFileNameWithoutExtension(fupava.PostedFile.FileName);
                 string strFilePath = filename + getext;
                 avaimgstr = strFilePath;
-
                 if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" && getext != ".png" && getext != ".tif" && getext != ".tiff")
                 {
                     ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Chọn ảnh!!')", true);
@@ -56,7 +52,6 @@ namespace ShoesStore.Customer
                     avaimg.Attributes["src"] = "/Admin/images/avatar/" + avaimgstr;
                     rs1.Avatar = avaimgstr;
                 }
-               
             }
             else if (avaimgstr == usr1.Avatar)
             {
@@ -71,13 +66,11 @@ namespace ShoesStore.Customer
             rs1.Active = usr1.Active;
             rs1.Login = usr1.Login;
             rs1.Password = usr1.Password;
-            
             Master._usr.Update(rs1);
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
             lblThaydoi.Visible = true;
             lbtnLuu.Visible = false;
             lbtnHuy.Visible = false;
-
             txtUsrName.Visible = false;
             txtPhone.Visible = false;
             txtAddress.Visible = false;
@@ -88,17 +81,13 @@ namespace ShoesStore.Customer
             lblAddress.Visible = true;
             fupava.Visible = false;
             Response.Redirect(Request.RawUrl);
-
         }
-
         protected void lbtnHuy_Click(object sender, EventArgs e)
         {
             fupava.Visible = true;
-
             lblThaydoi.Visible = true;
             lbtnLuu.Visible = false;
             lbtnHuy.Visible = false;
-
             txtUsrName.Visible = false;
             txtPhone.Visible = false;
             txtAddress.Visible = false;
@@ -108,17 +97,14 @@ namespace ShoesStore.Customer
             lblEmail.Visible = true;
             lblAddress.Visible = true;
         }
-
         protected void lblThaydoi_Click(object sender, EventArgs e)
         {
             Usr usr = (Usr)WebSession.LoginUsr;
             Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
             fupava.Visible = true;
-
             lbtnLuu.Visible = true;
             lbtnHuy.Visible = true;
             lblThaydoi.Visible = false;
-
             txtUsrName.Visible = true;
             txtPhone.Visible = true;
             txtAddress.Visible = true;
@@ -127,7 +113,6 @@ namespace ShoesStore.Customer
             txtPhone.Text = usr1.Phone;
             txtEmail.Text = usr1.Email;
             txtAddress.Text = usr1.Address;
-
             lblUsrName.Visible = false;
             lblPhone.Visible = false;
             lblEmail.Visible = false;

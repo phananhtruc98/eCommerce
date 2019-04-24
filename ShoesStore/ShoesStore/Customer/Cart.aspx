@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" Title="Giỏ hàng" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="~/Customer/Cart.aspx.cs" Inherits="ShoesStore.Customer.GioHang" %>
-
 <%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
@@ -42,11 +41,9 @@
                     </tr>
                 </thead>
                 <tbody class="cart-table__body">
-
                     <asp:Repeater runat="server" ID="rptCartDetShp" ItemType="ShoesStore.DataAccessLogicLayer.Shp" OnItemDataBound="rptCartDetShp_OnItemDataBound">
                         <ItemTemplate>
                             <asp:HiddenField runat="server" ID="hdfShpId" Value="<%# Item.ShpId %>" />
-
                             <tr>
                                 <td class="cart-table__column--shop">Shop : <%# Item.ShpName %>
                                 </td>
@@ -55,7 +52,6 @@
                                 <ItemTemplate>
                                     <asp:HiddenField runat="server" ID="hdfPrimaryKeys" Value='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId}" %>' />
                                     <tr class="cart-table__row">
-
                                         <td class="cart-table__column cart-table__column--image">
                                             <a href="#">
                                                 <img
@@ -70,7 +66,6 @@
                                             <ul class="cart-table__options">
                                                 <li>Màu: <%# Item.ProDet.ProColor.ColorName %></li>
                                                 <li>Kích cỡ: <%# Item.ProDet.ProSize.SizeName %></li>
-
                                             </ul>
                                         </td>
                                         <td class="cart-table__column cart-table__column--price" data-title="Price">
@@ -81,18 +76,13 @@
                                                 <asp:TextBox runat="server" type="number" ID="txtQty" CssClass="form-control input-number__input"
                                                     OnTextChanged="txtQty_OnTextChanged" AutoPostBack="True" min="1" value="<%# Item.Qty %>">
                                                 </asp:TextBox>
-
                                                 <div class="input-number__add"></div>
                                                 <div class="input-number__sub"></div>
                                             </div>
                                         </td>
                                         <td class="cart-table__column cart-table__column--total" data-title="Total">
                                             <asp:Literal runat="server" ID="ltrObjSumPrice" Text=" <%# (Convert.ToDouble(Item.ProDet.Pro.Price) * Convert.ToDouble(Item.Qty.ToString())).ToFormatMoney() %>">
-
-
                                             </asp:Literal>
-
-
                                         </td>
                                         <td class="cart-table__column cart-table__column--remove">
                                             <asp:LinkButton runat="server"
@@ -132,14 +122,11 @@
                             </tr>
                         </SeparatorTemplate>
                     </asp:Repeater>
-
                 </tbody>
             </table>
             <div class="cart__actions">
                 <a href="/san-pham" class="btn btn-secondary btn-lg custom_font">Tiếp tục mua sắm</a>
-
                 <asp:Button runat="server" Text="Cập nhật giỏ hàng" ID="btnUpdateCart" OnClick="btnUpdateCart_OnClick" CssClass="btn btn-primary cart__update-button btn-lg custom_font" />
-
             </div>
             <div class="row justify-content-end pt-5">
                 <div class="col-12 col-md-7 col-lg-6 col-xl-5">
@@ -167,7 +154,6 @@
                                     </tr>
                                 </tfoot>
                             </table>
-
                             <a class="btn btn-primary btn-xl btn-block cart__checkout-button"
                                 href="/gio-hang/thanh-toan">Thanh toán
                             </a>
@@ -177,6 +163,5 @@
             </div>
         </div>
     </div>
-
     <!-- site__body / end -->
 </asp:Content>

@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Logger;
-
 namespace Utilities
 {
     public class TextHelper
@@ -151,7 +150,6 @@ namespace Utilities
             text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:#,##}", decimal.Parse(text));
             return text;
         }
-
         public static string ConvertMoney(string text)
         {
             if (text.Length == 11)
@@ -171,7 +169,6 @@ namespace Utilities
                     .Substring(0, 1);
             return text;
         }
-
         public static string ConvertText(string text)
         {
             text = text.Replace("'", "");
@@ -193,7 +190,6 @@ namespace Utilities
             text = text.Replace("field name", "");
             return text;
         }
-
         public static string ConvertToUnSign(string text)
         {
             if (text.Trim() != "" || text != null)
@@ -213,15 +209,12 @@ namespace Utilities
                 text = text.Replace("---", "-");
                 text = text.Replace("--", "-");
                 text = text.Replace("_", "-");
-
                 var regex = new Regex(@"\p{IsCombiningDiacriticalMarks}+");
                 var strFormD = text.Normalize(NormalizationForm.FormD);
                 return regex.Replace(strFormD, string.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
             }
-
             return "";
         }
-
         public static string ConvertUnSign(string text)
         {
             if (text.Trim() != "" || text != null)
@@ -231,10 +224,8 @@ namespace Utilities
                     .Replace(".", "");
                 return regex.Replace(strFormD, string.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
             }
-
             return "";
         }
-
         public static string DateText(string text)
         {
             var day = DateTime.Parse(text).ToString("ddd");
@@ -250,7 +241,6 @@ namespace Utilities
             var namx = System.Convert.ToInt32(DateTime.Now.ToString("yyyy"));
             var giox = System.Convert.ToInt32(DateTime.Now.ToString("hh"));
             var phutx = System.Convert.ToInt32(DateTime.Now.ToString("mm"));
-
             if (buoix == "PM") giox = giox + 12;
             if (buoi == "AM")
             {
@@ -261,7 +251,6 @@ namespace Utilities
                 buoi = " chiều";
                 gio = gio + 12;
             }
-
             if (nam == namx)
             {
                 if (thang == thangx)
@@ -317,15 +306,12 @@ namespace Utilities
             {
                 text = namx - nam + " năm trước";
             }
-
             return text;
         }
-
         public static string GetBuyCode(string num)
         {
             if (HttpContext.Current.Request.Cookies["cart"] != null)
                 return HttpContext.Current.Request.Cookies["cart"].Values["buycode"];
-
             var val = "";
             var codes = "FANY" + num + "Y" + DateTime.Now.ToString("yyyy") + "M" + DateTime.Now.ToString("MM") + "D" +
                         DateTime.Now.ToString("dd") + "AT" + DateTime.Now.ToString("HHmmss");
@@ -336,7 +322,6 @@ namespace Utilities
             HttpContext.Current.Response.SetCookie(cookieLang);
             return val;
         }
-
         public static string getImage_ChangeFileName(string savePath, string extraName, HttpPostedFile imgAdv)
         {
             var strFileName = "";
@@ -353,11 +338,9 @@ namespace Utilities
                                   "." + strFileNameType;
                     var intFileSize = imgAdv.ContentLength;
                     if (intFileSize <= 0 || intFileSize > 3145728) return strFileName;
-
                     imgAdv.SaveAs(rootPath + "\\" + strFileName);
                     return strFileName;
                 }
-
                 return strFileName;
             }
             catch (Exception ex)
@@ -366,7 +349,6 @@ namespace Utilities
                 return strFileName;
             }
         }
-
         public static string GetIpAddress()
         {
             var val = "";
@@ -379,22 +361,18 @@ namespace Utilities
             {
                 val = HttpContext.Current.Request.UserHostAddress;
             }
-
             return val;
         }
-
         public static string GetRoot()
         {
             return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
         }
-
         public static bool IsSpecialCharacters(string s)
         {
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
             if (regexItem.IsMatch(s)) return false;
             return true;
         }
-
         public static void LoadMeta(HtmlHead headTag, string title, string description, string keyws, string category,
             string url, string img, string dateup, string datemf, string datecre)
         {
@@ -426,18 +404,15 @@ namespace Utilities
             pagemetaTag.Attributes.Add("itemprop", "headline");
             pagemetaTag.Content = title;
             headTag.Controls.Add(pagemetaTag);
-
             pagemetaTag = new HtmlMeta();
             pagemetaTag.Attributes.Add("itemprop", "articleSection");
             pagemetaTag.Content = category;
             headTag.Controls.Add(pagemetaTag);
-
             pagemetaTag = new HtmlMeta();
             pagemetaTag.Attributes.Add("itemprop", "sourceOrganization");
             pagemetaTag.Attributes.Add("name", "source");
             pagemetaTag.Content = GetRoot();
             headTag.Controls.Add(pagemetaTag);
-
             pagemetaTag = new HtmlMeta();
             pagemetaTag.Attributes.Add("itemprop", "dateCreated");
             pagemetaTag.Content = DateTime.Parse(datecre).ToString("yyyy-MM-dd HH:mm + 07:00");
@@ -458,23 +433,19 @@ namespace Utilities
             pagemetaTag.Attributes.Add("name", "pubdate");
             pagemetaTag.Content = DateTime.Parse(upddate).ToString("yyyy-MM-dd HH:mm + 07:00");
             headTag.Controls.Add(pagemetaTag);
-
             pagemetaTag = new HtmlMeta();
             pagemetaTag.Attributes.Add("property", "og:type");
             pagemetaTag.Content = "article";
             headTag.Controls.Add(pagemetaTag);
             pagemetaTag = new HtmlMeta();
-
             pagemetaTag.Attributes.Add("property", "og:site_name");
             pagemetaTag.Content = "Botyenmachtphcm.com";
             headTag.Controls.Add(pagemetaTag);
-
             pagemetaTag.Attributes.Add("property", "og:description");
             pagemetaTag.Attributes.Add("itemprop", "description");
             pagemetaTag.Content = description;
             headTag.Controls.Add(pagemetaTag);
         }
-
         public static void MoveSelectedValue(ListBox lbScr, ListBox lbDest)
         {
             foreach (ListItem listItem1 in lbScr.Items)
@@ -487,16 +458,13 @@ namespace Utilities
                 if (listItem2.Selected)
                     listItem2.Selected = false;
         }
-
         public static string RandomNumber(int length)
         {
             var s = "";
             var random = new Random();
             for (var i = 1; i <= length; i++) s += random.Next(0, 9);
-
             return s;
         }
-
         public static string ShortDateText(string text)
         {
             var day = DateTime.Parse(text).ToString("ddd");
@@ -512,7 +480,6 @@ namespace Utilities
             var namx = System.Convert.ToInt32(DateTime.Now.ToString("yyyy"));
             var giox = System.Convert.ToInt32(DateTime.Now.ToString("hh"));
             var phutx = System.Convert.ToInt32(DateTime.Now.ToString("mm"));
-
             if (buoix == "PM") giox = giox + 12;
             if (buoi == "AM")
             {
@@ -523,7 +490,6 @@ namespace Utilities
                 buoi = " chiều";
                 gio = gio + 12;
             }
-
             if (nam == namx)
             {
                 if (thang == thangx)
@@ -578,10 +544,8 @@ namespace Utilities
             {
                 text = namx - nam + " năm trước";
             }
-
             return text;
         }
-
         public static string TrimText(string textTrim, int length)
         {
             if (!string.IsNullOrEmpty(textTrim))
@@ -596,7 +560,6 @@ namespace Utilities
                         sb.Append(word + " ");
                     }
                 }
-
             return textTrim;
         }
     }

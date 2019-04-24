@@ -8,10 +8,7 @@
 //------------------------------------------------------------------------------
 
 namespace ShoesStore.MerProfile {
-    
-    
     public partial class MerProfile {
-        
         /// <summary>
         /// form1 control.
         /// </summary>

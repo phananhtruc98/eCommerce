@@ -6,4 +6,4 @@ define("ace/mode/latex_highlight_rules",["require","exports","module","ace/lib/o
                         }
                     });
                 })();
-            
+

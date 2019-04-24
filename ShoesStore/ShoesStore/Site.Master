@@ -1,14 +1,10 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ShoesStore.SiteMaster" %>
-
 <%@ Register TagPrefix="friendlyUrls" TagName="ViewSwitcher" Src="~/ViewSwitcher.ascx" %>
-
 <%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
-    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %></title>
@@ -16,14 +12,10 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/ShoesStore") %>
     </asp:PlaceHolder>
-
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <script src="jquery.min.js" type="text/javascript"></script>
-  
     <script src="/js/cusHome_RcptSuccess.js"></script>
-
-  
 </head>
 <body>
     <form runat="server">
@@ -98,10 +90,8 @@
         </div>
         <!-- Dang Nhap modal/end-->
         <!-- Dang Ky modal-->
-
         <div id="DangKy" class="modal">
             <asp:UpdatePanel runat="server">
-
                 <ContentTemplate>
                     <div class="modal-dialog modal-dialog-centered ">
                         <div class="modal-content  p-4 m-5 ">
@@ -115,9 +105,7 @@
                                     <label for="email">Email</label>
                                     <input type="text" class="form-control form-control-lg" name="uname1" id="email" runat="server" />
                                     <div class="mt-1">
-
                                         <asp:Button type="button" ID="btnActCodeSender" class="btn btn-primary" Text="Gửi mã xác minh" runat="server" OnClick="btnActCodeSender_Click" />
-
                                     </div>
                                     <asp:RequiredFieldValidator
                                         Display="Dynamic"
@@ -165,7 +153,6 @@
                                         ValidationGroup="Register"
                                         ForeColor="Red"
                                         OnServerValidate="customValidator_ActivateCode_OnServerValidate">
-
                                     </asp:CustomValidator>
                                 </div>
                                 <div class="form-group">
@@ -231,8 +218,6 @@
                                 </div>
                                 <div class="form-group py-4">
                                     <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
-
-
                                     <asp:Button Text="Đăng ký" CssClass="btn btn-primary btn-lg float-right custom_font" ID="btnSignUp" runat="server" ValidationGroup="Register" OnClick="btnSignUp_Click" />
                                     <label id="lbStatus" style="color: red" runat="server"></label>
                                 </div>
@@ -240,13 +225,9 @@
                         </div>
                     </div>
                 </ContentTemplate>
-
             </asp:UpdatePanel>
-
         </div>
-
         <div class="site">
-
             <header class="site__header d-lg-block d-none">
                 <div class="site-header">
                     <!-- .topbar -->
@@ -286,9 +267,7 @@
                                             <!-- .menu -->
                                             <ul class="menu menu--layout--topbar">
                                                 <li id="lbtnCusHome" runat="server" visible="false">
-
                                                     <a href="/nguoi-dung">Thông tin cá nhân</a>
-
                                                 </li>
                                                 <li id="usr_logout" runat="server" visible="false">
                                                     <asp:LinkButton runat="server" ID="lbtnLogout" OnClick="lbtnLogout_Click">Đăng xuất</asp:LinkButton>
@@ -388,7 +367,6 @@
                                     </div>
                                     <!-- .nav-links / end -->
                                     <div class="nav-panel__indicators">
-
                                         <div class="indicator indicator--trigger--click">
                                             <a href="<%:Server.MapPath("gio-hang") %>"
                                                 class="indicator__button">
@@ -404,10 +382,7 @@
                                                 <!-- .dropcart -->
                                                 <div class="dropcart">
                                                     <div class="dropcart__products-list">
-
                                                         <asp:Repeater runat="server" ID="rptCartDetPreview" ItemType="ShoesStore.DataAccessLogicLayer.CartDet">
-
-
                                                             <ItemTemplate>
                                                                 <div class="dropcart__product">
                                                                     <div class="dropcart__product-image">
@@ -425,7 +400,6 @@
                                                                         </div>
                                                                         <ul class="dropcart__product-options">
                                                                             <li><%# Item.ProDet.ProColor.ColorName %></li>
-
                                                                         </ul>
                                                                         <div class="dropcart__product-meta">
                                                                             <span><%# Item.Qty %>
@@ -435,7 +409,6 @@
                                 </span>
                                                                         </div>
                                                                     </div>
-
                                                                     <asp:LinkButton runat="server"
                                                                         ID="btnCartDetPreviewClose"
                                                                         CommandArgument='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId},{Item}" %>'
@@ -449,8 +422,6 @@
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
-
-
                                                     </div>
                                                     <div class="dropcart__totals">
                                                         <table>
@@ -462,7 +433,6 @@
                                                                 <th>Phí giao hàng</th>
                                                                 <td>$25.00</td>
                                                             </tr>--%>
-
                                                             <tr>
                                                                 <th>Thành tiền</th>
                                                                 <td><%:MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
@@ -638,7 +608,6 @@
             </footer>
             <!-- site__footer / end -->
         </div>
-
     </form>
 </body>
 </html>

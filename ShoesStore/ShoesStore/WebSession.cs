@@ -2,7 +2,6 @@
 using System.Web;
 using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
-
 namespace ShoesStore
 {
     public class WebSession
@@ -13,9 +12,7 @@ namespace ShoesStore
             get => HttpContext.Current.Session["LoginUsr"];
             set => HttpContext.Current.Session["LoginUsr"] = value;
         }
-
         public static WebSession Instance => _instance ?? new WebSession();
-
         public static Cus LoginCus
         {
             get
@@ -30,9 +27,7 @@ namespace ShoesStore
                 {
                     return null;
                 }
-
             }
         }
     }
-
 }

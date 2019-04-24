@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" Title="Quản lý người mua" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageAdministrator.aspx.cs" Inherits="ShoesStore.Admin.Manage_Administrator" %>
-
 <%@ MasterType VirtualPath="~/Admin/Admin.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="btn btn-lg custom_bar">Danh sách quản trị viên</div>
@@ -100,7 +99,6 @@
                             </EditItemTemplate>
                             <FooterTemplate>
                                 <asp:TextBox runat="server" ID="InsertPassword" Text='<%# Bind("Password") %>' />
-
                                 <asp:RequiredFieldValidator ID="rfvEditPassword"
                                     runat="server"
                                     ErrorMessage="Chưa nhập mật khẩu"
@@ -218,7 +216,6 @@
             </div>
         </div>
     </div>
-
     <div class="btn btn-lg custom_bar">Tạo bảng chức vụ</div>
     <div class="row">
         <div class="col-12">

@@ -6,4 +6,4 @@ define("ace/snippets/gitignore",["require","exports","module"],function(e,t,n){"
                         }
                     });
                 })();
-            
+

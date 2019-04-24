@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Customer {
-    
-    
     public partial class SanPham_ChiTiet {
-        
         /// <summary>
         /// rptProSlidePresent control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptProSlidePresent;
-        
         /// <summary>
         /// rptProSlideCarousel control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptProSlideCarousel;
-        
         /// <summary>
         /// rptProColor control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptProColor;
-        
         /// <summary>
         /// rptProSize control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptProSize;
-        
         /// <summary>
         /// product_quantity control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl product_quantity;
-        
         /// <summary>
         /// btnAddCart control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddCart;
-        
         /// <summary>
         /// rptCusReview control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptCusReview;
-        
         /// <summary>
         /// ltrCommentLeft control.
         /// </summary>
@@ -83,7 +72,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltrCommentLeft;
-        
         /// <summary>
         /// review_text control.
         /// </summary>
@@ -92,7 +80,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTextArea review_text;
-        
         /// <summary>
         /// btnSubmit control.
         /// </summary>
@@ -101,7 +88,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
         /// <summary>
         /// Master property.
         /// </summary>

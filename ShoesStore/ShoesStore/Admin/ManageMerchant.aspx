@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" Title="Quản lý người bán" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageMerchant.aspx.cs" Inherits="ShoesStore.Admin.Manage_User" %>
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
     <div class="btn btn-lg custom_bar">Danh sách người bán</div>
     <div id="TimKiem" class="container">
         <div class="row">
@@ -180,7 +178,6 @@
                             </FooterTemplate>
                         </asp:TemplateField>
                     </Columns>
-
                     <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" Wrap="false" />
                     <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" Wrap="false" />
                     <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Wrap="false" />
@@ -196,9 +193,7 @@
             </div>
         </div>
     </div>
-
     <div class="btn btn-lg custom_bar">Chặn đăng bài ở đây</div>
     <div class="btn btn-lg custom_bar">Chặn người dùng ở đây</div>
     <div class="btn btn-lg custom_bar">Gửi thông báo cho người dùng ở đây</div>
-
 </asp:Content>

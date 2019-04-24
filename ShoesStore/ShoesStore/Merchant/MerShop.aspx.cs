@@ -4,7 +4,6 @@
     {
     //    protected void Page_Load(object sender, EventArgs e)
     //    {
-
     //    }
     //    public int PageNumber
     //    {
@@ -23,43 +22,32 @@
     //    }
     //    protected void rptProCat_Init(object sender, EventArgs e)
     //    {
-
     //        //rptProCat.DataSource = Master._proCat.GetAll();
     //        //rptProCat.DataBind();
     //    }
-
     //    protected void featuredProducts_Init(object sender, EventArgs e)
     //    {
     //        //featuredProducts.DataSource = Master._proCat.GetAll();
     //        //featuredProducts.DataBind();
     //    }
-
-    
     //    protected void rptFeatureProducts_Init(object sender, EventArgs e)
     //    {
     //        rptFeatureProducts.DataSource = Master._pro.GetAll();
     //        rptFeatureProducts.DataBind();
     //    }
-
-     
-
     //    protected void rptBestSellers_Init(object sender, EventArgs e)
     //    {
     //        BindRepeater();
     //        //rptBestSellers.DataSource = Master._pro.GetAll();// se sua thanh getBestSeller
     //        //rptBestSellers.DataBind();
     //    }
-
-  
     //    private void BindRepeater()
     //    {
     //        //Do your database connection stuff and get your data
     //        // se sua thanh getBestSeller
-
     //        PagedDataSource pgitems = new PagedDataSource();
     //        pgitems.DataSource = Master._pro.GetAll();
     //        pgitems.AllowPaging = true;
-
     //        //Control page size from here 
     //        pgitems.PageSize = 4;
     //        pgitems.CurrentPageIndex = PageNumber;
@@ -78,7 +66,6 @@
     //        {
     //            rptPagingBestSellers.Visible = false;
     //        }
-
     //        //Finally, set the datasource of the repeater
     //        rptBestSellers.DataSource = pgitems;
     //        rptBestSellers.DataBind();

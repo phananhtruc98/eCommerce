@@ -35,8 +35,6 @@ namespace ShoesStore.DataAccessLogicLayer
             _usrAct_DAO = new UsrAct_DAO();
             _usrAct_DAO.Insert(uAct);
         }
-
-
         public Usr GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();

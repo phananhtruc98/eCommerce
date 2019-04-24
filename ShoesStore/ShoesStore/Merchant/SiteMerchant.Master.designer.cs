@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Merchant {
-    
-    
     public partial class SiteMerchant {
-        
         /// <summary>
         /// ViewSwitcher1 control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ShoesStore.ViewSwitcher ViewSwitcher1;
-        
         /// <summary>
         /// rptProCat control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptProCat;
-        
         /// <summary>
         /// rptProBrand control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptProBrand;
-        
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
         /// <summary>
         /// avaImg2 control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image avaImg2;
-        
         /// <summary>
         /// lbtnAccount control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnAccount;
-        
         /// <summary>
         /// LinkButton1 control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
-        
         /// <summary>
         /// MainPlaceHolder control.
         /// </summary>

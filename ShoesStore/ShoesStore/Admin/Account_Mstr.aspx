@@ -11,7 +11,6 @@
                         <asp:Image runat="server" ID="upava" />
                         <asp:FileUpload runat="server" ID="fupava" />
                     </td>
-
                 </tr>
                 <tr>
                     <td>Họ và tên</td>
@@ -42,7 +41,6 @@
             </table>
         </div>
     </div>
-    
     <br />
     <h2>Thay đổi mật khẩu</h2>
     <div class="row">

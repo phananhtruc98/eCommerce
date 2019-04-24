@@ -2,19 +2,16 @@
 using System.Collections;
 using System.Threading;
 using System.Web;
-
 namespace Utilities
 {
     public class OnlineUsersInstance
     {
         public static OnlineUsers OnlineUsers;
-
         static OnlineUsersInstance()
         {
             OnlineUsers = new OnlineUsers();
         }
     }
-
     /// <summary>
     ///     Checks users online state
     /// </summary>
@@ -24,28 +21,19 @@ namespace Utilities
         ///     240000 = 4 minutes
         /// </summary>
         private const int TimerPeriod = 240000;
-
         private readonly Hashtable _fOnlineUsers = new Hashtable();
-
         private readonly Timer _thTimer;
-
         private readonly string _unknownUser = "_'?Unknown\nUser?'_";
         //int imtoi
-
-
         public OnlineUsers()
         {
             _unknownUser += DateTime.Now.Ticks.ToString();
             // Timer will start after _TimerPeriod
             _thTimer = new Timer(_ThreadTimerCallback, this, TimerPeriod, TimerPeriod);
         }
-
         #region Properties
-
         public int RegistredUsersCount { get; private set; }
-
         public int GuestUsersCount { get; private set; }
-
         public int UsersCount
         {
             get
@@ -61,23 +49,16 @@ namespace Utilities
                 }
             }
         }
-
         #endregion
-
-
         #region public
-
         public void UpdateForUserLeave()
         {
             var context = HttpContext.Current;
             if (context == null) return;
-
             if (context.User != null && context.User.Identity.IsAuthenticated)
                 SetOfflineMemberInternal(context.User.Identity.Name);
             else if (context.Session != null) SetOfflineGuestInternal(_unknownUser + context.Session.SessionID);
         }
-
-
         /// <summary>
         ///     Check user online state
         /// </summary>
@@ -93,7 +74,6 @@ namespace Utilities
                 Monitor.Exit(_fOnlineUsers);
             }
         }
-
         public DateTime GetLastActivity(string userName)
         {
             object state;
@@ -106,10 +86,8 @@ namespace Utilities
             {
                 Monitor.Exit(_fOnlineUsers);
             }
-
             return (DateTime) state; //new DateTime((long)state);
         }
-
         /// <summary>
         ///     Set user state to online
         /// </summary>
@@ -123,11 +101,9 @@ namespace Utilities
             else
             {
                 if (context.Session != null) SetOfflineGuestInternal(_unknownUser + context.Session.SessionID);
-
                 SetOnlineMemberInternal(userName);
             }
         }
-
         /// <summary>
         ///     Make user offline
         /// </summary>
@@ -135,7 +111,6 @@ namespace Utilities
         {
             SetOfflineInternal(userName);
         }
-
         /// <summary>
         ///     Adds user to the list
         /// </summary>
@@ -147,7 +122,6 @@ namespace Utilities
                 AddUnknownUser();
                 return;
             }
-
             if (context.User != null && context.User.Identity.IsAuthenticated)
                 SetOnlineMemberInternal(context.User.Identity.Name);
             else if (context.Session != null)
@@ -155,13 +129,11 @@ namespace Utilities
             else
                 AddUnknownUser();
         }
-
         internal void UpldateUserActivity()
         {
             var context = HttpContext.Current;
             if (context == null)
                 return;
-
             if (context.User != null && context.User.Identity.IsAuthenticated)
             {
                 var userName = context.User.Identity.Name;
@@ -173,11 +145,8 @@ namespace Utilities
                 SetOnlineGuestInternal(sessionId);
             }
         }
-
         #endregion
-
         #region private
-
         /// <summary>
         ///     This callback should recheck all the uesrs list
         /// </summary>
@@ -186,7 +155,6 @@ namespace Utilities
         {
             var now = DateTime.Now;
             var expired = new ArrayList(_fOnlineUsers.Count);
-
             Monitor.Enter(_fOnlineUsers);
             try
             {
@@ -199,7 +167,6 @@ namespace Utilities
             {
                 Monitor.Exit(_fOnlineUsers);
             }
-
             // Remove expired items
             for (var i = 0; i < expired.Count; i++)
             {
@@ -207,7 +174,6 @@ namespace Utilities
                 SetOfflineInternal(user);
             }
         }
-
         private void AddUnknownUser()
         {
             Monitor.Enter(_fOnlineUsers);
@@ -221,7 +187,6 @@ namespace Utilities
                 Monitor.Exit(_fOnlineUsers);
             }
         }
-
         private void SetOnlineMemberInternal(string userName)
         {
             Monitor.Enter(_fOnlineUsers);
@@ -236,7 +201,6 @@ namespace Utilities
                 Monitor.Exit(_fOnlineUsers);
             }
         }
-
         private void SetOnlineGuestInternal(string identity)
         {
             Monitor.Enter(_fOnlineUsers);
@@ -251,7 +215,6 @@ namespace Utilities
                 Monitor.Exit(_fOnlineUsers);
             }
         }
-
         private void SetOfflineInternal(string identity)
         {
             Monitor.Enter(_fOnlineUsers);
@@ -260,7 +223,6 @@ namespace Utilities
                 if (_fOnlineUsers.ContainsKey(identity))
                 {
                     _fOnlineUsers.Remove(identity);
-
                     if (identity.StartsWith(_unknownUser))
                         DecreaseGuestsCount();
                     else
@@ -272,7 +234,6 @@ namespace Utilities
                 Monitor.Exit(_fOnlineUsers);
             }
         }
-
         private void SetOfflineMemberInternal(string userName)
         {
             Monitor.Enter(_fOnlineUsers);
@@ -289,7 +250,6 @@ namespace Utilities
                 Monitor.Exit(_fOnlineUsers);
             }
         }
-
         private void SetOfflineGuestInternal(string identity)
         {
             Monitor.Enter(_fOnlineUsers);
@@ -306,31 +266,26 @@ namespace Utilities
                 Monitor.Exit(_fOnlineUsers);
             }
         }
-
         private void DecreaseMembersCount()
         {
             RegistredUsersCount--;
             if (RegistredUsersCount < 0)
                 RegistredUsersCount = 0;
         }
-
         private void DecreaseGuestsCount()
         {
             GuestUsersCount--;
             if (GuestUsersCount < 0)
                 GuestUsersCount = 0;
         }
-
         private void IncreaseMembersCount()
         {
             RegistredUsersCount++;
         }
-
         private void IncreaseGuestsCount()
         {
             GuestUsersCount++;
         }
-
         #endregion
     }
 }

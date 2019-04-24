@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Customer {
-    
-    
     public partial class DS_SanPham {
-        
         /// <summary>
         /// smp1 control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SiteMapPath smp1;
-        
         /// <summary>
         /// rptProCat control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ShoesStore.WebControls.RepeaterTable rptProCat;
-        
         /// <summary>
         /// priceFrom control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl priceFrom;
-        
         /// <summary>
         /// priceTo control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl priceTo;
-        
         /// <summary>
         /// rptProBrand control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ShoesStore.WebControls.RepeaterTable rptProBrand;
-        
         /// <summary>
         /// rptColors control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptColors;
-        
         /// <summary>
         /// btnFilter control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnFilter;
-        
         /// <summary>
         /// UcPro control.
         /// </summary>
@@ -83,7 +72,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ShoesStore.UserControls.UcPro UcPro;
-        
         /// <summary>
         /// Master property.
         /// </summary>

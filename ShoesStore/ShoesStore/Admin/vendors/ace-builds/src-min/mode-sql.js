@@ -6,4 +6,4 @@ define("ace/mode/sql_highlight_rules",["require","exports","module","ace/lib/oop
                         }
                     });
                 })();
-            
+

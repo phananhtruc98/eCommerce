@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" Title="Quản lý người mua" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageCustomer.aspx.cs" Inherits="ShoesStore.Admin.Manage_Customer" %>
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="btn btn-lg custom_bar">Danh sách người mua</div>
     <div id="TimKiem" class="container">

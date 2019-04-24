@@ -6,4 +6,4 @@ define("ace/mode/graphqlschema_highlight_rules",["require","exports","module","a
                         }
                     });
                 })();
-            
+

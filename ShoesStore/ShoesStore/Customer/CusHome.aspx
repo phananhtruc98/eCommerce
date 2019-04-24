@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteCus.Master" CodeBehind="~/Customer/CusHome.aspx.cs" Inherits="ShoesStore.Customer.CusHome" %>
-
 <%@ MasterType VirtualPath="~/SiteCus.Master" %>
 <asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
     <div class="row">
@@ -47,7 +46,5 @@
             </table>
         </div>
     </div>
-
 </asp:Content>
-
 

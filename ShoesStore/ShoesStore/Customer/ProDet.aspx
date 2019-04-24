@@ -1,9 +1,7 @@
 ﻿<%@ Page Language="C#" Title="Sản phẩm chi tiết" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ProDet.aspx.cs" Inherits="ShoesStore.Customer.SanPham_ChiTiet" %>
-
 <%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style type="text/css">
         .alertBox {
@@ -19,11 +17,9 @@
         }
     </style>
     <script type="text/javascript" language="javascript">  
-
         function setExclusiveRadioButton(name, current) {
             debugger;
             var regex = new RegExp(name);
-
             for (i = 0; i < document.forms[0].elements.length; i++) {
                 var elem = document.forms[0].elements[i];
                 if (elem.type == 'radio' && regex.test(elem.id)) {
@@ -32,15 +28,12 @@
             }
             current.checked = true;
         }
-
         function closeAlert(e) {
             e.preventDefault();
             this.parentNode.style.display = "none";
         }
     </script>
     <!-- site__body -->
-
-
     <div class="site__body">
         <div class="page-header">
             <div class="page-header__container container">
@@ -79,7 +72,6 @@
                                 <div class="product-gallery__featured">
                                     <div class="owl-carousel" id="product-image">
                                         <asp:Repeater runat="server" ID="rptProSlidePresent">
-
                                             <ItemTemplate>
                                                 <a
                                                     href="#" target="_blank">
@@ -92,21 +84,16 @@
                                 </div>
                                 <div class="product-gallery__carousel">
                                     <div class="owl-carousel" id="product-carousel">
-
                                         <asp:Repeater runat="server" ID="rptProSlideCarousel">
-
                                             <ItemTemplate>
-
                                                 <a href="/#"
                                                     class="product-gallery__carousel-item">
                                                     <img
                                                         class="product-gallery__carousel-image"
                                                         src="<%# MyLibrary.ProSlidePath(Container.DataItem) %>" alt="">
                                                 </a>
-
                                             </ItemTemplate>
                                         </asp:Repeater>
-
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +118,6 @@
                                 </button>
                             </div>
                             <h1 class="product__name"><%:_proDetView.ProName %>
-                                
                             </h1>
                             <div class="product__rating">
                                 <div class="product__rating-stars">
@@ -149,7 +135,6 @@
                             <div class="product__description">
                                 <%:_proDetView.DescShort %>
                             </div>
-
                             <ul class="product__meta">
                                 <li class="product__meta-availability">Tình trạng:
             <span class="text-success">In
@@ -178,9 +163,7 @@
                                         Màu
                                     </label>
                                     <div class="input-radio-color">
-
                                         <div class="input-radio-color__list">
-
                                             <asp:Repeater runat="server" ID="rptProColor" OnItemDataBound="rptProColor_ItemDataBound">
                                                 <ItemTemplate>
                                                     <asp:RadioButton runat="server" ID="rdbColor" GroupName="Color" />
@@ -188,36 +171,25 @@
                                                     <asp:Image runat="server" ImageUrl='<%# MyLibrary.ProColorPath(Container.DataItem) %>' />
                                                     <asp:Label runat="server" ID="lbColorName" Text='<%# Eval("ProColor.ColorName") %>'> </asp:Label>
                                                 </ItemTemplate>
-
                                             </asp:Repeater>
-
-
-
                                         </div>
                                     </div>
                                     <label class="product__option-label">
                                         Màu sắc
                                     </label>
                                     <div class="input-radio-color">
-
                                         <div class="input-radio-color__list">
                                             <asp:Repeater runat="server" ID="rptProSize" OnItemDataBound="rptProSize_ItemDataBound">
                                                 <ItemTemplate>
                                                     <asp:RadioButton runat="server" ID="rdbSize" GroupName="Size" />
-
                                                     <asp:HiddenField runat="server" ID="hdfSizeId" Value='<%# Eval("SizeId") %>' />
                                                     <asp:Image runat="server" ImageUrl='<%# MyLibrary.ProSizePath(Container.DataItem) %>' />
                                                     <asp:Label runat="server" ID="lbSizeName" Text='<%# Eval("ProSize.SizeName") %>'> </asp:Label>
                                                 </ItemTemplate>
-
                                             </asp:Repeater>
-
-
-
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group product__option">
                                     <label class="product__option-label"
                                         for="product-quantity">
@@ -234,16 +206,8 @@
                                             </div>
                                         </div>
                                         <div class="product__actions-item product__actions-item--addtocart">
-
                                             <asp:Button runat="server" ID="btnAddCart" OnClick="btnAddCart_OnClick" CssClass="btn btn-primary btn-lg" Text="Thêm giỏ hàng"></asp:Button>
-
-
-
-
-
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +215,6 @@
                         </div>
                         <!-- .product__end -->
                         <div class="product__footer">
-
                             <div class="product__share-links share-links">
                                 <ul class="share-links__list">
                                     <li class="share-links__item share-links__item--type--like">
@@ -282,7 +245,6 @@
                         <a href="#tab-description"
                             class="product-tabs__item product-tabs__item--active">Mô tả
                         </a>
-
                         <a
                             href="#tab-reviews" class="product-tabs__item">Đánh giá
                         </a>
@@ -358,7 +320,6 @@
                                     <div class="reviews-list">
                                         <ol class="reviews-list__content">
                                             <asp:Repeater runat="server" ID="rptCusReview" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet">
-
                                                 <ItemTemplate>
                                                     <li class="reviews-list__item">
                                                         <div class="review">
@@ -382,8 +343,6 @@
                                                     </li>
                                                 </ItemTemplate>
                                             </asp:Repeater>
-
-
                                         </ol>
                                         <div class="reviews-list__pagination">
                                             <ul class="pagination justify-content-center">
@@ -447,13 +406,11 @@
                                                         <option>1 Sao</option>
                                                     </select>
                                                 </div>
-
                                             </div>
                                             <div class="form-group">
                                                 <label for="review-text">Nội dung đánh giá</label><small> Số lượt đánh giá:
                                                     <asp:Literal runat="server" ID="ltrCommentLeft" Text='<%#MyLibrary.RcptBuyDet_BUS.GetCommentLeft(ProDetView) %>' /></small>
                                                 <textarea runat="server" class="form-control" id="review_text" rows="6"></textarea>
-
                                             </div>
                                             <div class="form-group mb-0">
                                                 <asp:Button runat="server" ID="btnSubmit" Text="Gửi đánh giá" OnClick="btnSubmit_OnClick" CssClass="btn btn-primary btn-lg" />
@@ -3259,5 +3216,4 @@
         <!-- .block-products-carousel / end -->
     </div>
     <!-- site__body / end -->
-
 </asp:Content>

@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore {
-    
-    
     public partial class Default {
-        
         /// <summary>
         /// rptSlides control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptSlides;
-        
         /// <summary>
         /// ucProCarousel control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ShoesStore.UserControls.UcProCarousel ucProCarousel;
-        
         /// <summary>
         /// ucPro control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ShoesStore.UserControls.UcPro ucPro;
-        
         /// <summary>
         /// rptPopularCategories control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptPopularCategories;
-        
         /// <summary>
         /// rptBrandLogos control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace ShoesStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptBrandLogos;
-        
         /// <summary>
         /// Master property.
         /// </summary>

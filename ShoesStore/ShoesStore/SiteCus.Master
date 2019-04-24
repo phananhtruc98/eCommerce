@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="SiteCus.master.cs" Inherits="ShoesStore.SiteCus" %>
-
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="site__body">

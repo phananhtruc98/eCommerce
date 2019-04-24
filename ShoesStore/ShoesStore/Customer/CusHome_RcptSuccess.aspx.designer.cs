@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Customer {
-    
-    
     public partial class CusHome_RcptSuccess {
-        
         /// <summary>
         /// tab1 control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab1;
-        
         /// <summary>
         /// tab2 control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab2;
-        
         /// <summary>
         /// tab3 control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab3;
-        
         /// <summary>
         /// tab4 control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab4;
-        
         /// <summary>
         /// tab5 control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab5;
-        
         /// <summary>
         /// lbEmpty2 control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEmpty2;
-        
         /// <summary>
         /// lvChoThanhToan control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvChoThanhToan;
-        
         /// <summary>
         /// lbEmpty3 control.
         /// </summary>
@@ -83,7 +72,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEmpty3;
-        
         /// <summary>
         /// lvChoLayHang control.
         /// </summary>
@@ -92,7 +80,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvChoLayHang;
-        
         /// <summary>
         /// lbEmpty4 control.
         /// </summary>
@@ -101,7 +88,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEmpty4;
-        
         /// <summary>
         /// lvDangGiao control.
         /// </summary>
@@ -110,7 +96,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvDangGiao;
-        
         /// <summary>
         /// lbDonHang control.
         /// </summary>
@@ -119,7 +104,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbDonHang;
-        
         /// <summary>
         /// lbEmpty control.
         /// </summary>
@@ -128,7 +112,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEmpty;
-        
         /// <summary>
         /// lvRcptBuy control.
         /// </summary>
@@ -137,7 +120,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvRcptBuy;
-        
         /// <summary>
         /// lbEmpty5 control.
         /// </summary>
@@ -146,7 +128,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEmpty5;
-        
         /// <summary>
         /// lvDaHuy control.
         /// </summary>
@@ -155,7 +136,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvDaHuy;
-        
         /// <summary>
         /// Master property.
         /// </summary>

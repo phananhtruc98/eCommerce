@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageReceipt_Mer.aspx.cs" Inherits="ShoesStore.Admin.ManageReceipt_Mer" %>
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="btn btn-lg custom_bar">Danh sách hóa đơn bán gói dịch vụ</div>
     <div id="TimKiem" class="container">
@@ -52,7 +51,6 @@
                             <asp:Label runat="server" ID="InsertDateAdd" />
                         </FooterTemplate>
                     </asp:TemplateField>
-
                     <asp:TemplateField HeaderText="Ngày sửa">
                         <ItemTemplate>
                             <%# Eval("Rcpt.DateEdit") %>
@@ -141,7 +139,6 @@
             </asp:GridView>
             <asp:ValidationSummary ID="ValidationRcptSubId" ValidationGroup="Insert"
                 ForeColor="Red" runat="server" />
-
         </div>
     </div>
     <div><br /></div>

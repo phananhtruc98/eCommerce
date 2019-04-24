@@ -1,6 +1,5 @@
 ﻿using System.Data.Objects;
 using ShoesStore.DataAccessLogicLayer;
-
 namespace ShoesStore.Interfaces
 {
     interface IMer:IUsr<Mer>

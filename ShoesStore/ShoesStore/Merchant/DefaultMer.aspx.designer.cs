@@ -9,8 +9,6 @@
 
 namespace ShoesStore.Merchant
 {
-
-
     public partial class WebForm1
     {
     }

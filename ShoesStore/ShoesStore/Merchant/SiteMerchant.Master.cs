@@ -6,7 +6,6 @@ using System.Web.UI.WebControls;
 using ShoesStore.Interfaces.Pages;
 using Utilities;
 using ShoesStore.BusinessLogicLayer;
-
 namespace ShoesStore.Merchant
 {
     public partial class SiteMerchant : System.Web.UI.MasterPage
@@ -16,7 +15,6 @@ namespace ShoesStore.Merchant
         private static string _actCode = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            
         }
         int UsrId = 0;
         string UsrName = "";
@@ -26,7 +24,6 @@ namespace ShoesStore.Merchant
         string Phone = "";
         string login1 = "";
         string password1 = "";
-
         private void Page_Init(object sender, EventArgs e)
         {
             if (MerchantSession.LoginMerchant != null)
@@ -43,48 +40,34 @@ namespace ShoesStore.Merchant
                 password1 = merUsr.Password;
                 string avaImg = Avatar;
                 Label1.Text = $"Chào " + UsrName;
-                
-                
                 avaImg2.Attributes["src"] = "/Merchant/images/avatar/" + avaImg;
-
             }
             else
             {
                 Response.Redirect("~/merchant/dang-nhap");
             }
-
         }
-
         public void rptProCat_Init(object sender, EventArgs e)
         {
-
             rptProCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
             rptProCat.DataBind();
         }
-
-
         public int GetCurrentCartItemsNumber()
         {
             return MyLibrary.CartDet_BUS.ListCartPreviewNumber();
         }
-
-        
-
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
-
             rptProBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll().ToList();
             rptProBrand.DataBind();
         }
         /*
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
                 Usr loginUsr = MyLibrary.Usr_BUS.Login(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
-
                 WebSession.LoginUsr = loginUsr;
                 Response.Redirect(Request.RawUrl);
             }
@@ -94,8 +77,6 @@ namespace ShoesStore.Merchant
                 throw;
             }
         }
-        
-
         public bool IsValidLogin()
         {
             throw new NotImplementedException();
@@ -111,12 +92,9 @@ namespace ShoesStore.Merchant
             return password.Value == re_password.Value;
         }
         */
-
-
         /*
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
-
             if (!IsValidRegister()) return;
             var usr = new Usr()
             {
@@ -133,13 +111,11 @@ namespace ShoesStore.Merchant
             Response.Redirect(Request.RawUrl);
         }
         */
-
         protected void lbtnLogout_Click(object sender, EventArgs e)
         {
             MerchantSession.LoginMerchant = null;
             Response.Redirect("~/merchant/dang-nhap");
         }
-
         protected void lbtnCusHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Customer/CusHome.aspx");
@@ -148,7 +124,6 @@ namespace ShoesStore.Merchant
         {
             Response.Redirect("~/merchant/trang-thong-tin");
         }
-
         /*
         protected void btnActCodeSender_Click(object sender, EventArgs e)
         {
@@ -159,9 +134,7 @@ namespace ShoesStore.Merchant
                 _actCode = TextHelper.RandomNumber(4);
                 Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
                     $"Mã kích hoạt của bạn là {_actCode}");
-
                 Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
-
             }
         }
         */
@@ -169,8 +142,6 @@ namespace ShoesStore.Merchant
         {
             ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "alertMessage", message, true);
         }
-       
-
         protected void customValidator_ActivateCode_OnServerValidate(object source, ServerValidateEventArgs args)
         {
             if (args.Value != _actCode)

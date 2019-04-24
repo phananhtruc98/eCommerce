@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
-
 namespace ShoesStore.MyExtensions
 {
     public static partial class MyExtensions
@@ -18,7 +17,6 @@ namespace ShoesStore.MyExtensions
             {
                 return false;
             }
-
             return source.UnSign().IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
         }
     }

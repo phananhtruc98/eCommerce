@@ -1,6 +1,5 @@
 ﻿using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace ShoesStore.WebControls
 {
     public class MyRadioButton : RadioButton

@@ -1,8 +1,6 @@
 ﻿<%@ Page Language="C#" Title="Thanh toán" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="~/Customer/Checkout.aspx.cs" Inherits="ShoesStore.Customer.ThanhToan" %>
-
 <%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
-
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="site__body">
@@ -59,7 +57,6 @@
                                             id="checkout-last-name">
                                     </div>
                                 </div>
-
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="checkout-email">
@@ -103,9 +100,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="checkout__totals-products">
-
                                         <asp:Repeater runat="server" ID="rptCartDetCheckout" ItemType="ShoesStore.DataAccessLogicLayer.CartDet">
-
                                             <ItemTemplate>
                                                 <tr>
                                                     <td><%# Item.ProDet.Pro.ProName %></td>
@@ -114,7 +109,6 @@
                                                 </tr>
                                             </ItemTemplate>
                                         </asp:Repeater>
-
                                     </tbody>
                                     <tbody class="checkout__totals-subtotals">
                                         <%--   <tr>
@@ -139,7 +133,6 @@
                                 </table>
                                 <div class="payment-methods">
                                     <ul class="payment-methods__list">
-
                                         <li class="payment-methods__item">
                                             <label
                                                 class="payment-methods__item-header">
@@ -156,10 +149,8 @@
                                                 <div class="payment-methods__item-description text-muted">Thành toán bằng tiền mặt khi nhận hàng</div>
                                             </div>
                                         </li>
-                                       
                                     </ul>
                                 </div>
-
                                 <div class="checkout__agree form-group">
                                     <div class="form-check">
                                         <span class="form-check-input input-check">
@@ -184,7 +175,6 @@
                                     </div>
                                 </div>
                                 <asp:Button runat="server" Text="Đặt hàng" ID="btnOrder" OnClick="btnOrder_OnClick" CssClass="btn btn-primary btn-xl btn-block" />
-
                             </div>
                         </div>
                     </div>

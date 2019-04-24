@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Customer {
-    
-    
     public partial class CusHome_Rcpt_Det {
-        
         /// <summary>
         /// rowRcptBuyDet control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl rowRcptBuyDet;
-        
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
         /// <summary>
         /// lbRcptBuyId control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbRcptBuyId;
-        
         /// <summary>
         /// lbRcptBuyDate control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbRcptBuyDate;
-        
         /// <summary>
         /// lbRcptBuySta control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbRcptBuySta;
-        
         /// <summary>
         /// rptRcptShp control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptRcptShp;
-        
         /// <summary>
         /// Master property.
         /// </summary>

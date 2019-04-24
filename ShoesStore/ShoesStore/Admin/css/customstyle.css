@@ -29,12 +29,10 @@
 }
 .table-by-truc td{
     font-size: 20px;
-
 }
 .table-by-truc th {
     text-align: center;
 }
-
 .table-by-truc {
     margin: auto;
     width: 50% !important;

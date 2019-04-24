@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" Title="Trang Shop Cá Nhân" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerShop.aspx.cs" Inherits="ShoesStore.Merchant.MerShop" %>
 <%@ Import Namespace="ShoesStore" %>
-
 <%@ MasterType VirtualPath="~/Merchant/SiteMerchant.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <!--Thông Tin Shop-->
@@ -60,7 +59,6 @@
                         <button type="button"
                             class="block-header__group block-header__group--active">
                             Tất cả
-                       
                         </button>
                     </li>
                     <asp:Repeater runat="server" ID="featuredProducts">
@@ -90,13 +88,10 @@
             <div class="block-products-carousel__slider">
                 <div class="block-products-carousel__preloader"></div>
                 <div class="owl-carousel">
-
                     <asp:Repeater runat="server" ID="rptFeatureProducts">
                         <ItemTemplate>
-
                             <div class="block-products-carousel__cell">
                                 <div class="product-card">
-
                                     <div class="product-card__badges-list">
                                         <div class="product-card__badge product-card__badge--new">New</div>
                                     </div>
@@ -110,7 +105,6 @@
                                         <div class="product-card__name">
                                             <a href="product.html"><%#Eval("ProName") %></a>
                                         </div>
-
                                         <div class="product-card__rating">
                                             <div class="rating">
                                                 <div class="rating__body">
@@ -212,10 +206,8 @@
                                             </div>
                                             <div class="product-card__rating-legend">9 Reviews</div>
                                         </div>
-
                                     </div>
                                     <div class="product-card__actions">
-
                                         <div class="product-card__prices"><%# Eval("Price") %></div>
                                         <div class="product-card__shop text-right small text-monospace">
                                             <a href="product.html"><%#Eval("Shp.ShpName") %></a>
@@ -225,15 +217,12 @@
                                                 class="btn btn-primary product-card__addtocart" type="button">
                                                 Add To
                                             Cart
-                                           
                                             </button>
                                             <button
                                                 class="btn btn-secondary product-card__addtocart product-card__addtocart--list"
                                                 type="button">
                                                 Add To Cart
-                                           
                                             </button>
-
                                         </div>
                                     </div>
                                 </div>
@@ -251,16 +240,12 @@
                 <h3 class="block-header__title">Bán Chạy Nhất</h3>
                 <div class="block-header__divider"></div>
             </div>
-
             <div class="block-products__body">
                 <div class="block-products__list">
-
                     <asp:Repeater runat="server" ID="rptBestSellers">
-
                         <ItemTemplate>
                             <div style="width: 212.667px;" class="block-products__list-item col-xs-6 col-sm-4 col-md-3 col-lg-2 ">
                                 <div class="product-card">
-
                                     <div class="product-card__badges-list">
                                         <div class="product-card__badge product-card__badge--hot">Hot</div>
                                     </div>
@@ -269,7 +254,6 @@
                                             <img
                                                 src="<%# MyLibrary.ProImgPath(Container.DataItem) %>" alt="">
                                         </a>
-
                                     </div>
                                     <div class="product-card__info">
                                         <div class="product-card__name">
@@ -379,31 +363,25 @@
                                             </div>
                                             <div class="product-card__rating-legend">11 Reviews</div>
                                         </div>
-
                                     </div>
                                     <div class="product-card__actions">
-
                                         <div class="product-card__prices">$<%# Eval("Price") %></div>
                                         <div class="product-card__buttons">
                                             <button
                                                 class="btn btn-primary product-card__addtocart" type="button">
                                                 Add To Cart
-                                                   
                                             </button>
                                             <button
                                                 class="btn btn-secondary product-card__addtocart product-card__addtocart--list"
                                                 type="button">
                                                 Add To Cart
-                                                   
                                             </button>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
-
                 </div>
             </div>
             <div style="overflow: hidden;">
@@ -421,4 +399,3 @@
         </div>
     </div>
 </asp:Content>
-

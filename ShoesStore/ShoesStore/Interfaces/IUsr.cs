@@ -1,5 +1,4 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
-
 namespace ShoesStore.Interfaces
 {
     public interface IUsr<T>
@@ -8,7 +7,5 @@ namespace ShoesStore.Interfaces
         T Login(string login, string pwd);
         void Register(T obj);
         void CreateActCode(T obj);
-        
-
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using ShoesStore.DataAccessLogicLayer;
-
 namespace ShoesStore.BusinessLogicLayer
 {
     public class ProSlide_BUS : Table_BUS<ProSlide, ProSlide_DAO>
@@ -9,7 +8,6 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
-
         public override void SetActive(ProSlide obj)
         {
             throw new NotImplementedException();

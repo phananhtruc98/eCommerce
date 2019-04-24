@@ -6,4 +6,4 @@ define("ace/mode/abap_highlight_rules",["require","exports","module","ace/lib/oo
                         }
                     });
                 })();
-            
+

@@ -11,34 +11,28 @@ namespace ShoesStore.Admin
         readonly Mer_BUS mer_BUS = new Mer_BUS();
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 BindGridViewData();
             }
         }
-
         // Load bảng mer    
         private void BindGridViewData()
         {
             gvMerchant.DataSource = mer_BUS.Get_Mer_Info().ToList();
             gvMerchant.DataBind();
         }
-
         protected void gvSub_RowCommand(object sender, GridViewCommandEventArgs e)
         {
         }
-
         protected void gvMerchant_RowDataBound(object sender, GridViewRowEventArgs e)
         {
         }
-
         // Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
-
         public void TimKiem(string search_key)
         {
             var rs = (from a in mer_BUS.Get_Mer_Info().ToList()
@@ -54,7 +48,6 @@ namespace ShoesStore.Admin
             gvMerchant.DataSource = rs;
             gvMerchant.DataBind();
         }
-
         //Phân trang
         protected void gvMerchant_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {

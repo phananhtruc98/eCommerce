@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Admin {
-    
-    
     public partial class Account_Mstr {
-        
         /// <summary>
         /// upava control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image upava;
-        
         /// <summary>
         /// fupava control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fupava;
-        
         /// <summary>
         /// txtUsrName control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUsrName;
-        
         /// <summary>
         /// txtPhone control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPhone;
-        
         /// <summary>
         /// txtAddress control.
         /// </summary>
@@ -56,7 +48,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAddress;
-        
         /// <summary>
         /// txtEmail control.
         /// </summary>
@@ -65,7 +56,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
-        
         /// <summary>
         /// lbtnLuu control.
         /// </summary>
@@ -74,7 +64,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnLuu;
-        
         /// <summary>
         /// lbtnHuy control.
         /// </summary>
@@ -83,7 +72,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnHuy;
-        
         /// <summary>
         /// txtLogin control.
         /// </summary>
@@ -92,7 +80,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLogin;
-        
         /// <summary>
         /// txtPasswordOld control.
         /// </summary>
@@ -101,7 +88,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPasswordOld;
-        
         /// <summary>
         /// txtPassword control.
         /// </summary>
@@ -110,7 +96,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
-        
         /// <summary>
         /// txtRePassword control.
         /// </summary>
@@ -119,7 +104,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRePassword;
-        
         /// <summary>
         /// lbtnSave control.
         /// </summary>
@@ -128,7 +112,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnSave;
-        
         /// <summary>
         /// lbtnCancel control.
         /// </summary>
@@ -137,7 +120,6 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnCancel;
-        
         /// <summary>
         /// Master property.
         /// </summary>

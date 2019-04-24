@@ -1,6 +1,5 @@
 ﻿using System;
 using ShoesStore.DataAccessLogicLayer;
-
 namespace ShoesStore.BusinessLogicLayer
 {
     public class RcptBuyStaDet_BUS : Table_BUS<RcptBuyStaDet, RcptBuyStaDet_DAO>
@@ -9,7 +8,6 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
-
         public void Insert(RcptBuySta rcptBuySta, int stepid)
         {
             try
@@ -24,7 +22,6 @@ namespace ShoesStore.BusinessLogicLayer
             }
             catch (Exception ex)
             {
-
             }
         }
         public override void SetActive(RcptBuyStaDet obj)

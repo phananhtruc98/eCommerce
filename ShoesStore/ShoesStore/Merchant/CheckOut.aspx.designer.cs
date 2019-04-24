@@ -8,10 +8,7 @@
 //------------------------------------------------------------------------------
 
 namespace ShoesStore.Merchant {
-    
-    
     public partial class CheckOut {
-        
         /// <summary>
         /// form1 control.
         /// </summary>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
-
 namespace ShoesStore.Customer
 {
     public partial class DS_SanPham : BasePage
@@ -10,7 +9,6 @@ namespace ShoesStore.Customer
         {
             if (!IsPostBack)
             {
-
                 //rptProCat.DataBind();
                 //listWc=new List<Tuple<Control, TableName>>()
                 //{
@@ -21,7 +19,6 @@ namespace ShoesStore.Customer
                 //Bind();
             }
         }
-
         protected void smp1_ItemCreated(object sender, SiteMapNodeItemEventArgs e)
         {
             if (e.Item.ItemType == SiteMapNodeItemType.Root ||
@@ -30,7 +27,6 @@ namespace ShoesStore.Customer
                 e.Item.Visible = false;
             }
         }
-
         protected void btnFilter_OnClick(object sender, EventArgs e)
         {
             List<int> colorIds = new List<int>();
@@ -69,26 +65,21 @@ namespace ShoesStore.Customer
             {
             }
         }
-
         protected void rptColors_Init(object sender, EventArgs e)
         {
             rptColors.DataSource = MyLibrary.ProColor_BUS.GetAll();
             rptColors.DataBind();
         }
-
         protected void rptColors_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             CheckBox chkColor = (CheckBox)e.Item.FindControl("chkColor");
             chkColor.InputAttributes.Add("class", "input-check-color__input");
         }
-
         protected void rptProBrand_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             CheckBox chkBrand = (CheckBox)e.Item.FindControl("chkBrand");
             chkBrand.InputAttributes.Add("class", "input-check__input");
-
         }
-
         protected void rptProCat_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             CheckBox chkProCat = (CheckBox)e.Item.FindControl("chkProCat");

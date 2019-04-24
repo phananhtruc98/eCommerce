@@ -6,4 +6,4 @@ define("ace/mode/sparql_highlight_rules",["require","exports","module","ace/lib/
                         }
                     });
                 })();
-            
+

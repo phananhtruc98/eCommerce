@@ -3,7 +3,6 @@ using ShoesStore.DataAccessLogicLayer;
 using System;
 using System.Web.UI;
 using System.Linq;
-
 namespace ShoesStore.Admin
 {
     public partial class Admin : MasterPage
@@ -14,9 +13,7 @@ namespace ShoesStore.Admin
         private readonly MstrRole_BUS mstrRole_BUS = new MstrRole_BUS(); 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
-
         int UsrId = 0;
         string UsrName = "";
         string Address = "";
@@ -25,7 +22,6 @@ namespace ShoesStore.Admin
         string Phone = "";
         string login = "";
         string password = "";
-
         public int UsrId1 { get => UsrId; set => UsrId = value; }
         public string UsrName1 { get => UsrName; set => UsrName = value; }
         public string Address1 { get => Address; set => Address = value; }
@@ -34,7 +30,6 @@ namespace ShoesStore.Admin
         public string Phone1 { get => Phone; set => Phone = value; }
         public string Login { get => login; set => login = value; }
         public string Password { get => password; set => password = value; }
-
         protected void Page_Init(object sender, EventArgs e)
         {
             if (AdminSession.LoginAdmin != null)
@@ -74,7 +69,6 @@ namespace ShoesStore.Admin
             AdminSession.LoginAdmin = null;
             Response.Redirect("~/quan-tri/dang-nhap");
         }
-
         protected void lbtnAccount_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/quan-tri/thong-tin-ca-nhan");

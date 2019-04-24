@@ -8,9 +8,6 @@ namespace ShoesStore.BusinessLogicLayer
 {
     public class Usr_BUS : Table_BUS<Usr, Usr_DAO>, IUsr<Usr>
     {
-        
-
-
         public UsrAct_DAO _usrAct { get; set; }
 
         public UsrAct GetUsrAct(int usrId)
@@ -31,8 +28,6 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return _dao.CheckMerchant(login, EncryptHelper.Encrypt(pwd));
         }
-
-
         public void Register(Usr obj)
         {
             throw new NotImplementedException();

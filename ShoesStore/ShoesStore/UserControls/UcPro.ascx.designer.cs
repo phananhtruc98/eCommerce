@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.UserControls {
-    
-    
     public partial class UcPro {
-        
         /// <summary>
         /// updatePanel control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel updatePanel;
-        
         /// <summary>
         /// rptPro control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ShoesStore.WebControls.RepeaterTable rptPro;
-        
         /// <summary>
         /// rptProPage control.
         /// </summary>

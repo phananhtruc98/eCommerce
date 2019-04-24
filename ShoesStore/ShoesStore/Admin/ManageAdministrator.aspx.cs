@@ -8,7 +8,6 @@ using ShoesStore.MyExtensions;
 using ShoesStore.DataAccessLogicLayer;
 using Utilities;
 using System.IO;
-
 namespace ShoesStore.Admin
 {
     public partial class Manage_Administrator : Page
@@ -17,8 +16,6 @@ namespace ShoesStore.Admin
         private readonly Mstr_BUS mstr = new Mstr_BUS();
         private readonly MstrDet_BUS mstrDet_bus = new MstrDet_BUS();
         private readonly Usr_BUS usr = new Usr_BUS();
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -30,9 +27,6 @@ namespace ShoesStore.Admin
         // Load bảng danh sách người quản trị
         private void BindDataGridView()
         {
-
-
-
                       var rs = (from u in usr.GetAll()
                       join m in mstr.GetAll() on u.UsrId equals m.MstrId
                       join d in mstrDet_bus.GetAll() on m.MstrId equals d.MstrId
@@ -58,7 +52,6 @@ namespace ShoesStore.Admin
             gvAdmin.DataSource = rs;
             gvAdmin.DataBind();
         }
-
         // Load bảng danh sách chức vụ
         private void BindDataGridViewMstrRole()
         {
@@ -66,13 +59,11 @@ namespace ShoesStore.Admin
             gvMstrRole.DataSource = rs;
             gvMstrRole.DataBind();
         }
-
         // Btn Tìm kiếm 
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
-
         public void TimKiem(string search_key)
         {
             var rs = (from a in mstr.Get_Admin_Info().ToList()
@@ -89,7 +80,6 @@ namespace ShoesStore.Admin
             gvAdmin.DataSource = rs;
             gvAdmin.DataBind();
         }
-
         // Sorting
         protected void gvAdmin_Sorting(object sender, GridViewSortEventArgs e)
         {
@@ -99,7 +89,6 @@ namespace ShoesStore.Admin
             gvAdmin.DataSource = rs.ToList();
             gvAdmin.DataBind();
         }
-
         // Ràng buộc + thêm xóa sửa
         protected void gvAdmin_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -112,9 +101,7 @@ namespace ShoesStore.Admin
             else if (e.CommandName == "DeleteRow")
             {
                 MstrDet mstrDetDel = mstrDet_bus.GetAll().FirstOrDefault(m => m.MstrId == System.Convert.ToInt32(e.CommandArgument));
-
                 Mstr mstrDel = mstr.GetAll().FirstOrDefault(m => m.MstrId == System.Convert.ToInt32(e.CommandArgument));
-
                 Usr usrDel = (from c in usr.GetAll()
                               where c.UsrId == System.Convert.ToInt32(e.CommandArgument)
                               select c).FirstOrDefault();
@@ -130,7 +117,6 @@ namespace ShoesStore.Admin
             }
             else if (e.CommandName == "UpdateRow")
             {
-
                 int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
                 FileUpload file = ((FileUpload)gvAdmin.Rows[rowIndex].FindControl("fuploadEdit"));
                 string UsrName = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditUsrName")).Text;
@@ -160,7 +146,6 @@ namespace ShoesStore.Admin
                     string filename = Path.GetFileNameWithoutExtension(file.PostedFile.FileName);
                     string strFilePath = filename + getext;
                     Avatar = strFilePath;
-
                     if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" && getext != ".png" && getext != ".tif" && getext != ".tiff")
                     {
                         ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Chọn ảnh!!')", true);
@@ -181,7 +166,6 @@ namespace ShoesStore.Admin
                 {
                     Avatar = "default.jpg";
                 }
-
                 // kiểm tra password nếu thay đổi thì mới encrypt
                 if (Password != PasswordOld)
                 {
@@ -196,7 +180,6 @@ namespace ShoesStore.Admin
                         return;
                     }
                 }
-
                 // update vô Usr trước
                 Usr result = (from c in usr.GetAll()
                               where c.UsrId == System.Convert.ToInt32(e.CommandArgument)
@@ -214,7 +197,6 @@ namespace ShoesStore.Admin
                     result.Avatar = Avatar;
                     usr.Update(result);
                 }
-
                 // Update vô MstrDet
                 MstrDet mstrdet = (from c in mstrDet_bus.GetAll()
                                    where c.MstrId == System.Convert.ToInt32(e.CommandArgument)
@@ -222,7 +204,6 @@ namespace ShoesStore.Admin
                                    select c).FirstOrDefault();
                 if (mstrdet != null)
                 {
-
                     mstrdet.AddBy = Master.UsrId1;
                     mstrDet_bus.Update(mstrdet);
                 }
@@ -233,7 +214,6 @@ namespace ShoesStore.Admin
             }
             else if (e.CommandName == "InsertRow")
             {
-
                 int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
                 FileUpload fileInsert = ((FileUpload)gvAdmin.FooterRow.FindControl("fuploadInsert"));
                 string UsrName = ((TextBox)gvAdmin.FooterRow.FindControl("InsertUsrName")).Text;
@@ -250,7 +230,6 @@ namespace ShoesStore.Admin
                     ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Chưa nhập đủ thông tin')", true);
                     return;
                 }
-
                 string Avatar = "";
                 if (fileInsert.HasFile)
                 {
@@ -272,7 +251,6 @@ namespace ShoesStore.Admin
                         ViewState["fPath"] = @"~/Admin/Images/avatar/" + strFilePath;
                     }
                 }
-
                 if (Avatar == "")
                 {
                     Avatar = "default";
@@ -294,14 +272,12 @@ namespace ShoesStore.Admin
                     Active = Active,
                     Avatar = Avatar,
                     DateAdd = DateTime.Now
-
                 };
                 usr.Insert(result);
                 Mstr rs1 = new Mstr
                 {
                     MstrId = usr.GetLastestId()
                 };
-
                 mstr.Insert(rs1);
                 MstrDet mstrDet = new MstrDet
                 {
@@ -310,12 +286,10 @@ namespace ShoesStore.Admin
                     AddDate = DateTime.Now,
                     AddBy = Master.UsrId1
                 };
-
                 mstrDet_bus.Insert(mstrDet);
                 BindDataGridView();
             }
         }
-
         // Sắp xếp từng cột
         protected void gvAdmin_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -332,7 +306,6 @@ namespace ShoesStore.Admin
                 ddlRoleName.DataBind();
             }
         }
-
         // Kiểm tra tên đăng nhặp tồn tại
         public bool IsExists(string Login)
         {
@@ -346,11 +319,9 @@ namespace ShoesStore.Admin
             }
             return kq;
         }
-
         // thêm xóa sửa bảng chức vụ
         protected void gvMstrRole_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
             if (e.CommandName == "EditRow")
             {
                 int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
@@ -375,7 +346,6 @@ namespace ShoesStore.Admin
                 int rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
                 int subId = System.Convert.ToInt32(e.CommandArgument);
                 string roleName = ((TextBox)gvMstrRole.Rows[rowIndex].FindControl("EditRoleName")).Text;
-
                 MstrRole result = (from c in mstrRole.GetAll()
                                    where c.RoleId == System.Convert.ToInt32(e.CommandArgument)
                                    select c).FirstOrDefault();
@@ -384,7 +354,6 @@ namespace ShoesStore.Admin
                     result.RoleName = roleName;
                     mstrRole.Update(result);
                 }
-
                 gvMstrRole.EditIndex = -1;
                 BindDataGridViewMstrRole();
             }
@@ -395,22 +364,17 @@ namespace ShoesStore.Admin
                 {
                     return;
                 }
-
                 MstrRole newSub = new MstrRole { RoleName = roleName };
-
                 mstrRole.Insert(newSub);
-
                 BindDataGridViewMstrRole();
             }
         }
-
         //Phân trang
         protected void gvAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvAdmin.PageIndex = e.NewPageIndex;
             BindDataGridView();
         }
-
     }
 }
 

@@ -6,12 +6,8 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Merchant {
-    
-    
     public partial class MerShop {
-        
         /// <summary>
         /// featuredProducts control.
         /// </summary>
@@ -20,7 +16,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater featuredProducts;
-        
         /// <summary>
         /// rptFeatureProducts control.
         /// </summary>
@@ -29,7 +24,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptFeatureProducts;
-        
         /// <summary>
         /// rptBestSellers control.
         /// </summary>
@@ -38,7 +32,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptBestSellers;
-        
         /// <summary>
         /// rptPagingBestSellers control.
         /// </summary>
@@ -47,7 +40,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptPagingBestSellers;
-        
         /// <summary>
         /// Master property.
         /// </summary>

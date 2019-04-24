@@ -6,4 +6,4 @@ define("ace/snippets/wollok",["require","exports","module"],function(e,t,n){"use
                         }
                     });
                 })();
-            
+

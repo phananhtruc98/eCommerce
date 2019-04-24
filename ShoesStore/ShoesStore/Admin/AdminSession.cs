@@ -1,5 +1,4 @@
 ﻿using System.Web;
-
 namespace ShoesStore.Admin
 {
     public class AdminSession
@@ -10,7 +9,6 @@ namespace ShoesStore.Admin
             get => HttpContext.Current.Session["LoginAdmin"];
             set => HttpContext.Current.Session["LoginAdmin"] = value;
         }
-
         public static AdminSession Instance => _instance ?? new AdminSession();
     }
 }

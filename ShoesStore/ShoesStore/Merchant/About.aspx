@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" Title="About Us" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeFile="About.aspx.cs" Inherits="ShoesStore.Merchant.About" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-
             <!-- site__body -->
             <div class="site__body">
                 <div class="block About">
@@ -54,5 +52,4 @@
                 </div>
             </div>
             <!-- site__body / end -->
-            
 </asp:Content>

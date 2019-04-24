@@ -9,8 +9,6 @@
 
 namespace ShoesStore.Merchant
 {
-
-
     public partial class contact_us
     {
 
@@ -21,6 +19,5 @@ namespace ShoesStore.Merchant
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        
     }
 }

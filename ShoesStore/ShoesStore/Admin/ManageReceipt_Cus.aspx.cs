@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace ShoesStore.Admin
 {
     public partial class ManageReceipt_Cus : Page
@@ -24,7 +23,6 @@ namespace ShoesStore.Admin
                 cthd.Visible = false;
                 sumprice.Visible = false;
                 BindGridViewgvRcptBuy();
-
             }
         }
         // Load data lên cho gvRcptBuy
@@ -33,7 +31,6 @@ namespace ShoesStore.Admin
             gvRcptBuy.DataSource = rcptBuy.GetAll().ToList();
             gvRcptBuy.DataBind();
         }
-
         // Load data lên cho gvRcptBuyDet
         private void BindGridViewgvRcptBuyDet(int RcptBuyId)
         {
@@ -63,13 +60,11 @@ namespace ShoesStore.Admin
             sumprice2.Text = total.ToString("#,##0");
             gvRcptBuyDet.DataBind();
         }
-
         // Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
-
         public void TimKiem(string search_key)
         {
             var rs = (from a in rcptBuy.GetAll().ToList()
@@ -83,7 +78,6 @@ namespace ShoesStore.Admin
             gvRcptBuy.DataSource = rs;
             gvRcptBuy.DataBind();
         }
-
         // Ràng buộc và thêm xóa sửa
         protected void gvBuy_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -96,9 +90,7 @@ namespace ShoesStore.Admin
             else if (e.CommandName == "DeleteRow")
             {
                 RcptBuyDet result2 = rcptBuyDet.GetAll().FirstOrDefault(m => m.RcptBuyId == Convert.ToInt32(e.CommandArgument));
-
                 RcptBuy result = rcptBuy.GetAll().FirstOrDefault(m => m.RcptBuyId == Convert.ToInt32(e.CommandArgument));
-
                 Rcpt result1 = (from c in rcpt.GetAll()
                                 where c.RcptId == Convert.ToInt32(e.CommandArgument)
                                 select c).FirstOrDefault();
@@ -123,12 +115,10 @@ namespace ShoesStore.Admin
                 if (result != null)
                 {
                     // SỬA CODE Ở ĐÂY
-
                     result.Rcpt.DateEdit = DateTime.Now;
                     result.Rcpt.UsrEdit = Convert.ToInt32(UsrEdit);
                     rcptBuy.Update(result);
                 }
-
                 gvRcptBuy.EditIndex = -1;
                 BindGridViewgvRcptBuy();
             }
@@ -143,13 +133,10 @@ namespace ShoesStore.Admin
                 {
                     usrEdit = "0";
                 }
-
                 if (usrAdd == "")
                 {
                     return;
                 }
-
-
                 Rcpt rcpt1 = new Rcpt
                 {
                     DateAdd = DateTime.Now,
@@ -157,14 +144,12 @@ namespace ShoesStore.Admin
                     UsrAdd = Int32.Parse(usrAdd),
                     UsrEdit = null
                 };
-
                 rcpt.Insert(rcpt1);
                 RcptBuy newRcptBuy = new RcptBuy
                 {
                     RcptBuyId = rcpt.getMaxRcptId(),
                     CusId = Int32.Parse(cusId)
                 };
-
                 rcptBuy.Insert(newRcptBuy);
                 BindGridViewgvRcptBuy();
             }
@@ -178,13 +163,10 @@ namespace ShoesStore.Admin
                 {
                     usrEdit = "0";
                 }
-
                 if (usrAdd == "")
                 {
                     return;
                 }
-
-
                 Rcpt rcpt1 = new Rcpt
                 {
                     DateAdd = DateTime.Now,
@@ -192,27 +174,22 @@ namespace ShoesStore.Admin
                     UsrAdd = Int32.Parse(usrAdd),
                     UsrEdit = null
                 };
-
                 rcpt.Insert(rcpt1);
                 RcptBuy newRcptBuy = new RcptBuy
                 {
                     RcptBuyId = rcpt.getMaxRcptId(),
                     CusId = Int32.Parse(cusId)
                 };
-
                 rcptBuy.Insert(newRcptBuy);
-
                 BindGridViewgvRcptBuy();
             }
         }
-
         // Sự kiện chọn rcpt trong rcptBuy
         protected void gvRcptBuy_SelectedIndexChanged(object sender, EventArgs e)
         {
             int rcptBuyId = Int32.Parse((gvRcptBuy.SelectedRow.FindControl("rcptbuyid") as Label).Text);
             BindGridViewgvRcptBuyDet(rcptBuyId);
         }
-
         // Gộp những dòng trùng
         protected void gvRcptBuyDet_RowDataBound1(object sender, GridViewRowEventArgs e)
         {
@@ -243,6 +220,5 @@ namespace ShoesStore.Admin
                 }
             }
         }
-
     }
 }

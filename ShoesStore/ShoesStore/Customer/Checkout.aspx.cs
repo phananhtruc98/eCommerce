@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.UI;
 using ShoesStore.DataAccessLogicLayer;
-
 namespace ShoesStore.Customer
 {
     public partial class ThanhToan : Page
@@ -22,17 +21,13 @@ namespace ShoesStore.Customer
                 }
                 rptCartDetCheckout.DataSource = MyLibrary.CartDet_BUS.ListCartPreview();
                 rptCartDetCheckout.DataBind();
-
             }
         }
-
         protected void btnOrder_OnClick(object sender, EventArgs e)
         {
-
             if (checkout_terms.Checked)
             {
                 var groupByShop = MyLibrary.CartDet_BUS.GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId).GroupBy(m => new { m.Cart.CusId, m.ShpId });
-
                 foreach (var group in groupByShop)
                 {
                     Rcpt rcpt = new Rcpt()
@@ -43,7 +38,6 @@ namespace ShoesStore.Customer
                     };
                     MyLibrary.Rcpt_BUS.Insert(rcpt);
                     int rcptId = MyLibrary.Rcpt_BUS.getMaxRcptId();
-
                     RcptBuy rcptBuy = new RcptBuy()
                     {
                         RcptBuyId = rcptId,
@@ -59,7 +53,6 @@ namespace ShoesStore.Customer
                     };
                     MyLibrary.RcptBuySta_BUS.Insert(rcptBuySta);
                     rcptBuySta = MyLibrary.RcptBuySta_BUS.GetLast();
-
                     //Thêm bảng RcptBuyStaDet (gán tình trạng cho bảng RcptBuySta)
                     //RcptBuyStaDet rcptBuyStaDet = new RcptBuyStaDet()
                     //{
@@ -78,17 +71,12 @@ namespace ShoesStore.Customer
                             ColorId = groupItem.ColorId,
                             SizeId = groupItem.SizeId,
                             Quantity = groupItem.Qty
-
                         };
                         MyLibrary.RcptBuyDet_BUS.Insert(rcptBuyDet);
-
                         MyLibrary.CartDet_BUS.Delete(groupItem);
                     }
-
-
                 }
             }
-
             Response.Redirect("/");
         }
     }

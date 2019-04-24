@@ -6,4 +6,4 @@ define("ace/mode/folding/coffee",["require","exports","module","ace/lib/oop","ac
                         }
                     });
                 })();
-            
+

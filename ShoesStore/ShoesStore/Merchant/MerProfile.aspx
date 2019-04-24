@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" Title="Trang Cá Nhân" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeFile="MerProfile.aspx.cs" Inherits="ShoesStore.Merchant.MerProfile" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-
     <!-- site__body -->
     <div class="container">
         <div class="row my-2">
@@ -25,12 +23,10 @@
                                 <h6>About</h6>
                                 <p>
                                     Web Designer, UI/UX Engineer
-                                       
                                 </p>
                                 <h6>Hobbies</h6>
                                 <p>
                                     Indie music, skiing and hiking. I love the great outdoors.
-                                       
                                 </p>
                             </div>
                             <div class="col-md-6">
@@ -86,7 +82,6 @@
                     <div class="tab-pane" id="messages">
                         <div class="alert alert-info alert-dismissable">
                             <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                               
                         </div>
                         <table class="table table-hover table-striped">
                             <tbody>

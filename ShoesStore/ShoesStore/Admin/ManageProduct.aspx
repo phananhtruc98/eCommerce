@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" Title="Quản lý sản phẩm" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageProduct.aspx.cs" Inherits="ShoesStore.Admin.ManageProduct" %>
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="btn btn-lg custom_bar">Thông tin sản phẩm</div>
     <div class="container">
@@ -571,7 +570,6 @@
                     ForeColor="Red" runat="server" />
             </div>
         </div>
-
     </div>
     <div class="btn btn-lg custom_bar">Thêm bảng sản phẩm</div>
     <div class="btn btn-lg custom_bar">Kiểm duyệt bài đăng sản phẩm ở đây</div>

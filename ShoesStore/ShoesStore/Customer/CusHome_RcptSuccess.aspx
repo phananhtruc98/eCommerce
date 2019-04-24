@@ -1,10 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteCus.Master" CodeBehind="CusHome_RcptSuccess.aspx.cs" Inherits="ShoesStore.Customer.CusHome_RcptSuccess" %>
-
 <%@ MasterType VirtualPath="~/SiteCus.Master" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
-
     <div class="container">
         <ul class="nav nav-tabs">
             <li runat="server" class="nav-item" id="tab1"><a class="nav-link" data-toggle="tab" href="#home">Chờ thanh toán</a></li>
@@ -13,7 +11,6 @@
             <li runat="server" class="nav-item" id="tab4"><a class="nav-link" data-toggle="tab" href="#menu3">Đã giao</a></li>
             <li runat="server" class="nav-item" id="tab5"><a class="nav-link" data-toggle="tab" href="#menu4">Đã hủy</a></li>
         </ul>
-
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
                 <h3>Chờ thanh toán</h3>

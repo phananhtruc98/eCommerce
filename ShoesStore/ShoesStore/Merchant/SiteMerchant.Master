@@ -1,10 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMerchant.master.cs" Inherits="ShoesStore.Merchant.SiteMerchant" %>
-
 <%@ Register TagPrefix="friendlyUrls" TagName="ViewSwitcher" Src="~/ViewSwitcher.ascx" %>
-
 <%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
@@ -15,11 +12,8 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/ShoesStore") %>
     </asp:PlaceHolder>
-
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
-
 </head>
 <body>
     <form runat="server">
@@ -49,14 +43,9 @@
         </div>
         <!-- quickview-modal / end -->
         <!-- Dang Nhap modal-->
-
         <!-- Dang Nhap modal/end-->
         <!-- Dang Ky modal-->
-
-
-
         <div class="site">
-
             <header class="site__header d-lg-block d-none">
                 <div class="site-header">
                     <!-- .topbar -->
@@ -84,7 +73,6 @@
                                     </a>
                                 </div>
                                 <div class="topbar__spring"></div>
-
                             </div>
                         </div>
                     </div>
@@ -165,15 +153,8 @@
                                         </ul>
                                     </div>
                                     <!-- .nav-links / end -->
-
-
-
-
                                     <!-- Dang Nhap /Dang Xuat -->
                                     <ul class="navbar-nav navbar-nav-right">
-                                        
-                                            
-                                        
                                         <li class="nav-item dropdown d-none d-xl-inline-block">
                                             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                                                 <span class="profile-text">
@@ -208,7 +189,6 @@
                                     </button>
                                 </div>
                                 <!-- Dang Nhap /Dang Xuat /END-->
-
                             </div>
                         </div>
                     </div>
@@ -216,8 +196,6 @@
             </header>
             <!-- desktop site__header / end -->
         </div>
-
-
         <div class="site__body">
             <div class="container">
                 <div class="shop-layout shop-layout--sidebar--start">
@@ -239,10 +217,8 @@
                                                 <ul>
                                                     <li><a href="MerHome.aspx">Home Merchant</a></li>
                                                     <li><a href="MerProfile.aspx">Your Profile</a></li>
-
                                                 </ul>
                                             </div>
-
                                         </li>
                                         <li class="widget-categories__item" data-collapse-item>
                                             <div class="widget-categories__row">
@@ -256,12 +232,9 @@
                                                 <ul>
                                                     <li><a href="SubGet.aspx">Đăng ký gói Subscription</a></li>
                                                     <li><a href="#">Thông Tin Các Gói Subscription</a></li>
-
-
                                                 </ul>
                                             </div>
                                         </li>
-
                                         <li class="widget-categories__item" data-collapse-item>
                                             <div class="widget-categories__row">
                                                 <a href="#">
@@ -276,7 +249,6 @@
                                                     <li><a href="MerAddProd.aspx">Thêm Sản Phẩm</a></li>
                                                     <li><a href="#">Quản Lý Sản Phẩm</a></li>
                                                     <li><a href="#">Quản Lý Hóa Đơn</a></li>
-
                                                 </ul>
                                             </div>
                                         </li>
@@ -288,7 +260,6 @@
                                                     About Us</a>
                                             </div>
                                         </li>
-
                                         <li class="widget-categories__item" data-collapse-item>
                                             <div class="widget-categories__row">
                                                 <a href="Contact.aspx">
@@ -297,7 +268,6 @@
                                                     Liên hệ</a>
                                             </div>
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -361,7 +331,6 @@
                         </div>
                     </div>
                     <!--Side bar-->
-
                     <!--PlaceHolder-Content-->
                     <div style="margin-top: 50px" class="shop-layout__content">
                         <asp:ContentPlaceHolder ID="MainPlaceHolder" runat="server">
@@ -369,7 +338,6 @@
                         <hr />
                     </div>
                     <!--PlaceHolder-Content-->
-
                 </div>
             </div>
         </div>
@@ -518,7 +486,6 @@
             </footer>
             <!-- site__footer / end -->
         </div>
-
     </form>
 </body>
 </html>

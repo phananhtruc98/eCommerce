@@ -3,7 +3,6 @@ using ShoesStore.DataAccessLogicLayer;
 using System;
 using System.Linq;
 using System.Web.UI.WebControls;
-
 namespace ShoesStore.Customer
 {
     public partial class CusHome_RcptSuccess : System.Web.UI.Page
@@ -29,7 +28,6 @@ namespace ShoesStore.Customer
                 BindlvDaHuy(usr1.UsrId);
             }
         }
-
         /// <summary>  
         ///  TAB ĐÃ GIAO
         /// </summary>  
@@ -47,7 +45,6 @@ namespace ShoesStore.Customer
                 lvRcptBuy.DataBind();
             }
             else lbEmpty2.Visible = true;
-
         }
         // Load hình của từng hóa đơn
         protected void lvRcptBuy_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -59,7 +56,6 @@ namespace ShoesStore.Customer
                 ListView lvRcptBuyDet = (ListView)e.Item.FindControl("lvRcptBuyDet");
                 lvRcptBuyDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
                 lvRcptBuyDet.DataBind();
-
             }
         }
         // btn CHI TIẾT
@@ -76,10 +72,7 @@ namespace ShoesStore.Customer
                 LinkButton lbtnChiTiet = (LinkButton)e.Item.FindControl("lbtnChiTiet");
                 Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "&Sta=7");
             }
-
         }
-
-
         /// <summary>  
         ///  TAB CHỜ THANH TOÁN
         /// </summary>  
@@ -108,7 +101,6 @@ namespace ShoesStore.Customer
                 ListView lvChoThanhToanDet = (ListView)e.Item.FindControl("lvChoThanhToanDet");
                 lvChoThanhToanDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
                 lvChoThanhToanDet.DataBind();
-
             }
         }
         // btn CHI TIẾT
@@ -126,8 +118,6 @@ namespace ShoesStore.Customer
                 Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "&Sta=1");
             }
         }
-
-
         /// <summary>  
         ///  TAB CHỜ LẤY HÀNG
         /// </summary>  
@@ -148,7 +138,6 @@ namespace ShoesStore.Customer
             {
                 lbEmpty3.Visible = true;
             }
-
         }
         // Load hình của từng hóa đơn
         protected void lvChoLayHang_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -160,7 +149,6 @@ namespace ShoesStore.Customer
                 ListView lvChoLayHangDet = (ListView)e.Item.FindControl("lvChoLayHangDet");
                 lvChoLayHangDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
                 lvChoLayHangDet.DataBind();
-
             }
         }
         // btn CHI TIẾT
@@ -178,8 +166,6 @@ namespace ShoesStore.Customer
                 Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "&Sta=3");
             }
         }
-
-
         /// <summary>  
         ///  TAB CHỜ LẤY HÀNG
         /// </summary>  
@@ -200,7 +186,6 @@ namespace ShoesStore.Customer
             {
                 lbEmpty4.Visible = true;
             }
-
         }
         // Load hình của từng hóa đơn
         protected void lvDangGiao_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -212,7 +197,6 @@ namespace ShoesStore.Customer
                 ListView lvDangGiaoDet = (ListView)e.Item.FindControl("lvDangGiaoDet");
                 lvDangGiaoDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
                 lvDangGiaoDet.DataBind();
-
             }
         }
         // btn CHI TIẾT
@@ -230,8 +214,6 @@ namespace ShoesStore.Customer
                 Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "&Sta=1");
             }
         }
-
-
         /// <summary>  
         ///  TAB ĐÃ HỦY
         /// </summary>  
@@ -257,7 +239,6 @@ namespace ShoesStore.Customer
             {
                 lbEmpty5.Visible = true;
             }
-
         }
         // Load hình của từng hóa đơn
         protected void lvDaHuy_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -269,7 +250,6 @@ namespace ShoesStore.Customer
                 ListView lvDaHuyDet = (ListView)e.Item.FindControl("lvDaHuyDet");
                 lvDaHuyDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
                 lvDaHuyDet.DataBind();
-
             }
         }
         // btn CHI TIẾT

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 namespace ShoesStore.Interfaces
 {
     public interface ITable<T>
@@ -11,5 +10,4 @@ namespace ShoesStore.Interfaces
         bool IsExist(T obj);
         void SetActive(T obj);
     }
-
 }

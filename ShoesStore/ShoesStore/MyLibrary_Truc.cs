@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-
 namespace ShoesStore
 {
     public partial class MyLibrary
@@ -48,11 +47,9 @@ namespace ShoesStore
                                                                                 </div>
                                                                             </div>");
             }
-
             sb.Append("</div>");
             //string s = "";
             //List<string> list = new List<string>();
-
             //for (int i = 0; i < star; i++)
             //{
             //    list.Add("*");
@@ -72,8 +69,5 @@ namespace ShoesStore
             }
             return s;
         }
-
     }
-
-
 }

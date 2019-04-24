@@ -1,6 +1,5 @@
 ﻿using System;
 using ShoesStore.Interfaces;
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class Cart_DAO : Table_DAO<Cart>, ICart
@@ -9,7 +8,6 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
-
         public override void SetActive(Cart obj)
         {
             throw new NotImplementedException();

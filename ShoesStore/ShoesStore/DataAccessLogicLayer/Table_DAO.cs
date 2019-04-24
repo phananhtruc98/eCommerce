@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity.Validation;
 using System.Linq;
 using ShoesStore.Interfaces;
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     public abstract class Table_DAO<T> : ITable<T> where T : class
@@ -15,7 +14,6 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance.Set<T>().Remove(obj);
             DataProvider.Instance.SaveChanges();
         }
-
         public List<T> GetAll()
         {
             try
@@ -27,19 +25,15 @@ namespace ShoesStore.DataAccessLogicLayer
                 return null;
             }
         }
-
         public void Insert(T obj)
         {
-
             try
             {
                 // Your code...
                 // Could also be before try if you know the exception occurs in SaveChanges
-
                 DataProvider.Instance.Set<T>().Add(obj);
                 DataProvider.Instance.SaveChanges();
             }
-
             catch (DbEntityValidationException e)
             {
                 foreach (var eve in e.EntityValidationErrors)
@@ -55,14 +49,12 @@ namespace ShoesStore.DataAccessLogicLayer
                 throw;
             }
         }
-
         public void Update(T obj)
         {
             DataProvider.Instance.Set<T>().Attach(obj);
             DataProvider.Instance.Entry(obj).State = EntityState.Modified;
             DataProvider.Instance.SaveChanges();
         }
-
         public abstract void SetActive(T obj);
         public abstract bool IsExist(T obj);
     }

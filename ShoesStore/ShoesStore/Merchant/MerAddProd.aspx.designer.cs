@@ -6,10 +6,7 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace ShoesStore.Merchant {
-    
-    
     public partial class MerAddProd {
     }
 }

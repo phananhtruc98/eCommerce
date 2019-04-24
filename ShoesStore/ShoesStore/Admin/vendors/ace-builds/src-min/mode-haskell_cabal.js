@@ -6,4 +6,4 @@ define("ace/mode/haskell_cabal_highlight_rules",["require","exports","module","a
                         }
                     });
                 })();
-            
+

@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteCus.Master" CodeBehind="CusHome_Cmt.aspx.cs" Inherits="ShoesStore.Customer.CusHome_Cmt" %>
-
 <%@ MasterType VirtualPath="~/SiteCus.Master" %>
 <%@ Import Namespace="ShoesStore" %>
 <asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
