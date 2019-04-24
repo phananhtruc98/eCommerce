@@ -17,7 +17,12 @@
                     </tr>
                     <tr>
                         <th colspan="7">
-                            <asp:Label ID="lvRcptBuyDate" runat="server"></asp:Label>
+                            <asp:Label ID="lbRcptBuyDate" runat="server"></asp:Label>
+                        </th>
+                    </tr>
+                     <tr>
+                        <th colspan="7">
+                            <asp:Label ID="lbRcptBuySta" runat="server"></asp:Label>
                         </th>
                     </tr>
                     <tr>
@@ -38,11 +43,11 @@
                             <tr>
                                 <td colspan="7">Cửa hàng: <%# Item.Shp.ShpName%></td>
                             </tr>
-                            <asp:Repeater runat="server" ID="rptRcptShpDet" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet">
+                            <asp:Repeater runat="server" ID="rptRcptShpDet" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet" OnItemDataBound="rptRcptShpDet_ItemDataBound">
                                 <ItemTemplate>
                                     <tr>
                                         <td><a href="#">
-                                            <img style="width: 80px; height: 80px"
+                                            <img style="width: 200px; height:200px"
                                                 src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                         </a></td>
                                         <td><%# Item.ProDet.Pro.ProName %></td>
@@ -50,7 +55,7 @@
                                         <td><%# Item.ProDet.ProSize.SizeName %></td>
                                         <td><%# Item.Quantity%></td>
                                         <td><%# (Item.Quantity * Int32.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>
-                                        <td>Đánh giá</td>
+                                        <td><asp:LinkButton runat="server" ID="lbtnDanhGia" Visible="false" Text="ĐÁNH GIÁ" PostBackUrl='<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>'></asp:LinkButton></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>

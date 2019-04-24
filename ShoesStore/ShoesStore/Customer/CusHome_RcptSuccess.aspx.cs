@@ -22,126 +22,34 @@ namespace ShoesStore.Customer
             {
                 Usr usr = (Usr)WebSession.LoginUsr;
                 Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
-                BindGridViewgvRcptBuy(usr1.UsrId);
-                
+                BindlvDaGiao(usr1.UsrId);
+                BindlvChoThanhToan(usr1.UsrId);
+                BindlvChoLayHang(usr1.UsrId);
+                BindlvDangGiao(usr1.UsrId);
+                BindlvDaHuy(usr1.UsrId);
             }
         }
 
-        private void BindGridViewgvRcptBuy(int CusId)
+        /// <summary>  
+        ///  TAB ĐÃ GIAO
+        /// </summary>  
+        // Load Bảng hóa đơn trong
+        private void BindlvDaGiao(int CusId)
         {
-            //var rs = from r in rcptBuy.GetAll()
-            //         join d in rcptBuyDet.GetAll() on r.RcptBuyId equals d.RcptBuyId
-            //         join p in pro.GetAll() on d.ProId equals p.ProId
-            //         join s in rcpt.GetAll() on r.RcptBuyId equals s.RcptId
-            //         where r.CusId == CusId
-            //         select new
-            //         {
-            //             RcptBuyId = r.RcptBuyId,
-            //             DateAddRcpt = s.DateAdd,
-            //             SumPrice = d.Quantity * Int32.Parse(p.Price),
-            //             Img = p.Img
-            //         };
-            //var rs1 = from a in rs.ToList()
-            //          group a by new { a.RcptBuyId, a.DateAddRcpt, a.SumPrice, a.Img } into t
-            //          select new
-            //          {
-            //              RcptBuyId = t.Key.RcptBuyId,
-            //              DateAddRcpt = t.Key.DateAddRcpt,
-            //              SumPrice = t.Key.SumPrice,
-            //              Img = t.Key.Img,
-            //          };
+            var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            var rs1 = from r in rs
+                      join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
+                      where s.StepId == 7
+                      select r;
+            if (rs1.Count() != 0)
+            {
+                lvRcptBuy.DataSource = rs1;
+                lvRcptBuy.DataBind();
+            }
+            else lbEmpty2.Visible = true;
 
-            //var rs2 = (from a in rs1.ToList()
-            //          group a by new { a.RcptBuyId, a.DateAddRcpt } into p
-            //          select new
-            //          {
-            //              RcptBuyId1 = p.Key.RcptBuyId,
-            //              Sum = p.Sum(x => x.SumPrice),
-            //              DateAddRcpt = p.Key.DateAddRcpt,
-            //              ImgPro = p.Select(x => x.Img).ToList()
-            //          }).OrderByDescending(x=>x.DateAddRcpt).ToList();
-            //if (rs2.Count() == 0)
-            //{
-            //    lbEmpty.Visible = true;
-            //}
-            //else
-            //{
-            //    lvRcptBuy.DataSource = rs2;
-            //    lvRcptBuy.DataBind();
-            //}
-            //var rs = from r in rcptBuy.GetAll()
-            //         join d in rcptBuyDet.GetAll() on r.RcptBuyId equals d.RcptBuyId
-            //         join p in pro.GetAll() on d.ProId equals p.ProId
-            //         join s in rcpt.GetAll() on r.RcptBuyId equals s.RcptId
-            //         where r.CusId == CusId
-            //         select new
-            //         {
-            //             RcptBuyId = r.RcptBuyId,
-            //             DateAddRcpt = s.DateAdd,
-            //             SumPrice = d.Quantity * Int32.Parse(p.Price),
-            //             Pro = p
-            //         };
-            //var rs1 = from a in rs.ToList()
-            //          group a by new { a.RcptBuyId, a.DateAddRcpt, a.SumPrice, a.Pro } into t
-            //          select new
-            //          {
-            //              RcptBuyId = t.Key.RcptBuyId,
-            //              DateAddRcpt = t.Key.DateAddRcpt,
-            //              SumPrice = t.Key.SumPrice,
-            //              Pro = t.Key.Pro
-            //          };
-
-            //var rs2 = (from a in rs1.ToList()
-            //           group a by new { a.RcptBuyId, a.DateAddRcpt, a.Pro } into p
-            //           select new
-            //           {
-            //               RcptBuyId1 = p.Key.RcptBuyId,
-            //               Sum = p.Sum(x => x.SumPrice),
-            //               DateAddRcpt = p.Key.DateAddRcpt,
-            //               Pro = p.Key.Pro
-            //           }).ToList();
-            //if (rs2.Count() == 0)
-            //{
-            //    lbEmpty.Visible = true;
-            //}
-            //else
-            //{
-            //    lvRcptBuy.DataSource = rs2;
-            //    lvRcptBuy.DataBind();
-            //}
-
-            lvRcptBuy.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
-            lvRcptBuy.DataBind();
         }
-
-        //protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
-        //{
-        //    lvRcptBuy.Visible = false;
-        //    lbDonHang.Visible = false;
-        //    Label1.Visible = true;
-        //    int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
-        //    var d = (from r in rcpt.GetAll()
-        //             where r.RcptId == RcptBuyId
-        //             select r.DateAdd).Single();
-        //    dateadd = d.ToString();
-        //    lbRcptBuyId.Text = "Đơn hàng #" +RcptBuyId;
-        //    lvRcptBuyDate.Text = "Ngày đặt hàng: "+dateadd;
-        //    lbRcptBuyId.Visible = true;
-        //    lvRcptBuyDate.Visible = true;
-        //    rowRcptBuyDet.Visible = true;
-        //    rcptTemp = RcptBuyId;
-        //    BindDataLvRcptBuyDet(rcptTemp);
-
-        //}
-
-        //public void BindDataLvRcptBuyDet(int RcptId)
-        //{
-            
-        //    rptRcptShp.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(RcptId);
-        //    rptRcptShp.DataBind();
-        //}
-
-
+        // Load hình của từng hóa đơn
         protected void lvRcptBuy_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
@@ -149,17 +57,15 @@ namespace ShoesStore.Customer
                 HiddenField hdfRcptBuyId = (HiddenField)e.Item.FindControl("hdfRcptBuyId");
                 int RcptBuyId = Int32.Parse(hdfRcptBuyId.Value);
                 ListView lvRcptBuyDet = (ListView)e.Item.FindControl("lvRcptBuyDet");
-                //LinkButton lbtnChitiet = (LinkButton)e.Item.FindControl("Link1");
-                //lbtnChitiet.Attributes.Add("onClick", "return false;");
                 lvRcptBuyDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
                 lvRcptBuyDet.DataBind();
-               
+
             }
         }
-
+        // btn CHI TIẾT
         protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            if(e.CommandName=="sel")
+            if (e.CommandName == "sel")
             {
                 int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
                 var d = (from r in rcpt.GetAll()
@@ -168,14 +74,218 @@ namespace ShoesStore.Customer
                 dateadd = d.ToString();
                 rcptTemp = RcptBuyId;
                 LinkButton lbtnChiTiet = (LinkButton)e.Item.FindControl("lbtnChiTiet");
-                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "");
+                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "&Sta=7");
             }
-            
+
         }
 
-        private void LbtnChiTiet_Click(object sender, EventArgs e)
+
+        /// <summary>  
+        ///  TAB CHỜ THANH TOÁN
+        /// </summary>  
+        // Load Bảng hóa đơn trong
+        private void BindlvChoThanhToan(int CusId)
         {
-            
+            var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            var rs1 = from r in rs
+                      join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
+                      where s.StepId == 1
+                      select r;
+            if (rs1.Count() != 0)
+            {
+                lvChoThanhToan.DataSource = rs1;
+                lvChoThanhToan.DataBind();
+            }
+            else lbEmpty.Visible = true;
+        }
+        // Load hình của từng hóa đơn
+        protected void lvChoThanhToan_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                HiddenField hdfRcptBuyId = (HiddenField)e.Item.FindControl("hdfRcptBuyId");
+                int RcptBuyId = Int32.Parse(hdfRcptBuyId.Value);
+                ListView lvChoThanhToanDet = (ListView)e.Item.FindControl("lvChoThanhToanDet");
+                lvChoThanhToanDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
+                lvChoThanhToanDet.DataBind();
+
+            }
+        }
+        // btn CHI TIẾT
+        protected void lvChoThanhToan_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "sel")
+            {
+                int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
+                var d = (from r in rcpt.GetAll()
+                         where r.RcptId == RcptBuyId
+                         select r.DateAdd).Single();
+                dateadd = d.ToString();
+                rcptTemp = RcptBuyId;
+                LinkButton lbtnChiTiet = (LinkButton)e.Item.FindControl("lbtnChiTiet");
+                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "&Sta=1");
+            }
+        }
+
+
+        /// <summary>  
+        ///  TAB CHỜ LẤY HÀNG
+        /// </summary>  
+        // Load Bảng hóa đơn trong
+        private void BindlvChoLayHang(int CusId)
+        {
+            var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            var rs1 = from r in rs
+                      join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
+                      where s.StepId == 3
+                      select r;
+            if (rs1.Count() != 0)
+            {
+                lvChoLayHang.DataSource = rs1;
+                lvChoLayHang.DataBind();
+            }
+            else
+            {
+                lbEmpty3.Visible = true;
+            }
+
+        }
+        // Load hình của từng hóa đơn
+        protected void lvChoLayHang_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                HiddenField hdfRcptBuyId = (HiddenField)e.Item.FindControl("hdfRcptBuyId");
+                int RcptBuyId = Int32.Parse(hdfRcptBuyId.Value);
+                ListView lvChoLayHangDet = (ListView)e.Item.FindControl("lvChoLayHangDet");
+                lvChoLayHangDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
+                lvChoLayHangDet.DataBind();
+
+            }
+        }
+        // btn CHI TIẾT
+        protected void lvChoLayHang_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "sel")
+            {
+                int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
+                var d = (from r in rcpt.GetAll()
+                         where r.RcptId == RcptBuyId
+                         select r.DateAdd).Single();
+                dateadd = d.ToString();
+                rcptTemp = RcptBuyId;
+                LinkButton lbtnChiTiet = (LinkButton)e.Item.FindControl("lbtnChiTiet");
+                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "&Sta=3");
+            }
+        }
+
+
+        /// <summary>  
+        ///  TAB CHỜ LẤY HÀNG
+        /// </summary>  
+        // Load Bảng hóa đơn trong
+        private void BindlvDangGiao(int CusId)
+        {
+            var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            var rs1 = from r in rs
+                      join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
+                      where s.StepId == 6
+                      select r;
+            if (rs1.Count() != 0)
+            {
+                lvDangGiao.DataSource = rs1;
+                lvDangGiao.DataBind();
+            }
+            else
+            {
+                lbEmpty4.Visible = true;
+            }
+
+        }
+        // Load hình của từng hóa đơn
+        protected void lvDangGiao_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                HiddenField hdfRcptBuyId = (HiddenField)e.Item.FindControl("hdfRcptBuyId");
+                int RcptBuyId = Int32.Parse(hdfRcptBuyId.Value);
+                ListView lvDangGiaoDet = (ListView)e.Item.FindControl("lvDangGiaoDet");
+                lvDangGiaoDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
+                lvDangGiaoDet.DataBind();
+
+            }
+        }
+        // btn CHI TIẾT
+        protected void lvDangGiao_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "sel")
+            {
+                int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
+                var d = (from r in rcpt.GetAll()
+                         where r.RcptId == RcptBuyId
+                         select r.DateAdd).Single();
+                dateadd = d.ToString();
+                rcptTemp = RcptBuyId;
+                LinkButton lbtnChiTiet = (LinkButton)e.Item.FindControl("lbtnChiTiet");
+                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "&Sta=1");
+            }
+        }
+
+
+        /// <summary>  
+        ///  TAB ĐÃ HỦY
+        /// </summary>  
+        // Load Bảng hóa đơn trong
+        int staTemp = 0;
+        private void BindlvDaHuy(int CusId)
+        {
+            var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            var rs1 = from r in rs
+                      join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
+                      where s.StepId == 9 || s.StepId==10
+                      select r;
+            staTemp = (from r in rs
+                      join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
+                      where s.StepId == 9 || s.StepId == 10
+                      select s.StepId).FirstOrDefault();
+            if (rs1.Count() != 0)
+            {
+                lvDaHuy.DataSource = rs1;
+                lvDaHuy.DataBind();
+            }
+            else
+            {
+                lbEmpty5.Visible = true;
+            }
+
+        }
+        // Load hình của từng hóa đơn
+        protected void lvDaHuy_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                HiddenField hdfRcptBuyId = (HiddenField)e.Item.FindControl("hdfRcptBuyId");
+                int RcptBuyId = Int32.Parse(hdfRcptBuyId.Value);
+                ListView lvDaHuyDet = (ListView)e.Item.FindControl("lvDaHuyDet");
+                lvDaHuyDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyDet_Ìmg().Where(m => m.RcptBuyId + "" == hdfRcptBuyId.Value);
+                lvDaHuyDet.DataBind();
+
+            }
+        }
+        // btn CHI TIẾT
+        protected void lvDaHuy_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "sel")
+            {
+                int RcptBuyId = Int32.Parse(e.CommandArgument.ToString());
+                var d = (from r in rcpt.GetAll()
+                         where r.RcptId == RcptBuyId
+                         select r.DateAdd).Single();
+                dateadd = d.ToString();
+                rcptTemp = RcptBuyId;
+                LinkButton lbtnChiTiet = (LinkButton)e.Item.FindControl("lbtnChiTiet");
+                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp.ToString() + "&Sta=" + staTemp.ToString());
+            }
         }
     }
 }

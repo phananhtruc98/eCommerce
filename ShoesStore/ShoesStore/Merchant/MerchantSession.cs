@@ -1,4 +1,7 @@
-﻿using System.Web;
+﻿using System.Linq;
+using System.Web;
+using ShoesStore.BusinessLogicLayer;
+using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.Merchant
 {
@@ -12,5 +15,23 @@ namespace ShoesStore.Merchant
         }
 
         public static MerchantSession Instance => _instance ?? new MerchantSession();
+
+        public static Mer LoginMer
+        {
+            get
+            {
+                try
+                {
+                    Usr usr = (Usr)HttpContext.Current.Session["LoginMerchant"];
+                    Mer mer = new Mer_BUS().GetAll().FirstOrDefault(m => m.MerId == usr.UsrId);
+                    return mer;
+                }
+                catch
+                {
+                    return null;
+                }
+
+            }
+        }
     }
 }

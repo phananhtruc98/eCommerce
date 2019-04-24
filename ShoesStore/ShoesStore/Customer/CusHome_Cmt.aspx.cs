@@ -53,7 +53,7 @@ namespace ShoesStore.Customer
 
                       };
 
-            if (rs1.Count() == 0)
+            if (rs1.Count() == 0 || rs1.Any(x=>x.Cmt == null))
             {
                 lbEmpty.Visible = true;
             }

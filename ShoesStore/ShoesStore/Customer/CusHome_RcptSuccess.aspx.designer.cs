@@ -58,6 +58,60 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab5;
         
         /// <summary>
+        /// lbEmpty2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEmpty2;
+        
+        /// <summary>
+        /// lvChoThanhToan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvChoThanhToan;
+        
+        /// <summary>
+        /// lbEmpty3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEmpty3;
+        
+        /// <summary>
+        /// lvChoLayHang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvChoLayHang;
+        
+        /// <summary>
+        /// lbEmpty4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbEmpty4;
+        
+        /// <summary>
+        /// lvDangGiao control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvDangGiao;
+        
+        /// <summary>
         /// lbDonHang control.
         /// </summary>
         /// <remarks>
@@ -85,13 +139,22 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.ListView lvRcptBuy;
         
         /// <summary>
-        /// TestLabel control.
+        /// lbEmpty5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TestLabel;
+        protected global::System.Web.UI.WebControls.Label lbEmpty5;
+        
+        /// <summary>
+        /// lvDaHuy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvDaHuy;
         
         /// <summary>
         /// Master property.
