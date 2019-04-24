@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using Logger;
 using System.Xml;
-using System.Configuration;
+using Logger;
+
 namespace Utilities
 {
     public class SqlHelper
     {
         public static readonly string ConnectionStringLocalTransaction =
             ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString;
+
         #region CreateCommand
+
         /// <summary>
         ///     Simplify the creation of a Sql command object by allowing
         ///     a stored procedure and optional parameters to be provided
@@ -44,9 +47,12 @@ namespace Utilities
                 // Attach the discovered parameters to the SqlCommand object
                 AttachParameters(cmd, commandParameters);
             }
+
             return cmd;
         }
+
         #endregion
+
         /// <summary>
         ///     GetConnection co the tu mot database khac
         /// </summary>
@@ -58,6 +64,7 @@ namespace Utilities
             if (connection.State == ConnectionState.Closed) connection.Open();
             return connection;
         }
+
         public static DataTable GetDataWithSqlCommand(string sqlQry)
         {
             var strConnect = ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString;
@@ -70,12 +77,14 @@ namespace Utilities
             con.Close();
             return dt;
         }
+
         public static DataTable GetDataWithSqlTransaction(string sqlQry, SqlParameter[] param)
         {
             var strConnect = ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString;
             var dt = ExecuteDataset(strConnect, CommandType.Text, sqlQry, param).Tables[0];
             return dt;
         }
+
         public static void SetDataWithSqlCommand(string insertSql)
         {
             var strConnect = ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString;
@@ -87,6 +96,7 @@ namespace Utilities
             cmd.Dispose();
             con.Close();
         }
+
         public static int SetDataWithSqlTransaction(string insertSql, SqlParameter[] param)
         {
             var strConnect = ConfigurationManager.ConnectionStrings["strConnection"].ConnectionString;
@@ -108,7 +118,9 @@ namespace Utilities
                 }
             }
         }
+
         #region UpdateDataset
+
         /// <summary>
         ///     Executes the respective command for each inserted, updated, or deleted row in the DataSet.
         /// </summary>
@@ -147,8 +159,11 @@ namespace Utilities
                 dataSet.AcceptChanges();
             }
         }
+
         #endregion
+
         #region private utility methods & constructors
+
         // Since this class provides only static methods, make the default constructor private to prevent 
         // instances from being created with "new SqlHelper()"
         /// <summary>
@@ -176,6 +191,7 @@ namespace Utilities
                         command.Parameters.Add(p);
                     }
         }
+
         /// <summary>
         ///     This method assigns dataRow column values to an array of SqlParameters
         /// </summary>
@@ -200,6 +216,7 @@ namespace Utilities
                 i++;
             }
         }
+
         /// <summary>
         ///     This method assigns an array of values to an array of SqlParameters
         /// </summary>
@@ -231,6 +248,7 @@ namespace Utilities
                     commandParameters[i].Value = parameterValues[i];
                 }
         }
+
         /// <summary>
         ///     This method opens (if necessary) and assigns a connection, transaction, command type and parameters
         ///     to the provided command
@@ -260,6 +278,7 @@ namespace Utilities
             {
                 mustCloseConnection = false;
             }
+
             // Associate the connection with the command
             command.Connection = connection;
             // Set the command text (stored procedure name or SQL statement)
@@ -273,13 +292,17 @@ namespace Utilities
                         "transaction");
                 command.Transaction = transaction;
             }
+
             // Set the command type
             command.CommandType = commandType;
             // Attach the command parameters if they are provided
             if (commandParameters != null) AttachParameters(command, commandParameters);
         }
+
         #endregion private utility methods & constructors
+
         #region ExecuteNonQuery
+
         /// <summary>
         ///     Execute a SqlCommand (that returns no resultset and takes no parameters) against the database specified in
         ///     the connection string
@@ -297,6 +320,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteNonQuery(connectionString, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns no resultset) against the database specified in the connection string
         ///     using the provided parameters
@@ -324,6 +348,7 @@ namespace Utilities
                 return ExecuteNonQuery(connection, commandType, commandText, commandParameters);
             }
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns no resultset) against the database specified in
         ///     the connection string using the provided parameter values.  This method will query the database to discover the
@@ -354,9 +379,11 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteNonQuery(connectionString, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteNonQuery(connectionString, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns no resultset and takes no parameters) against the provided SqlConnection.
         /// </summary>
@@ -373,6 +400,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteNonQuery(connection, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns no resultset) against the specified SqlConnection
         ///     using the provided parameters.
@@ -402,6 +430,7 @@ namespace Utilities
                 connection.Close();
             return retval;
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns no resultset) against the specified SqlConnection
         ///     using the provided parameter values.  This method will query the database to discover the parameters for the
@@ -430,9 +459,11 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteNonQuery(connection, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteNonQuery(connection, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns no resultset and takes no parameters) against the provided SqlTransaction.
         /// </summary>
@@ -449,6 +480,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteNonQuery(transaction, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns no resultset) against the specified SqlTransaction
         ///     using the provided parameters.
@@ -479,6 +511,7 @@ namespace Utilities
             cmd.Parameters.Clear();
             return retval;
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns no resultset) against the specified
         ///     SqlTransaction using the provided parameter values.  This method will query the database to discover the parameters
@@ -511,11 +544,15 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteNonQuery(transaction, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteNonQuery(transaction, CommandType.StoredProcedure, spName);
         }
+
         #endregion ExecuteNonQuery
+
         #region ExecuteDataset
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the database specified in
         ///     the connection string.
@@ -533,6 +570,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteDataset(connectionString, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the database specified in the connection string
         ///     using the provided parameters.
@@ -559,6 +597,7 @@ namespace Utilities
                 return ExecuteDataset(connection, commandType, commandText, commandParameters);
             }
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the database specified in
         ///     the connection string using the provided parameter values.  This method will query the database to discover the
@@ -589,9 +628,11 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteDataset(connectionString, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteDataset(connectionString, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the provided SqlConnection.
         /// </summary>
@@ -608,6 +649,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteDataset(connection, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the provided parameters.
@@ -643,6 +685,7 @@ namespace Utilities
                 return ds;
             }
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the provided parameter values.  This method will query the database to discover the parameters for the
@@ -671,9 +714,11 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteDataset(connection, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteDataset(connection, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the provided SqlTransaction.
         /// </summary>
@@ -690,6 +735,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteDataset(transaction, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the specified SqlTransaction
         ///     using the provided parameters.
@@ -726,6 +772,7 @@ namespace Utilities
                 return ds;
             }
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified
         ///     SqlTransaction using the provided parameter values.  This method will query the database to discover the parameters
@@ -758,11 +805,15 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteDataset(transaction, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteDataset(transaction, CommandType.StoredProcedure, spName);
         }
+
         #endregion ExecuteDataset
+
         #region ExecuteReader
+
         /// <summary>
         ///     This enum is used to indicate whether the connection was provided by the caller, or created by SqlHelper, so that
         ///     we can set the appropriate CommandBehavior when calling ExecuteReader()
@@ -771,9 +822,11 @@ namespace Utilities
         {
             /// <summary>Connection is owned and managed by SqlHelper</summary>
             Internal,
+
             /// <summary>Connection is owned and managed by the caller</summary>
             External
         }
+
         /// <summary>
         ///     Create and prepare a SqlCommand, and call ExecuteReader with the appropriate CommandBehavior.
         /// </summary>
@@ -832,6 +885,7 @@ namespace Utilities
                 throw;
             }
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the database specified in
         ///     the connection string.
@@ -849,6 +903,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteReader(connectionString, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the database specified in the connection string
         ///     using the provided parameters.
@@ -884,6 +939,7 @@ namespace Utilities
                 throw;
             }
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the database specified in
         ///     the connection string using the provided parameter values.  This method will query the database to discover the
@@ -912,9 +968,11 @@ namespace Utilities
                 AssignParameterValues(commandParameters, parameterValues);
                 return ExecuteReader(connectionString, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteReader(connectionString, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the provided SqlConnection.
         /// </summary>
@@ -931,6 +989,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteReader(connection, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the provided parameters.
@@ -951,6 +1010,7 @@ namespace Utilities
             return ExecuteReader(connection, null, commandType, commandText, commandParameters,
                 SqlConnectionOwnership.External);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the provided parameter values.  This method will query the database to discover the parameters for the
@@ -977,9 +1037,11 @@ namespace Utilities
                 AssignParameterValues(commandParameters, parameterValues);
                 return ExecuteReader(connection, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteReader(connection, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the provided SqlTransaction.
         /// </summary>
@@ -997,6 +1059,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteReader(transaction, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the specified SqlTransaction
         ///     using the provided parameters.
@@ -1021,6 +1084,7 @@ namespace Utilities
             return ExecuteReader(transaction.Connection, transaction, commandType, commandText, commandParameters,
                 SqlConnectionOwnership.External);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified
         ///     SqlTransaction using the provided parameter values.  This method will query the database to discover the parameters
@@ -1051,11 +1115,15 @@ namespace Utilities
                 AssignParameterValues(commandParameters, parameterValues);
                 return ExecuteReader(transaction, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteReader(transaction, CommandType.StoredProcedure, spName);
         }
+
         #endregion ExecuteReader
+
         #region ExecuteScalar
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a 1x1 resultset and takes no parameters) against the database specified in
         ///     the connection string.
@@ -1073,6 +1141,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteScalar(connectionString, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a 1x1 resultset) against the database specified in the connection string
         ///     using the provided parameters.
@@ -1100,6 +1169,7 @@ namespace Utilities
                 return ExecuteScalar(connection, commandType, commandText, commandParameters);
             }
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a 1x1 resultset) against the database specified in
         ///     the connection string using the provided parameter values.  This method will query the database to discover the
@@ -1130,9 +1200,11 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteScalar(connectionString, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteScalar(connectionString, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a 1x1 resultset and takes no parameters) against the provided SqlConnection.
         /// </summary>
@@ -1149,6 +1221,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteScalar(connection, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a 1x1 resultset) against the specified SqlConnection
         ///     using the provided parameters.
@@ -1179,6 +1252,7 @@ namespace Utilities
                 connection.Close();
             return retval;
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a 1x1 resultset) against the specified SqlConnection
         ///     using the provided parameter values.  This method will query the database to discover the parameters for the
@@ -1207,9 +1281,11 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteScalar(connection, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteScalar(connection, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a 1x1 resultset and takes no parameters) against the provided SqlTransaction.
         /// </summary>
@@ -1226,6 +1302,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteScalar(transaction, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a 1x1 resultset) against the specified SqlTransaction
         ///     using the provided parameters.
@@ -1257,6 +1334,7 @@ namespace Utilities
             cmd.Parameters.Clear();
             return retval;
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a 1x1 resultset) against the specified
         ///     SqlTransaction using the provided parameter values.  This method will query the database to discover the parameters
@@ -1289,11 +1367,15 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteScalar(transaction, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteScalar(transaction, CommandType.StoredProcedure, spName);
         }
+
         #endregion ExecuteScalar	
+
         #region ExecuteXmlReader
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the provided SqlConnection.
         /// </summary>
@@ -1310,6 +1392,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteXmlReader(connection, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the provided parameters.
@@ -1347,6 +1430,7 @@ namespace Utilities
                 throw;
             }
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the provided parameter values.  This method will query the database to discover the parameters for the
@@ -1376,9 +1460,11 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteXmlReader(connection, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteXmlReader(connection, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the provided SqlTransaction.
         /// </summary>
@@ -1396,6 +1482,7 @@ namespace Utilities
             // Pass through the call providing null for the set of SqlParameters
             return ExecuteXmlReader(transaction, commandType, commandText, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the specified SqlTransaction
         ///     using the provided parameters.
@@ -1426,6 +1513,7 @@ namespace Utilities
             cmd.Parameters.Clear();
             return retval;
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified
         ///     SqlTransaction using the provided parameter values.  This method will query the database to discover the parameters
@@ -1459,11 +1547,15 @@ namespace Utilities
                 // Call the overload that takes an array of SqlParameters
                 return ExecuteXmlReader(transaction, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             // Otherwise we can just call the SP without params
             return ExecuteXmlReader(transaction, CommandType.StoredProcedure, spName);
         }
+
         #endregion ExecuteXmlReader
+
         #region FillDataset
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the database specified in
         ///     the connection string.
@@ -1494,6 +1586,7 @@ namespace Utilities
                 FillDataset(connection, commandType, commandText, dataSet, tableNames);
             }
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the database specified in the connection string
         ///     using the provided parameters.
@@ -1527,6 +1620,7 @@ namespace Utilities
                 FillDataset(connection, commandType, commandText, dataSet, tableNames, commandParameters);
             }
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the database specified in
         ///     the connection string using the provided parameter values.  This method will query the database to discover the
@@ -1561,6 +1655,7 @@ namespace Utilities
                 FillDataset(connection, spName, dataSet, tableNames, parameterValues);
             }
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the provided SqlConnection.
         /// </summary>
@@ -1581,6 +1676,7 @@ namespace Utilities
         {
             FillDataset(connection, commandType, commandText, dataSet, tableNames, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the provided parameters.
@@ -1605,6 +1701,7 @@ namespace Utilities
         {
             FillDataset(connection, null, commandType, commandText, dataSet, tableNames, commandParameters);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the provided parameter values.  This method will query the database to discover the parameters for the
@@ -1646,6 +1743,7 @@ namespace Utilities
                 FillDataset(connection, CommandType.StoredProcedure, spName, dataSet, tableNames);
             }
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset and takes no parameters) against the provided SqlTransaction.
         /// </summary>
@@ -1667,6 +1765,7 @@ namespace Utilities
         {
             FillDataset(transaction, commandType, commandText, dataSet, tableNames, null);
         }
+
         /// <summary>
         ///     Execute a SqlCommand (that returns a resultset) against the specified SqlTransaction
         ///     using the provided parameters.
@@ -1692,6 +1791,7 @@ namespace Utilities
             FillDataset(transaction.Connection, transaction, commandType, commandText, dataSet, tableNames,
                 commandParameters);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified
         ///     SqlTransaction using the provided parameter values.  This method will query the database to discover the parameters
@@ -1737,6 +1837,7 @@ namespace Utilities
                 FillDataset(transaction, CommandType.StoredProcedure, spName, dataSet, tableNames);
             }
         }
+
         /// <summary>
         ///     Private helper method that execute a SqlCommand (that returns a resultset) against the specified SqlTransaction and
         ///     SqlConnection
@@ -1784,16 +1885,21 @@ namespace Utilities
                         tableName += (index + 1).ToString();
                     }
                 }
+
                 // Fill the DataSet using default values for DataTable names, etc
                 dataAdapter.Fill(dataSet);
                 // Detach the SqlParameters from the command object, so they can be used again
                 command.Parameters.Clear();
             }
+
             if (mustCloseConnection)
                 connection.Close();
         }
+
         #endregion
+
         #region ExecuteNonQueryTypedParams
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns no resultset) against the database specified in
         ///     the connection string using the dataRow column values as the stored procedure's parameters values.
@@ -1818,8 +1924,10 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteNonQuery(connectionString, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteNonQuery(connectionString, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns no resultset) against the specified SqlConnection
         ///     using the dataRow column values as the stored procedure's parameters values.
@@ -1843,8 +1951,10 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteNonQuery(connection, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteNonQuery(connection, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns no resultset) against the specified
         ///     SqlTransaction using the dataRow column values as the stored procedure's parameters values.
@@ -1871,10 +1981,14 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteNonQuery(transaction, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteNonQuery(transaction, CommandType.StoredProcedure, spName);
         }
+
         #endregion
+
         #region ExecuteDatasetTypedParams
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the database specified in
         ///     the connection string using the dataRow column values as the stored procedure's parameters values.
@@ -1899,8 +2013,10 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteDataset(connectionString, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteDataset(connectionString, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the dataRow column values as the store procedure's parameters values.
@@ -1924,8 +2040,10 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteDataset(connection, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteDataset(connection, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified SqlTransaction
         ///     using the dataRow column values as the stored procedure's parameters values.
@@ -1952,10 +2070,14 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteDataset(transaction, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteDataset(transaction, CommandType.StoredProcedure, spName);
         }
+
         #endregion
+
         #region ExecuteReaderTypedParams
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the database specified in
         ///     the connection string using the dataRow column values as the stored procedure's parameters values.
@@ -1980,8 +2102,10 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteReader(connectionString, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteReader(connectionString, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the dataRow column values as the stored procedure's parameters values.
@@ -2005,8 +2129,10 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteReader(connection, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteReader(connection, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified SqlTransaction
         ///     using the dataRow column values as the stored procedure's parameters values.
@@ -2033,10 +2159,14 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteReader(transaction, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteReader(transaction, CommandType.StoredProcedure, spName);
         }
+
         #endregion
+
         #region ExecuteScalarTypedParams
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a 1x1 resultset) against the database specified in
         ///     the connection string using the dataRow column values as the stored procedure's parameters values.
@@ -2061,8 +2191,10 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteScalar(connectionString, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteScalar(connectionString, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a 1x1 resultset) against the specified SqlConnection
         ///     using the dataRow column values as the stored procedure's parameters values.
@@ -2086,8 +2218,10 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteScalar(connection, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteScalar(connection, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a 1x1 resultset) against the specified SqlTransaction
         ///     using the dataRow column values as the stored procedure's parameters values.
@@ -2114,10 +2248,14 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteScalar(transaction, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteScalar(transaction, CommandType.StoredProcedure, spName);
         }
+
         #endregion
+
         #region ExecuteXmlReaderTypedParams
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified SqlConnection
         ///     using the dataRow column values as the stored procedure's parameters values.
@@ -2141,8 +2279,10 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteXmlReader(connection, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteXmlReader(connection, CommandType.StoredProcedure, spName);
         }
+
         /// <summary>
         ///     Execute a stored procedure via a SqlCommand (that returns a resultset) against the specified SqlTransaction
         ///     using the dataRow column values as the stored procedure's parameters values.
@@ -2169,10 +2309,14 @@ namespace Utilities
                 AssignParameterValues(commandParameters, dataRow);
                 return ExecuteXmlReader(transaction, CommandType.StoredProcedure, spName, commandParameters);
             }
+
             return ExecuteXmlReader(transaction, CommandType.StoredProcedure, spName);
         }
+
         #endregion
+
         #region "add "
+
         /// <summary>
         /// </summary>
         /// <param name="connection"></param>
@@ -2190,6 +2334,7 @@ namespace Utilities
             cmd.Parameters.Clear();
             return val;
         }
+
         public static DataSet GetDataset(string query, string connectionString)
         {
             try
@@ -2208,6 +2353,7 @@ namespace Utilities
                 return null;
             }
         }
+
         public static ArrayList GetQueryString(string query, string connectionString)
         {
             var mainlist = new ArrayList();
@@ -2226,6 +2372,7 @@ namespace Utilities
                         var obj = datarow[j].ToString();
                         list.Add(obj);
                     }
+
                     list.Add(counts);
                     mainlist.Add(list);
                     counts++;
@@ -2236,8 +2383,10 @@ namespace Utilities
                 Console.WriteLine(e.Message);
                 return new ArrayList();
             }
+
             return mainlist;
         }
+
         public static long UpdateData(string query, ArrayList param, string connectionString)
         {
             IDbCommand dbCommand = new SqlCommand();
@@ -2255,6 +2404,7 @@ namespace Utilities
                     dbCommand.Parameters.Add(p);
                     i++;
                 }
+
                 dbCommand.Connection.Open();
                 var ii = dbCommand.ExecuteNonQuery();
                 return ii;
@@ -2268,6 +2418,7 @@ namespace Utilities
                 dbCommand.Connection.Close();
             }
         }
+
         public static int UpdateData(string querystring, string connectionstring)
         {
             var myConnection = new SqlConnection(connectionstring);
@@ -2290,10 +2441,13 @@ namespace Utilities
             {
                 myCommand.Connection.Close();
             }
+
             return rowsAffected;
         }
+
         #endregion
     }
+
     /// <summary>
     ///     SqlHelperParameterCache provides functions to leverage a static cache of procedure parameters, and the
     ///     ability to discover parameters for stored procedures at run-time.
@@ -2301,12 +2455,15 @@ namespace Utilities
     public sealed class SqlHelperParameterCache
     {
         #region private methods, variables, and constructors
+
         //Since this class provides only static methods, make the default constructor private to prevent 
         //instances from being created with "new SqlHelperParameterCache()"
         private SqlHelperParameterCache()
         {
         }
+
         private static readonly Hashtable ParamCache = Hashtable.Synchronized(new Hashtable());
+
         /// <summary>
         ///     Resolve at run time the appropriate set of SqlParameters for a stored procedure
         /// </summary>
@@ -2333,6 +2490,7 @@ namespace Utilities
             foreach (var discoveredParameter in discoveredParameters) discoveredParameter.Value = DBNull.Value;
             return discoveredParameters;
         }
+
         /// <summary>
         ///     Deep copy of cached SqlParameter array
         /// </summary>
@@ -2345,8 +2503,11 @@ namespace Utilities
                 clonedParameters[i] = (SqlParameter) ((ICloneable) originalParameters[i]).Clone();
             return clonedParameters;
         }
+
         #endregion private methods, variables, and constructors
+
         #region caching functions
+
         /// <summary>
         ///     Add parameter array to the cache
         /// </summary>
@@ -2362,6 +2523,7 @@ namespace Utilities
             var hashKey = connectionString + ":" + commandText;
             ParamCache[hashKey] = commandParameters;
         }
+
         /// <summary>
         ///     Retrieve a parameter array from the cache
         /// </summary>
@@ -2378,8 +2540,11 @@ namespace Utilities
                 return null;
             return CloneParameters(cachedParameters);
         }
+
         #endregion caching functions
+
         #region Parameter Discovery Functions
+
         /// <summary>
         ///     Retrieves the set of SqlParameters appropriate for the stored procedure
         /// </summary>
@@ -2393,6 +2558,7 @@ namespace Utilities
         {
             return GetSpParameterSet(connectionString, spName, false);
         }
+
         /// <summary>
         ///     Retrieves the set of SqlParameters appropriate for the stored procedure
         /// </summary>
@@ -2417,6 +2583,7 @@ namespace Utilities
                 return GetSpParameterSetInternal(connection, spName, includeReturnValueParameter);
             }
         }
+
         /// <summary>
         ///     Retrieves the set of SqlParameters appropriate for the stored procedure
         /// </summary>
@@ -2430,6 +2597,7 @@ namespace Utilities
         {
             return GetSpParameterSet(connection, spName, false);
         }
+
         /// <summary>
         ///     Retrieves the set of SqlParameters appropriate for the stored procedure
         /// </summary>
@@ -2452,6 +2620,7 @@ namespace Utilities
                 return GetSpParameterSetInternal(clonedConnection, spName, includeReturnValueParameter);
             }
         }
+
         /// <summary>
         ///     Retrieves the set of SqlParameters appropriate for the stored procedure
         /// </summary>
@@ -2477,8 +2646,10 @@ namespace Utilities
                 ParamCache[hashKey] = spParameters;
                 cachedParameters = spParameters;
             }
+
             return CloneParameters(cachedParameters);
         }
+
         #endregion Parameter Discovery Functions
     }
 }

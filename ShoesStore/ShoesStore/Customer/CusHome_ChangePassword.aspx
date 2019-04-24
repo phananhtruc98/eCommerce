@@ -9,25 +9,29 @@
                     <td>Tên đăng nhập</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" CssClass="form-control-lg txt-by-truc" ID="txtLogin" Visible="false"></asp:TextBox>
-                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblLogin"></asp:Label></td>
+                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblLogin"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td>Mật khẩu hiện tại</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" TextMode="Password" CssClass="form-control-lg txt-by-truc" ID="txtPassword" Visible="false"></asp:TextBox>
-                        <asp:Label runat="server" TextMode="Password" CssClass="form-control-lg txt-by-truc" ID="lblPassword"></asp:Label></td>
+                        <asp:Label runat="server" TextMode="Password" CssClass="form-control-lg txt-by-truc" ID="lblPassword"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td>Mật khẩu mới</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" TextMode="Password" CssClass="form-control-lg txt-by-truc" ID="txtNewPassword" Visible="false"></asp:TextBox>
-                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblNewPassword" ></asp:Label></td>
+                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblNewPassword"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td>Nhập lại mật khẩu</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" TextMode="Password" CssClass="form-control-lg txt-by-truc" ID="txtRePassword" Visible="false"></asp:TextBox>
-                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblRePassword" ></asp:Label></td>
+                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblRePassword"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2" class="my-info__save">

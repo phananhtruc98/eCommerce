@@ -7,9 +7,10 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     public class Usr_DAO : Table_DAO<Usr>, IUsr<Usr>
     {
-        private UsrAct_DAO _usrAct_DAO = new UsrAct_DAO();
-        private readonly Mstr_DAO _mstr_DAO = new Mstr_DAO();
         private readonly Mer_DAO _mer_DAO = new Mer_DAO();
+        private readonly Mstr_DAO _mstr_DAO = new Mstr_DAO();
+        private UsrAct_DAO _usrAct_DAO = new UsrAct_DAO();
+
         public UsrAct GetUsrAct(int usrId)
         {
             return _usrAct_DAO.GetAll().FirstOrDefault(m => m.UsrId == usrId);
@@ -35,6 +36,7 @@ namespace ShoesStore.DataAccessLogicLayer
             _usrAct_DAO = new UsrAct_DAO();
             _usrAct_DAO.Insert(uAct);
         }
+
         public Usr GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();
@@ -57,34 +59,24 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public Mstr CheckAdmin(string login, string pwd)
         {
-            Usr usr = Login(login, pwd);
+            var usr = Login(login, pwd);
             // tu day tro xuong kt
-            int usrId = usr.UsrId;
-            Mstr rs = _mstr_DAO.GetAll().FirstOrDefault(m => m.MstrId == usrId);
-            if(rs!=null)
-            {
-                return rs;
-            }
-            else
-            {
-                return null;
-            }
-        }
-        public Mer CheckMerchant(string login, string pwd)
-        {
-            Usr usr = Login(login, pwd);
-            // tu day tro xuong kt
-            int usrId = usr.UsrId;
-            Mer rs = _mer_DAO.GetAll().FirstOrDefault(m => m.MerId == usrId);
+            var usrId = usr.UsrId;
+            var rs = _mstr_DAO.GetAll().FirstOrDefault(m => m.MstrId == usrId);
             if (rs != null)
-            {
                 return rs;
-            }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
+        public Mer CheckMerchant(string login, string pwd)
+        {
+            var usr = Login(login, pwd);
+            // tu day tro xuong kt
+            var usrId = usr.UsrId;
+            var rs = _mer_DAO.GetAll().FirstOrDefault(m => m.MerId == usrId);
+            if (rs != null)
+                return rs;
+            return null;
+        }
     }
 }

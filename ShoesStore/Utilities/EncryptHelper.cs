@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+
 namespace Utilities
 {
     public class EncryptHelper
@@ -24,6 +25,7 @@ namespace Utilities
             tdes.Clear();
             return System.Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
+
         //tạo mã kích hoạt bằng cách sử dụng hàm random sau đó mã hóa chuỗi random này đi
         public static string RandomCode(int numberCode)
         {

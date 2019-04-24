@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Logger;
 using sd = System.Drawing;
+
 namespace Utilities
 {
     public class FileHelper
@@ -21,9 +22,11 @@ namespace Utilities
                 bl = true;
                 return bl;
             }
+
             bl = false;
             return bl;
         }
+
         public string DeleteFile(string filePath)
         {
             var msg = "";
@@ -40,6 +43,7 @@ namespace Utilities
                 return msg + ex;
             }
         }
+
         public void DrawImageToWithHeight(string pathAvatars, string fileName, Stream fileStream, int width, int height)
         {
             try
@@ -62,6 +66,7 @@ namespace Utilities
                 Log.error("DrawImageToWithHeight error:" + ex.Message);
             }
         }
+
         public void Drawing(sd.Graphics gr, string s, sd.PointF p, Random rnd)
         {
             var x = p.X;
@@ -81,6 +86,7 @@ namespace Utilities
                 x = x + sf.Width / 2;
             }
         }
+
         //EXPORT EXCEL FILE
         public void ExportGridView(string fileName, string filePath, DataGrid gv)
         {
@@ -99,6 +105,7 @@ namespace Utilities
             BWriter.Close();
             Fs.Close();
         }
+
         public sd.Brush GetBrush(Random rnd)
         {
             var brush = sd.Brushes.Black;
@@ -127,8 +134,10 @@ namespace Utilities
                     brush = sd.Brushes.DarkTurquoise;
                     break;
             }
+
             return brush;
         }
+
         //get Current Page Name
         /// <summary>
         ///     Request.Url.AbsolutePath
@@ -141,6 +150,7 @@ namespace Utilities
             var sRet = oInfo.Name;
             return sRet;
         }
+
         public sd.Font GetFont(Random rnd)
         {
             float sz = 15 + rnd.Next(4);
@@ -158,8 +168,10 @@ namespace Utilities
                     f = new sd.Font("Times New Roman", sz, sd.FontStyle.Bold);
                     break;
             }
+
             return f;
         }
+
         public sd.Pen GetPen(Random rnd)
         {
             var p = sd.Pens.Black;
@@ -176,8 +188,10 @@ namespace Utilities
                     p = sd.Pens.DarkOliveGreen;
                     break;
             }
+
             return p;
         }
+
         //Resize the Height image
         public void
             ResizeImageHeight(string imgPath, string saveTo, int resizeHeight) //, int Width, int Height, int X, int Y)
@@ -216,14 +230,18 @@ namespace Utilities
                                 //string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
                                 imageResized.Save(saveTo, imageResized.RawFormat);
                             }
+
                             msWrite.Dispose();
                         }
+
                         graphic.Dispose();
                     }
+
                     bmp.Dispose();
                 }
             }
         }
+
         //Resize the Width image
         public void
             ResizeImageWidth(string imgPath, string saveTo, int resizeWidth) //, int Width, int Height, int X, int Y)
@@ -262,14 +280,18 @@ namespace Utilities
                                 //string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
                                 imageResized.Save(saveTo, imageResized.RawFormat);
                             }
+
                             msWrite.Dispose();
                         }
+
                         graphic.Dispose();
                     }
+
                     bmp.Dispose();
                 }
             }
         }
+
         //Resize the Height and Width image
         public byte[]
             ResizeImageWidthHeight(string imgPath, int resizeWidth,
@@ -297,6 +319,7 @@ namespace Utilities
                 }
             }
         }
+
         //CAPCHA Drawing
         public sd.Bitmap TransformImage(sd.Bitmap bmp, Random rnd)
         {
@@ -317,6 +340,7 @@ namespace Utilities
                     bmp.SetPixel(x, y, copy.GetPixel(newX, newY));
                 }
             }
+
             return bmp;
         }
     }

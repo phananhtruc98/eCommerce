@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteCus.Master" CodeBehind="CusHome_Cmt.aspx.cs" Inherits="ShoesStore.Customer.CusHome_Cmt" %>
-<%@ MasterType VirtualPath="~/SiteCus.Master" %>
 <%@ Import Namespace="ShoesStore" %>
+<%@ MasterType VirtualPath="~/SiteCus.Master" %>
 <asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
     <div class="row">
         <div class="col-12">
@@ -17,21 +17,21 @@
                             <th>Đánh giá</th>
                             <%--  <th>Ngày thêm</th>--  Hiện đã bỏ cột DateAdd  (Sẽ là ngày thêm của hóa đơn trong bảng Rcpt --%>
                         </tr>
-                        <tr id="itemPlaceholder" runat="server" />
+                        <tr id="itemPlaceholder" runat="server"/>
                     </table>
                 </LayoutTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td><%# Eval("ShpName")%></td>
-                        <td><%# Eval("ProName")%></td>
-                        <td><%# Eval("ColorName")%></td>
-                        <td><%# Eval("SizeName")%></td>
-                        <td><%# Eval("ProName")%></td>
-                        <td><%# Eval("Cmt")%></td>
+                        <td><%# Eval("ShpName") %></td>
+                        <td><%# Eval("ProName") %></td>
+                        <td><%# Eval("ColorName") %></td>
+                        <td><%# Eval("SizeName") %></td>
+                        <td><%# Eval("ProName") %></td>
+                        <td><%# Eval("Cmt") %></td>
                         <td><%#MyLibrary.DrawStar(int.Parse(Eval("Point").ToString())) %></td>
                         <%--<td><%# Eval("DateAdd")%></td> --%>
                     </tr>
-</ItemTemplate>
+                </ItemTemplate>
             </asp:ListView>
         </div>
     </div>

@@ -1,8 +1,9 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-using System;
+﻿using System;
 using System.Linq;
 using System.Web.UI;
+using ShoesStore.DataAccessLogicLayer;
 using Utilities;
+
 namespace ShoesStore.Customer
 {
     public partial class CusHome_ChangePassword : Page
@@ -11,22 +12,24 @@ namespace ShoesStore.Customer
         {
             LoadThongTin();
         }
+
         public void LoadThongTin()
         {
-            Usr usr = (Usr)WebSession.LoginUsr;
-            Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
+            var usr = (Usr) WebSession.LoginUsr;
+            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
             lblLogin.Text = usr1.Login;
             txtPassword.Visible = true;
             txtNewPassword.Visible = true;
             txtRePassword.Visible = true;
         }
+
         protected void lbtnLuu_Click(object sender, EventArgs e)
         {
-            Usr usr = (Usr)WebSession.LoginUsr;
-            Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
-            Usr rs1 = (from c in Master._usr.GetAll()
-                       where c.UsrId == usr1.UsrId
-                       select c).FirstOrDefault();
+            var usr = (Usr) WebSession.LoginUsr;
+            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
+            var rs1 = (from c in Master._usr.GetAll()
+                where c.UsrId == usr1.UsrId
+                select c).FirstOrDefault();
             if (EncryptHelper.Encrypt(txtPassword.Text) == rs1.Password)
             {
                 if (txtNewPassword.Text == txtRePassword.Text)
@@ -35,15 +38,18 @@ namespace ShoesStore.Customer
                 }
                 else
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Mật khẩu không khớp!!! Xin nhập lại')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                        "alert('Mật khẩu không khớp!!! Xin nhập lại')", true);
                     return;
                 }
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Mật khẩu không đúng!!! Xin nhập lại')", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                    "alert('Mật khẩu không đúng!!! Xin nhập lại')", true);
                 return;
             }
+
             rs1.UsrName = usr1.UsrName;
             rs1.Address = usr1.Address;
             rs1.Phone = usr1.Phone;
@@ -57,8 +63,10 @@ namespace ShoesStore.Customer
             txtPassword.Visible = true;
             txtNewPassword.Visible = true;
             txtRePassword.Visible = true;
-            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')",
+                true);
         }
+
         protected void lbtnHuy_Click(object sender, EventArgs e)
         {
             lbtnLuu.Visible = false;

@@ -1,7 +1,8 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
+
 namespace ShoesStore.Interfaces
 {
-    public interface IRcptSub:ITable<RcptSub>
+    public interface IRcptSub : ITable<RcptSub>
     {
     }
 }

@@ -1,35 +1,36 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-using System;
+﻿using System;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ShoesStore.Interfaces.Pages;
-using Utilities;
 using ShoesStore.BusinessLogicLayer;
+using ShoesStore.DataAccessLogicLayer;
+
 namespace ShoesStore.Merchant
 {
-    public partial class SiteMerchant : System.Web.UI.MasterPage
+    public partial class SiteMerchant : MasterPage
     {
+        private static readonly string _actCode = "";
         private readonly Mer_BUS mer_BUS = new Mer_BUS();
+        private string Address = "";
+        private string Avatar = "";
+        private string Email = "";
+        private string login1 = "";
+        private string password1 = "";
+        private string Phone = "";
         public Usr_BUS usr_BUS = new Usr_BUS();
-        private static string _actCode = "";
+        private int UsrId;
+        private string UsrName = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
-        int UsrId = 0;
-        string UsrName = "";
-        string Address = "";
-        string Avatar = "";
-        string Email = "";
-        string Phone = "";
-        string login1 = "";
-        string password1 = "";
+
         private void Page_Init(object sender, EventArgs e)
         {
             if (MerchantSession.LoginMerchant != null)
             {
-                Mer mer = (Mer)MerchantSession.LoginMerchant;
-                Usr merUsr = usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
+                var mer = (Mer) MerchantSession.LoginMerchant;
+                var merUsr = usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
                 UsrId = merUsr.UsrId;
                 UsrName = merUsr.UsrName;
                 Address = merUsr.Address;
@@ -38,8 +39,8 @@ namespace ShoesStore.Merchant
                 Phone = merUsr.Phone;
                 login1 = merUsr.Login;
                 password1 = merUsr.Password;
-                string avaImg = Avatar;
-                Label1.Text = $"Chào " + UsrName;
+                var avaImg = Avatar;
+                Label1.Text = "Chào " + UsrName;
                 avaImg2.Attributes["src"] = "/Merchant/images/avatar/" + avaImg;
             }
             else
@@ -47,20 +48,24 @@ namespace ShoesStore.Merchant
                 Response.Redirect("~/merchant/dang-nhap");
             }
         }
+
         public void rptProCat_Init(object sender, EventArgs e)
         {
             rptProCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
             rptProCat.DataBind();
         }
+
         public int GetCurrentCartItemsNumber()
         {
             return MyLibrary.CartDet_BUS.ListCartPreviewNumber();
         }
+
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
             rptProBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll().ToList();
             rptProBrand.DataBind();
         }
+
         /*
         protected void btnLogin_Click(object sender, EventArgs e)
         {
@@ -116,14 +121,17 @@ namespace ShoesStore.Merchant
             MerchantSession.LoginMerchant = null;
             Response.Redirect("~/merchant/dang-nhap");
         }
+
         protected void lbtnCusHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Customer/CusHome.aspx");
         }
+
         protected void lbtnAccount_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/merchant/trang-thong-tin");
         }
+
         /*
         protected void btnActCodeSender_Click(object sender, EventArgs e)
         {
@@ -142,12 +150,11 @@ namespace ShoesStore.Merchant
         {
             ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "alertMessage", message, true);
         }
+
         protected void customValidator_ActivateCode_OnServerValidate(object source, ServerValidateEventArgs args)
         {
             if (args.Value != _actCode)
-            {
                 args.IsValid = false;
-            }
             else args.IsValid = true;
         }
     }

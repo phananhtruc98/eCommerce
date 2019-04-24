@@ -1,6 +1,7 @@
-﻿using ShoesStore.DataAccessLogicLayer;
+﻿using System;
+using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
-using System;
+
 namespace ShoesStore.BusinessLogicLayer
 {
     public class MstrRole_BUS : Table_BUS<MstrRole, MstrRole_DAO>, IMstrRole
@@ -9,6 +10,7 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
         public override void SetActive(MstrRole obj)
         {
             throw new NotImplementedException();

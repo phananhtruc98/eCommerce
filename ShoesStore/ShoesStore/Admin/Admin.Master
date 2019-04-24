@@ -156,8 +156,10 @@
             </li>
             <li class="nav-item dropdown d-none d-xl-inline-block">
                 <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                    <span class="profile-text"><asp:Label runat="server" ID="lbAccount"></asp:Label></span>
-                    <asp:Image runat="server" class="img-xs rounded-circle" ID="avaImg2" alt="Profile image" />
+                    <span class="profile-text">
+                        <asp:Label runat="server" ID="lbAccount"></asp:Label>
+                    </span>
+                    <asp:Image runat="server" class="img-xs rounded-circle" ID="avaImg2" alt="Profile image"/>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                     <a class="dropdown-item p-0">
@@ -173,14 +175,14 @@
                             </div>
                         </div>
                     </a>
-                        <asp:LinkButton runat="server"  class="dropdown-item" Text="Quản lý tài khoản" ID="lbtnAccount" OnClick="lbtnAccount_Click"></asp:LinkButton>
-                   <a class="dropdown-item" href="#">
+                    <asp:LinkButton runat="server" class="dropdown-item" Text="Quản lý tài khoản" ID="lbtnAccount" OnClick="lbtnAccount_Click"></asp:LinkButton>
+                    <a class="dropdown-item" href="#">
                         Thay đổi mật khẩu
                     </a>
                     <a class="dropdown-item" href="#">
                         Tin nhắn
                     </a>
-                        <asp:LinkButton runat="server"  class="dropdown-item" Text="Đăng xuất" ID="lbtnLogout" OnClick="lbtnLogout_Click"></asp:LinkButton>
+                    <asp:LinkButton runat="server" class="dropdown-item" Text="Đăng xuất" ID="lbtnLogout" OnClick="lbtnLogout_Click"></asp:LinkButton>
                 </div>
             </li>
         </ul>
@@ -198,12 +200,16 @@
                 <div class="nav-link">
                     <div class="user-wrapper">
                         <div class="profile-image">
-                            <asp:Image runat="server" ID="avaImg1" alt="profile image" />
+                            <asp:Image runat="server" ID="avaImg1" alt="profile image"/>
                         </div>
                         <div class="text-wrapper">
-                            <p class="profile-name"><asp:Label runat="server" ID="lbAccount2"></asp:Label></p>
+                            <p class="profile-name">
+                                <asp:Label runat="server" ID="lbAccount2"></asp:Label>
+                            </p>
                             <div>
-                                <small class="designation text-muted"><asp:Label runat="server" ID="lbrolename"></asp:Label></small>
+                                <small class="designation text-muted">
+                                    <asp:Label runat="server" ID="lbrolename"></asp:Label>
+                                </small>
                                 <span class="status-indicator online"></span>
                             </div>
                         </div>

@@ -122,8 +122,7 @@
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                         aria-valuemax="100">
+                                    <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                             </td>
@@ -147,8 +146,7 @@
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                                         aria-valuemax="100">
+                                    <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                             </td>
@@ -172,8 +170,7 @@
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-                                         aria-valuemax="100">
+                                    <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                             </td>
@@ -197,8 +194,7 @@
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                         aria-valuemax="100">
+                                    <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                             </td>
@@ -222,8 +218,7 @@
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0"
-                                         aria-valuemax="100">
+                                    <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                             </td>
@@ -247,8 +242,7 @@
                             </td>
                             <td>
                                 <div class="progress">
-                                    <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-                                         aria-valuemax="100">
+                                    <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                             </td>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class CartDet_DAO : Table_DAO<CartDet>
@@ -8,6 +9,7 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
         public override bool IsExist(CartDet obj)
         {
             return GetAll().Any(m =>

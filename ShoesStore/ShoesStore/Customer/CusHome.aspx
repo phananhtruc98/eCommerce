@@ -6,35 +6,39 @@
             <h3>Hồ sơ của tôi</h3>
             <div class="float-left">Ảnh đại diện</div>
             <div class="float-left">
-                <asp:Image runat="server" ID="avaimg" class="img-circle" />
+                <asp:Image runat="server" ID="avaimg" class="img-circle"/>
             </div>
             <div>
-                <asp:FileUpload runat="server" ID="fupava" CssClass="file-upload" Visible="false" />
+                <asp:FileUpload runat="server" ID="fupava" CssClass="file-upload" Visible="false"/>
             </div>
             <table id="ttcn" class="table table-responsive-sm table-responsive-xl table-by-truc">
                 <tr>
                     <td>Họ và tên</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" CssClass="form-control-lg txt-by-truc" ID="txtUsrName" Visible="false"></asp:TextBox>
-                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblUsrName"></asp:Label></td>
+                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblUsrName"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td>Số điện thoại</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" CssClass="form-control-lg txt-by-truc" ID="txtPhone" Visible="false"></asp:TextBox>
-                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblPhone"></asp:Label></td>
+                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblPhone"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td>Địa chỉ</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" CssClass="form-control-lg txt-by-truc" ID="txtAddress" Visible="false"></asp:TextBox>
-                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblAddress"></asp:Label></td>
+                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblAddress"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td>Email</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" CssClass="form-control-lg txt-by-truc" ID="txtEmail" Visible="false"></asp:TextBox>
-                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblEmail"></asp:Label></td>
+                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblEmail"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2" class="my-info__save">
@@ -47,4 +51,3 @@
         </div>
     </div>
 </asp:Content>
-

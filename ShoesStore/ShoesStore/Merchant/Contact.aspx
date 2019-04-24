@@ -7,12 +7,18 @@
                 <div class="page-header__breadcrumb">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.aspx">Home</a>
+                            <li class="breadcrumb-item">
+                                <a href="index.aspx">Home</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></li>
-                            <li class="breadcrumb-item"><a href="#">Breadcrumb</a>
+                                    <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                </svg>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">Breadcrumb</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use href="images/sprite.svg#arrow-rounded-right-6x9"></use></svg></li>
+                                    <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                </svg>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
                         </ol>
                     </nav>
@@ -53,25 +59,25 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <h4 class="contact-us__header card-title">Leave us a Message</h4>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="form-name">Your Name</label>
-                                                <input type="text" id="form-name" class="form-control" placeholder="Your Name">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="form-email">Email</label>
-                                                <input type="email" id="form-email" class="form-control" placeholder="Email Address">
-                                            </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="form-name">Your Name</label>
+                                            <input type="text" id="form-name" class="form-control" placeholder="Your Name">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="form-subject">Subject</label>
-                                            <input type="text" id="form-subject" class="form-control" placeholder="Subject">
+                                        <div class="form-group col-md-6">
+                                            <label for="form-email">Email</label>
+                                            <input type="email" id="form-email" class="form-control" placeholder="Email Address">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="form-message">Message</label>
-                                            <textarea id="form-message" class="form-control" rows="4"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Send Message</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="form-subject">Subject</label>
+                                        <input type="text" id="form-subject" class="form-control" placeholder="Subject">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="form-message">Message</label>
+                                        <textarea id="form-message" class="form-control" rows="4"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Send Message</button>
                                 </div>
                             </div>
                         </div>

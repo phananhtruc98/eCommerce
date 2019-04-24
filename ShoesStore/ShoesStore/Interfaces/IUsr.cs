@@ -1,4 +1,5 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
+
 namespace ShoesStore.Interfaces
 {
     public interface IUsr<T>

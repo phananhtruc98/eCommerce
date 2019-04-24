@@ -1,5 +1,6 @@
-﻿using ShoesStore.Interfaces;
-using System;
+﻿using System;
+using ShoesStore.Interfaces;
+
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class MstrRole_DAO : Table_DAO<MstrRole>, IMstrRole
@@ -8,6 +9,7 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
         public override void SetActive(MstrRole obj)
         {
             throw new NotImplementedException();

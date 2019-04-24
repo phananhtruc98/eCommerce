@@ -1,7 +1,8 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
+
 namespace ShoesStore.Interfaces
 {
-    interface IShp: ITable<Shp>
+    internal interface IShp : ITable<Shp>
     {
     }
 }

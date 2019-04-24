@@ -1,21 +1,24 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Web.UI;
+using ShoesStore.DataAccessLogicLayer;
+
 namespace ShoesStore.Customer
 {
     public partial class CusHome : BasePage
     {
-        string avaimgstr = "";
+        private string avaimgstr = "";
+
         protected override void Page_Load(object sender, EventArgs e)
         {
             LoadThongTin();
         }
+
         public void LoadThongTin()
         {
-            Usr usr = (Usr)WebSession.LoginUsr;
-            Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
+            var usr = (Usr) WebSession.LoginUsr;
+            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
             lblUsrName.Text = usr1.UsrName;
             lblAddress.Text = usr1.Address;
             avaimgstr = usr1.Avatar;
@@ -23,40 +26,42 @@ namespace ShoesStore.Customer
             lblPhone.Text = usr1.Phone;
             avaimg.Attributes["src"] = "/Admin/images/avatar/" + usr1.Avatar;
         }
+
         protected void lbtnLuu_Click(object sender, EventArgs e)
         {
-            Usr usr = (Usr)WebSession.LoginUsr;
-            Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
-            Usr rs1 = (from c in Master._usr.GetAll()
-                       where c.UsrId == usr1.UsrId
-                       select c).FirstOrDefault();
+            var usr = (Usr) WebSession.LoginUsr;
+            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
+            var rs1 = (from c in Master._usr.GetAll()
+                where c.UsrId == usr1.UsrId
+                select c).FirstOrDefault();
             if (fupava.HasFile)
             {
-                string fname = fupava.FileName;
-                string fpath = Server.MapPath("/Admin/Images/avatar/");
+                var fname = fupava.FileName;
+                var fpath = Server.MapPath("/Admin/Images/avatar/");
                 fpath = fpath + @"/" + fupava.FileName;
-                string getext = Path.GetExtension(fupava.PostedFile.FileName);
-                string filename = Path.GetFileNameWithoutExtension(fupava.PostedFile.FileName);
-                string strFilePath = filename + getext;
+                var getext = Path.GetExtension(fupava.PostedFile.FileName);
+                var filename = Path.GetFileNameWithoutExtension(fupava.PostedFile.FileName);
+                var strFilePath = filename + getext;
                 avaimgstr = strFilePath;
-                if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" && getext != ".png" && getext != ".tif" && getext != ".tiff")
+                if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" &&
+                    getext != ".png" && getext != ".tif" && getext != ".tiff")
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Chọn ảnh!!')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Chọn ảnh!!')",
+                        true);
                     return;
                 }
-                else
-                {
-                    fupava.SaveAs(Server.MapPath(@"~/Admin/Images/avatar/" + strFilePath));
-                    ViewState["fname"] = fname;
-                    ViewState["fPath"] = @"~/Admin/Images/avatar/" + strFilePath;
-                    avaimg.Attributes["src"] = "/Admin/images/avatar/" + avaimgstr;
-                    rs1.Avatar = avaimgstr;
-                }
+
+                fupava.SaveAs(Server.MapPath(@"~/Admin/Images/avatar/" + strFilePath));
+                ViewState["fname"] = fname;
+                ViewState["fPath"] = @"~/Admin/Images/avatar/" + strFilePath;
+                avaimg.Attributes["src"] = "/Admin/images/avatar/" + avaimgstr;
+                rs1.Avatar = avaimgstr;
             }
             else if (avaimgstr == usr1.Avatar)
             {
                 avaimgstr = usr1.Avatar;
             }
+
             rs1.UsrName = txtUsrName.Text;
             rs1.Address = txtAddress.Text;
             rs1.Phone = txtPhone.Text;
@@ -67,7 +72,8 @@ namespace ShoesStore.Customer
             rs1.Login = usr1.Login;
             rs1.Password = usr1.Password;
             Master._usr.Update(rs1);
-            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')", true);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')",
+                true);
             lblThaydoi.Visible = true;
             lbtnLuu.Visible = false;
             lbtnHuy.Visible = false;
@@ -82,6 +88,7 @@ namespace ShoesStore.Customer
             fupava.Visible = false;
             Response.Redirect(Request.RawUrl);
         }
+
         protected void lbtnHuy_Click(object sender, EventArgs e)
         {
             fupava.Visible = true;
@@ -97,10 +104,11 @@ namespace ShoesStore.Customer
             lblEmail.Visible = true;
             lblAddress.Visible = true;
         }
+
         protected void lblThaydoi_Click(object sender, EventArgs e)
         {
-            Usr usr = (Usr)WebSession.LoginUsr;
-            Usr usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
+            var usr = (Usr) WebSession.LoginUsr;
+            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
             fupava.Visible = true;
             lbtnLuu.Visible = true;
             lbtnHuy.Visible = true;

@@ -7,90 +7,53 @@ using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Logger;
+
 namespace Utilities
 {
     public class TextHelper
     {
         public static string RemapInternationalCharToAscii(char c)
         {
-            string s = c.ToString().ToLowerInvariant();
+            var s = c.ToString().ToLowerInvariant();
             if ("àåáâäãåą".Contains(s))
-            {
                 return "a";
-            }
-            else if ("èéêëę".Contains(s))
-            {
+            if ("èéêëę".Contains(s))
                 return "e";
-            }
-            else if ("ìíîïı".Contains(s))
-            {
+            if ("ìíîïı".Contains(s))
                 return "i";
-            }
-            else if ("òóôõöøőð".Contains(s))
-            {
+            if ("òóôõöøőð".Contains(s))
                 return "o";
-            }
-            else if ("ùúûüŭů".Contains(s))
-            {
+            if ("ùúûüŭů".Contains(s))
                 return "u";
-            }
-            else if ("çćčĉ".Contains(s))
-            {
+            if ("çćčĉ".Contains(s))
                 return "c";
-            }
-            else if ("żźž".Contains(s))
-            {
+            if ("żźž".Contains(s))
                 return "z";
-            }
-            else if ("śşšŝ".Contains(s))
-            {
+            if ("śşšŝ".Contains(s))
                 return "s";
-            }
-            else if ("ñń".Contains(s))
-            {
+            if ("ñń".Contains(s))
                 return "n";
-            }
-            else if ("ýÿ".Contains(s))
-            {
+            if ("ýÿ".Contains(s))
                 return "y";
-            }
-            else if ("ğĝ".Contains(s))
-            {
+            if ("ğĝ".Contains(s))
                 return "g";
-            }
-            else if (c == 'ř')
-            {
+            if (c == 'ř')
                 return "r";
-            }
-            else if (c == 'ł')
-            {
+            if (c == 'ł')
                 return "l";
-            }
-            else if (c == 'đ')
-            {
+            if (c == 'đ')
                 return "d";
-            }
-            else if (c == 'ß')
-            {
+            if (c == 'ß')
                 return "ss";
-            }
-            else if (c == 'þ')
-            {
+            if (c == 'þ')
                 return "th";
-            }
-            else if (c == 'ĥ')
-            {
+            if (c == 'ĥ')
                 return "h";
-            }
-            else if (c == 'ĵ')
-            {
+            if (c == 'ĵ')
                 return "j";
-            }
-            else
-            {
-                return "";
-            }
+            return "";
         }
+
         public static string UrlFriendly(string text, int maxLength = 0)
         {
             // Return empty value if text is null
@@ -105,7 +68,7 @@ namespace Utilities
             var prevdash = false;
             var trueLength = 0;
             char c;
-            for (int i = 0; i < stringLength; i++)
+            for (var i = 0; i < stringLength; i++)
             {
                 c = normalizedString[i];
                 switch (CharUnicodeInfo.GetUnicodeCategory(c))
@@ -134,22 +97,27 @@ namespace Utilities
                             prevdash = true;
                             trueLength = stringBuilder.Length;
                         }
+
                         break;
                 }
+
                 // If we are at max length, stop parsing
                 if (maxLength > 0 && trueLength >= maxLength)
                     break;
             }
+
             // Trim excess hyphens
             var result = stringBuilder.ToString().Trim('-');
             // Remove any excess character to meet maxlength criteria
             return maxLength <= 0 || result.Length <= maxLength ? result : result.Substring(0, maxLength);
         }
+
         public static string ConvertLongMoney(string text)
         {
             text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:#,##}", decimal.Parse(text));
             return text;
         }
+
         public static string ConvertMoney(string text)
         {
             if (text.Length == 11)
@@ -169,6 +137,7 @@ namespace Utilities
                     .Substring(0, 1);
             return text;
         }
+
         public static string ConvertText(string text)
         {
             text = text.Replace("'", "");
@@ -190,13 +159,14 @@ namespace Utilities
             text = text.Replace("field name", "");
             return text;
         }
+
         public static string ConvertToUnSign(string text)
         {
             if (text.Trim() != "" || text != null)
             {
                 text = text.Replace("'", "");
                 text = text.Replace(".", "");
-                for (var i = 32; i < 48; i++) text = text.Replace(((char)i).ToString(), " ");
+                for (var i = 32; i < 48; i++) text = text.Replace(((char) i).ToString(), " ");
                 text = text.Trim();
                 text = text.Replace(" ", "-");
                 text = text.Replace(",", "-");
@@ -213,8 +183,10 @@ namespace Utilities
                 var strFormD = text.Normalize(NormalizationForm.FormD);
                 return regex.Replace(strFormD, string.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
             }
+
             return "";
         }
+
         public static string ConvertUnSign(string text)
         {
             if (text.Trim() != "" || text != null)
@@ -224,8 +196,10 @@ namespace Utilities
                     .Replace(".", "");
                 return regex.Replace(strFormD, string.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
             }
+
             return "";
         }
+
         public static string DateText(string text)
         {
             var day = DateTime.Parse(text).ToString("ddd");
@@ -251,6 +225,7 @@ namespace Utilities
                 buoi = " chiều";
                 gio = gio + 12;
             }
+
             if (nam == namx)
             {
                 if (thang == thangx)
@@ -306,8 +281,10 @@ namespace Utilities
             {
                 text = namx - nam + " năm trước";
             }
+
             return text;
         }
+
         public static string GetBuyCode(string num)
         {
             if (HttpContext.Current.Request.Cookies["cart"] != null)
@@ -322,6 +299,7 @@ namespace Utilities
             HttpContext.Current.Response.SetCookie(cookieLang);
             return val;
         }
+
         public static string getImage_ChangeFileName(string savePath, string extraName, HttpPostedFile imgAdv)
         {
             var strFileName = "";
@@ -341,6 +319,7 @@ namespace Utilities
                     imgAdv.SaveAs(rootPath + "\\" + strFileName);
                     return strFileName;
                 }
+
                 return strFileName;
             }
             catch (Exception ex)
@@ -349,6 +328,7 @@ namespace Utilities
                 return strFileName;
             }
         }
+
         public static string GetIpAddress()
         {
             var val = "";
@@ -361,18 +341,22 @@ namespace Utilities
             {
                 val = HttpContext.Current.Request.UserHostAddress;
             }
+
             return val;
         }
+
         public static string GetRoot()
         {
             return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
         }
+
         public static bool IsSpecialCharacters(string s)
         {
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
             if (regexItem.IsMatch(s)) return false;
             return true;
         }
+
         public static void LoadMeta(HtmlHead headTag, string title, string description, string keyws, string category,
             string url, string img, string dateup, string datemf, string datecre)
         {
@@ -446,6 +430,7 @@ namespace Utilities
             pagemetaTag.Content = description;
             headTag.Controls.Add(pagemetaTag);
         }
+
         public static void MoveSelectedValue(ListBox lbScr, ListBox lbDest)
         {
             foreach (ListItem listItem1 in lbScr.Items)
@@ -458,6 +443,7 @@ namespace Utilities
                 if (listItem2.Selected)
                     listItem2.Selected = false;
         }
+
         public static string RandomNumber(int length)
         {
             var s = "";
@@ -465,6 +451,7 @@ namespace Utilities
             for (var i = 1; i <= length; i++) s += random.Next(0, 9);
             return s;
         }
+
         public static string ShortDateText(string text)
         {
             var day = DateTime.Parse(text).ToString("ddd");
@@ -490,6 +477,7 @@ namespace Utilities
                 buoi = " chiều";
                 gio = gio + 12;
             }
+
             if (nam == namx)
             {
                 if (thang == thangx)
@@ -544,14 +532,16 @@ namespace Utilities
             {
                 text = namx - nam + " năm trước";
             }
+
             return text;
         }
+
         public static string TrimText(string textTrim, int length)
         {
             if (!string.IsNullOrEmpty(textTrim))
                 if (textTrim.Length > length)
                 {
-                    var arrWord = textTrim.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    var arrWord = textTrim.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
                     var sb = new StringBuilder();
                     foreach (var word in arrWord)
                     {
@@ -560,6 +550,7 @@ namespace Utilities
                         sb.Append(word + " ");
                     }
                 }
+
             return textTrim;
         }
     }

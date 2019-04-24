@@ -1,23 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
 using ShoesStore.WebControls;
+
 namespace ShoesStore.UserControls
 {
-    public partial class UcPro : System.Web.UI.UserControl
+    public partial class UcPro : UserControl
     {
-        private Pro_BUS _pro = new Pro_BUS();
         private int _numberOnRow;
+        private Pro_BUS _pro = new Pro_BUS();
+
         public int NumberOnRow
         {
-            get { return _numberOnRow==0?1:_numberOnRow; }
-            set { _numberOnRow = value; }
+            get => _numberOnRow == 0 ? 1 : _numberOnRow;
+            set => _numberOnRow = value;
         }
-        public RepeaterTable RptPro
-        {
-            get => rptPro;
-        }
+
+        public RepeaterTable RptPro => rptPro;
+
         public int PageSize
         {
             set
@@ -25,22 +27,22 @@ namespace ShoesStore.UserControls
                 if (rptPro != null) rptPro.PageSize = value;
             }
         }
+
         public int GetCurrent()
         {
             return rptPro.Items.Count;
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                Page.LoadComplete += Page_LoadComplete;
-            }
+            if (!IsPostBack) Page.LoadComplete += Page_LoadComplete;
         }
+
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            List<int> listPage = new List<int>();
+            var listPage = new List<int>();
             if (rptPro != null)
-                for (int i = 1; i <= rptPro.PageTotal; i++)
+                for (var i = 1; i <= rptPro.PageTotal; i++)
                     listPage.Add(i);
             if (rptProPage != null)
             {
@@ -48,13 +50,14 @@ namespace ShoesStore.UserControls
                 rptProPage.DataBind();
             }
         }
-        protected void MyBtnHandler(Object sender, EventArgs e)
+
+        protected void MyBtnHandler(object sender, EventArgs e)
         {
-            LinkButton btn = (LinkButton)sender;
+            var btn = (LinkButton) sender;
             switch (btn.CommandName)
             {
                 case "ThisBtnClick":
-                    int page = Convert.ToInt32(btn.CommandArgument);
+                    var page = Convert.ToInt32(btn.CommandArgument);
                     rptPro.PageCurrent = page;
                     rptPro.DataBind();
                     break;
@@ -62,11 +65,12 @@ namespace ShoesStore.UserControls
                     break;
             }
         }
+
         protected void rptProPage_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Footer)
             {
-                LinkButton btnPagingLast = (LinkButton)e.Item.FindControl("btnPagingLast");
+                var btnPagingLast = (LinkButton) e.Item.FindControl("btnPagingLast");
                 btnPagingLast.CommandArgument = rptProPage.Items.Count + "";
             }
         }

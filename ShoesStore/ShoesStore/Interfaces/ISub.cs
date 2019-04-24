@@ -1,6 +1,6 @@
 ﻿namespace ShoesStore.Interfaces
 {
-    interface ISub
+    internal interface ISub
     {
     }
 }

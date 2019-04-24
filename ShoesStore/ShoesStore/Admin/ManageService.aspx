@@ -29,15 +29,11 @@
                                 <%# Eval("SubContent") %>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditSubContent" Text='<%# Bind("SubContent") %>' />
+                                <asp:TextBox runat="server" ID="EditSubContent" Text='<%# Bind("SubContent") %>'/>
                             </EditItemTemplate>
                             <FooterTemplate>
-                                <asp:TextBox runat="server" ID="InsertSubContent" Text=' <%# Bind("SubContent") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditName"
-                                    runat="server"
-                                    ErrorMessage="Chưa nhập tên gói dịch vụ"
-                                    ControlToValidate="InsertSubContent"
-                                    Text="*" ForeColor="Red" ValidationGroup="Insert">
+                                <asp:TextBox runat="server" ID="InsertSubContent" Text=' <%# Bind("SubContent") %>'/>
+                                <asp:RequiredFieldValidator ID="rfvEditName" runat="server" ErrorMessage="Chưa nhập tên gói dịch vụ" ControlToValidate="InsertSubContent" Text="*" ForeColor="Red" ValidationGroup="Insert">
                                 </asp:RequiredFieldValidator>
                             </FooterTemplate>
                         </asp:TemplateField>
@@ -46,15 +42,11 @@
                                 <%# Eval("DurDay") %>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditDurDay" Text='<%# Bind("DurDay") %>' />
+                                <asp:TextBox runat="server" ID="EditDurDay" Text='<%# Bind("DurDay") %>'/>
                             </EditItemTemplate>
                             <FooterTemplate>
-                                <asp:TextBox runat="server" type="number" ID="InsertDurDay" Text='<%# Bind("DurDay") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditDay"
-                                    runat="server"
-                                    ErrorMessage="Chưa nhập thời gian"
-                                    ControlToValidate="InsertDurDay"
-                                    Text="*" ForeColor="Red" ValidationGroup="Insert">
+                                <asp:TextBox runat="server" type="number" ID="InsertDurDay" Text='<%# Bind("DurDay") %>'/>
+                                <asp:RequiredFieldValidator ID="rfvEditDay" runat="server" ErrorMessage="Chưa nhập thời gian" ControlToValidate="InsertDurDay" Text="*" ForeColor="Red" ValidationGroup="Insert">
                                 </asp:RequiredFieldValidator>
                             </FooterTemplate>
                         </asp:TemplateField>
@@ -63,31 +55,26 @@
                                 <%# Eval("Price") %>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditPrice" Text='<%# Bind("Price") %>' />
+                                <asp:TextBox runat="server" ID="EditPrice" Text='<%# Bind("Price") %>'/>
                             </EditItemTemplate>
                             <FooterTemplate>
-                                <asp:TextBox runat="server" type="number" ID="InsertPrice" Text='<%# Bind("Price") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditPrice"
-                                    runat="server"
-                                    ErrorMessage="Chưa nhập giá tiền"
-                                    ControlToValidate="InsertPrice"
-                                    Text="*" ForeColor="Red" ValidationGroup="Insert">
+                                <asp:TextBox runat="server" type="number" ID="InsertPrice" Text='<%# Bind("Price") %>'/>
+                                <asp:RequiredFieldValidator ID="rfvEditPrice" runat="server" ErrorMessage="Chưa nhập giá tiền" ControlToValidate="InsertPrice" Text="*" ForeColor="Red" ValidationGroup="Insert">
                                 </asp:RequiredFieldValidator>
                             </FooterTemplate>
                         </asp:TemplateField>
                     </Columns>
-                    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
-                    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-                    <RowStyle BackColor="White" ForeColor="#330099" />
-                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
-                    <SortedAscendingCellStyle BackColor="#FEFCEB" />
-                    <SortedAscendingHeaderStyle BackColor="#AF0101" />
-                    <SortedDescendingCellStyle BackColor="#F6F0C0" />
-                    <SortedDescendingHeaderStyle BackColor="#7E0000" />
+                    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099"/>
+                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC"/>
+                    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center"/>
+                    <RowStyle BackColor="White" ForeColor="#330099"/>
+                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399"/>
+                    <SortedAscendingCellStyle BackColor="#FEFCEB"/>
+                    <SortedAscendingHeaderStyle BackColor="#AF0101"/>
+                    <SortedDescendingCellStyle BackColor="#F6F0C0"/>
+                    <SortedDescendingHeaderStyle BackColor="#7E0000"/>
                 </asp:GridView>
-                <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert"
-                    ForeColor="Red" runat="server" />
+                <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert" ForeColor="Red" runat="server"/>
             </div>
         </div>
     </div>

@@ -1,29 +1,27 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcPro.ascx.cs" Inherits="ShoesStore.UserControls.UcPro" %>
-<%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
+<%@ Import Namespace="ShoesStore" %>
 <%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
 <div style="width: 100%">
     <asp:UpdatePanel runat="server" ID="updatePanel">
         <ContentTemplate>
-            <div class="products-view__list products-list" data-layout="grid-3-sidebar"
-                data-with-features="false">
+            <div class="products-view__list products-list" data-layout="grid-3-sidebar" data-with-features="false">
                 <div class="products-list__body">
                     <wcCustom:RepeaterTable runat="server" ID="rptPro" AllowPage="True" TableName="Pro" ItemType="ShoesStore.DataAccessLogicLayer.Pro">
                         <ItemTemplate>
-                            <div class="products-list__item col-xs-<%:12/NumberOnRow %> <%# NumberOnRow==5&&(Container.ItemIndex+5)%5==0?"col-xs-offset-1":"" %>">
+                            <div class="products-list__item col-xs-<%: 12 / NumberOnRow %> <%# NumberOnRow == 5 && (Container.ItemIndex + 5) % 5 == 0 ? "col-xs-offset-1" : "" %>">
                                 <div class="product-card">
                                     <div class="product-card__badges-list">
                                         <div class="product-card__badge product-card__badge--new">New</div>
                                     </div>
                                     <div class="product-card__image">
-                                        <asp:LinkButton runat="server" ID="proImgLink"
-                                            PostBackUrl='<%#MyLibrary.ProDetUrl(Container.DataItem) %>'>
-                                 <img src="<%#MyLibrary.ProImgPath(Container.DataItem) %>" alt="">
+                                        <asp:LinkButton runat="server" ID="proImgLink" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>">
+                                            <img src="<%#MyLibrary.ProImgPath(Container.DataItem) %>" alt="">
                                         </asp:LinkButton>
                                     </div>
                                     <div class="product-card__info">
                                         <div class="product-card__name">
-                                            <a href='<%#MyLibrary.ProDetUrl(Container.DataItem) %>'>
+                                            <a href="<%#MyLibrary.ProDetUrl(Container.DataItem) %>">
                                                 <%# Eval("ProName") %>
                                             </a>
                                         </div>
@@ -31,24 +29,22 @@
                                             <div class="rating">
                                                 <%# MyLibrary.DrawStar(MyLibrary.Pro_BUS.AverageStar(Item)) %>
                                             </div>
-                                            <div class="product-card__rating-legend"><%# MyLibrary.RcptBuyDet_BUS.GetNumberReview(Item.ShpId,Item.ProId) %> Đánh giá</div>
+                                            <div class="product-card__rating-legend"><%# MyLibrary.RcptBuyDet_BUS.GetNumberReview(Item.ShpId, Item.ProId) %> Đánh giá</div>
                                         </div>
                                     </div>
                                     <div class="product-card__actions">
                                         <div class="product-card__availability">
                                             Availability:
-                         <span
-                             class="text-success">In Stock
-                         </span>
+                                            <span class="text-success">
+                                                In Stock
+                                            </span>
                                         </div>
                                         <div class="product-card__prices"><%# Eval("Price").ToFormatMoney() %></div>
                                         <div class="product-card__shop text-right small text-monospace">
-                                            <a href='<%#MyLibrary.ProDetUrl(Container.DataItem) %>'><%#Eval("Shp.ShpName") %></a>
+                                            <a href="<%#MyLibrary.ProDetUrl(Container.DataItem) %>"><%#Eval("Shp.ShpName") %></a>
                                         </div>
                                         <div class="product-card__buttons">
-                                            <asp:LinkButton runat="server"
-                                                PostBackUrl='<%#MyLibrary.ProDetUrl(Container.DataItem) %>'
-                                                ID="addToCart" Text="Xem sản phẩm" CssClass="btn btn-primary product-card__addtocart" />
+                                            <asp:LinkButton runat="server" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>" ID="addToCart" Text="Xem sản phẩm" CssClass="btn btn-primary product-card__addtocart"/>
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +63,7 @@
                             </li>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <asp:LinkButton runat="server" OnClick="MyBtnHandler" CssClass="page-link" CommandArgument='<%#Container.DataItem.ToString()%>' CommandName="ThisBtnClick" Text="<%#Container.ItemIndex +1 %>"></asp:LinkButton>
+                            <asp:LinkButton runat="server" OnClick="MyBtnHandler" CssClass="page-link" CommandArgument="<%#Container.DataItem.ToString() %>" CommandName="ThisBtnClick" Text="<%#Container.ItemIndex + 1 %>"></asp:LinkButton>
                         </ItemTemplate>
                         <FooterTemplate>
                             <li class="page-item">

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Net.Mail;
 using System.Text;
+
 namespace ShoesStore
 {
     public partial class MyLibrary
@@ -8,7 +10,7 @@ namespace ShoesStore
         {
             try
             {
-                var emailChecked = new System.Net.Mail.MailAddress(email);
+                var emailChecked = new MailAddress(email);
                 return true;
             }
             catch
@@ -16,13 +18,14 @@ namespace ShoesStore
                 return false;
             }
         }
+
         public static string DrawStar(int star)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append(" <div class='rating__body'>");
-            for (int i = 1; i <= 5; i++)
+            for (var i = 1; i <= 5; i++)
             {
-                string hasStar=(i<=star)?"rating__star--active":"";
+                var hasStar = i <= star ? "rating__star--active" : "";
                 sb.Append($@"<svg
                                                                                 class='rating__star {hasStar}'
                                                                                 width='13px' height='12px'>
@@ -47,6 +50,7 @@ namespace ShoesStore
                                                                                 </div>
                                                                             </div>");
             }
+
             sb.Append("</div>");
             //string s = "";
             //List<string> list = new List<string>();
@@ -58,15 +62,19 @@ namespace ShoesStore
             //return s;
             return sb.ToString();
         }
-        public static string DisplayImg (List<string> lst)
+
+        public static string DisplayImg(List<string> lst)
         {
-            string s = "";
-            string p = "";
-            foreach(string item in lst)
+            var s = "";
+            var p = "";
+            foreach (var item in lst)
             {
-                p = "<img class='img-thumbnail' style='width:50px; height:50px' src= '/images/products/kickz/UltraBoost 19/slides/" + item + "'>";
+                p =
+                    "<img class='img-thumbnail' style='width:50px; height:50px' src= '/images/products/kickz/UltraBoost 19/slides/" +
+                    item + "'>";
                 s = s + p;
             }
+
             return s;
         }
     }

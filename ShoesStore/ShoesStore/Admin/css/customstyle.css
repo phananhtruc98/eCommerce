@@ -1,48 +1,42 @@
-﻿.navbar-brand-wrapper {
-    background: #ffd333;
-}
-.logo_style{
-    font-size: 26px;
+﻿.navbar-brand-wrapper { background: #ffd333; }
+
+.logo_style {
     color: black;
-    font-weight:bold;
-    font-family:'Times New Roman', Times, serif;
-}
-.logo_style_mini {
-    font-size: 12px;
-    color: black;
-    font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
+    font-size: 26px;
+    font-weight: bold;
 }
-.navbar.default-layout {
-    background: #ffd333;
-}
-.navbar.default-layout .navbar-menu-wrapper {
+
+.logo_style_mini {
     color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    font-weight: bold;
 }
-.custom_bar{
-    background-color:black;
+
+.navbar.default-layout { background: #ffd333; }
+
+.navbar.default-layout .navbar-menu-wrapper { color: black; }
+
+.custom_bar {
+    background-color: black;
     color: #ffd333;
     font-size: 40px;
 }
-.custom_table{
-    padding:0;
-}
-.table-by-truc td{
-    font-size: 20px;
-}
-.table-by-truc th {
-    text-align: center;
-}
+
+.custom_table { padding: 0; }
+
+.table-by-truc td { font-size: 20px; }
+
+.table-by-truc th { text-align: center; }
+
 .table-by-truc {
     margin: auto;
     width: 50% !important;
 }
-.txt-by-truc{
-    font-size:20px;
-}
-.lbtn-center-truc{
-    text-align:right;
-}
-.my-info__save {
-    text-align: center;
-}
+
+.txt-by-truc { font-size: 20px; }
+
+.lbtn-center-truc { text-align: right; }
+
+.my-info__save { text-align: center; }

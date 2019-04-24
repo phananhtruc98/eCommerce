@@ -20,14 +20,6 @@ namespace ShoesStore.BusinessLogicLayer
             return _dao.Login(login, EncryptHelper.Encrypt(pwd));
         }
 
-        public Mstr LoginAdmin(string login, string pwd)
-        {
-            return _dao.CheckAdmin(login, EncryptHelper.Encrypt(pwd));
-        }
-        public Mer LoginMerchant(string login, string pwd)
-        {
-            return _dao.CheckMerchant(login, EncryptHelper.Encrypt(pwd));
-        }
         public void Register(Usr obj)
         {
             throw new NotImplementedException();
@@ -36,6 +28,16 @@ namespace ShoesStore.BusinessLogicLayer
         public void CreateActCode(Usr obj)
         {
             _dao.CreateActCode(obj);
+        }
+
+        public Mstr LoginAdmin(string login, string pwd)
+        {
+            return _dao.CheckAdmin(login, EncryptHelper.Encrypt(pwd));
+        }
+
+        public Mer LoginMerchant(string login, string pwd)
+        {
+            return _dao.CheckMerchant(login, EncryptHelper.Encrypt(pwd));
         }
 
         public List<Usr> Filter(Usr obj)
@@ -60,7 +62,7 @@ namespace ShoesStore.BusinessLogicLayer
 
         public override bool IsExist(Usr obj)
         {
-             return _dao.IsExist(obj);
+            return _dao.IsExist(obj);
         }
 
         public override void SetActive(Usr obj)

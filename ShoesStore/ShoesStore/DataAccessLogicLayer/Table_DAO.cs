@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity.Validation;
 using System.Linq;
 using ShoesStore.Interfaces;
+
 namespace ShoesStore.DataAccessLogicLayer
 {
     public abstract class Table_DAO<T> : ITable<T> where T : class
@@ -14,6 +15,7 @@ namespace ShoesStore.DataAccessLogicLayer
             DataProvider.Instance.Set<T>().Remove(obj);
             DataProvider.Instance.SaveChanges();
         }
+
         public List<T> GetAll()
         {
             try
@@ -25,6 +27,7 @@ namespace ShoesStore.DataAccessLogicLayer
                 return null;
             }
         }
+
         public void Insert(T obj)
         {
             try
@@ -41,20 +44,21 @@ namespace ShoesStore.DataAccessLogicLayer
                     Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
                         eve.Entry.Entity.GetType().Name, eve.Entry.State);
                     foreach (var ve in eve.ValidationErrors)
-                    {
                         Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
                             ve.PropertyName, ve.ErrorMessage);
-                    }
                 }
+
                 throw;
             }
         }
+
         public void Update(T obj)
         {
             DataProvider.Instance.Set<T>().Attach(obj);
             DataProvider.Instance.Entry(obj).State = EntityState.Modified;
             DataProvider.Instance.SaveChanges();
         }
+
         public abstract void SetActive(T obj);
         public abstract bool IsExist(T obj);
     }

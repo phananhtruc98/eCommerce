@@ -9,8 +9,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="/">Trang chủ</a>
-                                <svg class="breadcrumb-arrow"
-                                    width="6px" height="9px">
+                                <svg class="breadcrumb-arrow" width="6px" height="9px">
                                     <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
@@ -27,15 +26,14 @@
                         <div class="shop-layout__sidebar col-3">
                             <div class="block block-sidebar">
                                 <div class="block-sidebar__item">
-                                    <div class="widget-filters widget" data-collapse
-                                        data-collapse-opened-class="filter--opened">
+                                    <div class="widget-filters widget" data-collapse data-collapse-opened-class="filter--opened">
                                         <h4 class="widget__title">
-                                            <asp:Label runat="server" ID="lbXinChao"></asp:Label></h4>
+                                            <asp:Label runat="server" ID="lbXinChao"></asp:Label>
+                                        </h4>
                                         <div class="widget-filters__list">
                                             <div class="widget-filters__item">
                                                 <div class="filter filter--opened" data-collapse-item>
-                                                    <button type="button"
-                                                        class="filter__title" data-collapse-trigger>
+                                                    <button type="button" class="filter__title" data-collapse-trigger>
                                                         Tài khoản của tôi
                                                     </button>
                                                     <div class="filter__body" data-collapse-content>
@@ -43,7 +41,7 @@
                                                             <div class="filter-categories">
                                                                 <ul class="filter-categories__list">
                                                                     <li class="filter-categories__item filter-categories__item--parent">
-                                                                        <a  href="<%= ResolveUrl("~/Customer/CusHome.aspx") %>">Thông tin cá nhân</a>
+                                                                        <a href="<%= ResolveUrl("~/Customer/CusHome.aspx") %>">Thông tin cá nhân</a>
                                                                     </li>
                                                                     <li class="filter-categories__item filter-categories__item--parent">
                                                                         <a href="<%= ResolveUrl("~/Customer/CusHome_ChangePassword.aspx") %>">Đổi mật khẩu</a>
@@ -54,14 +52,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="filter filter--opened" data-collapse-item>
-                                                    <button type="button"
-                                                        class="filter__title" data-collapse-trigger>
+                                                    <button type="button" class="filter__title" data-collapse-trigger>
                                                         <a class="filter__title" href="<%= ResolveUrl("~/Customer/CusHome_RcptSuccess.aspx") %>">Đơn hàng của tôi</a>
                                                     </button>
                                                 </div>
                                                 <div class="filter filter--opened" data-collapse-item>
-                                                    <button type="button"
-                                                        class="filter__title" data-collapse-trigger>
+                                                    <button type="button" class="filter__title" data-collapse-trigger>
                                                         <a class="filter__title" href="<%= ResolveUrl("~/Customer/CusHome_Cmt.aspx") %>">Nhận xét của tôi</a>
                                                     </button>
                                                 </div>

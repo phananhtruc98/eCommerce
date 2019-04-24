@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Mail;
 using Logger;
+
 namespace Utilities
 {
     public class Email
@@ -18,6 +19,7 @@ namespace Utilities
                 return false;
             }
         }
+
         public static string SendGmail(string fromMail, string passFromMail, string mailTo, string subject, string body)
         {
             var msg = "";
@@ -48,8 +50,10 @@ namespace Utilities
             {
                 Log.error("SendGmail " + mailTo + " err: " + ex.Message);
             }
+
             return msg;
         }
+
         public static string SendMail(string mailTo, string subject, string body, string fromemail, string Port,
             string Smtp, string frompass)
         {
@@ -78,6 +82,7 @@ namespace Utilities
             {
                 Log.error("SendMail " + mailTo + " err: " + ex.Message);
             }
+
             return msg;
         }
     }

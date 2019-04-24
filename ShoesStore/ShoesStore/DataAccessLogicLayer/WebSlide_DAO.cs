@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class WebSlide_DAO : Table_DAO<WebSlide>
@@ -7,6 +8,7 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
         public override bool IsExist(WebSlide obj)
         {
             throw new NotImplementedException();

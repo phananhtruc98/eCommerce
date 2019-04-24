@@ -1,4 +1,5 @@
 ﻿using System.Web.Optimization;
+
 namespace ShoesStore
 {
     public class BundleConfig
@@ -7,33 +8,33 @@ namespace ShoesStore
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
-                            "~/Scripts/WebForms/WebForms.js",
-                            "~/Scripts/WebForms/WebUIValidation.js",
-                            "~/Scripts/WebForms/MenuStandards.js",
-                            "~/Scripts/WebForms/Focus.js",
-                            "~/Scripts/WebForms/GridView.js",
-                            "~/Scripts/WebForms/DetailsView.js",
-                            "~/Scripts/WebForms/TreeView.js",
-                            "~/Scripts/WebForms/WebParts.js"));
+                "~/Scripts/WebForms/WebForms.js",
+                "~/Scripts/WebForms/WebUIValidation.js",
+                "~/Scripts/WebForms/MenuStandards.js",
+                "~/Scripts/WebForms/Focus.js",
+                "~/Scripts/WebForms/GridView.js",
+                "~/Scripts/WebForms/DetailsView.js",
+                "~/Scripts/WebForms/TreeView.js",
+                "~/Scripts/WebForms/WebParts.js"));
             // Order is very important for these files to work, they have explicit dependencies
             bundles.Add(new ScriptBundle("~/bundles/MsAjaxJs").Include(
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
-                    "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
+                "~/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
+                "~/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
+                "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
+                "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
             // Use the Development version of Modernizr to develop with and learn from. Then, when you’re
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                            "~/Scripts/modernizr-*"));
+                "~/Scripts/modernizr-*"));
             bundles.Add(new ScriptBundle("~/bundles/ShoesStore").Include(
-                    "~/vendor/jquery-3.3.1/jquery.min.js",
-                    "~/vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js",
-                    "~/vendor/owl-carousel-2.3.4/owl.carousel.min.js",
-                    "~/vendor/nouislider-12.1.0/nouislider.min.js",
-                    "~/js/number.js",
-                    "~/js/main.js",
-                    "~/vendor/svg4everybody-2.1.9/svg4everybody.min.js"
-                    ));
+                "~/vendor/jquery-3.3.1/jquery.min.js",
+                "~/vendor/bootstrap-4.2.1/js/bootstrap.bundle.min.js",
+                "~/vendor/owl-carousel-2.3.4/owl.carousel.min.js",
+                "~/vendor/nouislider-12.1.0/nouislider.min.js",
+                "~/js/number.js",
+                "~/js/main.js",
+                "~/vendor/svg4everybody-2.1.9/svg4everybody.min.js"
+            ));
         }
     }
 }

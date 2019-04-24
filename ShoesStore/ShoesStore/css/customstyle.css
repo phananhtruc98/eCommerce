@@ -1,20 +1,21 @@
-﻿.logo_name{
-font-size: 24px;
-font-family: 'Baskerville Old Face';
-color: black;
-font-weight:bold;
-}
-.logo_name_1{
-    font-size: 24px;
-    font-family: 'Baskerville Old Face';
+﻿.logo_name {
     color: black;
+    font-family: 'Baskerville Old Face';
+    font-size: 24px;
     font-weight: bold;
 }
-.custom_font{
-    font-size: 15px;
+
+.logo_name_1 {
+    color: black;
+    font-family: 'Baskerville Old Face';
+    font-size: 24px;
+    font-weight: bold;
 }
+
+.custom_font { font-size: 15px; }
+
 .big-btn {
-    width: 90px;
-    height: 40px;
     font-size: 16px;
+    height: 40px;
+    width: 90px;
 }

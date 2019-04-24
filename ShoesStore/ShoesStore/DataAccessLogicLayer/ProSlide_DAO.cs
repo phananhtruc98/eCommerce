@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class ProSlide_DAO : Table_DAO<ProSlide>
@@ -7,6 +8,7 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
         public override bool IsExist(ProSlide obj)
         {
             throw new NotImplementedException();

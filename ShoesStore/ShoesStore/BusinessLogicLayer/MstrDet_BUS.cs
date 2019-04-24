@@ -1,5 +1,6 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-using System;
+﻿using System;
+using ShoesStore.DataAccessLogicLayer;
+
 namespace ShoesStore.BusinessLogicLayer
 {
     public class MstrDet_BUS : Table_BUS<MstrDet, MstrDet_DAO>
@@ -8,6 +9,7 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
         public override void SetActive(MstrDet obj)
         {
             throw new NotImplementedException();

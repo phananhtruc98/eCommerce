@@ -1,6 +1,6 @@
 ﻿namespace ShoesStore.Interfaces
 {
-   public interface ICart
+    public interface ICart
     {
     }
 }

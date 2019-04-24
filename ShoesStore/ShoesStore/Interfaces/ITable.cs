@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 namespace ShoesStore.Interfaces
 {
     public interface ITable<T>

@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ShoesStore.UserControls
 {
     public partial class UcProCarousel : UcPro

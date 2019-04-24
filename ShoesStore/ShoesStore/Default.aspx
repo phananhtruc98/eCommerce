@@ -15,7 +15,7 @@
                             <asp:Repeater runat="server" ID="rptSlides" OnInit="rptSlides_Init" ItemType="ShoesStore.DataAccessLogicLayer.WebSlide">
                                 <ItemTemplate>
                                     <a class="block-slideshow__slide" href="#">
-                                        <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="background-image:<%# $" url('{MyLibrary.SlidePath(Item.Img)}')" %>">
+                                        <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="background-image: <%# $" url('{MyLibrary.SlidePath(Item.Img)}')" %>">
                                         </div>
                                     </a>
                                 </ItemTemplate>
@@ -94,7 +94,7 @@
             </div>
             <div class="block-products__body">
                 <div class="block-products__list">
-                    <uc1:UcPro runat="server" ID="ucPro" PageSize="8" NumberOnRow="4" />
+                    <uc1:UcPro runat="server" ID="ucPro" PageSize="8" NumberOnRow="4"/>
                 </div>
             </div>
             <div style="overflow: hidden;">
@@ -116,8 +116,7 @@
                             <div class="category-card__body">
                                 <div class="category-card__image">
                                     <a href="#">
-                                        <img
-                                            src="<%# MyLibrary.ProCatImgPath(Item) %>" alt="">
+                                        <img src="<%# MyLibrary.ProCatImgPath(Item) %>" alt="">
                                     </a>
                                 </div>
                                 <div class="category-card__content">

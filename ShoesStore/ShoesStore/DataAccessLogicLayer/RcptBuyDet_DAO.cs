@@ -1,6 +1,8 @@
-﻿using ShoesStore.Interfaces;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using ShoesStore.Interfaces;
+
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class RcptBuyDet_DAO : Table_DAO<RcptBuyDet>, IRcptBuyDet
@@ -9,17 +11,22 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
         public override void SetActive(RcptBuyDet obj)
         {
             throw new NotImplementedException();
         }
-        public System.Collections.Generic.List<RcptBuyDet> ListRcptBuyPreview(int RcptId)
+
+        public List<RcptBuyDet> ListRcptBuyPreview(int RcptId)
         {
             try
             {
-                Cus cus = MyLibrary.Cus_BUS.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
-                RcptBuyDet rcptBuyDet = MyLibrary.RcptBuyDet_BUS.GetAll().FirstOrDefault(m => cus != null && m.RcptBuyId == RcptId);
-                return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuyDet != null && m.RcptBuyId == rcptBuyDet.RcptBuyId).ToList();
+                var cus = MyLibrary.Cus_BUS.GetAll()
+                    .FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
+                var rcptBuyDet = MyLibrary.RcptBuyDet_BUS.GetAll()
+                    .FirstOrDefault(m => cus != null && m.RcptBuyId == RcptId);
+                return MyLibrary.RcptBuyDet_BUS.GetAll()
+                    .Where(m => rcptBuyDet != null && m.RcptBuyId == rcptBuyDet.RcptBuyId).ToList();
             }
             catch
             {
