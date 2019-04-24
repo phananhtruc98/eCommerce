@@ -31,6 +31,24 @@ namespace ShoesStore.Customer {
         protected global::ShoesStore.WebControls.RepeaterTable rptProCat;
         
         /// <summary>
+        /// priceFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl priceFrom;
+        
+        /// <summary>
+        /// priceTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl priceTo;
+        
+        /// <summary>
         /// rptProBrand control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,15 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ShoesStore.WebControls.RepeaterTable rptProBrand;
+        
+        /// <summary>
+        /// rptColors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptColors;
         
         /// <summary>
         /// btnFilter control.

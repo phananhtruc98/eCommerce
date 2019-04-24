@@ -171,6 +171,7 @@ namespace ShoesStore
         public static RcptBuySta_BUS RcptBuySta_BUS => new RcptBuySta_BUS();
         public static RcptBuyStaDet_BUS RcptBuyStaDet_BUS => new RcptBuyStaDet_BUS();
         public static RcptBuyStaStep_BUS RcptBuyStaStep_BUS => new RcptBuyStaStep_BUS();
+        public static ProColor_BUS ProColor_BUS => new ProColor_BUS();
         public static void Show(string message)
         {
             string cleanMessage = message.Replace("'", "\'");

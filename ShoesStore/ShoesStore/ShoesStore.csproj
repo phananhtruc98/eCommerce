@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -2221,7 +2220,6 @@
     <Content Include="Merchant\MerProfile.aspx" />
     <Content Include="Merchant\MerShop.aspx" />
     <Content Include="Merchant\SignIn.aspx" />
-    <Content Include="Merchant\Sub.aspx" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.eot" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.ttf" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.woff" />
@@ -2245,6 +2243,7 @@
     <Content Include="DataAccessLogicLayer\ShoesStoreModel.edmx.diagram">
       <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="images\aboutus.jpg" />
     <Content Include="images\avatars\avatar-1.jpg" />
@@ -3005,13 +3004,6 @@
     <Compile Include="Merchant\SiteMerchant.Master.designer.cs">
       <DependentUpon>SiteMerchant.Master</DependentUpon>
     </Compile>
-    <Compile Include="Merchant\Sub.aspx.cs">
-      <DependentUpon>Sub.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\Sub.aspx.designer.cs">
-      <DependentUpon>Sub.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MyEnum.cs" />
     <Compile Include="MyExtensions\ObjectExtension.cs" />
     <Compile Include="MyExtensions\ProExtension.cs" />
@@ -3087,6 +3079,7 @@
     <Compile Include="WebControls\BreadCrumbs.cs" />
     <Compile Include="WebControls\MyRadioButton.cs" />
     <Compile Include="WebControls\RepeaterTable.cs" />
+    <Compile Include="WebControls\wcCheckBox.cs" />
     <Compile Include="WebSession.cs" />
   </ItemGroup>
   <ItemGroup />

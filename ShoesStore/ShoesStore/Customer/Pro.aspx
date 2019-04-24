@@ -65,7 +65,7 @@
                                                 <div class="filter__container">
                                                     <div class="filter-list">
                                                         <div class="filter-list__list">
-                                                            <wcCustom:RepeaterTable runat="server" ID="rptProCat" TableName="ProCat">
+                                                            <wcCustom:RepeaterTable runat="server" ID="rptProCat" TableName="ProCat" OnItemDataBound="rptProCat_ItemDataBound">
                                                                 <ItemTemplate>
 
                                                                     <label
@@ -74,8 +74,11 @@
                                                                             class="filter-list__input input-check">
                                                                             <span
                                                                                 class="input-check__body">
-                                                                                <asp:HiddenField runat="server" Value='<%# Eval("CatId") %>' />
-                                                                                <input runat="server" type="checkbox" id="chkProCat" class="input-check__input" />
+                                                                                <asp:HiddenField runat="server" ID="hdfProCatId" Value='<%# Eval("CatId") %>' />
+                                                                                <asp:CheckBox
+                                                                                    runat="server" 
+                                                                                    id="chkProCat" 
+                                                                                     />
 
                                                                                 <span
                                                                                     class="input-check__box"></span>
@@ -87,9 +90,9 @@
                                                                                     </use>
                                                                                 </svg>
                                                                             </span>
-                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
-                                                                                class="filter-list__title"><%# Eval("CatName") %></span><span
-                                                                                    class="filter-list__counter"><%#ProCat_BUS.GetTotalPro(Eval("CatId")) %></span></label>
+                                                                        </span><span
+                                                                            class="filter-list__title"><%# Eval("CatName") %></span><span
+                                                                                class="filter-list__counter"><%#ProCat_BUS.GetTotalPro(Eval("CatId")) %></span></label>
                                                                 </ItemTemplate>
                                                             </wcCustom:RepeaterTable>
 
@@ -120,9 +123,10 @@
                                                         <div class="filter-price__slider"></div>
                                                         <div class="filter-price__title">
                                                             Khoảng giá: 
-                        <span
+                        <span id="priceFrom" runat="server"
                             class="filter-price__min-value"></span>– 
                         <span
+                            id="priceTo" runat="server"
                             class="filter-price__max-value"></span>
                                                         </div>
                                                     </div>
@@ -145,18 +149,20 @@
                                                 <div class="filter__container">
                                                     <div class="filter-list">
                                                         <div class="filter-list__list">
-                                                            <wcCustom:RepeaterTable runat="server" ID="rptProBrand" TableName="ProBrand">
+                                                            <wcCustom:RepeaterTable runat="server" ID="rptProBrand" TableName="ProBrand" ItemType="ShoesStore.DataAccessLogicLayer.ProBrand" OnItemDataBound="rptProBrand_ItemDataBound">
                                                                 <ItemTemplate>
-
+                                                                    <asp:HiddenField runat="server" ID="hdfBrand" Value='<%# Item.BrandId %>' />
                                                                     <label
                                                                         class="filter-list__item">
                                                                         <span
                                                                             class="filter-list__input input-check">
                                                                             <span
                                                                                 class="input-check__body">
-                                                                                <input
-                                                                                    class="input-check__input"
-                                                                                    type="checkbox">
+                                                                                <asp:CheckBox
+                                                                                    runat="server"
+                                                                                    ID="chkBrand"
+                                                                                    
+                                                                                    />
                                                                                 <span
                                                                                     class="input-check__box"></span>
                                                                                 <svg
@@ -167,9 +173,9 @@
                                                                                     </use>
                                                                                 </svg>
                                                                             </span>
-                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
-                                                                                class="filter-list__title"><%# Eval("BrandName") %></span><span
-                                                                                    class="filter-list__counter"><%# ProBrand_BUS.GetTotalPro(Eval("BrandId"))  %></span></label>
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;</span><span
+                                                                            class="filter-list__title"><%# Item.BrandName%></span><span
+                                                                                class="filter-list__counter"><%# ProBrand_BUS.GetTotalPro(Item.BrandId)  %></span></label>
                                                                 </ItemTemplate>
                                                             </wcCustom:RepeaterTable>
 
@@ -184,7 +190,7 @@
                                         <div class="filter filter--opened" data-collapse-item>
                                             <button type="button"
                                                 class="filter__title" data-collapse-trigger>
-                                                Color
+                                                Màu
     <svg
         class="filter__arrow" width="12px" height="7px">
         <use href="images/sprite.svg#arrow-rounded-down-12x7">
@@ -195,446 +201,36 @@
                                                 <div class="filter__container">
                                                     <div class="filter-color">
                                                         <div class="filter-color__list">
-                                                            <label
-                                                                class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color input-check-color--white"
-                                                                    style="color: #fff;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
+                                                            <asp:Repeater runat="server" ID="rptColors" OnInit="rptColors_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProColor" OnItemDataBound="rptColors_ItemDataBound">
+                                                                <ItemTemplate>
+                                                                    <asp:HiddenField runat="server" ID="hdfColorId" Value='<%# Item.ColorId %>' />
+                                                                    <label runat="server"
+                                                                        class="filter-color__item">
                                                                         <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
+                                                                            class="filter-color__check input-check-color input-check-color--white"
+                                                                            style='color: #<%# Item.HexCode %>'>
+                                                                            <label
+                                                                                class="input-check-color__body">
+                                                                                <asp:CheckBox
+                                                                                    runat="server"
+                                                                                    ID="chkColor" />
+                                                                                <span
+                                                                                    class="input-check-color__box"></span>
+                                                                                <svg class="input-check-color__icon"
+                                                                                    width="12px" height="9px">
+                                                                                    <use
+                                                                                        href="images/sprite.svg#check-12x9">
+                                                                                    </use>
+                                                                                </svg>
+                                                                                <span
+                                                                                    class="input-check-color__stick"></span>
+                                                                            </label>
+                                                                        </span>
                                                                     </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color input-check-color--light"
-                                                                    style="color: #d9d9d9;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #b3b3b3;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #808080;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #666;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #4d4d4d;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #262626;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #ff4040;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox" checked="checked">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #ff8126;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color input-check-color--light"
-                                                                    style="color: #ffd440;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color input-check-color--light"
-                                                                    style="color: #becc1f;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #8fcc14;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox" checked="checked">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #47cc5e;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #47cca0;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #47cccc;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #40bfff;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox" disabled="disabled">
-                                                                        <span class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #3d6dcc;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox" checked="checked">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #7766cc;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #b852cc;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
-                                                            <label class="filter-color__item">
-                                                                <span
-                                                                    class="filter-color__check input-check-color"
-                                                                    style="color: #e53981;">
-                                                                    <label
-                                                                        class="input-check-color__body">
-                                                                        <input
-                                                                            class="input-check-color__input"
-                                                                            type="checkbox">
-                                                                        <span
-                                                                            class="input-check-color__box"></span>
-                                                                        <svg class="input-check-color__icon"
-                                                                            width="12px" height="9px">
-                                                                            <use
-                                                                                href="images/sprite.svg#check-12x9">
-                                                                            </use>
-                                                                        </svg>
-                                                                        <span
-                                                                            class="input-check-color__stick"></span>
-                                                                    </label>
-                                                                </span>
-                                                            </label>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -684,7 +280,7 @@
 
                                         </div>
                                     </div>
-                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="9" NumberOnRow="3"  />
+                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="9" NumberOnRow="3" />
 
                                 </div>
                             </div>
