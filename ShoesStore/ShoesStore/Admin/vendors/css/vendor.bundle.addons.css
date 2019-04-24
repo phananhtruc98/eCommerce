@@ -4005,8 +4005,8 @@ div.tagsinput div {
 }
 
 /* 
-  BS3 width:1005 for inputs breaks editable form in popup 
-  See: https://github.com/vitalets/x-editable/issues/393
+BS3 width:1005 for inputs breaks editable form in popup 
+See: https://github.com/vitalets/x-editable/issues/393
 */
 
 .editableform .form-control { width: auto; }
@@ -4173,7 +4173,7 @@ a.editable-click.editable-disabled:hover {
 
 .editable-unsaved { font-weight: bold; }
 
-.editable-unsaved:after { /*    content: '*'*/ }
+.editable-unsaved:after { /*content: '*'*/ }
 
 .editable-bg-transition {
     -moz-transition: background-color 1400ms ease-out;
@@ -5912,7 +5912,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket { color: #a22; }
 /* STOP */
 
 /* The rest of this file contains styles related to the mechanics of
-   the editor. You probably shouldn't touch them. */
+the editor. You probably shouldn't touch them. */
 
 .CodeMirror {
     background: white;
@@ -5938,8 +5938,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket { color: #a22; }
 }
 
 /* The fake, visible scrollbars. Used to force redraw during scrolling
-   before actual scrolling happens, thus preventing shaking and
-   flickering artifacts. */
+before actual scrolling happens, thus preventing shaking and
+flickering artifacts. */
 
 .CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
     display: none;
@@ -8526,7 +8526,7 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
  * Copyright (c) 2011-2017 SWIS BV and contributors
  *
  * Licensed under
- *   MIT License http://www.opensource.org/licenses/mit-license
+ *MIT License http://www.opensource.org/licenses/mit-license
  *
  * Date: 2017-10-30T19:03:13.936Z
  */
@@ -9337,7 +9337,7 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:las
 
 /* Ion.RangeSlider, Flat UI Skin
 // css version 2.0.3
-// © Denis Ineshin, 2014    https://github.com/IonDen
+// © Denis Ineshin, 2014https://github.com/IonDen
 // ===================================================================================================================*/
 
 /* =====================================================================================================================

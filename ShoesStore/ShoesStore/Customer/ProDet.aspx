@@ -16,23 +16,23 @@
         width: 500px;
     }
 </style>
-<script type="text/javascript" language="javascript">  
-        function setExclusiveRadioButton(name, current) {
-            debugger;
-            var regex = new RegExp(name);
-            for (i = 0; i < document.forms[0].elements.length; i++) {
-                var elem = document.forms[0].elements[i];
-                if (elem.type == 'radio' && regex.test(elem.id)) {
-                    elem.checked = false;
-                }
-            }
-            current.checked = true;
-        }
-        function closeAlert(e) {
-            e.preventDefault();
-            this.parentNode.style.display = "none";
-        }
-    </script>
+<script type="text/javascript" language="javascript">
+function setExclusiveRadioButton(name, current) {
+debugger;
+var regex = new RegExp(name);
+for (i = 0; i < document.forms[0].elements.length; i++) {
+var elem = document.forms[0].elements[i];
+if (elem.type == 'radio' && regex.test(elem.id)) {
+elem.checked = false;
+}
+}
+current.checked = true;
+}
+function closeAlert(e) {
+e.preventDefault();
+this.parentNode.style.display = "none";
+}
+</script>
 <!-- site__body -->
 <div class="site__body">
 <div class="page-header">

@@ -12,7 +12,7 @@ namespace Utilities
 
         public void Dispose()
         {
-            //throw new Exception("The method or operation is not implemented.");
+//throw new Exception("The method or operation is not implemented.");
         }
 
         public void Init(HttpApplication context)
@@ -35,7 +35,7 @@ namespace Utilities
 
         private void SessionModule_End(object sender, EventArgs e)
         {
-            //OnlineUsersInstance.OnlineUsers.UpdateForUserLeave();
+//OnlineUsersInstance.OnlineUsers.UpdateForUserLeave();
         }
 
         private void SessionModule_Start(object sender, EventArgs e)

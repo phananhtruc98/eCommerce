@@ -87,7 +87,7 @@ namespace Utilities
             }
         }
 
-        //EXPORT EXCEL FILE
+//EXPORT EXCEL FILE
         public void ExportGridView(string fileName, string filePath, DataGrid gv)
         {
             gv.EnableViewState = false;
@@ -138,7 +138,7 @@ namespace Utilities
             return brush;
         }
 
-        //get Current Page Name
+//get Current Page Name
         /// <summary>
         ///     Request.Url.AbsolutePath
         /// </summary>
@@ -192,7 +192,7 @@ namespace Utilities
             return p;
         }
 
-        //Resize the Height image
+//Resize the Height image
         public void
             ResizeImageHeight(string imgPath, string saveTo, int resizeHeight) //, int Width, int Height, int X, int Y)
         {
@@ -200,11 +200,11 @@ namespace Utilities
             {
                 var originalWidth = int.Parse(originalImage.Width.ToString());
                 var originalHeight = int.Parse(originalImage.Height.ToString());
-                /*
-                     * chia theo tỉ lể tìm ra chiều cao mới
-                     * int originalImage_H -----------> resizeHeight
-                     * int originalImage_W ----------->???NewWidth
-                     */
+/*
+* chia theo tỉ lể tìm ra chiều cao mới
+* int originalImage_H -----------> resizeHeight
+* int originalImage_W ----------->???NewWidth
+*/
                 var newWidth = originalWidth * resizeHeight / originalHeight;
                 using (var bmp = new sd.Bitmap(newWidth, resizeHeight)) //(Width, Height))
                 {
@@ -227,7 +227,7 @@ namespace Utilities
                             msWrite.Write(bufferImage, 0, bufferImage.Length);
                             using (var imageResized = sd.Image.FromStream(msWrite, true))
                             {
-                                //string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
+//string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
                                 imageResized.Save(saveTo, imageResized.RawFormat);
                             }
 
@@ -242,7 +242,7 @@ namespace Utilities
             }
         }
 
-        //Resize the Width image
+//Resize the Width image
         public void
             ResizeImageWidth(string imgPath, string saveTo, int resizeWidth) //, int Width, int Height, int X, int Y)
         {
@@ -250,11 +250,11 @@ namespace Utilities
             {
                 var originalWidth = int.Parse(originalImage.Width.ToString());
                 var originalHeight = int.Parse(originalImage.Height.ToString());
-                /*
-                     * chia theo tỉ lể tìm ra chiều cao mới
-                     * int originalImage_W ----------->resizeWidth
-                     * int originalImage_H -----------> ???New_Height
-                     */
+/*
+* chia theo tỉ lể tìm ra chiều cao mới
+* int originalImage_W ----------->resizeWidth
+* int originalImage_H -----------> ???New_Height
+*/
                 var newHeight = originalHeight * resizeWidth / originalWidth;
                 using (var bmp = new sd.Bitmap(resizeWidth, newHeight)) //(Width, Height))
                 {
@@ -277,7 +277,7 @@ namespace Utilities
                             msWrite.Write(bufferImage, 0, bufferImage.Length);
                             using (var imageResized = sd.Image.FromStream(msWrite, true))
                             {
-                                //string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
+//string saveTo = Server.MapPath("~/Images/imgCrop/") + "small" + ImageName;
                                 imageResized.Save(saveTo, imageResized.RawFormat);
                             }
 
@@ -292,15 +292,15 @@ namespace Utilities
             }
         }
 
-        //Resize the Height and Width image
+//Resize the Height and Width image
         public byte[]
             ResizeImageWidthHeight(string imgPath, int resizeWidth,
                 int resizeHeight) //, int Width, int Height, int X, int Y)
         {
             using (var originalImage = sd.Image.FromFile(imgPath))
             {
-                //int h = int.Parse(originalImage.Height.ToString()) / resize;
-                //int w = int.Parse(originalImage.Width.ToString()) / resize;
+//int h = int.Parse(originalImage.Height.ToString()) / resize;
+//int w = int.Parse(originalImage.Width.ToString()) / resize;
                 using (var bmp = new sd.Bitmap(resizeWidth, resizeHeight)) //(Width, Height))
                 {
                     bmp.SetResolution(originalImage.HorizontalResolution, originalImage.VerticalResolution);
@@ -320,19 +320,19 @@ namespace Utilities
             }
         }
 
-        //CAPCHA Drawing
+//CAPCHA Drawing
         public sd.Bitmap TransformImage(sd.Bitmap bmp, Random rnd)
         {
             var width = bmp.Width;
             var height = bmp.Height;
             double distort = rnd.Next(5, 15) * (rnd.Next(10) == 1 ? 1 : -1);
-            // Copy the image so that we're always using the original for source color
+// Copy the image so that we're always using the original for source color
             using (var copy = (sd.Bitmap) bmp.Clone())
             {
                 for (var y = 0; y < height; y++)
                 for (var x = 0; x < width; x++)
                 {
-                    // Adds a simple wave
+// Adds a simple wave
                     var newX = (int) (x + distort * Math.Sin(Math.PI * y / 84.0));
                     var newY = (int) (y + distort * Math.Cos(Math.PI * x / 44.0));
                     if (newX < 0 || newX >= width) newX = 0;

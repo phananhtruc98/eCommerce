@@ -14,16 +14,16 @@ $ bower install --save themify-icons
 <!doctype html>
 <html ng-app="app">
 <head>
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/themify-icons/themify-icons.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    ...
+<!-- build:css(.) styles/vendor.css -->
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="bower_components/themify-icons/themify-icons.css" />
+<!-- endbower -->
+<!-- endbuild -->
+...
 </head>
 <body>
-    ...
+...
 </body>
 </html>
 ```

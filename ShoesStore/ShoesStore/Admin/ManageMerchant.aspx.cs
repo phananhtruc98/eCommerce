@@ -16,7 +16,7 @@ namespace ShoesStore.Admin
             if (!IsPostBack) BindGridViewData();
         }
 
-        // Load bảng mer    
+// Load bảng mer
         private void BindGridViewData()
         {
             gvMerchant.DataSource = mer_BUS.Get_Mer_Info().ToList();
@@ -31,7 +31,7 @@ namespace ShoesStore.Admin
         {
         }
 
-        // Tìm kiếm
+// Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
@@ -53,7 +53,7 @@ namespace ShoesStore.Admin
             gvMerchant.DataBind();
         }
 
-        //Phân trang
+//Phân trang
         protected void gvMerchant_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvMerchant.PageIndex = e.NewPageIndex;

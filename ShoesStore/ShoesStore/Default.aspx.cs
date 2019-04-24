@@ -22,8 +22,8 @@ namespace ShoesStore
 
         protected void rptProCat_Init(object sender, EventArgs e)
         {
-            //rptProCat.DataSource = MyLibrary._proCat.GetAll();
-            //rptProCat.DataBind();
+//rptProCat.DataSource = MyLibrary._proCat.GetAll();
+//rptProCat.DataBind();
         }
 
         protected void rptSlides_Init(object sender, EventArgs e)

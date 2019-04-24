@@ -28,14 +28,14 @@ namespace ShoesStore.Admin
             }
         }
 
-        // Load data lên cho gvRcptBuy
+// Load data lên cho gvRcptBuy
         private void BindGridViewgvRcptBuy()
         {
             gvRcptBuy.DataSource = rcptBuy.GetAll().ToList();
             gvRcptBuy.DataBind();
         }
 
-        // Load data lên cho gvRcptBuyDet
+// Load data lên cho gvRcptBuyDet
         private void BindGridViewgvRcptBuyDet(int RcptBuyId)
         {
             cthd.Visible = true;
@@ -65,7 +65,7 @@ namespace ShoesStore.Admin
             gvRcptBuyDet.DataBind();
         }
 
-        // Tìm kiếm
+// Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
@@ -85,7 +85,7 @@ namespace ShoesStore.Admin
             gvRcptBuy.DataBind();
         }
 
-        // Ràng buộc và thêm xóa sửa
+// Ràng buộc và thêm xóa sửa
         protected void gvBuy_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditRow")
@@ -116,13 +116,13 @@ namespace ShoesStore.Admin
             {
                 var rowIndex = ((GridViewRow) ((LinkButton) e.CommandSource).NamingContainer).RowIndex;
                 var UsrEdit = ((TextBox) gvRcptBuy.Rows[rowIndex].FindControl("EditUsrEdit")).Text;
-                // SỬA CODE Ở ĐÂY
+// SỬA CODE Ở ĐÂY
                 var result = (from c in rcptBuy.GetAll()
                     where c.RcptBuyId == Convert.ToInt32(e.CommandArgument)
                     select c).FirstOrDefault();
                 if (result != null)
                 {
-                    // SỬA CODE Ở ĐÂY
+// SỬA CODE Ở ĐÂY
                     result.Rcpt.DateEdit = DateTime.Now;
                     result.Rcpt.UsrEdit = Convert.ToInt32(UsrEdit);
                     rcptBuy.Update(result);
@@ -133,7 +133,7 @@ namespace ShoesStore.Admin
             }
             else if (e.CommandName == "InsertRow")
             {
-                // SỬA CODE Ở ĐÂY
+// SỬA CODE Ở ĐÂY
                 var dateAdd = DateTime.Now.ToString();
                 var usrAdd = ((TextBox) gvRcptBuy.FooterRow.FindControl("InsertUsrAdd")).Text;
                 var cusId = ((TextBox) gvRcptBuy.FooterRow.FindControl("InsertCusId")).Text;
@@ -182,14 +182,14 @@ namespace ShoesStore.Admin
             }
         }
 
-        // Sự kiện chọn rcpt trong rcptBuy
+// Sự kiện chọn rcpt trong rcptBuy
         protected void gvRcptBuy_SelectedIndexChanged(object sender, EventArgs e)
         {
             var rcptBuyId = int.Parse((gvRcptBuy.SelectedRow.FindControl("rcptbuyid") as Label).Text);
             BindGridViewgvRcptBuyDet(rcptBuyId);
         }
 
-        // Gộp những dòng trùng
+// Gộp những dòng trùng
         protected void gvRcptBuyDet_RowDataBound1(object sender, GridViewRowEventArgs e)
         {
             var RowSpan = 2;

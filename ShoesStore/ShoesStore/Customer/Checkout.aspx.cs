@@ -12,7 +12,7 @@ namespace ShoesStore.Customer
             if (!IsPostBack)
             {
                 checkoutContent.DataBind();
-                //
+//
                 if (MyLibrary.CartDet_BUS.ListCartPreview() == null ||
                     MyLibrary.CartDet_BUS.ListCartPreview().Count == 0)
                     checkoutContent.InnerText = "Không có sản phẩm trong giỏ hàng!";
@@ -50,21 +50,21 @@ namespace ShoesStore.Customer
                         CusId = WebSession.LoginCus.CusId
                     };
                     MyLibrary.RcptBuy_BUS.Insert(rcptBuy);
-                    //Thêm bảng RcptBuySta (trạng thái cho 1 đơn hàng của 1 shop)
+//Thêm bảng RcptBuySta (trạng thái cho 1 đơn hàng của 1 shop)
                     var rcptBuySta = new RcptBuySta
                     {
-                        //StaId tự động tăng
+//StaId tự động tăng
                         RcptBuyId = rcptBuy.RcptBuyId
                     };
                     MyLibrary.RcptBuySta_BUS.Insert(rcptBuySta);
                     rcptBuySta = MyLibrary.RcptBuySta_BUS.GetLast();
-                    //Thêm bảng RcptBuyStaDet (gán tình trạng cho bảng RcptBuySta)
-                    //RcptBuyStaDet rcptBuyStaDet = new RcptBuyStaDet()
-                    //{
-                    //    StaId = rcptBuySta.StaId,
-                    //    RcptBuyId = rcptBuy.RcptBuyId,
-                    //    StepId = 1
-                    //};
+//Thêm bảng RcptBuyStaDet (gán tình trạng cho bảng RcptBuySta)
+//RcptBuyStaDet rcptBuyStaDet = new RcptBuyStaDet()
+//{
+//StaId = rcptBuySta.StaId,
+//RcptBuyId = rcptBuy.RcptBuyId,
+//StepId = 1
+//};
                     MyLibrary.RcptBuyStaDet_BUS.Insert(rcptBuySta, 1);
                     foreach (var groupItem in group)
                     {

@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <div style="margin-top: -30px;" class="container1">
         <div class="row">
-            <div class="col-lg-50    col-xl-50 mx-auto">
+            <div class="col-lg-50col-xl-50 mx-auto">
                 <div class="card card-signin flex-row my-5">
                     <div class="card-img-left d-none d-md-flex">
                         <!-- Background image for card set in CSS! -->

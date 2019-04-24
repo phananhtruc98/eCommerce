@@ -19,7 +19,7 @@ namespace ShoesStore.Admin
 
         private int total;
 
-        // PageLoad
+// PageLoad
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -30,14 +30,14 @@ namespace ShoesStore.Admin
             }
         }
 
-        // Gridview RcptSub
+// Gridview RcptSub
         private void BindGridViewgvRcptSub()
         {
             gvRcptSub.DataSource = rcptsub.GetAll().ToList();
             gvRcptSub.DataBind();
         }
 
-        // Gridview RcptSubDet
+// Gridview RcptSubDet
         private void BindDetailsViewRcptSubDet(int RcptSubId)
         {
             cthd.Visible = true;
@@ -68,7 +68,7 @@ namespace ShoesStore.Admin
             gvRcptSubDet.DataBind();
         }
 
-        // Ràng buộc và chức năng thêm xóa sửa dữ liệu
+// Ràng buộc và chức năng thêm xóa sửa dữ liệu
         protected void gvSub_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditRow")
@@ -99,13 +99,13 @@ namespace ShoesStore.Admin
             {
                 var rowIndex = ((GridViewRow) ((LinkButton) e.CommandSource).NamingContainer).RowIndex;
                 var UsrEdit = ((TextBox) gvRcptSub.Rows[rowIndex].FindControl("EditUsrEdit")).Text;
-                // SỬA CODE Ở ĐÂY
+// SỬA CODE Ở ĐÂY
                 var result = (from c in rcptsub.GetAll()
                     where c.RcptSubId == Convert.ToInt32(e.CommandArgument)
                     select c).FirstOrDefault();
                 if (result != null)
                 {
-                    // SỬA CODE Ở ĐÂY
+// SỬA CODE Ở ĐÂY
                     result.Rcpt.DateEdit = DateTime.Now;
                     result.Rcpt.UsrEdit = Convert.ToInt32(UsrEdit);
                     rcptsub.Update(result);
@@ -116,7 +116,7 @@ namespace ShoesStore.Admin
             }
             else if (e.CommandName == "InsertRow")
             {
-                // SỬA CODE Ở ĐÂY
+// SỬA CODE Ở ĐÂY
                 var dateAdd = DateTime.Now.ToString();
                 var usrAdd = ((TextBox) gvRcptSub.FooterRow.FindControl("InsertUsrAdd")).Text;
                 string usrEdit = null;
@@ -161,14 +161,14 @@ namespace ShoesStore.Admin
             }
         }
 
-        // Hàm gọi RcptSubDet
+// Hàm gọi RcptSubDet
         protected void gvRcptSub_SelectedIndexChanged(object sender, EventArgs e)
         {
             var rcptSubId = int.Parse((gvRcptSub.SelectedRow.FindControl("rcptsubid") as Label).Text);
             BindDetailsViewRcptSubDet(rcptSubId);
         }
 
-        // Hàm dùng để gộp những dòng trùng
+// Hàm dùng để gộp những dòng trùng
         protected void gvRcptSubDet_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             var RowSpan = 2;
@@ -211,7 +211,7 @@ namespace ShoesStore.Admin
             }
         }
 
-        // Tìm kiếm
+// Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());

@@ -103,18 +103,18 @@
                                     </asp:Repeater>
                                     </tbody>
                                     <tbody class="checkout__totals-subtotals">
-                                    <%--   <tr>
-                                            <th>Tổng con</th>
-                                            <td>$5,877.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Tổng giảm</th>
-                                            <td>$-20.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Tiền ship</th>
-                                            <td>$25.00</td>
-                                        </tr>--%>
+                                    <%--<tr>
+<th>Tổng con</th>
+<td>$5,877.00</td>
+</tr>
+<tr>
+<th>Tổng giảm</th>
+<td>$-20.00</td>
+</tr>
+<tr>
+<th>Tiền ship</th>
+<td>$25.00</td>
+</tr>--%>
                                     </tbody>
                                     <tfoot class="checkout__totals-footer">
                                     <tr>

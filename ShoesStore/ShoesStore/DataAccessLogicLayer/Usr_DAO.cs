@@ -60,7 +60,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public Mstr CheckAdmin(string login, string pwd)
         {
             var usr = Login(login, pwd);
-            // tu day tro xuong kt
+// tu day tro xuong kt
             var usrId = usr.UsrId;
             var rs = _mstr_DAO.GetAll().FirstOrDefault(m => m.MstrId == usrId);
             if (rs != null)
@@ -71,7 +71,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public Mer CheckMerchant(string login, string pwd)
         {
             var usr = Login(login, pwd);
-            // tu day tro xuong kt
+// tu day tro xuong kt
             var usrId = usr.UsrId;
             var rs = _mer_DAO.GetAll().FirstOrDefault(m => m.MerId == usrId);
             if (rs != null)

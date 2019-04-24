@@ -79,8 +79,8 @@ namespace ShoesStore.Customer
                 {
                     var lbtnDanhGia = (LinkButton) e.Item.FindControl("lbtnDanhGia");
                     lbtnDanhGia.Visible = true;
-                    //var CatName = 
-                    //string CatName = e.Item.
+//var CatName = 
+//string CatName = e.Item.
                 }
         }
     }

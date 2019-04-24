@@ -28,7 +28,7 @@ namespace ShoesStore.Admin
             }
         }
 
-        // Load bảng danh sách người quản trị
+// Load bảng danh sách người quản trị
         private void BindDataGridView()
         {
             var rs = (from u in usr.GetAll()
@@ -52,12 +52,12 @@ namespace ShoesStore.Admin
                     d.AddBy,
                     u.Avatar
                 }).ToList();
-            //var rs = mstr.GetAll();
+//var rs = mstr.GetAll();
             gvAdmin.DataSource = rs;
             gvAdmin.DataBind();
         }
 
-        // Load bảng danh sách chức vụ
+// Load bảng danh sách chức vụ
         private void BindDataGridViewMstrRole()
         {
             var rs = mstrRole.GetAll();
@@ -65,7 +65,7 @@ namespace ShoesStore.Admin
             gvMstrRole.DataBind();
         }
 
-        // Btn Tìm kiếm 
+// Btn Tìm kiếm 
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
@@ -88,7 +88,7 @@ namespace ShoesStore.Admin
             gvAdmin.DataBind();
         }
 
-        // Sorting
+// Sorting
         protected void gvAdmin_Sorting(object sender, GridViewSortEventArgs e)
         {
             var sortExpression = e.SortExpression; //Tên cột
@@ -98,7 +98,7 @@ namespace ShoesStore.Admin
             gvAdmin.DataBind();
         }
 
-        // Ràng buộc + thêm xóa sửa
+// Ràng buộc + thêm xóa sửa
         protected void gvAdmin_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditRow")
@@ -176,9 +176,9 @@ namespace ShoesStore.Admin
                     Avatar = "default.jpg";
                 }
 
-                // kiểm tra password nếu thay đổi thì mới encrypt
+// kiểm tra password nếu thay đổi thì mới encrypt
                 if (Password != PasswordOld) Password = EncryptHelper.Encrypt(Password);
-                // kiểm tra tồn tại login trùng thì ko được update
+// kiểm tra tồn tại login trùng thì ko được update
                 if (Login != LoginOld)
                     if (IsExists(Login))
                     {
@@ -187,7 +187,7 @@ namespace ShoesStore.Admin
                         return;
                     }
 
-                // update vô Usr trước
+// update vô Usr trước
                 var result = (from c in usr.GetAll()
                     where c.UsrId == Convert.ToInt32(e.CommandArgument)
                     select c).FirstOrDefault();
@@ -205,7 +205,7 @@ namespace ShoesStore.Admin
                     usr.Update(result);
                 }
 
-                // Update vô MstrDet
+// Update vô MstrDet
                 var mstrdet = (from c in mstrDet_bus.GetAll()
                     where c.MstrId == Convert.ToInt32(e.CommandArgument)
                           && c.RoleId == RoleId
@@ -306,7 +306,7 @@ namespace ShoesStore.Admin
             }
         }
 
-        // Sắp xếp từng cột
+// Sắp xếp từng cột
         protected void gvAdmin_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             var rs = (from r in mstrRole.GetAll()
@@ -323,7 +323,7 @@ namespace ShoesStore.Admin
             }
         }
 
-        // Kiểm tra tên đăng nhặp tồn tại
+// Kiểm tra tên đăng nhặp tồn tại
         public bool IsExists(string Login)
         {
             var kq = true;
@@ -334,7 +334,7 @@ namespace ShoesStore.Admin
             return kq;
         }
 
-        // thêm xóa sửa bảng chức vụ
+// thêm xóa sửa bảng chức vụ
         protected void gvMstrRole_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditRow")
@@ -383,7 +383,7 @@ namespace ShoesStore.Admin
             }
         }
 
-        //Phân trang
+//Phân trang
         protected void gvAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvAdmin.PageIndex = e.NewPageIndex;

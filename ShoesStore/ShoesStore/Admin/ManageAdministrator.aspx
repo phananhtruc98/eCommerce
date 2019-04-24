@@ -11,7 +11,7 @@
         </div>
     </div>
 </div>
-<%--    cột chức vụ là combobox--%>
+<%--cột chức vụ là combobox--%>
 <div class="container">
     <div class="row">
         <div class="col-12 table-responsive">

@@ -37,9 +37,9 @@ namespace Utilities
                 {
                     Port = 587,
                     Host = "smtp.gmail.com",
-                    //danh cho gmail
+//danh cho gmail
                     UseDefaultCredentials = false,
-                    //...........
+//...........
                     Credentials = new NetworkCredential(fromMail, passFromMail),
                     EnableSsl = true
                 };

@@ -21,7 +21,7 @@ namespace ShoesStore
         public bool IsValidRegister()
         {
             if (!Email.IsValidEmail(email.Value)) return false;
-            //if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
+//if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
             if (TextHelper.IsSpecialCharacters(login.Value)) return false;
             if (active_code.Value != _actCode) return false;
             return password.Value == re_password.Value;

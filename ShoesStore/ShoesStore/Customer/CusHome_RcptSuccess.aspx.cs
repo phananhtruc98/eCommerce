@@ -21,7 +21,7 @@ namespace ShoesStore.Customer
         /// <summary>
         ///     TAB ĐÃ HỦY
         /// </summary>
-        // Load Bảng hóa đơn trong
+// Load Bảng hóa đơn trong
         private int staTemp;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace ShoesStore.Customer
         /// <summary>
         ///     TAB ĐÃ GIAO
         /// </summary>
-        // Load Bảng hóa đơn trong
+// Load Bảng hóa đơn trong
         private void BindlvDaGiao(int CusId)
         {
             var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
@@ -60,7 +60,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        // Load hình của từng hóa đơn
+// Load hình của từng hóa đơn
         protected void lvRcptBuy_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
@@ -74,7 +74,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        // btn CHI TIẾT
+// btn CHI TIẾT
         protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "sel")
@@ -93,7 +93,7 @@ namespace ShoesStore.Customer
         /// <summary>
         ///     TAB CHỜ THANH TOÁN
         /// </summary>
-        // Load Bảng hóa đơn trong
+// Load Bảng hóa đơn trong
         private void BindlvChoThanhToan(int CusId)
         {
             var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
@@ -112,7 +112,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        // Load hình của từng hóa đơn
+// Load hình của từng hóa đơn
         protected void lvChoThanhToan_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
@@ -126,7 +126,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        // btn CHI TIẾT
+// btn CHI TIẾT
         protected void lvChoThanhToan_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "sel")
@@ -145,7 +145,7 @@ namespace ShoesStore.Customer
         /// <summary>
         ///     TAB CHỜ LẤY HÀNG
         /// </summary>
-        // Load Bảng hóa đơn trong
+// Load Bảng hóa đơn trong
         private void BindlvChoLayHang(int CusId)
         {
             var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
@@ -164,7 +164,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        // Load hình của từng hóa đơn
+// Load hình của từng hóa đơn
         protected void lvChoLayHang_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
@@ -178,7 +178,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        // btn CHI TIẾT
+// btn CHI TIẾT
         protected void lvChoLayHang_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "sel")
@@ -197,7 +197,7 @@ namespace ShoesStore.Customer
         /// <summary>
         ///     TAB CHỜ LẤY HÀNG
         /// </summary>
-        // Load Bảng hóa đơn trong
+// Load Bảng hóa đơn trong
         private void BindlvDangGiao(int CusId)
         {
             var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
@@ -216,7 +216,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        // Load hình của từng hóa đơn
+// Load hình của từng hóa đơn
         protected void lvDangGiao_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
@@ -230,7 +230,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        // btn CHI TIẾT
+// btn CHI TIẾT
         protected void lvDangGiao_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "sel")
@@ -268,7 +268,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        // Load hình của từng hóa đơn
+// Load hình của từng hóa đơn
         protected void lvDaHuy_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
@@ -282,7 +282,7 @@ namespace ShoesStore.Customer
             }
         }
 
-        // btn CHI TIẾT
+// btn CHI TIẾT
         protected void lvDaHuy_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "sel")

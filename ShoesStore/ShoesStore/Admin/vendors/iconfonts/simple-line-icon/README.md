@@ -25,15 +25,15 @@ Customizing LESS/SASS variables
 ====
 ### LESS:
 ```less
-@simple-line-font-path        : "/path/to/font/files";
-@simple-line-font-family      : "desired-name-font-family";
-@simple-line-icon-prefix      : prefix-;
+@simple-line-font-path: "/path/to/font/files";
+@simple-line-font-family: "desired-name-font-family";
+@simple-line-icon-prefix: prefix-;
 ```
 ### SASS:
 ```sass
-$simple-line-font-path        : "/path/to/font/files";
-$simple-line-font-family      : "desired-name-font-family";
-$simple-line-icon-prefix      : "prefix-";
+$simple-line-font-path: "/path/to/font/files";
+$simple-line-font-family: "desired-name-font-family";
+$simple-line-icon-prefix: "prefix-";
 ```
 Credits
 ===

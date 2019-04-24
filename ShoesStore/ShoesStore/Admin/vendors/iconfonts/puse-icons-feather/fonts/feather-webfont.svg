@@ -6,7 +6,7 @@
 <font id="featherregular" horiz-adv-x="3072" >
 <font-face units-per-em="3072" ascent="2304" descent="-768" />
 <missing-glyph horiz-adv-x="600" />
-<glyph unicode=" "  horiz-adv-x="600" />
+<glyph unicode=" "horiz-adv-x="600" />
 <glyph unicode="&#x09;" horiz-adv-x="600" />
 <glyph unicode="&#xa0;" horiz-adv-x="600" />
 <glyph unicode="&#x2000;" horiz-adv-x="1152" />

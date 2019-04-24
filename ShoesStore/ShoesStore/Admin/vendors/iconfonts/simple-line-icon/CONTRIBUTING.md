@@ -23,17 +23,17 @@ Before creating enhancement suggestions, please check out if a proposal already 
  - You can list some other packages where this enhancement exists.
 ## Pull Request
 Pull requests are always welcome. We love those!
-  - Include screenshot/image if you have added or modified new icon.
-  - We follow [github flow](https://guides.github.com/introduction/flow/) for our development model.
-  - Nice commit messages are always helpful.
-  - Reference issues and pull requests liberally.
-  - If you changed any one styleheet please make sure it reflects all styles file(LESS, CSS, SCSS).
+- Include screenshot/image if you have added or modified new icon.
+- We follow [github flow](https://guides.github.com/introduction/flow/) for our development model.
+- Nice commit messages are always helpful.
+- Reference issues and pull requests liberally.
+- If you changed any one styleheet please make sure it reflects all styles file(LESS, CSS, SCSS).
 ## Documentations
 Documentation is currently generated using `generate.php` file from `gh-pages` brunch.
-  - Modify `generate.php`.
-  - Run `php generate.php > index.html`.
-  - Do not edit `index.html`.
-  - Documentation should be up-to-date with master.
-  ___
-  Unsure where to begin contributing? You can start by looking through these beginner, help-wanted, enhancement labels issues.
-  You can [checkout our very cool contributors graph now](https://github.com/thesabbir/simple-line-icons/graphs/contributors).
+- Modify `generate.php`.
+- Run `php generate.php > index.html`.
+- Do not edit `index.html`.
+- Documentation should be up-to-date with master.
+___
+Unsure where to begin contributing? You can start by looking through these beginner, help-wanted, enhancement labels issues.
+You can [checkout our very cool contributors graph now](https://github.com/thesabbir/simple-line-icons/graphs/contributors).

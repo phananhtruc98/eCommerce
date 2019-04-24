@@ -15,7 +15,7 @@
                             <th>Kích cỡ</th>
                             <th>Nhận xét</th>
                             <th>Đánh giá</th>
-                            <%--  <th>Ngày thêm</th>--  Hiện đã bỏ cột DateAdd  (Sẽ là ngày thêm của hóa đơn trong bảng Rcpt --%>
+                            <%--<th>Ngày thêm</th>--Hiện đã bỏ cột DateAdd(Sẽ là ngày thêm của hóa đơn trong bảng Rcpt --%>
                         </tr>
                         <tr id="itemPlaceholder" runat="server"/>
                     </table>

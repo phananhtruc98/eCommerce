@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="ShoesStore.Admin.Admin" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -272,7 +273,8 @@
             </div>
         </ul>
     </nav>
-    <!-- partial --> <!-- Động -->
+    <!-- partial -->
+    <!-- Động -->
     <div class="main-panel">
         <asp:ContentPlaceHolder ID="MainContent" runat="server">
         </asp:ContentPlaceHolder>
@@ -282,7 +284,7 @@
             <div class="container-fluid clearfix">
                 <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">
                     © 2019
-                    <a href="<%= ResolveUrl("~/Admin/Default.aspx") %>" target="_blank">The Shuz</a>. Tất cả các quyền được bảo lưu.
+                    <a href="<%= ResolveUrl("~/Admin/Default.aspx") %>" target="_blank">The Shuz</a>. Tất cả các quyền được bảolưu.
                 </span>
                 <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
                     Hand-crafted & made with

@@ -23,11 +23,11 @@ namespace ShoesStore.BusinessLogicLayer
             return _dao.SelectedRowById(RcptSubId);
         }
 
-        // Hàm này lấy id của merchant đang đăng nhập bỏ vô RcptSubId
+// Hàm này lấy id của merchant đang đăng nhập bỏ vô RcptSubId
         public RcptSubDet GetMyRcptSubDet()
         {
             var mer = MerchantSession.LoginMer;
-            //  return MyLibrary.RcptSubDet_BUS.GetAll().FirstOrDefault(m => mer != null && m.MerId == mer.MerId);
+//return MyLibrary.RcptSubDet_BUS.GetAll().FirstOrDefault(m => mer != null && m.MerId == mer.MerId);
             return null; //xoa di
         }
     }

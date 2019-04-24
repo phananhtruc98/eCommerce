@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <%--    Thêm cột: Tên shop vô gridview --%>
+    <%--Thêm cột: Tên shop vô gridview --%>
     <div class="container">
         <div class="row">
             <div class="col-12 table table-responsive">

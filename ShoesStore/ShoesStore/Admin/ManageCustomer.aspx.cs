@@ -16,20 +16,20 @@ namespace ShoesStore.Admin
             if (!IsPostBack) BindDataGridView();
         }
 
-        // Load bảng cus
+// Load bảng cus
         private void BindDataGridView()
         {
             gvCustomer.DataSource = cus_BUS.Get_Cus_Info();
             gvCustomer.DataBind();
         }
 
-        // btn Tìm kiếm
+// btn Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
 
-        // Tìm kiếm
+// Tìm kiếm
         public void TimKiem(string search_key)
         {
             var rs = (from a in cus_BUS.Get_Cus_Info().ToList()

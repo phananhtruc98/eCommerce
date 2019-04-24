@@ -38,7 +38,7 @@ namespace ShoesStore.Customer
                 (Literal) thisRptItemParent.Items[thisRptItemParentItem.ItemIndex].FindControl("ltrSumPerShp");
             ltrSumPerShp.Text = SumPerShp(thisRpt).ToFormatMoney();
             UpdateSum(thisRptItemParent);
-            //string price = thisRptItem.FindControl("");
+//string price = thisRptItem.FindControl("");
         }
 
         private void UpdateSum(Repeater rptParent)
@@ -105,7 +105,7 @@ namespace ShoesStore.Customer
                     && m.SizeId == Convert.ToInt32(primaryKeys[4])
             ));
             Master.LoadCartPreview();
-            //rptCartDetCart_Bind();
+//rptCartDetCart_Bind();
             rptCartDetShp_Bind();
         }
 
@@ -113,7 +113,7 @@ namespace ShoesStore.Customer
         {
             if (e.Item.ItemType == ListItemType.Footer)
             {
-                //ltrSumPerShp.Text=rptCartDetCart.Items.
+//ltrSumPerShp.Text=rptCartDetCart.Items.
             }
         }
 
@@ -126,8 +126,8 @@ namespace ShoesStore.Customer
                 rptCartDetCart.DataSource =
                     MyLibrary.CartDet_BUS.ListCartPreview().Where(m => m.ShpId + "" == hdfShpId.Value);
                 rptCartDetCart.DataBind();
-                //get the person object that is bound to the current row.
-                // access person here
+//get the person object that is bound to the current row.
+// access person here
             }
         }
     }

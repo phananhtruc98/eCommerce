@@ -131,15 +131,15 @@
                                 <thead class="cart__totals-header">
                                 </thead>
                                 <tbody class="cart__totals-body">
-                                <%--  <tr>
-                                        <th>Phí vận chuyển</th>
-                                        <td>
-                                            $25.00
-                                            <div class="cart__calc-shipping">
-                                                <a href="#">Cách tính ship</a>
-                                            </div>
-                                        </td>
-                                    </tr>--%>
+                                <%--<tr>
+<th>Phí vận chuyển</th>
+<td>
+$25.00
+<div class="cart__calc-shipping">
+<a href="#">Cách tính ship</a>
+</div>
+</td>
+</tr>--%>
                                 </tbody>
                                 <tfoot class="cart__totals-footer">
                                 <tr>

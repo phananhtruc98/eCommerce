@@ -27,39 +27,39 @@ namespace ShoesStore
             {
                 var hasStar = i <= star ? "rating__star--active" : "";
                 sb.Append($@"<svg
-                                                                                class='rating__star {hasStar}'
-                                                                                width='13px' height='12px'>
-                                                                                <g class='rating__fill'>
-                                                                                    <use
-                                                                                        href='/images/sprite.svg#star-normal'>
-                                                                                    </use>
-                                                                                </g>
-                                                                                <g class='rating__stroke'>
-                                                                                    <use
-                                                                                        href='/images/sprite.svg#star-normal-stroke'>
-                                                                                    </use>
-                                                                                </g>
-                                                                            </svg>
-                                                                            <div
-                                                                                class='rating__star rating__star--only-edge rating__star--active'>
-                                                                                <div class='rating__fill'>
-                                                                                    <div class='fake-svg-icon'></div>
-                                                                                </div>
-                                                                                <div class='rating__stroke'>
-                                                                                    <div class='fake-svg-icon'></div>
-                                                                                </div>
-                                                                            </div>");
+class='rating__star {hasStar}'
+width='13px' height='12px'>
+<g class='rating__fill'>
+<use
+href='/images/sprite.svg#star-normal'>
+</use>
+</g>
+<g class='rating__stroke'>
+<use
+href='/images/sprite.svg#star-normal-stroke'>
+</use>
+</g>
+</svg>
+<div
+class='rating__star rating__star--only-edge rating__star--active'>
+<div class='rating__fill'>
+<div class='fake-svg-icon'></div>
+</div>
+<div class='rating__stroke'>
+<div class='fake-svg-icon'></div>
+</div>
+</div>");
             }
 
             sb.Append("</div>");
-            //string s = "";
-            //List<string> list = new List<string>();
-            //for (int i = 0; i < star; i++)
-            //{
-            //    list.Add("*");
-            //}
-            //s = string.Join(Environment.NewLine, list.ToArray());
-            //return s;
+//string s = "";
+//List<string> list = new List<string>();
+//for (int i = 0; i < star; i++)
+//{
+//list.Add("*");
+//}
+//s = string.Join(Environment.NewLine, list.ToArray());
+//return s;
             return sb.ToString();
         }
 

@@ -53,12 +53,12 @@ var fnToString = hasOwn.toString;
 var ObjectFunctionString = fnToString.call( Object );
 var support = {};
 var isFunction = function isFunction( obj ) {
-      // Support: Chrome <=57, Firefox <=52
-      // In some browsers, typeof returns "function" for HTML <object> elements
-      // (i.e., `typeof document.createElement( "object" ) === "function"`).
-      // We don't want to classify *any* DOM node as a function.
-      return typeof obj === "function" && typeof obj.nodeType !== "number";
-  };
+// Support: Chrome <=57, Firefox <=52
+// In some browsers, typeof returns "function" for HTML <object> elements
+// (i.e., `typeof document.createElement( "object" ) === "function"`).
+// We don't want to classify *any* DOM node as a function.
+return typeof obj === "function" && typeof obj.nodeType !== "number";
+};
 var isWindow = function isWindow( obj ) {
 		return obj != null && obj === obj.window;
 	};
@@ -787,10 +787,10 @@ function createDisabledPseudo( disabled ) {
 		if ( "form" in elem ) {
 			// Check for inherited disabledness on relevant non-disabled elements:
 			// * listed form-associated elements in a disabled fieldset
-			//   https://html.spec.whatwg.org/multipage/forms.html#category-listed
-			//   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
+			//https://html.spec.whatwg.org/multipage/forms.html#category-listed
+			//https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
 			// * option elements in a disabled optgroup
-			//   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
+			//https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
 			// All such elements have a "form" property.
 			if ( elem.parentNode && elem.disabled === false ) {
 				// Option elements defer to a parent optgroup if present
@@ -930,7 +930,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			}
 		};
 	} else {
-		Expr.filter["ID"] =  function( id ) {
+		Expr.filter["ID"] =function( id ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
 				var node = typeof elem.getAttributeNode !== "undefined" &&
@@ -1219,7 +1219,7 @@ Sizzle.matchesSelector = function( elem, expr ) {
 	if ( support.matchesSelector && documentIsHTML &&
 		!compilerCache[ expr + " " ] &&
 		( !rbuggyMatches || !rbuggyMatches.test( expr ) ) &&
-		( !rbuggyQSA     || !rbuggyQSA.test( expr ) ) ) {
+		( !rbuggyQSA|| !rbuggyQSA.test( expr ) ) ) {
 		try {
 			var ret = matches.call( elem, expr );
 			// IE 9's matchesSelector returns false on disconnected nodes
@@ -1669,7 +1669,7 @@ Expr = Sizzle.selectors = {
 		"empty": function( elem ) {
 			// http://www.w3.org/TR/selectors/#empty-pseudo
 			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
-			//   but not by others (comment: 8; processing instruction: 7; etc.)
+			//but not by others (comment: 8; processing instruction: 7; etc.)
 			// nodeType < 6 works because attributes (2) do not appear as children
 			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
 				if ( elem.nodeType < 6 ) {
@@ -2170,9 +2170,9 @@ compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
 };
 /**
  * A low-level selection function that works with Sizzle's compiled
- *  selector functions
+ *selector functions
  * @param {String|Function} selector A selector or a pre-compiled
- *  selector function built with Sizzle.compile
+ *selector function built with Sizzle.compile
  * @param {Element} context
  * @param {Array} [results]
  * @param {Array} [seed] A set of elements to match against
@@ -2325,7 +2325,7 @@ var siblings = function( n, elem ) {
 };
 var rneedsContext = jQuery.expr.match.needsContext;
 function nodeName( elem, name ) {
-  return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
 };
 var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
 // Implement the identical functionality for filter and not
@@ -2603,16 +2603,16 @@ jQuery.each( {
 		return siblings( elem.firstChild );
 	},
 	contents: function( elem ) {
-        if ( nodeName( elem, "iframe" ) ) {
-            return elem.contentDocument;
-        }
-        // Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
-        // Treat the template element as a regular one in browsers that
-        // don't support it.
-        if ( nodeName( elem, "template" ) ) {
-            elem = elem.content || elem;
-        }
-        return jQuery.merge( [], elem.childNodes );
+if ( nodeName( elem, "iframe" ) ) {
+return elem.contentDocument;
+}
+// Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
+// Treat the template element as a regular one in browsers that
+// don't support it.
+if ( nodeName( elem, "template" ) ) {
+elem = elem.content || elem;
+}
+return jQuery.merge( [], elem.childNodes );
 	}
 }, function( name, fn ) {
 	jQuery.fn[ name ] = function( until, selector ) {
@@ -3284,11 +3284,11 @@ function camelCase( string ) {
 }
 var acceptData = function( owner ) {
 	// Accepts only:
-	//  - Node
-	//    - Node.ELEMENT_NODE
-	//    - Node.DOCUMENT_NODE
-	//  - Object
-	//    - Any
+	//- Node
+	//- Node.ELEMENT_NODE
+	//- Node.DOCUMENT_NODE
+	//- Object
+	//- Any
 	return owner.nodeType === 1 || owner.nodeType === 9 || !( +owner.nodeType );
 };
 function Data() {
@@ -3348,14 +3348,14 @@ Data.prototype = {
 	access: function( owner, key, value ) {
 		// In cases where either:
 		//
-		//   1. No key was specified
-		//   2. A string key was specified, but no value provided
+		//1. No key was specified
+		//2. A string key was specified, but no value provided
 		//
 		// Take the "read" path and allow the get method to determine
 		// which value to return, respectively either:
 		//
-		//   1. The entire cache object
-		//   2. The data stored at the key
+		//1. The entire cache object
+		//2. The data stored at the key
 		//
 		if ( key === undefined ||
 				( ( key && typeof key === "string" ) && value === undefined ) ) {
@@ -3364,8 +3364,8 @@ Data.prototype = {
 		// When the key is not a string, or both a key and value
 		// are specified, set or extend (existing objects) with either:
 		//
-		//   1. An object of properties
-		//   2. A key and value
+		//1. An object of properties
+		//2. A key and value
 		//
 		this.set( owner, key, value );
 		// Since the "set" path can have two possible entry points
@@ -4540,7 +4540,7 @@ jQuery.fn.extend( {
 	off: function( types, selector, fn ) {
 		var handleObj, type;
 		if ( types && types.preventDefault && types.handleObj ) {
-			// ( event )  dispatched jQuery.Event
+			// ( event )dispatched jQuery.Event
 			handleObj = types.handleObj;
 			jQuery( types.delegateTarget ).off(
 				handleObj.namespace ?
@@ -4699,7 +4699,7 @@ function domManip( collection, args, callback, ignored ) {
 					if ( rscriptType.test( node.type || "" ) &&
 						!dataPriv.access( node, "globalEval" ) &&
 						jQuery.contains( doc, node ) ) {
-						if ( node.src && ( node.type || "" ).toLowerCase()  !== "module" ) {
+						if ( node.src && ( node.type || "" ).toLowerCase()!== "module" ) {
 							// Optional AJAX dependency, but won't run scripts if not present
 							if ( jQuery._evalUrl ) {
 								jQuery._evalUrl( node.src );
@@ -5030,8 +5030,8 @@ function curCSS( elem, name, computed ) {
 		style = elem.style;
 	computed = computed || getStyles( elem );
 	// getPropertyValue is needed for:
-	//   .css('filter') (IE 9 only, #12537)
-	//   .css('--customProperty) (#3144)
+	//.css('filter') (IE 9 only, #12537)
+	//.css('--customProperty) (#3144)
 	if ( computed ) {
 		ret = computed.getPropertyValue( name ) || computed[ name ];
 		if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
@@ -6479,7 +6479,7 @@ jQuery.fn.extend( {
 	},
 	// This method will return documentElement in the following cases:
 	// 1) For the element inside the iframe without offsetParent, this method will return
-	//    documentElement of the parent window
+	//documentElement of the parent window
 	// 2) For the hidden or detached element
 	// 3) For body or html element, i.e. in case of the html node - it will return itself
 	//

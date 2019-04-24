@@ -14,21 +14,21 @@ namespace ShoesStore
 
         protected virtual void Page_Load(object sender, EventArgs e)
         {
-            // Determine current view
+// Determine current view
             var isMobile = WebFormsFriendlyUrlResolver.IsMobileView(new HttpContextWrapper(Context));
             var CurrentView = isMobile ? "Mobile" : "Desktop";
-            // Determine alternate view
+// Determine alternate view
             var AlternateView = isMobile ? "Desktop" : "Mobile";
             var strSwitchViewRouteName = "AspNet.FriendlyUrls.SwitchView";
             var SwitchViewRoute = RouteTable.Routes;
             if (SwitchViewRoute == null)
             {
-                // Friendly URLs is not enabled or the name of the switch view route is out of sync
+// Friendly URLs is not enabled or the name of the switch view route is out of sync
                 Visible = false;
                 return;
             }
 
-            // Create switch URL from the route, e.g. ~/__FriendlyUrls_SwitchView/Mobile?ReturnUrl=/Page
+// Create switch URL from the route, e.g. ~/__FriendlyUrls_SwitchView/Mobile?ReturnUrl=/Page
             var url = GetRouteUrl(strSwitchViewRouteName, new
             {
                 view = AlternateView,

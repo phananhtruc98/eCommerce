@@ -30,8 +30,8 @@ namespace ShoesStore.MyExtensions
         public static IQueryable<T> SortBy<T>(this IQueryable<T> source, string propertyName)
         {
             if (source == null) throw new ArgumentNullException("source");
-            // DataSource control passes the sort parameter with a direction
-            // if the direction is descending           
+// DataSource control passes the sort parameter with a direction
+// if the direction is descending
             var descIndex = propertyName.IndexOf(" DESC");
             if (descIndex >= 0) propertyName = propertyName.Substring(0, descIndex).Trim();
             if (string.IsNullOrEmpty(propertyName)) return source;

@@ -137,11 +137,11 @@ namespace ShoesStore.Customer
                     radioColor.Attributes.Add("onclick", scriptColor);
                 }
 
-                // put the proper client-side handler for RadioButton
+// put the proper client-side handler for RadioButton
             }
             catch (Exception)
             {
-                // ignored
+// ignored
             }
         }
 
@@ -157,14 +157,14 @@ namespace ShoesStore.Customer
                     ((RadioButton) e.Item.FindControl("rdbSize")).GroupName = "Size";
                 }
 
-                // put the proper client-side handler for RadioButton
+// put the proper client-side handler for RadioButton
                 var radioSize = (RadioButton) e.Item.FindControl("rdbSize");
                 var scriptSize = "setExclusiveRadioButton('rptProSize.*Size', this)";
                 radioSize.Attributes.Add("onclick", scriptSize);
             }
             catch (Exception)
             {
-                // ignored
+// ignored
             }
         }
 

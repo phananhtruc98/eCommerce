@@ -24,35 +24,35 @@ namespace ShoesStore.Admin
             BindDataGridViewPro();
         }
 
-        // Load Bảng Màu
+// Load Bảng Màu
         private void BindDataGridViewColor()
         {
             gvProColor.DataSource = proColor_BUS.GetAll();
             gvProColor.DataBind();
         }
 
-        // Load Bảng Thương hiệu
+// Load Bảng Thương hiệu
         private void BindDataGridViewBrand()
         {
             gvBrand.DataSource = proBrand_BUS.GetAll();
             gvBrand.DataBind();
         }
 
-        // Load Bảng Kích cỡ
+// Load Bảng Kích cỡ
         private void BindDataGridViewSize()
         {
             gvProSize.DataSource = proSize_BUS.GetAll();
             gvProSize.DataBind();
         }
 
-        // Load Bảng Loại sản phẩm
+// Load Bảng Loại sản phẩm
         private void BindDataGridViewCat()
         {
             gvProCat.DataSource = proCat_BUS.GetAll();
             gvProCat.DataBind();
         }
 
-        // Load Bảng Pro
+// Load Bảng Pro
         private void BindDataGridViewPro()
         {
             var result = (from p in pro_BUS.GetAll()
@@ -81,7 +81,7 @@ namespace ShoesStore.Admin
             gvPro.DataBind();
         }
 
-        // Phân trang
+// Phân trang
         protected void gvPro_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPro.PageIndex = e.NewPageIndex;

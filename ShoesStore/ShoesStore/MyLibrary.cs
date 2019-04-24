@@ -124,8 +124,8 @@ namespace ShoesStore
         public static string ProImgPath(object ipro)
         {
             var pro = (Pro) ipro;
-            //if (string.IsNullOrEmpty(pro.Img))
-            //return Path.Combine(proPath, "default.png");
+//if (string.IsNullOrEmpty(pro.Img))
+//return Path.Combine(proPath, "default.png");
             try
             {
                 string[] path =
