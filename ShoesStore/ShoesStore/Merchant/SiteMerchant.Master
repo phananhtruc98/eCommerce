@@ -32,48 +32,15 @@
     </Scripts>
 </asp:ScriptManager>
 <!-- quickview-modal -->
-<friendlyUrls:ViewSwitcher ID="ViewSwitcher1" runat="server"/>
-<div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content">
-        </div>
-    </div>
-</div>
+
 <!-- quickview-modal / end -->
 <!-- Dang Nhap modal-->
 <!-- Dang Nhap modal/end-->
-<!-- Dang Ky modal-->
 <div class="site">
     <header class="site__header d-lg-block d-none">
         <div class="site-header">
             <!-- .topbar -->
-            <div class=" topbar">
-                <div class="topbar__container container">
-                    <div class="topbar__row">
-                        <div class="topbar__item topbar__item--link">
-                            <a class="topbar-link" href="/">
-                                Về The Shuz
-                            </a>
-                        </div>
-                        <div class="topbar__item topbar__item--link">
-                            <a class="topbar-link" href="#">
-                                Liên hệ
-                            </a>
-                        </div>
-                        <div class="topbar__item topbar__item--link">
-                            <a class="topbar-link" href="#">
-                                Theo dõi đơn hàng
-                            </a>
-                        </div>
-                        <div class="topbar__item topbar__item--link">
-                            <a class="topbar-link" href="#">
-                                Kênh người bán
-                            </a>
-                        </div>
-                        <div class="topbar__spring"></div>
-                    </div>
-                </div>
-            </div>
+            
             <!-- .topbar / end -->
             <div class="site-header__nav-panel">
                 <div class="nav-panel">

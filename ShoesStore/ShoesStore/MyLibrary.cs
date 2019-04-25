@@ -38,6 +38,7 @@ namespace ShoesStore
         public static ProBrand_BUS ProBrand_BUS => new ProBrand_BUS();
         public static Usr_BUS Usr_BUS => new Usr_BUS();
         public static Cus_BUS Cus_BUS => new Cus_BUS();
+        public static Mer_BUS Mer_BUS => new Mer_BUS();
         public static WebInfo_BUS WebInfo_BUS => new WebInfo_BUS();
 
         /// <summary>
