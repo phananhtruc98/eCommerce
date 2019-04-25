@@ -55,6 +55,7 @@ namespace ShoesStore
         public static RcptBuyStaDet_BUS RcptBuyStaDet_BUS => new RcptBuyStaDet_BUS();
         public static RcptBuyStaStep_BUS RcptBuyStaStep_BUS => new RcptBuyStaStep_BUS();
         public static RcptSub_BUS RcptSub_BUS => new RcptSub_BUS();
+        public static RcptSubDet_BUS RcptSubDet_BUS => new RcptSubDet_BUS();
         public static ProColor_BUS ProColor_BUS => new ProColor_BUS();
 
         public static string CusImgPath(object iCus)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 using ShoesStore.Merchant;
@@ -27,7 +28,7 @@ namespace ShoesStore.BusinessLogicLayer
         public RcptSubDet GetMyRcptSubDet()
         {
             var mer = MerchantSession.LoginMer;
-//return MyLibrary.RcptSubDet_BUS.GetAll().FirstOrDefault(m => mer != null && m.MerId == mer.MerId);
+            //return MyLibrary.RcptSubDet_BUS.GetAll().FirstOrDefault(m => mer != null && m.MerId == mer.MerId);
             return null; //xoa di
         }
     }

@@ -1,4 +1,8 @@
 ﻿<%@ Page Language="C#" Title="Đăng Ký Gói Sub" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeFile="SubGet.aspx.cs" Inherits="ShoesStore.Merchant.SubGet" %>
+
+<%@ Import Namespace="ShoesStore.MyExtensions" %>
+<%@ Import Namespace="ShoesStore" %>
+<%@ MasterType VirtualPath="SiteMerchant.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <!-- site__body -->
     <div class="btn btn-lg custom_bar">Bảng giá gói dịch vụ</div>
@@ -9,7 +13,7 @@
                     <Columns>
                         <asp:TemplateField HeaderStyle-Width="200px" HeaderText="Chọn gói">
                             <ItemTemplate>
-                                <asp:LinkButton ID="lbChoose" CommandArgument='<%# Eval("SubId") %>' CommandName="EditRow" ForeColor="#8C4510" runat="server">Chọn</asp:LinkButton>
+                                <asp:Button ID="lbChoose" OnClick="Choose" CommandArgument='<%# Eval("SubId") %>' CommandName="EditRow" ForeColor="#8C4510" Text="Chọn" runat="server"/>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderStyle-Width="100px" HeaderText="Mã gói">
@@ -41,6 +45,8 @@
                                 <asp:TextBox runat="server" ID="EditPrice" Text='<%# Bind("Price") %>'/>
                             </EditItemTemplate>
                         </asp:TemplateField>
+
+
                     </Columns>
                     <FooterStyle BackColor="#FFFFCC" ForeColor="#330099"/>
                     <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC"/>
@@ -52,11 +58,22 @@
                     <SortedDescendingCellStyle BackColor="#F6F0C0"/>
                     <SortedDescendingHeaderStyle BackColor="#7E0000"/>
                 </asp:GridView>
+                <asp:HiddenField id="myHiddenInput" runat="server" />
             </div>
         </div>
-        <div class="product__actions-item product__actions-item--addtocart">
-            <asp:Button runat="server" ID="btnAddCart" OnClick="btnAddCart_OnClick" CssClass="btn btn-primary btn-lg" Text="Xác Nhận"></asp:Button>
-        </div>
     </div>
+    <br />
+
+
+    <asp:Repeater runat="server" ID="Hdnfld" ItemType="ShoesStore.DataAccessLogicLayer.RcptSubDet" OnItemDataBound="rptSubDet_OnItemDataBound">
+                    <ItemTemplate>
+                        <asp:HiddenField runat="server" ID="Hdnfld" Value="<%# Item.SubId %>"/>
+                        <tr>
+                            <td class="cart-table__column--shop">
+                                Shop : <%# Item.SubId %>
+                            </td>
+                        </tr>
+                        </ItemTemplate>
+     </asp:Repeater>
     <!-- site__body / end -->
 </asp:Content>
