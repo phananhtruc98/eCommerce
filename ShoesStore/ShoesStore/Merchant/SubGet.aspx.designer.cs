@@ -13,13 +13,13 @@ namespace ShoesStore.Merchant {
     public partial class SubGet {
         
         /// <summary>
-        /// gvSub control.
+        /// lvSub control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSub;
+        protected global::System.Web.UI.WebControls.ListView lvSub;
         
         /// <summary>
         /// myHiddenInput control.
@@ -31,49 +31,22 @@ namespace ShoesStore.Merchant {
         protected global::System.Web.UI.WebControls.HiddenField myHiddenInput;
         
         /// <summary>
-        /// SubSelected control.
+        /// lvSubSelected control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table SubSelected;
+        protected global::System.Web.UI.WebControls.ListView lvSubSelected;
         
         /// <summary>
-        /// lblSubContent control.
+        /// HiddenField1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSubContent;
-        
-        /// <summary>
-        /// txtQty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQty;
-        
-        /// <summary>
-        /// lbTongNgayCon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTongNgayCon;
-        
-        /// <summary>
-        /// lbTongTienCon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTongTienCon;
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
         
         /// <summary>
         /// Master property.
