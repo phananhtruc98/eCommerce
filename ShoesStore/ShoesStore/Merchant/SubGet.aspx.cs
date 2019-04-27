@@ -5,36 +5,37 @@ using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.MyExtensions;
+using ShoesStore;
 
 namespace ShoesStore.Merchant
 {
-    public partial class SubGet : Page
+    public partial class SubGet : System.Web.UI.Page
     {
         protected static Pro _proDetView;
         protected static Mer _merView;
 
         //Khai báo biến Sub
-        protected static Sub _subView;
-        protected static RcptSub _rcptsubView;
-        private readonly Sub_BUS sub_BUS = new Sub_BUS();
-        private CartDet _cartDetView;
-        private RcptSubDet _rcptsubDetView;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) BindGridViewData();
+            if (!IsPostBack)
+            {
+                BindGridViewData();
+            }
+
         }
 
-        private void BindGridViewData()
+        public void BindGridViewData()
         {
-            gvSub.DataSource = sub_BUS.GetAll();
+            gvSub.DataSource = MyLibrary.Sub_BUS.GetAll();
             gvSub.DataBind();
         }
+
         /*
-        protected void Choose(object sender, EventArgs e)
-        {
-            Hdnfld.Visible = true;
-        }
+        //protected void Choose(object sender, EventArgs e)
+        //{
+        //    Hdnfld.Visible = true;
+        //}
         */
         protected void rptSubDet_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -61,5 +62,42 @@ namespace ShoesStore.Merchant
         */
 
 
+        int subId = 0;
+        protected void gvSub_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+        }
+
+        protected void gvSub_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var rcptBuyId = int.Parse((gvSub.SelectedRow.FindControl("lbSubId") as Label).Text);
+            subId = rcptBuyId;
+            Bind_lvSubSelected(subId);
+        }
+
+        public void Bind_lvSubSelected(int SubId)
+        {
+            var rs = from s in MyLibrary.Sub_BUS.GetAll()
+                     where s.SubId == SubId
+                     select s;
+            lvSubSelected.DataSource = rs.ToList();
+            lvSubSelected.DataBind();
+        }
+
+        protected void lvSubSelected_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                TextBox txtSoLuong = (TextBox)e.Item.FindControl("txtSoLuong");
+                txtSoLuong.TextChanged += TxtSoLuong_TextChanged;
+                string txtSl = txtSoLuong.Text;
+                Label lbTongNgayCon = (Label)e.Item.FindControl("lbTongNgayCon");
+                lbTongNgayCon.Text = txtSl;
+            }
+        }
+
+        private void TxtSoLuong_TextChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

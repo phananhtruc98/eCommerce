@@ -46,6 +46,7 @@ namespace ShoesStore
         /// </summary>
         public static WebSlide_BUS WebSlide_BUS => new WebSlide_BUS();
 
+        public static Sub_BUS Sub_BUS => new Sub_BUS();
         public static Pro_BUS Pro_BUS => new Pro_BUS();
         public static RcptBuyDet_BUS RcptBuyDet_BUS => new RcptBuyDet_BUS();
         public static Cart_BUS Cart_BUS => new Cart_BUS();
