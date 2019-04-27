@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ShoesStore.BusinessLogicLayer;
+using ShoesStore.DataAccessLogicLayer;
+using System;
 
 using System.Data;
 using System.Web.UI;
@@ -8,27 +10,46 @@ namespace ShoesStore.Merchant
 {
     public partial class MerAddProd : Page
     {
+        private readonly Pro_BUS pro = new Pro_BUS();
         protected void Page_Load(object sender, EventArgs e)
         {
-            DropDownListCat.DataSource = MyLibrary.Pro_BUS.GetAll();
+            DropDownListCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
             DropDownListCat.DataTextField = "CatId";
             DropDownListCat.DataValueField = "CatId";
             DropDownListCat.DataBind();
             //
-            DropDownListBrand.DataSource = MyLibrary.Pro_BUS.GetAll();
+            DropDownListBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll();
             DropDownListBrand.DataTextField = "BrandId";
             DropDownListBrand.DataValueField = "BrandId";
             DropDownListBrand.DataBind();
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            //var CatId = DropDownListCat.SelectedItem.Value() ;
-            //var CatId = DropDownListBrand.SelectedItem.Value() ;
-            int ProQuantity = int.Parse(((TextBox)pnlThem.FindControl("intputProQuantity")).Text);
-            string ProName = ((TextBox)pnlThem.FindControl("inputProName")).Text;
+            int catId = int.Parse(DropDownListCat.SelectedItem.Text) ;
+            int brandId = int.Parse(DropDownListBrand.SelectedItem.Text);
+            int proQuantity = int.Parse(((TextBox)pnlThem.FindControl("intputProQuantity")).Text);
+            string proName = ((TextBox)pnlThem.FindControl("inputProName")).Text;
             //img
-            string Desc = ((TextBox)pnlThem.FindControl("inputDesc")).Text;
-            string DescShort = ((TextBox)pnlThem.FindControl("inputDescShort")).Text;
+            string desc = ((TextBox)pnlThem.FindControl("inputDesc")).Text;
+            string descShort = ((TextBox)pnlThem.FindControl("inputDescShort")).Text;
+            string price = ((TextBox)pnlThem.FindControl("inputPrice")).Text;
+            //
+            var pro1 = new Pro
+            {
+                CatId = catId,
+                BrandId = brandId,
+                ProQuantity = proQuantity,
+                ProName = proName,
+                Desc = desc,
+                DescShort = descShort,
+                Price= price
+
+                //DateAdd = DateTime.Now,
+                //DateEdit = null,
+                //UsrAdd = int.Parse(usrAdd),
+                //UsrEdit = null
+            };
+            pro.Insert(pro1);
 
 
         }
