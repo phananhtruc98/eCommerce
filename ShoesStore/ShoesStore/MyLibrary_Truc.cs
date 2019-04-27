@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using ShoesStore.DataAccessLogicLayer;
+using System.Collections.Generic;
+using System.IO;
 using System.Net.Mail;
 using System.Text;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace ShoesStore
 {
     public partial class MyLibrary
     {
+        private static readonly string adminPath = "/admin/images/avatar";
+        private static readonly string _noAvatar = "/images/avatar/default.jpg";
         public static bool IsValidEmailAddress(string email)
         {
             try
@@ -52,14 +58,14 @@ class='rating__star rating__star--only-edge rating__star--active'>
             }
 
             sb.Append("</div>");
-//string s = "";
-//List<string> list = new List<string>();
-//for (int i = 0; i < star; i++)
-//{
-//list.Add("*");
-//}
-//s = string.Join(Environment.NewLine, list.ToArray());
-//return s;
+            //string s = "";
+            //List<string> list = new List<string>();
+            //for (int i = 0; i < star; i++)
+            //{
+            //list.Add("*");
+            //}
+            //s = string.Join(Environment.NewLine, list.ToArray());
+            //return s;
             return sb.ToString();
         }
 
@@ -77,5 +83,44 @@ class='rating__star rating__star--only-edge rating__star--active'>
 
             return s;
         }
+        public static string AdminImgPath(object iMstr)
+        {
+            var mstr = (Mstr)iMstr;
+
+            try
+            {
+                string[] path =
+                  {
+                adminPath,
+                mstr.Usr.Avatar
+            };
+                return ReturnUrl(path);
+            }
+            catch
+            {
+                return _noAvatar;
+            }
+        }
+
+        //public static string uploadAvaAdmin(FileUpload file)
+        //{
+        //    var fname = file.FileName;
+        //    var fpath = Server.MapPath("/Admin/Images/avatar/");
+        //    fpath = fpath + @"/" + file.FileName;
+        //    var getext = Path.GetExtension(file.PostedFile.FileName);
+        //    var filename = Path.GetFileNameWithoutExtension(file.PostedFile.FileName);
+        //    var strFilePath = filename + getext;
+        //    if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" &&
+        //        getext != ".png" && getext != ".tif" && getext != ".tiff")
+        //    {
+        //        MyLibrary.Show("Chọn ảnh không đúng!");
+        //        return;
+        //    }
+
+        //    file.SaveAs(Server.MapPath(@"~/Admin/Images/avatar/" + strFilePath));
+        //    ViewState["fname"] = fname;
+        //    ViewState["fPath"] = @"~/Admin/Images/avatar/" + strFilePath;
+        //    return strFilePath;
+        //}
     }
 }
