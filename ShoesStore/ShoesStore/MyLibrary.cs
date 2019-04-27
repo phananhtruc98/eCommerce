@@ -19,6 +19,8 @@ namespace ShoesStore
         private static readonly string cusPath = "/images/usrs/cus";
         private static readonly string usrPath = "/images/usrs";
         private static readonly string _noImg = "/images/no_img.png";
+        private static readonly string _noAvatar = "/images/avatar/no_img.jpg";
+        private static readonly string adminPath = "/admin/images/avatar";
 
         public static SortDirection SortDirection
         {
@@ -26,7 +28,7 @@ namespace ShoesStore
             {
                 if (GetCurrentPageViewState()["SortDirection"] == null)
                     GetCurrentPageViewState()["SortDirection"] = SortDirection.Ascending;
-                return (SortDirection) GetCurrentPageViewState()["SortDirection"];
+                return (SortDirection)GetCurrentPageViewState()["SortDirection"];
             }
             set => GetCurrentPageViewState()["SortDirection"] = value;
         }
@@ -61,7 +63,7 @@ namespace ShoesStore
 
         public static string CusImgPath(object iCus)
         {
-            var cus = (Cus) iCus;
+            var cus = (Cus)iCus;
             if (string.IsNullOrEmpty(cus.Usr.Avatar))
                 return Path.Combine(usrPath, "default.jpg");
             return Path.Combine(cusPath, cus.CusId.ToString(), cus.Usr.Avatar);
@@ -74,7 +76,7 @@ namespace ShoesStore
                 BindingFlags.FlattenHierarchy |
                 BindingFlags.Instance |
                 BindingFlags.NonPublic);
-            return (StateBag) viewStateProp?.GetValue(page);
+            return (StateBag)viewStateProp?.GetValue(page);
         }
 
         public static string GetSortDirection()
@@ -101,7 +103,7 @@ namespace ShoesStore
         /// <returns>Trả về đường dẫn IMG của ProCat</returns>
         public static string ProCatImgPath(object iProCat)
         {
-            var proCat = (ProCat) iProCat;
+            var proCat = (ProCat)iProCat;
             string[] path =
             {
                 proCatPath,
@@ -112,22 +114,22 @@ namespace ShoesStore
 
         public static string ProColorPath(object iProDet)
         {
-            var proDet = (ProDet) iProDet;
+            var proDet = (ProDet)iProDet;
             return Path.Combine(proPath, proDet.Pro.Shp.ShpName, proDet.Pro.ProName, "color", proDet.ProColor.ColorImg);
         }
 
         public static string ProDetUrl(object ipro)
         {
-            var pro = (Pro) ipro;
+            var pro = (Pro)ipro;
             return Path.Combine(proDetUrl, TextHelper.UrlFriendly(pro.ProCat.CatName),
                 TextHelper.UrlFriendly(pro.ProName), TextHelper.UrlFriendly(pro.Shp.ShpName));
         }
 
         public static string ProImgPath(object ipro)
         {
-            var pro = (Pro) ipro;
-//if (string.IsNullOrEmpty(pro.Img))
-//return Path.Combine(proPath, "default.png");
+            var pro = (Pro)ipro;
+            //if (string.IsNullOrEmpty(pro.Img))
+            //return Path.Combine(proPath, "default.png");
             try
             {
                 string[] path =
@@ -144,16 +146,34 @@ namespace ShoesStore
                 return _noImg;
             }
         }
+        public static string AdminImgPath(object iMstr)
+        {
+            var mstr = (Mstr)iMstr;
+
+            try
+            {
+                string[] path =
+                  {
+                adminPath,
+                mstr.Usr.Avatar
+            };
+                return ReturnUrl(path);
+            }
+            catch
+            {
+                return _noAvatar;
+            }
+        }
 
         public static string ProSizePath(object iProDet)
         {
-            var proDet = (ProDet) iProDet;
+            var proDet = (ProDet)iProDet;
             return Path.Combine(proPath, proDet.Pro.Shp.ShpName, proDet.Pro.ProName, "size", proDet.ProSize.SizeImg);
         }
 
         public static string ProSlidePath(object iProSlide)
         {
-            var proSlide = (ProSlide) iProSlide;
+            var proSlide = (ProSlide)iProSlide;
             return Path.Combine(proPath, proSlide.Pro.Shp.ShpName, proSlide.Pro.ProName, "Slides", proSlide.Img);
         }
 

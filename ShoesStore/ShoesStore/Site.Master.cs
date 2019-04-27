@@ -36,6 +36,7 @@ namespace ShoesStore
 
         private void Page_Init(object sender, EventArgs e)
         {
+            string s = $"{_actCode}";
             if (WebSession.LoginUsr != null)
             {
                 usr_login.Visible = false;

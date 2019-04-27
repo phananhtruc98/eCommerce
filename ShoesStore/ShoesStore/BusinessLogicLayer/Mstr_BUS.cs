@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Objects;
+
 using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
@@ -96,6 +97,11 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
         public override void SetActive(Mstr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        System.Data.Objects.ObjectResult<sp_Admin_Info_Result> IMstr.Get_Admin_Info()
         {
             throw new NotImplementedException();
         }

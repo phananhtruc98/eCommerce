@@ -79,5 +79,10 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        System.Data.Objects.ObjectResult<sp_Cus_Info_Result> ICus.Get_Cus_Info()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -16,5 +16,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public int StaId { get; set; }
         public int RcptBuyId { get; set; }
         public int StepId { get; set; }
+        public Nullable<System.DateTime> AddDate { get; set; }
     }
 }

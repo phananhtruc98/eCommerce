@@ -22,7 +22,7 @@ namespace ShoesStore.DataAccessLogicLayer
             {
                 return DataProvider.Instance.Set<T>().ToList();
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }

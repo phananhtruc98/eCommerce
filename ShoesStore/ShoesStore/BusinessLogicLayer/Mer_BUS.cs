@@ -68,5 +68,10 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        System.Data.Objects.ObjectResult<sp_Mer_Info_Result> IMer.Get_Mer_Info()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

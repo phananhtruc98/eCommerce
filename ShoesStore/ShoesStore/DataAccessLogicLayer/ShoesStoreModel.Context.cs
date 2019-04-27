@@ -50,13 +50,13 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<RcptBuy> RcptBuy { get; set; }
         public DbSet<RcptBuyDet> RcptBuyDet { get; set; }
         public DbSet<RcptBuySta> RcptBuySta { get; set; }
+        public DbSet<RcptBuyStaDet> RcptBuyStaDet { get; set; }
         public DbSet<RcptBuyStaStep> RcptBuyStaStep { get; set; }
         public DbSet<RcptSub> RcptSub { get; set; }
         public DbSet<RcptSubDet> RcptSubDet { get; set; }
         public DbSet<Shp> Shp { get; set; }
         public DbSet<Sub> Sub { get; set; }
         public DbSet<SubDet> SubDet { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Usr> Usr { get; set; }
         public DbSet<UsrAct> UsrAct { get; set; }
         public DbSet<WebInfo> WebInfo { get; set; }
@@ -65,27 +65,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public virtual ObjectResult<sp_Admin_Info_Result> sp_Admin_Info()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Admin_Info_Result>("sp_Admin_Info");
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
         }
     
         public virtual int sp_Cart_Delete(Nullable<int> cartID)
@@ -212,27 +191,6 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CartDet_Update", cartIdParameter, shpIdParameter, proIdParameter, qtyParameter);
         }
     
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
         public virtual int sp_Cus_Delete(Nullable<int> cusId)
         {
             var cusIdParameter = cusId.HasValue ?
@@ -272,45 +230,6 @@ namespace ShoesStore.DataAccessLogicLayer
                 new ObjectParameter("CusId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Cus_Update", cusIdParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
         public virtual int sp_Mer_Delete(Nullable<int> merId)
@@ -1211,23 +1130,6 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptSubDet_Update", rcptSubIdParameter, subIdParameter, merIdParameter);
         }
     
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
         public virtual int sp_Shp_Delete(Nullable<int> shpId)
         {
             var shpIdParameter = shpId.HasValue ?
@@ -1422,11 +1324,6 @@ namespace ShoesStore.DataAccessLogicLayer
                 new ObjectParameter("DateEnd", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SubDet_Update", subIdParameter, merIdParameter, dateStartParameter, dateEndParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
         public virtual int sp_Usr_Delete(Nullable<int> usrId)

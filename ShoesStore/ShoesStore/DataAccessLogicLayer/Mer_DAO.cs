@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data.Objects;
 using ShoesStore.Interfaces;
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class Mer_DAO : Table_DAO<Mer>, IMer
@@ -53,6 +52,11 @@ namespace ShoesStore.DataAccessLogicLayer
         }
 
         public override void SetActive(Mer obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        System.Data.Objects.ObjectResult<sp_Mer_Info_Result> IMer.Get_Mer_Info()
         {
             throw new NotImplementedException();
         }

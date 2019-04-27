@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Objects;
 using ShoesStore.Interfaces;
-
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class Mstr_DAO : Table_DAO<Mstr>, IMstr
@@ -85,6 +84,11 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public void getColumsToSort(string ColName)
         {
+        }
+
+        System.Data.Objects.ObjectResult<sp_Admin_Info_Result> IMstr.Get_Admin_Info()
+        {
+            throw new NotImplementedException();
         }
     }
 }
