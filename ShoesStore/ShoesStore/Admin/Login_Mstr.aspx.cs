@@ -24,7 +24,7 @@ namespace ShoesStore.Admin
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                throw;
+                MyLibrary.Show("Sai tên đăng nhập hoặc mật khẩu");
             }
         }
     }
