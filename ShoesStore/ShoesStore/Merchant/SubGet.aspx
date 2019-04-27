@@ -52,28 +52,27 @@
         </div>
         <div class="row">
             <div class="col-12">
-                 <asp:ListView ID="lvSubSelected" ItemType="ShoesStore.DataAccessLogicLayer.Sub"  runat="server" OnItemDataBound="lvSubSelected_ItemDataBound">
-                <LayoutTemplate>
-                    <table class="table">
-                        <tr>
-                            <th>Tên gói</th>
-                            <th>Số lượng</th>
-                            <th>Ngày</th>
-                            <th>Gía tiền</th>
-                        </tr>
-                        <tr id="itemPlaceholder" runat="server"/>
-                    </table>
-                </LayoutTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <td><%# Item.SubContent %></td>
-                        <td>
-                            <asp:TextBox ID="txtSoLuong" runat="server" TextMode="Number"></asp:TextBox></td>
-                        <td><asp:Label ID="lbTongNgayCon" runat="server" TextMode="Number"></asp:Label></td>
-                        <td><asp:Label ID="lbTongNgay" runat="server" TextMode="Number"></asp:Label></td>
-                    </tr>
-                </ItemTemplate>
-            </asp:ListView>
+                <asp:Table ID="SubSelected" runat="server" Width="100%">
+                    <asp:TableRow>
+                        <asp:TableCell>Tên gói</asp:TableCell>
+                        <asp:TableCell>Số lượng</asp:TableCell>
+                        <asp:TableCell>Ngày</asp:TableCell>
+                        <asp:TableCell>Gía tiền</asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:Label runat="server" ID="lblSubContent"></asp:Label></asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox runat="server" type="number" ID="txtQty" Text="1"  AutoPostBack="True" min="1">
+                            </asp:TextBox>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:Label ID="lbTongNgayCon" runat="server" TextMode="Number"></asp:Label></asp:TableCell>
+                        <asp:TableCell>
+                            <asp:Label ID="lbTongTienCon" runat="server" TextMode="Number"></asp:Label></asp:TableCell>
+                    </asp:TableRow>
+
+                </asp:Table>
             </div>
 
         </div>
@@ -81,7 +80,7 @@
     <br />
 
 
-   <%-- <asp:Repeater runat="server" ID="Hdnfld" ItemType="ShoesStore.DataAccessLogicLayer.RcptSubDet" OnItemDataBound="rptSubDet_OnItemDataBound">
+    <%-- <asp:Repeater runat="server" ID="Hdnfld" ItemType="ShoesStore.DataAccessLogicLayer.RcptSubDet" OnItemDataBound="rptSubDet_OnItemDataBound">
         <ItemTemplate>
             <asp:HiddenField runat="server" ID="Hdnfld" Value="<%# Item.SubId %>" />
             <tr>

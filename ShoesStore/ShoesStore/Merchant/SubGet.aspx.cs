@@ -24,7 +24,11 @@ namespace ShoesStore.Merchant
             }
 
         }
-
+        protected void txtQty_OnTextChanged(object sender, EventArgs e)
+        {
+            
+            //string price = thisRptItem.FindControl("");
+        }
         public void BindGridViewData()
         {
             gvSub.DataSource = MyLibrary.Sub_BUS.GetAll();
@@ -71,33 +75,21 @@ namespace ShoesStore.Merchant
         {
             var rcptBuyId = int.Parse((gvSub.SelectedRow.FindControl("lbSubId") as Label).Text);
             subId = rcptBuyId;
-            Bind_lvSubSelected(subId);
+            LoadTableSubSelected(subId);
         }
 
-        public void Bind_lvSubSelected(int SubId)
+        public void LoadTableSubSelected(int SubId)
         {
-            var rs = from s in MyLibrary.Sub_BUS.GetAll()
-                     where s.SubId == SubId
-                     select s;
-            lvSubSelected.DataSource = rs.ToList();
-            lvSubSelected.DataBind();
+            TableRow row = new TableRow();
+            var rs = MyLibrary.Sub_BUS.GetAll().Where(x => x.SubId == subId).Select(x => x.SubContent).FirstOrDefault();
+            var slNgay = MyLibrary.Sub_BUS.GetAll().Where(x => x.SubId == subId).Select(x => x.DurDay).FirstOrDefault();
+            var price = MyLibrary.Sub_BUS.GetAll().Where(x => x.SubId == subId).Select(x => x.Price).FirstOrDefault();
+            lblSubContent.Text = rs;
+            
+            lbTongNgayCon.Text = (Int32.Parse(txtQty.Text) * slNgay).ToString();
+            lbTongTienCon.Text = (Int32.Parse(txtQty.Text) * Int32.Parse(price)).ToString();
+            
         }
-
-        protected void lvSubSelected_ItemDataBound(object sender, ListViewItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListViewItemType.DataItem)
-            {
-                TextBox txtSoLuong = (TextBox)e.Item.FindControl("txtSoLuong");
-                txtSoLuong.TextChanged += TxtSoLuong_TextChanged;
-                string txtSl = txtSoLuong.Text;
-                Label lbTongNgayCon = (Label)e.Item.FindControl("lbTongNgayCon");
-                lbTongNgayCon.Text = txtSl;
-            }
-        }
-
-        private void TxtSoLuong_TextChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
