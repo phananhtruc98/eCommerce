@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title="Check Out" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeFile="CheckOut.aspx.cs" Inherits="ShoesStore.Merchant.CheckOut" %>
+﻿<%@ Page Language="C#" Title="Check Out" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="CheckOut.aspx.cs" Inherits="ShoesStore.Merchant.CheckOut" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
 <!-- site__body -->
 <div class="site__body">

@@ -3,7 +3,10 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
-
+using ShoesStore.DataAccessLogicLayer;
+using ShoesStore.MyExtensions;
+using Utilities;
+using ShoesStore;
 namespace ShoesStore.Admin
 {
     public partial class ManageProduct : Page
@@ -59,24 +62,7 @@ namespace ShoesStore.Admin
                 join c in proCat_BUS.GetAll() on p.CatId equals c.CatId
                 join b in proBrand_BUS.GetAll() on p.BrandId equals b.BrandId
                 join s in shp_BUS.GetAll() on p.ShpId equals s.ShpId
-                select new
-                {
-                    p.ProId,
-                    p.ShpId,
-                    s.ShpName,
-                    p.ProName,
-                    c.CatName,
-                    b.BrandName,
-                    p.ProQuantity,
-                    p.Price,
-                    p.Desc,
-                    p.PriceAfter,
-                    p.DateAdd,
-                    p.DateEdit,
-                    p.Active,
-                    p.IsOutOfStock,
-                    p.Img
-                }).ToList();
+                select p).ToList();
             gvPro.DataSource = result;
             gvPro.DataBind();
         }

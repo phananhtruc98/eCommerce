@@ -5,61 +5,67 @@ using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.MyExtensions;
+using ShoesStore;
+using System.Collections.Generic;
 
 namespace ShoesStore.Merchant
 {
-    public partial class SubGet : Page
+    public partial class SubGet : System.Web.UI.Page
     {
         protected static Pro _proDetView;
         protected static Mer _merView;
-
+        static List<ListViewItem> lstSub = new List<ListViewItem>();
         //Khai báo biến Sub
-        protected static Sub _subView;
-        protected static RcptSub _rcptsubView;
-        private readonly Sub_BUS sub_BUS = new Sub_BUS();
-        private CartDet _cartDetView;
-        private RcptSubDet _rcptsubDetView;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) BindGridViewData();
-        }
-
-        private void BindGridViewData()
-        {
-            gvSub.DataSource = sub_BUS.GetAll();
-            gvSub.DataBind();
-        }
-        /*
-        protected void Choose(object sender, EventArgs e)
-        {
-            Hdnfld.Visible = true;
-        }
-        */
-        protected void rptSubDet_OnItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Footer)
+            if (!IsPostBack)
             {
-                //ltrSumPerShp.Text=rptCartDetCart.Items.
+                LoadTableSub();
             }
+
         }
 
-        /*
-        protected void btnAddCart_OnClick(object sender, EventArgs e)
+        public void LoadTableSub()
         {
-            //Gọi CartDet() lấy các thuộc tính trong dtb, gán những cái thuộc tính đó , cho những cái đã bắt từ link ở trên sau khi bấm nút, Qty là số lượng
-            // Nếu đã tồn tại cái giỏ hàng đó thì đẩy qua else, còn không thì Load vào trong CartDet
-            _rcptsubDetView = new RcptSubDet
-            {
-                RcptSubId = ShoesStore.MyLibrary.RcptSubDet_BUS.GetMyRcptSubDet().RcptSubId,
-                SubId = _subView.SubId,
-                MerId = _merView.MerId,
-                //Quantity = System.Convert.ToInt32(product_quantity.Value)
-            };
-            if (!MyLibrary.RcptSubDet_BUS.IsExist(_rcptsubDetView)) MyLibrary.RcptSubDet_BUS.Insert(_rcptsubDetView);
+            lvSub.DataSource = MyLibrary.Sub_BUS.GetAll();
+            lvSub.DataBind();
         }
-        */
 
+        protected void lvSub_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            ListViewItem rs = lvSub.Items[Int32.Parse(e.CommandArgument.ToString())];
+            if (lstSub.Any(x => ((Literal)x.FindControl("ltrSubContent")).Text == ((Literal)rs.FindControl("ltrSubContent")).Text))
+            {
+                lstSub.Select(x => ((Literal)x.FindControl("ltrSubContent")).Text);
+            }
+            lstSub.Add(rs);
+            LoadSubSelected();
+        }
 
+        public void LoadSubSelected()
+        {
+            lvSubSelected.DataSource = lstSub;
+            lvSubSelected.DataBind();
+
+        }
+        protected void lvSubSelected_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            HiddenField lviID = (HiddenField)e.Item.FindControl("lviID");
+            lviID.Value = ((Literal)lstSub[e.Item.DataItemIndex].FindControl("ltrSubId")).Text;
+            Label lbTen = (Label)e.Item.FindControl("lbTen");
+            Label lbSoLuongGoi = (Label)e.Item.FindControl("lbSoLuongGoi");
+            Label lbTongNgay = (Label)e.Item.FindControl("lbTongNgay");
+            Label lbTongGia = (Label)e.Item.FindControl("lbTongGia");
+            lbTen.Text = ((Literal)lstSub[e.Item.DataItemIndex].FindControl("ltrSubContent")).Text;
+            lbSoLuongGoi.Text = ((TextBox)lstSub[e.Item.DataItemIndex].FindControl("Qty")).Text;
+            lbTongNgay.Text = (Int32.Parse(((Literal)lstSub[e.Item.DataItemIndex].FindControl("ltrDurday")).Text) * Int32.Parse(lbSoLuongGoi.Text)).ToString();
+            lbTongGia.Text = (Int32.Parse(((Literal)lstSub[e.Item.DataItemIndex].FindControl("ltrPrice")).Text) * Int32.Parse(lbSoLuongGoi.Text)).ToString();
+
+        }
+
+        protected void lvSub_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
     }
 }
