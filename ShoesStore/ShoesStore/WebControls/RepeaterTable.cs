@@ -45,7 +45,7 @@ namespace ShoesStore.WebControls
                     new Tuple<Control, TableName>(this, TableName)
                 }
             }.Bind();
-            PageTotal = (int) Math.Ceiling((double) (DataSource as IEnumerable<object>).Count() / _pageSize);
+            PageTotal = (int) Math.Ceiling((double) ((DataSource as IEnumerable<object>) ?? throw new InvalidOperationException()).Count() / _pageSize);
             ;
             if (AllowPage)
             {

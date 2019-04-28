@@ -10,8 +10,7 @@ namespace ShoesStore
 {
     public partial class MyLibrary
     {
-        private static readonly string adminPath = "/admin/images/avatar";
-        private static readonly string _noAvatar = "/images/avatar/default.jpg";
+      
         public static bool IsValidEmailAddress(string email)
         {
             try
@@ -83,24 +82,7 @@ class='rating__star rating__star--only-edge rating__star--active'>
 
             return s;
         }
-        public static string AdminImgPath(object iMstr)
-        {
-            var mstr = (Mstr)iMstr;
-
-            try
-            {
-                string[] path =
-                  {
-                adminPath,
-                mstr.Usr.Avatar
-            };
-                return ReturnUrl(path);
-            }
-            catch
-            {
-                return _noAvatar;
-            }
-        }
+   
 
         //public static string uploadAvaAdmin(FileUpload file)
         //{
