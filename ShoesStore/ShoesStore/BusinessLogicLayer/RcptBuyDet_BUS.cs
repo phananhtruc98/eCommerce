@@ -20,7 +20,13 @@ namespace ShoesStore.BusinessLogicLayer
 
         public int GetNumberReview(int ShpId, int ProId)
         {
+            try { 
             return GetAll().Count(m => m.ShpId == ShpId && m.ProId == ProId);
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         public int GetCommentLeft(Pro iPro)
