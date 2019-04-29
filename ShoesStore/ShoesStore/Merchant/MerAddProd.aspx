@@ -22,8 +22,6 @@
                                     </div>
                                 </div>
                                 <!--Button/END-->
-
-
                                 <hr />
 
                                 <!--Button-->
@@ -64,9 +62,6 @@
                                 <hr />
                                 <div>
                                     <label for="inputDesc">Mô Tả</label>
-                                    <asp:TextBox runat="server" Text=' <%# Bind("Pro.Desc") %>' ID="inputDesc" class="form-control" placeholder="Mô Tả" />
-                                    <asp:RequiredFieldValidator ID="rfvEditDescAdd" runat="server" ErrorMessage="Chưa nhập mô tả sản phẩm" ControlToValidate="inputDesc" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                    </asp:RequiredFieldValidator>
                                 </div>
                                 <div>
                                     <asp:TextBox TextMode="MultiLine" runat="server" ID="editor1" name="editor1"></asp:TextBox>
@@ -74,30 +69,22 @@
                                 <script>
 
                                     CKEDITOR.replace('MainPlaceHolder_editor1');
-                                    CKEDITOR.config.toolbar = [{ name: 'document', items: ['Source', '-', 'Save', 'NewPage', 'DocProps', 'Preview', 'Print', '-', 'Templates'] },
+                                    CKEDITOR.config.toolbar = [
 
-                                    { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+                                        { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', '-', 'Undo', 'Redo'] },
 
-                                    { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt'] },
+                                        { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
 
-                                    { name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'] },
+                                        { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'] },
 
-                                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+                                        {
+                                            name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                                                '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+                                        },
 
-                                    {
-                                        name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv',
-                                            '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']
-                                    },
+                                        { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
 
-                                    { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-
-                                    { name: 'insert', items: ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe'] },
-
-                                    { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
-
-                                    { name: 'colors', items: ['TextColor', 'BGColor'] },
-
-                                    { name: 'tools', items: ['Maximize', 'ShowBlocks', '-', 'About'] }];
+                                        { name: 'colors', items: ['TextColor', 'BGColor'] }];
                                     CKEDITOR.config.FileTypesPath["Image"]('C:\eCommerce\ShoesStore\ShoesStore\Admin\images\faces');
                                 </script>
                                 <hr />
