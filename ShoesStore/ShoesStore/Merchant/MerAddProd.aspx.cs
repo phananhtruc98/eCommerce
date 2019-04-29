@@ -14,12 +14,12 @@ namespace ShoesStore.Merchant
         protected void Page_Load(object sender, EventArgs e)
         {
             DropDownListCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
-            DropDownListCat.DataTextField = "CatId";
+            DropDownListCat.DataTextField = "CatName";
             DropDownListCat.DataValueField = "CatId";
             DropDownListCat.DataBind();
             //
             DropDownListBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll();
-            DropDownListBrand.DataTextField = "BrandId";
+            DropDownListBrand.DataTextField = "BrandName";
             DropDownListBrand.DataValueField = "BrandId";
             DropDownListBrand.DataBind();
         }
