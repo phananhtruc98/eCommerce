@@ -34,8 +34,9 @@ namespace ShoesStore
             }
             set => GetCurrentPageViewState()["SortDirection"] = value;
         }
-
+        
         public static CartDet_BUS CartDet_BUS => new CartDet_BUS();
+        public static ProSize_BUS ProSize_BUS => new ProSize_BUS();
         public static ProDet_BUS ProDet_BUS => new ProDet_BUS();
         public static ProCat_BUS ProCat_BUS => new ProCat_BUS();
         public static ProSlide_BUS ProSlide_BUS => new ProSlide_BUS();
