@@ -13,15 +13,6 @@ namespace ShoesStore.Merchant {
     public partial class MerAddProd {
         
         /// <summary>
-        /// ToolkitScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
-        
-        /// <summary>
         /// pnlThem control.
         /// </summary>
         /// <remarks>
@@ -128,15 +119,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
-        
-        /// <summary>
-        /// ColorPickerExtender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ColorPickerExtender ColorPickerExtender1;
         
         /// <summary>
         /// lbtnInsertColor control.

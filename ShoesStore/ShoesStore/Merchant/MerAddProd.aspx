@@ -6,25 +6,7 @@
 <%--<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>--%>
 <%--<%@ Register TagPrefix="cdt" Assembly="ShoesStore.ColorPickerExtender" Namespace="ShoesStore" %>--%>
 
-<asp:Content ID="ScriptContent" ContentPlaceHolderID="cphScriptManager" runat="server">
-    <%--<cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></cc1:ToolkitScriptManager>--%>
-          <asp:ScriptManager runat="server">
-                <Scripts>
-                    <asp:ScriptReference Name="MsAjaxBundle" />
-                    <asp:ScriptReference Name="jquery" />
-                    <asp:ScriptReference Name="bootstrap" />
-                    <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                    <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                    <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                    <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                    <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                    <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                    <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                    <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                    <asp:ScriptReference Name="WebFormsBundle" />
-                </Scripts>
-            </asp:ScriptManager>
-</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
 
 
@@ -92,10 +74,7 @@
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Chưa đặt tên" ControlToValidate="txtInsertColor" Text="*" ForeColor="Red" ValidationGroup="InsertColor">
                                     </asp:RequiredFieldValidator><asp:TextBox ID="TextBox1" runat="server" Columns="7" MaxLength="7" />
                                     
-                                    <cc1:ColorPickerExtender ID="ColorPickerExtender1" runat="server" TargetControlID="txtInsertColor" PopupButtonID="imgbtnColor">
-
-
-                                    </cc1:ColorPickerExtender>
+                                  
 
                                     <asp:LinkButton runat="server" ID="lbtnInsertColor" ValidationGroup="InsertColor" Text="Thêm" CssClass="btn btn-primary" OnClick="lbtnInsertColor_Click"></asp:LinkButton>
                                 </div>
