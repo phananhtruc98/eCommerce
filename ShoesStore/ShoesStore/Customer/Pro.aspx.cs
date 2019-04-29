@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ShoesStore.Customer
@@ -36,6 +39,10 @@ namespace ShoesStore.Customer
             var proCatIds = new List<int>();
             var filterPriceFrom = priceFrom.InnerText;
             var filterPriceTo = priceTo.InnerText;
+            var sb = new StringBuilder();
+            priceTo.RenderControl(new HtmlTextWriter(new StringWriter(sb)));
+
+            string s = sb.ToString();
             foreach (RepeaterItem item in rptColors.Items)
             {
 //Collect ColorIds
