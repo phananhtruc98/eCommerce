@@ -5,7 +5,7 @@ using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.FriendlyUrls.Resolvers;
-
+using System.Linq;
 namespace ShoesStore
 {
     public partial class BasePage : Page
@@ -48,8 +48,8 @@ namespace ShoesStore
                     {
                         case TableName.Pro:
                         {
-                            rptWc.DataSource = MyLibrary.Pro_BUS.GetAll();
-                            break;
+                                rptWc.DataSource = MyLibrary.Pro_BUS.GetAllActive();
+                                break;
                         }
                         case TableName.ProCat:
                         {
@@ -61,6 +61,11 @@ namespace ShoesStore
                             rptWc.DataSource = MyLibrary.ProBrand_BUS.GetAll();
                             break;
                         }
+                        case TableName.ProColor:
+                            {
+                                rptWc.DataSource = MyLibrary.ProColor_BUS.GetAll();
+                                break;
+                            }
                     }
 
                     rptWc.DataBind();

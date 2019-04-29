@@ -4,6 +4,7 @@
     {
         Pro,
         ProCat,
-        ProBrand
+        ProBrand,
+        ProColor
     }
 }

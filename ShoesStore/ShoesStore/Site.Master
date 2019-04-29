@@ -329,7 +329,7 @@
                                                     <div class="dropcart__totals">
                                                         <table>
                                                             <tr>
-                                                                <%: $"{active_code}" %>
+                                                                
                                                                 <th>Tổng tiền sản phẩm</th>
                                                                 <td><%: MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
                                                             </tr>
