@@ -6,7 +6,7 @@
             <h3>Hồ sơ của tôi</h3>
             <div class="float-left">Ảnh đại diện</div>
             <div class="float-left">
-                <asp:Image runat="server" ID="avaimg" class="img-circle"/>
+                <asp:Image runat="server" ID="avaimg" class="rounded-circle"/>
             </div>
             <div>
                 <asp:FileUpload runat="server" ID="fupava" CssClass="file-upload" Visible="false"/>

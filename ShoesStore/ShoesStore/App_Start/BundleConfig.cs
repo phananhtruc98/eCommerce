@@ -33,7 +33,8 @@ namespace ShoesStore
                 "~/vendor/nouislider-12.1.0/nouislider.min.js",
                 "~/js/number.js",
                 "~/js/main.js",
-                "~/vendor/svg4everybody-2.1.9/svg4everybody.min.js"
+                "~/vendor/svg4everybody-2.1.9/svg4everybody.min.js",
+                "~/ckeditor/ckeditor.js"
             ));
         }
     }
