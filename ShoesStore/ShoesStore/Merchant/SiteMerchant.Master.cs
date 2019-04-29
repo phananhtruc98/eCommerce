@@ -9,6 +9,7 @@ namespace ShoesStore.Merchant
 {
     public partial class SiteMerchant : MasterPage
     {
+        internal readonly Usr_BUS _usr = new Usr_BUS();
         private static readonly string _actCode = "";
         private readonly Mer_BUS mer_BUS = new Mer_BUS();
         private string Address = "";
