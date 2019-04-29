@@ -10,14 +10,15 @@ namespace ShoesStore.Customer
         {
             if (!IsPostBack)
             {
-//rptProCat.DataBind();
-//listWc=new List<Tuple<Control, TableName>>()
-//{
-//new Tuple<Control, TableName>(rptPro,TableName.Pro),
-////new Tuple<Control, TableName>(rptProCat,TableName.ProCat),
-//new Tuple<Control, TableName>(rptProBrand,TableName.ProBrand),
-//};
-//Bind();
+             
+                //rptProCat.DataBind();
+                //listWc=new List<Tuple<Control, TableName>>()
+                //{
+                //new Tuple<Control, TableName>(rptPro,TableName.Pro),
+                ////new Tuple<Control, TableName>(rptProCat,TableName.ProCat),
+                //new Tuple<Control, TableName>(rptProBrand,TableName.ProBrand),
+                //};
+                //Bind();
             }
         }
 
@@ -71,12 +72,16 @@ namespace ShoesStore.Customer
 
         protected void rptColors_Init(object sender, EventArgs e)
         {
+            
             rptColors.DataSource = MyLibrary.ProColor_BUS.GetAll();
             rptColors.DataBind();
+            
+            
         }
 
         protected void rptColors_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            
             var chkColor = (CheckBox) e.Item.FindControl("chkColor");
             chkColor.InputAttributes.Add("class", "input-check-color__input");
         }

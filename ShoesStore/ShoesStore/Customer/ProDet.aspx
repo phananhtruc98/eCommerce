@@ -152,30 +152,31 @@ this.parentNode.style.display = "none";
             <div class="product__options">
                 <div class="form-group product__option">
                     <label class="product__option-label">
-                        Màu
+                        Màu sắc
                     </label>
                     <div class="input-radio-color">
                         <div class="input-radio-color__list">
-                            <asp:Repeater runat="server" ID="rptProColor" OnItemDataBound="rptProColor_ItemDataBound">
+                            <asp:Repeater runat="server" ID="rptProColor" OnItemDataBound="rptProColor_ItemDataBound" ItemType="ShoesStore.DataAccessLogicLayer.ProDet">
                                 <ItemTemplate>
                                     <asp:RadioButton runat="server" ID="rdbColor" GroupName="Color"/>
                                     <asp:HiddenField runat="server" ID="hdfColorId" Value='<%# Eval("ColorId") %>'/>
-                                    <asp:Image runat="server" ImageUrl="<%# MyLibrary.ProColorPath(Container.DataItem) %>"/>
+                                    <div style="height:32px;width:32px;background-color:#<%# Item.ProColor.HexCode %>"></div>
+                                    <asp:Image runat="server" onerror="this.style.display='none'" ImageUrl="<%# MyLibrary.ProColorPath(Container.DataItem) %>"/>
                                     <asp:Label runat="server" ID="lbColorName" Text='<%# Eval("ProColor.ColorName") %>'> </asp:Label>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
                     </div>
                     <label class="product__option-label">
-                        Màu sắc
+                        Kích cỡ
                     </label>
                     <div class="input-radio-color">
                         <div class="input-radio-color__list">
                             <asp:Repeater runat="server" ID="rptProSize" OnItemDataBound="rptProSize_ItemDataBound">
                                 <ItemTemplate>
-                                    <asp:RadioButton runat="server" ID="rdbSize" GroupName="Size"/>
+                                    <asp:RadioButton runat="server" ID="rdbSize" style="vertical-align:central" GroupName="Size"/>
                                     <asp:HiddenField runat="server" ID="hdfSizeId" Value='<%# Eval("SizeId") %>'/>
-                                    <asp:Image runat="server" ImageUrl="<%# MyLibrary.ProSizePath(Container.DataItem) %>"/>
+                                    <%--<asp:Image runat="server" ImageUrl="<%# MyLibrary.ProSizePath(Container.DataItem) %>"/>--%>
                                     <asp:Label runat="server" ID="lbSizeName" Text='<%# Eval("ProSize.SizeName") %>'> </asp:Label>
                                 </ItemTemplate>
                             </asp:Repeater>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 
@@ -15,7 +16,10 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
-
+        public List<Pro> GetAllActive()
+        {
+            return GetAll().Where(m => m.Active == true).ToList();
+        }
         public int AverageStar(Pro obj)
         {
             var doub = MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => m.ShpId == obj.ShpId && m.ProId == obj.ProId)

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login_Mstr.aspx.cs" Inherits="ShoesStore.Admin.Login_Mstr" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="ShoesStore.Admin.Login_Mstr" Codebehind="Login_Mstr.aspx.cs" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">

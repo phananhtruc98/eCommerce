@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
@@ -129,10 +131,10 @@ namespace ShoesStore
         public static string ProImgPath(object ipro)
         {
             var pro = (Pro)ipro;
+            string re = "";
             //if (string.IsNullOrEmpty(pro.Img))
             //return Path.Combine(proPath, "default.png");
-            try
-            {
+           
                 string[] path =
                 {
                     proPath,
@@ -140,12 +142,56 @@ namespace ShoesStore
                     pro.ProName,
                     pro.Img
                 };
-                return ReturnUrl(path);
-            }
-            catch
+                re =  ReturnUrl(path);
+
+            if(re==_noImg)
             {
-                return _noImg;
+                SaveProImgPath(ipro,null);
             }
+            return re;
+            
+            
+        }
+        public static void SaveProImgPath(object ipro,string imgPath)
+        {
+            try
+            {
+                var pro = (Pro)ipro;
+                //if (string.IsNullOrEmpty(pro.Img))
+                //return Path.Combine(proPath, "default.png");
+                string[] arrayPath =
+                {
+                    proPath,
+                    pro.Shp.ShpName,
+                    pro.ProName,
+                    pro.Img
+                };
+                var path = string.Join(@"\", arrayPath);
+                string proImgPath = Path.Combine(
+                    HttpContext.Current.Server.MapPath("~")
+                        .Substring(0, HttpContext.Current.Server.MapPath("~").Length - 1), path.Substring(1));
+
+                string proImgPathOnly = Path.GetDirectoryName(proImgPath);
+
+                if (proImgPath != _noImg)
+                {
+                    //bool exists = Directory.Exists(HostingEnvironment.MapPath(proImgPathOnly));
+                    bool exists = Directory.Exists(proImgPathOnly);
+                    if (!exists)
+                    {
+                        //Directory.CreateDirectory(HostingEnvironment.MapPath(proImgPathOnly));
+                        Directory.CreateDirectory(proImgPathOnly);
+                    }
+
+                }
+                if(string.IsNullOrEmpty(imgPath))
+                File.Copy(imgPath, proImgPathOnly);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
         public static string AdminImgPath(object iMstr)
         {
@@ -181,10 +227,12 @@ namespace ShoesStore
         private static string ReturnUrl(string[] iPath)
         {
             var path = string.Join(@"\", iPath);
-            if (File.Exists(Path.Combine(
+            string fullFilePath = Path.Combine(
                 HttpContext.Current.Server.MapPath("~")
-                    .Substring(0, HttpContext.Current.Server.MapPath("~").Length - 1), path.Substring(1))))
+                    .Substring(0, HttpContext.Current.Server.MapPath("~").Length - 1), path.Substring(1));
+            if (File.Exists(fullFilePath))
                 return path;
+            
             return _noImg;
         }
 
