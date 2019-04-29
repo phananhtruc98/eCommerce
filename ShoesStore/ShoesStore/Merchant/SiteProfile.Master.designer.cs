@@ -10,7 +10,7 @@
 namespace ShoesStore.Merchant {
     
     
-    public partial class SiteMerchant {
+    public partial class SiteProfile {
         
         /// <summary>
         /// rptProCat control.

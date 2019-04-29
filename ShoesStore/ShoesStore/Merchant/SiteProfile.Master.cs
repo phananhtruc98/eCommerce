@@ -7,7 +7,7 @@ using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.Merchant
 {
-    public partial class SiteMerchant : MasterPage
+    public partial class SiteProfile : System.Web.UI.MasterPage
     {
         internal readonly Usr_BUS _usr = new Usr_BUS();
         private static readonly string _actCode = "";
@@ -24,13 +24,18 @@ namespace ShoesStore.Merchant
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            LoadTenNguoiDung();
+        }
+        public void LoadTenNguoiDung()
+        {
+            lbXinChao.Text = "Chào, " + (MerchantSession.LoginMerchant as Usr)?.UsrName;
         }
 
         private void Page_Init(object sender, EventArgs e)
         {
             if (MerchantSession.LoginMerchant != null)
             {
-                var mer = (Mer) MerchantSession.LoginMerchant;
+                var mer = (Mer)MerchantSession.LoginMerchant;
                 var merUsr = usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
                 UsrId = merUsr.UsrId;
                 UsrName = merUsr.UsrName;
@@ -67,56 +72,56 @@ namespace ShoesStore.Merchant
             rptProBrand.DataBind();
         }
 
-/*
-protected void btnLogin_Click(object sender, EventArgs e)
-{
-try
-{
-Usr loginUsr = MyLibrary.Usr_BUS.Login(login_login.Value, login_pwd.Value);
-if (loginUsr == null) return;
-WebSession.LoginUsr = loginUsr;
-Response.Redirect(Request.RawUrl);
-}
-catch (Exception exception)
-{
-Console.WriteLine(exception);
-throw;
-}
-}
-public bool IsValidLogin()
-{
-throw new NotImplementedException();
-}
-*/
-/*
-public bool IsValidRegister()
-{
-if (!Email.IsValidEmail(email.Value)) return false;
-//if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
-if (TextHelper.IsSpecialCharacters(login.Value)) return false;
-if (active_code.Value != _actCode) { return false; }
-return password.Value == re_password.Value;
-}
-*/
-/*
-protected void btnSignUp_Click(object sender, EventArgs e)
-{
-if (!IsValidRegister()) return;
-var usr = new Usr()
-{
-UsrId = MyLibrary.Usr_BUS.GetLastestId() + 1,
-UsrName = username.Value,
-Login = login.Value,
-Password = EncryptHelper.Encrypt(password.Value),
-DateAdd = DateTime.Now
-};
-if (MyLibrary.Usr_BUS.IsExist(usr)) { lbStatus.InnerText = "Đã tồn tại"; return; }
-MyLibrary.Usr_BUS.Insert(usr);
-MyLibrary.Cus_BUS.Insert(new Cus() { CusId = usr.UsrId });
-MyLibrary.Usr_BUS.CreateActCode(usr);
-Response.Redirect(Request.RawUrl);
-}
-*/
+        /*
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+        try
+        {
+        Usr loginUsr = MyLibrary.Usr_BUS.Login(login_login.Value, login_pwd.Value);
+        if (loginUsr == null) return;
+        WebSession.LoginUsr = loginUsr;
+        Response.Redirect(Request.RawUrl);
+        }
+        catch (Exception exception)
+        {
+        Console.WriteLine(exception);
+        throw;
+        }
+        }
+        public bool IsValidLogin()
+        {
+        throw new NotImplementedException();
+        }
+        */
+        /*
+        public bool IsValidRegister()
+        {
+        if (!Email.IsValidEmail(email.Value)) return false;
+        //if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
+        if (TextHelper.IsSpecialCharacters(login.Value)) return false;
+        if (active_code.Value != _actCode) { return false; }
+        return password.Value == re_password.Value;
+        }
+        */
+        /*
+        protected void btnSignUp_Click(object sender, EventArgs e)
+        {
+        if (!IsValidRegister()) return;
+        var usr = new Usr()
+        {
+        UsrId = MyLibrary.Usr_BUS.GetLastestId() + 1,
+        UsrName = username.Value,
+        Login = login.Value,
+        Password = EncryptHelper.Encrypt(password.Value),
+        DateAdd = DateTime.Now
+        };
+        if (MyLibrary.Usr_BUS.IsExist(usr)) { lbStatus.InnerText = "Đã tồn tại"; return; }
+        MyLibrary.Usr_BUS.Insert(usr);
+        MyLibrary.Cus_BUS.Insert(new Cus() { CusId = usr.UsrId });
+        MyLibrary.Usr_BUS.CreateActCode(usr);
+        Response.Redirect(Request.RawUrl);
+        }
+        */
         protected void lbtnLogout_Click(object sender, EventArgs e)
         {
             MerchantSession.LoginMerchant = null;
@@ -133,20 +138,20 @@ Response.Redirect(Request.RawUrl);
             Response.Redirect("~/merchant/trang-thong-tin");
         }
 
-/*
-protected void btnActCodeSender_Click(object sender, EventArgs e)
-{
-RequiredEmail.Validate();
-RegularExpressionValidator.Validate();
-if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
-{
-_actCode = TextHelper.RandomNumber(4);
-Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
-$"Mã kích hoạt của bạn là {_actCode}");
-Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
-}
-}
-*/
+        /*
+        protected void btnActCodeSender_Click(object sender, EventArgs e)
+        {
+        RequiredEmail.Validate();
+        RegularExpressionValidator.Validate();
+        if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
+        {
+        _actCode = TextHelper.RandomNumber(4);
+        Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
+        $"Mã kích hoạt của bạn là {_actCode}");
+        Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
+        }
+        }
+        */
         public void Alert(string message)
         {
             ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "alertMessage", message, true);
