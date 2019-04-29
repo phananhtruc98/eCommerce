@@ -9221,13 +9221,25 @@ input {
     height: 192px;
     position: relative;
     width: 192px;
+}
 
+.table-by-truc td {
+    font-size: 20px;
+}
 
- > div {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 100%;
-    height: 100%;
-    width: 100%;
+.table-by-truc th {
+    text-align: center;
+}
+
+.table-by-truc {
+    margin: auto;
+    width: 50% !important;
+}
+
+.txt-by-truc {
+    font-size: 20px;
+}
+
+.lbtn-center-truc {
+    text-align: right;
 }

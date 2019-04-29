@@ -27,12 +27,12 @@ namespace ShoesStore.Merchant
             lblPhone.Text = usr1.Phone;
             avaimg.Attributes["src"] = "/Admin/images/avatar/" + usr1.Avatar;
         }
-        /*
+        
         protected void lbtnLuu_Click(object sender, EventArgs e)
         {
-            var usr = (Mer)WebSession.LoginUsr;
-            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.MerId);
-            var rs1 = (from c in Master._usr.GetAll()
+            var mer = (Mer)MerchantSession.LoginMerchant;
+            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
+            var rs1 = (from c in MyLibrary.Usr_BUS.GetAll()
                        where c.UsrId == usr1.UsrId
                        select c).FirstOrDefault();
             if (fupava.HasFile)
@@ -72,7 +72,7 @@ namespace ShoesStore.Merchant
             rs1.Active = usr1.Active;
             rs1.Login = usr1.Login;
             rs1.Password = usr1.Password;
-            Master._usr.Update(rs1);
+            MyLibrary.Usr_BUS.Update(rs1);
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')",
                 true);
             lblThaydoi.Visible = true;
@@ -89,7 +89,7 @@ namespace ShoesStore.Merchant
             fupava.Visible = false;
             Response.Redirect(Request.RawUrl);
         }
-
+        
         protected void lbtnHuy_Click(object sender, EventArgs e)
         {
             fupava.Visible = true;
@@ -106,10 +106,11 @@ namespace ShoesStore.Merchant
             lblAddress.Visible = true;
         }
 
+        
         protected void lblThaydoi_Click(object sender, EventArgs e)
         {
-            var usr = (Usr)WebSession.LoginUsr;
-            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
+            var mer = (Mer)MerchantSession.LoginMerchant;
+            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
             fupava.Visible = true;
             lbtnLuu.Visible = true;
             lbtnHuy.Visible = true;
@@ -127,7 +128,6 @@ namespace ShoesStore.Merchant
             lblEmail.Visible = false;
             lblAddress.Visible = false;
         }
-        */
-        
+
     }
 }

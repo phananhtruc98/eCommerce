@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title="Trang Cá Nhân" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerProfile.aspx.cs" Inherits="ShoesStore.Merchant.MerProfile" %>
+﻿<%@ Page Language="C#" Title="Trang Cá Nhân" MasterPageFile="~/Merchant/SiteProfile.Master" AutoEventWireup="true" CodeBehind="MerProfile.aspx.cs" Inherits="ShoesStore.Merchant.MerProfile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
 <!-- site__body -->
 <div class="row">
@@ -43,8 +43,9 @@
                 <tr>
                     <td colspan="2" class="my-info__save">
                         
-                        
-                        
+                     <asp:LinkButton runat="server" ID="lblThaydoi" Text="Thay đổi thông tin" CssClass="txt-by-truc center" OnClick="lblThaydoi_Click"></asp:LinkButton>   
+                     <asp:LinkButton runat="server" ID="lbtnLuu" Text="Lưu" CssClass="txt-by-truc center" OnClick="lbtnLuu_Click" Visible="false"></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="lbtnHuy" Text="Hủy" CssClass="txt-by-truc center margin__left" OnClick="lbtnHuy_Click" Visible="false"></asp:LinkButton>
                     </td>
                 </tr>
             </table>
