@@ -17,6 +17,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <script src="jquery.min.js" type="text/javascript"></script>
     <script src="/js/cusHome_RcptSuccess.js"></script>
+     <script src="/js/customscript.js" type="text/javascript"></script>
 </head>
 <body>
     <form runat="server">

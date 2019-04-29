@@ -7,111 +7,99 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Customer {
+namespace ShoesStore.Merchant {
     
     
-    public partial class DS_SanPham {
+    public partial class MerProfile_ChangePassword {
         
         /// <summary>
-        /// smp1 control.
+        /// txtLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapPath smp1;
+        protected global::System.Web.UI.WebControls.TextBox txtLogin;
         
         /// <summary>
-        /// rptProCat control.
+        /// lblLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProCat;
+        protected global::System.Web.UI.WebControls.Label lblLogin;
         
         /// <summary>
-        /// priceFrom control.
+        /// txtPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox priceFrom;
+        protected global::System.Web.UI.WebControls.TextBox txtPassword;
         
         /// <summary>
-        /// priceTo control.
+        /// lblPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox priceTo;
+        protected global::System.Web.UI.WebControls.Label lblPassword;
         
         /// <summary>
-        /// rptProBrand control.
+        /// txtNewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProBrand;
+        protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
         
         /// <summary>
-        /// rptColors control.
+        /// lblNewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptColors;
+        protected global::System.Web.UI.WebControls.Label lblNewPassword;
         
         /// <summary>
-        /// btnFilter control.
+        /// txtRePassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFilter;
+        protected global::System.Web.UI.WebControls.TextBox txtRePassword;
         
         /// <summary>
-        /// lbTest control.
+        /// lblRePassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTest;
+        protected global::System.Web.UI.WebControls.Label lblRePassword;
         
         /// <summary>
-        /// filterPro control.
+        /// lbtnLuu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect filterPro;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnLuu;
         
         /// <summary>
-        /// UcPro control.
+        /// lbtnHuy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ShoesStore.UserControls.UcPro UcPro;
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new ShoesStore.SiteMaster Master {
-            get {
-                return ((ShoesStore.SiteMaster)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.LinkButton lbtnHuy;
     }
 }

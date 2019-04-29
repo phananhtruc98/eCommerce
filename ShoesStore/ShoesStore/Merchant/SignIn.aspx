@@ -2,28 +2,35 @@
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<meta charset="UTF-8">
-<meta name="robots" content="noindex">
+<meta charset="UTF-8"/>
+<meta name="robots" content="noindex"/>
 <link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
 <link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
 <link rel="canonical" href="https://codepen.io/frytyler/pen/EGdtg" />
-<link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.addons.css">
-<link rel="stylesheet" href="/Admin/css/logincss.css">
-<link rel="stylesheet" href="/Merchant/css/style.css">
+<link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>
+<link rel="stylesheet" href="/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css"/>
+<link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.base.css"/>
+<link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.addons.css"/>
+<link rel="stylesheet" href="/Admin/css/logincss.css"/>
+<link rel="stylesheet" href="/Merchant/css/style.css"/>
 <head runat="server">
-    <webopt:BundleReference runat="server" Path="~/Content/css"/>
-    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %></title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+        <%: Scripts.Render("~/bundles/ShoesStore") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="jquery.min.js" type="text/javascript"></script>
+    <script src="/js/cusHome_RcptSuccess.js"></script>
 </head>
-<body>
+<body class="bodyhihi">
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="bootstrap" />
+
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
                 <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
@@ -36,7 +43,7 @@
             </Scripts>
         </asp:ScriptManager>
         <!-- quickview-modal -->
-        
+
         <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
@@ -106,7 +113,7 @@
                                 </div>
                                 <div class="form-group py-4">
                                     <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
-                                    <asp:Button Text="Đăng ký" CssClass="btn btn-primary btn-lg float-right custom_font" ID="btnSignUp" runat="server" ValidationGroup="Register" OnClick="btnSignUp_Click" />
+                                    <asp:Button Text="Đăng ký" Width="200px" CssClass="btn btn-primary btn-lg float-right custom_font" ID="btnSignUp" runat="server" ValidationGroup="Register" OnClick="btnSignUp_Click" />
                                     <label id="lbStatus" style="color: red" runat="server"></label>
                                 </div>
                             </div>
@@ -117,7 +124,7 @@
         </div>
 
         <!--Đăng Nhập-->
-        <div style="margin-top: -100px;" class="login">
+        <div style="margin-top: -200px;" class="login">
             <h1 class="fc-center">
                 <img src="/Admin/images/logo.png" width="200" />
             </h1>
@@ -127,13 +134,17 @@
             <input type="password" name="p" placeholder="Mật khẩu" required="required" id="login_pwd" runat="server" />
             <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginPassword" runat="server" ErrorMessage="Chưa nhập mật khẩu!" ControlToValidate="login_pwd" ValidationGroup="Login" ForeColor="Red">
             </asp:RequiredFieldValidator>
-            <asp:Button runat="server" class="btn btn-primary btn-block btn-large" ValidationGroup="Login" Text="Đăng nhập" ID="btnLogin" OnClick="btnLogin_Click" />
-            <div id="usr_register" runat="server">
-            <a href="#" data-toggle="modal" data-target="#DangKy">Đăng ký</a>
-        </div>
+            
+                <asp:Button runat="server" Width="300px" class="btn btn-primary btn-block btn-large" ValidationGroup="Login" Text="Đăng nhập" ID="btnLogin" OnClick="btnLogin_Click" />
+
+                <div style="width: 280px" class="btn btn-primary btn-block btn-large" id="usr_register" runat="server">
+                    <a href="#" data-toggle="modal" data-target="#DangKy">Đăng ký</a>
+                </div>
+        
+
         </div>
         <!--Đăng Nhập/END-->
-        
+
     </form>
 </body>
 </html>

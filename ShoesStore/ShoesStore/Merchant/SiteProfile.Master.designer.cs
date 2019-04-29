@@ -7,19 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Customer {
+namespace ShoesStore.Merchant {
     
     
-    public partial class DS_SanPham {
-        
-        /// <summary>
-        /// smp1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapPath smp1;
+    public partial class SiteProfile {
         
         /// <summary>
         /// rptProCat control.
@@ -31,24 +22,6 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.Repeater rptProCat;
         
         /// <summary>
-        /// priceFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox priceFrom;
-        
-        /// <summary>
-        /// priceTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox priceTo;
-        
-        /// <summary>
         /// rptProBrand control.
         /// </summary>
         /// <remarks>
@@ -58,60 +31,57 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.Repeater rptProBrand;
         
         /// <summary>
-        /// rptColors control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptColors;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// btnFilter control.
+        /// avaImg2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFilter;
+        protected global::System.Web.UI.WebControls.Image avaImg2;
         
         /// <summary>
-        /// lbTest control.
+        /// lbtnAccount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTest;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnAccount;
         
         /// <summary>
-        /// filterPro control.
+        /// LinkButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect filterPro;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
         
         /// <summary>
-        /// UcPro control.
+        /// lbXinChao control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ShoesStore.UserControls.UcPro UcPro;
+        protected global::System.Web.UI.WebControls.Label lbXinChao;
         
         /// <summary>
-        /// Master property.
+        /// MainPlaceHolder control.
         /// </summary>
         /// <remarks>
-        /// Auto-generated property.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        public new ShoesStore.SiteMaster Master {
-            get {
-                return ((ShoesStore.SiteMaster)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainPlaceHolder;
     }
 }
