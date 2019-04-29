@@ -40,13 +40,40 @@ namespace ShoesStore.Merchant {
         protected global::System.Web.UI.WebControls.ListView lvSubSelected;
         
         /// <summary>
-        /// HiddenField1 control.
+        /// lbEmptySelected control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+        protected global::System.Web.UI.WebControls.Label lbEmptySelected;
+        
+        /// <summary>
+        /// lbTongTien control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTongTien;
+        
+        /// <summary>
+        /// lbTongNgayMua control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTongNgayMua;
+        
+        /// <summary>
+        /// btnThanhToan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnThanhToan;
         
         /// <summary>
         /// Master property.
