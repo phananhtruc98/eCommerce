@@ -89,5 +89,6 @@ namespace ShoesStore.Merchant
             WebSession.LoginUsr = null;
             Response.Redirect("/");
         }
+        
     }
 }
