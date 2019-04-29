@@ -47,10 +47,11 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
-
+        
         public static int GetTotalPro(object catId)
         {
-            return new ProCat_BUS().GetAll().FirstOrDefault(m => catId != null && m.CatId == (int) catId).Pro.Count;
+            return new ProCat_BUS().GetAll().FirstOrDefault(m => catId != null && m.CatId == (int) catId).Pro.Where(m=>m.Active==true && m.ProDet.Count!=0).Count();
         }
+
     }
 }

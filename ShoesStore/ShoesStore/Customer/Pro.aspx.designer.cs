@@ -28,7 +28,7 @@ namespace ShoesStore.Customer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ShoesStore.WebControls.RepeaterTable rptProCat;
+        protected global::System.Web.UI.WebControls.Repeater rptProCat;
         
         /// <summary>
         /// priceFrom control.
@@ -37,7 +37,7 @@ namespace ShoesStore.Customer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl priceFrom;
+        protected global::System.Web.UI.WebControls.TextBox priceFrom;
         
         /// <summary>
         /// priceTo control.
@@ -46,7 +46,7 @@ namespace ShoesStore.Customer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl priceTo;
+        protected global::System.Web.UI.WebControls.TextBox priceTo;
         
         /// <summary>
         /// rptProBrand control.
@@ -55,7 +55,7 @@ namespace ShoesStore.Customer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ShoesStore.WebControls.RepeaterTable rptProBrand;
+        protected global::System.Web.UI.WebControls.Repeater rptProBrand;
         
         /// <summary>
         /// rptColors control.
@@ -64,7 +64,7 @@ namespace ShoesStore.Customer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ShoesStore.WebControls.RepeaterTable rptColors;
+        protected global::System.Web.UI.WebControls.Repeater rptColors;
         
         /// <summary>
         /// btnFilter control.
@@ -74,6 +74,24 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnFilter;
+        
+        /// <summary>
+        /// lbTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTest;
+        
+        /// <summary>
+        /// filterPro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect filterPro;
         
         /// <summary>
         /// UcPro control.
