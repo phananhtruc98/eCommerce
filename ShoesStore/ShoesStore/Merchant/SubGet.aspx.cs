@@ -14,13 +14,12 @@ namespace ShoesStore.Merchant
     {
         protected static Pro _proDetView;
         protected static Mer _merView;
-        static List<ListViewItem> lstSub = new List<ListViewItem>();
-        //Khai báo biến Sub
-
+        private static List<ListViewItem> lstSub = new List<ListViewItem>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                lstSub = new List<ListViewItem>();
                 LoadTableSub();
             }
 
@@ -35,24 +34,46 @@ namespace ShoesStore.Merchant
         protected void lvSub_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             ListViewItem rs = lvSub.Items[Int32.Parse(e.CommandArgument.ToString())];
-            if (lstSub.Any(x => ((Literal)x.FindControl("ltrSubContent")).Text == ((Literal)rs.FindControl("ltrSubContent")).Text))
+            if (lstSub.Any(x => ((HiddenField)x.FindControl("hdfSubId")).Value == ((HiddenField)rs.FindControl("hdfSubId")).Value))
             {
-                lstSub.Select(x => ((Literal)x.FindControl("ltrSubContent")).Text);
+                int slThem = Int32.Parse(((TextBox)rs.FindControl("Qty")).Text);
+                int SubId = Int32.Parse(((HiddenField)rs.FindControl("hdfSubId")).Value);
+                int slDaThem = Int32.Parse(lstSub.Where(x => Int32.Parse(((HiddenField)x.FindControl("hdfSubId")).Value) == SubId).Select(x => ((TextBox)x.FindControl("Qty")).Text).FirstOrDefault().ToString());
+                int slTong = slThem + slDaThem;
+                string index = lstSub.Where(x => Int32.Parse(((HiddenField)x.FindControl("hdfSubId")).Value) == Int32.Parse(((HiddenField)rs.FindControl("hdfSubId")).Value)).Select(x => Int32.Parse(((HiddenField)x.FindControl("hdfSubId")).Value)).FirstOrDefault().ToString();
+                lstSub.Where(x => Int32.Parse(((HiddenField)x.FindControl("hdfSubId")).Value) == SubId).Select(x => { ((TextBox)x.FindControl("Qty")).Text = slTong.ToString(); return x; }).FirstOrDefault();
+                LoadSubSelected();
             }
-            lstSub.Add(rs);
-            LoadSubSelected();
+            else
+            {
+                lstSub.Add(rs);
+                LoadSubSelected();
+            }
         }
 
         public void LoadSubSelected()
         {
             lvSubSelected.DataSource = lstSub;
             lvSubSelected.DataBind();
-
+            int ngay = 0;
+            int tien = 0;
+            for (int i = 0; i < lvSubSelected.Items.Count; i++)
+            {
+                ngay += Int32.Parse(((Label)lvSubSelected.Items[i].FindControl("lbTongNgay")).Text);
+                tien += Int32.Parse(((Label)lvSubSelected.Items[i].FindControl("lbTongGia")).Text.Replace(",",string.Empty));
+            }
+            lbTongNgayMua.Attributes.Add("Style", "float: right");
+            lbTongNgayMua.Text = "Tổng ngày: " + ngay;
+            lbTongTien.Text = "Tổng tiền: " + tien.ToFormatMoney();
+            if(lstSub.Count!= 0)
+            {
+                btnThanhToan.Visible = true;
+            }
         }
         protected void lvSubSelected_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             HiddenField lviID = (HiddenField)e.Item.FindControl("lviID");
-            lviID.Value = ((Literal)lstSub[e.Item.DataItemIndex].FindControl("ltrSubId")).Text;
+            lviID.Value = ((HiddenField)lstSub[e.Item.DataItemIndex].FindControl("hdfSubId")).Value;
             Label lbTen = (Label)e.Item.FindControl("lbTen");
             Label lbSoLuongGoi = (Label)e.Item.FindControl("lbSoLuongGoi");
             Label lbTongNgay = (Label)e.Item.FindControl("lbTongNgay");
@@ -60,12 +81,33 @@ namespace ShoesStore.Merchant
             lbTen.Text = ((Literal)lstSub[e.Item.DataItemIndex].FindControl("ltrSubContent")).Text;
             lbSoLuongGoi.Text = ((TextBox)lstSub[e.Item.DataItemIndex].FindControl("Qty")).Text;
             lbTongNgay.Text = (Int32.Parse(((Literal)lstSub[e.Item.DataItemIndex].FindControl("ltrDurday")).Text) * Int32.Parse(lbSoLuongGoi.Text)).ToString();
-            lbTongGia.Text = (Int32.Parse(((Literal)lstSub[e.Item.DataItemIndex].FindControl("ltrPrice")).Text) * Int32.Parse(lbSoLuongGoi.Text)).ToString();
+            lbTongGia.Text = (Int32.Parse((((Literal)lstSub[e.Item.DataItemIndex].FindControl("ltrPrice")).Text).Replace(",",string.Empty)) * Int32.Parse(lbSoLuongGoi.Text)).ToFormatMoney();
 
         }
 
         protected void lvSub_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        protected void lvSubSelected_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Delete")
+            {
+                if (lstSub.Count==0)
+                {
+                    lbEmptySelected.Visible = true;
+                }
+                else
+                {
+                    lstSub.RemoveAt(Int32.Parse(e.CommandArgument.ToString()));
+                    LoadSubSelected();
+                }
+            }
+        }
+
+        protected void lvSubSelected_ItemDeleting(object sender, ListViewDeleteEventArgs e)
+        {
+
         }
     }
 }
