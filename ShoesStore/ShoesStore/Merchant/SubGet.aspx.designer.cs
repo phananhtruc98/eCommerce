@@ -13,6 +13,24 @@ namespace ShoesStore.Merchant {
     public partial class SubGet {
         
         /// <summary>
+        /// MultiviewSub control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView MultiviewSub;
+        
+        /// <summary>
+        /// ViewSelectSub control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View ViewSelectSub;
+        
+        /// <summary>
         /// lvSub control.
         /// </summary>
         /// <remarks>
@@ -67,13 +85,31 @@ namespace ShoesStore.Merchant {
         protected global::System.Web.UI.WebControls.Label lbTongNgayMua;
         
         /// <summary>
-        /// btnThanhToan control.
+        /// btnSwap control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnThanhToan;
+        protected global::System.Web.UI.WebControls.Button btnSwap;
+        
+        /// <summary>
+        /// ViewBuySub control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View ViewBuySub;
+        
+        /// <summary>
+        /// btnBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBack;
         
         /// <summary>
         /// Master property.

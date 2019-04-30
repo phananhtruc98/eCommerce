@@ -31,8 +31,9 @@ namespace ShoesStore.BusinessLogicLayer
 
         public int GetCommentLeft(Pro iPro)
         {
+            Cus cus = WebSession.LoginCus;
             var v = GetAll().ToList().Where(m =>
-                m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt));
+                m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt) && m.RcptBuy.CusId==cus.CusId);
             return v.Count();
         }
 

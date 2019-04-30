@@ -54,6 +54,9 @@
     <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined, Version=1.12.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.12.1\lib\net45\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
     </Reference>
+    <Reference Include="BraintreeHttp-Dotnet, Version=0.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BraintreeHttp-Dotnet.0.1.5\lib\netstandard2.0\BraintreeHttp-Dotnet.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -70,6 +73,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPalCheckoutSdk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPalCheckoutSdk.1.0.0\lib\netstandard2.0\PayPalCheckoutSdk.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -2661,6 +2670,7 @@
     <Content Include="Merchant\fonts\stroyka\stroyka.woff" />
     <Content Include="Merchant\MerAddProd.aspx" />
     <Content Include="Merchant\MerHome.aspx" />
+    <Content Include="Merchant\MerPaypal.aspx" />
     <Content Include="Merchant\MerProfile.aspx" />
     <Content Include="Merchant\MerProfile_ChangePassword.aspx" />
     <Content Include="Merchant\MerShop.aspx" />
@@ -3453,6 +3463,13 @@
     <Compile Include="Merchant\MerHome.aspx.designer.cs">
       <DependentUpon>MerHome.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Merchant\MerPaypal.aspx.cs">
+      <DependentUpon>MerPaypal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\MerPaypal.aspx.designer.cs">
+      <DependentUpon>MerPaypal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Merchant\MerProfile.aspx.cs">
       <DependentUpon>MerProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3520,6 +3537,7 @@
     <Compile Include="MyLibrary_Truc.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="PayPalClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

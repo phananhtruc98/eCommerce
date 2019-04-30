@@ -234,6 +234,7 @@
                                                 <div>
 
                                                     <select class="form-control form-control-sm" runat="server" id="filterPro">
+                                                        <option value="-1" selected >Chọn loại kiểu sắp xếp</option>
                                                         <option value="0">Bán chạy nhất</option>
                                                         <option value="1">Giá: Thấp đến Cao</option>
                                                         <option value="2">Giá: Cao đến Thấp</option>

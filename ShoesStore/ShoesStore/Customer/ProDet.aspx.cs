@@ -43,7 +43,8 @@ namespace ShoesStore.Customer
 
         private void BindData()
         {
-            ltrCommentLeft.DataBind();
+            DivWriteComment.DataBind();
+            
         }
 
         private void Bind_ProSizes()

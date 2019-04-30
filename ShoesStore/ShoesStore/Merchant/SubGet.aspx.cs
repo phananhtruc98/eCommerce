@@ -7,6 +7,7 @@ using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.MyExtensions;
 using ShoesStore;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace ShoesStore.Merchant
 {
@@ -19,6 +20,7 @@ namespace ShoesStore.Merchant
         {
             if (!IsPostBack)
             {
+                MultiviewSub.ActiveViewIndex = 0;
                 lstSub = new List<ListViewItem>();
                 LoadTableSub();
             }
@@ -67,7 +69,7 @@ namespace ShoesStore.Merchant
             lbTongTien.Text = "Tổng tiền: " + tien.ToFormatMoney();
             if(lstSub.Count!= 0)
             {
-                btnThanhToan.Visible = true;
+                btnSwap.Visible = true;
             }
         }
         protected void lvSubSelected_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -108,6 +110,16 @@ namespace ShoesStore.Merchant
         protected void lvSubSelected_ItemDeleting(object sender, ListViewDeleteEventArgs e)
         {
 
+        }
+
+        protected void btnSwap_Click(object sender, EventArgs e)
+        {
+            MultiviewSub.ActiveViewIndex = 1;
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            MultiviewSub.ActiveViewIndex = 0;
         }
     }
 }

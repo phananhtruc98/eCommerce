@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Linq;
 using System.Web.UI.HtmlControls;
+using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.Customer
 {
@@ -42,7 +43,21 @@ namespace ShoesStore.Customer
             var filterPriceFrom = Convert.ToInt32(priceFrom.Text);
             var filterPriceTo = Convert.ToInt32(priceTo.Text);
             //var vFilterPro = ((HtmlSelect)filterPro).SelectedIndex;
-            var vFilterPro = ((HtmlSelect)filterPro).Value;
+            int vFilterPro = Convert.ToInt32(((HtmlSelect)filterPro).Value);
+
+            Func<Pro, long> funcFilter = null;
+
+            switch(vFilterPro)
+            {
+                case 0: { funcFilter = pro => pro.Shp.RcptBuy.Count; break; }
+                case 1: { funcFilter = pro =>Convert.ToInt32( pro.Price); break; }
+                case 2: { funcFilter = pro => Convert.ToInt32(pro.Price); break; }//giam
+                case 3: { funcFilter = pro => MyLibrary.Pro_BUS.AverageStar(pro); break; }
+                case 4: { funcFilter = pro => MyLibrary.Pro_BUS.AverageStar(pro); break; }//giam
+                default: { funcFilter = pro=>pro.DateAdd.Value.Ticks;break; }
+            }
+
+
             foreach (RepeaterItem item in rptColors.Items)
             {
                 //Collect ColorIds
@@ -75,14 +90,16 @@ namespace ShoesStore.Customer
                     proCatIds.Add(Convert.ToInt32(hdfProCatId.Value));
                 }
             }
-            UcPro.RptPro.TableName = TableName.Pro;
-            UcPro.RptPro.DataSource = MyLibrary.Pro_BUS.GetAllActive().
-                Where(pro => pro.ProDet.Any(color => (colorIds.Count==0 || colorIds.Contains(color.ColorId))) &&
-                (brandIds.Count==0||brandIds.Contains(pro.BrandId)) &&
-                (proCatIds.Count==0 || proCatIds.Contains(pro.CatId)) &&
+
+            var willSource = MyLibrary.Pro_BUS.GetAllActive().
+                Where(pro => pro.ProDet.Any(color => (colorIds.Count == 0 || colorIds.Contains(color.ColorId))) &&
+                (brandIds.Count == 0 || brandIds.Contains(pro.BrandId)) &&
+                (proCatIds.Count == 0 || proCatIds.Contains(pro.CatId)) &&
                 (Convert.ToInt32(pro.Price) >= filterPriceFrom && Convert.ToInt32(pro.Price) <= filterPriceTo)
-                ) ;
+                );
+
             
+            UcPro.RptPro.DataSource = (vFilterPro == 2 || vFilterPro == 4) ? willSource.OrderBy(funcFilter): willSource.OrderByDescending(funcFilter);
             UcPro.RptPro.DataBind();
         }
 

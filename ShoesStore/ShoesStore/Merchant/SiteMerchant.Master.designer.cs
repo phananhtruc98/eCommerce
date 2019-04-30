@@ -13,15 +13,6 @@ namespace ShoesStore.Merchant {
     public partial class SiteMerchant {
         
         /// <summary>
-        /// cphScriptManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cphScriptManager;
-        
-        /// <summary>
         /// rptProCat control.
         /// </summary>
         /// <remarks>
@@ -74,15 +65,6 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
-        
-        /// <summary>
-        /// lbXinChao control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbXinChao;
         
         /// <summary>
         /// MainPlaceHolder control.

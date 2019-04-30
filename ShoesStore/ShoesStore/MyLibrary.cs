@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Web;
@@ -34,7 +35,7 @@ namespace ShoesStore
             }
             set => GetCurrentPageViewState()["SortDirection"] = value;
         }
-        
+
         public static CartDet_BUS CartDet_BUS => new CartDet_BUS();
         public static ProSize_BUS ProSize_BUS => new ProSize_BUS();
         public static ProDet_BUS ProDet_BUS => new ProDet_BUS();
@@ -135,25 +136,25 @@ namespace ShoesStore
             string re = "";
             //if (string.IsNullOrEmpty(pro.Img))
             //return Path.Combine(proPath, "default.png");
-           
-                string[] path =
-                {
+
+            string[] path =
+            {
                     proPath,
                     pro.Shp.ShpName,
                     pro.ProName,
                     pro.Img
                 };
-                re =  ReturnUrl(path);
+            re = ReturnUrl(path);
 
-            if(re==_noImg)
+            if (re == _noImg)
             {
-                SaveProImgPath(ipro,null);
+                SaveProImgPath(ipro, null);
             }
             return re;
-            
-            
+
+
         }
-        public static void SaveProImgPath(object ipro,string imgPath)
+        public static void SaveProImgPath(object ipro, string imgPath)
         {
             try
             {
@@ -185,14 +186,60 @@ namespace ShoesStore
                     }
 
                 }
-                if(string.IsNullOrEmpty(imgPath))
-                File.Copy(imgPath, proImgPathOnly);
+                if (string.IsNullOrEmpty(imgPath))
+                    File.Copy(imgPath, proImgPathOnly);
             }
             catch (Exception ex)
             {
 
             }
 
+        }
+        public static void SaveProImgSlidePath(object ipro, List<string> imgSlidePaths)
+        {
+            try
+            {
+                var pro = (Pro)ipro;
+                //if (string.IsNullOrEmpty(pro.Img))
+                //return Path.Combine(proPath, "default.png");
+
+                foreach (var imgSlidePath in imgSlidePaths)
+                {
+                    string[] arrayPath =
+             {
+                    proPath,
+                    pro.Shp.ShpName,
+                    pro.ProName,
+                    "Slides",
+                    Path.GetFileName(imgSlidePath)
+                };
+                    var path = string.Join(@"\", arrayPath);
+                    string proImgPath = Path.Combine(
+                        HttpContext.Current.Server.MapPath("~")
+                            .Substring(0, HttpContext.Current.Server.MapPath("~").Length - 1), path.Substring(1));
+
+                    string proImgPathOnly = Path.GetDirectoryName(proImgPath);
+
+                    if (proImgPath != _noImg)
+                    {
+                        //bool exists = Directory.Exists(HostingEnvironment.MapPath(proImgPathOnly));
+                        bool exists = Directory.Exists(proImgPathOnly);
+                        if (!exists)
+                        {
+                            //Directory.CreateDirectory(HostingEnvironment.MapPath(proImgPathOnly));
+                            Directory.CreateDirectory(proImgPathOnly);
+                        }
+
+                    }
+                    if (string.IsNullOrEmpty(imgSlidePath))
+                        File.Copy(imgSlidePath, proImgPathOnly);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         public static string AdminImgPath(object iMstr)
         {
@@ -233,7 +280,7 @@ namespace ShoesStore
                     .Substring(0, HttpContext.Current.Server.MapPath("~").Length - 1), path.Substring(1));
             if (File.Exists(fullFilePath))
                 return path;
-            
+
             return _noImg;
         }
 
