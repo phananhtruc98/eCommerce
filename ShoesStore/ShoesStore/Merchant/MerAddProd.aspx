@@ -2,7 +2,7 @@
 
 
 
-<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%--<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>--%>
 <%--<%@ Register TagPrefix="cdt" Assembly="ShoesStore.ColorPickerExtender" Namespace="ShoesStore" %>--%>
 
@@ -62,43 +62,54 @@
                                 <div>
                                     <label>Màu</label>
                                     <div style="float: right">
-                                        <asp:DropDownList ID="ddlColor" runat="server">
-                                        </asp:DropDownList>
+                                        <asp:CheckBoxList CellSpacing="5" CellPadding="5" ID="ckbColor" runat="server" RepeatDirection="Horizontal"></asp:CheckBoxList><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <asp:LinkButton ID="lbtnColor" runat="server" OnClick="lbtnColor_Click">LinkButton</asp:LinkButton>
                                     </div>
                                 </div>
                                 <br />
                                 <div>
-                                    Chọn khác:  
-                                    <asp:TextBox runat="server" ID="txtInsertColor" PlaceHolder="Tên màu"></asp:TextBox>
-                                    <asp:ImageButton runat="server"  ID="imgbtnColor" />
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Chưa đặt tên" ControlToValidate="txtInsertColor" Text="*" ForeColor="Red" ValidationGroup="InsertColor">
-                                    </asp:RequiredFieldValidator><asp:TextBox ID="TextBox1" runat="server" Columns="7" MaxLength="7" />
-                                    
-                                  
-
-                                    <asp:LinkButton runat="server" ID="lbtnInsertColor" ValidationGroup="InsertColor" Text="Thêm" CssClass="btn btn-primary" OnClick="lbtnInsertColor_Click"></asp:LinkButton>
                                 </div>
                                 <hr />
                                 <div>
                                     <label>Kích thước</label>
                                     <div style="float: right">
-                                        <asp:DropDownList ID="ddlSize" runat="server">
-                                        </asp:DropDownList>
+                                        <asp:CheckBoxList ID="ckbSize" CellPadding="5" CellSpacing="5" runat="server" RepeatDirection="Horizontal"></asp:CheckBoxList>
+                                        <asp:LinkButton ID="lbtnChon" runat="server" OnClick="lbtnChon_Click">LinkButton</asp:LinkButton>
                                     </div>
                                 </div>
                                 <hr />
-                                <div>
-                                    <label>Số Lượng</label>
-                                    <div style="float: right">
-                                        <asp:TextBox runat="server" min="1" Text="1" TextMode="Number" ID="intputProQuantity" class="form-control" />
-                                    </div>
+                                <div><asp:ListView ID="lvColoSize" runat="server" OnItemDataBound="lvColoSize_ItemDataBound">
+                                    <LayoutTemplate>
+                                        <table class="table">
+                                            <tr>
+                                                <th>Kích thước</th>
+                                                <th>Màu sắc và số lượng</th>
+                                                <th>Danh sách màu đã chọn</th>
+                                            </tr>
+                                            <tr id="itemPlaceholder" runat="server" />
+                                        </table>
+                                    </LayoutTemplate>
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td>
+                                                <asp:Label runat="server" ID="lbSizeName" Text="<%# Eval("Index") %>"></asp:Label></td>
+                                            <td>
+                                                <asp:DropDownList ID="ddlProColor" runat="server"></asp:DropDownList>
+                                                <asp:TextBox ID="txtQty" TextMode="Number" runat="server"></asp:TextBox>
+                                                <asp:ImageButton ID="imgbtnChon" runat="server" CssClass="glyphicon glyphicon-arrow-right"/></td>
+                                            <td>
+                                                <asp:Label runat="server" ID="ltrDurday"></asp:Label></td>
+                                            
+                                        </tr>
+                                    </ItemTemplate>
+                                </asp:ListView>
                                 </div>
                                 <hr />
                                 <div>
                                     <label>Ảnh chính</label>
                                     <asp:FileUpload ID="fulImgChinh" runat="server" />
                                 </div>
-
+                                
                                 <div>
                                     <label>Ảnh phụ</label>
                                     <asp:FileUpload ID="fulImgPhu" AllowMultiple="true" runat="server" />
