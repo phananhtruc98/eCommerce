@@ -1,7 +1,7 @@
 ﻿using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using System;
-
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.UI;
@@ -14,10 +14,14 @@ namespace ShoesStore.Merchant
         private readonly Pro_BUS pro = new Pro_BUS();
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadDdlProCat();
-            LoadDdlProBrand();
-            LoadDdlProColor();
-            LoadDdlProSize();
+            if (!IsPostBack)
+            {
+                LoadDdlProCat();
+                LoadDdlProBrand();
+                LoadckbProColor();
+                LoadCkbProSize();
+            }
+
         }
 
         public void LoadDdlProCat()
@@ -37,20 +41,20 @@ namespace ShoesStore.Merchant
         }
 
 
-        public void LoadDdlProColor()
+        public void LoadckbProColor()
         {
-            ddlColor.DataSource = MyLibrary.ProColor_BUS.GetAll();
-            ddlColor.DataTextField = "ColorName";
-            ddlColor.DataValueField = "ColorId";
-            ddlColor.DataBind();
+            ckbColor.DataSource = MyLibrary.ProColor_BUS.GetAll();
+            ckbColor.DataTextField = "ColorName";
+            ckbColor.DataValueField = "ColorId";
+            ckbColor.DataBind();
         }
 
-        public void LoadDdlProSize()
+        public void LoadCkbProSize()
         {
-            ddlSize.DataSource = MyLibrary.ProSize_BUS.GetAll();
-            ddlSize.DataTextField = "SizeName";
-            ddlSize.DataValueField = "SizeId";
-            ddlSize.DataBind();
+            ckbSize.DataSource = MyLibrary.ProSize_BUS.GetAll();
+            ckbSize.DataTextField = "SizeName";
+            ckbSize.DataValueField = "SizeId";
+            ckbSize.DataBind();
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
@@ -91,17 +95,75 @@ namespace ShoesStore.Merchant
 
         }
 
-        protected void lbtnInsertColor_Click(object sender, EventArgs e)
+        public void LoadlvColoSize()
         {
-            string ColorName = ((TextBox)pnlThem.FindControl("txtInsertColor")).Text;
-            //string ColorImg = fileNewColor.FileName;
-            ProColor newColor = new ProColor
-            {
-                ColorName = ColorName
-            };
-            MyLibrary.ProColor_BUS.Insert(newColor);
-            LoadDdlProColor();
-            ((TextBox)pnlThem.FindControl("txtInsertColor")).Text = "";
+            
+            lvColoSize.DataSource = lstSize;
+            lvColoSize.DataBind();
         }
+        List<int> lstSize = new List<int>();
+        List<string> lstColor = new List<string>();
+
+        protected void lbtnChon_Click(object sender, EventArgs e)
+        {
+            int items = 0;
+            foreach (ListItem li1 in ckbSize.Items)
+            {
+                if (li1.Selected == true)
+                {
+                    lstSize.Add(Int32.Parse(items.ToString()));
+                    items++;
+                    LoadlvColoSize();
+                }
+            }
+        }
+        public void LoadDdlColor()
+        {
+            
+        }
+
+        protected void lvColoSize_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+        //    HiddenField hddSize = (HiddenField)e.Item.FindControl("SizeId");
+            Label lbSize = (Label)e.Item.FindControl("lbSizeName");
+            DropDownList lvddlColor = (DropDownList)e.Item.FindControl("ddlProColor");
+            lvddlColor.DataSource = lstColor;
+            lvddlColor.DataBind();
+        }
+
+        protected void lbtnColor_Click(object sender, EventArgs e)
+        {
+            int items = 0;
+            foreach (ListItem li1 in ckbColor.Items)
+            {
+                if (li1.Selected == true)
+                {
+                    lstColor.Add(items.ToString());
+                    items++;
+                }
+            }
+        }
+        //protected void ckbSize_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    for (int i = 0; i < ckbSize.Items.Count; i++)
+        //    {
+        //        if (ckbSize.Items[i].Selected)
+        //        {
+        //            lstSize.Add(Int32.Parse(ckbSize.Items[i].Text)); LoadlvColoSize();
+        //        }
+        //    }
+        //}
+
+        //protected void lbtnInsertColor_Click(object sender, EventArgs e)
+        //{
+        //    string ColorName = ((TextBox)pnlThem.FindControl("txtInsertColor")).Text;
+        //    //string ColorImg = fileNewColor.FileName;
+        //    ProColor newColor = new ProColor
+        //    {
+        //        ColorName = ColorName
+        //    };
+        //    MyLibrary.ProColor_BUS.Insert(newColor);
+        //    ((TextBox)pnlThem.FindControl("txtInsertColor")).Text = "";
+        //}
     }
 }

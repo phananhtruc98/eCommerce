@@ -76,76 +76,49 @@ namespace ShoesStore.Merchant {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditPricetAdd;
         
         /// <summary>
-        /// ddlColor control.
+        /// ckbColor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlColor;
+        protected global::System.Web.UI.WebControls.CheckBoxList ckbColor;
         
         /// <summary>
-        /// txtInsertColor control.
+        /// lbtnColor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertColor;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnColor;
         
         /// <summary>
-        /// imgbtnColor control.
+        /// ckbSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgbtnColor;
+        protected global::System.Web.UI.WebControls.CheckBoxList ckbSize;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// lbtnChon control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnChon;
         
         /// <summary>
-        /// TextBox1 control.
+        /// lvColoSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
-        
-        /// <summary>
-        /// lbtnInsertColor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnInsertColor;
-        
-        /// <summary>
-        /// ddlSize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSize;
-        
-        /// <summary>
-        /// intputProQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox intputProQuantity;
+        protected global::System.Web.UI.WebControls.ListView lvColoSize;
         
         /// <summary>
         /// fulImgChinh control.
