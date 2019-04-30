@@ -23,8 +23,8 @@ namespace ShoesStore.Merchant
             {
                 try
                 {
-                    var usr = (Usr) HttpContext.Current.Session["LoginMerchant"];
-                    var mer = new Mer_BUS().GetAll().FirstOrDefault(m => m.MerId == usr.UsrId);
+                    var usr = (Mer) HttpContext.Current.Session["LoginMerchant"];
+                    var mer = new Mer_BUS().GetAll().FirstOrDefault(m => m.MerId == usr.MerId);
                     return mer;
                 }
                 catch

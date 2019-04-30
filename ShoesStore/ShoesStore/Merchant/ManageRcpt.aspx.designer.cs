@@ -10,69 +10,78 @@
 namespace ShoesStore.Merchant {
     
     
-    public partial class SiteMerchant {
+    public partial class ManageRcpt {
         
         /// <summary>
-        /// rptProCat control.
+        /// txtTimKiem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProCat;
+        protected global::System.Web.UI.WebControls.TextBox txtTimKiem;
         
         /// <summary>
-        /// rptProBrand control.
+        /// btnTimKiem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProBrand;
+        protected global::System.Web.UI.WebControls.Button btnTimKiem;
         
         /// <summary>
-        /// Label1 control.
+        /// gvRcptBuy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.GridView gvRcptBuy;
         
         /// <summary>
-        /// avaImg2 control.
+        /// ValidationRcptSubId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image avaImg2;
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationRcptSubId;
         
         /// <summary>
-        /// lbtnAccount control.
+        /// cthd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnAccount;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cthd;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// gvRcptBuyDet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.GridView gvRcptBuyDet;
         
         /// <summary>
-        /// MainPlaceHolder control.
+        /// sumprice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainPlaceHolder;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sumprice;
+        
+        /// <summary>
+        /// sumprice2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sumprice2;
     }
 }
