@@ -66,7 +66,7 @@
                                     <asp:DropDownList runat="server" ID="ddlColorSelected"></asp:DropDownList><asp:LinkButton runat="server" ID="lbtnChon" Text="Chọn" OnClick="lbtnChon_Click"></asp:LinkButton>
                     </div>
                     <div>
-                        <asp:ListView ID="lvColoSize" runat="server" OnItemDataBound="lvColoSize_ItemDataBound" OnItemCommand="lvColoSize_ItemCommand">
+                        <asp:ListView ID="lvColoSize" runat="server" OnItemCommand="lvColoSize_ItemCommand">
                             <LayoutTemplate>
                                 <table class="table">
                                     <tr>
