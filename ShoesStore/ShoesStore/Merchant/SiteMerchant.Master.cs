@@ -44,10 +44,10 @@ namespace ShoesStore.Merchant
                 Label1.Text = "Chào " + UsrName;
                 avaImg2.Attributes["src"] = "/Merchant/images/avatar/" + avaImg;
             }
-            else
-            {
-                Response.Redirect("~/merchant/dang-nhap");
-            }
+            //else
+            //{
+            //    Response.Redirect("~/merchant/dang-nhap");
+            //}
         }
 
         public void rptProCat_Init(object sender, EventArgs e)

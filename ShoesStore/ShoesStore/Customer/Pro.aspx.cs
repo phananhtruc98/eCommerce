@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Linq;
+using System.Web.UI.HtmlControls;
 
 namespace ShoesStore.Customer
 {
@@ -10,7 +15,7 @@ namespace ShoesStore.Customer
         {
             if (!IsPostBack)
             {
-             
+                
                 //rptProCat.DataBind();
                 //listWc=new List<Tuple<Control, TableName>>()
                 //{
@@ -34,68 +39,92 @@ namespace ShoesStore.Customer
             var colorIds = new List<int>();
             var brandIds = new List<int>();
             var proCatIds = new List<int>();
-            var filterPriceFrom = priceFrom.InnerText;
-            var filterPriceTo = priceTo.InnerText;
+            var filterPriceFrom = Convert.ToInt32(priceFrom.Text);
+            var filterPriceTo = Convert.ToInt32(priceTo.Text);
+            //var vFilterPro = ((HtmlSelect)filterPro).SelectedIndex;
+            var vFilterPro = ((HtmlSelect)filterPro).Value;
             foreach (RepeaterItem item in rptColors.Items)
             {
-//Collect ColorIds
-                var chkColor = (CheckBox) item.FindControl("chkColor");
+                //Collect ColorIds
+                var chkColor = (CheckBox)item.FindControl("chkColor");
                 if (chkColor.Checked)
                 {
-                    var hdfColorId = (HiddenField) item.FindControl("hdfColorId");
+                    var hdfColorId = (HiddenField)item.FindControl("hdfColorId");
                     colorIds.Add(Convert.ToInt32(hdfColorId.Value));
                 }
             }
 
             foreach (RepeaterItem item in rptProBrand.Items)
             {
-//Collect brandIds
-                var chkBrand = (CheckBox) item.FindControl("chkBrand");
+                //Collect brandIds
+                var chkBrand = (CheckBox)item.FindControl("chkBrand");
                 if (chkBrand.Checked)
                 {
-                    var hdfBrandId = (HiddenField) item.FindControl("hdfBrandId");
+                    var hdfBrandId = (HiddenField)item.FindControl("hdfBrandId");
                     brandIds.Add(Convert.ToInt32(hdfBrandId.Value));
                 }
             }
 
             foreach (RepeaterItem item in rptProCat.Items)
             {
-//Collect ProCatIds
-                var chkProCat = (CheckBox) item.FindControl("chkProCat");
+                //Collect ProCatIds
+                var chkProCat = (CheckBox)item.FindControl("chkProCat");
                 if (chkProCat.Checked)
                 {
-                    var hdfProCatId = (HiddenField) item.FindControl("hdfProCatId");
+                    var hdfProCatId = (HiddenField)item.FindControl("hdfProCatId");
                     proCatIds.Add(Convert.ToInt32(hdfProCatId.Value));
                 }
             }
+            UcPro.RptPro.TableName = TableName.Pro;
+            UcPro.RptPro.DataSource = MyLibrary.Pro_BUS.GetAllActive().
+                Where(pro => pro.ProDet.Any(color => (colorIds.Count==0 || colorIds.Contains(color.ColorId))) &&
+                (brandIds.Count==0||brandIds.Contains(pro.BrandId)) &&
+                (proCatIds.Count==0 || proCatIds.Contains(pro.CatId)) &&
+                (Convert.ToInt32(pro.Price) >= filterPriceFrom && Convert.ToInt32(pro.Price) <= filterPriceTo)
+                ) ;
+            
+            UcPro.RptPro.DataBind();
         }
 
-        protected void rptColors_Init(object sender, EventArgs e)
-        {
-            
-            rptColors.DataSource = MyLibrary.ProColor_BUS.GetAll();
-            rptColors.DataBind();
-            
-            
-        }
+
 
         protected void rptColors_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            
-            var chkColor = (CheckBox) e.Item.FindControl("chkColor");
+
+            var chkColor = (CheckBox)e.Item.FindControl("chkColor");
             chkColor.InputAttributes.Add("class", "input-check-color__input");
         }
 
         protected void rptProBrand_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            var chkBrand = (CheckBox) e.Item.FindControl("chkBrand");
+            var chkBrand = (CheckBox)e.Item.FindControl("chkBrand");
             chkBrand.InputAttributes.Add("class", "input-check__input");
         }
 
         protected void rptProCat_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            var chkProCat = (CheckBox) e.Item.FindControl("chkProCat");
+            var chkProCat = (CheckBox)e.Item.FindControl("chkProCat");
             chkProCat.InputAttributes.Add("class", "input-check__input");
+        }
+
+        protected void rptColors_Init(object sender, EventArgs e)
+        {
+
+            rptColors.DataSource = MyLibrary.ProColor_BUS.GetAll();
+            rptColors.DataBind();
+
+
+        }
+        protected void rptProBrand_Init(object sender, EventArgs e)
+        {
+            rptProBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll();
+            rptProBrand.DataBind();
+        }
+
+        protected void rptProCat_Init(object sender, EventArgs e)
+        {
+            rptProCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
+            rptProCat.DataBind();
         }
     }
 }

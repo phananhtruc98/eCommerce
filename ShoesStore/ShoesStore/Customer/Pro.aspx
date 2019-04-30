@@ -1,10 +1,12 @@
-﻿<%@ Page Language="C#" Title="Sản phẩm" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="~/Customer/Pro.aspx.cs" Inherits="ShoesStore.Customer.DS_SanPham" %>
+﻿<%@ Page Language="C#" Title="Sản phẩm" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeFile="~/Customer/Pro.aspx.cs" Inherits="ShoesStore.Customer.DS_SanPham" %>
 
 <%@ Import Namespace="ShoesStore.BusinessLogicLayer" %>
 <%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
 <%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+
     <%--
 	<Sagara:BreadCrumbControl id="breadcrumb" runat="Server" />--%>
     <asp:SiteMapPath runat="server" ID="smp1" OnItemCreated="smp1_ItemCreated"></asp:SiteMapPath>
@@ -58,7 +60,7 @@
                                                 <div class="filter__container">
                                                     <div class="filter-list">
                                                         <div class="filter-list__list">
-                                                            <wcCustom:RepeaterTable runat="server" ID="rptProCat" TableName="ProCat" OnItemDataBound="rptProCat_ItemDataBound">
+                                                            <asp:Repeater runat="server" ID="rptProCat" OnInit="rptProCat_Init" OnItemDataBound="rptProCat_ItemDataBound">
                                                                 <ItemTemplate>
                                                                     <label class="filter-list__item">
                                                                         <span class="filter-list__input input-check">
@@ -74,13 +76,13 @@
                                                                         </span>
                                                                         <span class="filter-list__title">
                                                                             <%# Eval("CatName") %>
-																</span>
+                                                                        </span>
                                                                         <span class="filter-list__counter">
                                                                             <%#ProCat_BUS.GetTotalPro(Eval("CatId")) %>
-																</span>
+                                                                        </span>
                                                                     </label>
                                                                 </ItemTemplate>
-                                                            </wcCustom:RepeaterTable>
+                                                            </asp:Repeater>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -90,7 +92,7 @@
                                     <div class="widget-filters__item">
                                         <div class="filter filter--opened" data-collapse-item>
                                             <button type="button" class="filter__title" data-collapse-trigger>
-                                                Price
+                                                Khoảng giá
 
 									
 
@@ -101,17 +103,18 @@
                                             <div class="filter__body" data-collapse-content>
                                                 <div class="filter__container">
                                                     <div class="filter-price" data-min="500" data-max="1500" data-from="590" data-to="1130">
-                                                        <div class="filter-price__slider"></div>
-                                                        <div class="filter-price__title">
-                                                            Khoảng giá:
+                                                        <%--<div class="filter-price__slider"></div>--%>
+                                                        <div class="filter-price__title row">
+                                                            <div class="col-5">
+                                                                <asp:TextBox ID="priceFrom" runat="server" onkeyup="" Width="100%" CssClass="filter-price__min-value" Text="0"></asp:TextBox>
+                                                            </div>
 
-												
-
-                                                            <span id="priceFrom" runat="server" class="filter-price__min-value"></span>–
-
-												
-
-                                                            <span id="priceTo" runat="server" class="filter-price__max-value"></span>
+                                                            <div class="col-2 text-center">
+                                                                -
+                                                            </div>
+                                                            <div class="col-5">
+                                                                <asp:TextBox ID="priceTo" runat="server" Width="100%" CssClass="filter-price__max-value" Text="9999999"></asp:TextBox>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -133,9 +136,9 @@
                                                 <div class="filter__container">
                                                     <div class="filter-list">
                                                         <div class="filter-list__list">
-                                                            <wcCustom:RepeaterTable runat="server" ID="rptProBrand" TableName="ProBrand" ItemType="ShoesStore.DataAccessLogicLayer.ProBrand" OnItemDataBound="rptProBrand_ItemDataBound">
+                                                            <asp:Repeater runat="server" ID="rptProBrand" OnInit="rptProBrand_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProBrand" OnItemDataBound="rptProBrand_ItemDataBound">
                                                                 <ItemTemplate>
-                                                                    <asp:HiddenField runat="server" ID="hdfBrand" Value="
+                                                                    <asp:HiddenField runat="server" ID="hdfBrandId" Value="
 																			<%# Item.BrandId %>" />
                                                                     <label class="filter-list__item">
                                                                         <span class="filter-list__input input-check">
@@ -147,16 +150,16 @@
                                                                                 </svg>
                                                                             </span>
                                                                             &nbsp;&nbsp;&nbsp;&nbsp;
-																</span>
+                                                                        </span>
                                                                         <span class="filter-list__title">
                                                                             <%# Item.BrandName %>
-																</span>
+                                                                        </span>
                                                                         <span class="filter-list__counter">
                                                                             <%# ProBrand_BUS.GetTotalPro(Item.BrandId) %>
-																</span>
+                                                                        </span>
                                                                     </label>
                                                                 </ItemTemplate>
-                                                            </wcCustom:RepeaterTable>
+                                                            </asp:Repeater>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -178,9 +181,9 @@
                                                 <div class="filter__container">
                                                     <div class="filter-color">
                                                         <div class="filter-color__list">
-                                                         
-                                                            <wcCustom:RepeaterTable runat="server" ID="rptColors" TableName="ProColor"  ItemType="ShoesStore.DataAccessLogicLayer.ProColor" OnItemDataBound="rptColors_ItemDataBound">
-                                                               <ItemTemplate>
+
+                                                            <asp:Repeater runat="server" ID="rptColors" ItemType="ShoesStore.DataAccessLogicLayer.ProColor" OnInit="rptColors_Init" OnItemDataBound="rptColors_ItemDataBound">
+                                                                <ItemTemplate>
                                                                     <asp:HiddenField runat="server" ID="hdfColorId" Value="
 																				<%# Item.ColorId %>" />
                                                                     <label runat="server" class="filter-color__item">
@@ -196,7 +199,7 @@
                                                                         </span>
                                                                     </label>
                                                                 </ItemTemplate>
-                                                            </wcCustom:RepeaterTable>
+                                                            </asp:Repeater>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -215,7 +218,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="shop-layout__content">
                     <asp:UpdatePanel runat="server">
                         <ContentTemplate>
@@ -229,14 +232,13 @@
                                             <div class="view-options__control">
                                                 <label for="">Sắp xếp</label>
                                                 <div>
-                                                    <select class="form-control form-control-sm" name="" id="">
-                                                        <option value="">Bán chạy nhất</option>
-                                                        <option value="">Tên: Từ A đến Z</option>
-                                                        <option value="">Tên: Từ Z đến A</option>
-                                                        <option value="">Giá: Thấp đến Cao</option>
-                                                        <option value="">Giá: Cao đến Thấp</option>
-                                                        <option value="">Rating: Cao đến Thấp</option>
-                                                        <option value="">Rating: Thấp đến Cao</option>
+
+                                                    <select class="form-control form-control-sm" runat="server" id="filterPro">
+                                                        <option value="0">Bán chạy nhất</option>
+                                                        <option value="1">Giá: Thấp đến Cao</option>
+                                                        <option value="2">Giá: Cao đến Thấp</option>
+                                                        <option value="3">Rating: Cao đến Thấp</option>
+                                                        <option value="4">Rating: Thấp đến Cao</option>
                                                     </select>
                                                 </div>
                                             </div>

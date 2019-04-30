@@ -1,4 +1,7 @@
 ﻿<%@ Page Language="C#" Title="Trang Chủ" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerHome.aspx.cs" Inherits="ShoesStore.Merchant.MerHome" %>
+
+
+
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainPlaceHolder" runat="server">
 <!-- .block-slideshow -->
 <div class="block-slideshow block-slideshow--layout--full block">
