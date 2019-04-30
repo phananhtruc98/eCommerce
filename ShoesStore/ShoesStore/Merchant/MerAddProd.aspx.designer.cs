@@ -13,15 +13,6 @@ namespace ShoesStore.Merchant {
     public partial class MerAddProd {
         
         /// <summary>
-        /// pnlThem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlThem;
-        
-        /// <summary>
         /// DropDownListCat control.
         /// </summary>
         /// <remarks>
@@ -103,6 +94,33 @@ namespace ShoesStore.Merchant {
         protected global::System.Web.UI.WebControls.CheckBoxList ckbSize;
         
         /// <summary>
+        /// lbtnSize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnSize;
+        
+        /// <summary>
+        /// ddlSizeSelected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSizeSelected;
+        
+        /// <summary>
+        /// ddlColorSelected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlColorSelected;
+        
+        /// <summary>
         /// lbtnChon control.
         /// </summary>
         /// <remarks>
@@ -128,6 +146,15 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fulImgChinh;
+        
+        /// <summary>
+        /// imgPrimary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgPrimary;
         
         /// <summary>
         /// fulImgPhu control.
