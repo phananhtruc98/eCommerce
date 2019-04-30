@@ -186,6 +186,9 @@
                                             <li>
                                                 <a href="MerProfile.aspx">Your Profile</a>
                                             </li>
+                                            <li>
+                                                <a href="MerProfile_ChangePassword.aspx">Change Profile Password</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>
@@ -232,7 +235,7 @@
                                                 <a href="#">Quản Lý Sản Phẩm</a>
                                             </li>
                                             <li>
-                                                <a href="#">Quản Lý Hóa Đơn</a>
+                                                <a href="ManageRcpt.aspx">Quản Lý Hóa Đơn</a>
                                             </li>
                                         </ul>
                                     </div>

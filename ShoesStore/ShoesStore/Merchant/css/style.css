@@ -1686,7 +1686,12 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle { right: -8px }
     margin-top: 10px;
     overflow: hidden
 }
-
+.row1 {
+    padding: 10px 40px;
+    width: 300px;
+    resize: both;
+    overflow: auto;
+}
 .post-card--layout--list.post-card--size--sm .post-card__read-more { display: none }
 
 .product-card {

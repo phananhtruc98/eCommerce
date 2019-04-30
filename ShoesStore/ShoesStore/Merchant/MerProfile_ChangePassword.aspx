@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title="Trang Cá Nhân" MasterPageFile="~/Merchant/SiteProfile.Master" AutoEventWireup="true" CodeBehind="MerProfile_ChangePassword.aspx.cs" Inherits="ShoesStore.Merchant.MerProfile_ChangePassword" %>
+﻿<%@ Page Language="C#" Title="Trang Cá Nhân" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerProfile_ChangePassword.aspx.cs" Inherits="ShoesStore.Merchant.MerProfile_ChangePassword" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
 <!-- site__body -->
 <div class="row">
