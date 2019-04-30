@@ -17,7 +17,7 @@ namespace ShoesStore.Customer
 
         public void LoadThongTin()
         {
-            var usr = (Usr) WebSession.LoginUsr;
+            var usr = (Usr)WebSession.LoginUsr;
             var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
             lblUsrName.Text = usr1.UsrName;
             lblAddress.Text = usr1.Address;
@@ -29,11 +29,11 @@ namespace ShoesStore.Customer
 
         protected void lbtnLuu_Click(object sender, EventArgs e)
         {
-            var usr = (Usr) WebSession.LoginUsr;
+            var usr = (Usr)WebSession.LoginUsr;
             var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
             var rs1 = (from c in Master._usr.GetAll()
-                where c.UsrId == usr1.UsrId
-                select c).FirstOrDefault();
+                       where c.UsrId == usr1.UsrId
+                       select c).FirstOrDefault();
             if (fupava.HasFile)
             {
                 var fname = fupava.FileName;
@@ -107,7 +107,7 @@ namespace ShoesStore.Customer
 
         protected void lblThaydoi_Click(object sender, EventArgs e)
         {
-            var usr = (Usr) WebSession.LoginUsr;
+            var usr = (Usr)WebSession.LoginUsr;
             var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
             fupava.Visible = true;
             lbtnLuu.Visible = true;

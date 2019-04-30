@@ -2608,6 +2608,7 @@
     <Content Include="Merchant\MerAddProd.aspx" />
     <Content Include="Merchant\MerHome.aspx" />
     <Content Include="Merchant\MerProfile.aspx" />
+    <Content Include="Merchant\MerProfile_ChangePassword.aspx" />
     <Content Include="Merchant\MerShop.aspx" />
     <Content Include="Merchant\SignIn.aspx" />
     <Content Include="Merchant\SubGet.aspx" />
@@ -2649,6 +2650,7 @@
     <Content Include="ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Merchant\SiteProfile.Master" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="images\aboutus.jpg" />
@@ -3383,6 +3385,13 @@
     <Compile Include="Merchant\MerProfile.aspx.designer.cs">
       <DependentUpon>MerProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Merchant\MerProfile_ChangePassword.aspx.cs">
+      <DependentUpon>MerProfile_ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\MerProfile_ChangePassword.aspx.designer.cs">
+      <DependentUpon>MerProfile_ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Merchant\MerShop.aspx.cs">
       <DependentUpon>MerShop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3406,6 +3415,13 @@
     </Compile>
     <Compile Include="Merchant\SiteMerchant.Master.designer.cs">
       <DependentUpon>SiteMerchant.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\SiteProfile.Master.cs">
+      <DependentUpon>SiteProfile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\SiteProfile.Master.designer.cs">
+      <DependentUpon>SiteProfile.Master</DependentUpon>
     </Compile>
     <Compile Include="Merchant\SubGet.aspx.cs">
       <DependentUpon>SubGet.aspx</DependentUpon>
