@@ -16,7 +16,7 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public Sub()
         {
-            this.SubDet = new HashSet<SubDet>();
+            this.RcptSubDet = new HashSet<RcptSubDet>();
         }
     
         public int SubId { get; set; }
@@ -24,6 +24,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public int DurDay { get; set; }
         public string Price { get; set; }
     
-        public virtual ICollection<SubDet> SubDet { get; set; }
+        public virtual ICollection<RcptSubDet> RcptSubDet { get; set; }
     }
 }

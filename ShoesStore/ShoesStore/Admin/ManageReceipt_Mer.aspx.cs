@@ -47,8 +47,8 @@ namespace ShoesStore.Admin
                     join s in rcptsub.GetAll() on r.RcptId equals s.RcptSubId
                     join d in rcptsubdet.GetAll() on s.RcptSubId equals d.RcptSubId
                     join sb in sub.GetAll() on d.SubId equals sb.SubId
-                    join u in usr.GetAll() on d.MerId equals u.UsrId
-                    join sp in shp.GetAll() on d.MerId equals sp.MerId
+                    join u in usr.GetAll() on d.RcptSub.MerId equals u.UsrId
+                    join sp in shp.GetAll() on d.RcptSub.MerId equals sp.MerId
                     where r.RcptId == RcptSubId
                     select new
                     {

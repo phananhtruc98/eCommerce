@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Objects;
+using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 
@@ -72,6 +73,45 @@ namespace ShoesStore.BusinessLogicLayer
         System.Data.Objects.ObjectResult<sp_Mer_Info_Result> IMer.Get_Mer_Info()
         {
             throw new NotImplementedException();
+        }
+
+
+        public DateTime GetSubEndDate(Mer mer)
+        {
+            List<Tuple<DateTime, DateTime>> BuyHistory = new List<Tuple<DateTime, DateTime>>();
+
+            var merSubs = mer.RcptSub.Where(rcptSub => rcptSub.Status == true && rcptSub.RcptSubDet.Count!=0);
+            foreach (var sub in merSubs)
+            {
+                DateTime startDate = sub.Rcpt.DateAdd;
+                DateTime endDate = startDate.AddDays(sub.RcptSubDet.Sum(rcptSubDet => rcptSubDet.Sub.DurDay));
+                Tuple<DateTime, DateTime> tup = new Tuple<DateTime, DateTime>(startDate, endDate);
+                BuyHistory.Add(tup);
+            }
+            if (BuyHistory.Count != 0)
+            {
+                DateTime SubEndDate = BuyHistory[0].Item2;
+                for (int i = 1; i < BuyHistory.Count; i++)
+                {
+                    DateTime rowBeforeEndDate = SubEndDate;
+                    DateTime rowStartDate = BuyHistory[i].Item1;
+                    DateTime rowEndDate = BuyHistory[i].Item2;
+
+                    TimeSpan gap;
+                    if (rowStartDate.CompareTo(rowBeforeEndDate) < 0)
+                    {
+                        gap = rowBeforeEndDate.Subtract(rowStartDate);
+                        SubEndDate = rowEndDate.Add(gap);
+                    }
+                    else
+                    {
+                        SubEndDate = rowEndDate;
+                    }
+                }
+                //.Sum(rcptSub => rcptSub.RcptSubDet.Sum(rcptSubDet => rcptSubDet.Sub.DurDay));
+                return SubEndDate;
+            }
+            return DateTime.Now;
         }
     }
 }

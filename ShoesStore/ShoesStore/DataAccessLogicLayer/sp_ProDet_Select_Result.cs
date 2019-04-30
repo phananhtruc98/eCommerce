@@ -17,5 +17,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public int ProId { get; set; }
         public int ColorId { get; set; }
         public int SizeId { get; set; }
+        public Nullable<int> Qty { get; set; }
     }
 }

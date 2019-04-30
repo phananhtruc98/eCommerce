@@ -45,7 +45,7 @@ namespace ShoesStore.Merchant
             }
             else
             {
-                Response.Redirect("~/merchant/dang-nhap");
+                Response.Redirect("~/nguoi-ban/dang-nhap");
             }
         }
 
