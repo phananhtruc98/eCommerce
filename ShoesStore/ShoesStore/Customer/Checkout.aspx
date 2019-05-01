@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" Title="Thanh toán" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="~/Customer/Checkout.aspx.cs" Inherits="ShoesStore.Customer.ThanhToan" %>
+
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
@@ -12,7 +13,7 @@
                             <li class="breadcrumb-item">
                                 <a href="index.html">Trang chủ</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use href="images/sprite.svg#arrow-rounded-right-6x9"/>
+                                    <use href="images/sprite.svg#arrow-rounded-right-6x9" />
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" <%--aria-current="page"--%>>Thanh toán</li>
@@ -68,15 +69,15 @@
                                 </div>
                             </div>
                             <div class="card-divider"></div>
-                            <div class="card-body">
+                            <%--     <div class="card-body">
                                 <h3 class="card-title">Thông tin vận chuyển</h3>
                                 <div class="form-group">
                                     <label for="checkout-comment">
                                         Lời nhắn
                                     </label>
-                                    <textarea id="checkout-comment" class="form-control" rows="4"></textarea>
+                                    <textarea class="form-control" rows="4" runat="server" id="CusMessenger"></textarea>
                                 </div>
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-xl-5 mt-4 mt-lg-0">
@@ -85,25 +86,36 @@
                                 <h3 class="card-title">Hóa đơn</h3>
                                 <table class="checkout__totals">
                                     <thead class="checkout__totals-header">
-                                    <tr>
-                                        <th>Sản phẩm</th>
-                                        <th>Số lượng</th>
-                                        <th>Thành tiền</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Hình</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Kích cỡ</th>
+                                            <th>Màu</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>
+                                        </tr>
                                     </thead>
                                     <tbody class="checkout__totals-products">
-                                    <asp:Repeater runat="server" ID="rptCartDetCheckout" ItemType="ShoesStore.DataAccessLogicLayer.CartDet">
-                                        <ItemTemplate>
-                                            <tr>
-                                                <td><%# Item.ProDet.Pro.ProName %></td>
-                                                <td><%# Item.Qty %></td>
-                                                <td><%# (decimal.Parse(Item.ProDet.Pro.Price) * Item.Qty.Value).ToFormatMoney() %></td>
-                                            </tr>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
+                                        <asp:Repeater runat="server" ID="rptCartDetCheckout" ItemType="ShoesStore.DataAccessLogicLayer.CartDet">
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <td>
+                                                        <a href="#">
+                                                            <img src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" style="height:50px;width:50px" alt="">
+                                                        </a>
+
+                                                    </td>
+                                                    <td><a href="<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>"><%# Item.ProDet.Pro.ProName %></a>   </td>
+                                                    <td><%# Item.ProDet.ProSize.SizeName %></td>
+                                                    <td><%# Item.ProDet.ProColor.ColorName %></td>
+                                                    <td><%# Item.Qty %></td>
+                                                    <td><%# (decimal.Parse(Item.ProDet.Pro.Price) * Item.Qty.Value).ToFormatMoney() %></td>
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
                                     </tbody>
                                     <tbody class="checkout__totals-subtotals">
-                                    <%--<tr>
+                                        <%--<tr>
 <th>Tổng con</th>
 <td>$5,877.00</td>
 </tr>
@@ -117,10 +129,10 @@
 </tr>--%>
                                     </tbody>
                                     <tfoot class="checkout__totals-footer">
-                                    <tr>
-                                        <th>Tổng</th>
-                                        <td><%#MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
-                                    </tr>
+                                        <tr>
+                                            <th>Tổng</th>
+                                            <td><%#MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
+                                        </tr>
                                     </tfoot>
                                 </table>
                                 <div class="payment-methods">
@@ -144,7 +156,7 @@
                                     <div class="form-check">
                                         <span class="form-check-input input-check">
                                             <span class="input-check__body">
-                                                <input class="input-check__input" runat="server" type="checkbox" id="checkout_terms"/>
+                                                <input class="input-check__input" runat="server" type="checkbox" id="checkout_terms" />
                                                 <span class="input-check__box"></span>
                                                 <svg class="input-check__icon" width="9px" height="7px">
                                                     <use href="images/sprite.svg#check-9x7"></use>
@@ -153,13 +165,12 @@
                                         </span>
                                         <label class="form-check-label" for="checkout-terms">
                                             Tôi đã đọc và đồng ý với
-                                            <a target="_blank" href="#">
-                                                các điều khoản
+                                            <a target="_blank" href="#">các điều khoản
                                             </a>của website THE SHUZ*
                                         </label>
                                     </div>
                                 </div>
-                                <asp:Button runat="server" Text="Đặt hàng" ID="btnOrder" OnClick="btnOrder_OnClick" CssClass="btn btn-primary btn-xl btn-block"/>
+                                <asp:Button runat="server" Text="Đặt hàng" ID="btnOrder" OnClick="btnOrder_OnClick" CssClass="btn btn-primary btn-xl btn-block" />
                             </div>
                         </div>
                     </div>

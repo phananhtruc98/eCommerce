@@ -19,3 +19,7 @@
     height: 40px;
     width: 90px;
 }
+.disabled-button {
+    pointer-events: none;
+    opacity: 0.4;
+}

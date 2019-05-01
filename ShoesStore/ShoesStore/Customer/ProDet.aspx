@@ -131,7 +131,7 @@
                                 <li class="product__meta-availability"><b>Tình trạng</b>:<span class="text-success">
                                     <%: MyLibrary.Pro_BUS.IsOutOfStock(_proDetView)?"Hết hàng":"Còn hàng" %>
 
-                    </span>
+                                </span>
                                 </li>
 
                             </ul>
@@ -145,14 +145,44 @@
                     Stock
                 </span>
                             </div>
+                          
+                                        
+                                          
+
                             <div class="product__prices"><%: _proDetView.Price.ToFormatMoney() %></div>
+
+
+                            <div>
+                                  <b>Màu có sẵn</b>
+                                <hr />
+                                <asp:ListView runat="server" ID="lvColorName" ItemType="ShoesStore.DataAccessLogicLayer.ProColor">
+                                    <LayoutTemplate>
+                                        <table>
+                                            <tr>
+                                                <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
+                                            </tr>
+                                        </table>
+                                    </LayoutTemplate>
+                                    <ItemTemplate>
+                                        <td>
+                                            <div>
+                                                <%# Item.ColorName %>
+                                                <div style="background-color: #<%# Item.HexCode %>; width: 32px; margin: auto; height: 32px" />
+
+                                            </div>
+                                        </td>
+                                    </ItemTemplate>
+
+
+                                </asp:ListView>
+                            </div>
                             <!-- .product__options -->
-                            <div class="product__options">
+                            <div class="product__options <%: MyLibrary.Pro_BUS.IsOutOfStock(_proDetView)?"disable-div":"" %>">
                                 <div class="form-group product__option">
-                                    <label class="product__option-label">
+                                    <%--        <label class="product__option-label">
                                         Màu sắc
-                                    </label>
-                                    <div class="input-radio-color">
+                                    </label>--%>
+                                    <%--        <div class="input-radio-color">
                                         <div class="input-radio-color__list">
                                             <asp:Repeater runat="server" ID="rptProColor" OnItemDataBound="rptProColor_ItemDataBound" ItemType="ShoesStore.DataAccessLogicLayer.ProDet">
                                                 <ItemTemplate>
@@ -164,35 +194,62 @@
                                                 </ItemTemplate>
                                             </asp:Repeater>
                                         </div>
-                                    </div>
-                                    <label class="product__option-label">
-                                        Kích cỡ
-                                    </label>
-                                    <div class="input-radio-color">
-                                        <div class="input-radio-color__list">
-                                            <asp:Repeater runat="server" ID="rptProSize" OnItemDataBound="rptProSize_ItemDataBound">
-                                                <ItemTemplate>
-                                                    <asp:RadioButton runat="server" ID="rdbSize" Style="vertical-align: central" GroupName="Size" />
-                                                    <asp:HiddenField runat="server" ID="hdfSizeId" Value='<%# Eval("SizeId") %>' />
-                                                    <%--<asp:Image runat="server" ImageUrl="<%# MyLibrary.ProSizePath(Container.DataItem) %>"/>--%>
-                                                    <asp:Label runat="server" ID="lbSizeName" Text='<%# Eval("ProSize.SizeName") %>'> </asp:Label>
-                                                </ItemTemplate>
-                                            </asp:Repeater>
-                                        </div>
-                                    </div>
+                                    </div>--%>
+                                    <%--   <label class="product__option-label">
+                                        Sản phẩm có sẵn
+                                    </label>--%>
+
+                                    <%--   <div class="input-radio-color">
+                                        <div class="input-radio-color__list">--%>
+                                    <table class="table">
+                                        <asp:Repeater runat="server" ID="rptProDet" ItemType="ShoesStore.DataAccessLogicLayer.ProDet">
+                                            <HeaderTemplate>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Kích cỡ</th>
+                                                        <th>Màu sắc</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Tình trạng</th>
+                                                    </tr>
+                                                </thead>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <td>
+                                                        <asp:HiddenField runat="server" ID="hdfSizeId" Value='<%# Item.SizeId %>' />
+                                                        <asp:Literal runat="server" ID="Size" Text='<%# Item.ProSize.SizeName %>' /></td>
+                                                    <td>
+                                                        <asp:HiddenField runat="server" ID="hdfColorId" Value='<%# Item.ColorId %>' />
+                                                        <div style="background-color: #<%# Item.ProColor.HexCode %>; height: 32px; width: 32px" />
+                                                    </td>
+                                                    <td>
+                                                        <asp:TextBox runat="server" ID="txtQty" TextMode="Number" Text="1" /><br />
+                                                         <asp:rangevalidator min=0 oninput="validity.valid||(value='');" Display="Dynamic" ID="Rangevalidator1" errormessage="Số lượng phải trong khoảng 0 - 99" forecolor="Red" controltovalidate="txtQty" minimumvalue="0" maximumvalue="99" runat="server" Type="Integer">
+            </asp:rangevalidator>
+
+                                                    </td>
+                                                        
+                                                    <td>
+                                                        <asp:Literal runat="server" ID="IsOutOfStock" Text='<%# MyLibrary.ProDet_BUS.IsOutOfStock(Item)?"Hết hàng":MyLibrary.ProDet_BUS.ProDetLeft(Item)+"" %>'></asp:Literal></td>
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </table>
+                                    <%--  </div>
+                                    </div>--%>
                                 </div>
                                 <div class="form-group product__option">
-                                    <label class="product__option-label" for="product-quantity">
+                                    <%--   <label class="product__option-label" for="product-quantity">
                                         Số lượng
-                                    </label>
+                                    </label>--%>
                                     <div class="product__actions">
-                                        <div class="product__actions-item">
+                                        <%--        <div class="product__actions-item">
                                             <div class="input-number product__quantity">
                                                 <input id="product_quantity" runat="server" class="input-number__input form-control form-control-lg" type="number" min="1" value="1" />
                                                 <div class="input-number__add"></div>
                                                 <div class="input-number__sub"></div>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                         <div class="product__actions-item product__actions-item--addtocart">
                                             <asp:Button runat="server" ID="btnAddCart" OnClick="btnAddCart_OnClick" CssClass="btn btn-primary btn-lg" Text="Thêm giỏ hàng"></asp:Button>
                                         </div>
@@ -361,7 +418,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <asp:Panel CssClass="reviews-view__form" runat="server" ID="DivWriteComment" Enabled='<%# MyLibrary.RcptBuyDet_BUS.GetCommentLeft(ProDetView)==0? false:true%>' >
+                                <asp:Panel CssClass="reviews-view__form" runat="server" ID="DivWriteComment" Enabled='<%# MyLibrary.RcptBuyDet_BUS.GetCommentLeft(ProDetView)==0? false:true%>'>
                                     <h3 class="reviews-view__header">Viết đánh giá</h3>
                                     <div class="row">
                                         <div class="col-12 col-lg-9 col-xl-8">
@@ -376,18 +433,18 @@
                                                         <asp:ListItem Value="3 Sao" />
                                                         <asp:ListItem Value="2 Sao" />
                                                         <asp:ListItem Value="1 Sao" />
-                                                       
-                                                        
+
+
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                               
+
                                                 <label for="review-text">Nội dung đánh giá</label>
                                                 <small>Số lượt đánh giá:
-                                    <asp:Literal runat="server" ID="ltrCommentLeft" Text="<%#MyLibrary.RcptBuyDet_BUS.GetCommentLeft(ProDetView) %>" /> 
+                                    <asp:Literal runat="server" ID="ltrCommentLeft" Text="<%#MyLibrary.RcptBuyDet_BUS.GetCommentLeft(ProDetView) %>" />
                                                 </small>
-                                                <asp:TextBox TextMode="MultiLine" runat="server" CssClass="form-control"  ID="review_text" Rows="6"    />
+                                                <asp:TextBox TextMode="MultiLine" runat="server" CssClass="form-control" ID="review_text" Rows="6" />
                                             </div>
                                             <div class="form-group mb-0">
                                                 <asp:Button runat="server" ID="btnSubmit" Text="Gửi đánh giá" OnClick="btnSubmit_OnClick" CssClass="btn btn-primary btn-lg" />
@@ -402,7 +459,7 @@
             </div>
         </div>
         <!-- .block-products-carousel -->
-        <div class="block block-products-carousel" data-layout="grid-5">
+        <%-- <div class="block block-products-carousel" data-layout="grid-5">
             <div class="container">
                 <div class="block-header">
                     <h3 class="block-header__title">Related Products</h3>
@@ -2862,7 +2919,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--%>
         <!-- .block-products-carousel / end -->
     </div>
     <!-- site__body / end -->

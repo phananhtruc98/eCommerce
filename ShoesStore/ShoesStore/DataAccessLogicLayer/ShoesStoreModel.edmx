@@ -169,6 +169,7 @@
           <Property Name="ColorId" Type="int" Nullable="false" />
           <Property Name="SizeId" Type="int" Nullable="false" />
           <Property Name="Qty" Type="int" />
+          <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="ProSize">
           <Key>
@@ -218,6 +219,7 @@
           <Property Name="RcptBuyId" Type="int" Nullable="false" />
           <Property Name="ShpId" Type="int" Nullable="false" />
           <Property Name="CusId" Type="int" Nullable="false" />
+          <Property Name="CusMessage" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="RcptBuyDet">
           <Key>
@@ -2435,6 +2437,7 @@
           <Property Name="ColorId" Type="Int32" Nullable="false" />
           <Property Name="SizeId" Type="Int32" Nullable="false" />
           <Property Name="Qty" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="CartDet" Relationship="ShoesStoreModel.FK_CartDet_ProDet" FromRole="ProDet" ToRole="CartDet" />
           <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_ProDet_Pro" FromRole="ProDet" ToRole="Pro" />
           <NavigationProperty Name="ProColor" Relationship="ShoesStoreModel.FK_ProDet_ProColor" FromRole="ProDet" ToRole="ProColor" />
@@ -2496,6 +2499,7 @@
           <Property Name="RcptBuyId" Type="Int32" Nullable="false" />
           <Property Name="ShpId" Type="Int32" Nullable="false" />
           <Property Name="CusId" Type="Int32" Nullable="false" />
+          <Property Name="CusMessage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_RcptBuy_Cus" FromRole="RcptBuy" ToRole="Cus" />
           <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_RcptBuy_Rcpt" FromRole="RcptBuy" ToRole="Rcpt" />
           <NavigationProperty Name="Shp" Relationship="ShoesStoreModel.FK_RcptBuy_Shp" FromRole="RcptBuy" ToRole="Shp" />
@@ -3631,6 +3635,7 @@
           <EntitySetMapping Name="ProDet">
             <EntityTypeMapping TypeName="ShoesStoreModel.ProDet">
               <MappingFragment StoreEntitySet="ProDet">
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Qty" ColumnName="Qty" />
                 <ScalarProperty Name="SizeId" ColumnName="SizeId" />
                 <ScalarProperty Name="ColorId" ColumnName="ColorId" />
@@ -3683,6 +3688,7 @@
           <EntitySetMapping Name="RcptBuy">
             <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuy">
               <MappingFragment StoreEntitySet="RcptBuy">
+                <ScalarProperty Name="CusMessage" ColumnName="CusMessage" />
                 <ScalarProperty Name="CusId" ColumnName="CusId" />
                 <ScalarProperty Name="ShpId" ColumnName="ShpId" />
                 <ScalarProperty Name="RcptBuyId" ColumnName="RcptBuyId" />

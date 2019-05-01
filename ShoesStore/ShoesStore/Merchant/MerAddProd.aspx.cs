@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Web;
+using ShoesStore.MyExtensions;
 
 namespace ShoesStore.Merchant
 {
@@ -24,8 +25,10 @@ namespace ShoesStore.Merchant
         List<ProColor> lstProColor = new List<ProColor>();
         protected void Page_Load(object sender, EventArgs e)
         {
+         
             if (!IsPostBack)
             {
+                phdPage.MerExpired();
                 LoadDdlProCat();
                 LoadDdlProBrand();
                 LoadckbProColor();
