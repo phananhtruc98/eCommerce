@@ -20,7 +20,10 @@ namespace ShoesStore.DataAccessLogicLayer
         }
     
         public int RcptSubId { get; set; }
+        public Nullable<int> MerId { get; set; }
+        public Nullable<bool> Status { get; set; }
     
+        public virtual Mer Mer { get; set; }
         public virtual Rcpt Rcpt { get; set; }
         public virtual ICollection<RcptSubDet> RcptSubDet { get; set; }
     }

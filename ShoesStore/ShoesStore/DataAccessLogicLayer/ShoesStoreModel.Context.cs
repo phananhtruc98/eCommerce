@@ -56,7 +56,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<RcptSubDet> RcptSubDet { get; set; }
         public DbSet<Shp> Shp { get; set; }
         public DbSet<Sub> Sub { get; set; }
-        public DbSet<SubDet> SubDet { get; set; }
         public DbSet<Usr> Usr { get; set; }
         public DbSet<UsrAct> UsrAct { get; set; }
         public DbSet<WebInfo> WebInfo { get; set; }
@@ -720,9 +719,9 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Rcpt_Select_Result>("sp_Rcpt_Select", rcptIdParameter);
         }
     
-        public virtual ObjectResult<sp_Rcpt_Sub_Det_Result> sp_Rcpt_Sub_Det()
+        public virtual int sp_Rcpt_Sub_Det()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Rcpt_Sub_Det_Result>("sp_Rcpt_Sub_Det");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Rcpt_Sub_Det");
         }
     
         public virtual int sp_Rcpt_Update(Nullable<int> rcptId, Nullable<int> usrAdd, Nullable<int> usrEdit, Nullable<System.DateTime> dateAdd, Nullable<System.DateTime> dateEdit)
@@ -1044,13 +1043,13 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptSub_Insert", rcptSubIdParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> sp_RcptSub_Select(Nullable<int> rcptSubId)
+        public virtual ObjectResult<sp_RcptSub_Select_Result> sp_RcptSub_Select(Nullable<int> rcptSubId)
         {
             var rcptSubIdParameter = rcptSubId.HasValue ?
                 new ObjectParameter("RcptSubId", rcptSubId) :
                 new ObjectParameter("RcptSubId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_RcptSub_Select", rcptSubIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RcptSub_Select_Result>("sp_RcptSub_Select", rcptSubIdParameter);
         }
     
         public virtual int sp_RcptSub_Update(Nullable<int> rcptSubId)
@@ -1096,7 +1095,7 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptSubDet_Insert", rcptSubIdParameter, subIdParameter, merIdParameter);
         }
     
-        public virtual ObjectResult<sp_RcptSubDet_Select_Result> sp_RcptSubDet_Select(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)
+        public virtual int sp_RcptSubDet_Select(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)
         {
             var rcptSubIdParameter = rcptSubId.HasValue ?
                 new ObjectParameter("RcptSubId", rcptSubId) :
@@ -1110,7 +1109,7 @@ namespace ShoesStore.DataAccessLogicLayer
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RcptSubDet_Select_Result>("sp_RcptSubDet_Select", rcptSubIdParameter, subIdParameter, merIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptSubDet_Select", rcptSubIdParameter, subIdParameter, merIdParameter);
         }
     
         public virtual int sp_RcptSubDet_Update(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)

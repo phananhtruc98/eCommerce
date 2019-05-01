@@ -1,5 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteProfile.master.cs" Inherits="ShoesStore.Merchant.SiteProfile" %>
 
+<%@ Import Namespace="ShoesStore.MyExtensions" %>
+<%@ Import Namespace="ShoesStore.Merchant" %>
+<%@ Import Namespace="ShoesStore" %>
 <%@ Register TagPrefix="friendlyUrls" TagName="ViewSwitcher" Src="~/ViewSwitcher.ascx" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +39,7 @@
         <!-- Dang Nhap modal-->
         <!-- Dang Nhap modal/end-->
         <div class="site">
+            Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate() %>
             <header class="site__header d-lg-block d-none">
                 <div class="site-header">
                     <!-- .topbar -->
@@ -207,7 +211,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>

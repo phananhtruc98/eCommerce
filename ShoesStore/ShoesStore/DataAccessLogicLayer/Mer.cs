@@ -16,14 +16,14 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public Mer()
         {
+            this.RcptSub = new HashSet<RcptSub>();
             this.Shp = new HashSet<Shp>();
-            this.SubDet = new HashSet<SubDet>();
         }
     
         public int MerId { get; set; }
     
+        public virtual ICollection<RcptSub> RcptSub { get; set; }
         public virtual ICollection<Shp> Shp { get; set; }
-        public virtual ICollection<SubDet> SubDet { get; set; }
         public virtual Usr Usr { get; set; }
     }
 }

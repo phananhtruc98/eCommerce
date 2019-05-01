@@ -270,16 +270,16 @@
             <PropertyRef Name="RcptSubId" />
           </Key>
           <Property Name="RcptSubId" Type="int" Nullable="false" />
+          <Property Name="MerId" Type="int" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="RcptSubDet">
           <Key>
             <PropertyRef Name="RcptSubId" />
             <PropertyRef Name="SubId" />
-            <PropertyRef Name="MerId" />
           </Key>
           <Property Name="RcptSubId" Type="int" Nullable="false" />
           <Property Name="SubId" Type="int" Nullable="false" />
-          <Property Name="MerId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" />
         </EntityType>
         <EntityType Name="Shp">
@@ -300,16 +300,6 @@
           <Property Name="SubContent" Type="nvarchar" MaxLength="255" />
           <Property Name="DurDay" Type="int" Nullable="false" />
           <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SubDet">
-          <Key>
-            <PropertyRef Name="SubId" />
-            <PropertyRef Name="MerId" />
-          </Key>
-          <Property Name="SubId" Type="int" Nullable="false" />
-          <Property Name="MerId" Type="int" Nullable="false" />
-          <Property Name="DateStart" Type="datetime" />
-          <Property Name="DateEnd" Type="datetime" />
         </EntityType>
         <EntityType Name="Usr">
           <Key>
@@ -656,6 +646,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RcptSub_Mer">
+          <End Role="Mer" Type="Self.Mer" Multiplicity="0..1" />
+          <End Role="RcptSub" Type="Self.RcptSub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mer">
+              <PropertyRef Name="MerId" />
+            </Principal>
+            <Dependent Role="RcptSub">
+              <PropertyRef Name="MerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RcptSub_Rcpt">
+          <End Role="Rcpt" Type="Self.Rcpt" Multiplicity="1" />
+          <End Role="RcptSub" Type="Self.RcptSub" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Rcpt">
+              <PropertyRef Name="RcptId" />
+            </Principal>
+            <Dependent Role="RcptSub">
+              <PropertyRef Name="RcptSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RcptSubDet_RcptSub">
+          <End Role="RcptSub" Type="Self.RcptSub" Multiplicity="1" />
+          <End Role="RcptSubDet" Type="Self.RcptSubDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RcptSub">
+              <PropertyRef Name="RcptSubId" />
+            </Principal>
+            <Dependent Role="RcptSubDet">
+              <PropertyRef Name="RcptSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RcptSubDet_Sub">
+          <End Role="Sub" Type="Self.Sub" Multiplicity="1" />
+          <End Role="RcptSubDet" Type="Self.RcptSubDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub">
+              <PropertyRef Name="SubId" />
+            </Principal>
+            <Dependent Role="RcptSubDet">
+              <PropertyRef Name="SubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
           <End Role="RcptBuyStaStep" Type="Self.RcptBuyStaStep" Multiplicity="1" />
           <End Role="RcptBuyStaDet" Type="Self.RcptBuyStaDet" Multiplicity="*" />
@@ -668,44 +706,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReceiptsSubscriptions_Receipts">
-          <End Role="Rcpt" Type="Self.Rcpt" Multiplicity="1" />
-          <End Role="RcptSub" Type="Self.RcptSub" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Rcpt">
-              <PropertyRef Name="RcptId" />
-            </Principal>
-            <Dependent Role="RcptSub">
-              <PropertyRef Name="RcptSubId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
-          <End Role="RcptSub" Type="Self.RcptSub" Multiplicity="1" />
-          <End Role="RcptSubDet" Type="Self.RcptSubDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RcptSub">
-              <PropertyRef Name="RcptSubId" />
-            </Principal>
-            <Dependent Role="RcptSubDet">
-              <PropertyRef Name="RcptSubId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
-          <End Role="SubDet" Type="Self.SubDet" Multiplicity="1" />
-          <End Role="RcptSubDet" Type="Self.RcptSubDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubDet">
-              <PropertyRef Name="SubId" />
-              <PropertyRef Name="MerId" />
-            </Principal>
-            <Dependent Role="RcptSubDet">
-              <PropertyRef Name="SubId" />
-              <PropertyRef Name="MerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Shp_Mer">
           <End Role="Mer" Type="Self.Mer" Multiplicity="1" />
           <End Role="Shp" Type="Self.Shp" Multiplicity="*" />
@@ -714,30 +714,6 @@
               <PropertyRef Name="MerId" />
             </Principal>
             <Dependent Role="Shp">
-              <PropertyRef Name="MerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubscriptionsDetails_Subscriptions">
-          <End Role="Sub" Type="Self.Sub" Multiplicity="1" />
-          <End Role="SubDet" Type="Self.SubDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sub">
-              <PropertyRef Name="SubId" />
-            </Principal>
-            <Dependent Role="SubDet">
-              <PropertyRef Name="SubId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubscriptionsDetails_UsersMerchants">
-          <End Role="Mer" Type="Self.Mer" Multiplicity="1" />
-          <End Role="SubDet" Type="Self.SubDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mer">
-              <PropertyRef Name="MerId" />
-            </Principal>
-            <Dependent Role="SubDet">
               <PropertyRef Name="MerId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1305,7 +1281,6 @@
           <EntitySet Name="RcptSubDet" EntityType="Self.RcptSubDet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shp" EntityType="Self.Shp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sub" EntityType="Self.Sub" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SubDet" EntityType="Self.SubDet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usr" EntityType="Self.Usr" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsrAct" EntityType="Self.UsrAct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebInfo" EntityType="Self.WebInfo" Schema="dbo" store:Type="Tables" />
@@ -1402,33 +1377,29 @@
             <End Role="RcptBuySta" EntitySet="RcptBuySta" />
             <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
           </AssociationSet>
+          <AssociationSet Name="FK_RcptSub_Mer" Association="Self.FK_RcptSub_Mer">
+            <End Role="Mer" EntitySet="Mer" />
+            <End Role="RcptSub" EntitySet="RcptSub" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RcptSub_Rcpt" Association="Self.FK_RcptSub_Rcpt">
+            <End Role="Rcpt" EntitySet="Rcpt" />
+            <End Role="RcptSub" EntitySet="RcptSub" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RcptSubDet_RcptSub" Association="Self.FK_RcptSubDet_RcptSub">
+            <End Role="RcptSub" EntitySet="RcptSub" />
+            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RcptSubDet_Sub" Association="Self.FK_RcptSubDet_Sub">
+            <End Role="Sub" EntitySet="Sub" />
+            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
+          </AssociationSet>
           <AssociationSet Name="FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps" Association="Self.FK_ReceiptsBuysStatesDetails_ReceiptsBuysStatesSteps">
             <End Role="RcptBuyStaStep" EntitySet="RcptBuyStaStep" />
             <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptions_Receipts" Association="Self.FK_ReceiptsSubscriptions_Receipts">
-            <End Role="Rcpt" EntitySet="Rcpt" />
-            <End Role="RcptSub" EntitySet="RcptSub" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" Association="Self.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
-            <End Role="RcptSub" EntitySet="RcptSub" />
-            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" Association="Self.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
-            <End Role="SubDet" EntitySet="SubDet" />
-            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
-          </AssociationSet>
           <AssociationSet Name="FK_Shp_Mer" Association="Self.FK_Shp_Mer">
             <End Role="Mer" EntitySet="Mer" />
             <End Role="Shp" EntitySet="Shp" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubscriptionsDetails_Subscriptions" Association="Self.FK_SubscriptionsDetails_Subscriptions">
-            <End Role="Sub" EntitySet="Sub" />
-            <End Role="SubDet" EntitySet="SubDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubscriptionsDetails_UsersMerchants" Association="Self.FK_SubscriptionsDetails_UsersMerchants">
-            <End Role="Mer" EntitySet="Mer" />
-            <End Role="SubDet" EntitySet="SubDet" />
           </AssociationSet>
           <AssociationSet Name="FK_UsersCustomers_Users" Association="Self.FK_UsersCustomers_Users">
             <End Role="Usr" EntitySet="Usr" />
@@ -1663,7 +1634,7 @@
           <FunctionImport Name="sp_Rcpt_Select" ReturnType="Collection(ShoesStoreModel.sp_Rcpt_Select_Result)">
           <Parameter Name="RcptId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_Rcpt_Sub_Det" ReturnType="Collection(ShoesStoreModel.sp_Rcpt_Sub_Det_Result)" />
+          <FunctionImport Name="sp_Rcpt_Sub_Det" />
           <FunctionImport Name="sp_Rcpt_Update">
             <Parameter Name="RcptId" Mode="In" Type="Int32" />
             <Parameter Name="UsrAdd" Mode="In" Type="Int32" />
@@ -1761,7 +1732,7 @@
           <FunctionImport Name="sp_RcptSub_Insert">
           <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RcptSub_Select" ReturnType="Collection(Int32)">
+          <FunctionImport Name="sp_RcptSub_Select" ReturnType="Collection(ShoesStoreModel.sp_RcptSub_Select_Result)">
           <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RcptSub_Update">
@@ -1777,7 +1748,7 @@
             <Parameter Name="SubId" Mode="In" Type="Int32" />
             <Parameter Name="MerId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_RcptSubDet_Select" ReturnType="Collection(ShoesStoreModel.sp_RcptSubDet_Select_Result)">
+          <FunctionImport Name="sp_RcptSubDet_Select">
             <Parameter Name="RcptSubId" Mode="In" Type="Int32" />
             <Parameter Name="SubId" Mode="In" Type="Int32" />
             <Parameter Name="MerId" Mode="In" Type="Int32" />
@@ -1941,7 +1912,6 @@
           <EntitySet Name="RcptSubDet" EntityType="ShoesStoreModel.RcptSubDet" />
           <EntitySet Name="Shp" EntityType="ShoesStoreModel.Shp" />
           <EntitySet Name="Sub" EntityType="ShoesStoreModel.Sub" />
-          <EntitySet Name="SubDet" EntityType="ShoesStoreModel.SubDet" />
           <EntitySet Name="Usr" EntityType="ShoesStoreModel.Usr" />
           <EntitySet Name="UsrAct" EntityType="ShoesStoreModel.UsrAct" />
           <EntitySet Name="WebInfo" EntityType="ShoesStoreModel.WebInfo" />
@@ -1966,13 +1936,13 @@
             <End Role="Usr" EntitySet="Usr" />
             <End Role="Cus" EntitySet="Cus" />
           </AssociationSet>
+          <AssociationSet Name="FK_RcptSub_Mer" Association="ShoesStoreModel.FK_RcptSub_Mer">
+            <End Role="Mer" EntitySet="Mer" />
+            <End Role="RcptSub" EntitySet="RcptSub" />
+          </AssociationSet>
           <AssociationSet Name="FK_Shp_Mer" Association="ShoesStoreModel.FK_Shp_Mer">
             <End Role="Mer" EntitySet="Mer" />
             <End Role="Shp" EntitySet="Shp" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubscriptionsDetails_UsersMerchants" Association="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants">
-            <End Role="Mer" EntitySet="Mer" />
-            <End Role="SubDet" EntitySet="SubDet" />
           </AssociationSet>
           <AssociationSet Name="FK_UsersMerchants_Users" Association="ShoesStoreModel.FK_UsersMerchants_Users">
             <End Role="Usr" EntitySet="Usr" />
@@ -2042,7 +2012,7 @@
             <End Role="Rcpt" EntitySet="Rcpt" />
             <End Role="RcptBuy" EntitySet="RcptBuy" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptions_Receipts" Association="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts">
+          <AssociationSet Name="FK_RcptSub_Rcpt" Association="ShoesStoreModel.FK_RcptSub_Rcpt">
             <End Role="Rcpt" EntitySet="Rcpt" />
             <End Role="RcptSub" EntitySet="RcptSub" />
           </AssociationSet>
@@ -2066,17 +2036,13 @@
             <End Role="RcptBuyStaStep" EntitySet="RcptBuyStaStep" />
             <End Role="RcptBuyStaDet" EntitySet="RcptBuyStaDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" Association="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
+          <AssociationSet Name="FK_RcptSubDet_RcptSub" Association="ShoesStoreModel.FK_RcptSubDet_RcptSub">
             <End Role="RcptSub" EntitySet="RcptSub" />
             <End Role="RcptSubDet" EntitySet="RcptSubDet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" Association="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
-            <End Role="SubDet" EntitySet="SubDet" />
-            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubscriptionsDetails_Subscriptions" Association="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions">
+          <AssociationSet Name="FK_RcptSubDet_Sub" Association="ShoesStoreModel.FK_RcptSubDet_Sub">
             <End Role="Sub" EntitySet="Sub" />
-            <End Role="SubDet" EntitySet="SubDet" />
+            <End Role="RcptSubDet" EntitySet="RcptSubDet" />
           </AssociationSet>
           <AssociationSet Name="FK_UsrAct_Usr" Association="ShoesStoreModel.FK_UsrAct_Usr">
             <End Role="Usr" EntitySet="Usr" />
@@ -2090,7 +2056,7 @@
             <End Role="Coupon" EntitySet="Coupon" />
             <End Role="Pro" EntitySet="Pro" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="sp_Admin_Info_Result">
           <Property Type="Int32" Name="UsrId" Nullable="false" />
           <Property Type="String" Name="UsrName" Nullable="false" MaxLength="255" />
@@ -2169,6 +2135,7 @@
           <Property Type="Int32" Name="ProId" Nullable="false" />
           <Property Type="Int32" Name="ColorId" Nullable="false" />
           <Property Type="Int32" Name="SizeId" Nullable="false" />
+          <Property Type="Int32" Name="Qty" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_ProSize_Select_Result">
           <Property Type="Int32" Name="SizeId" Nullable="false" />
@@ -2182,15 +2149,6 @@
           <Property Type="DateTime" Name="DateAdd" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="DateEdit" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="IsCompleted" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_Rcpt_Sub_Det_Result">
-          <Property Type="Int32" Name="RcptId" Nullable="false" />
-          <Property Type="String" Name="ShpName" Nullable="false" MaxLength="255" />
-          <Property Type="String" Name="UsrName" Nullable="false" MaxLength="255" />
-          <Property Type="String" Name="SubContent" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="Price" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Quantity" Nullable="true" />
-          <Property Type="Int32" Name="Days" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_RcptBuy_Select_Result">
           <Property Type="Int32" Name="RcptBuyId" Nullable="false" />
@@ -2222,11 +2180,9 @@
           <Property Type="String" Name="StepCont" Nullable="true" MaxLength="255" />
           <Property Type="Int32" Name="StepOrder" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_RcptSubDet_Select_Result">
+        <ComplexType Name="sp_RcptSub_Select_Result">
           <Property Type="Int32" Name="RcptSubId" Nullable="false" />
-          <Property Type="Int32" Name="SubId" Nullable="false" />
-          <Property Type="Int32" Name="MerId" Nullable="false" />
-          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="Int32" Name="MerId" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_Shp_Select_Result">
           <Property Type="Int32" Name="ShpId" Nullable="false" />
@@ -2378,8 +2334,8 @@
             <PropertyRef Name="MerId" />
           </Key>
           <Property Name="MerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_RcptSub_Mer" FromRole="Mer" ToRole="RcptSub" />
           <NavigationProperty Name="Shp" Relationship="ShoesStoreModel.FK_Shp_Mer" FromRole="Mer" ToRole="Shp" />
-          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants" FromRole="Mer" ToRole="SubDet" />
           <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_UsersMerchants_Users" FromRole="Mer" ToRole="Usr" />
         </EntityType>
         <EntityType Name="Mstr">
@@ -2535,7 +2491,7 @@
           <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_Rcpt_Usr" FromRole="Rcpt" ToRole="Usr" />
           <NavigationProperty Name="Usr1" Relationship="ShoesStoreModel.FK_Rcpt_Usr1" FromRole="Rcpt" ToRole="Usr" />
           <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuy_Rcpt" FromRole="Rcpt" ToRole="RcptBuy" />
-          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts" FromRole="Rcpt" ToRole="RcptSub" />
+          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_RcptSub_Rcpt" FromRole="Rcpt" ToRole="RcptSub" />
         </EntityType>
         <EntityType Name="RcptBuy">
           <Key>
@@ -2606,21 +2562,22 @@
             <PropertyRef Name="RcptSubId" />
           </Key>
           <Property Name="RcptSubId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptions_Receipts" FromRole="RcptSub" ToRole="Rcpt" />
-          <NavigationProperty Name="RcptSubDet" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" FromRole="RcptSub" ToRole="RcptSubDet" />
+          <Property Name="MerId" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_RcptSub_Mer" FromRole="RcptSub" ToRole="Mer" />
+          <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_RcptSub_Rcpt" FromRole="RcptSub" ToRole="Rcpt" />
+          <NavigationProperty Name="RcptSubDet" Relationship="ShoesStoreModel.FK_RcptSubDet_RcptSub" FromRole="RcptSub" ToRole="RcptSubDet" />
         </EntityType>
         <EntityType Name="RcptSubDet">
           <Key>
             <PropertyRef Name="RcptSubId" />
             <PropertyRef Name="SubId" />
-            <PropertyRef Name="MerId" />
           </Key>
           <Property Name="RcptSubId" Type="Int32" Nullable="false" />
           <Property Name="SubId" Type="Int32" Nullable="false" />
-          <Property Name="MerId" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" />
-          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions" FromRole="RcptSubDet" ToRole="RcptSub" />
-          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" FromRole="RcptSubDet" ToRole="SubDet" />
+          <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_RcptSubDet_RcptSub" FromRole="RcptSubDet" ToRole="RcptSub" />
+          <NavigationProperty Name="Sub" Relationship="ShoesStoreModel.FK_RcptSubDet_Sub" FromRole="RcptSubDet" ToRole="Sub" />
         </EntityType>
         <EntityType Name="Shp">
           <Key>
@@ -2643,20 +2600,7 @@
           <Property Name="SubContent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DurDay" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SubDet" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions" FromRole="Sub" ToRole="SubDet" />
-        </EntityType>
-        <EntityType Name="SubDet">
-          <Key>
-            <PropertyRef Name="SubId" />
-            <PropertyRef Name="MerId" />
-          </Key>
-          <Property Name="SubId" Type="Int32" Nullable="false" />
-          <Property Name="MerId" Type="Int32" Nullable="false" />
-          <Property Name="DateStart" Type="DateTime" Precision="3" />
-          <Property Name="DateEnd" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_UsersMerchants" FromRole="SubDet" ToRole="Mer" />
-          <NavigationProperty Name="RcptSubDet" Relationship="ShoesStoreModel.FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails" FromRole="SubDet" ToRole="RcptSubDet" />
-          <NavigationProperty Name="Sub" Relationship="ShoesStoreModel.FK_SubscriptionsDetails_Subscriptions" FromRole="SubDet" ToRole="Sub" />
+          <NavigationProperty Name="RcptSubDet" Relationship="ShoesStoreModel.FK_RcptSubDet_Sub" FromRole="Sub" ToRole="RcptSubDet" />
         </EntityType>
         <EntityType Name="Usr">
           <Key>
@@ -2780,6 +2724,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RcptSub_Mer">
+          <End Type="ShoesStoreModel.Mer" Role="Mer" Multiplicity="0..1" />
+          <End Type="ShoesStoreModel.RcptSub" Role="RcptSub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mer">
+              <PropertyRef Name="MerId" />
+            </Principal>
+            <Dependent Role="RcptSub">
+              <PropertyRef Name="MerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Shp_Mer">
           <End Type="ShoesStoreModel.Mer" Role="Mer" Multiplicity="1" />
           <End Type="ShoesStoreModel.Shp" Role="Shp" Multiplicity="*" />
@@ -2788,18 +2744,6 @@
               <PropertyRef Name="MerId" />
             </Principal>
             <Dependent Role="Shp">
-              <PropertyRef Name="MerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubscriptionsDetails_UsersMerchants">
-          <End Type="ShoesStoreModel.Mer" Role="Mer" Multiplicity="1" />
-          <End Type="ShoesStoreModel.SubDet" Role="SubDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mer">
-              <PropertyRef Name="MerId" />
-            </Principal>
-            <Dependent Role="SubDet">
               <PropertyRef Name="MerId" />
             </Dependent>
           </ReferentialConstraint>
@@ -3020,7 +2964,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReceiptsSubscriptions_Receipts">
+        <Association Name="FK_RcptSub_Rcpt">
           <End Type="ShoesStoreModel.Rcpt" Role="Rcpt" Multiplicity="1" />
           <End Type="ShoesStoreModel.RcptSub" Role="RcptSub" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -3094,7 +3038,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReceiptsSubscriptionsDetails_ReceiptsSubscriptions">
+        <Association Name="FK_RcptSubDet_RcptSub">
           <End Type="ShoesStoreModel.RcptSub" Role="RcptSub" Multiplicity="1" />
           <End Type="ShoesStoreModel.RcptSubDet" Role="RcptSubDet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -3106,28 +3050,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ReceiptsSubscriptionsDetails_SubscriptionsDetails">
-          <End Type="ShoesStoreModel.SubDet" Role="SubDet" Multiplicity="1" />
-          <End Type="ShoesStoreModel.RcptSubDet" Role="RcptSubDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubDet">
-              <PropertyRef Name="SubId" />
-              <PropertyRef Name="MerId" />
-            </Principal>
-            <Dependent Role="RcptSubDet">
-              <PropertyRef Name="SubId" />
-              <PropertyRef Name="MerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubscriptionsDetails_Subscriptions">
+        <Association Name="FK_RcptSubDet_Sub">
           <End Type="ShoesStoreModel.Sub" Role="Sub" Multiplicity="1" />
-          <End Type="ShoesStoreModel.SubDet" Role="SubDet" Multiplicity="*" />
+          <End Type="ShoesStoreModel.RcptSubDet" Role="RcptSubDet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sub">
               <PropertyRef Name="SubId" />
             </Principal>
-            <Dependent Role="SubDet">
+            <Dependent Role="RcptSubDet">
               <PropertyRef Name="SubId" />
             </Dependent>
           </ReferentialConstraint>
@@ -3160,7 +3090,7 @@
           <End Type="ShoesStoreModel.Coupon" Role="Coupon" Multiplicity="*" />
           <End Type="ShoesStoreModel.Pro" Role="Pro" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -3314,6 +3244,7 @@
                 <ScalarProperty Name="ProId" ColumnName="ProId" />
                 <ScalarProperty Name="ColorId" ColumnName="ColorId" />
                 <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3344,19 +3275,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Rcpt_Sub_Det" FunctionName="ShoesStoreModel.Store.sp_Rcpt_Sub_Det">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ShoesStoreModel.sp_Rcpt_Sub_Det_Result">
-                <ScalarProperty Name="RcptId" ColumnName="RcptId" />
-                <ScalarProperty Name="ShpName" ColumnName="ShpName" />
-                <ScalarProperty Name="UsrName" ColumnName="UsrName" />
-                <ScalarProperty Name="SubContent" ColumnName="SubContent" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Days" ColumnName="Days" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Rcpt_Sub_Det" FunctionName="ShoesStoreModel.Store.sp_Rcpt_Sub_Det" />
           <FunctionImportMapping FunctionImportName="sp_Rcpt_Update" FunctionName="ShoesStoreModel.Store.sp_Rcpt_Update" />
           <FunctionImportMapping FunctionImportName="sp_RcptBuy_Delete" FunctionName="ShoesStoreModel.Store.sp_RcptBuy_Delete" />
           <FunctionImportMapping FunctionImportName="sp_RcptBuy_Insert" FunctionName="ShoesStoreModel.Store.sp_RcptBuy_Insert" />
@@ -3425,20 +3344,18 @@
           <FunctionImportMapping FunctionImportName="sp_RcptBuyStaStep_Update" FunctionName="ShoesStoreModel.Store.sp_RcptBuyStaStep_Update" />
           <FunctionImportMapping FunctionImportName="sp_RcptSub_Delete" FunctionName="ShoesStoreModel.Store.sp_RcptSub_Delete" />
           <FunctionImportMapping FunctionImportName="sp_RcptSub_Insert" FunctionName="ShoesStoreModel.Store.sp_RcptSub_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_RcptSub_Select" FunctionName="ShoesStoreModel.Store.sp_RcptSub_Select" />
-          <FunctionImportMapping FunctionImportName="sp_RcptSub_Update" FunctionName="ShoesStoreModel.Store.sp_RcptSub_Update" />
-          <FunctionImportMapping FunctionImportName="sp_RcptSubDet_Delete" FunctionName="ShoesStoreModel.Store.sp_RcptSubDet_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_RcptSubDet_Insert" FunctionName="ShoesStoreModel.Store.sp_RcptSubDet_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_RcptSubDet_Select" FunctionName="ShoesStoreModel.Store.sp_RcptSubDet_Select">
+          <FunctionImportMapping FunctionImportName="sp_RcptSub_Select" FunctionName="ShoesStoreModel.Store.sp_RcptSub_Select">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ShoesStoreModel.sp_RcptSubDet_Select_Result">
+              <ComplexTypeMapping TypeName="ShoesStoreModel.sp_RcptSub_Select_Result">
                 <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
-                <ScalarProperty Name="SubId" ColumnName="SubId" />
                 <ScalarProperty Name="MerId" ColumnName="MerId" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RcptSub_Update" FunctionName="ShoesStoreModel.Store.sp_RcptSub_Update" />
+          <FunctionImportMapping FunctionImportName="sp_RcptSubDet_Delete" FunctionName="ShoesStoreModel.Store.sp_RcptSubDet_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_RcptSubDet_Insert" FunctionName="ShoesStoreModel.Store.sp_RcptSubDet_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_RcptSubDet_Select" FunctionName="ShoesStoreModel.Store.sp_RcptSubDet_Select" />
           <FunctionImportMapping FunctionImportName="sp_RcptSubDet_Update" FunctionName="ShoesStoreModel.Store.sp_RcptSubDet_Update" />
           <FunctionImportMapping FunctionImportName="sp_Shp_Delete" FunctionName="ShoesStoreModel.Store.sp_Shp_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Shp_Insert" FunctionName="ShoesStoreModel.Store.sp_Shp_Insert" />
@@ -3822,6 +3739,8 @@
           <EntitySetMapping Name="RcptSub">
             <EntityTypeMapping TypeName="ShoesStoreModel.RcptSub">
               <MappingFragment StoreEntitySet="RcptSub">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MerId" ColumnName="MerId" />
                 <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3830,7 +3749,6 @@
             <EntityTypeMapping TypeName="ShoesStoreModel.RcptSubDet">
               <MappingFragment StoreEntitySet="RcptSubDet">
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="MerId" ColumnName="MerId" />
                 <ScalarProperty Name="SubId" ColumnName="SubId" />
                 <ScalarProperty Name="RcptSubId" ColumnName="RcptSubId" />
               </MappingFragment>
@@ -3853,16 +3771,6 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="DurDay" ColumnName="DurDay" />
                 <ScalarProperty Name="SubContent" ColumnName="SubContent" />
-                <ScalarProperty Name="SubId" ColumnName="SubId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SubDet">
-            <EntityTypeMapping TypeName="ShoesStoreModel.SubDet">
-              <MappingFragment StoreEntitySet="SubDet">
-                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
-                <ScalarProperty Name="MerId" ColumnName="MerId" />
                 <ScalarProperty Name="SubId" ColumnName="SubId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3927,7 +3835,7 @@
               <ScalarProperty Name="CouponID" ColumnName="CouponId" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
