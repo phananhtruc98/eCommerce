@@ -39,15 +39,29 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
 
-        public void Insert(RcptBuySta rcptBuySta, int stepid)
+        public void Insert(RcptBuySta rcptBuySta, int stepId)
         {
+            switch (stepId)
+            {
+                case 2:
+                    {
+
+                        foreach (RcptBuyDet rcptBuyDet in rcptBuySta.RcptBuy.RcptBuyDet)
+                        {
+                            ProDet proDet = MyLibrary.ProDet_BUS.GetBy(rcptBuyDet);
+                            proDet.Qty -= (proDet.Qty - 1 >= 0) ? 1 : 0;
+                            MyLibrary.ProDet_BUS.Update(proDet);
+                        }
+                        break;
+                    }
+            }
             try
             {
                 var rcptBuyStaDet = new RcptBuyStaDet
                 {
                     StaId = rcptBuySta.StaId,
                     RcptBuyId = rcptBuySta.RcptBuyId,
-                    StepId = stepid
+                    StepId = stepId
                 };
                 Insert(rcptBuyStaDet);
             }

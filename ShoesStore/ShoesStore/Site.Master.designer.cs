@@ -13,15 +13,6 @@ namespace ShoesStore {
     public partial class SiteMaster {
         
         /// <summary>
-        /// ViewSwitcher1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ShoesStore.ViewSwitcher ViewSwitcher1;
-        
-        /// <summary>
         /// login_login control.
         /// </summary>
         /// <remarks>

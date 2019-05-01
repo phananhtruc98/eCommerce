@@ -28,7 +28,7 @@ namespace ShoesStore.Admin
             txtPhone.Text = mstrUsr.Phone;
             txtLogin.Text = mstrUsr.Login;
             txtPassword.Text = mstrUsr.Password;
-            upava.Attributes["src"] = "/Admin/images/avatar/" + Master.Avatar1;
+            upava.Attributes["src"] = MyLibrary.AdminImgPath(mstr);
         }
 
         protected void lbtnLuu_Click(object sender, EventArgs e)

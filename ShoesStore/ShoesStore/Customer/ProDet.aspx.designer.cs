@@ -31,31 +31,22 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.Repeater rptProSlideCarousel;
         
         /// <summary>
-        /// rptProColor control.
+        /// lvColorName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProColor;
+        protected global::System.Web.UI.WebControls.ListView lvColorName;
         
         /// <summary>
-        /// rptProSize control.
+        /// rptProDet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProSize;
-        
-        /// <summary>
-        /// product_quantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl product_quantity;
+        protected global::System.Web.UI.WebControls.Repeater rptProDet;
         
         /// <summary>
         /// btnAddCart control.

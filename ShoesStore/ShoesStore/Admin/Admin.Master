@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.addons.css">
     <!-- endinject -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->

@@ -42,8 +42,8 @@ namespace ShoesStore.Admin
                 var avaImg = Avatar1;
                 lbAccount.Text = "Chào " + UsrName1;
                 lbAccount2.Text = "Chào " + UsrName1;
-                avaImg1.Attributes["src"] = "/Admin/images/avatar/" + avaImg;
-                avaImg2.Attributes["src"] = "/Admin/images/avatar/" + avaImg;
+                avaImg1.Attributes["src"] = MyLibrary.AdminImgPath(mstr);
+                avaImg2.Attributes["src"] = MyLibrary.AdminImgPath(mstr);
                 var rs = (from m in mstr_BUS.GetAll()
                     join d in mstrDet_BUS.GetAll() on m.MstrId equals d.MstrId
                     join r in mstrRole_BUS.GetAll() on d.RoleId equals r.RoleId
