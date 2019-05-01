@@ -93,19 +93,6 @@ Bảng sản phẩm
             </asp:RequiredFieldValidator>
         </FooterTemplate>--%>
     </asp:TemplateField>
-    <asp:TemplateField HeaderText="Số lượng">
-        <ItemTemplate>
-            <%# Item.ProQuantity %>
-        </ItemTemplate>
-        <EditItemTemplate>
-            <asp:TextBox runat="server" ID="EditProQuantity" Text='<%# Item.ProQuantity %>'/>
-        </EditItemTemplate>
-        <%--<FooterTemplate>
-            <asp:TextBox runat="server" ID="InsertProQuantity" Text=' <%# Bind("ProQuantity") %>'/>
-            <asp:RequiredFieldValidator ID="rfvEditProQuantity" runat="server" ErrorMessage="Chưa nhập tên màu" ControlToValidate="InsertProQuantity" Text="*" ForeColor="Red" ValidationGroup="Insert">
-            </asp:RequiredFieldValidator>
-        </FooterTemplate>--%>
-    </asp:TemplateField>
     <asp:TemplateField HeaderText="Đơn giá">
         <ItemTemplate>
             <%# Item.Price %>
@@ -145,17 +132,7 @@ Bảng sản phẩm
             </asp:RequiredFieldValidator>
         </FooterTemplate>--%>
     </asp:TemplateField>
-    <asp:TemplateField HeaderText="Còn hàng">
-        <ItemTemplate>
-            <asp:CheckBox Enabled="false" runat="server" Checked='<%# Item.IsOutOfStock %>'/>
-        </ItemTemplate>
-        <EditItemTemplate>
-            <asp:CheckBox runat="server" ID="EditIsOutOfStock" Checked='<%# Item.IsOutOfStock %>'/>
-        </EditItemTemplate>
-        <%--<FooterTemplate>
-            <asp:CheckBox runat="server" ID="InsertIsOutOfStock" Text='<%# Bind("IsOutOfStock") %>'/>
-        </FooterTemplate>--%>
-    </asp:TemplateField>
+  
     <asp:TemplateField HeaderText="Ngày thêm">
         <HeaderTemplate>Ngày thêm</HeaderTemplate>
         <ItemTemplate>

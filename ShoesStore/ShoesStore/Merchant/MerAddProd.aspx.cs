@@ -189,7 +189,7 @@ namespace ShoesStore.Merchant
                         Img = filename
                     };
                     MyLibrary.ProSlide_BUS.Insert(proSlide);
-                    //MyLibrary.SaveProImgSlidePath(pro, Path.GetFileName(postedFile.FileName));
+                    MyLibrary.SaveProImgSlidePath(pro, Path.GetFileName(postedFile.FileName));
                     i++;
                 }
             }
@@ -254,8 +254,9 @@ namespace ShoesStore.Merchant
                 };
                 MyLibrary.ProDet_BUS.Insert(proDet);
             }
-            //SaveImgSlide();
+            
             SaveImgPrimary(pro1);
+            SaveImgSlide(pro1);
         }
     }
 }
