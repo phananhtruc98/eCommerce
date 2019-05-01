@@ -128,7 +128,7 @@ namespace ShoesStore.Merchant
 
         protected void lbtnAccount_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/merchant/trang-thong-tin");
+            Response.Redirect("~/nguoi-ban/trang-thong-tin");
         }
 
         /*
