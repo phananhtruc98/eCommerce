@@ -148,9 +148,56 @@ namespace ShoesStore
 
             if (re == _noImg)
             {
-                SaveProImgPath(ipro, null);
+                SaveProImgPath(ipro, "");
             }
             return re;
+
+
+        }
+
+        public static void SaveProImgPath(object ipro, FileUpload fileUpload)
+        {
+            try
+            {
+                var pro = (Pro)ipro;
+                //if (string.IsNullOrEmpty(pro.Img))
+                //return Path.Combine(proPath, "default.png");
+                string[] arrayPath =
+                {
+                    proPath,
+                    pro.Shp.ShpName,
+                    pro.ProName,
+                    pro.Img
+                };
+                var path = string.Join(@"\", arrayPath);
+                string proImgPath = Path.Combine(
+                    HttpContext.Current.Server.MapPath("~")
+                        .Substring(0, HttpContext.Current.Server.MapPath("~").Length - 1), path.Substring(1));
+
+                string proImgPathOnly = Path.GetDirectoryName(proImgPath);
+
+                if (proImgPath != _noImg)
+                {
+                    //bool exists = Directory.Exists(HostingEnvironment.MapPath(proImgPathOnly));
+                    bool exists = Directory.Exists(proImgPathOnly);
+                    if (!exists)
+                    {
+                        //Directory.CreateDirectory(HostingEnvironment.MapPath(proImgPathOnly));
+                        Directory.CreateDirectory(proImgPathOnly);
+                    }
+
+                }
+                if (!string.IsNullOrEmpty(fileUpload.FileName))
+                {
+                    string fileName = Path.Combine(proImgPathOnly, fileUpload.FileName);
+                    fileUpload.SaveAs(fileName);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
 
 
         }
@@ -186,7 +233,7 @@ namespace ShoesStore
                     }
 
                 }
-                if (string.IsNullOrEmpty(imgPath))
+                if (!string.IsNullOrEmpty(imgPath))
                     File.Copy(imgPath, proImgPathOnly);
             }
             catch (Exception ex)
@@ -230,8 +277,56 @@ namespace ShoesStore
                     }
 
                 }
-                if (string.IsNullOrEmpty(imgSlidePath))
+                if (!string.IsNullOrEmpty(imgSlidePath))
                     File.Copy(imgSlidePath, proImgPathOnly);
+            }
+
+
+            catch (Exception ex)
+            {
+
+            }
+        }
+        public static void SaveProImgSlidePath(object ipro, FileUpload fileUpload)
+        {
+            try
+            {
+                var pro = (Pro)ipro;
+                //if (string.IsNullOrEmpty(pro.Img))
+                //return Path.Combine(proPath, "default.png");
+
+
+                string[] arrayPath =
+                {
+                    proPath,
+                    pro.Shp.ShpName,
+                    pro.ProName,
+                    "Slides",
+                    fileUpload.FileName
+                };
+                var path = string.Join(@"\", arrayPath);
+                string proImgPath = Path.Combine(
+                    HttpContext.Current.Server.MapPath("~")
+                        .Substring(0, HttpContext.Current.Server.MapPath("~").Length - 1), path.Substring(1));
+
+                string proImgPathOnly = Path.GetDirectoryName(proImgPath);
+
+                if (proImgPath != _noImg)
+                {
+                    //bool exists = Directory.Exists(HostingEnvironment.MapPath(proImgPathOnly));
+                    bool exists = Directory.Exists(proImgPathOnly);
+                    if (!exists)
+                    {
+                        //Directory.CreateDirectory(HostingEnvironment.MapPath(proImgPathOnly));
+                        Directory.CreateDirectory(proImgPathOnly);
+                    }
+
+                }
+                if (!string.IsNullOrEmpty(fileUpload.FileName))
+                {
+                    string fileName = Path.Combine(proImgPathOnly, fileUpload.FileName);
+                    fileUpload.SaveAs(fileName);
+                }
             }
 
 

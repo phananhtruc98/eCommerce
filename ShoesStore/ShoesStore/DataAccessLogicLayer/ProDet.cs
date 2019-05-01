@@ -25,6 +25,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public int ColorId { get; set; }
         public int SizeId { get; set; }
         public Nullable<int> Qty { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         public virtual ICollection<CartDet> CartDet { get; set; }
         public virtual Pro Pro { get; set; }

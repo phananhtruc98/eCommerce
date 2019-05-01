@@ -20,21 +20,29 @@ namespace ShoesStore.BusinessLogicLayer
 
         public int GetNumberReview(int ShpId, int ProId)
         {
-            try { 
-            return GetAll().Count(m => m.ShpId == ShpId && m.ProId == ProId);
+            try
+            {
+                return GetAll().Count(m => m.ShpId == ShpId && m.ProId == ProId);
             }
             catch
             {
                 return 0;
             }
         }
-
+        public List<RcptBuyDet> GetAllBy(Pro iPro, Cus iCus)
+        {
+            return GetAll().Where(m => m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt) && m.RcptBuy.CusId == iCus.CusId).ToList();
+        }
         public int GetCommentLeft(Pro iPro)
         {
+            int[] allowCommentSteps = new int[] { 7, 8, 9, 10, 11 };
             Cus cus = WebSession.LoginCus;
-            var v = GetAll().ToList().Where(m =>
-                m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt) && m.RcptBuy.CusId==cus.CusId);
-            return v.Count();
+            var rcptBuyDetNotCommented = GetAllBy(iPro, cus);
+            var rcptBuyStaDet = MyLibrary.RcptBuyStaDet_BUS.GetAll();
+            return rcptBuyStaDet.Join(rcptBuyDetNotCommented,
+                a => a.RcptBuyId,
+                b => b.RcptBuyId,
+                (a, b) => a).Count(a => allowCommentSteps.Contains(a.StepId));
         }
 
         public IEnumerable<RcptBuyDet> GetProComments(Pro iPro)
@@ -62,11 +70,11 @@ namespace ShoesStore.BusinessLogicLayer
         public List<RcptBuyDet> ListRcptBuyDet_Ìmg()
         {
             var cus = MyLibrary.Cus_BUS.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
-//RcptBuy rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+            //RcptBuy rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
             var rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == cus.CusId).ToList();
             return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && rcptBuy.Contains(m.RcptBuy))
                 .ToList();
-//return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && m.RcptBuyId == rcptBuy.RcptBuyId).ToList();
+            //return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && m.RcptBuyId == rcptBuy.RcptBuyId).ToList();
         }
 
         public string SumRcptBuyPrice_Shop(int shpId)

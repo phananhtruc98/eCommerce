@@ -311,6 +311,7 @@
                                                                             </a>
                                                                         </div>
                                                                         <ul class="dropcart__product-options">
+                                                                            <li><%# Item.ProDet.ProSize.SizeName %></li>
                                                                             <li><%# Item.ProDet.ProColor.ColorName %></li>
                                                                         </ul>
                                                                         <div class="dropcart__product-meta">

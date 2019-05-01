@@ -3534,6 +3534,7 @@
     <Compile Include="MyExtensions\QueryExtensions.cs" />
     <Compile Include="MyExtensions\RepeaterExtension.cs" />
     <Compile Include="MyExtensions\StringExtension.cs" />
+    <Compile Include="MyExtensions\WebControlExtension.cs" />
     <Compile Include="MyLibrary.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
