@@ -13,6 +13,17 @@ namespace ShoesStore
         {
             LoadTenNguoiDung();
         }
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            if (WebSession.LoginCus != null)
+            {
+               
+            }
+            else
+            {
+                Response.Redirect("/");
+            }
+        }
 
         public void LoadTenNguoiDung()
         {

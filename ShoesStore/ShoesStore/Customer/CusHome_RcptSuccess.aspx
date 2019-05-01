@@ -53,7 +53,7 @@
                                 </ItemTemplate>
                             </asp:ListView>
                         </td>
-                        <td><%#MyLibrary.RcptBuyDet_BUS.SumRcptBuyPrice_Shop(Item.ShpId).ToFormatMoney() %></td>
+                        <td><%#MyLibrary.RcptBuy_BUS.SumPrice(Item).ToFormatMoney() %></td>
                         <td>
                             <asp:LinkButton ID="lbtnChiTiet" runat="server" CommandName="sel" CommandArgument="<%# Item.RcptBuyId %>" Text="CHI TIẾT"/>
                         </td>
