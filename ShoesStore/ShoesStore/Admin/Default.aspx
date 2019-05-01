@@ -111,7 +111,7 @@
 
                                 <ItemTemplate>
                                     <tr>
-                                        <td><asp:LinkButton runat="server" ID="lbtnDetail" CssClass="btn btn-icons btn-rounded btn-outline-warning"><i class="fas fa-info"></i></asp:LinkButton></td>
+                                        <td><asp:LinkButton runat="server" ID="lbtnDetail"  CommandName="Sel"  CommandArgument='<%# Item.ProId %>' CssClass="btn btn-icons btn-rounded btn-outline-warning"><i class="fas fa-info"></i></asp:LinkButton></td>
                                         <td>
                                             <asp:HiddenField ID="hdfShpId" runat="server" Value="<%# Item.ShpId %>" />
                                             <asp:Label runat="server" ID="lbShpName" Text="<%# Item.Shp.ShpName %>"></asp:Label></td>

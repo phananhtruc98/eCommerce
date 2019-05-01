@@ -18,8 +18,10 @@
     <AssemblyName>ShoesStore</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>true</Use64BitIISExpress>
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -325,6 +327,7 @@
     <Content Include="Admin\partials\_footer.html" />
     <Content Include="Admin\partials\_navbar.html" />
     <Content Include="Admin\partials\_sidebar.html" />
+    <Content Include="Admin\ReviewProductDetail.aspx" />
     <Content Include="Admin\vendors\ace-builds\src-min\ace.js" />
     <Content Include="Admin\vendors\ace-builds\src-min\ext-beautify.js" />
     <Content Include="Admin\vendors\ace-builds\src-min\ext-elastic_tabstops_lite.js" />
@@ -3050,6 +3053,13 @@
     </Compile>
     <Compile Include="Admin\ManageService.aspx.designer.cs">
       <DependentUpon>ManageService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ReviewProductDetail.aspx.cs">
+      <DependentUpon>ReviewProductDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ReviewProductDetail.aspx.designer.cs">
+      <DependentUpon>ReviewProductDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

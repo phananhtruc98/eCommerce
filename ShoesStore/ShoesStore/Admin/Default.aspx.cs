@@ -38,16 +38,19 @@ namespace ShoesStore.Admin
 
         protected void lvNeedToActive_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+            int ProId = Int32.Parse(e.CommandArgument.ToString());
+            HiddenField ShpIdhdf = (HiddenField)e.Item.FindControl("hdfShpId");
+            int ShpId = Int32.Parse(ShpIdhdf.Value);
             if (e.CommandName == "Submit")
             {
-                int ProId = Int32.Parse(e.CommandArgument.ToString());
-                HiddenField ShpIdhdf = (HiddenField)e.Item.FindControl("hdfShpId");
-                int ShpId = Int32.Parse(ShpIdhdf.Value);
-
                 Pro updatePro = MyLibrary.Pro_BUS.GetAll().FirstOrDefault(x => x.ProId == ProId && x.ShpId == ShpId);
                 updatePro.Active = true;
                 MyLibrary.Pro_BUS.Update(updatePro);
                 LoadLvNeedToActive();
+            }
+            else if (e.CommandName == "Sel")
+            {
+                Server.Transfer("/Admin/ReviewProductDetail.aspx?ProId=" + ProId + "&ShpId="+ ShpId);
             }
         }
 
@@ -55,5 +58,7 @@ namespace ShoesStore.Admin
         {
             MyLibrary.Show("Hello");
         }
+
+
     }
 }
