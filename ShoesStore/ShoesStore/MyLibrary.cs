@@ -195,7 +195,7 @@ namespace ShoesStore
             }
 
         }
-        public static void SaveProImgSlidePath(object ipro, List<string> imgSlidePaths)
+        public static void SaveProImgSlidePath(object ipro, string imgSlidePath)
         {
             try
             {
@@ -203,39 +203,38 @@ namespace ShoesStore
                 //if (string.IsNullOrEmpty(pro.Img))
                 //return Path.Combine(proPath, "default.png");
 
-                foreach (var imgSlidePath in imgSlidePaths)
+
+                string[] arrayPath =
                 {
-                    string[] arrayPath =
-             {
                     proPath,
                     pro.Shp.ShpName,
                     pro.ProName,
                     "Slides",
                     Path.GetFileName(imgSlidePath)
                 };
-                    var path = string.Join(@"\", arrayPath);
-                    string proImgPath = Path.Combine(
-                        HttpContext.Current.Server.MapPath("~")
-                            .Substring(0, HttpContext.Current.Server.MapPath("~").Length - 1), path.Substring(1));
+                var path = string.Join(@"\", arrayPath);
+                string proImgPath = Path.Combine(
+                    HttpContext.Current.Server.MapPath("~")
+                        .Substring(0, HttpContext.Current.Server.MapPath("~").Length - 1), path.Substring(1));
 
-                    string proImgPathOnly = Path.GetDirectoryName(proImgPath);
+                string proImgPathOnly = Path.GetDirectoryName(proImgPath);
 
-                    if (proImgPath != _noImg)
+                if (proImgPath != _noImg)
+                {
+                    //bool exists = Directory.Exists(HostingEnvironment.MapPath(proImgPathOnly));
+                    bool exists = Directory.Exists(proImgPathOnly);
+                    if (!exists)
                     {
-                        //bool exists = Directory.Exists(HostingEnvironment.MapPath(proImgPathOnly));
-                        bool exists = Directory.Exists(proImgPathOnly);
-                        if (!exists)
-                        {
-                            //Directory.CreateDirectory(HostingEnvironment.MapPath(proImgPathOnly));
-                            Directory.CreateDirectory(proImgPathOnly);
-                        }
-
+                        //Directory.CreateDirectory(HostingEnvironment.MapPath(proImgPathOnly));
+                        Directory.CreateDirectory(proImgPathOnly);
                     }
-                    if (string.IsNullOrEmpty(imgSlidePath))
-                        File.Copy(imgSlidePath, proImgPathOnly);
-                }
 
+                }
+                if (string.IsNullOrEmpty(imgSlidePath))
+                    File.Copy(imgSlidePath, proImgPathOnly);
             }
+
+
             catch (Exception ex)
             {
 
