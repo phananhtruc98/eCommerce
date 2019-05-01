@@ -30,5 +30,11 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return obj.ProDet.All(prodet => prodet.Qty == 0);
         }
+
+        public int GetMaxId()
+        {
+            int maxId = GetAll().Max(x => x.ProId);
+            return maxId;
+        }
     }
 }
