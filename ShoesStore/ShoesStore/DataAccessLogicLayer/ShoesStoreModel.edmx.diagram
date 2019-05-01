@@ -5,36 +5,36 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ba5ba9dc5c95486486c61e7b07ba341b" Name="Diagram1" ZoomLevel="57">
-        <EntityTypeShape EntityType="ShoesStoreModel.Adv" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Cart" Width="1.5" PointX="5.25" PointY="22.875" />
-        <EntityTypeShape EntityType="ShoesStoreModel.CartDet" Width="1.5" PointX="7.5" PointY="24.625" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Config" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Coupon" Width="1.5" PointX="5.25" PointY="35.875" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Cus" Width="1.5" PointX="3" PointY="19.75" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Mer" Width="1.5" PointX="3" PointY="26.75" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Mstr" Width="1.5" PointX="3" PointY="17" />
-        <EntityTypeShape EntityType="ShoesStoreModel.MstrDet" Width="1.5" PointX="5.25" PointY="16.75" />
-        <EntityTypeShape EntityType="ShoesStoreModel.MstrRole" Width="1.5" PointX="3" PointY="23.125" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Pro" Width="1.5" PointX="7.5" PointY="27.875" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProBrand" Width="1.5" PointX="5.25" PointY="26.25" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProCat" Width="1.5" PointX="5.25" PointY="32.75" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProColor" Width="1.5" PointX="7.5" PointY="14.625" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProDet" Width="1.5" PointX="9.75" PointY="28" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProSize" Width="1.5" PointX="7.5" PointY="34.375" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProSlide" Width="1.5" PointX="9.75" PointY="34.625" />
-        <EntityTypeShape EntityType="ShoesStoreModel.ProSlideImg" Width="1.5" PointX="9.75" PointY="31.875" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Rcpt" Width="1.5" PointX="3" PointY="13.375" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuy" Width="1.5" PointX="7.5" PointY="21.25" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyDet" Width="1.5" PointX="9.75" PointY="21.125" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuySta" Width="1.5" PointX="9.75" PointY="25.375" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyStaDet" Width="1.5" PointX="12" PointY="25.25" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyStaStep" Width="1.5" PointX="9.75" PointY="14.375" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptSub" Width="1.5" PointX="8.25" PointY="17.875" />
-        <EntityTypeShape EntityType="ShoesStoreModel.RcptSubDet" Width="1.5" PointX="10.5" PointY="18" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Shp" Width="1.5" PointX="5.25" PointY="29.25" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Sub" Width="1.5" PointX="8.25" PointY="11" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Adv" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Cart" Width="1.5" PointX="5.25" PointY="20.375" />
+        <EntityTypeShape EntityType="ShoesStoreModel.CartDet" Width="1.5" PointX="7.5" PointY="22.125" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Config" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Coupon" Width="1.5" PointX="5.25" PointY="29.75" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Cus" Width="1.5" PointX="3" PointY="17.125" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Mer" Width="1.5" PointX="3" PointY="23.75" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Mstr" Width="1.5" PointX="3" PointY="19.75" />
+        <EntityTypeShape EntityType="ShoesStoreModel.MstrDet" Width="1.5" PointX="5.25" PointY="16.5" />
+        <EntityTypeShape EntityType="ShoesStoreModel.MstrRole" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Pro" Width="1.5" PointX="7.5" PointY="26.125" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProBrand" Width="1.5" PointX="5.25" PointY="23.25" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProCat" Width="1.5" PointX="5.25" PointY="33.5" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProColor" Width="1.5" PointX="10.5" PointY="29.625" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProDet" Width="1.5" PointX="12.75" PointY="27" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProSize" Width="1.5" PointX="10.5" PointY="35.375" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProSlide" Width="1.5" PointX="9.75" PointY="32.625" />
+        <EntityTypeShape EntityType="ShoesStoreModel.ProSlideImg" Width="1.5" PointX="9.75" PointY="26.125" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Rcpt" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuy" Width="1.5" PointX="7.5" PointY="18.5" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyDet" Width="1.5" PointX="9.75" PointY="18.25" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuySta" Width="1.5" PointX="9.75" PointY="22.5" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyStaDet" Width="1.5" PointX="12" PointY="22.375" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyStaStep" Width="1.5" PointX="9.75" PointY="11.5" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptSub" Width="1.5" PointX="8.25" PointY="15" />
+        <EntityTypeShape EntityType="ShoesStoreModel.RcptSubDet" Width="1.5" PointX="10.5" PointY="15.125" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Shp" Width="1.5" PointX="5.25" PointY="26.25" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Sub" Width="1.5" PointX="8.25" PointY="8.125" />
         <EntityTypeShape EntityType="ShoesStoreModel.Usr" Width="1.5" PointX="0.75" PointY="15.625" />
-        <EntityTypeShape EntityType="ShoesStoreModel.UsrAct" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="ShoesStoreModel.UsrAct" Width="1.5" PointX="3" PointY="14.375" />
         <EntityTypeShape EntityType="ShoesStoreModel.WebInfo" Width="1.5" PointX="0.75" PointY="1" />
         <EntityTypeShape EntityType="ShoesStoreModel.WebSlide" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers" />

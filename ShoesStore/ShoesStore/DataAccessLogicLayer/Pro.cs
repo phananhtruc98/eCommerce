@@ -26,8 +26,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public int ProId { get; set; }
         public int CatId { get; set; }
         public int BrandId { get; set; }
-        public int ProQuantity { get; set; }
-        public bool IsOutOfStock { get; set; }
         public string ProName { get; set; }
         public string Img { get; set; }
         public string Desc { get; set; }

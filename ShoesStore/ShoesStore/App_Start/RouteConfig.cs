@@ -44,7 +44,7 @@ namespace ShoesStore
             routes.MapPageRoute("Cushome_Profile", "nguoi-dung/tai-khoan", "~/Customer/CusHome.aspx");
             routes.MapPageRoute("Cushome_ChangePassword", "nguoi-dung/tai-khoan/mat-khau", "~/Customer/CusHome_ChangePassword.aspx");
             routes.MapPageRoute("Cushome_Comment", "nguoi-dung/tai-khoan/nhan-xet", "~/Customer/CusHome_Cmt.aspx");
-            routes.MapPageRoute("Cushome_Rcpt_Success", "nguoi-dung/hoa-don", "~/Customer/CusHome_RcptSuccess.aspx");
+            routes.MapPageRoute("Cushome_Rcpt_Success", "nguoi-dung/theo-doi-don-hang", "~/Customer/CusHome_RcptSuccess.aspx");
             routes.MapPageRoute("Cushome_Rcpt_Det", "nguoi-dung/hoa-don/chi-tiet", "~/Customer/CusHome_Rcpt_Det.aspx");
         }
     }

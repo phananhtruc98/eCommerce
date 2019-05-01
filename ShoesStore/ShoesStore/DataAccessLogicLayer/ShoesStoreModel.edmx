@@ -119,8 +119,6 @@
           <Property Name="ProId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CatId" Type="int" Nullable="false" />
           <Property Name="BrandId" Type="int" Nullable="false" />
-          <Property Name="ProQuantity" Type="int" Nullable="false" />
-          <Property Name="IsOutOfStock" Type="bit" Nullable="false" />
           <Property Name="ProName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Img" Type="varchar" MaxLength="255" />
           <Property Name="Desc" Type="text" />
@@ -2377,8 +2375,6 @@
           <Property Name="ProId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CatId" Type="Int32" Nullable="false" />
           <Property Name="BrandId" Type="Int32" Nullable="false" />
-          <Property Name="ProQuantity" Type="Int32" Nullable="false" />
-          <Property Name="IsOutOfStock" Type="Boolean" Nullable="false" />
           <Property Name="ProName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Img" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -3594,8 +3590,6 @@
                 <ScalarProperty Name="Desc" ColumnName="Desc" />
                 <ScalarProperty Name="Img" ColumnName="Img" />
                 <ScalarProperty Name="ProName" ColumnName="ProName" />
-                <ScalarProperty Name="IsOutOfStock" ColumnName="IsOutOfStock" />
-                <ScalarProperty Name="ProQuantity" ColumnName="ProQuantity" />
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
                 <ScalarProperty Name="CatId" ColumnName="CatId" />
                 <ScalarProperty Name="ProId" ColumnName="ProId" />

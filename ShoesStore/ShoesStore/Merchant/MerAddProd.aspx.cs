@@ -237,7 +237,6 @@ namespace ShoesStore.Merchant
                 Price = price,
                 DateAdd = DateTime.Now,
                 DateEdit = null,
-                IsOutOfStock = true,
                 Active = false,
                 PriceAfter = null,
                 Img = Img
