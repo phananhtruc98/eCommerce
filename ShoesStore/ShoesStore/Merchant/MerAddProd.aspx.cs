@@ -18,6 +18,7 @@ namespace ShoesStore.Merchant
         {
             public ProSize Size { get; set; }
             public ProColor Color { get; set; }
+            public int Qty { get; set; }
         }
 
         public static List<SizeColor> sizeColors = new List<SizeColor>();
@@ -134,7 +135,10 @@ namespace ShoesStore.Merchant
                 Label txtKl = (Label)e.Item.FindControl("lblKl");
                 TextBox txtSl = (TextBox)e.Item.FindControl("txtQty");
                 Label txtCl = (Label)e.Item.FindControl("lbColorName");
+                Label txtSz = (Label)e.Item.FindControl("lbSizeName");
                 txtKl.Text = txtCl.Text + "(" + txtSl.Text + ")";
+                var rs = sizeColors.FirstOrDefault(x => x.Size.SizeName == txtSz.Text && x.Color.ColorName == txtCl.Text);
+                rs.Qty = Int32.Parse(txtSl.Text);
             }
             else if(e.CommandName == "Del")
             {
@@ -167,7 +171,7 @@ namespace ShoesStore.Merchant
             if (fulImgChinh.HasFile)
             {
                 string pathImgChinh = Server.MapPath(fulImgChinh.FileName);
-                MyLibrary.SaveProImgPath(pro, pathImgChinh);
+                MyLibrary.SaveProImgPath(pro, fulImgChinh);
             }
         }
 
@@ -192,7 +196,7 @@ namespace ShoesStore.Merchant
                         Img = filename
                     };
                     MyLibrary.ProSlide_BUS.Insert(proSlide);
-                    MyLibrary.SaveProImgSlidePath(pro, Path.GetFileName(postedFile.FileName));
+                    MyLibrary.SaveProImgSlidePath(pro, postedFile);
                     i++;
                 }
             }
@@ -253,7 +257,8 @@ namespace ShoesStore.Merchant
                     ShpId = ShpId,
                     ProId = MyLibrary.Pro_BUS.GetMaxId(),
                     SizeId = item.Size.SizeId,
-                    ColorId = item.Color.ColorId
+                    ColorId = item.Color.ColorId,
+                    Qty = item.Qty
                 };
                 MyLibrary.ProDet_BUS.Insert(proDet);
             }

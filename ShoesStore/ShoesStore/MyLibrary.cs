@@ -287,7 +287,7 @@ namespace ShoesStore
 
             }
         }
-        public static void SaveProImgSlidePath(object ipro, FileUpload fileUpload)
+        public static void SaveProImgSlidePath(object ipro, HttpPostedFile fileUpload)
         {
             try
             {

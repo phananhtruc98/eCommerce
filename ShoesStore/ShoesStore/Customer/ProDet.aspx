@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" Title="Sản phẩm chi tiết" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ProDet.aspx.cs" Inherits="ShoesStore.Customer.SanPham_ChiTiet" %>
-
+<%@ Import namespace="System.Text" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
@@ -294,7 +294,7 @@
                         <div class="product-tabs__pane product-tabs__pane--active" id="tab-description">
                             <div class="typography">
                                 <h3>Chi tiết sản phẩm</h3>
-                                <%: _proDetView.Desc %>
+                                <%= Server.HtmlDecode(_proDetView.Desc) %>
                             </div>
                         </div>
                         <div class="product-tabs__pane" id="tab-specification">
