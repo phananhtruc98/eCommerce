@@ -41,7 +41,6 @@ namespace ShoesStore.Merchant
                 password1 = merUsr.Password;
                 var avaImg = Avatar;
                 Label1.Text = "Chào " + UsrName;
-                avaImg2.Attributes["src"] = "/Merchant/images/avatar/" + avaImg;
             }
             else
             {
@@ -119,7 +118,7 @@ namespace ShoesStore.Merchant
         protected void lbtnLogout_Click(object sender, EventArgs e)
         {
             MerchantSession.LoginMerchant = null;
-            Response.Redirect("~/merchant/dang-nhap");
+            Response.Redirect("~/nguoi-ban/dang-nhap");
         }
 
         protected void lbtnCusHome_Click(object sender, EventArgs e)
@@ -129,7 +128,7 @@ namespace ShoesStore.Merchant
 
         protected void lbtnAccount_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/merchant/trang-thong-tin");
+            Response.Redirect("~/nguoi-ban/trang-thong-tin");
         }
 
         /*
