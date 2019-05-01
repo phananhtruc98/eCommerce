@@ -8,7 +8,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Web;
-using ShoesStore.MyExtensions;
 
 namespace ShoesStore.Merchant
 {
@@ -25,10 +24,8 @@ namespace ShoesStore.Merchant
         List<ProColor> lstProColor = new List<ProColor>();
         protected void Page_Load(object sender, EventArgs e)
         {
-         
             if (!IsPostBack)
             {
-                phdPage.MerExpired();
                 LoadDdlProCat();
                 LoadDdlProBrand();
                 LoadckbProColor();
@@ -192,7 +189,7 @@ namespace ShoesStore.Merchant
                         Img = filename
                     };
                     MyLibrary.ProSlide_BUS.Insert(proSlide);
-                    MyLibrary.SaveProImgSlidePath(pro, Path.GetFileName(postedFile.FileName));
+                    //MyLibrary.SaveProImgSlidePath(pro, Path.GetFileName(postedFile.FileName));
                     i++;
                 }
             }
@@ -240,6 +237,7 @@ namespace ShoesStore.Merchant
                 Price = price,
                 DateAdd = DateTime.Now,
                 DateEdit = null,
+                
                 Active = false,
                 PriceAfter = null,
                 Img = Img
@@ -257,9 +255,8 @@ namespace ShoesStore.Merchant
                 };
                 MyLibrary.ProDet_BUS.Insert(proDet);
             }
-            
+            //SaveImgSlide();
             SaveImgPrimary(pro1);
-            SaveImgSlide(pro1);
         }
     }
 }

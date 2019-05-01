@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Web.UI;
@@ -18,6 +19,10 @@ namespace ShoesStore.Merchant
         private readonly Shp_BUS shp = new Shp_BUS();
         private readonly Usr_BUS usr = new Usr_BUS();
         private readonly Mer_BUS mer = new Mer_BUS();
+        private readonly RcptBuyStaDet_BUS rcptbuystadet = new RcptBuyStaDet_BUS();
+        private readonly RcptBuyStaStep_BUS rcptbuystastep = new RcptBuyStaStep_BUS();
+        private readonly RcptSub_BUS rcptsub = new RcptSub_BUS();
+        private readonly RcptSubDet_BUS rcptsubdet = new RcptSubDet_BUS();
         private int total;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -41,10 +46,12 @@ namespace ShoesStore.Merchant
                  join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
                  join s in shp.GetAll() on b.ShpId equals s.ShpId
                  join z in mer.GetAll() on s.MerId equals z.MerId 
+                 join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
+                 join e in rcptbuystastep.GetAll() on t.StepId equals e.StepId
                  where z.MerId == (MerchantSession.LoginMer)?.MerId
                  select new
                  {
-                     r.RcptId,
+                     b.RcptBuyId,
                      r.DateAdd,
                      r.DateEdit,
                      r.UsrAdd,
@@ -52,6 +59,7 @@ namespace ShoesStore.Merchant
                      b.CusId,
                      s.ShpName,
                      z.MerId,
+                     e.StepCont
                  }
                 ).ToList();
 
@@ -67,25 +75,17 @@ namespace ShoesStore.Merchant
             sumprice.Visible = true;
             var src =
                 (from r in rcpt.GetAll()
-                 //Nối với bảng rcptBuy ,lấy RcptId từ bảng rcpt chỗ mà bằng với RcptBuyId của bảng rcptBuy
                  join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
-                 //Nối với bảng rcptBuyDet , lấy RcptBuyId từ bảng rcptBuy chỗ mà bằng với RcptBuyId của bảng rcptBuyDet
                  join d in rcptBuyDet.GetAll() on b.RcptBuyId equals d.RcptBuyId
                  join p in pro.GetAll() on d.ProId equals p.ProId
                  join s in shp.GetAll() on d.ShpId equals s.ShpId
-                 //Nối với bảng Mer, lấy MerId từ bảng Shp chỗ mà bằng với MerId của bảng Mer
-                 join z in mer.GetAll() on s.MerId equals z.MerId
                  join u in usr.GetAll() on b.CusId equals u.UsrId
-                 // chỗ nào mà cái RcptId của bảng rcpt bằng với RcptBuyId
                  where r.RcptId == RcptBuyId
-                 //chỗ nào mà cái z.MerId bằng với cái id đang được đăng nhập 
-                // where z.MerId == (MerchantSession.LoginMer).MerId
                  select new
                  {
                      r.RcptId,
                      u.UsrName,
                      s.ShpName,
-                     z.MerId,
                      p.ProName,
                      Price = int.Parse(p.Price),
                      d.Quantity,
@@ -97,7 +97,13 @@ namespace ShoesStore.Merchant
             sumprice2.Text = total.ToString("#,##0");
             gvRcptBuyDet.DataBind();
         }
-
+        /*
+        protected void gv_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvRcptBuy.EditIndex = e.NewEditIndex;
+            gvRcptBuy.DataBind();// your gridview binding function
+        }
+        */
         // Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
@@ -149,15 +155,24 @@ namespace ShoesStore.Merchant
             {
                 var rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
                 var UsrEdit = ((TextBox)gvRcptBuy.Rows[rowIndex].FindControl("EditUsrEdit")).Text;
+                //var StepEdit = ((DropDownList)gvRcptBuy.Rows[rowIndex].FindControl("StepCont")).Text;
                 // SỬA CODE Ở ĐÂY
                 var result = (from c in rcptBuy.GetAll()
+                              join a in rcptbuystadet.GetAll() on c.RcptBuyId equals a.RcptBuyId
+                              join b in rcptbuystastep.GetAll() on a.StepId equals b.StepId
                               where c.RcptBuyId == Convert.ToInt32(e.CommandArgument)
                               select c).FirstOrDefault();
+                //var result1 = (from c in MyLibrary.RcptBuyStaDet_BUS.GetAll()
+                 //              join a in rcptbuystadet.GetAll() on c.RcptBuyId equals a.RcptBuyId
+                 //              join b in rcptbuystastep.GetAll() on a.StepId equals b.StepId
+                 //              select c).FirstOrDefault();
                 if (result != null)
                 {
                     // SỬA CODE Ở ĐÂY
                     result.Rcpt.DateEdit = DateTime.Now;
                     result.Rcpt.UsrEdit = Convert.ToInt32(UsrEdit);
+                    //result1.StepId = Convert.ToInt32(StepEdit);
+                    //rcptbuystadet.Update(result1);
                     rcptBuy.Update(result);
                 }
 
@@ -250,6 +265,33 @@ namespace ShoesStore.Merchant
                 else
                 {
                     RowSpan = 2;
+                }
+            }
+        }
+
+        protected void gvRcptBuy_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+                {
+                    DropDownList ddList = (DropDownList)e.Row.FindControl("drpcategory1");
+                    //bind dropdown-list
+                    //DataTable dt = RcptBuyStaStep_BUS.GetData("Select StepCont from RcptBuyStaStep");
+                    HiddenField hdnfld = (HiddenField)e.Row.FindControl("rcptBuyId1");
+                    int rcptBuyId1 = Convert.ToInt32(hdnfld.Value);
+                    //rcptBuyStaStep.GetAll()
+                    int[] step = {1,2,6,7,8,11 };
+                    int[] stepExist = MyLibrary.RcptBuyStaDet_BUS.GetAllByExist(rcptBuyId1, step);
+                    int[] stepNew = step.Except(stepExist).ToArray();
+                    ddList.DataSource = MyLibrary.RcptBuyStaStep_BUS.GetAllBy(stepNew);
+                    ddList.DataTextField = "StepCont";
+                    ddList.DataValueField = "StepId";
+                    ddList.DataBind();
+
+                    //DataRowView dr = e.Row.DataItem as DataRowView;
+                    //ddList.SelectedItem.Text = dr["category_name"].ToString();
+                    //ddList.SelectedValue = dr["StepCont"].ToString();
                 }
             }
         }
