@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Web;
+
 namespace ShoesStore.Merchant
 {
     public partial class MerAddProd : Page
@@ -16,8 +18,10 @@ namespace ShoesStore.Merchant
             public ProSize Size { get; set; }
             public ProColor Color { get; set; }
         }
+
         public static List<SizeColor> sizeColors = new List<SizeColor>();
-        private readonly Pro_BUS pro = new Pro_BUS();
+        List<ProSize> lstProSize = new List<ProSize>();
+        List<ProColor> lstProColor = new List<ProColor>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,13 +30,6 @@ namespace ShoesStore.Merchant
                 LoadDdlProBrand();
                 LoadckbProColor();
                 LoadCkbProSize();
-            }
-            if (IsPostBack && fulImgChinh.PostedFile != null)
-            {
-                if (fulImgChinh.PostedFile.FileName.Length > 0)
-                {
-                    LoadImgPrimary();
-                }
             }
         }
 
@@ -52,7 +49,6 @@ namespace ShoesStore.Merchant
             DropDownListBrand.DataBind();
         }
 
-
         public void LoadckbProColor()
         {
             ckbColor.DataSource = MyLibrary.ProColor_BUS.GetAll();
@@ -68,49 +64,6 @@ namespace ShoesStore.Merchant
             ckbSize.DataValueField = "SizeId";
             ckbSize.DataBind();
         }
-        protected void btnSubmit_OnClick(object sender, EventArgs e)
-        {
-            var mer = (Mer)MerchantSession.LoginMerchant;
-            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            int ShpId = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == usr1.UsrId).Select(x => x.ShpId).FirstOrDefault();
-            int catId = Int32.Parse(DropDownListCat.SelectedValue.ToString());
-            int brandId = int.Parse(DropDownListBrand.SelectedValue.ToString());
-            //inputProName.te
-            //int proQuantity = int.Parse(((TextBox)pnlThem.FindControl("intputProQuantity")).Text);
-            //string proName = ((TextBox)pnlThem.FindControl("inputProName")).Text;
-            //string desc = ((TextBox)pnlThem.FindControl("editor1")).Text;
-            //string descShort = ((TextBox)pnlThem.FindControl("inputDescShort")).Text;
-            //string price = ((TextBox)pnlThem.FindControl("inputPrice")).Text;
-            string Img = "";
-            if (fulImgChinh.HasFile)
-            {
-                Img = fulImgChinh.FileName;
-            }
-            var pro1 = new Pro
-            {
-                //ShpId = ShpId,
-                //CatId = catId,
-                //BrandId = brandId,
-                //ProQuantity = proQuantity,
-                //ProName = proName,
-                //Desc = desc,
-                //DescShort = descShort,
-                //Price = price,
-                //DateAdd = DateTime.Now,
-                DateEdit = null,
-                IsOutOfStock = true,
-                Active = false,
-                PriceAfter = null,
-                Img = Img
-            };
-            pro.Insert(pro1);
-
-
-        }
-
-
-        List<ProSize> lstProSize = new List<ProSize>();
-        List<ProColor> lstProColor = new List<ProColor>();
 
         protected void lbtnSize_Click(object sender, EventArgs e)
         {
@@ -171,48 +124,6 @@ namespace ShoesStore.Merchant
             ddlSizeSelected.DataBind();
         }
 
-        public List<List<string>> vs = new List<List<string>>();
-        public void LoadlvColoSize()
-        {
-            lvColoSize.DataSource = sizeColors;
-            lvColoSize.DataBind();
-        }
-        protected void lvColoSize_ItemDataBound(object sender, ListViewItemEventArgs e)
-        {
-            ////    HiddenField hddSize = (HiddenField)e.Item.FindControl("SizeId");
-            ////Label lbSize = (Label)e.Item.FindControl("lbSizeName");
-            //DropDownList lvddlColor = (DropDownList)e.Item.FindControl("ddlProColor");
-            //LoadDdlColor(lvddlColor);
-        }
-
-        public void LoadImgPrimary()
-        {
-            if (fulImgChinh.HasFile)
-            {
-                string pathImgChinh =Path.GetFileName(fulImgChinh.PostedFile.FileName);
-                imgPrimary.Attributes["src"] = pathImgChinh.Replace(@"\\",@"\");
-            }
-            else return;
-        }
-
-        public void SaveImgPrimary()
-        {
-            var mer = MerchantSession.LoginMer;
-            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            if (fulImgChinh.HasFile)
-            {
-                string pathImgChinh = Server.MapPath(fulImgChinh.FileName);
-                Pro pro = new Pro()
-                {
-                    ProName = inputProName.Text,
-                    ShpId = mer.Shp.FirstOrDefault(shp => shp.MerId == mer.MerId).ShpId
-                };
-                MyLibrary.SaveProImgPath(pro, pathImgChinh);
-            }
-        }
-
-
-
         protected void lvColoSize_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "Sel")
@@ -222,7 +133,66 @@ namespace ShoesStore.Merchant
                 Label txtCl = (Label)e.Item.FindControl("lbColorName");
                 txtKl.Text = txtCl.Text + "(" + txtSl.Text + ")";
             }
+            else if(e.CommandName == "Del")
+            {
+                sizeColors.RemoveAt(Int32.Parse(e.CommandArgument.ToString()));
+                LoadlvColoSize();
+            }
+        }
 
+        public void LoadlvColoSize()
+        {
+            lvColoSize.DataSource = sizeColors;
+            lvColoSize.DataBind();
+        }
+
+        public void LoadImgPrimary()
+        {
+            if (fulImgChinh.HasFile)
+            {
+                string pathImgChinh = Path.GetFileName(fulImgChinh.PostedFile.FileName);
+                imgPrimary.Attributes["src"] = pathImgChinh.Replace(@"\\", @"\");
+            }
+            else return;
+        }
+
+        public void SaveImgPrimary(Pro pro)
+        {
+            var mer = MerchantSession.LoginMer;
+            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
+            int shpId = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == mer.MerId).Select(x => x.ShpId).FirstOrDefault();
+            if (fulImgChinh.HasFile)
+            {
+                string pathImgChinh = Server.MapPath(fulImgChinh.FileName);
+                MyLibrary.SaveProImgPath(pro, pathImgChinh);
+            }
+        }
+
+        public void SaveImgSlide(Pro pro)
+        {
+            int proId = MyLibrary.Pro_BUS.GetAll().Where(x => x.ProName == inputProName.Text).Select(x=>x.ProId).FirstOrDefault();
+            var mer = MerchantSession.LoginMer;
+            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
+            int shpId = MyLibrary.Shp_Bus.GetAll().Where(x=>x.MerId==mer.MerId).Select(x=>x.ShpId).FirstOrDefault();
+            if (fulImgPhu.HasFiles)
+            {
+                int i = 1;
+                foreach (HttpPostedFile postedFile in fulImgPhu.PostedFiles)
+                {
+                    string filename = Path.GetFileName(postedFile.FileName);
+                    string pathImgSlide = Server.MapPath(postedFile.FileName);
+                    ProSlide proSlide = new ProSlide()
+                    {
+                        SlideId = i,
+                        ProId = proId,
+                        ShpId = shpId,
+                        Img = filename
+                    };
+                    MyLibrary.ProSlide_BUS.Insert(proSlide);
+                    //MyLibrary.SaveProImgSlidePath(pro, Path.GetFileName(postedFile.FileName));
+                    i++;
+                }
+            }
         }
 
         protected void lbtnChon_Click(object sender, EventArgs e)
@@ -240,32 +210,53 @@ namespace ShoesStore.Merchant
             LoadlvColoSize();
         }
 
-
-        //protected void ckbSize_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    for (int i = 0; i < ckbSize.Items.Count; i++)
-        //    {
-        //        if (ckbSize.Items[i].Selected)
-        //        {
-        //            lstSize.Add(Int32.Parse(ckbSize.Items[i].Text)); LoadlvColoSize();
-        //        }
-        //    }
-        //}
-
-        //protected void lbtnInsertColor_Click(object sender, EventArgs e)
-        //{
-        //    string ColorName = ((TextBox)pnlThem.FindControl("txtInsertColor")).Text;
-        //    //string ColorImg = fileNewColor.FileName;
-        //    ProColor newColor = new ProColor
-        //    {
-        //        ColorName = ColorName
-        //    };
-        //    MyLibrary.ProColor_BUS.Insert(newColor);
-        //    ((TextBox)pnlThem.FindControl("txtInsertColor")).Text = "";
-        //}
-
-
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+            var mer = (Mer)MerchantSession.LoginMerchant;
+            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
+            int ShpId = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == usr1.UsrId).Select(x => x.ShpId).FirstOrDefault();
+            int catId = Int32.Parse(DropDownListCat.SelectedValue.ToString());
+            int brandId = int.Parse(DropDownListBrand.SelectedValue.ToString());
+            string proName = inputProName.Text;
+            string desc = editor1.Text;
+            string descShort = inputDescShort.Text;
+            string price = inputPrice.Text;
+            string Img = "";
+            if (fulImgChinh.HasFile)
+            {
+                Img = fulImgChinh.FileName;
+            }
+            var pro1 = new Pro
+            {
+                ShpId = ShpId,
+                CatId = catId,
+                BrandId = brandId,
+                ProName = proName,
+                Desc = desc,
+                DescShort = descShort,
+                Price = price,
+                DateAdd = DateTime.Now,
+                DateEdit = null,
+                IsOutOfStock = true,
+                Active = false,
+                PriceAfter = null,
+                Img = Img
+            };
+            MyLibrary.Pro_BUS.Insert(pro1);
+            //SaveImgSlide(pro1);
+            foreach (SizeColor item in sizeColors)
+            {
+                ProDet proDet = new ProDet
+                {
+                    ShpId = ShpId,
+                    ProId = MyLibrary.Pro_BUS.GetMaxId(),
+                    SizeId = item.Size.SizeId,
+                    ColorId = item.Color.ColorId
+                };
+                MyLibrary.ProDet_BUS.Insert(proDet);
+            }
+            //SaveImgSlide();
+            SaveImgPrimary(pro1);
+        }
     }
-
-
 }

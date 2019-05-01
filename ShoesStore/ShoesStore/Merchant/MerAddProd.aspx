@@ -66,7 +66,7 @@
                                     <asp:DropDownList runat="server" ID="ddlColorSelected"></asp:DropDownList><asp:LinkButton runat="server" ID="lbtnChon" Text="Chọn" OnClick="lbtnChon_Click"></asp:LinkButton>
                     </div>
                     <div>
-                        <asp:ListView ID="lvColoSize" runat="server" OnItemDataBound="lvColoSize_ItemDataBound" OnItemCommand="lvColoSize_ItemCommand">
+                        <asp:ListView ID="lvColoSize" runat="server" OnItemCommand="lvColoSize_ItemCommand">
                             <LayoutTemplate>
                                 <table class="table">
                                     <tr>
@@ -74,6 +74,7 @@
                                         <th>Màu sắc</th>
                                         <th>Số lượng</th>
                                         <th>Danh sách màu đã chọn</th>
+                                        <th>Xóa</th>
                                     </tr>
                                     <tr id="itemPlaceholder" runat="server" />
                                 </table>
@@ -91,6 +92,8 @@
                                         </asp:RequiredFieldValidator><asp:LinkButton ValidationGroup="InsertQty" runat="server" ID="ltbnThem" CommandName="Sel" CommandArgument='<%# Container.DataItemIndex %>'><i class="fas fa-arrow-right"></i></asp:LinkButton></td>
                                     <td>
                                         <asp:Label runat="server" ID="lblKl"></asp:Label></td>
+                                    <td>
+                                        <asp:LinkButton runat="server" ID="lbtnDelete" CommandName="Del" CommandArgument='<%# Container.DataItemIndex %>'><i class="far fa-times-circle"></i></asp:LinkButton></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:ListView>
@@ -98,8 +101,8 @@
                     <hr />
                     <div>
                         <label>Ảnh chính</label>
-                        <asp:FileUpload ID="fulImgChinh" runat="server"  ClientIDMode="Static" onchange="this.form.submit()" />
-                        <asp:Image runat="server" ID="imgPrimary"/>
+                        <asp:FileUpload ID="fulImgChinh" runat="server" ClientIDMode="Static"/>
+                        <asp:Image runat="server" ID="imgPrimary" />
                     </div>
 
                     <div>
