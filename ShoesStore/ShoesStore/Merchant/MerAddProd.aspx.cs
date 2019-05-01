@@ -8,7 +8,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Web;
-using ShoesStore.MyExtensions;
 
 namespace ShoesStore.Merchant
 {
@@ -18,7 +17,6 @@ namespace ShoesStore.Merchant
         {
             public ProSize Size { get; set; }
             public ProColor Color { get; set; }
-            public int Qty { get; set; }
         }
 
         public static List<SizeColor> sizeColors = new List<SizeColor>();
@@ -26,10 +24,8 @@ namespace ShoesStore.Merchant
         List<ProColor> lstProColor = new List<ProColor>();
         protected void Page_Load(object sender, EventArgs e)
         {
-         
             if (!IsPostBack)
             {
-                phdPage.MerExpired();
                 LoadDdlProCat();
                 LoadDdlProBrand();
                 LoadckbProColor();
@@ -135,10 +131,7 @@ namespace ShoesStore.Merchant
                 Label txtKl = (Label)e.Item.FindControl("lblKl");
                 TextBox txtSl = (TextBox)e.Item.FindControl("txtQty");
                 Label txtCl = (Label)e.Item.FindControl("lbColorName");
-                Label txtSz = (Label)e.Item.FindControl("lbSizeName");
                 txtKl.Text = txtCl.Text + "(" + txtSl.Text + ")";
-                var rs = sizeColors.FirstOrDefault(x => x.Size.SizeName == txtSz.Text && x.Color.ColorName == txtCl.Text);
-                rs.Qty = Int32.Parse(txtSl.Text);
             }
             else if(e.CommandName == "Del")
             {
@@ -171,7 +164,7 @@ namespace ShoesStore.Merchant
             if (fulImgChinh.HasFile)
             {
                 string pathImgChinh = Server.MapPath(fulImgChinh.FileName);
-                MyLibrary.SaveProImgPath(pro, fulImgChinh);
+                MyLibrary.SaveProImgPath(pro, pathImgChinh);
             }
         }
 
@@ -196,7 +189,7 @@ namespace ShoesStore.Merchant
                         Img = filename
                     };
                     MyLibrary.ProSlide_BUS.Insert(proSlide);
-                    MyLibrary.SaveProImgSlidePath(pro, postedFile);
+                    //MyLibrary.SaveProImgSlidePath(pro, Path.GetFileName(postedFile.FileName));
                     i++;
                 }
             }
@@ -244,6 +237,7 @@ namespace ShoesStore.Merchant
                 Price = price,
                 DateAdd = DateTime.Now,
                 DateEdit = null,
+                
                 Active = false,
                 PriceAfter = null,
                 Img = Img
@@ -257,14 +251,12 @@ namespace ShoesStore.Merchant
                     ShpId = ShpId,
                     ProId = MyLibrary.Pro_BUS.GetMaxId(),
                     SizeId = item.Size.SizeId,
-                    ColorId = item.Color.ColorId,
-                    Qty = item.Qty
+                    ColorId = item.Color.ColorId
                 };
                 MyLibrary.ProDet_BUS.Insert(proDet);
             }
-            
+            //SaveImgSlide();
             SaveImgPrimary(pro1);
-            SaveImgSlide(pro1);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace ShoesStore.Customer
             if (!IsPostBack)
             {
                 var usr = (Usr) WebSession.LoginUsr;
-                var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
+                var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
                 BindlvDaGiao(usr1.UsrId);
                 BindlvChoThanhToan(usr1.UsrId);
                 BindlvChoLayHang(usr1.UsrId);
