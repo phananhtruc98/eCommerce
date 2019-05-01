@@ -75,7 +75,7 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-
+      
         public DateTime GetSubEndDate(Mer mer)
         {
             List<Tuple<DateTime, DateTime>> BuyHistory = new List<Tuple<DateTime, DateTime>>();
@@ -113,5 +113,6 @@ namespace ShoesStore.BusinessLogicLayer
             }
             return DateTime.Now;
         }
+        
     }
 }
