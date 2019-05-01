@@ -402,7 +402,7 @@
             </div>
         </div>
         <!-- .block-products-carousel -->
-        <div class="block block-products-carousel" data-layout="grid-5">
+       <%-- <div class="block block-products-carousel" data-layout="grid-5">
             <div class="container">
                 <div class="block-header">
                     <h3 class="block-header__title">Related Products</h3>
@@ -2862,7 +2862,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--%>
         <!-- .block-products-carousel / end -->
     </div>
     <!-- site__body / end -->
