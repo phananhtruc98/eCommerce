@@ -3297,6 +3297,12 @@
     <Compile Include="DataAccessLogicLayer\sp_Cus_Info_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\sp_Mer_Info_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -3342,9 +3348,6 @@
     <Compile Include="DataAccessLogicLayer\sp_Shp_Select_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLogicLayer\sp_SubDet_Select_Result.cs">
-      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccessLogicLayer\sp_Sub_Select_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -3352,6 +3355,9 @@
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Sub.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\sysdiagrams.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Table_DAO.cs" />
