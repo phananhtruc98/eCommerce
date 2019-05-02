@@ -31,7 +31,7 @@ namespace ShoesStore.Admin
 // Load data lên cho gvRcptBuy
         private void BindGridViewgvRcptBuy()
         {
-            gvRcptBuy.DataSource = rcptBuy.GetAll().ToList();
+            gvRcptBuy.DataSource = MyLibrary.RcptBuy_BUS.GetAll().ToList();
             gvRcptBuy.DataBind();
         }
 

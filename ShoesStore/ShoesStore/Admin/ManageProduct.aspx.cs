@@ -62,9 +62,15 @@ namespace ShoesStore.Admin
                 join c in proCat_BUS.GetAll() on p.CatId equals c.CatId
                 join b in proBrand_BUS.GetAll() on p.BrandId equals b.BrandId
                 join s in shp_BUS.GetAll() on p.ShpId equals s.ShpId
+                where p.Active == true
                 select p).ToList();
-            gvPro.DataSource = result;
-            gvPro.DataBind();
+            if (result.Count != 0)
+            {
+                gvPro.DataSource = result;
+                gvPro.DataBind();
+            }
+            else lbEmpty.Visible = true;
+            
         }
 
 // Phân trang

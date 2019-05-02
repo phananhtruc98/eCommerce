@@ -7,72 +7,99 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Admin {
+namespace ShoesStore.Merchant {
     
     
-    public partial class Admin1 {
+    public partial class ReviewProductDetail {
         
         /// <summary>
-        /// lbTotalPrice control.
+        /// lbShpName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalPrice;
+        protected global::System.Web.UI.WebControls.Label lbShpName;
         
         /// <summary>
-        /// lbTotalRcpt control.
+        /// lbCatName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalRcpt;
+        protected global::System.Web.UI.WebControls.Label lbCatName;
         
         /// <summary>
-        /// lbTotalPro control.
+        /// lbBrandName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalPro;
+        protected global::System.Web.UI.WebControls.Label lbBrandName;
         
         /// <summary>
-        /// lbTotalMerCus control.
+        /// lbProName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalMerCus;
+        protected global::System.Web.UI.WebControls.Label lbProName;
         
         /// <summary>
-        /// lvNeedToActive control.
+        /// lbPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvNeedToActive;
+        protected global::System.Web.UI.WebControls.Label lbPrice;
         
         /// <summary>
-        /// DataPager1 control.
+        /// lvSizeColorQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataPager DataPager1;
+        protected global::System.Web.UI.WebControls.ListView lvSizeColorQty;
         
         /// <summary>
-        /// lbEmpty control.
+        /// imgPrimary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEmpty;
+        protected global::System.Web.UI.WebControls.Image imgPrimary;
+        
+        /// <summary>
+        /// lvImgSlide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvImgSlide;
+        
+        /// <summary>
+        /// lbDescShort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDescShort;
+        
+        /// <summary>
+        /// lbDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDesc;
     }
 }

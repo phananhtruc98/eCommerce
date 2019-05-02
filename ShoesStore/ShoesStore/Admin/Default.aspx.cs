@@ -3,7 +3,8 @@ using System.Web.UI;
 using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using System.Web.UI.WebControls;
-
+using ShoesStore;
+using ShoesStore.MyExtensions;
 namespace ShoesStore.Admin
 {
     public partial class Admin1 : Page
@@ -12,9 +13,17 @@ namespace ShoesStore.Admin
         {
             if (!IsPostBack)
             {
+                LoadTotalInfo();
                 LoadLvNeedToActive();
             }
 
+        }
+        public void LoadTotalInfo()
+        {
+            lbTotalPrice.Text = MyLibrary.RcptSubDet_BUS.TotalPrice().ToFormatMoney();
+            lbTotalRcpt.Text = MyLibrary.Rcpt_BUS.TotalRcpt().ToString();
+            lbTotalPro.Text = MyLibrary.Pro_BUS.TotalPro().ToString();
+            lbTotalMerCus.Text = MyLibrary.Usr_BUS.TotalMerCus().ToString();
         }
 
         public void LoadLvNeedToActive()

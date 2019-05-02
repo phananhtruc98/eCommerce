@@ -2677,7 +2677,9 @@
     <Content Include="Merchant\MerPaypal.aspx" />
     <Content Include="Merchant\MerProfile.aspx" />
     <Content Include="Merchant\MerProfile_ChangePassword.aspx" />
+    <Content Include="Merchant\MerPromotion.aspx" />
     <Content Include="Merchant\MerShop.aspx" />
+    <Content Include="Merchant\ReviewProductDetail.aspx" />
     <Content Include="Merchant\SignIn.aspx" />
     <Content Include="Merchant\SubGet.aspx" />
     <Content Include="Merchant\vendor\fontawesome-5.6.1\webfonts\fa-brands-400.eot" />
@@ -3496,6 +3498,13 @@
     <Compile Include="Merchant\MerProfile_ChangePassword.aspx.designer.cs">
       <DependentUpon>MerProfile_ChangePassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Merchant\MerPromotion.aspx.cs">
+      <DependentUpon>MerPromotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\MerPromotion.aspx.designer.cs">
+      <DependentUpon>MerPromotion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Merchant\MerShop.aspx.cs">
       <DependentUpon>MerShop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3505,6 +3514,13 @@
     </Compile>
     <Compile Include="Merchant\MyLibrary_Merchant.cs">
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\ReviewProductDetail.aspx.cs">
+      <DependentUpon>ReviewProductDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\ReviewProductDetail.aspx.designer.cs">
+      <DependentUpon>ReviewProductDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>

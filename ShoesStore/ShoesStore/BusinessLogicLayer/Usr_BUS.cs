@@ -69,5 +69,12 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        public int TotalMerCus()
+        {
+            var rsMer = MyLibrary.Mer_BUS.GetAll().Count;
+            var rsCus = MyLibrary.Cus_BUS.GetAll().Count;
+            return rsCus + rsMer;
+        }
     }
 }
