@@ -12,16 +12,21 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+        //trả về mảng StepId đã có của 1 thằng Hóa Đơn
         public int[] GetAllByExist(int RcptBuyId,int[] StepId)
         {
-            var kqCoSan = (from x in GetAll()
-                           where StepId.Contains(x.StepId) && x.RcptBuyId==RcptBuyId
+            // lấy tất cả từ RcptBuyStaDet , chỗ mà Mảng StepId có chứa các StepId của bảng đó
+            // và RcptBuyId của bảng đó phải bằng với RcptBuyId đầu vào 
+            // select tất cả các StepId trong bảng đưa vào mảng
+            var kqCoSan = (from x in MyLibrary.RcptBuyStaDet_BUS.GetAll()
+                           where  x.RcptBuyId==RcptBuyId
                            select x.StepId).ToList().ToArray();
             return kqCoSan;
         }
+        //StepId.Contains(x.StepId) &&
         public RcptBuyStaStep GetMaxExist(int RcptBuyId)
         {
-            var kqLonNhat = (from x in GetAll()
+            var kqLonNhat = (from x in MyLibrary.RcptBuyStaDet_BUS.GetAll()
                            where  x.RcptBuyId == RcptBuyId
                            orderby x.StepId descending
                            select x.StepId ).Take(1).FirstOrDefault();
