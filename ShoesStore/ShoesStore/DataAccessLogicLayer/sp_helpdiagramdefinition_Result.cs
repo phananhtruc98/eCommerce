@@ -11,13 +11,9 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     using System;
     
-    public partial class sp_ProDet_Select_Result
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int ShpId { get; set; }
-        public int ProId { get; set; }
-        public int ColorId { get; set; }
-        public int SizeId { get; set; }
-        public Nullable<int> Qty { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

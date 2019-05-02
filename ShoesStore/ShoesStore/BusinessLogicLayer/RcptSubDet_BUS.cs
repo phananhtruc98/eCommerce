@@ -31,5 +31,16 @@ namespace ShoesStore.BusinessLogicLayer
             //return MyLibrary.RcptSubDet_BUS.GetAll().FirstOrDefault(m => mer != null && m.MerId == mer.MerId);
             return null; //xoa di
         }
+
+        public string TotalPrice()
+        {
+            var rs = (from sd in MyLibrary.RcptSubDet_BUS.GetAll()
+                     join sb in MyLibrary.Sub_BUS.GetAll() on sd.SubId equals sb.SubId
+                     select new
+                     {
+                         Price = Int32.Parse(sb.Price) * sd.Quantity
+                     }).Sum(x=>x.Price);
+            return rs.ToString();
+        }
     }
 }

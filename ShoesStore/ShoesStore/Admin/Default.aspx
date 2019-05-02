@@ -15,7 +15,7 @@
                             <div class="float-right">
                                 <p class="mb-0 text-right">Tổng doanh thu</p>
                                 <div class="fluid-container">
-                                    <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+                                    <h3 class="font-weight-medium text-right mb-0"><asp:Label runat="server" ID="lbTotalPrice"></asp:Label></h3>
                                 </div>
                             </div>
                         </div>
@@ -33,9 +33,9 @@
                                 <i class="mdi mdi-receipt text-warning icon-lg"></i>
                             </div>
                             <div class="float-right">
-                                <p class="mb-0 text-right">Đơn hàng</p>
+                                <p class="mb-0 text-right">Tổng đơn hàng</p>
                                 <div class="fluid-container">
-                                    <h3 class="font-weight-medium text-right mb-0">3455</h3>
+                                    <h3 class="font-weight-medium text-right mb-0"><asp:Label runat="server" ID="lbTotalRcpt"></asp:Label></h3>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                             <div class="float-right">
                                 <p class="mb-0 text-right">Tổng sản phẩm</p>
                                 <div class="fluid-container">
-                                    <h3 class="font-weight-medium text-right mb-0">5693</h3>
+                                    <h3 class="font-weight-medium text-right mb-0"><asp:Label runat="server" ID="lbTotalPro"></asp:Label></h3>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                             <div class="float-right">
                                 <p class="mb-0 text-right">Tổng sản phẩm</p>
                                 <div class="fluid-container">
-                                    <h3 class="font-weight-medium text-right mb-0">246</h3>
+                                    <h3 class="font-weight-medium text-right mb-0"><asp:Label runat="server" ID="lbTotalMerCus"></asp:Label></h3>
                                 </div>
                             </div>
                         </div>

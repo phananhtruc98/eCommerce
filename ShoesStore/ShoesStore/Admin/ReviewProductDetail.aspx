@@ -38,7 +38,7 @@
                                         <asp:Label runat="server" ID="lbPrice"></asp:Label></td>
                                 </tr>
                                 <tr>
-                                    <td>Bảng kích thước, màu sắc và số lượng</td>
+                                    <td>Chi tiết số lượng</td>
                                     <td>
                                         <asp:ListView ID="lvSizeColorQty" ItemType="ShoesStore.DataAccessLogicLayer.ProDet" runat="server">
                                             <LayoutTemplate>

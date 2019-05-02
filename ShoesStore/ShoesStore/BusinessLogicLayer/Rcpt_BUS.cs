@@ -20,5 +20,11 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return _dao.getMaxRcptId();
         }
+
+        public int TotalRcpt()
+        {
+            var rs = MyLibrary.Rcpt_BUS.GetAll().Count;
+            return rs;
+        }
     }
 }

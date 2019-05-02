@@ -56,6 +56,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<RcptSubDet> RcptSubDet { get; set; }
         public DbSet<Shp> Shp { get; set; }
         public DbSet<Sub> Sub { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Usr> Usr { get; set; }
         public DbSet<UsrAct> UsrAct { get; set; }
         public DbSet<WebInfo> WebInfo { get; set; }
@@ -64,6 +65,27 @@ namespace ShoesStore.DataAccessLogicLayer
         public virtual ObjectResult<sp_Admin_Info_Result> sp_Admin_Info()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Admin_Info_Result>("sp_Admin_Info");
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
         }
     
         public virtual int sp_Cart_Delete(Nullable<int> cartID)
@@ -190,6 +212,27 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CartDet_Update", cartIdParameter, shpIdParameter, proIdParameter, qtyParameter);
         }
     
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
         public virtual int sp_Cus_Delete(Nullable<int> cusId)
         {
             var cusIdParameter = cusId.HasValue ?
@@ -229,6 +272,45 @@ namespace ShoesStore.DataAccessLogicLayer
                 new ObjectParameter("CusId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Cus_Update", cusIdParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
         public virtual int sp_Mer_Delete(Nullable<int> merId)
@@ -285,19 +367,6 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Mstr_Delete", mstrIdParameter, roleIdParameter);
         }
     
-        public virtual int sp_Mstr_Insert(Nullable<int> mstrId, Nullable<int> roleId)
-        {
-            var mstrIdParameter = mstrId.HasValue ?
-                new ObjectParameter("MstrId", mstrId) :
-                new ObjectParameter("MstrId", typeof(int));
-    
-            var roleIdParameter = roleId.HasValue ?
-                new ObjectParameter("RoleId", roleId) :
-                new ObjectParameter("RoleId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Mstr_Insert", mstrIdParameter, roleIdParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> sp_Mstr_Select(Nullable<int> mstrId, Nullable<int> roleId)
         {
             var mstrIdParameter = mstrId.HasValue ?
@@ -309,19 +378,6 @@ namespace ShoesStore.DataAccessLogicLayer
                 new ObjectParameter("RoleId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Mstr_Select", mstrIdParameter, roleIdParameter);
-        }
-    
-        public virtual int sp_Mstr_Update(Nullable<int> mstrId, Nullable<int> roleId)
-        {
-            var mstrIdParameter = mstrId.HasValue ?
-                new ObjectParameter("MstrId", mstrId) :
-                new ObjectParameter("MstrId", typeof(int));
-    
-            var roleIdParameter = roleId.HasValue ?
-                new ObjectParameter("RoleId", roleId) :
-                new ObjectParameter("RoleId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Mstr_Update", mstrIdParameter, roleIdParameter);
         }
     
         public virtual int sp_MstrRole_Delete(Nullable<int> roleId, string roleName)
@@ -361,19 +417,6 @@ namespace ShoesStore.DataAccessLogicLayer
                 new ObjectParameter("RoleName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_MstrRole_Select_Result>("sp_MstrRole_Select", roleIdParameter, roleNameParameter);
-        }
-    
-        public virtual int sp_MstrRole_Update(Nullable<int> roleId, string roleName)
-        {
-            var roleIdParameter = roleId.HasValue ?
-                new ObjectParameter("RoleId", roleId) :
-                new ObjectParameter("RoleId", typeof(int));
-    
-            var roleNameParameter = roleName != null ?
-                new ObjectParameter("RoleName", roleName) :
-                new ObjectParameter("RoleName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_MstrRole_Update", roleIdParameter, roleNameParameter);
         }
     
         public virtual int sp_ProBrand_Delete(Nullable<int> brandId)
@@ -523,23 +566,6 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ProColor_Select_Result>("sp_ProColor_Select", colorIdParameter);
         }
     
-        public virtual int sp_ProColor_Update(Nullable<int> colorId, string colorName, string colorImg)
-        {
-            var colorIdParameter = colorId.HasValue ?
-                new ObjectParameter("ColorId", colorId) :
-                new ObjectParameter("ColorId", typeof(int));
-    
-            var colorNameParameter = colorName != null ?
-                new ObjectParameter("ColorName", colorName) :
-                new ObjectParameter("ColorName", typeof(string));
-    
-            var colorImgParameter = colorImg != null ?
-                new ObjectParameter("ColorImg", colorImg) :
-                new ObjectParameter("ColorImg", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProColor_Update", colorIdParameter, colorNameParameter, colorImgParameter);
-        }
-    
         public virtual int sp_ProDet_Delete(Nullable<int> shpId, Nullable<int> proId, Nullable<int> colorId, Nullable<int> sizeId)
         {
             var shpIdParameter = shpId.HasValue ?
@@ -659,23 +685,6 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ProSize_Select_Result>("sp_ProSize_Select", sizeIdParameter);
         }
     
-        public virtual int sp_ProSize_Update(Nullable<int> sizeId, string sizeName, string sizeImg)
-        {
-            var sizeIdParameter = sizeId.HasValue ?
-                new ObjectParameter("SizeId", sizeId) :
-                new ObjectParameter("SizeId", typeof(int));
-    
-            var sizeNameParameter = sizeName != null ?
-                new ObjectParameter("SizeName", sizeName) :
-                new ObjectParameter("SizeName", typeof(string));
-    
-            var sizeImgParameter = sizeImg != null ?
-                new ObjectParameter("SizeImg", sizeImg) :
-                new ObjectParameter("SizeImg", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProSize_Update", sizeIdParameter, sizeNameParameter, sizeImgParameter);
-        }
-    
         public virtual int sp_Rcpt_Delete(Nullable<int> rcptId)
         {
             var rcptIdParameter = rcptId.HasValue ?
@@ -717,11 +726,6 @@ namespace ShoesStore.DataAccessLogicLayer
                 new ObjectParameter("RcptId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Rcpt_Select_Result>("sp_Rcpt_Select", rcptIdParameter);
-        }
-    
-        public virtual int sp_Rcpt_Sub_Det()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Rcpt_Sub_Det");
         }
     
         public virtual int sp_Rcpt_Update(Nullable<int> rcptId, Nullable<int> usrAdd, Nullable<int> usrEdit, Nullable<System.DateTime> dateAdd, Nullable<System.DateTime> dateEdit)
@@ -926,23 +930,6 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptBuyStaDet_Delete", staIdParameter, stepIdParameter);
         }
     
-        public virtual int sp_RcptBuyStaDet_Insert(Nullable<int> staId, Nullable<int> stepId, Nullable<bool> isDone)
-        {
-            var staIdParameter = staId.HasValue ?
-                new ObjectParameter("StaId", staId) :
-                new ObjectParameter("StaId", typeof(int));
-    
-            var stepIdParameter = stepId.HasValue ?
-                new ObjectParameter("StepId", stepId) :
-                new ObjectParameter("StepId", typeof(int));
-    
-            var isDoneParameter = isDone.HasValue ?
-                new ObjectParameter("IsDone", isDone) :
-                new ObjectParameter("IsDone", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptBuyStaDet_Insert", staIdParameter, stepIdParameter, isDoneParameter);
-        }
-    
         public virtual ObjectResult<sp_RcptBuyStaDet_Select_Result> sp_RcptBuyStaDet_Select(Nullable<int> staId, Nullable<int> stepId)
         {
             var staIdParameter = staId.HasValue ?
@@ -954,23 +941,6 @@ namespace ShoesStore.DataAccessLogicLayer
                 new ObjectParameter("StepId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RcptBuyStaDet_Select_Result>("sp_RcptBuyStaDet_Select", staIdParameter, stepIdParameter);
-        }
-    
-        public virtual int sp_RcptBuyStaDet_Update(Nullable<int> staId, Nullable<int> stepId, Nullable<bool> isDone)
-        {
-            var staIdParameter = staId.HasValue ?
-                new ObjectParameter("StaId", staId) :
-                new ObjectParameter("StaId", typeof(int));
-    
-            var stepIdParameter = stepId.HasValue ?
-                new ObjectParameter("StepId", stepId) :
-                new ObjectParameter("StepId", typeof(int));
-    
-            var isDoneParameter = isDone.HasValue ?
-                new ObjectParameter("IsDone", isDone) :
-                new ObjectParameter("IsDone", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptBuyStaDet_Update", staIdParameter, stepIdParameter, isDoneParameter);
         }
     
         public virtual int sp_RcptBuyStaStep_Delete(Nullable<int> stepId)
@@ -1061,72 +1031,21 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptSub_Update", rcptSubIdParameter);
         }
     
-        public virtual int sp_RcptSubDet_Delete(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
         {
-            var rcptSubIdParameter = rcptSubId.HasValue ?
-                new ObjectParameter("RcptSubId", rcptSubId) :
-                new ObjectParameter("RcptSubId", typeof(int));
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
     
-            var subIdParameter = subId.HasValue ?
-                new ObjectParameter("SubId", subId) :
-                new ObjectParameter("SubId", typeof(int));
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
     
-            var merIdParameter = merId.HasValue ?
-                new ObjectParameter("MerId", merId) :
-                new ObjectParameter("MerId", typeof(int));
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptSubDet_Delete", rcptSubIdParameter, subIdParameter, merIdParameter);
-        }
-    
-        public virtual int sp_RcptSubDet_Insert(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)
-        {
-            var rcptSubIdParameter = rcptSubId.HasValue ?
-                new ObjectParameter("RcptSubId", rcptSubId) :
-                new ObjectParameter("RcptSubId", typeof(int));
-    
-            var subIdParameter = subId.HasValue ?
-                new ObjectParameter("SubId", subId) :
-                new ObjectParameter("SubId", typeof(int));
-    
-            var merIdParameter = merId.HasValue ?
-                new ObjectParameter("MerId", merId) :
-                new ObjectParameter("MerId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptSubDet_Insert", rcptSubIdParameter, subIdParameter, merIdParameter);
-        }
-    
-        public virtual int sp_RcptSubDet_Select(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)
-        {
-            var rcptSubIdParameter = rcptSubId.HasValue ?
-                new ObjectParameter("RcptSubId", rcptSubId) :
-                new ObjectParameter("RcptSubId", typeof(int));
-    
-            var subIdParameter = subId.HasValue ?
-                new ObjectParameter("SubId", subId) :
-                new ObjectParameter("SubId", typeof(int));
-    
-            var merIdParameter = merId.HasValue ?
-                new ObjectParameter("MerId", merId) :
-                new ObjectParameter("MerId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptSubDet_Select", rcptSubIdParameter, subIdParameter, merIdParameter);
-        }
-    
-        public virtual int sp_RcptSubDet_Update(Nullable<int> rcptSubId, Nullable<int> subId, Nullable<int> merId)
-        {
-            var rcptSubIdParameter = rcptSubId.HasValue ?
-                new ObjectParameter("RcptSubId", rcptSubId) :
-                new ObjectParameter("RcptSubId", typeof(int));
-    
-            var subIdParameter = subId.HasValue ?
-                new ObjectParameter("SubId", subId) :
-                new ObjectParameter("SubId", typeof(int));
-    
-            var merIdParameter = merId.HasValue ?
-                new ObjectParameter("MerId", merId) :
-                new ObjectParameter("MerId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_RcptSubDet_Update", rcptSubIdParameter, subIdParameter, merIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
     
         public virtual int sp_Shp_Delete(Nullable<int> shpId)
@@ -1291,7 +1210,7 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SubDet_Insert", subIdParameter, merIdParameter, dateStartParameter, dateEndParameter);
         }
     
-        public virtual ObjectResult<sp_SubDet_Select_Result> sp_SubDet_Select(Nullable<int> subId, Nullable<int> merId)
+        public virtual int sp_SubDet_Select(Nullable<int> subId, Nullable<int> merId)
         {
             var subIdParameter = subId.HasValue ?
                 new ObjectParameter("SubId", subId) :
@@ -1301,7 +1220,7 @@ namespace ShoesStore.DataAccessLogicLayer
                 new ObjectParameter("MerId", merId) :
                 new ObjectParameter("MerId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SubDet_Select_Result>("sp_SubDet_Select", subIdParameter, merIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SubDet_Select", subIdParameter, merIdParameter);
         }
     
         public virtual int sp_SubDet_Update(Nullable<int> subId, Nullable<int> merId, Nullable<System.DateTime> dateStart, Nullable<System.DateTime> dateEnd)
@@ -1325,6 +1244,11 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SubDet_Update", subIdParameter, merIdParameter, dateStartParameter, dateEndParameter);
         }
     
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
         public virtual int sp_Usr_Delete(Nullable<int> usrId)
         {
             var usrIdParameter = usrId.HasValue ?
@@ -1334,51 +1258,6 @@ namespace ShoesStore.DataAccessLogicLayer
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Usr_Delete", usrIdParameter);
         }
     
-        public virtual int sp_Usr_Insert(Nullable<int> usrId, string userName, string login, string password, Nullable<bool> active, string email, string address, string phone, Nullable<System.DateTime> dateAdd, Nullable<System.DateTime> dateEdit)
-        {
-            var usrIdParameter = usrId.HasValue ?
-                new ObjectParameter("UsrId", usrId) :
-                new ObjectParameter("UsrId", typeof(int));
-    
-            var userNameParameter = userName != null ?
-                new ObjectParameter("UserName", userName) :
-                new ObjectParameter("UserName", typeof(string));
-    
-            var loginParameter = login != null ?
-                new ObjectParameter("Login", login) :
-                new ObjectParameter("Login", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("Password", password) :
-                new ObjectParameter("Password", typeof(string));
-    
-            var activeParameter = active.HasValue ?
-                new ObjectParameter("Active", active) :
-                new ObjectParameter("Active", typeof(bool));
-    
-            var emailParameter = email != null ?
-                new ObjectParameter("Email", email) :
-                new ObjectParameter("Email", typeof(string));
-    
-            var addressParameter = address != null ?
-                new ObjectParameter("Address", address) :
-                new ObjectParameter("Address", typeof(string));
-    
-            var phoneParameter = phone != null ?
-                new ObjectParameter("Phone", phone) :
-                new ObjectParameter("Phone", typeof(string));
-    
-            var dateAddParameter = dateAdd.HasValue ?
-                new ObjectParameter("DateAdd", dateAdd) :
-                new ObjectParameter("DateAdd", typeof(System.DateTime));
-    
-            var dateEditParameter = dateEdit.HasValue ?
-                new ObjectParameter("DateEdit", dateEdit) :
-                new ObjectParameter("DateEdit", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Usr_Insert", usrIdParameter, userNameParameter, loginParameter, passwordParameter, activeParameter, emailParameter, addressParameter, phoneParameter, dateAddParameter, dateEditParameter);
-        }
-    
         public virtual ObjectResult<sp_Usr_Select_Result> sp_Usr_Select(Nullable<int> usrId)
         {
             var usrIdParameter = usrId.HasValue ?
@@ -1386,51 +1265,6 @@ namespace ShoesStore.DataAccessLogicLayer
                 new ObjectParameter("UsrId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Usr_Select_Result>("sp_Usr_Select", usrIdParameter);
-        }
-    
-        public virtual int sp_Usr_Update(Nullable<int> usrId, string userName, string login, string password, Nullable<bool> active, string email, string address, string phone, Nullable<System.DateTime> dateAdd, Nullable<System.DateTime> dateEdit)
-        {
-            var usrIdParameter = usrId.HasValue ?
-                new ObjectParameter("UsrId", usrId) :
-                new ObjectParameter("UsrId", typeof(int));
-    
-            var userNameParameter = userName != null ?
-                new ObjectParameter("UserName", userName) :
-                new ObjectParameter("UserName", typeof(string));
-    
-            var loginParameter = login != null ?
-                new ObjectParameter("Login", login) :
-                new ObjectParameter("Login", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("Password", password) :
-                new ObjectParameter("Password", typeof(string));
-    
-            var activeParameter = active.HasValue ?
-                new ObjectParameter("Active", active) :
-                new ObjectParameter("Active", typeof(bool));
-    
-            var emailParameter = email != null ?
-                new ObjectParameter("Email", email) :
-                new ObjectParameter("Email", typeof(string));
-    
-            var addressParameter = address != null ?
-                new ObjectParameter("Address", address) :
-                new ObjectParameter("Address", typeof(string));
-    
-            var phoneParameter = phone != null ?
-                new ObjectParameter("Phone", phone) :
-                new ObjectParameter("Phone", typeof(string));
-    
-            var dateAddParameter = dateAdd.HasValue ?
-                new ObjectParameter("DateAdd", dateAdd) :
-                new ObjectParameter("DateAdd", typeof(System.DateTime));
-    
-            var dateEditParameter = dateEdit.HasValue ?
-                new ObjectParameter("DateEdit", dateEdit) :
-                new ObjectParameter("DateEdit", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Usr_Update", usrIdParameter, userNameParameter, loginParameter, passwordParameter, activeParameter, emailParameter, addressParameter, phoneParameter, dateAddParameter, dateEditParameter);
         }
     
         public virtual int WebInfo_Delete(Nullable<int> webId)

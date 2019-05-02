@@ -23,7 +23,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public int RcptBuyId { get; set; }
         public int ShpId { get; set; }
         public int CusId { get; set; }
-        public string CusMessage { get; set; }
     
         public virtual Cus Cus { get; set; }
         public virtual Rcpt Rcpt { get; set; }

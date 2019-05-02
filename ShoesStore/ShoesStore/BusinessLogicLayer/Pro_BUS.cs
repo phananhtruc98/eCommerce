@@ -53,5 +53,11 @@ namespace ShoesStore.BusinessLogicLayer
             int maxId = GetAll().Max(x => x.ProId);
             return maxId;
         }
+
+        public int TotalPro()
+        {
+            var rs = MyLibrary.Pro_BUS.GetAll().Count;
+            return rs;
+        }
     }
 }
