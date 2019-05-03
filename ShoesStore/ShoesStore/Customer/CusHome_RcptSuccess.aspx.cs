@@ -56,7 +56,7 @@ namespace ShoesStore.Customer
             }
             else
             {
-                lbEmpty2.Visible = true;
+                lbEmpty.Visible = true;
             }
         }
 
@@ -108,7 +108,7 @@ namespace ShoesStore.Customer
             }
             else
             {
-                lbEmpty.Visible = true;
+                lbEmpty2.Visible = true;
             }
         }
 
