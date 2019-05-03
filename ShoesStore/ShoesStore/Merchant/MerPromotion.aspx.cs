@@ -16,6 +16,7 @@ namespace ShoesStore.Merchant
         {
             if (!IsPostBack)
             {
+                phdPromotion.MerExpired();
                 lstProSelected.Clear();
                 LoadLvPro();
             }

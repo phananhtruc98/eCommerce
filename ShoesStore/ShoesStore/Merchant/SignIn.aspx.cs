@@ -23,12 +23,12 @@ namespace ShoesStore.Merchant
                 var loginUsr = _usr.LoginMerchant(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
                 MerchantSession.LoginMerchant = loginUsr;
-                Response.Redirect("~/Merchant/MerHome.aspx");
+                Response.Redirect("/nguoi-ban");
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                throw;
+                MyLibrary.Show("Đăng nhập không chính xác");
             }
         }
         protected void btnActCodeSender_Click(object sender, EventArgs e)

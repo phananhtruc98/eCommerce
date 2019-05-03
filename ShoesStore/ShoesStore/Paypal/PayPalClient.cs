@@ -1,12 +1,11 @@
 ﻿using System;
-using PayPalCheckoutSdk.Core;
-using BraintreeHttp;
-
 using System.IO;
-using System.Text;
 using System.Runtime.Serialization.Json;
+using System.Text;
+using BraintreeHttp;
+using PayPalCheckoutSdk.Core;
 
-namespace ShoesStore
+namespace ShoesStore.Paypal
 {
     public class PayPalClient
     {

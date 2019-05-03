@@ -67,7 +67,8 @@
                                         </ul>
                                     </td>
                                     <td class="cart-table__column cart-table__column--price" data-title="Price">
-                                        <asp:Literal runat="server" Text="<%# Item.ProDet.Pro.Price.ToFormatMoney() %>" ID="ltrPrice"/>
+                                        <%# MyLibrary.Pro_BUS.GetPriceFormat(Item.ProDet.Pro) %>
+                                        <asp:HiddenField runat="server" Value="<%# MyLibrary.Pro_BUS.GetPrice(Item.ProDet.Pro) %>" ID="hdfPrice"/>
                                     </td>
                                     <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
                                         <div class="input-number">
@@ -78,7 +79,7 @@
                                         </div>
                                     </td>
                                     <td class="cart-table__column cart-table__column--total" data-title="Total">
-                                        <asp:Literal runat="server" ID="ltrObjSumPrice" Text=" <%# (Convert.ToDouble(Item.ProDet.Pro.Price) * Convert.ToDouble(Item.Qty.ToString())).ToFormatMoney() %>">
+                                        <asp:Literal runat="server" ID="ltrObjSumPrice" Text=" <%# (Convert.ToDouble(MyLibrary.Pro_BUS.GetPrice(Item.ProDet.Pro)) * Convert.ToDouble(Item.Qty.ToString())).ToFormatMoney() %>">
                                         </asp:Literal>
                                     </td>
                                     <td class="cart-table__column cart-table__column--remove">

@@ -59,5 +59,23 @@ namespace ShoesStore.BusinessLogicLayer
             var rs = MyLibrary.Pro_BUS.GetAll().Count;
             return rs;
         }
+        public bool IsSale(Pro ipro)
+        {
+            Pro pro = ipro;
+
+            return !string.IsNullOrEmpty(pro.PriceAfter) && pro.PriceAfter != "0" && (Convert.ToInt32(pro.PriceAfter) < Convert.ToInt32(pro.Price));
+        }
+        public string GetPriceFormat(Pro iPro)
+        {
+            return MyLibrary.Pro_BUS.IsSale(iPro)
+                                                ? $"<span class='widget-products__new-price'>{iPro.PriceAfter.ToFormatMoney()}</span> <span class='widget-products__old-price'>{iPro.Price.ToFormatMoney()}</span>"
+                                                : iPro.Price.ToFormatMoney();
+        }
+        public string GetPrice(Pro iPro)
+        {
+            return MyLibrary.Pro_BUS.IsSale(iPro)
+                                               ? iPro.PriceAfter
+                                               : iPro.Price;
+        }
     }
 }

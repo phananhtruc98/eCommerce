@@ -3,10 +3,20 @@
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ MasterType VirtualPath="SiteMerchant.Master" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
+    
     <!-- site__body -->
 
-
+    <div class="alert alert-success alert-dismissible" runat="server" id="RcptSubSuccess">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Thành công</strong> thời gian kết thúc của bạn là xxx
+    </div>
+    <div class="alert alert-danger alert-dismissible" runat="server" id="RcptSubFail">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Thất bại</strong>
+    </div>
     <asp:MultiView runat="server" ID="MultiviewSub">
         <asp:View ID="ViewSelectSub" runat="server">
             <div class="h2">Bảng giá gói dịch vụ</div>
@@ -95,11 +105,13 @@
         </asp:View>
 
         <asp:View ID="ViewBuySub" runat="server">
-            <asp:Button runat="server" ID="btnBack" Text="Trở về" OnClick="btnBack_Click" />
+            <asp:Button runat="server" ID="btnBack" Text="Trở về" 
+                        I
+                        CssClass="btn btn-warning" OnClick="btnBack_Click" />
+            <asp:HiddenField runat="server" ID="hdfSumMoney" />
 
-            <div id="btnHere"></div>
-            <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-            <script>paypal.Buttons().render('#btnHere');</script>
+            <asp:ImageButton ImageUrl="https://www.paypalobjects.com/en_GB/i/btn/btn_buynow_LG.gif" runat="server" ID="imgBtnPaypal" OnClick="imgBtnPaypal_Click" />
+
         </asp:View>
     </asp:MultiView>
 

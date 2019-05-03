@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Web;
-
+using ShoesStore.MyExtensions;
 namespace ShoesStore.Merchant
 {
     public partial class MerAddProd : Page
@@ -26,6 +26,8 @@ namespace ShoesStore.Merchant
         {
             if (!IsPostBack)
             {
+
+                phdPage.MerExpired();
                 LoadDdlProCat();
                 LoadDdlProBrand();
                 LoadckbProColor();

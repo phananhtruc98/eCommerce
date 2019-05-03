@@ -12,7 +12,7 @@
                             <div class="products-list__item col-<%: 12 / NumberOnRow %> <%# NumberOnRow == 5 && (Container.ItemIndex + 5) % 5 == 0 ? "col-xs-offset-1" : "" %>">
                                 <div class="product-card">
                                     <div class="product-card__badges-list">
-                                        <div class="product-card__badge product-card__badge--new">New</div>
+                                        <div class="product-card__badge product-card__badge--<%# MyLibrary.Pro_BUS.IsSale(Item)?"sale":"new" %>"><%# MyLibrary.Pro_BUS.IsSale(Item)?"Giảm giá":"Mới" %></div>
                                     </div>
                                     <div class="product-card__image">
                                         <asp:LinkButton runat="server" ID="proImgLink" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>">
@@ -29,22 +29,24 @@
                                             <div class="rating">
                                                 <%# MyLibrary.DrawStar(MyLibrary.Pro_BUS.AverageStar(Item)) %>
                                             </div>
-                                            <div class="product-card__rating-legend"><%# MyLibrary.RcptBuyDet_BUS.GetNumberReview(Item.ShpId, Item.ProId) %> Đánh giá</div>
+                                            <div class="product-card__rating-legend"><%# MyLibrary.RcptBuyDet_BUS.GetNumberReview(Item) %> Đánh giá</div>
                                         </div>
                                     </div>
                                     <div class="product-card__actions">
                                         <div class="product-card__availability">
                                             Availability:
-                                            <span class="text-success">
-                                                In Stock
+                                            <span class="text-success">In Stock
                                             </span>
                                         </div>
-                                        <div class="product-card__prices"><%# Eval("Price").ToFormatMoney() %></div>
+                                        <div class="product-card__prices">
+
+                                            <%# MyLibrary.Pro_BUS.GetPriceFormat(Item)%>
+                                        </div>
                                         <div class="product-card__shop text-right small text-monospace">
                                             <a href="<%#MyLibrary.ProDetUrl(Container.DataItem) %>"><%#Eval("Shp.ShpName") %></a>
                                         </div>
                                         <div class="product-card__buttons">
-                                            <asp:LinkButton runat="server" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>" ID="addToCart" Text="Xem sản phẩm" CssClass="btn btn-primary product-card__addtocart"/>
+                                            <asp:LinkButton runat="server" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>" ID="addToCart" Text="Xem sản phẩm" CssClass="btn btn-primary product-card__addtocart" />
                                         </div>
                                     </div>
                                 </div>

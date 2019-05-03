@@ -319,7 +319,7 @@
                                                                                 <%# Item.Qty %>
                                                                             </span>x
                                                         <span class="dropcart__product-price">
-                                                            <%# Item.ProDet.Pro.Price.ToFormatMoney() %>
+                                                            (<%# MyLibrary.Pro_BUS.GetPriceFormat(Item.ProDet.Pro)%>)
                                                         </span>
                                                                         </div>
                                                                     </div>
