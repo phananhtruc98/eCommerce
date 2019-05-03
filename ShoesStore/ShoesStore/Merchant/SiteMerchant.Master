@@ -39,7 +39,7 @@
         <!-- Dang Nhap modal-->
         <!-- Dang Nhap modal/end-->
         <div class="site">
-             Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate()==DateTime.Now?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>
+            Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate()==DateTime.Now?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>
             <header class="site__header d-lg-block d-none">
                 <div class="site-header">
                     <!-- .topbar -->
@@ -121,13 +121,13 @@
                                             <div style="float: right; margin-left: 300px" id="UserDropdown" data-toggle="dropdown" aria-expanded="false">
                                                 <span class="profile-text">
                                                     <asp:Label runat="server" ID="Label1"></asp:Label>
-                                                    </span>
-                                                    
-                                                
+                                                </span>
+
+
                                             </div>
                                             <div style="margin-left: 340px">
-                                                <asp:LinkButton  runat="server" class="dropdown-item" Text="Đăng xuất" ID="LinkButton1" OnClick="lbtnLogout_Click"></asp:LinkButton>
-                                                </div>
+                                                <asp:LinkButton runat="server" class="dropdown-item" Text="Đăng xuất" ID="LinkButton1" OnClick="lbtnLogout_Click"></asp:LinkButton>
+                                            </div>
                                         </li>
                                     </ul>
                                     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -218,9 +218,13 @@
                                                     <li>
                                                         <a href="/cua-hang/quan-ly-hoa-don">Quản Lý Hóa Đơn</a>
                                                     </li>
-                                                     <li>
+                                                    <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/khuyen-mai">Khuyến mãi</a>
                                                     </li>
+                                                    <li>
+                                                        <a href="/cua-hang/quan-ly-san-pham/an-san-pham">Cập nhật hết hàng</a>
+                                                    </li>
+
                                                 </ul>
                                             </div>
                                         </li>

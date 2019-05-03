@@ -2669,6 +2669,7 @@
     <Content Include="Merchant\Contact.aspx" />
     <Content Include="Merchant\css\style.css" />
     <Content Include="Merchant\DefaultMer.aspx" />
+    <Content Include="Merchant\DisableProduct.aspx" />
     <Content Include="Merchant\fonts\stroyka\stroyka.ttf" />
     <Content Include="Merchant\fonts\stroyka\stroyka.woff" />
     <Content Include="Merchant\ManageRcpt.aspx" />
@@ -3460,6 +3461,13 @@
     </Compile>
     <Compile Include="Merchant\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\DisableProduct.aspx.cs">
+      <DependentUpon>DisableProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\DisableProduct.aspx.designer.cs">
+      <DependentUpon>DisableProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\ManageRcpt.aspx.cs">
       <DependentUpon>ManageRcpt.aspx</DependentUpon>
