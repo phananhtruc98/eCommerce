@@ -95,7 +95,7 @@ namespace ShoesStore.Merchant
             foreach (Pro pro in lsOutOfStock)
             {
                 var rs = MyLibrary.Pro_BUS.GetAll().Where(x => x.ProId == pro.ProId).FirstOrDefault();
-                rs.IsOutOfStock = true;
+                //rs.IsOutOfStock = true;
                 MyLibrary.Pro_BUS.Update(rs);
             }
             MyLibrary.Show("Cập nhật thành công!");
