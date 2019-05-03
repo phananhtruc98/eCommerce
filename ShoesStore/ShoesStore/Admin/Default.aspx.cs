@@ -15,6 +15,7 @@ namespace ShoesStore.Admin
             {
                 LoadTotalInfo();
                 LoadLvNeedToActive();
+                BindDataListview();
             }
 
         }
@@ -68,6 +69,18 @@ namespace ShoesStore.Admin
             MyLibrary.Show("Hello");
         }
 
-
+        public void BindDataListview()
+        {
+            var rs1 = MyLibrary.Pro_BUS.GetAll().ToList();
+            if (rs1.Count() == 0)
+            {
+                lbEmpty2.Visible = true;
+            }
+            else
+            {
+                lvCmt.DataSource = rs1;
+                lvCmt.DataBind();
+            }
+        }
     }
 }

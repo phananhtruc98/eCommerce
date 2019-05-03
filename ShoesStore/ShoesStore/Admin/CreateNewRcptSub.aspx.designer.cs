@@ -10,87 +10,69 @@
 namespace ShoesStore.Admin {
     
     
-    public partial class Admin1 {
+    public partial class CreateNewRcptSub {
         
         /// <summary>
-        /// lbTotalPrice control.
+        /// lvSub control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalPrice;
+        protected global::System.Web.UI.WebControls.ListView lvSub;
         
         /// <summary>
-        /// lbTotalRcpt control.
+        /// myHiddenInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalRcpt;
+        protected global::System.Web.UI.WebControls.HiddenField myHiddenInput;
         
         /// <summary>
-        /// lbTotalPro control.
+        /// lvSubSelected control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalPro;
+        protected global::System.Web.UI.WebControls.ListView lvSubSelected;
         
         /// <summary>
-        /// lbTotalMerCus control.
+        /// lbEmptySelected control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalMerCus;
+        protected global::System.Web.UI.WebControls.Label lbEmptySelected;
         
         /// <summary>
-        /// lvNeedToActive control.
+        /// lbTongTien control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvNeedToActive;
+        protected global::System.Web.UI.WebControls.Label lbTongTien;
         
         /// <summary>
-        /// DataPager1 control.
+        /// lbTongNgayMua control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataPager DataPager1;
+        protected global::System.Web.UI.WebControls.Label lbTongNgayMua;
         
         /// <summary>
-        /// lbEmpty control.
+        /// btnThanhToan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEmpty;
-        
-        /// <summary>
-        /// lbEmpty2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbEmpty2;
-        
-        /// <summary>
-        /// lvCmt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvCmt;
+        protected global::System.Web.UI.WebControls.Button btnThanhToan;
     }
 }
