@@ -18,17 +18,6 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
-        public override void Insert(RcptSub obj)
-        {
-            Rcpt rcpt = new Rcpt()
-            {
-                UsrAdd = obj.MerId.Value,
-                IsCompleted = true
-            };
-            MyLibrary.Rcpt_BUS.Insert(rcpt);
-
-            obj.RcptSubId = MyLibrary.Rcpt_BUS.GetAll().Last().RcptId;
-            MyLibrary.RcptSub_BUS.Insert(obj);
-        }
+      
     }
 }

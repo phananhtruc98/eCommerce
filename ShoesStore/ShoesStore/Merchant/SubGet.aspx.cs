@@ -37,15 +37,42 @@ namespace ShoesStore.Merchant
                     var excutePayment = ExcutePayment(apiContext, payerId, Session[guid] as string);
                     if (excutePayment.state.ToLower() != "approved")
                     {
-                        MyLibrary.RcptSub_BUS.Insert(new RcptSub()
-                        {
-                            MerId = MerchantSession.LoginMer.MerId,
-                            Status = true
-                        });
+
+                        
                         MyLibrary.Show("Thất bại", pageUrl);
                     }
                     else
+                    {
+                        List<SubQty> subQties = ((IEnumerable<SubQty>)Session["listSubs"]).ToList();
+                        RcptSub rcptSub = new RcptSub()
+                        {
+                            MerId = MerchantSession.LoginMer.MerId,
+                            Status = true
+                        };
+                        Rcpt rcpt = new Rcpt()
+                        {
+                            UsrAdd = rcptSub.MerId.Value,
+                            IsCompleted = true,
+                            DateAdd = DateTime.Now,
+                            DateEdit = null
+                        };
+                   
+                        MyLibrary.Rcpt_BUS.Insert(rcpt);
+                        rcptSub.RcptSubId = MyLibrary.Rcpt_BUS.GetAll().Last().RcptId;
+                        MyLibrary.RcptSub_BUS.Insert(rcptSub);
+                        foreach (var subQty in subQties)
+                        {
+                            RcptSubDet rcptSubDet = new RcptSubDet()
+                            {
+                                RcptSubId = MyLibrary.RcptSub_BUS.GetLast().RcptSubId,
+                                SubId = subQty.MySub.SubId,
+                                Quantity = subQty.MyQty
+                            };
+
+                            MyLibrary.RcptSubDet_BUS.Insert(rcptSubDet);
+                        }
                         MyLibrary.Show("Thành công", pageUrl);
+                    }
                 }
             }
         }
@@ -165,7 +192,7 @@ namespace ShoesStore.Merchant
                     MyQty = qty
                 };
             });
-
+            Session["listSubs"] = listSubs;
             var listItems = new ItemList { items = new List<Item>() };
             foreach (var sub in listSubs)
                 listItems.items.Add(new Item
@@ -178,7 +205,7 @@ namespace ShoesStore.Merchant
                 });
 
             var payer = new Payer { payment_method = "paypal" };
-            var redirUrls = new RedirectUrls    
+            var redirUrls = new RedirectUrls
             {
                 cancel_url = redirectUrl,
                 return_url = redirectUrl
@@ -202,7 +229,7 @@ namespace ShoesStore.Merchant
             transactionList.Add(new Transaction
             {
                 description = "ShoesStore thông tin giao dịch",
-                invoice_number = guid,//
+                invoice_number = new Random().Next(100000).ToString(),//
                 amount = amount,
                 item_list = listItems
             });

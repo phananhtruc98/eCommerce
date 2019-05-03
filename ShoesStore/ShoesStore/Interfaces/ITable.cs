@@ -6,9 +6,11 @@ namespace ShoesStore.Interfaces
     {
         void Delete(T obj);
         List<T> GetAll();
+        T GetLast();
         void Insert(T obj);
         void Update(T obj);
         bool IsExist(T obj);
         void SetActive(T obj);
+        
     }
 }
