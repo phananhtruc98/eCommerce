@@ -257,8 +257,8 @@ namespace ShoesStore.Merchant
                 };
                 MyLibrary.ProDet_BUS.Insert(proDet);
             }
-            //SaveImgSlide();
             SaveImgPrimary(pro1);
+            MyLibrary.Show("Bài đăng của bạn sẽ được kiểm duyệt trong 24 giờ! :) ");
         }
     }
 }

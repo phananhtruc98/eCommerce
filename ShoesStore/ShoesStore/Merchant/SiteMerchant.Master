@@ -45,8 +45,7 @@
         <!-- Dang Nhap modal-->
         <!-- Dang Nhap modal/end-->
         <div class="site">
-            Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1))<0?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>
-            <header class="site__header d-lg-block d-none">
+            Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1))<0?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>            <header class="site__header d-lg-block d-none">
                 <div class="site-header">
                     <!-- .topbar -->
 
@@ -227,6 +226,10 @@
                                                     <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/khuyen-mai">Khuyến mãi</a>
                                                     </li>
+                                                    <li>
+                                                        <a href="/cua-hang/quan-ly-san-pham/an-san-pham">Cập nhật hết hàng</a>
+                                                    </li>
+
                                                 </ul>
                                             </div>
                                         </li>

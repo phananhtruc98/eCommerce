@@ -7,55 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Admin {
+namespace ShoesStore.Merchant {
     
     
-    public partial class Admin1 {
+    public partial class DisableProduct {
         
         /// <summary>
-        /// lbTotalPrice control.
+        /// lvPro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalPrice;
-        
-        /// <summary>
-        /// lbTotalRcpt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalRcpt;
-        
-        /// <summary>
-        /// lbTotalPro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalPro;
-        
-        /// <summary>
-        /// lbTotalMerCus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalMerCus;
-        
-        /// <summary>
-        /// lvNeedToActive control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvNeedToActive;
+        protected global::System.Web.UI.WebControls.ListView lvPro;
         
         /// <summary>
         /// DataPager1 control.
@@ -85,12 +49,30 @@ namespace ShoesStore.Admin {
         protected global::System.Web.UI.WebControls.Label lbEmpty2;
         
         /// <summary>
-        /// lvCmt control.
+        /// lvOutofStock control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvCmt;
+        protected global::System.Web.UI.WebControls.ListView lvOutofStock;
+        
+        /// <summary>
+        /// DataPager2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataPager DataPager2;
+        
+        /// <summary>
+        /// lbtnIsOutOfStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnIsOutOfStock;
     }
 }

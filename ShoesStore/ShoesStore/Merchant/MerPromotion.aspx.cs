@@ -98,7 +98,7 @@ namespace ShoesStore.Merchant
             }
             else if (e.CommandName == "Check")
             {
-                int priceAfter = 0;
+                double priceAfter = 0;
                 if (rdbtnPromoMode.SelectedValue == "")
                 {
                     MyLibrary.Show("Chưa chọn cách thức giảm giá");
@@ -111,12 +111,12 @@ namespace ShoesStore.Merchant
                 }
                 if (rdbtnPromoMode.SelectedValue == "Percent")
                 {
-                    priceAfter = Int32.Parse(price) - (Int32.Parse(price) / 100 * Int32.Parse(txtTien.Text));
+                    priceAfter = Double.Parse(price) - (Double.Parse(price) / 100 * Double.Parse(txtTien.Text));
                     lbPriceAfter.Text = priceAfter.ToFormatMoney();
                 }
                 else if (rdbtnPromoMode.SelectedValue == "Direct")
                 {
-                    priceAfter = Int32.Parse(price) - Int32.Parse(txtTien.Text);
+                    priceAfter = Double.Parse(price) - Double.Parse(txtTien.Text);
                     lbPriceAfter.Text = priceAfter.ToFormatMoney();
                 }
                 if (priceAfter < 0)

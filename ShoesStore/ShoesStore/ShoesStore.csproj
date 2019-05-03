@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Account_Mstr.aspx" />
+    <Content Include="Admin\CreateNewRcptSub.aspx" />
     <Content Include="Admin\css\logincss.css" />
     <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\css\customstyle.css" />
@@ -317,6 +318,7 @@
     <Content Include="Admin\ManageReceipt_Cus.aspx" />
     <Content Include="Admin\ManageReceipt_Mer.aspx" />
     <Content Include="Admin\ManageService.aspx" />
+    <Content Include="Admin\Overview.aspx" />
     <Content Include="Admin\pages\charts\chartjs.html" />
     <Content Include="Admin\pages\forms\basic_elements.html" />
     <Content Include="Admin\pages\icons\font-awesome.html" />
@@ -2673,6 +2675,7 @@
     <Content Include="Merchant\Contact.aspx" />
     <Content Include="Merchant\css\style.css" />
     <Content Include="Merchant\DefaultMer.aspx" />
+    <Content Include="Merchant\DisableProduct.aspx" />
     <Content Include="Merchant\fonts\stroyka\stroyka.ttf" />
     <Content Include="Merchant\fonts\stroyka\stroyka.woff" />
     <Content Include="Merchant\js\MerchantJs.js" />
@@ -2992,6 +2995,13 @@
       <DependentUpon>Account_Mstr.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdminSession.cs" />
+    <Compile Include="Admin\CreateNewRcptSub.aspx.cs">
+      <DependentUpon>CreateNewRcptSub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateNewRcptSub.aspx.designer.cs">
+      <DependentUpon>CreateNewRcptSub.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3061,6 +3071,13 @@
     </Compile>
     <Compile Include="Admin\ManageService.aspx.designer.cs">
       <DependentUpon>ManageService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Overview.aspx.cs">
+      <DependentUpon>Overview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Overview.aspx.designer.cs">
+      <DependentUpon>Overview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ReviewProductDetail.aspx.cs">
       <DependentUpon>ReviewProductDetail.aspx</DependentUpon>
@@ -3463,6 +3480,13 @@
     </Compile>
     <Compile Include="Merchant\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\DisableProduct.aspx.cs">
+      <DependentUpon>DisableProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\DisableProduct.aspx.designer.cs">
+      <DependentUpon>DisableProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\ManageRcpt.aspx.cs">
       <DependentUpon>ManageRcpt.aspx</DependentUpon>

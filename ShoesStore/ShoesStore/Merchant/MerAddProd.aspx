@@ -9,8 +9,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <asp:PlaceHolder runat="server" ID="phdPage">
-
-
         <div class="container">
             <div class="row">
                 <div class="card-body">
