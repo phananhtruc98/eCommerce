@@ -256,7 +256,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <%--<div class="block-sidebar__item">
+                            <div class="block-sidebar__item">
                                 <div class="widget-products widget">
                                     <h4 class="widget__title">Latest Products</h4>
                                     <div class="widget-products__list">
@@ -268,7 +268,7 @@
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Electric Planer Brandix KL370090G 300 Watts</a>
+                                                    <a href="product.html">Ads 1</a>
                                                 </div>
                                                 <div class="widget-products__prices">$749.00</div>
                                             </div>
@@ -281,7 +281,7 @@
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Undefined Tool IRadix DPS3000SY 2700 Watts</a>
+                                                    <a href="product.html">Ads 2</a>
                                                 </div>
                                                 <div class="widget-products__prices">$1,019.00</div>
                                             </div>
@@ -294,7 +294,7 @@
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Drill Screwdriver Brandix ALX7054 200 Watts</a>
+                                                    <a href="product.html">Ads 3</a>
                                                 </div>
                                                 <div class="widget-products__prices">$850.00</div>
                                             </div>
@@ -307,7 +307,7 @@
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Drill Series 3 Brandix KSR4590PQS 1500 Watts</a>
+                                                    <a href="product.html">Ads 4</a>
                                                 </div>
                                                 <div class="widget-products__prices">
                                                     <span class="widget-products__new-price">$949.00</span> <span class="widget-products__old-price">$1189.00</span>
@@ -322,14 +322,14 @@
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Brandix Router Power Tool 2017ERXPK</a>
+                                                    <a href="product.html">Ads 5</a>
                                                 </div>
                                                 <div class="widget-products__prices">$1,700.00</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>--%>
+                            </div>
                         </div>
                     </div>
                     <!--Side bar-->
