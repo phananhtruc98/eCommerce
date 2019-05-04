@@ -15,10 +15,31 @@ namespace ShoesStore.Admin
         {
             if(!IsPostBack)
             {
+                MultiView1.ActiveViewIndex = 0;
                 LoadTableSub();
+                LoadDdlMerName();
+                
             }
         }
 
+        public void LoadDdlMerName()
+        {
+            var rs = (from u in MyLibrary.Usr_BUS.GetAll()
+                     join m in MyLibrary.Mer_BUS.GetAll() on u.UsrId equals m.MerId
+                     select new
+                     {
+                         UsrName = u.UsrName,
+                         UsrId = u.UsrId
+                     }).ToList();
+            ddtMerName.DataSource = rs;
+            ddtMerName.DataTextField = "UsrName";
+            ddtMerName.DataValueField = "UsrId";
+            ddtMerName.DataBind();
+        }
+
+
+
+        // View 1
         public void LoadTableSub()
         {
             lvSub.DataSource = MyLibrary.Sub_BUS.GetAll();
@@ -47,7 +68,7 @@ namespace ShoesStore.Admin
 
         public void LoadSubSelected()
         {
-            btnThanhToan.Visible = true;
+            btnTiep.Visible = true;
             lvSubSelected.DataSource = lstSub;
             lvSubSelected.DataBind();
             int ngay = 0;
@@ -58,8 +79,8 @@ namespace ShoesStore.Admin
                 tien += Int32.Parse(((Label)lvSubSelected.Items[i].FindControl("lbTongGia")).Text.Replace(",", string.Empty));
             }
             lbTongNgayMua.Attributes.Add("Style", "float: right");
-            lbTongNgayMua.Text = "Tổng ngày: " + ngay;
-            lbTongTien.Text = "Tổng tiền: " + tien.ToFormatMoney();
+            lbTongNgayMua.Text =  ngay.ToString();
+            lbTongTien.Text = tien.ToFormatMoney();
         }
         protected void lvSubSelected_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
@@ -82,7 +103,7 @@ namespace ShoesStore.Admin
                 if (lstSub.Count == 0)
                 {
                     lbEmptySelected.Visible = true;
-                    btnThanhToan.Visible = false;
+                    btnTiep.Visible = false;
                 }
                 else
                 {
@@ -97,10 +118,31 @@ namespace ShoesStore.Admin
 
         }
 
-        protected void btnThanhToan_Click(object sender, EventArgs e)
+        protected void btnTiep_Click(object sender, EventArgs e)
         {
-            //MultiviewSub.ActiveViewIndex = 1;
+            MultiView1.ActiveViewIndex = 1;
+            //ddtMerName_SelectedIndexChanged(sender, e);
         }
 
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 0;
+        }
+
+        protected void ddtMerName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int MerId = Int32.Parse(ddtMerName.SelectedValue);
+            var rs = (from s in MyLibrary.Shp_Bus.GetAll()
+                     where s.MerId == MerId
+                     select s.ShpName).FirstOrDefault();
+            lbShpName.Text = rs;
+            lbTotalDay.Text = lbTongNgayMua.Text;
+            lbTotalPrice.Text = lbTongTien.Text;
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -256,7 +256,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <%--<div class="block-sidebar__item">
+                            <div class="block-sidebar__item">
                                 <div class="widget-products widget">
                                     <h4 class="widget__title">Latest Products</h4>
                                     <div class="widget-products__list">
@@ -329,7 +329,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>--%>
+                            </div>
                         </div>
                     </div>
                     <!--Side bar-->
