@@ -406,15 +406,7 @@ h6 { font-size: 16px; }
     top: 5px;
 }
 
-.btn {
-    border-radius: 2px;
-    font-size: 1rem;
-    font-weight: 500;
-    height: calc(2.25rem + 2px);
-    line-height: 1.5;
-    padding: .375rem 1.25rem;
-    transition: all .1s ease-in-out;
-}
+
 
 .btn.btn-svg-icon { width: calc(2.25rem + 2px); }
 
@@ -8264,7 +8256,7 @@ margin: 6px;*/
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .block-slideshow--layout--full .block-slideshow__slide-image--desktop { background-position: -190px top; }
+    
 
     .block-slideshow--layout--full .block-slideshow__slide-content {
         bottom: 56px;
