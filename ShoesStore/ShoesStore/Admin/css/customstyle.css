@@ -46,3 +46,39 @@
     height:50px;
 
 }
+
+.rating__body {
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.rating__star + .rating__star {
+    margin-left: 3px;
+}
+
+.rating__star:first-child + .rating__star--only-edge {
+    margin-left: 0;
+}
+
+.rating__fill {
+    color: #ccc;
+    fill: currentColor;
+}
+
+.rating__stroke {
+    color: rgba(0, 0, 0, .08);
+    fill: currentColor;
+}
+
+.rating__star--active .rating__fill {
+    color: #ffd333;
+}
+
+.rating__star--active .rating__stroke {
+    color: rgba(0, 0, 0, .08);
+}
+
+.rating__star--only-edge {
+    display: none;
+    position: relative;
+}

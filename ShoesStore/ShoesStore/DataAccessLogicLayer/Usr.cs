@@ -17,7 +17,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public Usr()
         {
             this.Rcpt = new HashSet<Rcpt>();
-            this.Rcpt1 = new HashSet<Rcpt>();
             this.UsrAct = new HashSet<UsrAct>();
         }
     
@@ -37,7 +36,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public virtual Mer Mer { get; set; }
         public virtual Mstr Mstr { get; set; }
         public virtual ICollection<Rcpt> Rcpt { get; set; }
-        public virtual ICollection<Rcpt> Rcpt1 { get; set; }
         public virtual ICollection<UsrAct> UsrAct { get; set; }
     }
 }

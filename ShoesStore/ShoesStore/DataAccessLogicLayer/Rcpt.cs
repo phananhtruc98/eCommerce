@@ -22,7 +22,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public Nullable<bool> IsCompleted { get; set; }
     
         public virtual Usr Usr { get; set; }
-        public virtual Usr Usr1 { get; set; }
         public virtual RcptBuy RcptBuy { get; set; }
         public virtual RcptSub RcptSub { get; set; }
     }

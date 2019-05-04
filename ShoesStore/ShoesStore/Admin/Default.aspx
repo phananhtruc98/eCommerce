@@ -175,7 +175,7 @@
                                 <tr>
                                     <td><%# Item.ProId %></td>
                                     <td><%# Item.ProName %></td>
-                                    <td><%# MyLibrary.DrawStar(MyLibrary.Pro_BUS.AverageStar(Item))%></td>
+                                    <td><%#MyLibrary.DrawStar(MyLibrary.Pro_BUS.AverageStar(Item))%></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:ListView>

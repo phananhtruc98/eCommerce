@@ -75,7 +75,8 @@ namespace ShoesStore.Customer
                             ProId = groupItem.ProId,
                             ColorId = groupItem.ColorId,
                             SizeId = groupItem.SizeId,
-                            Quantity = groupItem.Qty
+                            Quantity = groupItem.Qty,
+                            PriceWhenBuy = MyLibrary.Pro_BUS.GetPrice(groupItem.ProDet.Pro)
                         };
                         MyLibrary.RcptBuyDet_BUS.Insert(rcptBuyDet);
                         MyLibrary.CartDet_BUS.Delete(groupItem);

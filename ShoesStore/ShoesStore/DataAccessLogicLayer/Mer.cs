@@ -22,8 +22,8 @@ namespace ShoesStore.DataAccessLogicLayer
     
         public int MerId { get; set; }
     
+        public virtual Usr Usr { get; set; }
         public virtual ICollection<RcptSub> RcptSub { get; set; }
         public virtual ICollection<Shp> Shp { get; set; }
-        public virtual Usr Usr { get; set; }
     }
 }

@@ -237,7 +237,10 @@
           <Property Name="SizeId" Type="int" Nullable="false" />
           <Property Name="Cmt" Type="nvarchar" MaxLength="255" />
           <Property Name="Point" Type="int" />
+          <Property Name="MerCmt" Type="nvarchar" MaxLength="255" />
+          <Property Name="MerPoint" Type="int" />
           <Property Name="Quantity" Type="int" />
+          <Property Name="PriceWhenBuy" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="RcptBuySta">
           <Key>
@@ -393,8 +396,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cus_Usr">
+          <End Role="Usr" Type="Self.Usr" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cus" Type="Self.Cus" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usr">
+              <PropertyRef Name="UsrId" />
+            </Principal>
+            <Dependent Role="Cus">
+              <PropertyRef Name="CusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mer_Usr">
+          <End Role="Usr" Type="Self.Usr" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Mer" Type="Self.Mer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usr">
+              <PropertyRef Name="UsrId" />
+            </Principal>
+            <Dependent Role="Mer">
+              <PropertyRef Name="MerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Mstr_Usr">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
+          <End Role="Usr" Type="Self.Usr" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Mstr" Type="Self.Mstr" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Usr">
@@ -532,7 +565,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rcpt_Usr">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
+          <End Role="Usr" Type="Self.Usr" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Rcpt" Type="Self.Rcpt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usr">
@@ -540,18 +575,6 @@
             </Principal>
             <Dependent Role="Rcpt">
               <PropertyRef Name="UsrAdd" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Rcpt_Usr1">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="0..1" />
-          <End Role="Rcpt" Type="Self.Rcpt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="Rcpt">
-              <PropertyRef Name="UsrEdit" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -719,18 +742,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UsersCustomers_Users">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
-          <End Role="Cus" Type="Self.Cus" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="Cus">
-              <PropertyRef Name="CusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UsersCustomersCarts_UsersCustomers">
           <End Role="Cus" Type="Self.Cus" Multiplicity="0..1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
@@ -755,18 +766,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UsersMerchants_Users">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="1" />
-          <End Role="Mer" Type="Self.Mer" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="Mer">
-              <PropertyRef Name="MerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UsersMerchantsShopsProducts_UsersMerchantsShops">
           <End Role="Shp" Type="Self.Shp" Multiplicity="1" />
           <End Role="Pro" Type="Self.Pro" Multiplicity="*" />
@@ -780,7 +779,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsrAct_Usr">
-          <End Role="Usr" Type="Self.Usr" Multiplicity="0..1" />
+          <End Role="Usr" Type="Self.Usr" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UsrAct" Type="Self.UsrAct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usr">
@@ -1298,6 +1299,14 @@
             <End Role="Pro" EntitySet="Pro" />
             <End Role="CouponDet" EntitySet="CouponDet" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cus_Usr" Association="Self.FK_Cus_Usr">
+            <End Role="Usr" EntitySet="Usr" />
+            <End Role="Cus" EntitySet="Cus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mer_Usr" Association="Self.FK_Mer_Usr">
+            <End Role="Usr" EntitySet="Usr" />
+            <End Role="Mer" EntitySet="Mer" />
+          </AssociationSet>
           <AssociationSet Name="FK_Mstr_Usr" Association="Self.FK_Mstr_Usr">
             <End Role="Usr" EntitySet="Usr" />
             <End Role="Mstr" EntitySet="Mstr" />
@@ -1343,10 +1352,6 @@
             <End Role="ProSlideImg" EntitySet="ProSlideImg" />
           </AssociationSet>
           <AssociationSet Name="FK_Rcpt_Usr" Association="Self.FK_Rcpt_Usr">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="Rcpt" EntitySet="Rcpt" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Rcpt_Usr1" Association="Self.FK_Rcpt_Usr1">
             <End Role="Usr" EntitySet="Usr" />
             <End Role="Rcpt" EntitySet="Rcpt" />
           </AssociationSet>
@@ -1402,10 +1407,6 @@
             <End Role="Mer" EntitySet="Mer" />
             <End Role="Shp" EntitySet="Shp" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomers_Users" Association="Self.FK_UsersCustomers_Users">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="Cus" EntitySet="Cus" />
-          </AssociationSet>
           <AssociationSet Name="FK_UsersCustomersCarts_UsersCustomers" Association="Self.FK_UsersCustomersCarts_UsersCustomers">
             <End Role="Cus" EntitySet="Cus" />
             <End Role="Cart" EntitySet="Cart" />
@@ -1413,10 +1414,6 @@
           <AssociationSet Name="FK_UsersCustomersCartsDetails_UsersCustomersCarts" Association="Self.FK_UsersCustomersCartsDetails_UsersCustomersCarts">
             <End Role="Cart" EntitySet="Cart" />
             <End Role="CartDet" EntitySet="CartDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsersMerchants_Users" Association="Self.FK_UsersMerchants_Users">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="Mer" EntitySet="Mer" />
           </AssociationSet>
           <AssociationSet Name="FK_UsersMerchantsShopsProducts_UsersMerchantsShops" Association="Self.FK_UsersMerchantsShopsProducts_UsersMerchantsShops">
             <End Role="Shp" EntitySet="Shp" />
@@ -1959,13 +1956,17 @@
             <End Role="ProDet" EntitySet="ProDet" />
             <End Role="CartDet" EntitySet="CartDet" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cus_Usr" Association="ShoesStoreModel.FK_Cus_Usr">
+            <End Role="Usr" EntitySet="Usr" />
+            <End Role="Cus" EntitySet="Cus" />
+          </AssociationSet>
           <AssociationSet Name="FK_RcptBuy_Cus" Association="ShoesStoreModel.FK_RcptBuy_Cus">
             <End Role="Cus" EntitySet="Cus" />
             <End Role="RcptBuy" EntitySet="RcptBuy" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersCustomers_Users" Association="ShoesStoreModel.FK_UsersCustomers_Users">
+          <AssociationSet Name="FK_Mer_Usr" Association="ShoesStoreModel.FK_Mer_Usr">
             <End Role="Usr" EntitySet="Usr" />
-            <End Role="Cus" EntitySet="Cus" />
+            <End Role="Mer" EntitySet="Mer" />
           </AssociationSet>
           <AssociationSet Name="FK_RcptSub_Mer" Association="ShoesStoreModel.FK_RcptSub_Mer">
             <End Role="Mer" EntitySet="Mer" />
@@ -1974,10 +1975,6 @@
           <AssociationSet Name="FK_Shp_Mer" Association="ShoesStoreModel.FK_Shp_Mer">
             <End Role="Mer" EntitySet="Mer" />
             <End Role="Shp" EntitySet="Shp" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsersMerchants_Users" Association="ShoesStoreModel.FK_UsersMerchants_Users">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="Mer" EntitySet="Mer" />
           </AssociationSet>
           <AssociationSet Name="FK_Mstr_Usr" Association="ShoesStoreModel.FK_Mstr_Usr">
             <End Role="Usr" EntitySet="Usr" />
@@ -2035,10 +2032,6 @@
             <End Role="Usr" EntitySet="Usr" />
             <End Role="Rcpt" EntitySet="Rcpt" />
           </AssociationSet>
-          <AssociationSet Name="FK_Rcpt_Usr1" Association="ShoesStoreModel.FK_Rcpt_Usr1">
-            <End Role="Usr" EntitySet="Usr" />
-            <End Role="Rcpt" EntitySet="Rcpt" />
-          </AssociationSet>
           <AssociationSet Name="FK_RcptBuy_Rcpt" Association="ShoesStoreModel.FK_RcptBuy_Rcpt">
             <End Role="Rcpt" EntitySet="Rcpt" />
             <End Role="RcptBuy" EntitySet="RcptBuy" />
@@ -2087,7 +2080,7 @@
             <End Role="Coupon" EntitySet="Coupon" />
             <End Role="Pro" EntitySet="Pro" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="sp_Admin_Info_Result">
           <Property Type="Int32" Name="UsrId" Nullable="false" />
           <Property Type="String" Name="UsrName" Nullable="false" MaxLength="255" />
@@ -2364,17 +2357,17 @@
           </Key>
           <Property Name="CusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cart" Relationship="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers" FromRole="Cus" ToRole="Cart" />
+          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_Cus_Usr" FromRole="Cus" ToRole="Usr" />
           <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuy_Cus" FromRole="Cus" ToRole="RcptBuy" />
-          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_UsersCustomers_Users" FromRole="Cus" ToRole="Usr" />
         </EntityType>
         <EntityType Name="Mer">
           <Key>
             <PropertyRef Name="MerId" />
           </Key>
           <Property Name="MerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_Mer_Usr" FromRole="Mer" ToRole="Usr" />
           <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_RcptSub_Mer" FromRole="Mer" ToRole="RcptSub" />
           <NavigationProperty Name="Shp" Relationship="ShoesStoreModel.FK_Shp_Mer" FromRole="Mer" ToRole="Shp" />
-          <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_UsersMerchants_Users" FromRole="Mer" ToRole="Usr" />
         </EntityType>
         <EntityType Name="Mstr">
           <Key>
@@ -2527,7 +2520,6 @@
           <Property Name="DateEdit" Type="DateTime" Precision="3" />
           <Property Name="IsCompleted" Type="Boolean" />
           <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_Rcpt_Usr" FromRole="Rcpt" ToRole="Usr" />
-          <NavigationProperty Name="Usr1" Relationship="ShoesStoreModel.FK_Rcpt_Usr1" FromRole="Rcpt" ToRole="Usr" />
           <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuy_Rcpt" FromRole="Rcpt" ToRole="RcptBuy" />
           <NavigationProperty Name="RcptSub" Relationship="ShoesStoreModel.FK_RcptSub_Rcpt" FromRole="Rcpt" ToRole="RcptSub" />
         </EntityType>
@@ -2560,7 +2552,10 @@
           <Property Name="SizeId" Type="Int32" Nullable="false" />
           <Property Name="Cmt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Point" Type="Int32" />
+          <Property Name="MerCmt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MerPoint" Type="Int32" />
           <Property Name="Quantity" Type="Int32" />
+          <Property Name="PriceWhenBuy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_RcptBuyDet_ProDet" FromRole="RcptBuyDet" ToRole="ProDet" />
           <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuyDet_RcptBuy" FromRole="RcptBuyDet" ToRole="RcptBuy" />
         </EntityType>
@@ -2656,11 +2651,10 @@
           <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateEdit" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_UsersCustomers_Users" FromRole="Usr" ToRole="Cus" />
-          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_UsersMerchants_Users" FromRole="Usr" ToRole="Mer" />
+          <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_Cus_Usr" FromRole="Usr" ToRole="Cus" />
+          <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_Mer_Usr" FromRole="Usr" ToRole="Mer" />
           <NavigationProperty Name="Mstr" Relationship="ShoesStoreModel.FK_Mstr_Usr" FromRole="Usr" ToRole="Mstr" />
           <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_Rcpt_Usr" FromRole="Usr" ToRole="Rcpt" />
-          <NavigationProperty Name="Rcpt1" Relationship="ShoesStoreModel.FK_Rcpt_Usr1" FromRole="Usr" ToRole="Rcpt" />
           <NavigationProperty Name="UsrAct" Relationship="ShoesStoreModel.FK_UsrAct_Usr" FromRole="Usr" ToRole="UsrAct" />
         </EntityType>
         <EntityType Name="UsrAct">
@@ -2739,6 +2733,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cus_Usr">
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShoesStoreModel.Cus" Role="Cus" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usr">
+              <PropertyRef Name="UsrId" />
+            </Principal>
+            <Dependent Role="Cus">
+              <PropertyRef Name="CusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RcptBuy_Cus">
           <End Type="ShoesStoreModel.Cus" Role="Cus" Multiplicity="1" />
           <End Type="ShoesStoreModel.RcptBuy" Role="RcptBuy" Multiplicity="*" />
@@ -2751,15 +2759,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UsersCustomers_Users">
-          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1" />
-          <End Type="ShoesStoreModel.Cus" Role="Cus" Multiplicity="0..1" />
+        <Association Name="FK_Mer_Usr">
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShoesStoreModel.Mer" Role="Mer" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Usr">
               <PropertyRef Name="UsrId" />
             </Principal>
-            <Dependent Role="Cus">
-              <PropertyRef Name="CusId" />
+            <Dependent Role="Mer">
+              <PropertyRef Name="MerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2787,20 +2797,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UsersMerchants_Users">
-          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1" />
-          <End Type="ShoesStoreModel.Mer" Role="Mer" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="Mer">
-              <PropertyRef Name="MerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Mstr_Usr">
-          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ShoesStoreModel.Mstr" Role="Mstr" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Usr">
@@ -2968,7 +2968,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rcpt_Usr">
-          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ShoesStoreModel.Rcpt" Role="Rcpt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usr">
@@ -2976,18 +2978,6 @@
             </Principal>
             <Dependent Role="Rcpt">
               <PropertyRef Name="UsrAdd" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Rcpt_Usr1">
-          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="0..1" />
-          <End Type="ShoesStoreModel.Rcpt" Role="Rcpt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usr">
-              <PropertyRef Name="UsrId" />
-            </Principal>
-            <Dependent Role="Rcpt">
-              <PropertyRef Name="UsrEdit" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3102,7 +3092,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsrAct_Usr">
-          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="0..1" />
+          <End Type="ShoesStoreModel.Usr" Role="Usr" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ShoesStoreModel.UsrAct" Role="UsrAct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usr">
@@ -3731,7 +3723,10 @@
           <EntitySetMapping Name="RcptBuyDet">
             <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuyDet">
               <MappingFragment StoreEntitySet="RcptBuyDet">
+                <ScalarProperty Name="PriceWhenBuy" ColumnName="PriceWhenBuy" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MerPoint" ColumnName="MerPoint" />
+                <ScalarProperty Name="MerCmt" ColumnName="MerCmt" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="Cmt" ColumnName="Cmt" />
                 <ScalarProperty Name="SizeId" ColumnName="SizeId" />
@@ -3868,7 +3863,7 @@
               <ScalarProperty Name="CouponID" ColumnName="CouponId" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

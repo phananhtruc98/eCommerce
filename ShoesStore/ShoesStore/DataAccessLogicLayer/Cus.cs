@@ -23,7 +23,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public int CusId { get; set; }
     
         public virtual ICollection<Cart> Cart { get; set; }
-        public virtual ICollection<RcptBuy> RcptBuy { get; set; }
         public virtual Usr Usr { get; set; }
+        public virtual ICollection<RcptBuy> RcptBuy { get; set; }
     }
 }
