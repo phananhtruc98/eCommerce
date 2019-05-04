@@ -17,6 +17,7 @@ namespace ShoesStore.Merchant
         {
             public ProSize Size { get; set; }
             public ProColor Color { get; set; }
+            public int Qty { get; set; }
         }
 
         public static List<SizeColor> sizeColors = new List<SizeColor>();
@@ -26,7 +27,7 @@ namespace ShoesStore.Merchant
         {
             if (!IsPostBack)
             {
-
+                sizeColors.Clear();
                 phdPage.MerExpired();
                 LoadDdlProCat();
                 LoadDdlProBrand();
@@ -133,9 +134,15 @@ namespace ShoesStore.Merchant
                 Label txtKl = (Label)e.Item.FindControl("lblKl");
                 TextBox txtSl = (TextBox)e.Item.FindControl("txtQty");
                 Label txtCl = (Label)e.Item.FindControl("lbColorName");
+                Label txtSz = (Label)e.Item.FindControl("lbSizeName");
                 txtKl.Text = txtCl.Text + "(" + txtSl.Text + ")";
+
+                var rs = (from sc in sizeColors
+                         where sc.Size.SizeName == txtSz.Text && sc.Color.ColorName == txtCl.Text
+                         select sc).FirstOrDefault();
+                rs.Qty = Int32.Parse(txtSl.Text);
             }
-            else if(e.CommandName == "Del")
+            else if (e.CommandName == "Del")
             {
                 sizeColors.RemoveAt(Int32.Parse(e.CommandArgument.ToString()));
                 LoadlvColoSize();
@@ -166,16 +173,16 @@ namespace ShoesStore.Merchant
             if (fulImgChinh.HasFile)
             {
                 string pathImgChinh = Server.MapPath(fulImgChinh.FileName);
-                MyLibrary.SaveProImgPath(pro, pathImgChinh);
+                MyLibrary.SaveProImgPath(pro, fulImgChinh);
             }
         }
 
         public void SaveImgSlide(Pro pro)
         {
-            int proId = MyLibrary.Pro_BUS.GetAll().Where(x => x.ProName == inputProName.Text).Select(x=>x.ProId).FirstOrDefault();
+            int proId = MyLibrary.Pro_BUS.GetAll().Where(x => x.ProName == inputProName.Text).Select(x => x.ProId).FirstOrDefault();
             var mer = MerchantSession.LoginMer;
             var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            int shpId = MyLibrary.Shp_Bus.GetAll().Where(x=>x.MerId==mer.MerId).Select(x=>x.ShpId).FirstOrDefault();
+            int shpId = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == mer.MerId).Select(x => x.ShpId).FirstOrDefault();
             if (fulImgPhu.HasFiles)
             {
                 int i = 1;
@@ -191,7 +198,7 @@ namespace ShoesStore.Merchant
                         Img = filename
                     };
                     MyLibrary.ProSlide_BUS.Insert(proSlide);
-                    //MyLibrary.SaveProImgSlidePath(pro, Path.GetFileName(postedFile.FileName));
+                    MyLibrary.SaveProImgSlidePath(pro, postedFile);
                     i++;
                 }
             }
@@ -239,13 +246,13 @@ namespace ShoesStore.Merchant
                 Price = price,
                 DateAdd = DateTime.Now,
                 DateEdit = null,
-                
+
                 Active = false,
                 PriceAfter = null,
                 Img = Img
             };
             MyLibrary.Pro_BUS.Insert(pro1);
-            //SaveImgSlide(pro1);
+            
             foreach (SizeColor item in sizeColors)
             {
                 ProDet proDet = new ProDet
@@ -253,11 +260,13 @@ namespace ShoesStore.Merchant
                     ShpId = ShpId,
                     ProId = MyLibrary.Pro_BUS.GetMaxId(),
                     SizeId = item.Size.SizeId,
-                    ColorId = item.Color.ColorId
+                    ColorId = item.Color.ColorId,
+                    Qty = item.Qty
                 };
                 MyLibrary.ProDet_BUS.Insert(proDet);
             }
             SaveImgPrimary(pro1);
+            SaveImgSlide(pro1);
             MyLibrary.Show("Bài đăng của bạn sẽ được kiểm duyệt trong 24 giờ! :) ");
         }
     }
