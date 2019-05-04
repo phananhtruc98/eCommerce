@@ -29,9 +29,9 @@ namespace ShoesStore.Customer
             var qty = (TextBox) sender;
             var thisRptItem = (RepeaterItem) qty.NamingContainer;
             var thisRpt = (Repeater) thisRptItem.NamingContainer;
-            var ltrPrice = (Literal) thisRptItem.FindControl("ltrPrice");
+            var hdfPrice = (HiddenField) thisRptItem.FindControl("hdfPrice");
             var ltrObjSumPrice = (Literal) thisRptItem.FindControl("ltrObjSumPrice");
-            ltrObjSumPrice.Text = (Convert.ToDouble(ltrPrice.Text) * Convert.ToDouble(qty.Text)).ToFormatMoney();
+            ltrObjSumPrice.Text = (Convert.ToDouble(hdfPrice.Value) * Convert.ToDouble(qty.Text)).ToFormatMoney();
             var thisRptItemParentItem = (RepeaterItem) thisRptItem.NamingContainer.NamingContainer;
             var thisRptItemParent = (Repeater) thisRptItem.NamingContainer.NamingContainer.NamingContainer;
             var ltrSumPerShp =

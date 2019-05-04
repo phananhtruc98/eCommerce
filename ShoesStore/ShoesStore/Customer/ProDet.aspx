@@ -117,7 +117,7 @@
                                     </div>
                                 </div>
                                 <div class="product__rating-legend">
-                                    <a href="/#"><%: MyLibrary.RcptBuyDet_BUS.GetNumberReview(ProDetView.ShpId, ProDetView.ProId) %></a><span>/</span>
+                                    <a href="/#"><%: MyLibrary.RcptBuyDet_BUS.GetNumberReview(ProDetView) %></a><span>/</span>
                                     <a href="/#">Write A Review
                                     </a>
                                 </div>
@@ -149,7 +149,11 @@
                                         
                                           
 
-                            <div class="product__prices"><%: _proDetView.Price.ToFormatMoney() %></div>
+                            <div class="product__prices">
+                               
+                                            <%= MyLibrary.Pro_BUS.GetPriceFormat(ProDetView)%>
+
+                            </div>
 
 
                             <div>

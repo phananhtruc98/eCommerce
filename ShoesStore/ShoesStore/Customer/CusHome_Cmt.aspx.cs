@@ -52,7 +52,7 @@ namespace ShoesStore.Customer
                     t.Key.Cmt,
                     t.Key.Point
                 };
-            if (rs1.Count() == 0 || rs1.Any(x => x.Cmt == null))
+            if (rs1.Count() == 0)
             {
                 lbEmpty.Visible = true;
             }

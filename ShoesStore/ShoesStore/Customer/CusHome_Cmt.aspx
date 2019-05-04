@@ -23,13 +23,11 @@
                 <ItemTemplate>
                     <tr>
                         <td><%# Eval("ShpName") %></td>
-                        <td><%# Eval("ProName") %></td>
                         <td><%# Eval("ColorName") %></td>
                         <td><%# Eval("SizeName") %></td>
                         <td><%# Eval("ProName") %></td>
                         <td><%# Eval("Cmt") %></td>
                         <td><%#MyLibrary.DrawStar(int.Parse(Eval("Point").ToString())) %></td>
-                        <%--<td><%# Eval("DateAdd")%></td> --%>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>

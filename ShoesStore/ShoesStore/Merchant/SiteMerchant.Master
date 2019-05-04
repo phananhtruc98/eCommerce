@@ -7,13 +7,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title><%: Page.Title %></title>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/ShoesStore") %>
     </asp:PlaceHolder>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AW70rNk98eTP9zPPpkP4nJfOulOCt8yvtXtGseUz9_m5JX_NkY1_FlD3bN0oxizRTN3lZ5ZVAYJAnnMW">
+    </script>
+
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
@@ -39,8 +45,7 @@
         <!-- Dang Nhap modal-->
         <!-- Dang Nhap modal/end-->
         <div class="site">
-             Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate()==DateTime.Now?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>
-            <header class="site__header d-lg-block d-none">
+            Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1))<0?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>            <header class="site__header d-lg-block d-none">
                 <div class="site-header">
                     <!-- .topbar -->
 
@@ -121,13 +126,13 @@
                                             <div style="float: right; margin-left: 300px" id="UserDropdown" data-toggle="dropdown" aria-expanded="false">
                                                 <span class="profile-text">
                                                     <asp:Label runat="server" ID="Label1"></asp:Label>
-                                                    </span>
-                                                    
-                                                
+                                                </span>
+
+
                                             </div>
                                             <div style="margin-left: 340px">
-                                                <asp:LinkButton  runat="server" class="dropdown-item" Text="Đăng xuất" ID="LinkButton1" OnClick="lbtnLogout_Click"></asp:LinkButton>
-                                                </div>
+                                                <asp:LinkButton runat="server" class="dropdown-item" Text="Đăng xuất" ID="LinkButton1" OnClick="lbtnLogout_Click"></asp:LinkButton>
+                                            </div>
                                         </li>
                                     </ul>
                                     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -149,7 +154,7 @@
                         <div style="margin-top: 50px;" class="block block-sidebar">
                             <div class="block-sidebar__item">
                                 <div class="widget-categories widget-categories--location--shop widget">
-                                    <h4 class="widget__title">Categories</h4>
+                                    <h4 class="widget__title">Danh mục</h4>
                                     <ul class="widget-categories__list" data-collapse data-collapse-opened-class="widget-categories__item--open">
                                         <li class="widget-categories__item" data-collapse-item>
                                             <div class="widget-categories__row">
@@ -157,7 +162,7 @@
                                                     <svg class="widget-categories__arrow" width="6px" height="9px">
                                                         <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                     </svg>
-                                                    Merchant
+                                                    Thông tin
                                                 </a>
                                                 <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
                                             </div>
@@ -179,7 +184,7 @@
                                                     <svg class="widget-categories__arrow" width="6px" height="9px">
                                                         <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                     </svg>
-                                                    Subscription Option
+                                                    Subscription
                                                 </a>
                                                 <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
                                             </div>
@@ -218,9 +223,13 @@
                                                     <li>
                                                         <a href="/cua-hang/quan-ly-hoa-don">Quản Lý Hóa Đơn</a>
                                                     </li>
-                                                     <li>
+                                                    <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/khuyen-mai">Khuyến mãi</a>
                                                     </li>
+                                                    <li>
+                                                        <a href="/cua-hang/quan-ly-san-pham/an-san-pham">Cập nhật hết hàng</a>
+                                                    </li>
+
                                                 </ul>
                                             </div>
                                         </li>
@@ -247,7 +256,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="block-sidebar__item">
+                            <%--<div class="block-sidebar__item">
                                 <div class="widget-products widget">
                                     <h4 class="widget__title">Latest Products</h4>
                                     <div class="widget-products__list">
@@ -320,7 +329,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                     <!--Side bar-->
@@ -471,5 +480,6 @@
             <!-- site__footer / end -->
         </div>
     </form>
+    <script src="/Merchant/js/MerchantJs.js"></script>
 </body>
 </html>

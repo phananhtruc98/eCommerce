@@ -73,7 +73,10 @@ namespace ShoesStore
                 return Path.Combine(usrPath, "default.jpg");
             return Path.Combine(cusPath, cus.CusId.ToString(), cus.Usr.Avatar);
         }
-
+        public static int[] GetAllowCommentStepIds()
+        {
+            return new int[] { 7, 8, 9, 10, 11 };
+        }
         public static StateBag GetCurrentPageViewState()
         {
             var page = HttpContext.Current.Handler as Page;
@@ -383,13 +386,14 @@ namespace ShoesStore
             return Path.Combine(slidePath, img.ToString()).Replace(@"\", @"/");
         }
 
-        public static void Show(string message)
+        public static void Show(string message,string reUrl="")
         {
             var cleanMessage = message.Replace("'", "\'");
             var page = HttpContext.Current.CurrentHandler as Page;
-            var script = string.Format("alert('{0}');", cleanMessage);
+            var script = string.Format("alert('{0}');{1}", cleanMessage,reUrl!="" ? "window.location.href ='"+reUrl+"'":"");
             if (page != null && !page.ClientScript.IsClientScriptBlockRegistered("alert"))
                 page.ClientScript.RegisterClientScriptBlock(page.GetType(), "alert", script, true /* addScriptTags */);
         }
+        
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
+using ShoesStore.Merchant;
 
 namespace ShoesStore.BusinessLogicLayer
 {
@@ -78,5 +79,7 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.ProDet.Pro.Price));
         }
+
+        
     }
 }

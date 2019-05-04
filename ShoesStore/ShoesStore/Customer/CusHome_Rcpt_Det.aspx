@@ -60,7 +60,7 @@
                             </ItemTemplate>
                         </asp:Repeater>
                         <tr>
-                            <td colspan="7" style="font-size: 30px; text-align: right;">Tổng cộng: <%# MyLibrary.RcptBuyDet_BUS.SumRcptBuyPrice_Shop(Item.ShpId).ToFormatMoney() %></td>
+                            <td colspan="7" style="font-size: 30px; text-align: right;">Tổng cộng: <%# MyLibrary.RcptBuy_BUS.SumPrice(Item).ToFormatMoney() %></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using BraintreeHttp;
 using PayPalCheckoutSdk.Core;
 using PayPalCheckoutSdk.Orders;
+using ShoesStore.Paypal;
+
 namespace ShoesStore.Merchant
 {
     public partial class MerPaypal : System.Web.UI.Page

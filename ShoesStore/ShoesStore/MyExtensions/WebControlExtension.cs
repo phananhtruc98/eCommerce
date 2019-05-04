@@ -11,7 +11,7 @@ namespace ShoesStore.MyExtensions
     {
         public static void MerExpired(this PlaceHolder phd)
         {
-            if(MerchantSession.LoginMer.GetSubEndDate()==DateTime.Now)
+            if(MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1))<0)
             {
                 
                 
@@ -20,6 +20,7 @@ namespace ShoesStore.MyExtensions
                     Text = "Bạn đã hết hạn, xin mời gia hạn thêm sub "
                 };
 
+                phd.Controls.Clear();
                 phd.Controls.Add(lb);
             }
         }

@@ -25,7 +25,7 @@ namespace ShoesStore.BusinessLogicLayer
             try
             {
                 var money = GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId)
-                    .Sum(m => Convert.ToInt32(m.ProDet.Pro.Price) * m.Qty);
+                    .Sum(m => (MyLibrary.Pro_BUS.IsSale(m.ProDet.Pro) ? Convert.ToInt32(m.ProDet.Pro.PriceAfter) : Convert.ToInt32(m.ProDet.Pro.Price)) * m.Qty);
                 return money.ToString();
             }
             catch (Exception)
@@ -40,7 +40,7 @@ namespace ShoesStore.BusinessLogicLayer
             {
                 var money = GetAll()
                     .Where(m => m.ProDet.Pro.ShpId == shpId && m.Cart.CusId == WebSession.LoginCus.CusId)
-                    .Sum(m => Convert.ToInt32(m.ProDet.Pro.Price) * m.Qty);
+                    .Sum(m => Convert.ToInt32(MyLibrary.Pro_BUS.GetPrice(m.ProDet.Pro)) * m.Qty);
                 var s = GetAll().Where(m => m.ProDet.Pro.ShpId == shpId && m.Cart.CusId == WebSession.LoginCus.CusId);
                 return money.ToString();
             }
@@ -59,7 +59,7 @@ namespace ShoesStore.BusinessLogicLayer
                 var cart = _cartBus.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
                 if (cart == null && cus != null)
                 {
-                    cart = new Cart {CusId = cus.CusId};
+                    cart = new Cart { CusId = cus.CusId };
                     _cartBus.Insert(cart);
                     cart = _cartBus.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
                 }
@@ -80,7 +80,7 @@ namespace ShoesStore.BusinessLogicLayer
 
         public int ListCartPreviewNumber()
         {
-            return ListCartPreview().GroupBy(m => new {m.ProDet.Pro.ShpId, m.ProDet.Pro.ProId}).Count();
+            return ListCartPreview().GroupBy(m => new { m.ProDet.Pro.ShpId, m.ProDet.Pro.ProId }).Count();
         }
     }
 }

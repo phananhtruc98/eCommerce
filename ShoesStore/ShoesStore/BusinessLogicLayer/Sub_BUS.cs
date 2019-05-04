@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 
@@ -14,7 +15,7 @@ namespace ShoesStore.BusinessLogicLayer
 
         public Sub GetById(int id)
         {
-            throw new NotImplementedException();
+            return GetAll().FirstOrDefault(m => m.SubId == id);
         }
 
         public Sub GetByPrimaryKeys(int id)

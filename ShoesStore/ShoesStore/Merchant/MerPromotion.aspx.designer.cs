@@ -13,6 +13,15 @@ namespace ShoesStore.Merchant {
     public partial class MerPromotion {
         
         /// <summary>
+        /// phdPromotion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phdPromotion;
+        
+        /// <summary>
         /// lvPro control.
         /// </summary>
         /// <remarks>
@@ -38,5 +47,23 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEmpty;
+        
+        /// <summary>
+        /// rdbtnPromoMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rdbtnPromoMode;
+        
+        /// <summary>
+        /// lvProPromo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvProPromo;
     }
 }

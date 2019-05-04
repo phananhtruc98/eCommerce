@@ -109,7 +109,7 @@
                                                     <td><%# Item.ProDet.ProSize.SizeName %></td>
                                                     <td><%# Item.ProDet.ProColor.ColorName %></td>
                                                     <td><%# Item.Qty %></td>
-                                                    <td><%# (decimal.Parse(Item.ProDet.Pro.Price) * Item.Qty.Value).ToFormatMoney() %></td>
+                                                    <td><%# (decimal.Parse(MyLibrary.Pro_BUS.GetPrice(Item.ProDet.Pro)) * Item.Qty.Value).ToFormatMoney() %></td>
                                                 </tr>
                                             </ItemTemplate>
                                         </asp:Repeater>

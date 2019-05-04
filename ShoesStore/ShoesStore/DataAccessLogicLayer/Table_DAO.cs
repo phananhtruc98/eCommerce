@@ -22,7 +22,7 @@ namespace ShoesStore.DataAccessLogicLayer
             {
                 return DataProvider.Instance.Set<T>().ToList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -32,8 +32,8 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             try
             {
-// Your code...
-// Could also be before try if you know the exception occurs in SaveChanges
+                // Your code...
+                // Could also be before try if you know the exception occurs in SaveChanges
                 DataProvider.Instance.Set<T>().Add(obj);
                 DataProvider.Instance.SaveChanges();
             }
@@ -61,5 +61,10 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public abstract void SetActive(T obj);
         public abstract bool IsExist(T obj);
+
+        public T GetLast()
+        {
+            return GetAll().Last();
+        }
     }
 }

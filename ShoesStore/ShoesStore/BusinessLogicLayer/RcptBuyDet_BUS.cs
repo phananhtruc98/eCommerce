@@ -18,11 +18,11 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public int GetNumberReview(int ShpId, int ProId)
+        public int GetNumberReview(Pro iPro)
         {
             try
             {
-                return GetAll().Count(m => m.ShpId == ShpId && m.ProId == ProId);
+                return GetProComments(iPro).Count();
             }
             catch
             {
@@ -35,14 +35,20 @@ namespace ShoesStore.BusinessLogicLayer
         }
         public int GetCommentLeft(Pro iPro)
         {
-            int[] allowCommentSteps = new int[] { 7, 8, 9, 10, 11 };
+
+            int[] allowCommentSteps = MyLibrary.GetAllowCommentStepIds();
             Cus cus = WebSession.LoginCus;
-            var rcptBuyDetNotCommented = GetAllBy(iPro, cus);
-            var rcptBuyStaDet = MyLibrary.RcptBuyStaDet_BUS.GetAll();
-            return rcptBuyStaDet.Join(rcptBuyDetNotCommented,
-                a => a.RcptBuyId,
-                b => b.RcptBuyId,
-                (a, b) => a).Count(a => allowCommentSteps.Contains(a.StepId));
+            if (cus != null)
+            {
+                var rcptBuyDetNotCommented = GetAllBy(iPro, cus);
+                var rcptBuyStaDet = MyLibrary.RcptBuyStaDet_BUS.GetAll();
+                return rcptBuyStaDet.Join(rcptBuyDetNotCommented,
+                    a => a.RcptBuyId,
+                    b => b.RcptBuyId,
+                    (a, b) => a).Count(a => allowCommentSteps.Contains(a.StepId));
+            }
+            return 0;
+
         }
 
         public IEnumerable<RcptBuyDet> GetProComments(Pro iPro)

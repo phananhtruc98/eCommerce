@@ -18,7 +18,12 @@ namespace ShoesStore.BusinessLogicLayer
             return _dao.GetAll();
         }
 
-        public void Insert(T obj)
+        public T GetLast()
+        {
+            return _dao.GetLast();
+        }
+
+        public virtual void Insert(T obj)
         {
             _dao.Insert(obj);
         }

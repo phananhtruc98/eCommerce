@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Web;
-
+using ShoesStore.MyExtensions;
 namespace ShoesStore.Merchant
 {
     public partial class MerAddProd : Page
@@ -26,6 +26,8 @@ namespace ShoesStore.Merchant
         {
             if (!IsPostBack)
             {
+
+                phdPage.MerExpired();
                 LoadDdlProCat();
                 LoadDdlProBrand();
                 LoadckbProColor();
@@ -255,8 +257,8 @@ namespace ShoesStore.Merchant
                 };
                 MyLibrary.ProDet_BUS.Insert(proDet);
             }
-            //SaveImgSlide();
             SaveImgPrimary(pro1);
+            MyLibrary.Show("Bài đăng của bạn sẽ được kiểm duyệt trong 24 giờ! :) ");
         }
     }
 }

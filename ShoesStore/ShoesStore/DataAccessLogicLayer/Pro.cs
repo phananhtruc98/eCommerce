@@ -33,6 +33,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public string Price { get; set; }
         public string PriceAfter { get; set; }
         public Nullable<bool> Active { get; set; }
+        public Nullable<bool> IsOutOfStock { get; set; }
         public Nullable<System.DateTime> DateAdd { get; set; }
         public Nullable<System.DateTime> DateEdit { get; set; }
     
