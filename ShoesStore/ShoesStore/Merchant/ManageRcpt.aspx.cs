@@ -39,13 +39,15 @@ namespace ShoesStore.Merchant
             //gvRcptBuy.DataSource = rcptBuy.GetAll().ToList();
             //gvRcptBuy.DataBind();
             
-            var src1 = (from r in MyLibrary.Rcpt_BUS.GetAll()
+            var src1 = (from r in MyLibrary.Rcpt_BUS.GetAll() 
                  join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
+                        
                  join s in shp.GetAll() on b.ShpId equals s.ShpId
                  join z in mer.GetAll() on s.MerId equals z.MerId
                  join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
                  join e in rcptbuystastep.GetAll() on t.StepId equals e.StepId
-                 where z.MerId == (MerchantSession.LoginMer)?.MerId
+                        //group b.RcptBuyId by e.StepId into g
+                 where z.MerId == (MerchantSession.LoginMer)?.MerId 
                  select new
                  {
                      b.RcptBuyId,
