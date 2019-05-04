@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Linq.Dynamic;
@@ -38,32 +39,32 @@ namespace ShoesStore.Merchant
         {
             //gvRcptBuy.DataSource = rcptBuy.GetAll().ToList();
             //gvRcptBuy.DataBind();
-            
-            var src1 = (from r in MyLibrary.Rcpt_BUS.GetAll() 
-                 join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
-                        
-                 join s in shp.GetAll() on b.ShpId equals s.ShpId
-                 join z in mer.GetAll() on s.MerId equals z.MerId
-                 join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
-                 join e in rcptbuystastep.GetAll() on t.StepId equals e.StepId
-                        //group b.RcptBuyId by e.StepId into g
-                 where z.MerId == (MerchantSession.LoginMer)?.MerId 
-                 select new
-                 {
-                     b.RcptBuyId,
-                     r.DateAdd,
-                     r.DateEdit,
-                     r.UsrAdd,
-                     r.UsrEdit,
-                     b.CusId,
-                     s.ShpName,
-                     z.MerId,
-                     e.StepCont
-                 } ).ToList();
-               
-            gvRcptBuy.DataSource = src1;
+            var src1 = (from r in MyLibrary.Rcpt_BUS.GetAll()
+                        join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
+
+                        join s in shp.GetAll() on b.ShpId equals s.ShpId
+                        join z in mer.GetAll() on s.MerId equals z.MerId
+                        join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
+                        join e in rcptbuystastep.GetAll() on t.StepId equals e.StepId
+                        where z.MerId == (MerchantSession.LoginMer)?.MerId
+                        select new
+                        {
+                            b.RcptBuyId,
+                            r.DateAdd,
+                            r.DateEdit,
+                            r.UsrAdd,
+                            r.UsrEdit,
+                            b.CusId,
+                            s.ShpName,
+                            z.MerId,
+                            e.StepId,
+                            e.StepCont
+                        });
+            //var distinct = src1.DistinctBy(i => i.RcptBuyId);
+            gvRcptBuy.DataSource = src1.DistinctBy(i => i.RcptBuyId).ToList();
             gvRcptBuy.DataBind();
         }
+        
 
         // Load data lên cho gvRcptBuyDet
         private void BindGridViewgvRcptBuyDet(int RcptBuyId)
@@ -120,7 +121,7 @@ namespace ShoesStore.Merchant
             gvRcptBuy.DataSource = rs;
             gvRcptBuy.DataBind();
         }
-
+       
         // Ràng buộc và thêm xóa sửa
         protected void gvBuy_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -148,32 +149,52 @@ namespace ShoesStore.Merchant
                 gvRcptBuy.EditIndex = -1;
                 BindGridViewgvRcptBuy();
             }
+            // Cập Nhập 
             else if (e.CommandName == "UpdateRow")
             {
-                var rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
-                var StepEdit = ((DropDownList)gvRcptBuy.Rows[rowIndex].FindControl("StepCont")).Text;
-                // SỬA CODE Ở ĐÂY
+                GridViewRow rowSelect = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
+                int rowIndex =Convert.ToInt32(rowSelect.RowIndex);
+                HiddenField hdnfld = (HiddenField)gvRcptBuy.Rows[rowIndex].FindControl("StepId");
+                int stepId = Convert.ToInt32(hdnfld.Value);
+
                 var result = (from c in rcptBuy.GetAll()
-                              join a in rcptbuystadet.GetAll() on c.RcptBuyId equals a.RcptBuyId
-                              join b in rcptbuystastep.GetAll() on a.StepId equals b.StepId
+                              join z in rcptbuystadet.GetAll() on c.RcptBuyId equals z.RcptBuyId
+                              join b in rcptbuystastep.GetAll() on z.StepId equals b.StepId
                               where c.RcptBuyId == Convert.ToInt32(e.CommandArgument)
                               select c).FirstOrDefault();
+
                 var result1 = (from c in MyLibrary.RcptBuyStaDet_BUS.GetAll()
-                               join a in rcptbuystadet.GetAll() on c.RcptBuyId equals a.RcptBuyId
-                               join b in rcptbuystastep.GetAll() on a.StepId equals b.StepId
+                               join z in rcptbuystadet.GetAll() on c.RcptBuyId equals z.RcptBuyId
+                               join b in rcptbuystastep.GetAll() on z.StepId equals b.StepId
+                               join d in rcptBuy.GetAll() on c.RcptBuyId equals d.RcptBuyId
+                               where c.RcptBuyId == Convert.ToInt32(e.CommandArgument)
                                select c).FirstOrDefault();
+                // lấy rcptbuyid , lấy ra staid, thêm 1 dòng với StepId mới 
                 if (result != null)
                 {
-                    // SỬA CODE Ở ĐÂY
                     result.Rcpt.DateEdit = DateTime.Now;
-                    result1.StepId = Convert.ToInt32(StepEdit);
-                    //rcptbuystadet.Update(result1);
+                    RcptBuyStaDet rcptBuyStaDet = new RcptBuyStaDet()
+                    {
+                        StaId = result1.StaId,
+                        RcptBuyId = result1.RcptBuyId,
+                        StepId = result1.StepId,
+                        AddDate = DateTime.Now
+                      
+                    };
+                    result1.StepId = stepId;
+                    result1.RcptBuySta = null;
+                    result1.RcptBuyStaStep = null;
+                    result1.RcptBuySta = null;
+                    MyLibrary.RcptBuyStaDet_BUS.Insert(rcptBuyStaDet);
                     rcptBuy.Update(result);
                 }
 
                 gvRcptBuy.EditIndex = -1;
                 BindGridViewgvRcptBuy();
             }
+
+
+
             else if (e.CommandName == "InsertRow")
             {
                 // SỬA CODE Ở ĐÂY
@@ -275,20 +296,44 @@ namespace ShoesStore.Merchant
                     DropDownList ddList = (DropDownList)e.Row.FindControl("drpcategory1");
                     //bind dropdown-list
                     //DataTable dt = RcptBuyStaStep_BUS.GetData("Select StepCont from RcptBuyStaStep");
-                    int rcptBuyId1 = Convert.ToInt32(hdnfld.Value);                  
-                    int[] step = {1,2,5,6,7 };
-                    int[] stepExist =  MyLibrary.RcptBuyStaDet_BUS.GetAllByExist(rcptBuyId1, step) ;
+                    int rcptBuyId1 = Convert.ToInt32(hdnfld.Value);
+                    int[] step = { 1, 2, 5, 6, 7, 8};
+                    int[] stepExist = MyLibrary.RcptBuyStaDet_BUS.GetAllByExist(rcptBuyId1, step);
                     int[] stepNew = step.Except(stepExist).ToArray();
                     ddList.DataSource = MyLibrary.RcptBuyStaStep_BUS.GetAllBy(stepNew);
                     ddList.DataTextField = "StepCont";
                     ddList.DataValueField = "StepId";
                     ddList.DataBind();
-
                     //DataRowView dr = e.Row.DataItem as DataRowView;
                     //ddList.SelectedItem.Text = dr["category_name"].ToString();
                     //ddList.SelectedValue = dr["StepCont"].ToString();
                 }
             }
         }
+
+        protected void drpcategory1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //HiddenField hdnfld = (HiddenField)e.Row.FindControl("stepId");
+            //DropDownList ddList = (DropDownList)e.Row.FindControl("drpcategory1");
+            //hdnfld.Text = ddList.SelectedItem.Text;
+            DropDownList drl = (DropDownList)sender;
+            GridViewRow gvr = (GridViewRow)drl.NamingContainer;
+            HiddenField hdf = (HiddenField)gvr.FindControl("stepId");
+            hdf.Value = (string)drl.SelectedValue;
+        }
+        //onselectedindexchanged="ddlRcpt_SelectedIndexChanged" 
+        //protected void ddlRcpt_SelectedIndexChanged(object sender, GridViewRowEventArgs e)
+        //{
+
+        //DropDownList drl = (DropDownList)sender;
+        //GridViewRow gvr = (GridViewRow)drl.NamingContainer;
+
+
+        //var rowIndex = ((GridViewRow)(((DropDownList)sender).NamingContainer);
+
+        //HiddenField hdnfld = (HiddenField)e.Row.FindControl("stepId");
+        //DropDownList ddList = (DropDownList)e.Row.FindControl("drpcategory1");
+        //hdnfld.Text = ddList.SelectedItem.Text;
+        //}
     }
 }

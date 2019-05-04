@@ -60,17 +60,24 @@
                         <ItemTemplate>
                             <%# Eval("CusId") %>
                         </ItemTemplate>
-                        
-                        
-                        
                     </asp:TemplateField>
+
+                    <asp:TemplateField ItemStyle-Width="40px" HeaderText="Mã Tình Trạng">
+                        <ItemTemplate>
+                            <%# Eval("StepId") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+
                     <asp:TemplateField ItemStyle-Width="40px" HeaderText="Tình Trạng">
                         <ItemTemplate>
                             <%# MyLibrary.RcptBuyStaDet_BUS.GetMaxExist( Convert.ToInt32(Eval("RcptBuyId"))).StepCont %>
                         </ItemTemplate>
                         <EditItemTemplate>
+                            <asp:HiddenField runat="server" ID="stepId" Value='<%# Eval("StepId") %>' />
                             <asp:HiddenField runat="server" ID="rcptBuyId1" Value='<%# Eval("RcptBuyId") %>' />
-                            <asp:DropDownList ID="drpcategory1"  AppendDataBoundItems="True" runat="server" >
+                            <asp:DropDownList OnSelectedIndexChanged="drpcategory1_SelectedIndexChanged" AutoPostBack="true"  ID="drpcategory1"  AppendDataBoundItems="True" runat="server" >
+                                
                             </asp:DropDownList>
                         </EditItemTemplate>
                     </asp:TemplateField>
