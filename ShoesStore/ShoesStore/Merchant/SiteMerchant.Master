@@ -158,11 +158,11 @@
                                     <ul class="widget-categories__list" data-collapse data-collapse-opened-class="widget-categories__item--open">
                                         <li class="widget-categories__item" data-collapse-item>
                                             <div class="widget-categories__row">
-                                                <a href="MerProfile.aspx">
+                                                <a href="#">
                                                     <svg class="widget-categories__arrow" width="6px" height="9px">
                                                         <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                     </svg>
-                                                    Thông tin
+                                                    Tài khoản của tôi
                                                 </a>
                                                 <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
                                             </div>
@@ -170,7 +170,7 @@
                                                 <ul>
 
                                                     <li>
-                                                        <a href="/nguoi-ban/thong-tin">Quản Lý Thông Tin</a>
+                                                        <a href="/nguoi-ban/thong-tin">Thông tin cá nhân</a>
                                                     </li>
                                                     <li>
                                                         <a href="/nguoi-ban/doi-mat-khau">Thay Đổi Mật Khẩu</a>
@@ -184,17 +184,17 @@
                                                     <svg class="widget-categories__arrow" width="6px" height="9px">
                                                         <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                     </svg>
-                                                    Subscription
+                                                   Quản lý gói thường niên
                                                 </a>
                                                 <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
                                             </div>
                                             <div class="widget-categories__subs" data-collapse-content>
                                                 <ul>
                                                     <li>
-                                                        <a href="/nguoi-ban/quan-ly-sub/dang-ky">Đăng ký gói Subscription</a>
+                                                        <a href="/nguoi-ban/quan-ly-sub/dang-ky">Đăng ký gói thường niên</a>
                                                     </li>
                                                     <li>
-                                                        <a href="/nguoi-ban/quan-ly-sub/thong-tin">Thông Tin Các Gói Subscription</a>
+                                                        <a href="/nguoi-ban/quan-ly-sub/thong-tin">Hóa đơn mua gói thường niên</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -205,30 +205,31 @@
                                                     <svg class="widget-categories__arrow" width="6px" height="9px">
                                                         <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                     </svg>
-                                                    Shop Cá Nhân
+                                                    Quản lý cửa hàng
                                                 </a>
                                                 <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
                                             </div>
                                             <div class="widget-categories__subs" data-collapse-content>
                                                 <ul>
                                                     <li>
-                                                        <a href="/nguoi-ban/cua-hang">Your Shop</a>
+                                                        <a href="/nguoi-ban/cua-hang">Thông tin cửa hàng</a>
                                                     </li>
                                                     <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/them-san-pham">Thêm Sản Phẩm</a>
                                                     </li>
-                                                    <li>
-                                                        <a href="/cua-hang/quan-ly-san-pham">Quản Lý Sản Phẩm</a>
+                                                     <li>
+                                                        <a href="/cua-hang/quan-ly-san-pham/cap-nhat-so-luong">Cập nhật số lượng sản phẩm</a>
                                                     </li>
-                                                    <li>
-                                                        <a href="/cua-hang/quan-ly-hoa-don">Quản Lý Hóa Đơn</a>
+                                                     <li>
+                                                        <a href="/cua-hang/quan-ly-san-pham/an-san-pham">Cập nhật hết hàng</a>
                                                     </li>
                                                     <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/khuyen-mai">Khuyến mãi</a>
                                                     </li>
                                                     <li>
-                                                        <a href="/cua-hang/quan-ly-san-pham/an-san-pham">Cập nhật hết hàng</a>
+                                                        <a href="/cua-hang/quan-ly-hoa-don">Quản Lý Hóa Đơn</a>
                                                     </li>
+                                                   
 
                                                 </ul>
                                             </div>
@@ -239,7 +240,7 @@
                                                     <svg class="widget-categories__arrow" width="6px" height="9px">
                                                         <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                     </svg>
-                                                    About Us
+                                                   Về chúng tôi
                                                 </a>
                                             </div>
                                         </li>
