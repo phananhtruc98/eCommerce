@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web.UI;
+using Newtonsoft.Json;
 using ShoesStore.DataAccessLogicLayer;
-
+using ShoesStore.Captcha;
 namespace ShoesStore.Customer
 {
     public partial class ThanhToan : Page
@@ -12,7 +14,7 @@ namespace ShoesStore.Customer
             if (!IsPostBack)
             {
                 checkoutContent.DataBind();
-//
+                //
                 if (MyLibrary.CartDet_BUS.ListCartPreview() == null ||
                     MyLibrary.CartDet_BUS.ListCartPreview().Count == 0)
                     checkoutContent.InnerText = "Không có sản phẩm trong giỏ hàng!";
@@ -31,8 +33,49 @@ namespace ShoesStore.Customer
         {
             if (checkout_terms.Checked)
             {
+                var response = Request["g-recaptcha-response"];
+
+                const string secret = "6Lecx6EUAAAAANBVbdksO6Le72ZTcO1Kk0g3IarA";
+                var client = new WebClient();
+                var reply = client.DownloadString(
+                    $"https://www.google.com/recaptcha/api/siteverify?secret={secret}&response={response}"
+                    );
+                var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+
+                if (!captchaResponse.Success)
+                {
+                    if (captchaResponse.ErrorCodes.Count < 0) MyLibrary.Show("..");
+                    var error = captchaResponse.ErrorCodes[0].ToLower();
+                    switch (error)
+                    {
+                        case "missing-input-secret":
+                            MyLibrary.Show("Thiếu tham số");
+                            break;
+                        case "invalid-input-secret":
+                            MyLibrary.Show("Bạn chưa kiểm ra captcha");
+                            break;
+                        case "missing-input-response":
+                            MyLibrary.Show("Thiếu tham số phản hồi");
+                            break;
+                        case "invalid-input-response":
+                            MyLibrary.Show("Phản hồi không hợp lệ");
+                            break;
+                        default:
+                            MyLibrary.Show("Lỗi captcha !");
+                            break;
+
+                            
+
+                    }
+                    return;
+                }
+                else
+                {
+                    MyLibrary.Show("Validated !");
+                }
+
                 var groupByShop = MyLibrary.CartDet_BUS.GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId)
-                    .GroupBy(m => new {m.Cart.CusId, m.ShpId});
+                    .GroupBy(m => new { m.Cart.CusId, m.ShpId });
                 foreach (var group in groupByShop)
                 {
                     var rcpt = new Rcpt
@@ -50,21 +93,21 @@ namespace ShoesStore.Customer
                         CusId = WebSession.LoginCus.CusId
                     };
                     MyLibrary.RcptBuy_BUS.Insert(rcptBuy);
-//Thêm bảng RcptBuySta (trạng thái cho 1 đơn hàng của 1 shop)
+                    //Thêm bảng RcptBuySta (trạng thái cho 1 đơn hàng của 1 shop)
                     var rcptBuySta = new RcptBuySta
                     {
-//StaId tự động tăng
+                        //StaId tự động tăng
                         RcptBuyId = rcptBuy.RcptBuyId
                     };
                     MyLibrary.RcptBuySta_BUS.Insert(rcptBuySta);
                     rcptBuySta = MyLibrary.RcptBuySta_BUS.GetLast();
-//Thêm bảng RcptBuyStaDet (gán tình trạng cho bảng RcptBuySta)
-//RcptBuyStaDet rcptBuyStaDet = new RcptBuyStaDet()
-//{
-//StaId = rcptBuySta.StaId,
-//RcptBuyId = rcptBuy.RcptBuyId,
-//StepId = 1
-//};
+                    //Thêm bảng RcptBuyStaDet (gán tình trạng cho bảng RcptBuySta)
+                    //RcptBuyStaDet rcptBuyStaDet = new RcptBuyStaDet()
+                    //{
+                    //StaId = rcptBuySta.StaId,
+                    //RcptBuyId = rcptBuy.RcptBuyId,
+                    //StepId = 1
+                    //};
                     MyLibrary.RcptBuyStaDet_BUS.Insert(rcptBuySta, 1);
                     foreach (var groupItem in group)
                     {

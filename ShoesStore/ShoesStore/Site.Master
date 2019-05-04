@@ -18,6 +18,9 @@
     <script src="jquery.min.js" type="text/javascript"></script>
     <script src="/js/cusHome_RcptSuccess.js"></script>
     <script src="/js/customscript.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="phdHeader" runat="server">
+        
+    </asp:ContentPlaceHolder>
 </head>
 <body>
     <form runat="server">
@@ -43,7 +46,7 @@
 
 
         <!-- quickview-modal -->
-        
+
         <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
@@ -318,8 +321,7 @@
                                                                             <span>
                                                                                 <%# Item.Qty %>
                                                                             </span>x
-                                                        <span class="dropcart__product-price">
-                                                            (<%# MyLibrary.Pro_BUS.GetPriceFormat(Item.ProDet.Pro)%>)
+                                                        <span class="dropcart__product-price">(<%# MyLibrary.Pro_BUS.GetPriceFormat(Item.ProDet.Pro)%>)
                                                         </span>
                                                                         </div>
                                                                     </div>

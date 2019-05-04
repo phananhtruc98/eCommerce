@@ -3,6 +3,9 @@
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
+<asp:Content ID="HeaderContent" ContentPlaceHolderID="phdHeader" runat="server">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="site__body">
         <div class="page-header">
@@ -101,7 +104,7 @@
                                                 <tr>
                                                     <td>
                                                         <a href="#">
-                                                            <img src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" style="height:50px;width:50px" alt="">
+                                                            <img src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" style="height: 50px; width: 50px" alt="">
                                                         </a>
 
                                                     </td>
@@ -170,6 +173,8 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div class="g-recaptcha" data-sitekey="6Lecx6EUAAAAAHuRMoMzJapnyeIvfeY6WxZH2wEy"></div>
+
                                 <asp:Button runat="server" Text="Đặt hàng" ID="btnOrder" OnClick="btnOrder_OnClick" CssClass="btn btn-primary btn-xl btn-block" />
                             </div>
                         </div>

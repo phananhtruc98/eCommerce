@@ -18,12 +18,14 @@
     <AssemblyName>ShoesStore</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>
-    </Use64BitIISExpress>
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort>44383</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -3126,6 +3128,7 @@
     <Compile Include="BusinessLogicLayer\Usr_BUS.cs" />
     <Compile Include="BusinessLogicLayer\WebInfo_BUS.cs" />
     <Compile Include="BusinessLogicLayer\WebSlide_BUS.cs" />
+    <Compile Include="Captcha\CaptchaResponse.cs" />
     <Compile Include="Customer\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
