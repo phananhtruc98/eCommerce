@@ -90,7 +90,8 @@
                                         <td>
                                             <asp:TextBox ID="txtQty" min="1" PlaceHolder="Nhập số lượng" TextMode="Number" runat="server"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="rfvEditQty" runat="server" ErrorMessage="Chưa nhập số lượng" ControlToValidate="txtQty" Text="*" ForeColor="Red" ValidationGroup="InsertQty">
-                                            </asp:RequiredFieldValidator><asp:LinkButton ValidationGroup="InsertQty" runat="server" ID="ltbnThem" CommandName="Sel" CommandArgument='<%# Container.DataItemIndex %>'><i class="fas fa-arrow-right"></i></asp:LinkButton></td>
+                                            </asp:RequiredFieldValidator>
+                                            <asp:LinkButton ValidationGroup="InsertQty" runat="server" ID="ltbnThem" CommandName="Sel" CommandArgument='<%# Container.DataItemIndex %>'><i class="fas fa-arrow-right"></i></asp:LinkButton></td>
                                         <td>
                                             <asp:Label runat="server" ID="lblKl"></asp:Label></td>
                                         <td>

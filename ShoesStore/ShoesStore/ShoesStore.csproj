@@ -2681,6 +2681,7 @@
     <Content Include="Merchant\fonts\stroyka\stroyka.woff" />
     <Content Include="Merchant\js\MerchantJs.js" />
     <Content Include="Merchant\ManageRcpt.aspx" />
+    <Content Include="Merchant\ManageRcptSub.aspx" />
     <Content Include="Merchant\MerAddProd.aspx" />
     <Content Include="Merchant\MerHome.aspx" />
     <Content Include="Merchant\MerPaypal.aspx" />
@@ -3496,6 +3497,13 @@
     </Compile>
     <Compile Include="Merchant\ManageRcpt.aspx.designer.cs">
       <DependentUpon>ManageRcpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\ManageRcptSub.aspx.cs">
+      <DependentUpon>ManageRcptSub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\ManageRcptSub.aspx.designer.cs">
+      <DependentUpon>ManageRcptSub.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\MerAddProd.aspx.cs">
       <DependentUpon>MerAddProd.aspx</DependentUpon>

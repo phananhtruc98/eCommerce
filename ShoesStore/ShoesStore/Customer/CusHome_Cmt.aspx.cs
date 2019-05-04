@@ -30,7 +30,7 @@ namespace ShoesStore.Customer
                 join p in pro_BUS.GetAll() on d.ProId equals p.ProId
                 join c in proColor_BUS.GetAll() on d.ColorId equals c.ColorId
                 join z in proSize_BUS.GetAll() on d.SizeId equals z.SizeId
-                where r.CusId == CusId
+                where r.CusId == CusId && d.Cmt != null
                 select new
                 {
                     s.ShpName,

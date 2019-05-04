@@ -42,5 +42,14 @@ namespace ShoesStore.BusinessLogicLayer
                      }).Sum(x=>x.Price);
             return rs.ToString();
         }
+
+        public List<RcptSubDet> ListRcptBuyDet_SubContent()
+        {
+            var mer = MyLibrary.Mer_BUS.GetAll().FirstOrDefault(m => m.MerId == (MerchantSession.LoginMerchant as Mer)?.MerId);
+            //RcptBuy rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(m => m.MerId == mer.MerId).ToList();
+            return MyLibrary.RcptSubDet_BUS.GetAll().Where(m => rcptSub != null && rcptSub.Contains(m.RcptSub)).ToList();
+            //return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && m.RcptBuyId == rcptBuy.RcptBuyId).ToList();
+        }
     }
 }
