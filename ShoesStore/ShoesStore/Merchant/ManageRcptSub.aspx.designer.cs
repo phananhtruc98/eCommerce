@@ -10,16 +10,16 @@
 namespace ShoesStore.Merchant {
     
     
-    public partial class UpdateQuantityPro {
+    public partial class ManageRcptSub {
         
         /// <summary>
-        /// lvPro control.
+        /// lvRcptSub control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvPro;
+        protected global::System.Web.UI.WebControls.ListView lvRcptSub;
         
         /// <summary>
         /// DataPager1 control.
@@ -38,14 +38,5 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEmpty;
-        
-        /// <summary>
-        /// lvSizeColorQty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvSizeColorQty;
     }
 }
