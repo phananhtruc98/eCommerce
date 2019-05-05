@@ -27,11 +27,11 @@
                             <td>
                                 <asp:ListView ID="lvEachSub" runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptSubDet">
                                     <ItemTemplate>
-
-                                        <asp:Label runat="server" ID="lbSubName" Text="<%# Item.Sub.SubContent %>"></asp:Label>
-                                    </ItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label runat="server" ID="lbQty" Text="<%# Item.Quantity %>"></asp:Label>
+                                            <td>
+                                                <asp:Label runat="server" ID="lbSubName" Text="<%# Item.Sub.SubContent %>"></asp:Label>
+                                            </td>
+                                        <td>
+                                            <asp:Label runat="server" ID="lbQty" Text="<%# Item.Quantity %>"></asp:Label></td>
                                     </ItemTemplate>
                                 </asp:ListView>
                             </td>

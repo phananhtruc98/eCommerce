@@ -12,20 +12,16 @@ namespace ShoesStore.DataAccessLogicLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Cus
+    public partial class Chat
     {
-        public Cus()
-        {
-            this.Cart = new HashSet<Cart>();
-            this.ChatBox = new HashSet<ChatBox>();
-            this.RcptBuy = new HashSet<RcptBuy>();
-        }
-    
+        public int ChatId { get; set; }
+        public int ShpId { get; set; }
         public int CusId { get; set; }
+        public string Message { get; set; }
+        public System.DateTime DateAdd { get; set; }
+        public Nullable<int> UsrAdd { get; set; }
+        public bool IsShpChat { get; set; }
     
-        public virtual ICollection<Cart> Cart { get; set; }
-        public virtual ICollection<ChatBox> ChatBox { get; set; }
-        public virtual Usr Usr { get; set; }
-        public virtual ICollection<RcptBuy> RcptBuy { get; set; }
+        public virtual ChatBox ChatBox { get; set; }
     }
 }

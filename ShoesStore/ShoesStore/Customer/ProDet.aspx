@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" Title="Sản phẩm chi tiết" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="ProDet.aspx.cs" Inherits="ShoesStore.Customer.SanPham_ChiTiet" %>
-<%@ Import namespace="System.Text" %>
+
+<%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
@@ -119,7 +120,9 @@
                                 <div class="product__rating-legend">
                                     <a href="/#"><%: MyLibrary.RcptBuyDet_BUS.GetNumberReview(ProDetView) %></a><span>/</span>
                                     <a href="/#">Write A Review
+                                   
                                     </a>
+                                    <b>Cửa hàng:</b> <a href='<%:MyLibrary.ShpUrl(ProDetView.Shp) %>'><%: ProDetView.Shp.ShpName %></a>
                                 </div>
                             </div>
                             <div class="product__description">
@@ -145,19 +148,18 @@
                     Stock
                 </span>
                             </div>
-                          
-                                        
-                                          
+
+
+
 
                             <div class="product__prices">
-                               
-                                            <%= MyLibrary.Pro_BUS.GetPriceFormat(ProDetView)%>
 
+                                <%= MyLibrary.Pro_BUS.GetPriceFormat(ProDetView)%>
                             </div>
 
 
                             <div>
-                                  <b>Màu có sẵn</b>
+                                <b>Màu có sẵn</b>
                                 <hr />
                                 <asp:ListView runat="server" ID="lvColorName" ItemType="ShoesStore.DataAccessLogicLayer.ProColor">
                                     <LayoutTemplate>
@@ -228,11 +230,11 @@
                                                     </td>
                                                     <td>
                                                         <asp:TextBox runat="server" ID="txtQty" TextMode="Number" Text="1" /><br />
-                                                         <asp:rangevalidator min=0 oninput="validity.valid||(value='');" Display="Dynamic" ID="Rangevalidator1" errormessage="Số lượng phải trong khoảng 0 - 99" forecolor="Red" controltovalidate="txtQty" minimumvalue="0" maximumvalue="99" runat="server" Type="Integer">
-            </asp:rangevalidator>
+                                                        <asp:RangeValidator min="0" oninput="validity.valid||(value='');" Display="Dynamic" ID="Rangevalidator1" ErrorMessage="Số lượng phải trong khoảng 0 - 99" ForeColor="Red" ControlToValidate="txtQty" MinimumValue="0" MaximumValue="99" runat="server" Type="Integer">
+                                                        </asp:RangeValidator>
 
                                                     </td>
-                                                        
+
                                                     <td>
                                                         <asp:Literal runat="server" ID="IsOutOfStock" Text='<%# MyLibrary.ProDet_BUS.IsOutOfStock(Item)?"Hết hàng":MyLibrary.ProDet_BUS.ProDetLeft(Item)+"" %>'></asp:Literal></td>
                                                 </tr>

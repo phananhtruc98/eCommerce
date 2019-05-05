@@ -21,11 +21,12 @@ namespace ShoesStore
         {
             get
             {
+
                 try
                 {
-                    var usr = (Usr) HttpContext.Current.Session["LoginUsr"];
-                    var cus = new Cus_BUS().GetAll().FirstOrDefault(m => m.CusId == usr.UsrId);
-                    return cus;
+                    var usr = (Usr)HttpContext.Current.Session["LoginUsr"];
+
+                    return usr == null ? null : new Cus_BUS().GetAll().FirstOrDefault(m => m.CusId == usr.UsrId);
                 }
                 catch
                 {

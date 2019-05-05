@@ -386,14 +386,18 @@ namespace ShoesStore
             return Path.Combine(slidePath, img.ToString()).Replace(@"\", @"/");
         }
 
-        public static void Show(string message,string reUrl="")
+        public static void Show(string message, string reUrl = "")
         {
             var cleanMessage = message.Replace("'", "\'");
             var page = HttpContext.Current.CurrentHandler as Page;
-            var script = string.Format("alert('{0}');{1}", cleanMessage,reUrl!="" ? "window.location.href ='"+reUrl+"'":"");
+            var script = string.Format("alert('{0}');{1}", cleanMessage, reUrl != "" ? "window.location.href ='" + reUrl + "'" : "");
             if (page != null && !page.ClientScript.IsClientScriptBlockRegistered("alert"))
                 page.ClientScript.RegisterClientScriptBlock(page.GetType(), "alert", script, true /* addScriptTags */);
         }
-        
+
+        public static string ShpUrl(Shp obj)
+        {
+            return HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + $"/{TextHelper.UrlFriendly(obj.ShpName)}";
+        }
     }
 }

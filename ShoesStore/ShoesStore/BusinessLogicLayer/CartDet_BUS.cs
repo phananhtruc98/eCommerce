@@ -22,6 +22,7 @@ namespace ShoesStore.BusinessLogicLayer
 
         public string SumCartDetPrice()
         {
+            if (WebSession.LoginCus == null) return "0";
             try
             {
                 var money = GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId)

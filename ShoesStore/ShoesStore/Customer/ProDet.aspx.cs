@@ -19,6 +19,7 @@ namespace ShoesStore.Customer
             {
                 if (ViewState["_proDetView"] == null)
                 {
+                    
                     CollectUrl();
                     return _proDetView;
                 }

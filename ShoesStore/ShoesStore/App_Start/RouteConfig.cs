@@ -47,6 +47,8 @@ namespace ShoesStore
             routes.MapPageRoute("Mer_UpdateQuantityPro", "cua-hang/quan-ly-san-pham/cap-nhat-so-luong-san-pham", "~/Merchant/UpdateQuantityPro.aspx");
             routes.MapPageRoute("Mer_ManageRcptSub", "nguoi-ban/quan-ly-sub/hoa-don-mua-goi-thuong-nien", "~/Merchant/ManageRcptSub.aspx");
             //
+            routes.MapPageRoute("Shp_Home", "{ShpName}", "~/Merchant/MerHome.aspx");
+            //
             routes.MapPageRoute("Cushome_Profile", "nguoi-dung/tai-khoan", "~/Customer/CusHome.aspx");
             routes.MapPageRoute("Cushome_ChangePassword", "nguoi-dung/tai-khoan/mat-khau", "~/Customer/CusHome_ChangePassword.aspx");
             routes.MapPageRoute("Cushome_Comment", "nguoi-dung/tai-khoan/nhan-xet", "~/Customer/CusHome_Cmt.aspx");

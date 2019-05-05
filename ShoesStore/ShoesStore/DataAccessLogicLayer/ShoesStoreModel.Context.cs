@@ -31,6 +31,8 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<Adv> Adv { get; set; }
         public DbSet<Cart> Cart { get; set; }
         public DbSet<CartDet> CartDet { get; set; }
+        public DbSet<Chat> Chat { get; set; }
+        public DbSet<ChatBox> ChatBox { get; set; }
         public DbSet<Config> Config { get; set; }
         public DbSet<Coupon> Coupon { get; set; }
         public DbSet<Cus> Cus { get; set; }

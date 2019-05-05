@@ -23,6 +23,7 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="/Merchant/css/style.css" rel="stylesheet" />
+
 </head>
 <body>
     <form runat="server">
@@ -483,5 +484,6 @@
         </div>
     </form>
     <script src="/Merchant/js/MerchantJs.js"></script>
+    <script src="/Scripts/jquery.signalR-2.4.1.js"></script>
 </body>
 </html>

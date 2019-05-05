@@ -21,10 +21,14 @@ namespace ShoesStore.Merchant
         public void LoadlvRcptSub()
         {
             var mer = (Mer)MerchantSession.LoginMerchant;
-            int ShpId = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == mer.MerId).Select(x => x.ShpId).FirstOrDefault();
-            var rs = (from r in MyLibrary.RcptSub_BUS.GetAll()
-                      where r.MerId == mer.MerId
-                      select r).ToList();
+            var rs = MyLibrary.RcptSub_BUS.ListRcptSubPreview_Rcpt(mer.MerId);
+            //int ShpId = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == ).Select(x => x.ShpId).FirstOrDefault();
+            //var rs = (from r in MyLibrary.RcptSub_BUS.GetAll()
+            //          where r.MerId == mer.MerId
+            //          select r).ToList();
+            var rs1 = from r in rs
+                      join s in MyLibrary.RcptSubDet_BUS.GetAll() on r.RcptSubId equals s.RcptSubId
+                      select r;
             if (rs.Count != 0)
             {
                 lvRcptSub.DataSource = rs;

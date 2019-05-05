@@ -42,6 +42,29 @@
           <Property Name="SizeId" Type="int" Nullable="false" />
           <Property Name="Qty" Type="int" />
         </EntityType>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="ChatId" />
+            <PropertyRef Name="ShpId" />
+            <PropertyRef Name="CusId" />
+          </Key>
+          <Property Name="ChatId" Type="int" Nullable="false" />
+          <Property Name="ShpId" Type="int" Nullable="false" />
+          <Property Name="CusId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="255" />
+          <Property Name="DateAdd" Type="datetime" Nullable="false" />
+          <Property Name="UsrAdd" Type="int" />
+          <Property Name="IsShpChat" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChatBox">
+          <Key>
+            <PropertyRef Name="ShpId" />
+            <PropertyRef Name="CusId" />
+          </Key>
+          <Property Name="ShpId" Type="int" Nullable="false" />
+          <Property Name="CusId" Type="int" Nullable="false" />
+          <Property Name="AddDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Config">
           <Key>
             <PropertyRef Name="ConfigId" />
@@ -367,6 +390,44 @@
               <PropertyRef Name="ProId" />
               <PropertyRef Name="ColorId" />
               <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_ChatBox">
+          <End Role="ChatBox" Type="Self.ChatBox" Multiplicity="1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChatBox">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="CusId" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="CusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatBox_Cus">
+          <End Role="Cus" Type="Self.Cus" Multiplicity="1" />
+          <End Role="ChatBox" Type="Self.ChatBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cus">
+              <PropertyRef Name="CusId" />
+            </Principal>
+            <Dependent Role="ChatBox">
+              <PropertyRef Name="CusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatBox_Shp">
+          <End Role="Shp" Type="Self.Shp" Multiplicity="1" />
+          <End Role="ChatBox" Type="Self.ChatBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shp">
+              <PropertyRef Name="ShpId" />
+            </Principal>
+            <Dependent Role="ChatBox">
+              <PropertyRef Name="ShpId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1257,6 +1318,8 @@
           <EntitySet Name="Adv" EntityType="Self.Adv" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CartDet" EntityType="Self.CartDet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chat" EntityType="Self.Chat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatBox" EntityType="Self.ChatBox" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Config" EntityType="Self.Config" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CouponDet" EntityType="Self.CouponDet" Schema="dbo" store:Type="Tables" />
@@ -1290,6 +1353,18 @@
           <AssociationSet Name="FK_CartDet_ProDet" Association="Self.FK_CartDet_ProDet">
             <End Role="ProDet" EntitySet="ProDet" />
             <End Role="CartDet" EntitySet="CartDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_ChatBox" Association="Self.FK_Chat_ChatBox">
+            <End Role="ChatBox" EntitySet="ChatBox" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatBox_Cus" Association="Self.FK_ChatBox_Cus">
+            <End Role="Cus" EntitySet="Cus" />
+            <End Role="ChatBox" EntitySet="ChatBox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatBox_Shp" Association="Self.FK_ChatBox_Shp">
+            <End Role="Shp" EntitySet="Shp" />
+            <End Role="ChatBox" EntitySet="ChatBox" />
           </AssociationSet>
           <AssociationSet Name="FK_CouponDet_Coupon" Association="Self.FK_CouponDet_Coupon">
             <End Role="Coupon" EntitySet="Coupon" />
@@ -1915,6 +1990,8 @@
           <EntitySet Name="Adv" EntityType="ShoesStoreModel.Adv" />
           <EntitySet Name="Cart" EntityType="ShoesStoreModel.Cart" />
           <EntitySet Name="CartDet" EntityType="ShoesStoreModel.CartDet" />
+          <EntitySet Name="Chat" EntityType="ShoesStoreModel.Chat" />
+          <EntitySet Name="ChatBox" EntityType="ShoesStoreModel.ChatBox" />
           <EntitySet Name="Config" EntityType="ShoesStoreModel.Config" />
           <EntitySet Name="Coupon" EntityType="ShoesStoreModel.Coupon" />
           <EntitySet Name="Cus" EntityType="ShoesStoreModel.Cus" />
@@ -1955,6 +2032,18 @@
           <AssociationSet Name="FK_CartDet_ProDet" Association="ShoesStoreModel.FK_CartDet_ProDet">
             <End Role="ProDet" EntitySet="ProDet" />
             <End Role="CartDet" EntitySet="CartDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_ChatBox" Association="ShoesStoreModel.FK_Chat_ChatBox">
+            <End Role="ChatBox" EntitySet="ChatBox" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatBox_Cus" Association="ShoesStoreModel.FK_ChatBox_Cus">
+            <End Role="Cus" EntitySet="Cus" />
+            <End Role="ChatBox" EntitySet="ChatBox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatBox_Shp" Association="ShoesStoreModel.FK_ChatBox_Shp">
+            <End Role="Shp" EntitySet="Shp" />
+            <End Role="ChatBox" EntitySet="ChatBox" />
           </AssociationSet>
           <AssociationSet Name="FK_Cus_Usr" Association="ShoesStoreModel.FK_Cus_Usr">
             <End Role="Usr" EntitySet="Usr" />
@@ -2327,6 +2416,33 @@
           <NavigationProperty Name="Cart" Relationship="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts" FromRole="CartDet" ToRole="Cart" />
           <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_CartDet_ProDet" FromRole="CartDet" ToRole="ProDet" />
         </EntityType>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="ChatId" />
+            <PropertyRef Name="ShpId" />
+            <PropertyRef Name="CusId" />
+          </Key>
+          <Property Name="ChatId" Type="Int32" Nullable="false" />
+          <Property Name="ShpId" Type="Int32" Nullable="false" />
+          <Property Name="CusId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsrAdd" Type="Int32" />
+          <Property Name="IsShpChat" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ChatBox" Relationship="ShoesStoreModel.FK_Chat_ChatBox" FromRole="Chat" ToRole="ChatBox" />
+        </EntityType>
+        <EntityType Name="ChatBox">
+          <Key>
+            <PropertyRef Name="ShpId" />
+            <PropertyRef Name="CusId" />
+          </Key>
+          <Property Name="ShpId" Type="Int32" Nullable="false" />
+          <Property Name="CusId" Type="Int32" Nullable="false" />
+          <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Chat" Relationship="ShoesStoreModel.FK_Chat_ChatBox" FromRole="ChatBox" ToRole="Chat" />
+          <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_ChatBox_Cus" FromRole="ChatBox" ToRole="Cus" />
+          <NavigationProperty Name="Shp" Relationship="ShoesStoreModel.FK_ChatBox_Shp" FromRole="ChatBox" ToRole="Shp" />
+        </EntityType>
         <EntityType Name="Config">
           <Key>
             <PropertyRef Name="ConfigId" />
@@ -2357,6 +2473,7 @@
           </Key>
           <Property Name="CusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cart" Relationship="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers" FromRole="Cus" ToRole="Cart" />
+          <NavigationProperty Name="ChatBox" Relationship="ShoesStoreModel.FK_ChatBox_Cus" FromRole="Cus" ToRole="ChatBox" />
           <NavigationProperty Name="Usr" Relationship="ShoesStoreModel.FK_Cus_Usr" FromRole="Cus" ToRole="Usr" />
           <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuy_Cus" FromRole="Cus" ToRole="RcptBuy" />
         </EntityType>
@@ -2622,6 +2739,7 @@
           <Property Name="ShpName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ChatBox" Relationship="ShoesStoreModel.FK_ChatBox_Shp" FromRole="Shp" ToRole="ChatBox" />
           <NavigationProperty Name="Mer" Relationship="ShoesStoreModel.FK_Shp_Mer" FromRole="Shp" ToRole="Mer" />
           <NavigationProperty Name="Pro" Relationship="ShoesStoreModel.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" FromRole="Shp" ToRole="Pro" />
           <NavigationProperty Name="RcptBuy" Relationship="ShoesStoreModel.FK_RcptBuy_Shp" FromRole="Shp" ToRole="RcptBuy" />
@@ -2730,6 +2848,44 @@
               <PropertyRef Name="ProId" />
               <PropertyRef Name="ColorId" />
               <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chat_ChatBox">
+          <End Type="ShoesStoreModel.ChatBox" Role="ChatBox" Multiplicity="1" />
+          <End Type="ShoesStoreModel.Chat" Role="Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChatBox">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="CusId" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="ShpId" />
+              <PropertyRef Name="CusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatBox_Cus">
+          <End Type="ShoesStoreModel.Cus" Role="Cus" Multiplicity="1" />
+          <End Type="ShoesStoreModel.ChatBox" Role="ChatBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cus">
+              <PropertyRef Name="CusId" />
+            </Principal>
+            <Dependent Role="ChatBox">
+              <PropertyRef Name="CusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatBox_Shp">
+          <End Type="ShoesStoreModel.Shp" Role="Shp" Multiplicity="1" />
+          <End Type="ShoesStoreModel.ChatBox" Role="ChatBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shp">
+              <PropertyRef Name="ShpId" />
+            </Principal>
+            <Dependent Role="ChatBox">
+              <PropertyRef Name="ShpId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3539,6 +3695,28 @@
                 <ScalarProperty Name="ProId" ColumnName="ProId" />
                 <ScalarProperty Name="ShpId" ColumnName="ShpId" />
                 <ScalarProperty Name="CartId" ColumnName="CartId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chat">
+            <EntityTypeMapping TypeName="ShoesStoreModel.Chat">
+              <MappingFragment StoreEntitySet="Chat">
+                <ScalarProperty Name="IsShpChat" ColumnName="IsShpChat" />
+                <ScalarProperty Name="UsrAdd" ColumnName="UsrAdd" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CusId" ColumnName="CusId" />
+                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
+                <ScalarProperty Name="ChatId" ColumnName="ChatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChatBox">
+            <EntityTypeMapping TypeName="ShoesStoreModel.ChatBox">
+              <MappingFragment StoreEntitySet="ChatBox">
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="CusId" ColumnName="CusId" />
+                <ScalarProperty Name="ShpId" ColumnName="ShpId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
