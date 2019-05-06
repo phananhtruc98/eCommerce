@@ -82,10 +82,10 @@
                     </div>
                 </div>
                 <div class="row" style="float: right">
-                    <asp:Label Text="Tổng ngày: " CssClass="h3" runat="server"></asp:Label><asp:Label runat="server" ID="lbTongTien" CssClass="h3" Text="0"></asp:Label>
+                    <asp:Label Text="Tổng tiền: " CssClass="h3" runat="server"></asp:Label><asp:Label runat="server" ID="lbTongTien" CssClass="h3" Text="0"></asp:Label>
                 </div>
                 <div class="row">
-                    <asp:Label Text="Tổng tiền: " CssClass="h3"  runat="server"></asp:Label><asp:Label runat="server" ID="lbTongNgayMua" CssClass="h3" Text="0"></asp:Label>
+                    <asp:Label Text="Tổng ngày: " CssClass="h3"  runat="server"></asp:Label><asp:Label runat="server" ID="lbTongNgayMua" CssClass="h3" Text="0"></asp:Label>
                 </div>
                 <div class="row">
                     <div class="col-12">

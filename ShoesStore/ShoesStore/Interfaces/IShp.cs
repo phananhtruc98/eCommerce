@@ -2,7 +2,7 @@
 
 namespace ShoesStore.Interfaces
 {
-    internal interface IShp : ITable<Shp>
+    internal interface IShp 
     {
     }
 }

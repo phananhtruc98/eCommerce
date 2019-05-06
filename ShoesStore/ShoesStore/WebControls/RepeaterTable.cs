@@ -10,6 +10,7 @@ namespace ShoesStore.WebControls
     {
         private int _pageCurrent = 1;
         private int _pageSize;
+        private int _shpId;
         public TableName TableName;
 
         public int PageCurrent
@@ -29,8 +30,22 @@ namespace ShoesStore.WebControls
             set
             {
                 _pageSize = value;
-                BindRptPaged();
+                //BindRptPaged();
             }
+        }
+
+        public int ShpId
+        {
+            set
+            {
+                _shpId = value;
+                //Bind
+            }
+            get
+            {
+                return _shpId;
+            }
+
         }
 
         public bool AllowPage { get; set; }
@@ -45,7 +60,7 @@ namespace ShoesStore.WebControls
                     new Tuple<Control, TableName>(this, TableName)
                 }
             }.Bind();
-            PageTotal = (int) Math.Ceiling((double) ((DataSource as IEnumerable<object>) ?? throw new InvalidOperationException()).Count() / _pageSize);
+            PageTotal = (int)Math.Ceiling((double)((DataSource as IEnumerable<object>) ?? throw new InvalidOperationException()).Count() / _pageSize);
             ;
             if (AllowPage)
             {

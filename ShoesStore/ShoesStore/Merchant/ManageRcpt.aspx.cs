@@ -110,15 +110,34 @@ namespace ShoesStore.Merchant
 
         public void TimKiem(string search_key)
         {
-            var rs = (from a in rcptBuy.GetAll().ToList()
-                      where a.CusId.ToString().ContainsEx(search_key)
-                            || a.RcptBuyId.ToString().ContainsEx(search_key)
-                            || a.Rcpt.DateAdd != null && a.Rcpt.DateAdd.ToString().ContainsEx(search_key)
-                            || a.Rcpt.DateEdit != null && a.Rcpt.DateEdit.ToString().ContainsEx(search_key)
-                            || a.Rcpt.UsrAdd.ToString().ContainsEx(search_key)
-                            || a.Rcpt.UsrEdit.ToString().ContainsEx(search_key)
-                      select a).ToList();
-            gvRcptBuy.DataSource = rs;
+            
+            var rs = (from r in MyLibrary.Rcpt_BUS.GetAll()
+                      join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
+
+                      join s in shp.GetAll() on b.ShpId equals s.ShpId
+                      join z in mer.GetAll() on s.MerId equals z.MerId
+                      join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
+                      join e in rcptbuystastep.GetAll() on t.StepId equals e.StepId
+                      where b.CusId.ToString().ContainsEx(search_key)
+                            || b.RcptBuyId.ToString().ContainsEx(search_key)
+                            || r.DateAdd != null && r.DateAdd.ToString().ContainsEx(search_key)
+                            || r.DateEdit != null && r.DateEdit.ToString().ContainsEx(search_key)
+                            || s.ShpName.ToString().ContainsEx(search_key)
+                            || e.StepId.ToString().ContainsEx(search_key)
+                            || e.StepCont.ToString().ContainsEx(search_key)
+                      select new {
+                            b.RcptBuyId,
+                            r.DateAdd,
+                            r.DateEdit,
+                            r.UsrAdd,
+                            r.UsrEdit,
+                            b.CusId,
+                            s.ShpName,
+                            z.MerId,
+                            e.StepId,
+                            e.StepCont
+                        });
+            gvRcptBuy.DataSource = rs.DistinctBy(i => i.RcptBuyId).ToList();
             gvRcptBuy.DataBind();
         }
        

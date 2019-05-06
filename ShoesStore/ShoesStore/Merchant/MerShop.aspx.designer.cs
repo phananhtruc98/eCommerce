@@ -31,22 +31,13 @@ namespace ShoesStore.Merchant {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// rptBestSellers control.
+        /// ucPro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptBestSellers;
-        
-        /// <summary>
-        /// rptPagingBestSellers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPagingBestSellers;
+        protected global::ShoesStore.UserControls.UcPro ucPro;
         
         /// <summary>
         /// Master property.
@@ -54,9 +45,9 @@ namespace ShoesStore.Merchant {
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new ShoesStore.Merchant.SiteMerchant Master {
+        public new ShoesStore.SiteMaster Master {
             get {
-                return ((ShoesStore.Merchant.SiteMerchant)(base.Master));
+                return ((ShoesStore.SiteMaster)(base.Master));
             }
         }
     }
