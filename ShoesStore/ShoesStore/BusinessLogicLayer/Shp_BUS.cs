@@ -14,7 +14,7 @@ namespace ShoesStore.BusinessLogicLayer
         public override bool IsExist(Shp obj)
         {
             throw new NotImplementedException();
-           
+
         }
 
         public override void SetActive(Shp obj)
@@ -22,7 +22,7 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public  string ShpUrl(Shp obj)
+        public string ShpUrl(Shp obj)
         {
             return HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + $"/{TextHelper.UrlFriendly(obj.ShpName)}";
         }
@@ -37,7 +37,7 @@ namespace ShoesStore.BusinessLogicLayer
         {
             List<RcptBuyStaDet> lstRcptBuyDet = new List<RcptBuyStaDet>();
             var rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.ShpId == shp.ShpId).ToList();
-            foreach(RcptBuy item in rcptBuy)
+            foreach (RcptBuy item in rcptBuy)
             {
                 if (SuccessStep(item.RcptBuyId) != null)
                 {
@@ -76,9 +76,9 @@ namespace ShoesStore.BusinessLogicLayer
             //var rs = MyLibrary.RcptBuyStaDet_BUS.GetAll().Where(x => x.RcptBuyId == RcptId && x.AddDate.Value.Month == month && x.AddDate.Value.Year == year).ToList();
             var rs = (from rd in MyLibrary.RcptBuyStaDet_BUS.GetAll()
                       join r in MyLibrary.Rcpt_BUS.GetAll() on rd.RcptBuyId equals r.RcptId
-                      where rd.RcptBuyId == RcptId & r.DateAdd.Month == month && r.DateAdd.Year==year
+                      where rd.RcptBuyId == RcptId & r.DateAdd.Month == month && r.DateAdd.Year == year
                       select rd).ToList();
-             var rs2 = rs.Where(x => x.StepId == 7).FirstOrDefault();
+            var rs2 = rs.Where(x => x.StepId == 7).FirstOrDefault();
             return rs2;
         }
 
@@ -108,10 +108,10 @@ namespace ShoesStore.BusinessLogicLayer
             return rs2;
         }
 
-        public  Shp GetShp(string shpNameUrlCode)
+        public Shp GetShp(string shpNameUrlCode)
         {
-            
-            return GetAll().FirstOrDefault(m => m.ShpName == shpNameUrlCode);
+
+            return GetAll().FirstOrDefault(m => TextHelper.UrlFriendly(m.ShpName) == shpNameUrlCode);
 
         }
     }
