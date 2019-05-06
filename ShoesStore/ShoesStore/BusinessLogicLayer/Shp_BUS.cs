@@ -11,7 +11,7 @@ namespace ShoesStore.BusinessLogicLayer
         public override bool IsExist(Shp obj)
         {
             throw new NotImplementedException();
-           
+
         }
 
         public override void SetActive(Shp obj)
@@ -19,14 +19,14 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public  string ShpUrl(Shp obj)
+        public string ShpUrl(Shp obj)
         {
             return HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + $"/{TextHelper.UrlFriendly(obj.ShpName)}";
         }
-        public  Shp GetShp(string shpNameUrlCode)
+        public Shp GetShp(string shpNameUrlCode)
         {
-            
-            return GetAll().FirstOrDefault(m => m.ShpName == shpNameUrlCode);
+
+            return GetAll().FirstOrDefault(m => TextHelper.UrlFriendly(m.ShpName) == shpNameUrlCode);
         }
     }
 }

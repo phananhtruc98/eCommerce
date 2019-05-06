@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoesStore.DataAccessLogicLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
@@ -12,6 +13,12 @@ namespace ShoesStore.WebControls
         private int _pageSize;
         private int _shpId;
         public TableName TableName;
+        public int[] ColorIds { get; set; }
+        public int[] BrandIds { get; set; }
+        public int[] ProCatIds { get; set; }
+        public double FilterPriceFrom { get; set; } = 0;
+        public double FilterPriceTo { get; set; } = 999999;
+        public Func<Pro, long> FuncFilter { get; set; } = pro => pro.DateAdd == null ? 0 : pro.DateAdd.Value.Ticks;
 
         public int PageCurrent
         {

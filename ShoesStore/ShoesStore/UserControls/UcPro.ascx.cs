@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
+using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.WebControls;
 
 namespace ShoesStore.UserControls
@@ -60,7 +61,7 @@ namespace ShoesStore.UserControls
 
         protected void MyBtnHandler(object sender, EventArgs e)
         {
-            var btn = (LinkButton) sender;
+            var btn = (LinkButton)sender;
             switch (btn.CommandName)
             {
                 case "ThisBtnClick":
@@ -77,9 +78,21 @@ namespace ShoesStore.UserControls
         {
             if (e.Item.ItemType == ListItemType.Footer)
             {
-                var btnPagingLast = (LinkButton) e.Item.FindControl("btnPagingLast");
+                var btnPagingLast = (LinkButton)e.Item.FindControl("btnPagingLast");
                 btnPagingLast.CommandArgument = rptProPage.Items.Count + "";
             }
+        }
+
+        public void SetFilter(int[] colorids, int[] brandIds, int[] proCatIds, double filterPriceFrom, double filterPriceTo, Func<Pro, long> funcFilter)
+        {
+            RptPro.ColorIds = colorids;
+            rptPro.BrandIds = brandIds;
+            rptPro.ProCatIds = proCatIds;
+            rptPro.FilterPriceFrom = filterPriceFrom;
+            rptPro.FilterPriceTo = filterPriceTo;
+            rptPro.FuncFilter = funcFilter;
+            rptPro.DataBind();
+
         }
     }
 }
