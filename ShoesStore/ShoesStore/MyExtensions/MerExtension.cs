@@ -12,5 +12,10 @@ namespace ShoesStore.MyExtensions
         {
             return MyLibrary.Mer_BUS.GetSubEndDate(mer);
         }
+
+        public static int GetSubExistDate(this Mer mer)
+        {
+            return MyLibrary.Mer_BUS.GetSubExistDate(mer);
+        }
     }
 }

@@ -4,6 +4,8 @@ using System.Data.Objects;
 using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
+using ShoesStore.Merchant;
+using ShoesStore.MyExtensions;
 
 namespace ShoesStore.BusinessLogicLayer
 {
@@ -114,5 +116,9 @@ namespace ShoesStore.BusinessLogicLayer
             return DateTime.Now;
         }
         
+        public int GetSubExistDate(Mer mer)
+        {
+           return MerchantSession.LoginMer.GetSubEndDate().Subtract(DateTime.Now).Days;
+        }
     }
 }

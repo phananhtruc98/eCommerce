@@ -83,7 +83,25 @@ class='rating__star rating__star--only-edge rating__star--active'>
             return s;
         }
    
+        public static string  AlertShp(Shp shp,int year)
+        {
+            string s = "";
+            if(Shp_Bus.CountRcptBuySuccess(shp,year) < 3)
+            {
+                s = "<span class='alert alert-danger' role='alert'>Nguy hiểm</span>";
+            }
+            return s;
+        }
 
+        public static string AlertShp(Shp shp,int month, int year)
+        {
+            string s = "";
+            if (Shp_Bus.CountRcptBuySuccess(shp,month,year) < 3)
+            {
+                s = "<span class='alert alert-danger' role='alert'>Nguy hiểm</span>";
+            }
+            return s;
+        }
         //public static string uploadAvaAdmin(FileUpload file)
         //{
         //    var fname = file.FileName;
