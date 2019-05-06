@@ -76,6 +76,7 @@ namespace ShoesStore.Merchant
                 rs.Qty = Int32.Parse(txtQty.Text);
                 MyLibrary.ProDet_BUS.Update(rs);
                 MyLibrary.Show("Cập nhật thành công");
+                LoadLvPro();
             }
         }
 

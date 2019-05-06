@@ -29,5 +29,30 @@ namespace ShoesStore.BusinessLogicLayer
             return tmp;
         }
 
+        public string SumDayRcptSub(Rcpt Rcpt, int MerId)
+        {
+            double Ngay = 0;
+            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(x => x.RcptSubId == Rcpt.RcptId && x.MerId==MerId).FirstOrDefault();
+            var rcptSubDetLst = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == rcptSub.RcptSubId).ToList();
+            foreach (RcptSubDet item in rcptSubDetLst)
+            {
+                double tongNgay = double.Parse(item.Quantity.ToString()) * Double.Parse(item.Sub.DurDay.ToString());
+                Ngay = Ngay + tongNgay;
+            }
+            return Ngay.ToString();
+        }
+
+        public string SumPriceRcptSub(Rcpt Rcpt, int MerId)
+        {
+            double Tien = 0;
+            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(x => x.RcptSubId == Rcpt.RcptId && x.MerId == MerId).FirstOrDefault();
+            var rcptSubDetLst = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == rcptSub.RcptSubId).ToList();
+            foreach (RcptSubDet item in rcptSubDetLst)
+            {
+                double tongTien = double.Parse(item.Quantity.ToString()) * Double.Parse(item.Sub.Price.ToString());
+                Tien = Tien + tongTien;
+            }
+            return Tien.ToString();
+        }
     }
 }

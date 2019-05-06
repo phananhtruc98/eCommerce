@@ -79,19 +79,21 @@
                                     </table>
                                 </LayoutTemplate>
                                 <ItemTemplate>
+                                    <tr>Tên sản phẩm: <%# Item.Pro.ProName %></tr>
                                     <tr>
                                         <td>
                                             <asp:Label runat="server" ID="lbSize" Text="<%# Item.ProSize.SizeName %>"></asp:Label></td>
                                         <td>
                                             <asp:Label runat="server" ID="lbColor" Text="<%# Item.ProColor.ColorName %>"></asp:Label></td>
                                         <td>
-                                            <asp:Textbox runat="server" ID="lbQty" TextMode="Number" min="1" Text="<%# Item.Qty %>"></asp:Textbox></td>
-                                       <td><asp:LinkButton runat="server" ID="btnUpdateQty" Text="Cập nhật" CssClass="btn btn-primary" CommandName="Update" CommandArgument='<%#  $"{ Item.SizeId},{ Item.ColorId },{Item.ProId},{Item.ShpId}" %>'></asp:LinkButton></td>
+                                            <asp:TextBox runat="server" ID="lbQty" TextMode="Number" min="1" Text="<%# Item.Qty %>"></asp:TextBox></td>
+                                        <td>
+                                            <asp:LinkButton runat="server" ID="btnUpdateQty" Text="Cập nhật" CssClass="btn btn-primary" CommandName="Update" CommandArgument='<%#  $"{ Item.SizeId},{ Item.ColorId },{Item.ProId},{Item.ShpId}" %>'></asp:LinkButton></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:ListView>
                         </td>
-                     
+
                     </tr>
                 </table>
             </div>
