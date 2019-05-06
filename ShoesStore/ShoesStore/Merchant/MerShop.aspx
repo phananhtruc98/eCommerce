@@ -1,30 +1,31 @@
 ﻿<%@ Page Language="C#" Title="Trang Shop Cá Nhân" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MerShop.aspx.cs" Inherits="ShoesStore.Merchant.MerShop" %>
+
 <%@ Import Namespace="ShoesStore" %>
-<%@ Import Namespace="ShoesStore.Merchant" %>
-<%@ MasterType VirtualPath="~/Merchant/SiteMerchant.Master" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
+<%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
+<%@ Register Src="~/UserControls/UcProCarousel.ascx" TagPrefix="uc1" TagName="UcProCarousel" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<!--Thông Tin Shop-->
-<div>
-  
+    <!--Thông Tin Shop-->
+    <div>
+
         <div class="tab-content py-4">
-        <div class="tab-pane active" id="profile">
-            <h5 runat="server" class="mb-3">
-                Shop : 
+            <div class="tab-pane active" id="profile">
+                <h5 runat="server" class="mb-3">Shop : 
                 <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblShpName"></asp:Label>
-            </h5>
-            <br/>
-            <div class="row">
-                <div class="col-md-6">
-                    <h6>About</h6>
-                    <p>
-                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="Label1"></asp:Label>
-                    </p>
-                    <h6>Categories</h6>
-                    <p>
-                        Male Sneakers, Casual and Sporty Sneakers
-                    </p>
-                </div>
-                <!--
+                </h5>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>About</h6>
+                        <p>
+                            <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="Label1"></asp:Label>
+                        </p>
+                        <h6>Categories</h6>
+                        <p>
+                            Male Sneakers, Casual and Sporty Sneakers
+                        </p>
+                    </div>
+                    <!--
                 <div class="col-md-6">
                     <h6>Recent badges</h6>
                     <a href="#" class="badge badge-dark badge-pill">html5</a>
@@ -41,162 +42,31 @@
                     <span class="badge badge-danger"><i class="fa fa-eye"></i>245 Views</span>
                 </div>
                 -->
+                </div>
+                <!--/row-->
             </div>
-            <!--/row-->
         </div>
-    </div>
- 
-</div>
-<!--Thông Tin Shop/End-->
-<hr/>
-<!--Featured Products-->
 
-<!-- .block-products -->
-<div class="block block-products block-products--layout--large-last">
-    <div class="container">
-        <div class="block-header">
-            <h3 class="block-header__title">Sản Phẩm</h3>
-            <div class="block-header__divider"></div>
-        </div>
-        <div class="block-products__body">
-            <div class="block-products__list">
-                <asp:Repeater runat="server" ID="rptBestSellers">
-                    <ItemTemplate>
-                        <div style="width: 212.667px;" class="block-products__list-item col-xs-6 col-sm-4 col-md-3 col-lg-2 ">
-                            <div class="product-card">
-                                <div class="product-card__badges-list">
-                                    <div class="product-card__badge product-card__badge--hot">Hot</div>
-                                </div>
-                                <div class="product-card__image">
-                                    <a href="product.html">
-                                        <img src="<%# MyLibrary.ProImgPath(Container.DataItem) %>" alt="">
-                                    </a>
-                                </div>
-                                <div class="product-card__info">
-                                    <div class="product-card__name">
-                                        <a href="product.html">
-                                            <%# Eval("ProName") %>
-                                        </a>
-                                    </div>
-                                    <div class="product-card__rating">
-                                        <div class="rating">
-                                            <div class="rating__body">
-                                                <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                                    <g class="rating__fill">
-                                                        <use href="images/sprite.svg#star-normal"></use>
-                                                    </g>
-                                                    <g class="rating__stroke">
-                                                        <use href="images/sprite.svg#star-normal-stroke">
-                                                        </use>
-                                                    </g>
-                                                </svg>
-                                                <div class="rating__star rating__star--only-edge rating__star--active">
-                                                    <div class="rating__fill">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                    <div class="rating__stroke">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                </div>
-                                                <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                                    <g class="rating__fill">
-                                                        <use href="images/sprite.svg#star-normal"></use>
-                                                    </g>
-                                                    <g class="rating__stroke">
-                                                        <use href="images/sprite.svg#star-normal-stroke">
-                                                        </use>
-                                                    </g>
-                                                </svg>
-                                                <div class="rating__star rating__star--only-edge rating__star--active">
-                                                    <div class="rating__fill">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                    <div class="rating__stroke">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                </div>
-                                                <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                                    <g class="rating__fill">
-                                                        <use href="images/sprite.svg#star-normal"></use>
-                                                    </g>
-                                                    <g class="rating__stroke">
-                                                        <use href="images/sprite.svg#star-normal-stroke">
-                                                        </use>
-                                                    </g>
-                                                </svg>
-                                                <div class="rating__star rating__star--only-edge rating__star--active">
-                                                    <div class="rating__fill">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                    <div class="rating__stroke">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                </div>
-                                                <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                                    <g class="rating__fill">
-                                                        <use href="images/sprite.svg#star-normal"></use>
-                                                    </g>
-                                                    <g class="rating__stroke">
-                                                        <use href="images/sprite.svg#star-normal-stroke">
-                                                        </use>
-                                                    </g>
-                                                </svg>
-                                                <div class="rating__star rating__star--only-edge rating__star--active">
-                                                    <div class="rating__fill">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                    <div class="rating__stroke">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                </div>
-                                                <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                                    <g class="rating__fill">
-                                                        <use href="images/sprite.svg#star-normal"></use>
-                                                    </g>
-                                                    <g class="rating__stroke">
-                                                        <use href="images/sprite.svg#star-normal-stroke">
-                                                        </use>
-                                                    </g>
-                                                </svg>
-                                                <div class="rating__star rating__star--only-edge rating__star--active">
-                                                    <div class="rating__fill">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                    <div class="rating__stroke">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-card__rating-legend">11 Reviews</div>
-                                    </div>
-                                </div>
-                                <div class="product-card__actions">
-                                    <div class="product-card__prices">$<%# Eval("Price") %></div>
-                                    <div class="product-card__buttons">
-                                        <button class="btn btn-primary product-card__addtocart" type="button">
-                                            Add To Cart
-                                        </button>
-                                        <button class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">
-                                            Add To Cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
+    </div>
+    <!--Thông Tin Shop/End-->
+    <hr />
+    <!--Featured Products-->
+
+    <!-- .block-products -->
+    <div class="block block-products block-products--layout--large-last">
+        <div class="block block-products block-products--layout--large-last">
+        <div class="container">
+            <div class="block-header">
+                <h3 class="block-header__title">Bán chạy</h3>
+                <div class="block-header__divider"></div>
+            </div>
+            <div class="block-products__body">
+                <div class="block-products__list">
+                    <uc1:UcPro runat="server" ID="ucPro" PageSize="8" NumberOnRow="4"/>
+                </div>
+            </div>
+            <div style="overflow: hidden;">
             </div>
         </div>
-        <div style="overflow: hidden;">
-            <asp:Repeater ID="rptPagingBestSellers" runat="server">
-                <ItemTemplate>
-                    <asp:LinkButton ID="btnPage" Style="background: #ffa100; border: solid 1px #666; font: 8pt tahoma; margin: 2px; padding: 8px;" CommandName="Page" CommandArgument="<%# Container.DataItem %>" runat="server" ForeColor="White" Font-Bold="True">
-                        <%# Container.DataItem %>
-                    </asp:LinkButton>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
     </div>
-</div>
 </asp:Content>

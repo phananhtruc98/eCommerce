@@ -70,7 +70,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <h4>Ngày hết hạn: <%:  MerchantSession.LoginMer.GetSubEndDate().ToString() %> (còn lại <%: MerchantSession.LoginMer.GetSubEndDate().Subtract(DateTime.Now).Days%> ngày)</h4>
+            <h4>Ngày hết hạn: <%:  MerchantSession.LoginMer.GetSubEndDate().ToString() %> (còn lại <%: MerchantSession.LoginMer.GetSubExistDate() %> ngày)</h4>
         </div>
     </div>
 </asp:Content>
