@@ -399,5 +399,19 @@ namespace ShoesStore
         {
             return HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + $"/{TextHelper.UrlFriendly(obj.ShpName)}";
         }
+        public static string LogDirectoryPath = Environment.CurrentDirectory;
+
+        public static void Log(string message)
+        {
+            try
+            {
+                StreamWriter strw = new StreamWriter(Environment.CurrentDirectory + "\\ShoesStore.log", true);
+                strw.WriteLine("{0}--->{1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), message);
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

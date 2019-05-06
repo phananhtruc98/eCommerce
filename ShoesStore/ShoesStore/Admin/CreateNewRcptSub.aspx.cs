@@ -13,28 +13,29 @@ namespace ShoesStore.Admin
         private static List<ListViewItem> lstSub = new List<ListViewItem>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 MultiView1.ActiveViewIndex = 0;
                 LoadTableSub();
                 LoadDdlMerName();
-                
+
             }
         }
 
         public void LoadDdlMerName()
         {
             var rs = (from u in MyLibrary.Usr_BUS.GetAll()
-                     join m in MyLibrary.Mer_BUS.GetAll() on u.UsrId equals m.MerId
-                     select new
-                     {
-                         UsrName = u.UsrName,
-                         UsrId = u.UsrId
-                     }).ToList();
+                      join m in MyLibrary.Mer_BUS.GetAll() on u.UsrId equals m.MerId
+                      select new
+                      {
+                          UsrName = u.UsrName,
+                          UsrId = u.UsrId
+                      }).ToList();
             ddtMerName.DataSource = rs;
             ddtMerName.DataTextField = "UsrName";
             ddtMerName.DataValueField = "UsrId";
             ddtMerName.DataBind();
+         
         }
 
 
@@ -79,7 +80,7 @@ namespace ShoesStore.Admin
                 tien += Int32.Parse(((Label)lvSubSelected.Items[i].FindControl("lbTongGia")).Text.Replace(",", string.Empty));
             }
             lbTongNgayMua.Attributes.Add("Style", "float: right");
-            lbTongNgayMua.Text =  ngay.ToString();
+            lbTongNgayMua.Text = ngay.ToString();
             lbTongTien.Text = tien.ToFormatMoney();
         }
         protected void lvSubSelected_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -107,7 +108,7 @@ namespace ShoesStore.Admin
                 }
                 else
                 {
-                   
+
                     lstSub.RemoveAt(Int32.Parse(e.CommandArgument.ToString()));
                     LoadSubSelected();
                 }
@@ -122,6 +123,7 @@ namespace ShoesStore.Admin
         {
             MultiView1.ActiveViewIndex = 1;
             //ddtMerName_SelectedIndexChanged(sender, e);
+            SetShpInfo(int.Parse(ddtMerName.SelectedValue));
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
@@ -131,15 +133,18 @@ namespace ShoesStore.Admin
 
         protected void ddtMerName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int MerId = Int32.Parse(ddtMerName.SelectedValue);
+            int merId = Int32.Parse(ddtMerName.SelectedValue);
+            SetShpInfo(merId);
+        }
+        private void SetShpInfo(int merId)
+        {
             var rs = (from s in MyLibrary.Shp_Bus.GetAll()
-                     where s.MerId == MerId
-                     select s.ShpName).FirstOrDefault();
+                      where s.MerId == merId
+                      select s.ShpName).FirstOrDefault();
             lbShpName.Text = rs;
             lbTotalDay.Text = lbTongNgayMua.Text;
             lbTotalPrice.Text = lbTongTien.Text;
         }
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
