@@ -31,6 +31,7 @@ namespace ShoesStore
         {
             if (!IsPostBack)
             {
+                MyLibrary.Log("First log");
             }
         }
 

@@ -27,6 +27,13 @@ namespace ShoesStore.UserControls
                 if (rptPro != null) rptPro.PageSize = value;
             }
         }
+        public int ShpId
+        {
+            set
+            {
+                if (rptPro != null) rptPro.ShpId = value;
+            }
+        }
 
         public int GetCurrent()
         {
