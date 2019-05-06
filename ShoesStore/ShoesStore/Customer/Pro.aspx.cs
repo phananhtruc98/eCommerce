@@ -16,7 +16,7 @@ namespace ShoesStore.Customer
         {
             if (!IsPostBack)
             {
-                
+
                 //rptProCat.DataBind();
                 //listWc=new List<Tuple<Control, TableName>>()
                 //{
@@ -47,14 +47,14 @@ namespace ShoesStore.Customer
 
             Func<Pro, long> funcFilter = null;
 
-            switch(vFilterPro)
+            switch (vFilterPro)
             {
                 case 0: { funcFilter = pro => pro.Shp.RcptBuy.Count; break; }
-                case 1: { funcFilter = pro =>Convert.ToInt32( pro.Price); break; }
+                case 1: { funcFilter = pro => Convert.ToInt32(pro.Price); break; }
                 case 2: { funcFilter = pro => Convert.ToInt32(pro.Price); break; }//giam
                 case 3: { funcFilter = pro => MyLibrary.Pro_BUS.AverageStar(pro); break; }
                 case 4: { funcFilter = pro => MyLibrary.Pro_BUS.AverageStar(pro); break; }//giam
-                default: { funcFilter = pro=>pro.DateAdd.Value.Ticks;break; }
+                default: { funcFilter = pro => pro.DateAdd == null ? 0 : pro.DateAdd.Value.Ticks; break; }
             }
 
 
@@ -98,8 +98,8 @@ namespace ShoesStore.Customer
                 (Convert.ToInt32(pro.Price) >= filterPriceFrom && Convert.ToInt32(pro.Price) <= filterPriceTo)
                 );
 
-            
-            UcPro.RptPro.DataSource = (vFilterPro == 2 || vFilterPro == 4) ? willSource.OrderBy(funcFilter): willSource.OrderByDescending(funcFilter);
+
+            UcPro.RptPro.DataSource = (vFilterPro == 2 || vFilterPro == 4) ? willSource.OrderBy(funcFilter) : willSource.OrderByDescending(funcFilter);
             UcPro.RptPro.DataBind();
         }
 

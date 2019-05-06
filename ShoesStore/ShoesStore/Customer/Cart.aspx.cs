@@ -26,19 +26,19 @@ namespace ShoesStore.Customer
 
         protected void txtQty_OnTextChanged(object sender, EventArgs e)
         {
-            var qty = (TextBox) sender;
-            var thisRptItem = (RepeaterItem) qty.NamingContainer;
-            var thisRpt = (Repeater) thisRptItem.NamingContainer;
-            var hdfPrice = (HiddenField) thisRptItem.FindControl("hdfPrice");
-            var ltrObjSumPrice = (Literal) thisRptItem.FindControl("ltrObjSumPrice");
+            var qty = (TextBox)sender;
+            var thisRptItem = (RepeaterItem)qty.NamingContainer;
+            var thisRpt = (Repeater)thisRptItem.NamingContainer;
+            var hdfPrice = (HiddenField)thisRptItem.FindControl("hdfPrice");
+            var ltrObjSumPrice = (Literal)thisRptItem.FindControl("ltrObjSumPrice");
             ltrObjSumPrice.Text = (Convert.ToDouble(hdfPrice.Value) * Convert.ToDouble(qty.Text)).ToFormatMoney();
-            var thisRptItemParentItem = (RepeaterItem) thisRptItem.NamingContainer.NamingContainer;
-            var thisRptItemParent = (Repeater) thisRptItem.NamingContainer.NamingContainer.NamingContainer;
+            var thisRptItemParentItem = (RepeaterItem)thisRptItem.NamingContainer.NamingContainer;
+            var thisRptItemParent = (Repeater)thisRptItem.NamingContainer.NamingContainer.NamingContainer;
             var ltrSumPerShp =
-                (Literal) thisRptItemParent.Items[thisRptItemParentItem.ItemIndex].FindControl("ltrSumPerShp");
+                (Literal)thisRptItemParent.Items[thisRptItemParentItem.ItemIndex].FindControl("ltrSumPerShp");
             ltrSumPerShp.Text = SumPerShp(thisRpt).ToFormatMoney();
             UpdateSum(thisRptItemParent);
-//string price = thisRptItem.FindControl("");
+            //string price = thisRptItem.FindControl("");
         }
 
         private void UpdateSum(Repeater rptParent)
@@ -46,11 +46,11 @@ namespace ShoesStore.Customer
             decimal sumPerShp = 0;
             foreach (RepeaterItem rptParentItem in rptParent.Items)
             {
-                var ltrSumPerShp = (Literal) rptParentItem.FindControl("ltrSumPerShp");
+                var ltrSumPerShp = (Literal)rptParentItem.FindControl("ltrSumPerShp");
                 sumPerShp += Convert.ToDecimal(ltrSumPerShp.Text.Replace(",", ""));
             }
 
-            var rptCartDetShpSum = (Literal) rptParent.FindControlInFooter("rptCartDetShp_Sum");
+            var rptCartDetShpSum = (Literal)rptParent.FindControlInFooter("rptCartDetShp_Sum");
             rptCartDetShpSum.Text = sumPerShp.ToFormatMoney().ToFormatMoney();
         }
 
@@ -59,7 +59,7 @@ namespace ShoesStore.Customer
             decimal sumShpPro = 0;
             foreach (RepeaterItem rptProduct in rptShp.Items)
             {
-                var ltrObjSumPrice = (Literal) rptProduct.FindControl("ltrObjSumPrice");
+                var ltrObjSumPrice = (Literal)rptProduct.FindControl("ltrObjSumPrice");
                 sumShpPro += Convert.ToDecimal(ltrObjSumPrice.Text);
             }
 
@@ -70,18 +70,17 @@ namespace ShoesStore.Customer
         {
             foreach (RepeaterItem rptCartDetShpItem in rptCartDetShp.Items)
             {
-                var rptCartDetCart = (Repeater) rptCartDetShpItem.FindControl("rptCartDetCart");
+                var rptCartDetCart = (Repeater)rptCartDetShpItem.FindControl("rptCartDetCart");
                 foreach (RepeaterItem rptCartDetItem in rptCartDetCart.Items)
                 {
-                    var hdfPrimaryKeys = (HiddenField) rptCartDetItem.FindControl("hdfPrimaryKeys");
+                    var hdfPrimaryKeys = (HiddenField)rptCartDetItem.FindControl("hdfPrimaryKeys");
                     var key = hdfPrimaryKeys.Value.Split(',');
                     var obj = MyLibrary.CartDet_BUS.GetAll().FirstOrDefault(m => m.CartId + "" == key[0]
                                                                                  && m.ShpId + "" == key[1]
                                                                                  && m.ProId + "" == key[2]
                                                                                  && m.ColorId + "" == key[3]
-                                                                                 && m.SizeId + "" == key[4]
-                    );
-                    var qty = (TextBox) rptCartDetItem.FindControl("txtQty");
+                                                                                 && m.SizeId + "" == key[4]);
+                    var qty = (TextBox)rptCartDetItem.FindControl("txtQty");
                     if (obj != null)
                     {
                         obj.Qty = Convert.ToInt32(qty.Text);
@@ -105,7 +104,7 @@ namespace ShoesStore.Customer
                     && m.SizeId == Convert.ToInt32(primaryKeys[4])
             ));
             Master.LoadCartPreview();
-//rptCartDetCart_Bind();
+            //rptCartDetCart_Bind();
             rptCartDetShp_Bind();
         }
 
@@ -113,7 +112,7 @@ namespace ShoesStore.Customer
         {
             if (e.Item.ItemType == ListItemType.Footer)
             {
-//ltrSumPerShp.Text=rptCartDetCart.Items.
+                //ltrSumPerShp.Text=rptCartDetCart.Items.
             }
         }
 
@@ -121,13 +120,13 @@ namespace ShoesStore.Customer
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var hdfShpId = (HiddenField) e.Item.FindControl("hdfShpId");
-                var rptCartDetCart = (Repeater) e.Item.FindControl("rptCartDetCart");
+                var hdfShpId = (HiddenField)e.Item.FindControl("hdfShpId");
+                var rptCartDetCart = (Repeater)e.Item.FindControl("rptCartDetCart");
                 rptCartDetCart.DataSource =
                     MyLibrary.CartDet_BUS.ListCartPreview().Where(m => m.ShpId + "" == hdfShpId.Value);
                 rptCartDetCart.DataBind();
-//get the person object that is bound to the current row.
-// access person here
+                //get the person object that is bound to the current row.
+                // access person here
             }
         }
     }
