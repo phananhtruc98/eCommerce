@@ -25,7 +25,6 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     
     <script src="/js/cusHome_RcptSuccess.js"></script>
-    <link href="/Merchant/css/style.css" rel="stylesheet" />
 </head>
 <body class="bodyhihi">
     <form runat="server">

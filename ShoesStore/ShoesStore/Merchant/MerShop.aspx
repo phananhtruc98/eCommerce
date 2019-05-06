@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" Title="Trang Shop Cá Nhân" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerShop.aspx.cs" Inherits="ShoesStore.Merchant.MerShop" %>
+﻿<%@ Page Language="C#" Title="Trang Shop Cá Nhân" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MerShop.aspx.cs" Inherits="ShoesStore.Merchant.MerShop" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ Import Namespace="ShoesStore.Merchant" %>
 <%@ MasterType VirtualPath="~/Merchant/SiteMerchant.Master" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <!--Thông Tin Shop-->
 <div>
   
@@ -24,6 +24,7 @@
                         Male Sneakers, Casual and Sporty Sneakers
                     </p>
                 </div>
+                <!--
                 <div class="col-md-6">
                     <h6>Recent badges</h6>
                     <a href="#" class="badge badge-dark badge-pill">html5</a>
@@ -39,6 +40,7 @@
                     <span class="badge badge-success"><i class="fa fa-cog"></i>43 Forks</span>
                     <span class="badge badge-danger"><i class="fa fa-eye"></i>245 Views</span>
                 </div>
+                -->
             </div>
             <!--/row-->
         </div>
