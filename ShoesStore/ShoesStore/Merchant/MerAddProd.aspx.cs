@@ -206,6 +206,11 @@ namespace ShoesStore.Merchant
 
         protected void lbtnChon_Click(object sender, EventArgs e)
         {
+            if (ddlColorSelected.Text == "" || ddlSizeSelected.Text=="")
+            {
+                MyLibrary.Show("Chưa chọn màu hoặc kích cỡ");
+                return;
+            }
             SizeColor sizeColor = new SizeColor();
             ProSize size = MyLibrary.ProSize_BUS.GetById(Int32.Parse(ddlSizeSelected.SelectedValue));
             ProColor color = MyLibrary.ProColor_BUS.GetById(Int32.Parse(ddlColorSelected.SelectedValue));
