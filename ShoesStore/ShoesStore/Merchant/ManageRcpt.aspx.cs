@@ -197,20 +197,20 @@ namespace ShoesStore.Merchant
                     // Vào trong RcptBuy lấy ra RcptBuyId để vào RcptBuyStaDet và thêm vào StepId
                     RcptBuy rb = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => m.RcptBuyId == Convert.ToInt32(e.CommandArgument));
                     RcptBuyStaDet rbsd = MyLibrary.RcptBuyStaDet_BUS.GetAll().FirstOrDefault(c => c.StepId == stepId);
-                    rb.RcptBuyStaDet = rbsd;
+                    //rb.RcptBuyStaDet = rbsd;
 
                     //result1.StepId = stepId;
-                    result1.RcptBuySta = null;
-                    result1.RcptBuyStaStep = null;
-                    result1.RcptBuySta = null;
+                    //result1.RcptBuySta = null;
+                    //result1.RcptBuyStaStep = null;
+                    //result1.RcptBuySta = null;
                     RcptBuyStaDet rcptBuyStaDet = new RcptBuyStaDet()
                     {
                         StaId = result1.StaId,
                         RcptBuyId = result1.RcptBuyId,
-                        StepId = rbsd.StepId,
+                        StepId = stepId,
                         AddDate = DateTime.Now
                     };
-                    
+
                     MyLibrary.RcptBuyStaDet_BUS.Insert(rcptBuyStaDet);
                     rcptBuy.Update(result);
                 }
@@ -319,6 +319,7 @@ namespace ShoesStore.Merchant
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
                     HiddenField hdnfld = (HiddenField)e.Row.FindControl("rcptBuyId1");
+                    HiddenField hdnfldStepId = (HiddenField)e.Row.FindControl("StepId");
                     DropDownList ddList = (DropDownList)e.Row.FindControl("drpcategory1");
                     //bind dropdown-list
                     //DataTable dt = RcptBuyStaStep_BUS.GetData("Select StepCont from RcptBuyStaStep");
@@ -330,6 +331,12 @@ namespace ShoesStore.Merchant
                     ddList.DataTextField = "StepCont";
                     ddList.DataValueField = "StepId";
                     ddList.DataBind();
+                    if (ddList.Items.Count > 0)
+                        hdnfldStepId.Value = ddList.SelectedValue;
+                    else
+                    {
+                        ddList.Visible = false;
+                    }
                     //DataRowView dr = e.Row.DataItem as DataRowView;
                     //ddList.SelectedItem.Text = dr["category_name"].ToString();
                     //ddList.SelectedValue = dr["StepCont"].ToString();

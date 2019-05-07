@@ -35,8 +35,6 @@ namespace ShoesStore.BusinessLogicLayer
         }
         public RcptBuyStaStep GetRcptBuyStaStep(int StepId)
         {
-
-
             var kqBuoc = (from x in MyLibrary.RcptBuyStaStep_BUS.GetAll()
                            where  x.StepId == StepId
                            select x).ToList().FirstOrDefault();

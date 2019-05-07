@@ -18,8 +18,10 @@
     <AssemblyName>ShoesStore</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>false</Use64BitIISExpress>
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>
     </IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>
@@ -2890,13 +2892,6 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <EntityDeploy Include="DataAccessLogicLayer\ShoesStoreModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ShoesStoreModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DataAccessLogicLayer\ShoesStoreModel.edmx.diagram">
-      <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
-    </Content>
     <Content Include="libman.json" />
     <Content Include="Error\assets\font-awesome\4.1.0\fonts\fontawesome-webfont.eot" />
     <Content Include="Error\assets\font-awesome\4.1.0\fonts\fontawesome-webfont.ttf" />
@@ -2907,6 +2902,13 @@
     <Content Include="Error\assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Error\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Error\assets\fonts\glyphicons-halflings-regular.woff" />
+    <EntityDeploy Include="DataAccessLogicLayer\ShoesStoreModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShoesStoreModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataAccessLogicLayer\ShoesStoreModel.edmx.diagram">
+      <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
@@ -3501,12 +3503,6 @@
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\sp_Cus_Info_Result.cs">
-      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccessLogicLayer\sp_helpdiagrams_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\sp_Mer_Info_Result.cs">
