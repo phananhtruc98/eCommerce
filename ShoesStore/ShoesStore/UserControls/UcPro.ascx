@@ -9,7 +9,7 @@
                 <div class="products-list__body">
                     <wcCustom:RepeaterTable runat="server" ID="rptPro" AllowPage="True" TableName="Pro" ItemType="ShoesStore.DataAccessLogicLayer.Pro">
                         <ItemTemplate>
-                            <div class="products-list__item col-<%: 12 / NumberOnRow %> <%# NumberOnRow == 5 && (Container.ItemIndex + 5) % 5 == 0 ? "col-xs-offset-1" : "" %>">
+                            <div class="products-list__item col-<%: 12 / PageSize %> <%# PageSize == 5 && (Container.ItemIndex + 5) % 5 == 0 ? "col-xs-offset-1" : "" %>">
                                 <div class="product-card">
                                     <div class="product-card__badges-list">
                                         <div class="product-card__badge product-card__badge--<%# MyLibrary.Pro_BUS.IsSale(Item)?"sale":"new" %>"><%# MyLibrary.Pro_BUS.IsSale(Item)?"Giảm giá":"Mới" %></div>
@@ -43,7 +43,7 @@
                                             <%# MyLibrary.Pro_BUS.GetPriceFormat(Item)%>
                                         </div>
                                         <div class="product-card__shop text-right small text-monospace">
-                                            <a href="<%#MyLibrary.ProDetUrl(Container.DataItem) %>"><%#Eval("Shp.ShpName") %></a>
+                                            <a href="<%#MyLibrary.ShpUrl(Item.Shp) %>"><%#Eval("Shp.ShpName") %></a>
                                         </div>
                                         <div class="product-card__buttons">
                                             <asp:LinkButton runat="server" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>" ID="addToCart" Text="Xem sản phẩm" CssClass="btn btn-primary product-card__addtocart" />
@@ -76,6 +76,7 @@
                     </asp:Repeater>
                 </ul>
             </div>
+            
         </ContentTemplate>
     </asp:UpdatePanel>
 </div>

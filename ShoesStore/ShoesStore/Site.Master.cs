@@ -29,10 +29,7 @@ namespace ShoesStore
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                MyLibrary.Log("First log");
-            }
+            
         }
 
         private void Page_Init(object sender, EventArgs e)

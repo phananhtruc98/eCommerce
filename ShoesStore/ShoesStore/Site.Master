@@ -302,14 +302,14 @@
                                                             <ItemTemplate>
                                                                 <div class="dropcart__product">
                                                                     <div class="dropcart__product-image">
-                                                                        <a href="product.html">
+                                                                        <a href='<%# MyLibrary.ProDetUrl(Item.ProDet.Pro) %>'>
                                                                             <img src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                                                         </a>
                                                                         &nbsp;
                                                                     </div>
                                                                     <div class="dropcart__product-info">
                                                                         <div class="dropcart__product-name">
-                                                                            <a href="product.html">
+                                                                            <a href='<%# MyLibrary.ProDetUrl(Item.ProDet.Pro) %>'>
                                                                                 <%# Item.ProDet.Pro.ProName %>
                                                                             </a>
                                                                         </div>

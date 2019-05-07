@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ShoesStore.DataAccessLogicLayer;
+using ShoesStore.Merchant;
 using ShoesStore.MyExtensions;
 namespace ShoesStore.Admin
 {
@@ -35,7 +37,7 @@ namespace ShoesStore.Admin
             ddtMerName.DataTextField = "UsrName";
             ddtMerName.DataValueField = "UsrId";
             ddtMerName.DataBind();
-         
+
         }
 
 
@@ -148,6 +150,35 @@ namespace ShoesStore.Admin
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
+            RcptSub rcptSub = new RcptSub()
+            {
+                MerId = int.Parse(ddtMerName.SelectedValue),
+                Status = true
+            };
+            Rcpt rcpt = new Rcpt()
+            {
+                UsrAdd = rcptSub.MerId.Value,
+                IsCompleted = true,
+                DateAdd = DateTime.Now,
+                DateEdit = null
+            };
+
+            MyLibrary.Rcpt_BUS.Insert(rcpt);
+            rcptSub.RcptSubId = MyLibrary.Rcpt_BUS.GetAll().Last().RcptId;
+            MyLibrary.RcptSub_BUS.Insert(rcptSub);
+            foreach (var subQty in lstSub)
+            {
+                RcptSubDet rcptSubDet = new RcptSubDet()
+                {
+                    RcptSubId = MyLibrary.RcptSub_BUS.GetLast().RcptSubId,
+                    SubId = Convert.ToInt32(((Literal)subQty.FindControl("ltrSubId")).Text),
+                    Quantity = Convert.ToInt32(((TextBox)subQty.FindControl("Qty")).Text)
+                };
+
+                MyLibrary.RcptSubDet_BUS.Insert(rcptSubDet);
+            }
+            MyLibrary.Show($"Đã tạo hóa đơn thành công. Mã hóa đơn:{rcptSub.RcptSubId} ", Request.RawUrl);
+            
         }
     }
 }

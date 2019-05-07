@@ -19,7 +19,7 @@ namespace ShoesStore.Customer
             {
                 if (ViewState["_proDetView"] == null)
                 {
-                    
+
                     CollectUrl();
                     return _proDetView;
                 }
@@ -70,8 +70,9 @@ namespace ShoesStore.Customer
 
         private void Bind_Slides()
         {
-            rptProSlidePresent.DataSource = rptProSlideCarousel.DataSource = MyLibrary.ProSlide_BUS.GetAll()
-                .Where(m => m.ProId == _proDetView.ProId && m.ShpId == _proDetView.ShpId);
+            var proDetSlides = MyLibrary.ProSlide_BUS.GetProSlides(ProDetView);
+
+            rptProSlidePresent.DataSource = rptProSlideCarousel.DataSource = proDetSlides;
             rptProSlideCarousel.DataBind();
             rptProSlidePresent.DataBind();
         }

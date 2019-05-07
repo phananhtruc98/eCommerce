@@ -3596,6 +3596,9 @@
     <Compile Include="DataAccessLogicLayer\WebSlide_Update_Result.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DesignPatterns\CareTaker.cs" />
+    <Compile Include="DesignPatterns\Memento.cs" />
+    <Compile Include="DesignPatterns\Originator.cs" />
     <Compile Include="Interfaces\ICart.cs" />
     <Compile Include="Interfaces\IMer.cs" />
     <Compile Include="Interfaces\IMstr.cs" />

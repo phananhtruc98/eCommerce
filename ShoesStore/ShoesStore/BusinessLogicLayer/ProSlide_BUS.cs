@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.BusinessLogicLayer
@@ -13,6 +15,11 @@ namespace ShoesStore.BusinessLogicLayer
         public override void SetActive(ProSlide obj)
         {
             throw new NotImplementedException();
+        }
+
+        public List<ProSlide> GetProSlides(Pro pro)
+        {
+            return GetAll().Where(m => m.ProId == pro.ProId && m.ShpId == pro.ShpId).ToList();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Title="Sản phẩm" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeFile="~/Customer/Pro.aspx.cs" Inherits="ShoesStore.Customer.DS_SanPham" %>
+﻿<%@ Page Language="C#" Title="Sản phẩm" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="~/Customer/Pro.aspx.cs" Inherits="ShoesStore.Customer.DS_SanPham" %>
 
 <%@ Import Namespace="ShoesStore.BusinessLogicLayer" %>
 <%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
@@ -107,6 +107,7 @@
                                                         <div class="filter-price__title row">
                                                             <div class="col-5">
                                                                 <asp:TextBox ID="priceFrom" runat="server" onkeyup="" Width="100%" CssClass="filter-price__min-value" Text="0"></asp:TextBox>
+                                                                
                                                             </div>
 
                                                             <div class="col-2 text-center">
@@ -218,7 +219,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="shop-layout__content">
                     <asp:UpdatePanel runat="server">
                         <ContentTemplate>
@@ -226,7 +227,7 @@
                                 <div class="products-view">
                                     <div class="products-view__options">
                                         <div class="view-options">
-                                            Trang <%: UcPro.RptPro.PageCurrent %> / <%: UcPro.RptPro.PageTotal %>
+                                            Trang<%-- <%: UcPro.RptPro.PageCurrent %> / <%: UcPro.RptPro.PageTotal %>--%>
                                             <div class="view-options__legend"></div>
                                             <div class="view-options__divider"></div>
                                             <div class="view-options__control">
@@ -234,7 +235,7 @@
                                                 <div>
 
                                                     <select class="form-control form-control-sm" runat="server" id="filterPro">
-                                                        <option value="-1" selected >Chọn loại kiểu sắp xếp</option>
+                                                        <option value="-1" selected>Chọn loại kiểu sắp xếp</option>
                                                         <option value="0">Bán chạy nhất</option>
                                                         <option value="1">Giá: Thấp đến Cao</option>
                                                         <option value="2">Giá: Cao đến Thấp</option>
@@ -245,7 +246,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="9" NumberOnRow="3" />
+
+                                    <asp:PlaceHolder
+                                        runat="server" ID="phdUcPro" />
+                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="1"  />
                                 </div>
                             </div>
                         </ContentTemplate>

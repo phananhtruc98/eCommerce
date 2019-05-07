@@ -53,7 +53,22 @@ namespace ShoesStore
                                 if (rptWc is RepeaterTable)
                                 {
                                     var rptTable = (RepeaterTable)rptWc;
-                                    rptWc.DataSource = MyLibrary.Pro_BUS.GetAllActive().Where(m => rptTable.ShpId == 0 || m.ShpId == rptTable.ShpId);
+
+                                    bool IsColor = (rptTable.ColorIds == null || rptTable.ColorIds.Count == 0);
+                                    bool IsBrand = (rptTable.BrandIds == null || rptTable.BrandIds.Count == 0);
+                                    bool IsProCat = (rptTable.ProCatIds == null || rptTable.ProCatIds.Count == 0);
+                                    double priceFrom = rptTable.FilterPriceFrom;
+                                    double priceTo = rptTable.FilterPriceTo;
+                                   
+
+                                    var willSource = MyLibrary.Pro_BUS.GetAllActive().Where(m =>
+                 (rptTable.ShpId == 0 || m.ShpId == rptTable.ShpId) &&
+                 (IsBrand || rptTable.BrandIds.Contains(m.BrandId)) &&
+                 (IsProCat || rptTable.ProCatIds.Contains(m.CatId)) &&
+                 (double.Parse(MyLibrary.Pro_BUS.GetPrice(m)) >= priceFrom && double.Parse(MyLibrary.Pro_BUS.GetPrice(m)) <= priceTo) &&
+                 m.ProDet.Any(color =>
+                 (IsColor || rptTable.ColorIds.Contains(color.ColorId))));
+                                    rptWc.DataSource = (rptTable.VFilterPro == 2 || rptTable.VFilterPro == 4) ? willSource.OrderBy(rptTable.FuncFilter) : willSource.OrderByDescending(rptTable.FuncFilter);
                                 }
                                 else
                                     rptWc.DataSource = MyLibrary.Pro_BUS.GetAllActive();
@@ -76,7 +91,7 @@ namespace ShoesStore
                             }
                     }
 
-                    rptWc.DataBind();
+                    //rptWc.DataBind();
                 }
         }
     }

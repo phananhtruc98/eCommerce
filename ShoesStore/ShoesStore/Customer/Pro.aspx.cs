@@ -12,11 +12,14 @@ namespace ShoesStore.Customer
 {
     public partial class DS_SanPham : BasePage
     {
+
         protected override void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
 
+                //Button b = UcPro.Btnn;
+                
                 //rptProCat.DataBind();
                 //listWc=new List<Tuple<Control, TableName>>()
                 //{
@@ -97,10 +100,9 @@ namespace ShoesStore.Customer
                 (proCatIds.Count == 0 || proCatIds.Contains(pro.CatId)) &&
                 (Convert.ToInt32(pro.Price) >= filterPriceFrom && Convert.ToInt32(pro.Price) <= filterPriceTo)
                 );
-
-
-            UcPro.RptPro.DataSource = (vFilterPro == 2 || vFilterPro == 4) ? willSource.OrderBy(funcFilter) : willSource.OrderByDescending(funcFilter);
-            UcPro.RptPro.DataBind();
+            
+            UcPro.SetFilter(colorIds, brandIds, proCatIds, filterPriceFrom, filterPriceTo, funcFilter, vFilterPro);
+            UcPro.Reload();
         }
 
 

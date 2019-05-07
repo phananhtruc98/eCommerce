@@ -10,22 +10,182 @@ namespace ShoesStore.UserControls
 {
     public partial class UcPro : UserControl
     {
-        private int _numberOnRow;
-        private Pro_BUS _pro = new Pro_BUS();
 
-        public int NumberOnRow
+        //public Button Btnn
+        //{
+        //    get
+        //    {
+        //        if (ViewState["btnn"] == null)
+        //        {
+        //            ViewState["btnn"] = btn;
+        //        }
+
+        //        return (Button)ViewState["btnn"];
+
+        //    }
+        //    set
+        //    {
+        //        ViewState["btnn"] = value;
+        //    }
+
+        //}
+        public List<int> ColorIds
         {
-            get => _numberOnRow == 0 ? 1 : _numberOnRow;
-            set => _numberOnRow = value;
+            get
+            {
+
+                if (ViewState["ColorIds"] == null)
+                {
+                    ViewState["ColorIds"] = new List<int>();
+                }
+                return (List<int>)ViewState["ColorIds"];
+            }
+            set
+            {
+                ViewState["ColorIds"] = value;
+            }
+
+        }
+        public List<int> BrandIds
+        {
+            get
+            {
+
+                if (ViewState["BrandIds"] == null)
+                {
+                    ViewState["BrandIds"] = new List<int>();
+                }
+                return (List<int>)ViewState["BrandIds"];
+            }
+            set
+            {
+                ViewState["BrandIds"] = value;
+            }
+
         }
 
-        public RepeaterTable RptPro => rptPro;
+        public List<int> ProCatIds
+        {
+            get
+            {
+
+                if (ViewState["ProCatIds"] == null)
+                {
+                    ViewState["ProCatIds"] = new List<int>();
+                }
+                return (List<int>)ViewState["ProCatIds"];
+            }
+            set
+            {
+                ViewState["ProCatIds"] = value;
+            }
+
+        }
+        public double FilterPriceFrom
+        {
+            get
+            {
+
+                if (ViewState["FilterPriceFrom"] == null)
+                {
+                    ViewState["FilterPriceFrom"] = 0;
+                }
+                return double.Parse(ViewState["FilterPriceFrom"].ToString());
+            }
+            set
+            {
+                ViewState["FilterPriceFrom"] = value;
+            }
+
+        }
+        public double FilterPriceTo
+        {
+            get
+            {
+
+                if (ViewState["FilterPriceTo"] == null)
+                {
+                    ViewState["FilterPriceTo"] = 9999999;
+                }
+                return double.Parse(ViewState["FilterPriceTo"].ToString());
+            }
+            set
+            {
+                ViewState["FilterPriceTo"] = value;
+            }
+
+        }
+        public int VFilterPro
+        {
+            get
+            {
+
+                if (ViewState["VFilterPro"] == null)
+                {
+                    ViewState["VFilterPro"] = 0;
+                }
+                return (int)ViewState["VFilterPro"];
+            }
+            set
+            {
+                ViewState["VFilterPro"] = value;
+            }
+
+        }
+        public Func<Pro, long> FuncFilter
+        {
+            get
+            {
+
+                if (ViewState["FuncFilter"] == null)
+                {
+                    Func<Pro, long> tmp  = pro => pro.DateAdd == null ? 0 : pro.DateAdd.Value.Ticks;
+
+                    ViewState["FuncFilter"] = tmp;
+                }
+                return (Func<Pro, long>)ViewState["FuncFilter"];
+            }
+            set
+            {
+                ViewState["FuncFilter"] = value;
+            }
+
+
+        }
+        //public RepeaterTable RptPro
+        //{
+        //    get
+        //    {
+        //        if (ViewState["RptPro"] == null)
+        //        {
+        //            ViewState["RptPro"] = rptPro;
+        //        }
+
+        //        return (RepeaterTable)ViewState["RptPro"];
+        //        //return rptPro;
+        //    }
+        //    set
+        //    {
+        //        ViewState["RptPro"] = value;
+        //    }
+
+        //}
 
         public int PageSize
         {
             set
             {
+
+                ViewState["PageSize"] = value; ;
                 if (rptPro != null) rptPro.PageSize = value;
+            }
+            get
+            {
+                if (ViewState["PageSize"] == null)
+                {
+                    ViewState["PageSize"] = 1;
+                }
+                return int.Parse(ViewState["PageSize"].ToString());
             }
         }
         public int ShpId
@@ -42,11 +202,20 @@ namespace ShoesStore.UserControls
         }
 
         protected void Page_Load(object sender, EventArgs e)
+
         {
-            if (!IsPostBack) Page.LoadComplete += Page_LoadComplete;
+            if (!IsPostBack)
+            {
+
+                rptPro.Reload();
+                LoadPage();
+
+            }
+
         }
 
-        protected void Page_LoadComplete(object sender, EventArgs e)
+
+        private void LoadPage()
         {
             var listPage = new List<int>();
             if (rptPro != null)
@@ -58,7 +227,6 @@ namespace ShoesStore.UserControls
                 rptProPage.DataBind();
             }
         }
-
         protected void MyBtnHandler(object sender, EventArgs e)
         {
             var btn = (LinkButton)sender;
@@ -67,7 +235,9 @@ namespace ShoesStore.UserControls
                 case "ThisBtnClick":
                     var page = Convert.ToInt32(btn.CommandArgument);
                     rptPro.PageCurrent = page;
-                    rptPro.DataBind();
+                    //rptPro.Reload();
+                    Reload();
+
                     break;
                 case "ThatBtnClick":
                     break;
@@ -83,16 +253,31 @@ namespace ShoesStore.UserControls
             }
         }
 
-        public void SetFilter(int[] colorids, int[] brandIds, int[] proCatIds, double filterPriceFrom, double filterPriceTo, Func<Pro, long> funcFilter)
+        public void SetFilter(List<int> colorids, List<int> brandIds, List<int> proCatIds, double filterPriceFrom, double filterPriceTo, Func<Pro, long> funcFilter, int vFilterPro)
         {
-            RptPro.ColorIds = colorids;
-            rptPro.BrandIds = brandIds;
-            rptPro.ProCatIds = proCatIds;
-            rptPro.FilterPriceFrom = filterPriceFrom;
-            rptPro.FilterPriceTo = filterPriceTo;
-            rptPro.FuncFilter = funcFilter;
-            rptPro.DataBind();
+            ColorIds = colorids;
+            BrandIds = brandIds;
+            ProCatIds = proCatIds;
+            FilterPriceFrom = filterPriceFrom;
+            FilterPriceTo = filterPriceTo;
+            FuncFilter = funcFilter;
+            VFilterPro = vFilterPro;
+            //
 
+
+        }
+        public void Reload()
+        {
+            rptPro.ColorIds = ColorIds;
+            rptPro.BrandIds = BrandIds;
+            rptPro.ProCatIds = ProCatIds;
+            rptPro.FilterPriceFrom = FilterPriceFrom;
+            rptPro.FilterPriceTo = FilterPriceTo;
+            rptPro.FuncFilter = FuncFilter;
+            rptPro.VFilterPro = VFilterPro;
+            rptPro.Reload();
+            LoadPage();
+            DataBind();
         }
     }
 }

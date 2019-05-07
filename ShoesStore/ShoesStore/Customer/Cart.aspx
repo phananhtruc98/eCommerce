@@ -53,12 +53,12 @@
                                 <asp:HiddenField runat="server" ID="hdfPrimaryKeys" Value='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId}" %>'/>
                                 <tr class="cart-table__row">
                                     <td class="cart-table__column cart-table__column--image">
-                                        <a href="#">
+                                        <a href='<%# MyLibrary.ProDetUrl(Item.ProDet.Pro) %>'>
                                             <img src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                         </a>
                                     </td>
                                     <td class="cart-table__column cart-table__column--product">
-                                        <a href="#" class="cart-table__product-name">
+                                        <a href='<%# MyLibrary.ProDetUrl(Item.ProDet.Pro) %>' class="cart-table__product-name">
                                             <%# Item.ProDet.Pro.ProName %>
                                         </a>
                                         <ul class="cart-table__options">
