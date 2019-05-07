@@ -64,7 +64,7 @@ namespace ShoesStore.Merchant
             gvRcptBuy.DataSource = src1.DistinctBy(i => i.RcptBuyId).ToList();
             gvRcptBuy.DataBind();
         }
-        
+
 
         // Load data lên cho gvRcptBuyDet
         private void BindGridViewgvRcptBuyDet(int RcptBuyId)
@@ -110,7 +110,7 @@ namespace ShoesStore.Merchant
 
         public void TimKiem(string search_key)
         {
-            
+
             var rs = (from r in MyLibrary.Rcpt_BUS.GetAll()
                       join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
 
@@ -125,22 +125,23 @@ namespace ShoesStore.Merchant
                             || s.ShpName.ToString().ContainsEx(search_key)
                             || e.StepId.ToString().ContainsEx(search_key)
                             || e.StepCont.ToString().ContainsEx(search_key)
-                      select new {
-                            b.RcptBuyId,
-                            r.DateAdd,
-                            r.DateEdit,
-                            r.UsrAdd,
-                            r.UsrEdit,
-                            b.CusId,
-                            s.ShpName,
-                            z.MerId,
-                            e.StepId,
-                            e.StepCont
-                        });
+                      select new
+                      {
+                          b.RcptBuyId,
+                          r.DateAdd,
+                          r.DateEdit,
+                          r.UsrAdd,
+                          r.UsrEdit,
+                          b.CusId,
+                          s.ShpName,
+                          z.MerId,
+                          e.StepId,
+                          e.StepCont
+                      });
             gvRcptBuy.DataSource = rs.DistinctBy(i => i.RcptBuyId).ToList();
             gvRcptBuy.DataBind();
         }
-       
+
         // Ràng buộc và thêm xóa sửa
         protected void gvBuy_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -172,7 +173,7 @@ namespace ShoesStore.Merchant
             else if (e.CommandName == "UpdateRow")
             {
                 GridViewRow rowSelect = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
-                int rowIndex =Convert.ToInt32(rowSelect.RowIndex);
+                int rowIndex = Convert.ToInt32(rowSelect.RowIndex);
                 HiddenField hdnfld = (HiddenField)gvRcptBuy.Rows[rowIndex].FindControl("StepId");
                 int stepId = Convert.ToInt32(hdnfld.Value);
 
@@ -192,18 +193,24 @@ namespace ShoesStore.Merchant
                 if (result != null)
                 {
                     result.Rcpt.DateEdit = DateTime.Now;
+
+                    // Vào trong RcptBuy lấy ra RcptBuyId để vào RcptBuyStaDet và thêm vào StepId
+                    RcptBuy rb = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => m.RcptBuyId == Convert.ToInt32(e.CommandArgument));
+                    RcptBuyStaDet rbsd = MyLibrary.RcptBuyStaDet_BUS.GetAll().FirstOrDefault(c => c.StepId == stepId);
+                    rb.RcptBuyStaDet = rbsd;
+
+                    //result1.StepId = stepId;
+                    result1.RcptBuySta = null;
+                    result1.RcptBuyStaStep = null;
+                    result1.RcptBuySta = null;
                     RcptBuyStaDet rcptBuyStaDet = new RcptBuyStaDet()
                     {
                         StaId = result1.StaId,
                         RcptBuyId = result1.RcptBuyId,
-                        StepId = result1.StepId,
+                        StepId = rbsd.StepId,
                         AddDate = DateTime.Now
-                      
                     };
-                    result1.StepId = stepId;
-                    result1.RcptBuySta = null;
-                    result1.RcptBuyStaStep = null;
-                    result1.RcptBuySta = null;
+                    
                     MyLibrary.RcptBuyStaDet_BUS.Insert(rcptBuyStaDet);
                     rcptBuy.Update(result);
                 }
@@ -316,7 +323,7 @@ namespace ShoesStore.Merchant
                     //bind dropdown-list
                     //DataTable dt = RcptBuyStaStep_BUS.GetData("Select StepCont from RcptBuyStaStep");
                     int rcptBuyId1 = Convert.ToInt32(hdnfld.Value);
-                    int[] step = { 1, 2, 5, 6, 7, 8};
+                    int[] step = { 1, 2, 5, 6, 7, 8 };
                     int[] stepExist = MyLibrary.RcptBuyStaDet_BUS.GetAllByExist(rcptBuyId1, step);
                     int[] stepNew = step.Except(stepExist).ToArray();
                     ddList.DataSource = MyLibrary.RcptBuyStaStep_BUS.GetAllBy(stepNew);
@@ -337,7 +344,7 @@ namespace ShoesStore.Merchant
             //hdnfld.Text = ddList.SelectedItem.Text;
             DropDownList drl = (DropDownList)sender;
             GridViewRow gvr = (GridViewRow)drl.NamingContainer;
-            HiddenField hdf = (HiddenField)gvr.FindControl("stepId");
+            HiddenField hdf = (HiddenField)gvr.FindControl("StepId");
             hdf.Value = (string)drl.SelectedValue;
         }
         //onselectedindexchanged="ddlRcpt_SelectedIndexChanged" 
