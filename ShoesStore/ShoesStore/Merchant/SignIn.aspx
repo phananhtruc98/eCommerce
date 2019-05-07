@@ -25,6 +25,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     
     <script src="/js/cusHome_RcptSuccess.js"></script>
+    <link rel="stylesheet" href="/Admin/css/logincss.css" />
 </head>
 <body class="bodyhihi">
     <form runat="server">
@@ -126,10 +127,10 @@
             <h1 class="fc-center">
                 <img src="/Admin/images/logo.png" width="200" />
             </h1>
-            <input type="text" name="u" placeholder="Tên đăng nhập" required="required" id="login_login" runat="server" />
+            <input type="text" name="u" placeholder="Tên đăng nhập"  id="login_login" runat="server" />
             <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginUsername" runat="server" ErrorMessage="Chưa nhập tài khoản!" ControlToValidate="login_login" ValidationGroup="Login" ForeColor="Red">
             </asp:RequiredFieldValidator>
-            <input type="password" name="p" placeholder="Mật khẩu" required="required" id="login_pwd" runat="server" />
+            <input type="password" name="p" placeholder="Mật khẩu"  id="login_pwd" runat="server" />
             <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginPassword" runat="server" ErrorMessage="Chưa nhập mật khẩu!" ControlToValidate="login_pwd" ValidationGroup="Login" ForeColor="Red">
             </asp:RequiredFieldValidator>
 
