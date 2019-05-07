@@ -28,8 +28,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public virtual Cus Cus { get; set; }
         public virtual Rcpt Rcpt { get; set; }
         public virtual Shp Shp { get; set; }
-        public virtual RcptBuyStaStep RcptBuyStaStep { get; set; }
-        public virtual RcptBuyStaDet RcptBuyStaDet { get; set; }
         public virtual ICollection<RcptBuyDet> RcptBuyDet { get; set; }
         public virtual ICollection<RcptBuySta> RcptBuySta { get; set; }
     }
