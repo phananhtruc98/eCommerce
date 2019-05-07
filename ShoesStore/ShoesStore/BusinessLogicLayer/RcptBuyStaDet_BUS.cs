@@ -84,5 +84,15 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+
+        internal RcptBuyStaDet Single()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal RcptBuyStaDet Single(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
