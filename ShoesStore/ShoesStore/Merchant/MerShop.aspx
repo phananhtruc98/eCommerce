@@ -55,17 +55,18 @@
     <!-- .block-products -->
     <div class="block block-products block-products--layout--large-last">
         <div class="block block-products block-products--layout--large-last">
-        <div class="container">
-            <div class="block-header">
-                <h3 class="block-header__title">Bán chạy</h3>
-                <div class="block-header__divider"></div>
-            </div>
-            <div class="block-products__body">
-                <div class="block-products__list">
-                    <uc1:UcPro runat="server" ID="ucPro" PageSize="8" NumberOnRow="4"/>
+            <div class="container">
+                <div class="block-header">
+                    <h3 class="block-header__title">Bán chạy</h3>
+                    <div class="block-header__divider"></div>
                 </div>
-            </div>
-            <div style="overflow: hidden;">
+                <div class="block-products__body">
+                    <div class="block-products__list">
+                        <uc1:UcPro runat="server" ID="ucPro" PageSize="8" NumberOnRow="4" />
+                    </div>
+                </div>
+                <div style="overflow: hidden;">
+                </div>
             </div>
         </div>
     </div>

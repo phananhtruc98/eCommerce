@@ -148,7 +148,6 @@
 <div id="menu3" class="tab-pane fade">
     <h3>Đã giao</h3>
     <div class="row">
-        <asp:Label runat="server" Text="Đơn hàng gần đây" ID="lbDonHang" CssClass="h3"></asp:Label>
         <div class="col-12">
             <asp:Label ID="lbEmpty" runat="server" Text="Không có đơn hàng nào" Visible="false"></asp:Label>
             <asp:ListView ID="lvRcptBuy" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" runat="server" OnItemDataBound="lvRcptBuy_ItemDataBound" OnItemCommand="lvRcptBuy_ItemCommand">

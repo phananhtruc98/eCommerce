@@ -160,7 +160,4 @@
             </div>
         </div>
     </div>
-    <div class="btn btn-lg custom_bar">Chặn đăng bài ở đây</div>
-    <div class="btn btn-lg custom_bar">Chặn người dùng ở đây</div>
-    <div class="btn btn-lg custom_bar">Gửi thông báo cho người dùng ở đây</div>
 </asp:Content>

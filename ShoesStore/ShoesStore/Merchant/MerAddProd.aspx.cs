@@ -240,6 +240,11 @@ namespace ShoesStore.Merchant
             {
                 Img = fulImgChinh.FileName;
             }
+            if(ShpId == 0 )
+            {
+                MyLibrary.Show("Chưa có thông tin cửa hàng");
+                return;
+            }
             var pro1 = new Pro
             {
                 ShpId = ShpId,
@@ -251,7 +256,7 @@ namespace ShoesStore.Merchant
                 Price = price,
                 DateAdd = DateTime.Now,
                 DateEdit = null,
-
+                IsOutOfStock = true,
                 Active = false,
                 PriceAfter = null,
                 Img = Img
@@ -273,6 +278,7 @@ namespace ShoesStore.Merchant
             SaveImgPrimary(pro1);
             SaveImgSlide(pro1);
             MyLibrary.Show("Bài đăng của bạn sẽ được kiểm duyệt trong 24 giờ! :) ");
+            Response.Redirect(Request.Url.PathAndQuery, true);
         }
     }
 }
