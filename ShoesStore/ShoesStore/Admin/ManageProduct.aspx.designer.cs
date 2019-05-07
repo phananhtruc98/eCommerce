@@ -40,22 +40,22 @@ namespace ShoesStore.Admin {
         protected global::System.Web.UI.WebControls.Label lbEmpty;
         
         /// <summary>
-        /// gvProColor control.
+        /// gvProSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProColor;
+        protected global::System.Web.UI.WebControls.GridView gvProSize;
         
         /// <summary>
-        /// ValidationSummary1 control.
+        /// ValidationSummary2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
         
         /// <summary>
         /// gvBrand control.
@@ -76,22 +76,22 @@ namespace ShoesStore.Admin {
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationBrand;
         
         /// <summary>
-        /// gvProSize control.
+        /// gvProColor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProSize;
+        protected global::System.Web.UI.WebControls.GridView gvProColor;
         
         /// <summary>
-        /// ValidationSummary2 control.
+        /// ValidationSummary1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
         /// gvProCat control.
