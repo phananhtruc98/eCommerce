@@ -249,7 +249,7 @@
 
                                     <asp:PlaceHolder
                                         runat="server" ID="phdUcPro" />
-                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="1"  />
+                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="4"  />
                                 </div>
                             </div>
                         </ContentTemplate>

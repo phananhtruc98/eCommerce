@@ -3784,6 +3784,7 @@
       <DependentUpon>UpdateQuantityPro.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyEnum.cs" />
+    <Compile Include="MyExtensions\LinqExtension.cs" />
     <Compile Include="MyExtensions\MerExtension.cs" />
     <Compile Include="MyExtensions\ObjectExtension.cs" />
     <Compile Include="MyExtensions\ProExtension.cs" />

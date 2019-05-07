@@ -91,7 +91,7 @@ namespace ShoesStore.Customer
                 MyLibrary.Show("Bạn chưa đăng nhập");
                 return;
             }
-
+            bool atLeastOneCheck = false;
             foreach (RepeaterItem pd in rptProDet.Items)
             {
 
@@ -101,7 +101,7 @@ namespace ShoesStore.Customer
                 int qty = txtQty.Text != "" ? Convert.ToInt32(txtQty.Text) : 0;
                 if (txtQty.Text != "" && qty > 0)
                 {
-
+                    atLeastOneCheck = true;
                     _cartDetView = new CartDet
                     {
                         CartId = MyLibrary.Cart_BUS.GetMyCart().CartId,
@@ -114,11 +114,13 @@ namespace ShoesStore.Customer
                     if (!MyLibrary.CartDet_BUS.IsExist(_cartDetView))
                     {
                         MyLibrary.CartDet_BUS.Insert(_cartDetView);
-                        Master.LoadCartPreview();
+                    
                     }
                 }
 
             }
+            Master.LoadCartPreview();
+            if (!atLeastOneCheck) MyLibrary.Show("Bạn cần chọn ít nhất 1 sản phẩm");
 
 
 

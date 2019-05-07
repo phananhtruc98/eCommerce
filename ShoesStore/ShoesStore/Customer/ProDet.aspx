@@ -3,6 +3,7 @@
 <%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
+<%@ Import Namespace="ShoesStore.DataAccessLogicLayer" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style type="text/css">
@@ -118,10 +119,10 @@
                                     </div>
                                 </div>
                                 <div class="product__rating-legend">
-                                    <a href="/#"><%: MyLibrary.RcptBuyDet_BUS.GetNumberReview(ProDetView) %></a><span>/</span>
-                                    <a href="/#">Write A Review
+                                 <%: MyLibrary.RcptBuyDet_BUS.GetNumberReview(ProDetView) %><span>/</span>
+                                    
                                    
-                                    </a>
+                               
                                     <b>Cửa hàng:</b> <a href='<%:MyLibrary.ShpUrl(ProDetView.Shp) %>'><%: ProDetView.Shp.ShpName %></a>
                                 </div>
                             </div>
@@ -169,44 +170,24 @@
                                             </tr>
                                         </table>
                                     </LayoutTemplate>
+                                    
                                     <ItemTemplate>
                                         <td>
-                                            <div>
+                                            <div >
                                                 <%# Item.ColorName %>
-                                                <div style="background-color: #<%# Item.HexCode %>; width: 32px; margin: auto; height: 32px" />
+                                                <div style="background-color: #<%# Item.HexCode %>; width: 32px; margin: auto; height: 32px; border:black solid 1px" />
 
                                             </div>
                                         </td>
                                     </ItemTemplate>
-
+                                 
 
                                 </asp:ListView>
                             </div>
                             <!-- .product__options -->
                             <div class="product__options <%: MyLibrary.Pro_BUS.IsOutOfStock(_proDetView)?"disable-div":"" %>">
                                 <div class="form-group product__option">
-                                    <%--        <label class="product__option-label">
-                                        Màu sắc
-                                    </label>--%>
-                                    <%--        <div class="input-radio-color">
-                                        <div class="input-radio-color__list">
-                                            <asp:Repeater runat="server" ID="rptProColor" OnItemDataBound="rptProColor_ItemDataBound" ItemType="ShoesStore.DataAccessLogicLayer.ProDet">
-                                                <ItemTemplate>
-                                                    <asp:RadioButton runat="server" ID="rdbColor" GroupName="Color" />
-                                                    <asp:HiddenField runat="server" ID="hdfColorId" Value='<%# Eval("ColorId") %>' />
-                                                    <div style="height: 32px; width: 32px; background-color: #<%# Item.ProColor.HexCode %>"></div>
-                                                    <asp:Image runat="server" onerror="this.style.display='none'" ImageUrl="<%# MyLibrary.ProColorPath(Container.DataItem) %>" />
-                                                    <asp:Label runat="server" ID="lbColorName" Text='<%# Eval("ProColor.ColorName") %>'> </asp:Label>
-                                                </ItemTemplate>
-                                            </asp:Repeater>
-                                        </div>
-                                    </div>--%>
-                                    <%--   <label class="product__option-label">
-                                        Sản phẩm có sẵn
-                                    </label>--%>
-
-                                    <%--   <div class="input-radio-color">
-                                        <div class="input-radio-color__list">--%>
+                                  
                                     <table class="table">
                                         <asp:Repeater runat="server" ID="rptProDet" ItemType="ShoesStore.DataAccessLogicLayer.ProDet">
                                             <HeaderTemplate>
@@ -221,15 +202,18 @@
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <tr>
-                                                    <td>
+                                                    
+                                                    
+
+                                                    <td >
                                                         <asp:HiddenField runat="server" ID="hdfSizeId" Value='<%# Item.SizeId %>' />
-                                                        <asp:Literal runat="server" ID="Size" Text='<%# Item.ProSize.SizeName %>' /></td>
+                                                        <asp:Literal Visible='<%# ((List<ProDet>)rptProDet.DataSource).Where(m=>m.SizeId==Item.SizeId).IsFirst(Item)?true:false %>' runat="server" ID="Size" Text='<%# Item.ProSize.SizeName %>' /></td>
                                                     <td>
                                                         <asp:HiddenField runat="server" ID="hdfColorId" Value='<%# Item.ColorId %>' />
-                                                        <div style="background-color: #<%# Item.ProColor.HexCode %>; height: 32px; width: 32px" />
+                                                        <div style="background-color: #<%# Item.ProColor.HexCode %>; height: 32px; width: 32px;border:black solid 1px" />
                                                     </td>
                                                     <td>
-                                                        <asp:TextBox runat="server" ID="txtQty" TextMode="Number" Text="1" /><br />
+                                                        <asp:TextBox runat="server" ID="txtQty" TextMode="Number" Text="0" /><br />
                                                         <asp:RangeValidator min="0" oninput="validity.valid||(value='');" Display="Dynamic" ID="Rangevalidator1" ErrorMessage="Số lượng phải trong khoảng 0 - 99" ForeColor="Red" ControlToValidate="txtQty" MinimumValue="0" MaximumValue="99" runat="server" Type="Integer">
                                                         </asp:RangeValidator>
 
