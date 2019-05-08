@@ -256,6 +256,16 @@
                                                 </a>
                                             </div>
                                         </li>
+                                        <li class="widget-categories__item" data-collapse-item>
+                                            <div class="widget-categories__row">
+                                                <a href="MerAddShop.aspx">
+                                                    <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                        <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                    </svg>
+                                                    Tạo trang bán hàng
+                                                </a>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
