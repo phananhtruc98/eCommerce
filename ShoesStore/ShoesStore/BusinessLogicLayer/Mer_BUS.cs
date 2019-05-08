@@ -77,12 +77,12 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-      
+
         public DateTime GetSubEndDate(Mer mer)
         {
             List<Tuple<DateTime, DateTime>> BuyHistory = new List<Tuple<DateTime, DateTime>>();
 
-            var merSubs = mer.RcptSub.Where(rcptSub => rcptSub.Status == true && rcptSub.RcptSubDet.Count!=0);
+            var merSubs = mer.RcptSub.Where(rcptSub => rcptSub.Status == true && rcptSub.RcptSubDet.Count != 0);
             foreach (var sub in merSubs)
             {
                 DateTime startDate = sub.Rcpt.DateAdd;
@@ -115,10 +115,17 @@ namespace ShoesStore.BusinessLogicLayer
             }
             return DateTime.Now;
         }
-        
+
         public int GetSubExistDate(Mer mer)
         {
-           return MerchantSession.LoginMer.GetSubEndDate().Subtract(DateTime.Now).Days;
+            return MerchantSession.LoginMer.GetSubEndDate().Subtract(DateTime.Now).Days;
+        }
+
+
+        public string GetShpName(int MerId)
+        {
+            string shpName = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == MerId).FirstOrDefault().ShpName;
+            return Utilities.TextHelper.UrlFriendly(shpName);
         }
     }
 }

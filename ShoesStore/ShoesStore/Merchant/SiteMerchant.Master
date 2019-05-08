@@ -214,7 +214,7 @@
                                             <div class="widget-categories__subs" data-collapse-content>
                                                 <ul>
                                                     <li>
-                                                        <a href="/nguoi-ban/cua-hang">Thông tin cửa hàng</a>
+                                                        <a href='/<%: MyLibrary.Mer_BUS.GetShpName(MerchantSession.LoginMer.MerId) %>'>Thông tin cửa hàng</a>
                                                     </li>
                                                     <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/them-san-pham">Thêm Sản Phẩm</a>
