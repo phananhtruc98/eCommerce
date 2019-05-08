@@ -22,13 +22,13 @@ namespace ShoesStore.Merchant {
         protected global::System.Web.UI.WebControls.PlaceHolder phdPage;
         
         /// <summary>
-        /// inputProName control.
+        /// inputShpName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputProName;
+        protected global::System.Web.UI.WebControls.TextBox inputShpName;
         
         /// <summary>
         /// rfvEditNameAdd control.
@@ -40,13 +40,13 @@ namespace ShoesStore.Merchant {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditNameAdd;
         
         /// <summary>
-        /// editor1 control.
+        /// inputDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox editor1;
+        protected global::System.Web.UI.WebControls.TextBox inputDesc;
         
         /// <summary>
         /// lbSubmit control.
