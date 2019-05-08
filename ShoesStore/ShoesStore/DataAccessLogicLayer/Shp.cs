@@ -26,6 +26,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public string ShpName { get; set; }
         public System.DateTime DateStart { get; set; }
         public bool Active { get; set; }
+        public string Desc { get; set; }
     
         public virtual ICollection<ChatBox> ChatBox { get; set; }
         public virtual Mer Mer { get; set; }

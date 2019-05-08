@@ -318,6 +318,7 @@
           <Property Name="ShpName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="DateStart" Type="datetime" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Sub">
           <Key>
@@ -1795,6 +1796,7 @@
           <Property Name="ShpName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChatBox" Relationship="Self.FK_ChatBox_Shp" FromRole="Shp" ToRole="ChatBox" />
           <NavigationProperty Name="Mer" Relationship="Self.FK_Shp_Mer" FromRole="Shp" ToRole="Mer" />
           <NavigationProperty Name="Pro" Relationship="Self.FK_UsersMerchantsShopsProducts_UsersMerchantsShops" FromRole="Shp" ToRole="Pro" />
@@ -3028,6 +3030,7 @@
           <Property Type="String" Name="ShpName" Nullable="false" MaxLength="255" />
           <Property Type="DateTime" Name="DateStart" Nullable="false" Precision="23" />
           <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="Desc" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_Sub_Select_Result">
           <Property Type="Int32" Name="SubId" Nullable="false" />
@@ -3399,6 +3402,7 @@
                 <ScalarProperty Name="ShpName" ColumnName="ShpName" />
                 <ScalarProperty Name="DateStart" ColumnName="DateStart" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3737,6 +3741,7 @@
                 <ScalarProperty Name="ShpName" ColumnName="ShpName" />
                 <ScalarProperty Name="DateStart" ColumnName="DateStart" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

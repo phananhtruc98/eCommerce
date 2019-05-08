@@ -2846,6 +2846,7 @@
     <Content Include="Merchant\ManageRcpt.aspx" />
     <Content Include="Merchant\ManageRcptSub.aspx" />
     <Content Include="Merchant\MerAddProd.aspx" />
+    <Content Include="Merchant\MerAddShop.aspx" />
     <Content Include="Merchant\MerHome.aspx" />
     <Content Include="Merchant\MerPaypal.aspx" />
     <Content Include="Merchant\MerProfile.aspx" />
@@ -3690,6 +3691,13 @@
     </Compile>
     <Compile Include="Merchant\MerAddProd.aspx.designer.cs">
       <DependentUpon>MerAddProd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\MerAddShop.aspx.cs">
+      <DependentUpon>MerAddShop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\MerAddShop.aspx.designer.cs">
+      <DependentUpon>MerAddShop.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\MerchantSession.cs" />
     <Compile Include="Merchant\MerHome.aspx.cs">
