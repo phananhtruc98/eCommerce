@@ -3,14 +3,14 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ShoesStore.Customer
+namespace ShoesStore.Merchant
 {
-    public partial class CusHome_Rcpt_Det : Page
+    public partial class Merchant_Rcpt_Det : Page
     {
         private string dateadd = "";
         private int RcptBuyId;
         private string statusName = "";
-
+        private int CusIdTemp = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -49,8 +49,8 @@ namespace ShoesStore.Customer
                 }
 
                 var d = (from r in MyLibrary.Rcpt_BUS.GetAll()
-                    where r.RcptId == RcptBuyId
-                    select r.DateAdd).Single();
+                         where r.RcptId == RcptBuyId
+                         select r.DateAdd).Single();
                 dateadd = d.ToString();
                 lbRcptBuyId.Text = "Đơn hàng #" + RcptBuyId;
                 lbRcptBuyDate.Text = "Ngày đặt hàng: " + dateadd;
@@ -72,39 +72,34 @@ namespace ShoesStore.Customer
                 lbAddressCus.Text = z.Usr.Address;
                 lbPhoneCus.Text = z.Usr.Phone;
                 lbEmail.Text = z.Usr.Email;
-                BindDataLvRcptBuyDet(RcptBuyId);
+                CusIdTemp = z.CusId;
+                BindDataLvRcptBuyDet(RcptBuyId, z.CusId);
             }
         }
 
-        public void BindDataLvRcptBuyDet(int RcptId)
+        public void BindDataLvRcptBuyDet(int RcptId, int CusId)
         {
-            rptRcptShp.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(RcptId);
+            rptRcptShp.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(RcptId, CusId);
             rptRcptShp.DataBind();
+        }
+
+
+        protected void rptRcptShpDet_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+
         }
 
         protected void rptRcptShp_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var hdfShpId = (HiddenField) e.Item.FindControl("hdfShpId");
+                var hdfShpId = (HiddenField)e.Item.FindControl("hdfShpId");
                 var ShpId = int.Parse(hdfShpId.Value);
-                var rptRcptShpDet = (Repeater) e.Item.FindControl("rptRcptShpDet");
-                rptRcptShpDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(RcptBuyId)
+                var rptRcptShpDet = (Repeater)e.Item.FindControl("rptRcptShpDet");
+                rptRcptShpDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(RcptBuyId, CusIdTemp)
                     .Where(m => m.ShpId + "" == hdfShpId.Value);
                 rptRcptShpDet.DataBind();
             }
-        }
-
-        protected void rptRcptShpDet_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-                if (int.Parse(Request.QueryString["Sta"]) == 7)
-                {
-                    var lbtnDanhGia = (LinkButton) e.Item.FindControl("lbtnDanhGia");
-                    lbtnDanhGia.Visible = true;
-//var CatName = 
-//string CatName = e.Item.
-                }
         }
     }
 }

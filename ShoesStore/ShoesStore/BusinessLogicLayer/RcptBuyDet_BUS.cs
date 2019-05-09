@@ -73,6 +73,23 @@ namespace ShoesStore.BusinessLogicLayer
             }
         }
 
+        public List<RcptBuyDet> ListRcptBuyPreview(int RcptId, int CusId)
+        {
+            try
+            {
+                var cus = MyLibrary.Cus_BUS.GetAll()
+                    .FirstOrDefault(m => m.CusId == CusId);
+                var rcptBuyDet = MyLibrary.RcptBuyDet_BUS.GetAll()
+                    .FirstOrDefault(m => cus != null && m.RcptBuyId == RcptId);
+                return MyLibrary.RcptBuyDet_BUS.GetAll()
+                    .Where(m => rcptBuyDet != null && m.RcptBuyId == rcptBuyDet.RcptBuyId).ToList();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public List<RcptBuyDet> ListRcptBuyDet_Ìmg()
         {
             var cus = MyLibrary.Cus_BUS.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);

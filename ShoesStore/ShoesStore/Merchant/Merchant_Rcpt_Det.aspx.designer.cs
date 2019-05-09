@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Customer {
+namespace ShoesStore.Merchant {
     
     
-    public partial class CusHome_Rcpt_Det {
+    public partial class Merchant_Rcpt_Det {
         
         /// <summary>
         /// rowRcptBuyDet control.
@@ -128,17 +128,5 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptRcptShp;
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new ShoesStore.SiteCus Master {
-            get {
-                return ((ShoesStore.SiteCus)(base.Master));
-            }
-        }
     }
 }

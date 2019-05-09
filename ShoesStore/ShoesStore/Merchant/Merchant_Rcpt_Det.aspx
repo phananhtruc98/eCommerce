@@ -1,9 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteCus.Master" CodeBehind="CusHome_Rcpt_Det.aspx.cs" Inherits="ShoesStore.Customer.CusHome_Rcpt_Det" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Merchant/SiteMerchant.Master" CodeBehind="Merchant_Rcpt_Det.aspx.cs" Inherits="ShoesStore.Merchant.Merchant_Rcpt_Det" %>
 
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
-<%@ MasterType VirtualPath="~/SiteCus.Master" %>
-<asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <div class="row" runat="server" visible="false" id="rowRcptBuyDet">
         <asp:Label runat="server" Text="Chi tiết đơn hàng" ID="Label1" CssClass="h3" Visible="false"></asp:Label>
         <div class="col-12">
@@ -42,7 +41,7 @@
                             <asp:Label ID="lbAddressCus" runat="server"></asp:Label><br />
                             Số điện thoại:
                             <asp:Label ID="lbPhoneCus" runat="server"></asp:Label><br />
-                            Số điện thoại:
+                            Email:
                             <asp:Label ID="lbEmail" runat="server"></asp:Label>
                         </td>
                     </tr>
@@ -53,7 +52,6 @@
                         <th class="">Kích cỡ</th>
                         <th class="">Số lượng</th>
                         <th class="">Giá</th>
-                        <th class="">Đánh giá</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -91,6 +91,7 @@ namespace ShoesStore
             if (!IsValidRegister()) return;
             var usr = new Usr
             {
+                Email = email.Value,
                 UsrId = MyLibrary.Usr_BUS.GetLastestId() + 1,
                 UsrName = username.Value,
                 Login = login.Value,

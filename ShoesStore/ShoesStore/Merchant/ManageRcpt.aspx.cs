@@ -219,8 +219,6 @@ namespace ShoesStore.Merchant
                 BindGridViewgvRcptBuy();
             }
 
-
-
             else if (e.CommandName == "InsertRow")
             {
                 // SỬA CODE Ở ĐÂY
@@ -276,7 +274,9 @@ namespace ShoesStore.Merchant
         protected void gvRcptBuy_SelectedIndexChanged(object sender, EventArgs e)
         {
             var rcptBuyId = int.Parse((gvRcptBuy.SelectedRow.FindControl("rcptbuyid") as Label).Text);
-            BindGridViewgvRcptBuyDet(rcptBuyId);
+            //BindGridViewgvRcptBuyDet(rcptBuyId);
+            int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
+            Server.Transfer("~/Merchant/Merchant_Rcpt_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
         }
 
         // Gộp những dòng trùng
@@ -354,19 +354,6 @@ namespace ShoesStore.Merchant
             HiddenField hdf = (HiddenField)gvr.FindControl("StepId");
             hdf.Value = (string)drl.SelectedValue;
         }
-        //onselectedindexchanged="ddlRcpt_SelectedIndexChanged" 
-        //protected void ddlRcpt_SelectedIndexChanged(object sender, GridViewRowEventArgs e)
-        //{
-
-        //DropDownList drl = (DropDownList)sender;
-        //GridViewRow gvr = (GridViewRow)drl.NamingContainer;
-
-
-        //var rowIndex = ((GridViewRow)(((DropDownList)sender).NamingContainer);
-
-        //HiddenField hdnfld = (HiddenField)e.Row.FindControl("stepId");
-        //DropDownList ddList = (DropDownList)e.Row.FindControl("drpcategory1");
-        //hdnfld.Text = ddList.SelectedItem.Text;
-        //}
+       
     }
 }
