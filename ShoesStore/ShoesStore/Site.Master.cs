@@ -6,11 +6,14 @@ using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces.Pages;
 using Utilities;
 using Convert = System.Convert;
-
 namespace ShoesStore
 {
     public partial class SiteMaster : MasterPage, IMaster
     {
+        //private static readonly log4net.ILog log =
+        //   log4net.LogManager.GetLogger(
+        //            System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly log4net.ILog log = LogHelper.GetLogger();
         private static string _actCode = "";
 
         public bool IsValidLogin()
@@ -21,15 +24,15 @@ namespace ShoesStore
         public bool IsValidRegister()
         {
             if (!Email.IsValidEmail(email.Value)) return false;
-//if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
+            //if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
             if (TextHelper.IsSpecialCharacters(login.Value)) return false;
             if (active_code.Value != _actCode) return false;
             return password.Value == re_password.Value;
         }
 
         protected void Page_Load(object sender, EventArgs e)
+
         {
-            
         }
 
         private void Page_Init(object sender, EventArgs e)
@@ -105,7 +108,7 @@ namespace ShoesStore
             }
 
             MyLibrary.Usr_BUS.Insert(usr);
-            MyLibrary.Cus_BUS.Insert(new Cus {CusId = usr.UsrId});
+            MyLibrary.Cus_BUS.Insert(new Cus { CusId = usr.UsrId });
             MyLibrary.Usr_BUS.CreateActCode(usr);
             Response.Redirect(Request.RawUrl);
         }

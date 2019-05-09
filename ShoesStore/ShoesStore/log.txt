@@ -1,0 +1,8 @@
+2019-05-10 02:17:51,775 [5] INFO  D:\Hien\School\Thuong mai dien tu\webs\eCommerce_C2C_Subscription\ShoesStore\ShoesStore\Site.Master.cs [(null)] - Hello
+2019-05-10 02:21:40,784 [5] INFO  D:\Hien\School\Thuong mai dien tu\webs\eCommerce_C2C_Subscription\ShoesStore\ShoesStore\Site.Master.cs [(null)] - Hello
+2019-05-10 02:22:24,808 [5] INFO  D:\Hien\School\Thuong mai dien tu\webs\eCommerce_C2C_Subscription\ShoesStore\ShoesStore\Site.Master.cs [(null)] - Hello
+2019-05-10 02:26:17,066 [6] INFO  D:\Hien\School\Thuong mai dien tu\webs\eCommerce_C2C_Subscription\ShoesStore\ShoesStore\Site.Master.cs [(null)] - Hello
+2019-05-10 02:29:19,200 [6] INFO  D:\Hien\School\Thuong mai dien tu\webs\eCommerce_C2C_Subscription\ShoesStore\ShoesStore\Site.Master.cs [(null)] - Hello
+2019-05-10 02:33:48,043 [6] INFO  D:\Hien\School\Thuong mai dien tu\webs\eCommerce_C2C_Subscription\ShoesStore\ShoesStore\Site.Master.cs [(null)] - Hello
+2019-05-10 02:36:04,287 [6] INFO  ShoesStore.SiteMaster [(null)] - Hello
+2019-05-10 02:37:20,280 [7] INFO  ShoesStore.SiteMaster [(null)] - Hello
