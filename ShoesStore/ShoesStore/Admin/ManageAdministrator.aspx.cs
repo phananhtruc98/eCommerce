@@ -23,7 +23,6 @@ namespace ShoesStore.Admin
         {
             if (!IsPostBack)
             {
-                CreateAdministrator();
                 BindDataGridView();
                 BindDataGridViewMstrRole();
             }
@@ -284,19 +283,24 @@ namespace ShoesStore.Admin
             bool roleid = mstrUsr.Mstr.MstrDet.Any(d => d.RoleId == 1);
             if (roleid)
             {
-                Only_Admin_Create_Administrator.Visible = true;
+                if (!Only_Admin_Create_Administrator.Visible)
+                {
+                    Only_Admin_Create_Administrator.Visible = true;
+                }
+                else Only_Admin_Create_Administrator.Visible = false;
 
+                var rs = (from r in mstrRole.GetAll()
+                          select r).ToList();
+                var rsId = (from r in mstrRole.GetAll()
+                            select r.RoleId).ToString().ToList();
+
+                var ddlRoleName = (DropDownList)Only_Admin_Create_Administrator.FindControl("InsertRoleName");
+                ddlRoleName.DataSource = rs;
+                ddlRoleName.DataTextField = "RoleName";
+                ddlRoleName.DataValueField = "RoleId";
+                ddlRoleName.DataBind();
             }
-            var rs = (from r in mstrRole.GetAll()
-                      select r).ToList();
-            var rsId = (from r in mstrRole.GetAll()
-                        select r.RoleId).ToString().ToList();
-
-            var ddlRoleName = (DropDownList)Only_Admin_Create_Administrator.FindControl("InsertRoleName");
-            ddlRoleName.DataSource = rs;
-            ddlRoleName.DataTextField = "RoleName";
-            ddlRoleName.DataValueField = "RoleId";
-            ddlRoleName.DataBind();
+            else MyLibrary.Show("Bạn không đủ quyền để thực hiện chức năng này!!!");
         }
 
 
@@ -387,6 +391,11 @@ namespace ShoesStore.Admin
                 MyLibrary.Show("Tên đăng nhập đã tồn tại");
             }
 
+        }
+
+        protected void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            CreateAdministrator();
         }
     }
 }

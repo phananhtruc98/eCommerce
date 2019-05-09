@@ -123,7 +123,7 @@
                                         <td>
                                             <asp:Label runat="server" ID="lbProName" Text="<%# Item.ProName %>"></asp:Label></td>
                                         <td>
-                                            <img class="img-listview-pro" src="<%# MyLibrary.ProImgPath(Item) %>" /></td>
+                                            <img class="img-listview-pro rounded" src="<%# MyLibrary.ProImgPath(Item) %>" /></td>
                                         <td>
                                             <asp:Label runat="server" ID="lbCatName" Text="<%# Item.ProCat.CatName %>"></asp:Label></td>
                                         <td>

@@ -26,7 +26,7 @@ namespace ShoesStore.Admin
                 BindDataGridViewBrand();
                 BindDataGridViewSize();
                 BindDataGridViewCat();
-                BindDataGridViewPro();
+                LoadLvPro();
             }
         }
 
@@ -59,29 +59,22 @@ namespace ShoesStore.Admin
         }
 
         // Load Bảng Pro
-        private void BindDataGridViewPro()
+        public void LoadLvPro()
         {
-            var result = (from p in pro_BUS.GetAll()
-                          join c in proCat_BUS.GetAll() on p.CatId equals c.CatId
-                          join b in proBrand_BUS.GetAll() on p.BrandId equals b.BrandId
-                          join s in shp_BUS.GetAll() on p.ShpId equals s.ShpId
-                          where p.Active == true
-                          select p).ToList();
-            if (result.Count != 0)
+            var rs = (from p in MyLibrary.Pro_BUS.GetAll()
+                      where p.Active == true
+                      select p).ToList();
+            if (rs.Count != 0)
             {
-                gvPro.DataSource = result;
-                gvPro.DataBind();
+                lvPro.DataSource = rs;
+                lvPro.DataBind();
             }
             else lbEmpty.Visible = true;
-
         }
 
         // Phân trang
-        protected void gvPro_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvPro.PageIndex = e.NewPageIndex;
-            BindDataGridViewPro();
-        }
+
+
         // Thêm xóa sửa ProSize
         protected void gvProSize_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -274,7 +267,7 @@ namespace ShoesStore.Admin
             else if (e.CommandName == "InsertRow")
             {
                 var catName = ((TextBox)gvProCat.FooterRow.FindControl("InsertCatName")).Text;
-            if (catName == "" ) return;
+                if (catName == "") return;
                 var newProCat = new ProCat { CatName = catName, Active = true };
                 proCat_BUS.Insert(newProCat);
                 BindDataGridViewCat();
@@ -303,6 +296,30 @@ namespace ShoesStore.Admin
         {
             gvProCat.PageIndex = e.NewPageIndex;
             BindDataGridViewCat();
+        }
+
+        protected void lvPro_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            LoadLvPro();
+        }
+
+        protected void lvPro_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            int ProId = Int32.Parse(e.CommandArgument.ToString());
+            HiddenField ShpIdhdf = (HiddenField)e.Item.FindControl("hdfShpId");
+            int ShpId = Int32.Parse(ShpIdhdf.Value);
+            if (e.CommandName == "Submit")
+            {
+                Pro updatePro = MyLibrary.Pro_BUS.GetAll().FirstOrDefault(x => x.ProId == ProId && x.ShpId == ShpId);
+                updatePro.Active = true;
+                MyLibrary.Pro_BUS.Update(updatePro);
+                LoadLvPro();
+            }
+            else if (e.CommandName == "Sel")
+            {
+                Server.Transfer("/Admin/ReviewProductDetail.aspx?ProId=" + ProId + "&ShpId=" + ShpId);
+            }
         }
     }
 }

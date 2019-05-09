@@ -17,7 +17,6 @@ namespace ShoesStore.Admin
                 LoadLvNeedToActive();
                 BindDataListview();
             }
-
         }
         public void LoadTotalInfo()
         {
