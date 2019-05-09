@@ -248,10 +248,10 @@
                                                 <div class="nav-links__menu">
                                                     <!-- .megamenu -->
                                                     <ul class="menu ">
-                                                        <asp:Repeater ID="rptProCat" runat="server" OnInit="rptProCat_Init">
+                                                        <asp:Repeater ID="rptProCat" runat="server" OnInit="rptProCat_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProCat">
                                                             <ItemTemplate>
                                                                 <li>
-                                                                    <a href="#"><%# Eval("CatName") %></a>
+                                                                    <a href="/san-pham?catId=<%# Item.CatId%>"><%# Item.CatName %></a>
                                                                 </li>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
@@ -270,10 +270,10 @@
                                                 <div class="nav-links__menu">
                                                     <!-- .menu -->
                                                     <ul class="menu ">
-                                                        <asp:Repeater ID="rptProBrand" runat="server" OnInit="rptProBrand_Init">
+                                                        <asp:Repeater ID="rptProBrand" runat="server" OnInit="rptProBrand_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProBrand">
                                                             <ItemTemplate>
                                                                 <li>
-                                                                    <a href="#"><%# Eval("BrandName") %></a>
+                                                                    <a href="san-pham?branId=<%# Item.BrandId %>"><%# Item.BrandName %></a>
                                                                 </li>
                                                             </ItemTemplate>
                                                         </asp:Repeater>

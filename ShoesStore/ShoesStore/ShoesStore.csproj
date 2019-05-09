@@ -18,10 +18,8 @@
     <AssemblyName>ShoesStore</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>
-    </Use64BitIISExpress>
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <Use64BitIISExpress>false</Use64BitIISExpress>
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>
     </IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>
@@ -3134,6 +3132,7 @@
     <Content Include="Site.Master" />
     <Content Include="UserControls\UcPro.ascx" />
     <Content Include="UserControls\UcProCarousel.ascx" />
+    <Content Include="UserControls\UcSearch.ascx" />
     <Content Include="UserControls\UcTest.ascx" />
     <Content Include="vendor\bootstrap-4.2.1\css\bootstrap.min.css" />
     <Content Include="vendor\bootstrap-4.2.1\js\bootstrap.bundle.min.js" />
@@ -3845,6 +3844,13 @@
     </Compile>
     <Compile Include="UserControls\UcProCarousel.ascx.designer.cs">
       <DependentUpon>UcProCarousel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcSearch.ascx.cs">
+      <DependentUpon>UcSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcSearch.ascx.designer.cs">
+      <DependentUpon>UcSearch.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcTest.ascx.cs">
       <DependentUpon>UcTest.ascx</DependentUpon>

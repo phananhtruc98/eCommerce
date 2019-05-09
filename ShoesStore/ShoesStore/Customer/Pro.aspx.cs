@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Linq;
 using System.Web.UI.HtmlControls;
 using ShoesStore.DataAccessLogicLayer;
-
+using ShoesStore.MyExtensions;
 namespace ShoesStore.Customer
 {
     public partial class DS_SanPham : BasePage
@@ -15,11 +15,12 @@ namespace ShoesStore.Customer
 
         protected override void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
 
                 //Button b = UcPro.Btnn;
-                
+
                 //rptProCat.DataBind();
                 //listWc=new List<Tuple<Control, TableName>>()
                 //{
@@ -30,6 +31,8 @@ namespace ShoesStore.Customer
                 //Bind();
             }
         }
+
+
 
         protected void smp1_ItemCreated(object sender, SiteMapNodeItemEventArgs e)
         {
@@ -100,8 +103,8 @@ namespace ShoesStore.Customer
                 (proCatIds.Count == 0 || proCatIds.Contains(pro.CatId)) &&
                 (Convert.ToInt32(pro.Price) >= filterPriceFrom && Convert.ToInt32(pro.Price) <= filterPriceTo)
                 );
-            
-            UcPro.SetFilter(colorIds, brandIds, proCatIds, filterPriceFrom, filterPriceTo, funcFilter, vFilterPro);
+
+            UcPro.SetFilter(txtSearch.Value, colorIds, brandIds, proCatIds, filterPriceFrom, filterPriceTo, funcFilter, vFilterPro);
             UcPro.Reload();
         }
 
@@ -144,6 +147,11 @@ namespace ShoesStore.Customer
         {
             rptProCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
             rptProCat.DataBind();
+        }
+
+        protected void Reset_ServerClick(object sender, EventArgs e)
+        {
+            Page.ClearTextBoxes();
         }
     }
 }

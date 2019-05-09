@@ -80,6 +80,17 @@ namespace ShoesStore.BusinessLogicLayer
             return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.ProDet.Pro.Price));
         }
 
-        
+        /// <summary>
+        /// Reduce all RcptBuy's ProDet's Qty
+        /// </summary>
+        /// <param name="rcptBuy"></param>
+        public void ReduceProQtyOfRcptBuy(RcptBuy rcptBuy)
+        {
+            foreach (RcptBuyDet rcptBuyDet in rcptBuy.RcptBuyDet)
+            {
+                MyLibrary.ProDet_BUS.ReduceProDetQty(rcptBuyDet.ProDet);
+            }
+        }
+
     }
 }
