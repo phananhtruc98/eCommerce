@@ -18,20 +18,16 @@
                         <hr />
                         <div>
                             <label>Hãy chọn tên của cửa hàng : </label>
-                            <asp:TextBox runat="server" ID="inputProName" class="form-control col-12" />
-                            <asp:RequiredFieldValidator ID="rfvEditNameAdd" runat="server" ErrorMessage="Chưa nhập tên sản phẩm" ControlToValidate="inputProName" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            <asp:TextBox runat="server" ID="inputShpName" class="form-control col-12" />
+                            <asp:RequiredFieldValidator ID="rfvEditNameAdd" runat="server" ErrorMessage="Chưa nhập tên cửa hàng" ControlToValidate="inputShpName" Text="*" ForeColor="Red" ValidationGroup="Insert">
                             </asp:RequiredFieldValidator>
                         </div>
                         <hr />
-                        
-                        
-                        
-                        
                         <div>
                             <label for="inputDesc">Mô tả chi tiết</label>
                         </div>
                         <div>
-                            <asp:TextBox TextMode="MultiLine" runat="server" ID="editor1" name="editor1"></asp:TextBox>
+                            <asp:TextBox TextMode="MultiLine" runat="server" ID="inputDesc" name="editor1"></asp:TextBox>
                         </div>
                         <script>
                             CKEDITOR.replace('MainPlaceHolder_editor1', { htmlEncodeOutput: true });
@@ -54,7 +50,7 @@
                             CKEDITOR.config.FileTypesPath["Image"]('C:\eCommerce\ShoesStore\ShoesStore\Admin\images\faces');
                         </script>
                         <hr />
-                        <asp:LinkButton ID="lbSubmit" ValidationGroup="Insert" OnClick="btnSubmit_OnClick" CommandName="Submit" ForeColor="#8C4510" runat="server" class="btn btn-lg btn-primary btn-block text-uppercase">Đăng bài</asp:LinkButton>
+                        <asp:LinkButton ID="lbSubmit" ValidationGroup="Insert" OnClick="btnSubmit_OnClick" CommandName="Submit" ForeColor="#8C4510" runat="server" class="btn btn-lg btn-primary btn-block text-uppercase">Tạo Cửa Hàng Ngay</asp:LinkButton>
                     </div>
                 </div>
             </div>
