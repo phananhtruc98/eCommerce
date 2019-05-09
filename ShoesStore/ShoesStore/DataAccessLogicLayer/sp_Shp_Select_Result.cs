@@ -19,5 +19,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public System.DateTime DateStart { get; set; }
         public bool Active { get; set; }
         public string Desc { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
     }
 }
