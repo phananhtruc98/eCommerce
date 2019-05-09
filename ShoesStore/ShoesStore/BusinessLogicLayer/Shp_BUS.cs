@@ -114,5 +114,17 @@ namespace ShoesStore.BusinessLogicLayer
             return GetAll().FirstOrDefault(m => TextHelper.UrlFriendly(m.ShpName) == shpNameUrlCode);
 
         }
+
+
+        public double ShopMoney(Shp shp)
+        {
+            return shp.RcptBuy
+                .Where(rcptBuy => rcptBuy.RcptBuySta
+                    .Any(rcptBuySta => rcptBuySta.RcptBuyStaDet
+                        .Any(rcptBuyStaDet => rcptBuyStaDet.StepId == 7)))
+                .Sum(rcptBuy => rcptBuy.RcptBuyDet
+                    .Sum(rcptBuyDet => int.Parse(MyLibrary.Pro_BUS.GetPrice(rcptBuyDet.ProDet.Pro))));
+        }
+
     }
 }

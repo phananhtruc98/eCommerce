@@ -29,6 +29,23 @@ namespace ShoesStore.UserControls
         //    }
 
         //}
+
+        public string SearchText
+        {
+            get
+            {
+
+                if (ViewState["SearchText"] == null)
+                {
+                    ViewState["SearchText"] = "";
+                }
+                return ViewState["SearchText"].ToString();
+            }
+            set
+            {
+                ViewState["SearchText"] = value;
+            }
+        }
         public List<int> ColorIds
         {
             get
@@ -139,7 +156,7 @@ namespace ShoesStore.UserControls
 
                 if (ViewState["FuncFilter"] == null)
                 {
-                    Func<Pro, long> tmp  = pro => pro.DateAdd == null ? 0 : pro.DateAdd.Value.Ticks;
+                    Func<Pro, long> tmp = pro => pro.DateAdd == null ? 0 : pro.DateAdd.Value.Ticks;
 
                     ViewState["FuncFilter"] = tmp;
                 }
@@ -253,8 +270,9 @@ namespace ShoesStore.UserControls
             }
         }
 
-        public void SetFilter(List<int> colorids, List<int> brandIds, List<int> proCatIds, double filterPriceFrom, double filterPriceTo, Func<Pro, long> funcFilter, int vFilterPro)
+        public void SetFilter(string searchText, List<int> colorids, List<int> brandIds, List<int> proCatIds, double filterPriceFrom, double filterPriceTo, Func<Pro, long> funcFilter, int vFilterPro)
         {
+            SearchText = searchText;
             ColorIds = colorids;
             BrandIds = brandIds;
             ProCatIds = proCatIds;
@@ -268,6 +286,7 @@ namespace ShoesStore.UserControls
         }
         public void Reload()
         {
+            rptPro.SearchText = SearchText;
             rptPro.ColorIds = ColorIds;
             rptPro.BrandIds = BrandIds;
             rptPro.ProCatIds = ProCatIds;

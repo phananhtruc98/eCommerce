@@ -23,7 +23,7 @@ namespace ShoesStore.Merchant
                 var loginUsr = _usr.LoginMerchant(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
                 MerchantSession.LoginMerchant = loginUsr;
-                Response.Redirect("/Merchant/MerHome.aspx");
+                Response.Redirect("/nguoi-ban");
             }
             catch (Exception exception)
             {

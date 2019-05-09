@@ -32,7 +32,7 @@ namespace ShoesStore
             routes.MapPageRoute("Mer_About", "thong-tin", "~/Merchant/About.aspx");
             routes.MapPageRoute("Mer_CheckOut", "nguoi-ban/dang-ky-sub/thanh-toan", "~/Merchant/CheckOut.aspx");
             routes.MapPageRoute("Mer_Contact", "lien-he", "~/Merchant/Contact.aspx");
-            //routes.MapPageRoute("Mer_MerHome", "nguoi-ban", "~/Merchant/MerHome.aspx");
+            routes.MapPageRoute("Mer_MerHome", "nguoi-ban", "~/Merchant/MerHome.aspx");
             routes.MapPageRoute("Mer_MerProfile", "nguoi-ban/thong-tin", "~/Merchant/MerProfile.aspx");
             //routes.MapPageRoute("Mer_Shop", "nguoi-ban/cua-hang", "~/Merchant/MerShop.aspx");
             routes.MapPageRoute("Mer_AddPro", "cua-hang/quan-ly-san-pham/them-san-pham", "~/Merchant/MerAddProd.aspx");
@@ -46,7 +46,7 @@ namespace ShoesStore
             routes.MapPageRoute("Mer_DisableProduct", "cua-hang/quan-ly-san-pham/an-san-pham", "~/Merchant/DisableProduct.aspx");
             routes.MapPageRoute("Mer_UpdateQuantityPro", "cua-hang/quan-ly-san-pham/cap-nhat-so-luong-san-pham", "~/Merchant/UpdateQuantityPro.aspx");
             routes.MapPageRoute("Mer_ManageRcptSub", "nguoi-ban/quan-ly-sub/hoa-don-mua-goi-thuong-nien", "~/Merchant/ManageRcptSub.aspx");
-            routes.MapPageRoute("Mer_MerAddShop", "cua-hang/thong-tin", "~/Merchant/MerAddShop.aspx");
+            //routes.MapPageRoute("Mer_MerAddShop", "cua-hang/thong-tin", "~/Merchant/MerAddShop.aspx");
             //
             //routes.MapPageRoute("Shp_Home", "/{ShpName}", "~/Merchant/MerShop.aspx");
             //

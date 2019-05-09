@@ -2,7 +2,10 @@
 
 <%@ Import Namespace="ShoesStore.BusinessLogicLayer" %>
 <%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
+
 <%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
+<%@ Register Src="~/UserControls/UcSearch.ascx" TagPrefix="uc1" TagName="UcSearch" %>
+
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -45,6 +48,9 @@
                             <div class="widget-filters widget" data-collapse data-collapse-opened-class="filter--opened">
                                 <h4 class="widget__title">Bộ lọc</h4>
                                 <div>
+                                    <div class="widget-filters__item input-group ">
+                                        <input runat="server" id="txtSearch" type="text" class="form-control" placeholder="Nhập tên sản phẩm" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    </div>
                                     <div class="widget-filters__item">
                                         <div class="filter filter--opened" data-collapse-item>
                                             <button type="button" class="filter__title" data-collapse-trigger>
@@ -107,7 +113,7 @@
                                                         <div class="filter-price__title row">
                                                             <div class="col-5">
                                                                 <asp:TextBox ID="priceFrom" runat="server" onkeyup="" Width="100%" CssClass="filter-price__min-value" Text="0"></asp:TextBox>
-                                                                
+
                                                             </div>
 
                                                             <div class="col-2 text-center">
@@ -210,7 +216,7 @@
                                 </div>
                                 <div class="widget-filters__actions d-flex">
                                     <asp:Button Text="Lọc" CssClass="btn btn-primary btn-sm" ID="btnFilter" OnClick="btnFilter_OnClick" runat="server" />
-                                    <button class="btn btn-secondary btn-sm ml-2">
+                                    <button class="btn btn-secondary btn-sm ml-2" id="Reset" runat="server" onserverclick="Reset_ServerClick">
                                         Reset
 						
                                     </button>
@@ -247,9 +253,9 @@
                                         </div>
                                     </div>
 
-                                    <asp:PlaceHolder
-                                        runat="server" ID="phdUcPro" />
-                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="4"  />
+
+
+                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="3" />
                                 </div>
                             </div>
                         </ContentTemplate>

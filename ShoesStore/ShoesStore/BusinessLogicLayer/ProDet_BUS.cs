@@ -31,5 +31,11 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return obj.Qty ?? 0;
         }
+
+        public void ReduceProDetQty(ProDet proDet)
+        {
+            proDet.Qty -= (proDet.Qty > 0) ? 1 : 0;
+            Update(proDet);
+        }
     }
 }

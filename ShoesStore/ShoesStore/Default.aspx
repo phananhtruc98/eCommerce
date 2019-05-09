@@ -115,7 +115,7 @@
                         <div class="block-categories__item category-card category-card--layout--compact">
                             <div class="category-card__body">
                                 <div class="category-card__image">
-                                    <a href="#">
+                                    <a href="/san-pham?catId=<%# Item.CatId%>">
                                         <img src="<%# MyLibrary.ProCatImgPath(Item) %>" alt="">
                                     </a>
                                 </div>

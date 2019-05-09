@@ -47,7 +47,14 @@
         <!-- Dang Nhap modal-->
         <!-- Dang Nhap modal/end-->
         <div class="site">
-            Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1))<0?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>
+            <div class="mer-info">
+                <div class="text-left float-left">
+                    Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1))<0?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>
+                </div>
+                <div class="text-right float-right">
+                    Tổng doanh thu: <%: MyLibrary.Shp_Bus.ShopMoney(MerchantSession.LoginMer.Shp.FirstOrDefault()) %>
+                </div>
+            </div>
             <header class="site__header d-lg-block d-none">
                 <div class="site-header">
                     <!-- .topbar -->
@@ -216,7 +223,7 @@
                                             <div class="widget-categories__subs" data-collapse-content>
                                                 <ul>
                                                     <li>
-                                                        <a href="/cua-hang/thong-tin">Thông tin cửa hàng</a>
+                                                        <a href="/nguoi-ban/thong-tin">Thông tin cửa hàng</a>
                                                     </li>
                                                     <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/them-san-pham">Thêm Sản Phẩm</a>

@@ -22,6 +22,15 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.SiteMapPath smp1;
         
         /// <summary>
+        /// txtSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtSearch;
+        
+        /// <summary>
         /// rptProCat control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace ShoesStore.Customer {
         protected global::System.Web.UI.WebControls.Button btnFilter;
         
         /// <summary>
+        /// Reset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton Reset;
+        
+        /// <summary>
         /// filterPro control.
         /// </summary>
         /// <remarks>
@@ -83,15 +101,6 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlSelect filterPro;
-        
-        /// <summary>
-        /// phdUcPro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phdUcPro;
         
         /// <summary>
         /// UcPro control.

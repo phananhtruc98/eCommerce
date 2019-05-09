@@ -18,6 +18,7 @@ namespace ShoesStore.WebControls
         public List<int> ColorIds { get; set; } = new List<int>();
         public List<int> BrandIds { get; set; } = new List<int>();
         public List<int> ProCatIds { get; set; } = new List<int>();
+        public string SearchText { get; set; } = "";
         public double FilterPriceFrom { get; set; } = 0;
         public double FilterPriceTo { get; set; } = 9999999;
         public int VFilterPro { get; set; }
