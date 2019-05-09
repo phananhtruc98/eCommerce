@@ -263,7 +263,7 @@
                             </div>
                             <div class="block-sidebar__item">
                                 <div class="widget-products widget">
-                                    <h4 class="widget__title">Latest Products</h4>
+                                    <h4 class="widget__title">Sản Phẩm Mới Nhất</h4>
                                     <div class="widget-products__list">
                                         <div class="widget-products__item">
                                             <div class="widget-products__image">
@@ -273,7 +273,7 @@
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Ads 1</a>
+                                                    <a href="product.html">Vans Old Sckool</a>
                                                 </div>
                                                 <div class="widget-products__prices">$749.00</div>
                                             </div>
@@ -286,7 +286,7 @@
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Ads 2</a>
+                                                    <a href="product.html">Air Force Cổ Cao</a>
                                                 </div>
                                                 <div class="widget-products__prices">$1,019.00</div>
                                             </div>
@@ -299,7 +299,7 @@
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Ads 3</a>
+                                                    <a href="product.html">Yeezy 500</a>
                                                 </div>
                                                 <div class="widget-products__prices">$850.00</div>
                                             </div>
@@ -312,7 +312,7 @@
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Ads 4</a>
+                                                    <a href="product.html">Gucci Season 4</a>
                                                 </div>
                                                 <div class="widget-products__prices">
                                                     <span class="widget-products__new-price">$949.00</span> <span class="widget-products__old-price">$1189.00</span>
@@ -327,7 +327,7 @@
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Ads 5</a>
+                                                    <a href="product.html">Air Jordan V</a>
                                                 </div>
                                                 <div class="widget-products__prices">$1,700.00</div>
                                             </div>

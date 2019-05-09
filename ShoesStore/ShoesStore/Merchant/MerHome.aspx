@@ -11,15 +11,16 @@
                         <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background-image: url('images/slides/slide-1-mobile.jpg')"></div>
                         <div class="block-slideshow__slide-content">
                             <div class="block-slideshow__slide-title">
-                                Big choice of<br/>
-                                Hypebeast Sale
+                                Sự Lựa Chọn Tin Cậy<br/>
+                                Khi Mua Sắm HypeBeast
                             </div>
                             <div class="block-slideshow__slide-text">
-                                We provide a marketplace for many kinds of sneakers<br/>
-                                And Yes ! Hypebeast included
+                                Chúng tôi cung cấp thị trường cho mọi loại giày<br/>
+                                Và kể cả giày Hypebeast
                             </div>
                             <div class="block-slideshow__slide-button">
-                                <span class="btn btn-primary btn-lg">Join Us</span>
+                                
+                                <span  class="btn btn-primary btn-lg">Tham Gia Ngay</span>
                             </div>
                         </div>
                     </a>
@@ -28,15 +29,15 @@
                         <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background-image: url('images/slides/slide-2-mobile.jpg')"></div>
                         <div class="block-slideshow__slide-content">
                             <div class="block-slideshow__slide-title">
-                                And Even<br/>
-                                More Luxury Brands
+                                Kể Cả<br/>
+                                Những Hãng Thời Trang Cao Cấp
                             </div>
                             <div class="block-slideshow__slide-text">
-                                We also care for the trading , saling<br/>
-                                Of many more top trending fashion brand
+                                Vẫn luôn có chỗ dành cho việc mua bán<br/>
+                                Từ những hãng thời trang hàng đầu
                             </div>
                             <div class="block-slideshow__slide-button">
-                                <span class="btn btn-primary btn-lg">Join Us</span>
+                                <span class="btn btn-primary btn-lg">Tham Gia Ngay</span>
                             </div>
                         </div>
                     </a>
@@ -44,13 +45,13 @@
                         <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="background-image: url('images/slides/slide-3-full.jpg')"></div>
                         <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background-image: url('images/slides/slide-3-mobile.jpg')"></div>
                         <div class="block-slideshow__slide-content">
-                            <div class="block-slideshow__slide-title">To The Most Casual Brands</div>
+                            <div class="block-slideshow__slide-title">Cho Đến Những Dòng Sản Phẩm Casual</div>
                             <div class="block-slideshow__slide-text">
-                                We also support all of your goods.<br/>
-                                Because this place is for everyone.
+                                Và tất nhiên có cả các loại giày Casual<br/>
+                                Vì nơi đây dành cho tất cả mọi người !
                             </div>
                             <div class="block-slideshow__slide-button">
-                                <span class="btn btn-primary btn-lg">Join Us</span>
+                                <span class="btn btn-primary btn-lg">Tham Gia Ngay</span>
                             </div>
                         </div>
                     </a>
@@ -71,8 +72,8 @@
                     </svg>
                 </div>
                 <div class="block-features__content">
-                    <div class="block-features__title">Legit Marketplace</div>
-                    <div class="block-features__subtitle">Avoid getting scam</div>
+                    <div class="block-features__title"> Uy Tín</div>
+                    <div class="block-features__subtitle">Cùng hệ thống rating</div>
                 </div>
             </div>
             <div class="block-features__divider"></div>
@@ -83,8 +84,8 @@
                     </svg>
                 </div>
                 <div class="block-features__content">
-                    <div class="block-features__title">Support 24/7</div>
-                    <div class="block-features__subtitle">Call us anytime</div>
+                    <div class="block-features__title">Hỗ trợ 24/7</div>
+                    <div class="block-features__subtitle">Gọi chúng tôi bất cứ lúc nào</div>
                 </div>
             </div>
             <div class="block-features__divider"></div>
@@ -95,8 +96,8 @@
                     </svg>
                 </div>
                 <div class="block-features__content">
-                    <div class="block-features__title">100% Safety</div>
-                    <div class="block-features__subtitle">Only secure payments</div>
+                    <div class="block-features__title">100% An Toàn</div>
+                    <div class="block-features__subtitle">Sử dụng thanh toán Paypal</div>
                 </div>
             </div>
             <div class="block-features__divider"></div>
@@ -107,8 +108,8 @@
                     </svg>
                 </div>
                 <div class="block-features__content">
-                    <div class="block-features__title">Hot Price</div>
-                    <div class="block-features__subtitle">The cheapest marketplace</div>
+                    <div class="block-features__title">Giá Hấp Dẫn</div>
+                    <div class="block-features__subtitle">Cùng nhiều khuyến mãi cho cả 2 bên</div>
                 </div>
             </div>
         </div>
@@ -124,12 +125,12 @@
             <div class="block-banner__image block-banner__image--desktop" style="background-image: url('images/banners/banner-1.jpg')"></div>
             <div class="block-banner__image block-banner__image--mobile" style="background-image: url('images/banners/banner-1-mobile.jpg')"></div>
             <div class="block-banner__title">
-                Thousands<br class="block-banner__mobile-br">
-                Salers Believed
+                Hàng Ngàn<br class="block-banner__mobile-br">
+                Người Bán Tin Dùng
             </div>
             <div class="block-banner__text">Luxury, Hypebeast, Sporting, Casual, Trending</div>
             <div class="block-banner__button">
-                <span class="btn btn-sm btn-primary">Join Us Now</span>
+                <span class="btn btn-sm btn-primary">Tham Gia Ngay</span>
             </div>
         </a>
     </div>
@@ -143,7 +144,7 @@
 <div class="block block-posts block-posts--layout--grid-nl" data-layout="grid-nl">
 <div class="container">
 <div class="block-header">
-    <h3 class="block-header__title">Latest News</h3>
+    <h3 class="block-header__title">Tin Mới</h3>
     <div class="block-header__divider"></div>
     <div class="block-header__arrows-list">
         <button class="block-header__arrow block-header__arrow--left" type="button">
@@ -171,12 +172,12 @@
             <a href="#">Special Offers</a>
         </div>
         <div class="post-card__name">
-            <a href="https://snkrvn.com/tin-tuc/thong-tin-ve-adidas-originals-x-hender-scheme/">adidas Originals x Hender Scheme – The mix of “sporty” and “luxury”</a>
+            <a href="https://snkrvn.com/tin-tuc/thong-tin-ve-adidas-originals-x-hender-scheme/">adidas Originals x Hender Scheme – Sự kết hợp của “sporty” và “luxury”</a>
         </div>
-        <div class="post-card__date">October 19, 2019</div>
-        <div class="post-card__content">In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. In that sense, all cultures...</div>
+        <div class="post-card__date">Tháng 10 19, 2019</div>
+        <div class="post-card__content">adidas Originals và Hender Scheme chưa bao giờ làm các fan phải thất vọng... </div>
         <div class="post-card__read-more">
-            <a href="#" class="btn btn-secondary btn-sm">Read More</a>
+            <a href="#" class="btn btn-secondary btn-sm">Đọc thêm</a>
         </div>
     </div>
 </div>
@@ -188,13 +189,13 @@
     </div>
     <div class="post-card__info">
         <div class="post-card__category">
-            <a href="#">Latest News</a>
+            <a href="#">Tin Mới</a>
         </div>
         <div class="post-card__name">
             <a href="https://snkrvn.com/tin-tuc/ngay-ra-mat-gia-noi-ban-giay-vans-vault-tropical-beach/">Vans Vault Summer Tropical Beach</a>
         </div>
-        <div class="post-card__date">September 5, 2019</div>
-        <div class="post-card__content">In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. In that sense, all cultures...</div>
+        <div class="post-card__date">Tháng 9 5, 2019</div>
+        <div class="post-card__content">Một mùa Hè sôi động đã đến gần kề, mọi người đã có kế hoạch vi vu đến đâu chưa? Trước khi xách ba lô lên và đi thì mình phải chuẩn bị hành trang trước nhỉ....</div>
         <div class="post-card__read-more">
             <a href="#" class="btn btn-secondary btn-sm">Read More</a>
         </div>
@@ -213,8 +214,8 @@
         <div class="post-card__name">
             <a href="https://snkrvn.com/review/review-nhung-doi-sneakers-nam-trong-chien-dich-vi-nu-quyen-buoc-ve-phia-mat-troi-tu-bitis-bitis-hunter/">Bitis Hunter Captain Marvel Limited Edition</a>
         </div>
-        <div class="post-card__date">August 12, 2019</div>
-        <div class="post-card__content">In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. In that sense, all cultures...</div>
+        <div class="post-card__date">Tháng 8 12, 2019</div>
+        <div class="post-card__content">Ngày 8.3 vừa qua Biti’s và Biti’s Hunter cùng nhau tung ra những phiên bản sneakers khác nhau nằm trong chiến dịch vì nữ quyền ‘Bước Về Phía Mặt Trời’....</div>
         <div class="post-card__read-more">
             <a href="#" class="btn btn-secondary btn-sm">Read More</a>
         </div>
@@ -233,8 +234,8 @@
         <div class="post-card__name">
             <a href="https://snkrvn.com/review/adidas-originals-falcon-w-ca-tinh-va-noi-loan/">adidas Originals FALCON W </a>
         </div>
-        <div class="post-card__date">Jule 30, 2019</div>
-        <div class="post-card__content">In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. In that sense, all cultures...</div>
+        <div class="post-card__date">Tháng 7 30, 2019</div>
+        <div class="post-card__content">Thời gian qua, chunky sneakers và phong cách retro nói chung chính là xu hướng chủ đạo trong giới sneakers và thời trang hiện đại...</div>
         <div class="post-card__read-more">
             <a href="#" class="btn btn-secondary btn-sm">Read More</a>
         </div>
@@ -253,158 +254,20 @@
         <div class="post-card__name">
             <a href="https://snkrvn.com/review/new-balance-revlite-x-90/">New Balance REVlite X-90</a>
         </div>
-        <div class="post-card__date">June 12, 2019</div>
-        <div class="post-card__content">In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. In that sense, all cultures...</div>
+        <div class="post-card__date">Tháng 8 12, 2019</div>
+        <div class="post-card__content">Khi nhắc đến retro running shoes, chắc chắn bạn không thể không liệt kê New Balance. Nếu không phải là một người yêu và tìm hiểu về sneakers...</div>
         <div class="post-card__read-more">
             <a href="#" class="btn btn-secondary btn-sm">Read More</a>
         </div>
     </div>
 </div>
-<div class="post-card">
-    <div class="post-card__image">
-        <a href="#">
-            <img src="images/posts/post-6.jpg" alt="">
-        </a>
-    </div>
-    <div class="post-card__info">
-        <div class="post-card__category">
-            <a href="#">Special Offers</a>
-        </div>
-        <div class="post-card__name">
-            <a href="#">Logic Is The Study Of Reasoning And Argument Part 1</a>
-        </div>
-        <div class="post-card__date">May 21, 2019</div>
-        <div class="post-card__content">In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. In that sense, all cultures...</div>
-        <div class="post-card__read-more">
-            <a href="#" class="btn btn-secondary btn-sm">Read More</a>
-        </div>
-    </div>
-</div>
-<div class="post-card">
-    <div class="post-card__image">
-        <a href="#">
-            <img src="images/posts/post-7.jpg" alt="">
-        </a>
-    </div>
-    <div class="post-card__info">
-        <div class="post-card__category">
-            <a href="#">Special Offers</a>
-        </div>
-        <div class="post-card__name">
-            <a href="#">Many Inquiries Outside Of Academia Are Philosophical In The Broad Sense</a>
-        </div>
-        <div class="post-card__date">April 3, 2019</div>
-        <div class="post-card__content">In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. In that sense, all cultures...</div>
-        <div class="post-card__read-more">
-            <a href="#" class="btn btn-secondary btn-sm">Read More</a>
-        </div>
-    </div>
-</div>
-<div class="post-card">
-    <div class="post-card__image">
-        <a href="#">
-            <img src="images/posts/post-8.jpg" alt="">
-        </a>
-    </div>
-    <div class="post-card__info">
-        <div class="post-card__category">
-            <a href="#">Latest News</a>
-        </div>
-        <div class="post-card__name">
-            <a href="#">An Advantage Of Digital Circuits When Compared To Analog Circuits</a>
-        </div>
-        <div class="post-card__date">Mart 29, 2019</div>
-        <div class="post-card__content">In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. In that sense, all cultures...</div>
-        <div class="post-card__read-more">
-            <a href="#" class="btn btn-secondary btn-sm">Read More</a>
-        </div>
-    </div>
-</div>
-<div class="post-card">
-    <div class="post-card__image">
-        <a href="#">
-            <img src="images/posts/post-9.jpg" alt="">
-        </a>
-    </div>
-    <div class="post-card__info">
-        <div class="post-card__category">
-            <a href="#">New Arrivals</a>
-        </div>
-        <div class="post-card__name">
-            <a href="#">A Digital Circuit Is Typically Constructed From Small Electronic Circuits</a>
-        </div>
-        <div class="post-card__date">February 10, 2019</div>
-        <div class="post-card__content">In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. In that sense, all cultures...</div>
-        <div class="post-card__read-more">
-            <a href="#" class="btn btn-secondary btn-sm">Read More</a>
-        </div>
-    </div>
-</div>
-<div class="post-card">
-    <div class="post-card__image">
-        <a href="#">
-            <img src="images/posts/post-10.jpg" alt="">
-        </a>
-    </div>
-    <div class="post-card__info">
-        <div class="post-card__category">
-            <a href="#">Special Offers</a>
-        </div>
-        <div class="post-card__name">
-            <a href="#">Engineers Use Many Methods To Minimize Logic Functions</a>
-        </div>
-        <div class="post-card__date">January 1, 2019</div>
-        <div class="post-card__content">In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge. In that sense, all cultures...</div>
-        <div class="post-card__read-more">
-            <a href="#" class="btn btn-secondary btn-sm">Read More</a>
-        </div>
-    </div>
-</div>
+
+
+
 </div>
 </div>
 </div>
 </div>
 <!-- .block-posts / end -->
 <!-- .block-brands -->
-<div class="block block-brands">
-    <div class="block-brands__slider">
-        <div class="owl-carousel">
-            <div class="block-brands__item">
-                <a href="#">
-                    <img src="images/logos/logo-1.png" alt=""/>
-                </a>
-            </div>
-            <div class="block-brands__item">
-                <a href="#">
-                    <img src="images/logos/logo-2.png" alt=""/>
-                </a>
-            </div>
-            <div class="block-brands__item">
-                <a href="#">
-                    <img src="images/logos/logo-3.png" alt=""/>
-                </a>
-            </div>
-            <div class="block-brands__item">
-                <a href="#">
-                    <img src="images/logos/logo-4.png" alt="">
-                </a>
-            </div>
-            <div class="block-brands__item">
-                <a href="#">
-                    <img src="images/logos/logo-5.png" alt="">
-                </a>
-            </div>
-            <div class="block-brands__item">
-                <a href="#">
-                    <img src="images/logos/logo-6.png" alt="">
-                </a>
-            </div>
-            <div class="block-brands__item">
-                <a href="#">
-                    <img src="images/logos/logo-7.png" alt="">
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
 </asp:Content>
