@@ -47,7 +47,8 @@
         <!-- Dang Nhap modal-->
         <!-- Dang Nhap modal/end-->
         <div class="site">
-            Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1))<0?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>            <header class="site__header d-lg-block d-none">
+            Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1))<0?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>
+            <header class="site__header d-lg-block d-none">
                 <div class="site-header">
                     <!-- .topbar -->
 
@@ -57,7 +58,8 @@
                             <div class="nav-panel__container container">
                                 <div class="nav-panel__row">
                                     <div class="nav-panel__logo">
-                                        <a href="/" class="logo_name"><img src="/Admin/images/logo.png" width="100" /></a>
+                                        <a href="/" class="logo_name">
+                                            <img src="/Admin/images/logo.png" width="100" /></a>
                                     </div>
                                     <!-- .nav-links -->
                                     <div class="nav-panel__nav-links nav-links">
@@ -186,7 +188,7 @@
                                                     <svg class="widget-categories__arrow" width="6px" height="9px">
                                                         <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                     </svg>
-                                                   Gói thường niên
+                                                    Gói thường niên
                                                 </a>
                                                 <button class="widget-categories__expander" type="button" data-collapse-trigger></button>
                                             </div>
@@ -214,15 +216,15 @@
                                             <div class="widget-categories__subs" data-collapse-content>
                                                 <ul>
                                                     <li>
-                                                        <a href='/<%: MyLibrary.Mer_BUS.GetShpName(MerchantSession.LoginMer.MerId) %>'>Thông tin cửa hàng</a>
+                                                        <a href="/cua-hang/thong-tin">Thông tin cửa hàng</a>
                                                     </li>
                                                     <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/them-san-pham">Thêm Sản Phẩm</a>
                                                     </li>
-                                                     <li>
+                                                    <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/cap-nhat-so-luong-san-pham">Cập nhật hàng tồn</a>
                                                     </li>
-                                                     <li>
+                                                    <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/an-san-pham">Cập nhật hết hàng</a>
                                                     </li>
                                                     <li>
@@ -231,7 +233,7 @@
                                                     <li>
                                                         <a href="/cua-hang/quan-ly-hoa-don">Quản Lý Hóa Đơn</a>
                                                     </li>
-                                                   
+
 
                                                 </ul>
                                             </div>
@@ -242,7 +244,7 @@
                                                     <svg class="widget-categories__arrow" width="6px" height="9px">
                                                         <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                     </svg>
-                                                   Về chúng tôi
+                                                    Về chúng tôi
                                                 </a>
                                             </div>
                                         </li>
@@ -253,16 +255,6 @@
                                                         <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                     </svg>
                                                     Liên hệ
-                                                </a>
-                                            </div>
-                                        </li>
-                                        <li class="widget-categories__item" data-collapse-item>
-                                            <div class="widget-categories__row">
-                                                <a href="MerAddShop.aspx">
-                                                    <svg class="widget-categories__arrow" width="6px" height="9px">
-                                                        <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                                    </svg>
-                                                    Tạo trang bán hàng
                                                 </a>
                                             </div>
                                         </li>
