@@ -67,7 +67,7 @@
                                 <tr>
                                     <td>Ảnh dại diện</td>
                                     <td>
-                                        <asp:Image runat="server" Style="width: 300px; height: 300px" ID="imgPrimary" /></td>
+                                        <asp:Image CssClass="rounded"  runat="server" Style="width: 300px; height: 300px" ID="imgPrimary" /></td>
                                 </tr>
 
                                 <tr>
@@ -76,7 +76,7 @@
                                         <asp:ListView ID="lvImgSlide" ItemType="ShoesStore.DataAccessLogicLayer.ProSlide" runat="server">
                                             <ItemTemplate>
 
-                                                <img style="width: 100px; height: 100px" src="<%# MyLibrary.ProSlidePath(Item) %>" />
+                                                <img class="rounded" style="width: 100px; height: 100px" src="<%# MyLibrary.ProSlidePath(Item) %>" />
 
                                             </ItemTemplate>
                                         </asp:ListView>

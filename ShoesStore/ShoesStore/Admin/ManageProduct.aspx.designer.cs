@@ -13,22 +13,22 @@ namespace ShoesStore.Admin {
     public partial class ManageProduct {
         
         /// <summary>
-        /// gvPro control.
+        /// lvPro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPro;
+        protected global::System.Web.UI.WebControls.ListView lvPro;
         
         /// <summary>
-        /// ValidationSummary4 control.
+        /// DataPager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary4;
+        protected global::System.Web.UI.WebControls.DataPager DataPager1;
         
         /// <summary>
         /// lbEmpty control.
