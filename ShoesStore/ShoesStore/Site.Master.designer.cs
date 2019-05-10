@@ -22,6 +22,15 @@ namespace ShoesStore {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder phdHeader;
         
         /// <summary>
+        /// udp_Login control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel udp_Login;
+        
+        /// <summary>
         /// login_login control.
         /// </summary>
         /// <remarks>
@@ -236,6 +245,42 @@ namespace ShoesStore {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbStatus;
+        
+        /// <summary>
+        /// RecoveryEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText RecoveryEmail;
+        
+        /// <summary>
+        /// btnRecovery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRecovery;
+        
+        /// <summary>
+        /// RfvRecovery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RfvRecovery;
+        
+        /// <summary>
+        /// RevRecovery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RevRecovery;
         
         /// <summary>
         /// lbAccount control.

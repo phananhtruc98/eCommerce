@@ -5,6 +5,7 @@
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="phdHeader" runat="server">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="site__body">
@@ -16,7 +17,7 @@
                             <li class="breadcrumb-item">
                                 <a href="/">Trang chủ</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use href="images/sprite.svg#arrow-rounded-right-6x9" />
+                                    <use href="/images/sprite.svg#arrow-rounded-right-6x9" />
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" <%--aria-current="page"--%>>Thanh toán</li>
@@ -45,7 +46,8 @@
                                         <label for="checkout-first-name">
                                             Họ và tên
                                         </label>
-                                        <input type="text" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.UsrName %>" id="checkout-first-name">
+                                        <input runat="server" id="txtCusName" type="text" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.UsrName %>" onfocus="">
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtCusName" ControlToValidate="txtCusName" ForeColor="Red" ErrorMessage="Vui lòng nhập tên" />
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -53,7 +55,8 @@
                                         <label for="checkout-last-name">
                                             Địa chỉ
                                         </label>
-                                        <input type="text" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.Address %>" id="checkout-last-name">
+                                        <input runat="server" id="txtAddress" type="text" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.Address %>">
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtAddress" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Vui lòng nhập địa chỉ" />
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -61,26 +64,24 @@
                                         <label for="checkout-email">
                                             Email
                                         </label>
-                                        <input type="email" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.Email %>" id="checkout-email">
+                                        <input runat="server" id="txtEmail" type="email" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.Email %>">
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtEmail" Display="Dynamic" ControlToValidate="txtEmail" ForeColor="Red" ErrorMessage="Vui lòng nhập địa chỉ Email" />
+                                        <asp:RegularExpressionValidator ID="revTxtEmail" runat="server" ErrorMessage="Email không đúng!" ControlToValidate="txtEmail" ForeColor="Red" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+                                        </asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="checkout-phone">Số điện thoại</label>
-                                        <input type="text" class="form-control form-control-lg" id="checkout-phone" value="<%#WebSession.LoginCus?.Usr.Phone %>">
+                                        <input runat="server" id="txtPhone" type="text" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.Phone %>">
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtPhone" ControlToValidate="txtPhone" ForeColor="Red" ErrorMessage="Vui lòng nhập số điện thoại" />
                                     </div>
                                 </div>
+
+
                             </div>
                             <div class="card-divider"></div>
-                            <%--     <div class="card-body">
-                                <h3 class="card-title">Thông tin vận chuyển</h3>
-                                <div class="form-group">
-                                    <label for="checkout-comment">
-                                        Lời nhắn
-                                    </label>
-                                    <textarea class="form-control" rows="4" runat="server" id="CusMessenger"></textarea>
-                                </div>
-                            </div>--%>
+
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-xl-5 mt-4 mt-lg-0">
@@ -153,6 +154,19 @@
                                                 <div class="payment-methods__item-description text-muted">Thành toán bằng tiền mặt khi nhận hàng</div>
                                             </div>
                                         </li>
+                                        <li class="payment-methods__item">
+                                            <label class="payment-methods__item-header">
+                                                <span class="payment-methods__item-radio input-radio">
+                                                    <span class="input-radio__body">
+                                                        <input class="input-radio__input" name="checkout_payment_method" type="radio">
+                                                        <span class="input-radio__circle"></span>
+                                                    </span>
+                                                </span><span class="payment-methods__item-title">Chuyển khoản</span>
+                                            </label>
+                                            <div class="payment-methods__item-container">
+                                                <div class="payment-methods__item-description text-muted">Chuyển khoản trực tiếp</div>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="checkout__agree form-group">
@@ -183,4 +197,5 @@
             </div>
         </div>
     </div>
+
 </asp:Content>

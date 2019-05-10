@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="True" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Test.aspx.cs" Inherits="ShoesStore.Customer.Test" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -6,35 +6,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Repeater Example</title>
-  
+    <script type="text/javascript">
+
+        function X() {
+            alert(123);
+        }
+        function HookUpControl(curObj, validatorClientID) {
+            
+            event.stopPropagation();
+            var validationControl = document.getElementById(validatorClientID);
+            validationControl.controltovalidate = curObj.id;
+            validationControl.clientvalidationfunction = "validatetextbox";
+            validationControl.validateemptytext = "true";
+            ValidatorHookupControl(curObj, validationControl);
+
+
+        }
+        function validatetextbox(sender, args) {
+
+            if (args.Value == "") {
+                sender.errormessage = "<b>Required Field Missing</b><br />This is required.";
+                sender.innerHTML = "<b>Required Field Missing</b><br />This is required.";
+                args.IsValid = false;
+                return;
+            }
+
+        }
+    </script>
 </head>
 <body>
-<h3>Repeater Example</h3>
-<form id="form1" runat="server">
-      <asp:ScriptManager runat="server">
-                <Scripts>
-                    <asp:ScriptReference Name="MsAjaxBundle" />
-                    <asp:ScriptReference Name="jquery" />
-                    <asp:ScriptReference Name="bootstrap" />
-                    <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                    <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                    <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                    <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                    <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                    <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                    <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                    <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                    <asp:ScriptReference Name="WebFormsBundle" />
-                </Scripts>
-            </asp:ScriptManager>
-    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
-    <asp:TextBox runat="server" ID="txt">
+    <h3>Repeater Example</h3>
+    <form id="form1" runat="server">
 
-    </asp:TextBox>
-    <asp:ImageButton runat="server"  ID="imgBtn"/>
-    <asp:ColorPickerExtender ID="ColorPickerExtender1" runat="server" TargetControlID="txt"
-        PopupButtonID="imgBtn"
-        ></asp:ColorPickerExtender>
-</form>
+        <asp:TextBox runat="server" ID="txt1" />
+        <asp:TextBox runat="server" ID="txt2" />
+        <asp:TextBox runat="server" ID="txt3" />
+        <asp:TextBox runat="server" ID="txt4" />
+        <asp:CustomValidator runat="server" ID="CustomValidator1" />
+
+    </form>
 </body>
 </html>

@@ -78,7 +78,10 @@ namespace ShoesStore
             try
             {
                 var loginUsr = MyLibrary.Usr_BUS.Login(login_login.Value, login_pwd.Value);
-                if (loginUsr == null) return;
+                if (loginUsr == null)
+                {
+                    MyLibrary.ShowInUploadPannel("Tài khoản hoặc mật khẩu không đúng !"); return;
+                }
                 WebSession.LoginUsr = loginUsr;
                 Response.Redirect(Request.RawUrl);
             }
@@ -131,7 +134,7 @@ namespace ShoesStore
             if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
             {
                 _actCode = TextHelper.RandomNumber(4);
-                Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
+                Email.SendGmail( email.Value, "Mã kích hoạt đăng ký",
                     $"Mã kích hoạt của bạn là {_actCode}");
                 Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
             }
@@ -161,6 +164,26 @@ namespace ShoesStore
             if (args.Value != _actCode)
                 args.IsValid = false;
             else args.IsValid = true;
+        }
+
+        protected void btnRecovery_Click(object sender, EventArgs e)
+        {
+            RfvRecovery.Validate();
+            RevRecovery.Validate();
+            if (RevRecovery.IsValid && RfvRecovery.IsValid)
+            {
+                string recoveryPassword = TextHelper.RandomString(8);
+                Usr usr = MyLibrary.Usr_BUS.GetBy(RecoveryEmail.Value);
+                if (usr == null) { MyLibrary.ShowInUploadPannel("Email không tồn tại trong cơ sở dữ liệu"); return; } //can be return
+
+                usr.PasswordForget = EncryptHelper.Encrypt(recoveryPassword);
+                MyLibrary.Usr_BUS.Update(usr);
+                Email.SendGmail(RecoveryEmail.Value, "Mã khôi phục mật khẩu",
+                    $"Mã khôi phục của bạn là {recoveryPassword}");
+                MyLibrary.ShowInUploadPannel($"Đã gửi mã khôi phục đến {RecoveryEmail.Value}");
+
+            }
+
         }
     }
 }

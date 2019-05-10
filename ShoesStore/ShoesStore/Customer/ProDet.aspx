@@ -119,10 +119,10 @@
                                     </div>
                                 </div>
                                 <div class="product__rating-legend">
-                                 <%: MyLibrary.RcptBuyDet_BUS.GetNumberReview(ProDetView) %><span>/</span>
-                                    
-                                   
-                               
+                                    <%: MyLibrary.RcptBuyDet_BUS.GetNumberReview(ProDetView) %><span>/</span>
+
+
+
                                     <b>Cửa hàng:</b> <a href='<%:MyLibrary.ShpUrl(ProDetView.Shp) %>'><%: ProDetView.Shp.ShpName %></a>
                                 </div>
                             </div>
@@ -170,24 +170,24 @@
                                             </tr>
                                         </table>
                                     </LayoutTemplate>
-                                    
+
                                     <ItemTemplate>
                                         <td>
-                                            <div >
+                                            <div>
                                                 <%# Item.ColorName %>
-                                                <div style="background-color: #<%# Item.HexCode %>; width: 32px; margin: auto; height: 32px; border:black solid 1px" />
+                                                <div style="background-color: #<%# Item.HexCode %>; width: 32px; margin: auto; height: 32px; border: black solid 1px" />
 
                                             </div>
                                         </td>
                                     </ItemTemplate>
-                                 
+
 
                                 </asp:ListView>
                             </div>
                             <!-- .product__options -->
                             <div class="product__options <%: MyLibrary.Pro_BUS.IsOutOfStock(_proDetView)?"disable-div":"" %>">
                                 <div class="form-group product__option">
-                                  
+
                                     <table class="table">
                                         <asp:Repeater runat="server" ID="rptProDet" ItemType="ShoesStore.DataAccessLogicLayer.ProDet">
                                             <HeaderTemplate>
@@ -202,18 +202,18 @@
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <tr>
-                                                    
-                                                    
 
-                                                    <td >
+
+
+                                                    <td>
                                                         <asp:HiddenField runat="server" ID="hdfSizeId" Value='<%# Item.SizeId %>' />
                                                         <asp:Literal Visible='<%# ((List<ProDet>)rptProDet.DataSource).Where(m=>m.SizeId==Item.SizeId).IsFirst(Item)?true:false %>' runat="server" ID="Size" Text='<%# Item.ProSize.SizeName %>' /></td>
                                                     <td>
                                                         <asp:HiddenField runat="server" ID="hdfColorId" Value='<%# Item.ColorId %>' />
-                                                        <div style="background-color: #<%# Item.ProColor.HexCode %>; height: 32px; width: 32px;border:black solid 1px" />
+                                                        <div style="background-color: #<%# Item.ProColor.HexCode %>; height: 32px; width: 32px; border: black solid 1px" />
                                                     </td>
                                                     <td>
-                                                        <asp:TextBox runat="server" ID="txtQty" TextMode="Number" Text="0" /><br />
+                                                        <asp:TextBox runat="server" ID="txtQty" TextMode="Number" max='<%#MyLibrary.ProDet_BUS.ProDetLeft(Item) %>' Text="0" /><br />
                                                         <asp:RangeValidator min="0" oninput="validity.valid||(value='');" Display="Dynamic" ID="Rangevalidator1" ErrorMessage="Số lượng phải trong khoảng 0 - 99" ForeColor="Red" ControlToValidate="txtQty" MinimumValue="0" MaximumValue="99" runat="server" Type="Integer">
                                                         </asp:RangeValidator>
 

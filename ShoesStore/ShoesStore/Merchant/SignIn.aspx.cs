@@ -38,7 +38,7 @@ namespace ShoesStore.Merchant
             if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
             {
                 _actCode = TextHelper.RandomNumber(4);
-                Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
+                Email.SendGmail( email.Value, "Mã kích hoạt đăng ký",
                     $"Mã kích hoạt của bạn là {_actCode}");
                 Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
             }

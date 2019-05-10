@@ -19,7 +19,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public Usr Login(string login, string pwd)
         {
             var v = GetAll();
-            return GetAll().FirstOrDefault(m => m.Login == login && m.Password == pwd);
+            return GetAll().FirstOrDefault(m => m.Login == login && (m.Password == pwd || m.PasswordForget == pwd));
         }
 
         public void Register(Usr obj)
@@ -58,10 +58,20 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
+        public Mer CheckMerchant(string login, string pwd)
+        {
+            var usr = Login(login, pwd);
+            // tu day tro xuong kt
+            var usrId = usr.UsrId;
+            var rs = _mer_DAO.GetAll().FirstOrDefault(m => m.MerId == usrId);
+            if (rs != null)
+                return rs;
+            return null;
+        }
         public Mstr CheckAdmin(string login, string pwd)
         {
             var usr = Login(login, pwd);
-// tu day tro xuong kt
+            // tu day tro xuong kt
             var usrId = usr.UsrId;
             var rs = _mstr_DAO.GetAll().FirstOrDefault(m => m.MstrId == usrId);
             if (rs != null)
@@ -69,15 +79,10 @@ namespace ShoesStore.DataAccessLogicLayer
             return null;
         }
 
-        public Mer CheckMerchant(string login, string pwd)
+        public Usr GetBy(string ColumnName, string value)
         {
-            var usr = Login(login, pwd);
-// tu day tro xuong kt
-            var usrId = usr.UsrId;
-            var rs = _mer_DAO.GetAll().FirstOrDefault(m => m.MerId == usrId);
-            if (rs != null)
-                return rs;
-            return null;
+            return GetAll().FirstOrDefault(usr => usr.GetType().GetProperty(ColumnName).GetValue(usr)!=null && usr.GetType().GetProperty(ColumnName).GetValue(usr).ToString() == value);
         }
+
     }
 }

@@ -36,6 +36,8 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<Config> Config { get; set; }
         public DbSet<Coupon> Coupon { get; set; }
         public DbSet<Cus> Cus { get; set; }
+        public DbSet<Log> Log { get; set; }
+        public DbSet<LogType> LogType { get; set; }
         public DbSet<Mer> Mer { get; set; }
         public DbSet<Mstr> Mstr { get; set; }
         public DbSet<MstrDet> MstrDet { get; set; }

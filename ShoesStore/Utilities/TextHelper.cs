@@ -7,11 +7,21 @@ using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Logger;
-
+using System.Linq;
 namespace Utilities
 {
     public class TextHelper
     {
+        public static string RandomString(int length)
+        {
+            Random random = new Random();
+
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            return new string(Enumerable.Repeat(chars, length)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
         public static string RemapInternationalCharToAscii(char c)
         {
             var s = c.ToString().ToLowerInvariant();
@@ -56,12 +66,12 @@ namespace Utilities
 
         public static string UrlFriendly(string text, int maxLength = 0)
         {
-// Return empty value if text is null
+            // Return empty value if text is null
             if (text == null) return "";
             var normalizedString = text
-// Make lowercase
+                // Make lowercase
                 .ToLowerInvariant()
-// Normalize the text
+                // Normalize the text
                 .Normalize(NormalizationForm.FormD);
             var stringBuilder = new StringBuilder();
             var stringLength = normalizedString.Length;
@@ -73,8 +83,8 @@ namespace Utilities
                 c = normalizedString[i];
                 switch (CharUnicodeInfo.GetUnicodeCategory(c))
                 {
-// Check if the character is a letter or a digit if the character is a
-// international character remap it to an ascii valid character
+                    // Check if the character is a letter or a digit if the character is a
+                    // international character remap it to an ascii valid character
                     case UnicodeCategory.LowercaseLetter:
                     case UnicodeCategory.UppercaseLetter:
                     case UnicodeCategory.DecimalDigitNumber:
@@ -85,7 +95,7 @@ namespace Utilities
                         prevdash = false;
                         trueLength = stringBuilder.Length;
                         break;
-// Check if the character is to be replaced by a hyphen but only if the last character wasn't
+                    // Check if the character is to be replaced by a hyphen but only if the last character wasn't
                     case UnicodeCategory.SpaceSeparator:
                     case UnicodeCategory.ConnectorPunctuation:
                     case UnicodeCategory.DashPunctuation:
@@ -101,14 +111,14 @@ namespace Utilities
                         break;
                 }
 
-// If we are at max length, stop parsing
+                // If we are at max length, stop parsing
                 if (maxLength > 0 && trueLength >= maxLength)
                     break;
             }
 
-// Trim excess hyphens
+            // Trim excess hyphens
             var result = stringBuilder.ToString().Trim('-');
-// Remove any excess character to meet maxlength criteria
+            // Remove any excess character to meet maxlength criteria
             return maxLength <= 0 || result.Length <= maxLength ? result : result.Substring(0, maxLength);
         }
 
@@ -166,7 +176,7 @@ namespace Utilities
             {
                 text = text.Replace("'", "");
                 text = text.Replace(".", "");
-                for (var i = 32; i < 48; i++) text = text.Replace(((char) i).ToString(), " ");
+                for (var i = 32; i < 48; i++) text = text.Replace(((char)i).ToString(), " ");
                 text = text.Trim();
                 text = text.Replace(" ", "-");
                 text = text.Replace(",", "-");
@@ -309,7 +319,7 @@ namespace Utilities
                 var rootPath = HttpContext.Current.Request.PhysicalApplicationPath + savePath;
                 if (imgAdv != null && imgAdv.FileName.Length != 0) //Checking for valid file
                 {
-// Since the PostedFile.FileNameFileName gives the entire path we use Substring function to rip of the filename alone.
+                    // Since the PostedFile.FileNameFileName gives the entire path we use Substring function to rip of the filename alone.
                     var strFileNameType = imgAdv.FileName.Substring(imgAdv.FileName.LastIndexOf(".") + 1);
                     strFileName = "ewebvietnam-hcm-" + extraName + "-" + DateTime.Now.Year + DateTime.Now.Month +
                                   DateTime.Now.Day + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second +
@@ -541,7 +551,7 @@ namespace Utilities
             if (!string.IsNullOrEmpty(textTrim))
                 if (textTrim.Length > length)
                 {
-                    var arrWord = textTrim.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+                    var arrWord = textTrim.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     var sb = new StringBuilder();
                     foreach (var word in arrWord)
                     {
