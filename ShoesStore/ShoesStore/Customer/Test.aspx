@@ -6,43 +6,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Repeater Example</title>
-    <script type="text/javascript">
-
-        function X() {
-            alert(123);
-        }
-        function HookUpControl(curObj, validatorClientID) {
-            
-            event.stopPropagation();
-            var validationControl = document.getElementById(validatorClientID);
-            validationControl.controltovalidate = curObj.id;
-            validationControl.clientvalidationfunction = "validatetextbox";
-            validationControl.validateemptytext = "true";
-            ValidatorHookupControl(curObj, validationControl);
 
 
-        }
-        function validatetextbox(sender, args) {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="/resources/demos/style.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-            if (args.Value == "") {
-                sender.errormessage = "<b>Required Field Missing</b><br />This is required.";
-                sender.innerHTML = "<b>Required Field Missing</b><br />This is required.";
-                args.IsValid = false;
-                return;
-            }
 
-        }
-    </script>
+    <script type="text/javascript"src="/Content/themes/base/datepicker-vi.js"></script>
 </head>
 <body>
     <h3>Repeater Example</h3>
     <form id="form1" runat="server">
+        <input type="text" id="datepicker" />
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#datepicker").datepicker();
+            });
+            
 
-        <asp:TextBox runat="server" ID="txt1" />
-        <asp:TextBox runat="server" ID="txt2" />
-        <asp:TextBox runat="server" ID="txt3" />
-        <asp:TextBox runat="server" ID="txt4" />
-        <asp:CustomValidator runat="server" ID="CustomValidator1" />
+        </script>
 
     </form>
 </body>
