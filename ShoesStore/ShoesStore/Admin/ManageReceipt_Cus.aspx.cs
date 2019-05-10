@@ -107,15 +107,16 @@ namespace ShoesStore.Admin
         public void TimKiem(string search_key)
         {
             var rs = (from a in rcptBuy.GetAll().ToList()
-                      where a.CusId.ToString().ContainsEx(search_key)
+                      where a.Cus.Usr.UsrName.ToString().ContainsEx(search_key)
                             || a.RcptBuyId.ToString().ContainsEx(search_key)
-                            || a.Rcpt.DateAdd != null && a.Rcpt.DateAdd.ToString().ContainsEx(search_key)
-                            || a.Rcpt.DateEdit != null && a.Rcpt.DateEdit.ToString().ContainsEx(search_key)
-                            || a.Rcpt.UsrAdd.ToString().ContainsEx(search_key)
-                            || a.Rcpt.UsrEdit.ToString().ContainsEx(search_key)
+                            || a.Shp.ShpName.ToString().ContainsEx(search_key)
                       select a).ToList();
-            //gvRcptBuy.DataSource = rs;
-            //gvRcptBuy.DataBind();
+            if (rs.Count != 0)
+            {
+                lvRcptBuy.DataSource = rs;
+                lvRcptBuy.DataBind();
+            }
+            else MyLibrary.Show("Không có hóa đơn");
         }
 
         // Ràng buộc và thêm xóa sửa
@@ -256,7 +257,12 @@ namespace ShoesStore.Admin
 
         protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-
+            int rcptBuyId = Int32.Parse(e.CommandArgument.ToString());
+            int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
+            if (e.CommandName == "Sel")
+            {
+                Server.Transfer("~/Admin/RcptBuy_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
+            }
         }
 
         public void LoadDdlPropFilter()
@@ -331,6 +337,14 @@ namespace ShoesStore.Admin
             //string date = datepicker.Value;
             //lvRcptBuy.DataSource = MyLibrary.RcptBuy_BUS.GetAll().Where(x=>x.Rcpt.DateAdd.ToShortDateString()==date).ToList();
             lvRcptBuy.DataBind();
+        }
+
+        protected void lvRcptBuy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var rcptBuyId = int.Parse((lvRcptBuy.FindControl("rcptbuyid") as Label).Text);
+            //BindGridViewgvRcptBuyDet(rcptBuyId);
+            int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
+            Server.Transfer("~/Merchant/Merchant_Rcpt_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
         }
     }
 }

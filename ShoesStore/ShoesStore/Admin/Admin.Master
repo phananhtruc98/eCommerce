@@ -7,11 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>WebMaster Page</title>
-    <asp:PlaceHolder runat="server">
-        <script src="/vendor/jquery-3.3.1/jquery.min.js"></script>
-        <script src="/Scripts/jquery-ui-1.12.1.js"></script>
-        <link href="/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-    </asp:PlaceHolder>
+
     <!-- plugins:css -->
     <link rel="stylesheet" href="/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.base.css">
@@ -25,7 +21,11 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="/Admin/images/favicon.png" />
     <link rel="stylesheet" href="/Admin/css/customstyle.css" />
-    
+    <asp:PlaceHolder runat="server">
+        <script src="/vendor/jquery-3.3.1/jquery.min.js"></script>
+        <script src="/Scripts/jquery-ui-1.12.1.js"></script>
+        <link href="/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    </asp:PlaceHolder>
 </head>
 <body>
     <form runat="server">

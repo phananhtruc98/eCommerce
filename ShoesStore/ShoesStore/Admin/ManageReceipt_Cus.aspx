@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="row">
-            <asp:ListView runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" OnItemCommand="lvRcptBuy_ItemCommand" ID="lvRcptBuy">
+            <asp:ListView runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" OnItemCommand="lvRcptBuy_ItemCommand" OnSelectedIndexChanged="lvRcptBuy_SelectedIndexChanged" ID="lvRcptBuy">
                 <LayoutTemplate>
                     <table class="table table-border">
                         <tr>
