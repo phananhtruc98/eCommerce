@@ -278,7 +278,8 @@ namespace ShoesStore.Merchant
             SaveImgPrimary(pro1);
             SaveImgSlide(pro1);
             MyLibrary.Show("Bài đăng của bạn sẽ được kiểm duyệt trong 24 giờ! :) ");
-            Response.Redirect(Request.Url.PathAndQuery, true);
+            //Response.Redirect(Request.Url.PathAndQuery, true);
+            phdPage.ClearTextBoxes();
         }
     }
 }
