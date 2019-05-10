@@ -134,7 +134,7 @@ namespace ShoesStore
             if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
             {
                 _actCode = TextHelper.RandomNumber(4);
-                Email.SendGmail( email.Value, "Mã kích hoạt đăng ký",
+                Email.SendGmail(email.Value, "Mã kích hoạt đăng ký",
                     $"Mã kích hoạt của bạn là {_actCode}");
                 Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
             }
@@ -181,6 +181,10 @@ namespace ShoesStore
                 Email.SendGmail(RecoveryEmail.Value, "Mã khôi phục mật khẩu",
                     $"Mã khôi phục của bạn là {recoveryPassword}");
                 MyLibrary.ShowInUploadPannel($"Đã gửi mã khôi phục đến {RecoveryEmail.Value}");
+
+
+                log4net.LogicalThreadContext.Properties["LogTypeId"] = 1;
+                log.Info($"Usr {usr.UsrId} thực hiện khôi phục mật khẩu");
 
             }
 
