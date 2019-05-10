@@ -338,6 +338,7 @@
     <Content Include="Admin\ManageReceipt_Cus.aspx" />
     <Content Include="Admin\ManageReceipt_Mer.aspx" />
     <Content Include="Admin\ManageService.aspx" />
+    <Content Include="Admin\RcptBuy_Det.aspx" />
     <Content Include="Admin\Overview.aspx" />
     <Content Include="Admin\pages\charts\chartjs.html" />
     <Content Include="Admin\pages\forms\basic_elements.html" />
@@ -3253,6 +3254,13 @@
     </Compile>
     <Compile Include="Admin\ManageService.aspx.designer.cs">
       <DependentUpon>ManageService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RcptBuy_Det.aspx.cs">
+      <DependentUpon>RcptBuy_Det.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\RcptBuy_Det.aspx.designer.cs">
+      <DependentUpon>RcptBuy_Det.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Overview.aspx.cs">
       <DependentUpon>Overview.aspx</DependentUpon>
