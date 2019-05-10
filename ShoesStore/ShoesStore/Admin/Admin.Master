@@ -7,6 +7,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>WebMaster Page</title>
+    <asp:PlaceHolder runat="server">
+        <script src="/vendor/jquery-3.3.1/jquery.min.js"></script>
+        <script src="/Scripts/jquery-ui-1.12.1.js"></script>
+        <link href="/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    </asp:PlaceHolder>
     <!-- plugins:css -->
     <link rel="stylesheet" href="/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.base.css">
@@ -20,6 +25,7 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="/Admin/images/favicon.png" />
     <link rel="stylesheet" href="/Admin/css/customstyle.css" />
+    
 </head>
 <body>
     <form runat="server">
@@ -30,7 +36,8 @@
             <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row nav_custom">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
                     <a class="navbar-brand brand-logo" href="<%= ResolveUrl("~/Admin/Default.aspx") %>">
-                         <a href="/" class="logo_name"><img src="/Admin/images/logo.png" width="100" /></a>
+                        <a href="/" class="logo_name">
+                            <img src="/Admin/images/logo.png" width="100" /></a>
                     </a>
                     <%--<a class="navbar-brand brand-logo-mini" href="<%= ResolveUrl("~/Admin/Default.aspx") %>">
                         <p class="logo_style_mini">
@@ -40,7 +47,7 @@
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-center">
                     <ul class="navbar-nav navbar-nav-right">
-                        
+
                         <li class="nav-item dropdown d-none d-xl-inline-block">
                             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                                 <span class="profile-text">
@@ -176,7 +183,8 @@
                     <footer class="footer">
                         <div class="container-fluid clearfix">
                             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">© 2019
-                    <a href="<%= ResolveUrl("~/Admin/Default.aspx") %>" target="_blank"><a href="/" class="logo_name"><img src="/Admin/images/logo.png" width="100" /></a></a>. Tất cả các quyền được bảolưu.
+                    <a href="<%= ResolveUrl("~/Admin/Default.aspx") %>" target="_blank"><a href="/" class="logo_name">
+                        <img src="/Admin/images/logo.png" width="100" /></a></a>. Tất cả các quyền được bảolưu.
                             </span>
                             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
                     <i class="mdi mdi-heart text-danger"></i>

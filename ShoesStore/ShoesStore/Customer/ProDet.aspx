@@ -50,7 +50,7 @@
                                 </svg>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="/#">Breadcrumb</a>
+                                <a href="/#">Sản phẩm</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
                                     <use href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
