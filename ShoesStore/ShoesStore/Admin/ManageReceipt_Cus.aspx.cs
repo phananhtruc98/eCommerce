@@ -19,13 +19,14 @@ namespace ShoesStore.Admin
         private readonly Shp_BUS shp = new Shp_BUS();
         private readonly Usr_BUS usr = new Usr_BUS();
         public string selectedValProp = "";
-
+        List<RcptBuy> lstViewTemp = new List<RcptBuy>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LoadRcptBuy();
                 LoadDdlPropFilter();
+
             }
         }
 
@@ -131,9 +132,9 @@ namespace ShoesStore.Admin
                 int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
                 Server.Transfer("~/Admin/RcptBuy_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
             }
-            if(e.CommandName=="Sort")
+            if (e.CommandName == "Sort")
             {
-                
+
             }
         }
 
@@ -225,52 +226,54 @@ namespace ShoesStore.Admin
             lvRcptBuy.DataBind();
 
         }
-        protected SortDirection ListViewSortDirection
-        {
-            get
-            {
-                if (ViewState["sortDirection"] == null)
-                    ViewState["sortDirection"] = SortDirection.Ascending;
-                return (SortDirection)ViewState["sortDirection"];
-            }
-            set { ViewState["sortDirection"] = value; }
-        }
+
         protected void lvRcptBuy_Sorting(object sender, ListViewSortEventArgs e)
         {
-            string imgUrl;
-            //if (e.SortDirection == SortDirection.Ascending)
-            //    imgUrl = "/images/ascending.png";
-            //else
-            //    imgUrl = "/images/descending.png";
-
-            // Check which field is being sorted
-            // to set the visibility of the image controls.
-            //Image sortImage1 = (Image)lvRcptBuy.FindControl("SortImage1");
-            //Image sortImage2 = (Image)lvRcptBuy.FindControl("SortImage2");
-            //Image sortImage3 = (Image)lvRcptBuy.FindControl("SortImage3");
             switch (e.SortExpression)
             {
                 case "RcptBuyId":
-                    //sortImage1.Visible = true;
-                    //sortImage1.ImageUrl = imgUrl;
-                    //sortImage2.Visible = false;
-                    //sortImage3.Visible = false;
+
                     break;
                 case "DateAdd":
-                    //sortImage1.Visible = false;
-                    //sortImage2.Visible = true;
-                    //sortImage2.ImageUrl = imgUrl;
-                    //sortImage3.Visible = false;
+
                     lvRcptBuy.Sort("DateAdd", e.SortDirection);
                     break;
                 case "UsrName":
-                    //sortImage1.Visible = false;
-                    //sortImage2.Visible = false;
-                    //sortImage3.Visible = true;
-                    //sortImage3.ImageUrl = imgUrl;
+
                     lvRcptBuy.Sort("UsrName", e.SortDirection);
                     break;
             }
+        }
+
+        protected void lbtnSort_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in lvRcptBuy.Items)
+            {
+                Label lbRcptBuyId = (Label)item.FindControl("lbRcptId");
+                var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.RcptBuyId == Int32.Parse((lbRcptBuyId.Text))).FirstOrDefault();
+                lstViewTemp.Add(rs);
+            }
+
+            switch (SortList.SelectedValue)
+            {
+                case "DateAdd":
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Rcpt.DateAdd);
+                        lvRcptBuy.DataBind();
+                    }
+                    break;
+                case "RcptBuyId":
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
+                    break;
+            }
+
+            
+            //String expression = SortList.SelectedValue + " " + DirectionList.SelectedValue;
+            //SortDirection direction2 = SortDirection.Ascending;
+            //if (DirectionList.SelectedValue == "DESC")
+            //    direction2 = SortDirection.Descending;
+            //lvRcptBuy.Sort(expression, direction2);
         }
     }
 }

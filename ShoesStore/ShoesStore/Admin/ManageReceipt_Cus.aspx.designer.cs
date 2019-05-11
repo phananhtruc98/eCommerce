@@ -67,6 +67,33 @@ namespace ShoesStore.Admin {
         protected global::System.Web.UI.WebControls.Button btnTimKiem;
         
         /// <summary>
+        /// SortList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList SortList;
+        
+        /// <summary>
+        /// DirectionList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DirectionList;
+        
+        /// <summary>
+        /// lbtnSort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnSort;
+        
+        /// <summary>
         /// lvRcptBuy control.
         /// </summary>
         /// <remarks>

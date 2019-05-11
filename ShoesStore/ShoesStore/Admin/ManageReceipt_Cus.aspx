@@ -8,8 +8,8 @@
     <div id="TimKiem" class="container">
         <div class="btn btn-lg custom_bar row col-12">Danh sách hóa đơn bán hàng</div>
         <div class="row">
-            <div class="col-2">
-                <asp:DropDownList runat="server" ID="ddlPropFilter" AutoPostBack="True" OnSelectedIndexChanged="ddlPropFilter_SelectedIndexChanged"></asp:DropDownList>
+            <div class="col-3">
+               Lọc:  <asp:DropDownList runat="server" ID="ddlPropFilter" AutoPostBack="True" OnSelectedIndexChanged="ddlPropFilter_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="col-4">
                 <input type="text" runat="server" visible="false" clientidmode="Static" id="datepicker" />
@@ -25,9 +25,29 @@
                 <asp:LinkButton ID="lbtnTim" runat="server" OnClick="lbtnTim_Click" Visible="false">Tìm</asp:LinkButton>
                 <asp:DropDownList runat="server" ID="ddlPropFilterDet" AutoPostBack="True" OnSelectedIndexChanged="ddlPropFilterDet_SelectedIndexChanged"></asp:DropDownList>
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <asp:TextBox runat="server" placeholder="Gõ vào đây..." ID="txtTimKiem"></asp:TextBox>
                 <asp:Button runat="server" ID="btnTimKiem" Text="Tìm" CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                Sắp xếp:
+                <asp:DropDownList runat="server" ID="SortList">
+                    <asp:ListItem Value="RcptBuyId" Text="Mã hóa đơn" Selected="True" />
+                    <asp:ListItem Value="DateAdd" Text="Ngày đặt hàng" />
+                    <asp:ListItem Value="ShpName" Text="Cửa hàng" />
+                    <asp:ListItem Value="UsrName" Text="Khách hàng" />
+                </asp:DropDownList>
+            </div>
+            <div class="col-2">
+                <asp:DropDownList runat="server" ID="DirectionList">
+                    <asp:ListItem Value="ASC" Text="Tăng dần" Selected="True" />
+                    <asp:ListItem Value="DESC" Text="Giảm dần" />
+                </asp:DropDownList>
+            </div>
+            <div class="col-7">
+                <asp:LinkButton runat="server" ID="lbtnSort" OnClick="lbtnSort_Click"><i class="fas fa-sort-amount-down"></i></asp:LinkButton>
             </div>
         </div>
         <div class="row">
@@ -36,26 +56,10 @@
                     <table class="table table-border">
                         <tr>
                             <td>Xem chi tiết</td>
-                            <td>
-                                <asp:LinkButton runat="server" ID="SortByRcptBuyIdButton"
-                                    CommandName="Sort" Text="Mã hóa đơn"
-                                    CommandArgument="RcptBuyId" />
-                                <asp:Image runat="server" ID="SortImage1"
-                                    ImageUrl="/images/ascending.png" Visible="false" /></td>
-                            <td>
-                                <asp:LinkButton runat="server" ID="SortByLastDateAddButton"
-                                    CommandName="Sort" Text="Ngày đặt hàng"
-                                    CommandArgument="DateAdd" />
-                                <asp:Image runat="server" ID="SortImage2"
-                                    ImageUrl="/images/ascending.png" Visible="false" />
-                            </td>
+                            <td>Mã hóa đơn</td>
+                            <td>Ngày đặt hàng</td>
                             <td>Cửa hàng</td>
-                            <td>
-                                <asp:LinkButton runat="server" ID="SortByUsrNameButton"
-                                    CommandName="Sort" Text="Khách hàng"
-                                    CommandArgument="UsrName" />
-                                <asp:Image runat="server" ID="SortImage3"
-                                    ImageUrl="/images/ascending.png" Visible="false" /></td>
+                            <td>Khách hàng</td>
                         </tr>
                         <tr id="itemPlaceholder" runat="server" />
                     </table>
