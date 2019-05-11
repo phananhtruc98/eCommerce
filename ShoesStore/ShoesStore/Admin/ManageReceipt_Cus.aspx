@@ -37,7 +37,7 @@
                     <asp:ListItem Value="RcptBuyId" Text="Mã hóa đơn" Selected="True" />
                     <asp:ListItem Value="DateAdd" Text="Ngày đặt hàng" />
                     <asp:ListItem Value="ShpName" Text="Cửa hàng" />
-                    <asp:ListItem Value="UsrName" Text="Khách hàng" />
+                    <asp:ListItem Value="CusName" Text="Khách hàng" />
                 </asp:DropDownList>
             </div>
             <div class="col-2">
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="row">
-            <asp:ListView runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" OnSorting="lvRcptBuy_Sorting" OnItemCommand="lvRcptBuy_ItemCommand" OnSelectedIndexChanged="lvRcptBuy_SelectedIndexChanged" ID="lvRcptBuy">
+            <asp:ListView runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" OnItemCommand="lvRcptBuy_ItemCommand" OnSelectedIndexChanged="lvRcptBuy_SelectedIndexChanged" ID="lvRcptBuy">
                 <LayoutTemplate>
                     <table class="table table-border">
                         <tr>

@@ -227,23 +227,6 @@ namespace ShoesStore.Admin
 
         }
 
-        protected void lvRcptBuy_Sorting(object sender, ListViewSortEventArgs e)
-        {
-            switch (e.SortExpression)
-            {
-                case "RcptBuyId":
-
-                    break;
-                case "DateAdd":
-
-                    lvRcptBuy.Sort("DateAdd", e.SortDirection);
-                    break;
-                case "UsrName":
-
-                    lvRcptBuy.Sort("UsrName", e.SortDirection);
-                    break;
-            }
-        }
 
         protected void lbtnSort_Click(object sender, EventArgs e)
         {
@@ -258,22 +241,22 @@ namespace ShoesStore.Admin
             {
                 case "DateAdd":
                     if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
-                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Rcpt.DateAdd);
-                        lvRcptBuy.DataBind();
-                    }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
                     break;
                 case "RcptBuyId":
-                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
-                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.RcptBuyId); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.RcptBuyId); lvRcptBuy.DataBind(); }
+                    break;
+                case "ShpName":
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Shp.ShpName); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Shp.ShpName); lvRcptBuy.DataBind(); }
+                    break;
+                case "CusName":
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Cus.Usr.UsrName); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Cus.Usr.UsrName); lvRcptBuy.DataBind(); }
                     break;
             }
 
-            
-            //String expression = SortList.SelectedValue + " " + DirectionList.SelectedValue;
-            //SortDirection direction2 = SortDirection.Ascending;
-            //if (DirectionList.SelectedValue == "DESC")
-            //    direction2 = SortDirection.Descending;
-            //lvRcptBuy.Sort(expression, direction2);
         }
     }
 }
