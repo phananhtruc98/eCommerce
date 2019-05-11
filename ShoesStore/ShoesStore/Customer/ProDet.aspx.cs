@@ -92,6 +92,9 @@ namespace ShoesStore.Customer
                 return;
             }
             bool atLeastOneCheck = false;
+
+
+
             foreach (RepeaterItem pd in rptProDet.Items)
             {
 
@@ -114,7 +117,18 @@ namespace ShoesStore.Customer
                     if (!MyLibrary.CartDet_BUS.IsExist(_cartDetView))
                     {
                         MyLibrary.CartDet_BUS.Insert(_cartDetView);
-                    
+
+                    }
+                    else
+                    {
+                        CartDet cartDet = MyLibrary.CartDet_BUS.GetAll().FirstOrDefault(m => m.CartId == _cartDetView.CartId
+                        && m.ShpId == _cartDetView.ShpId
+                        && m.ProId == _cartDetView.ProId
+                        && m.ColorId == _cartDetView.ColorId
+                        && m.SizeId == _cartDetView.SizeId);
+                        int maxQty = MyLibrary.ProDet_BUS.ProDetLeft(cartDet.ProDet);
+                        cartDet.Qty = (_cartDetView.Qty + cartDet.Qty <= maxQty) ? cartDet.Qty + _cartDetView.Qty : maxQty;
+                        MyLibrary.CartDet_BUS.Update(cartDet);
                     }
                 }
 
@@ -123,6 +137,19 @@ namespace ShoesStore.Customer
             if (!atLeastOneCheck) MyLibrary.Show("Bạn cần chọn ít nhất 1 sản phẩm");
 
 
+
+        }
+        public CartDet GetCartDet(ProDet proDet)
+        {
+            return new CartDet()
+            {
+                CartId = MyLibrary.Cart_BUS.GetMyCart().CartId,
+                ShpId = proDet.ShpId,
+                ProId = proDet.ProId,
+                ColorId = Convert.ToInt32(proDet.ColorId),
+                SizeId = Convert.ToInt32(proDet.SizeId),
+
+            };
 
         }
 

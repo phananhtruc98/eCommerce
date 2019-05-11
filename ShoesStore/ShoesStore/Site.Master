@@ -349,7 +349,7 @@
                                                                         </div>
                                                                         <ul class="dropcart__product-options">
                                                                             <li><%# Item.ProDet.ProSize.SizeName %></li>
-                                                                            <li><%# Item.ProDet.ProColor.ColorName %></li>
+                                                                            <li><%# Item.ProDet.ProColor.ColorName %> <div style="background-color: #<%# Item.ProDet.ProColor.HexCode %>; height: 32px; width: 32px; border: black solid 1px; display:inline-block; float:right" /></li>
                                                                         </ul>
                                                                         <div class="dropcart__product-meta">
                                                                             <span>
@@ -359,7 +359,7 @@
                                                         </span>
                                                                         </div>
                                                                     </div>
-                                                                    <asp:LinkButton runat="server" ID="btnCartDetPreviewClose" CommandArgument='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId},{Item}" %>' OnCommand="btnCartDetPreviewClose_OnCommand" CssClass="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
+                                                                    <asp:LinkButton runat="server" ID="btnCartDetPreviewClose" OnClientClick="return confirm('Bạn có chắc chắn muốn xóa?');" CommandArgument='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId},{Item}" %>' OnCommand="btnCartDetPreviewClose_OnCommand" CssClass="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                     <svg width="10px" height="10px">
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <use href="/images/sprite.svg#cross-10"></use>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -67,7 +67,7 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return _dao.IsExist(obj);
         }
-
+     
         public override void SetActive(Usr obj)
         {
             throw new NotImplementedException();

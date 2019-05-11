@@ -83,7 +83,7 @@
                                             </asp:Literal>
                                         </td>
                                         <td class="cart-table__column cart-table__column--remove">
-                                            <asp:LinkButton runat="server" ID="btnCartDetPreviewClose" CommandArgument='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId},{Item}" %>' OnCommand="btnCartDetPreviewClose_OnCommand" CssClass="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
+                                            <asp:LinkButton runat="server"  OnClientClick="return confirm('Bạn có chắc chắn muốn xóa?')" ID="btnCartDetPreviewClose" CommandArgument='<%# $"{Item.CartId},{Item.ShpId},{Item.ProId},{Item.ColorId},{Item.SizeId},{Item}" %>' OnCommand="btnCartDetPreviewClose_OnCommand" CssClass="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                             <svg width="10px" height="10px">
                                                 <use href="/images/sprite.svg#cross-10"></use>
                                             </svg>

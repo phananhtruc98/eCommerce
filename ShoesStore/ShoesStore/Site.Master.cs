@@ -79,12 +79,13 @@ namespace ShoesStore
         {
             try
             {
-                var loginUsr = MyLibrary.Usr_BUS.Login(login_login.Value, login_pwd.Value);
-                if (loginUsr == null)
+
+                var loginCus = MyLibrary.Cus_BUS.Login(login_login.Value, login_pwd.Value);
+                if (loginCus == null)
                 {
                     MyLibrary.ShowInUploadPannel("Tài khoản hoặc mật khẩu không đúng !"); return;
                 }
-                WebSession.LoginUsr = loginUsr;
+                WebSession.LoginUsr = loginCus.Usr;
                 Response.Redirect(Request.RawUrl);
             }
             catch (Exception exception)
@@ -133,8 +134,14 @@ namespace ShoesStore
         {
             RequiredEmail.Validate();
             RegularExpressionValidator.Validate();
+
             if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
             {
+                if (MyLibrary.Usr_BUS.GetBy(email.Value) != null)
+                {
+                    MyLibrary.ShowInUploadPannel("Email này đã được đăng ký");
+                    return;
+                }
                 _actCode = TextHelper.RandomNumber(4);
                 Email.SendGmail(email.Value, "Mã kích hoạt đăng ký",
                     $"Mã kích hoạt của bạn là {_actCode}");

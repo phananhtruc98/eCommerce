@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Objects;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
-
+using System.Linq;
 namespace ShoesStore.BusinessLogicLayer
 {
     public class Cus_BUS : Table_BUS<Cus, Cus_DAO>, ICus
@@ -72,9 +72,12 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public void Login(string username, string password)
+        public Cus Login(string username, string password)
         {
-            throw new NotImplementedException();
+            Usr usr = MyLibrary.Usr_BUS.Login(username, password);
+            if (usr != null)
+                return GetAll().FirstOrDefault(cus => cus.CusId == usr.UsrId);
+            return null;
         }
 
         public void SetActive()
