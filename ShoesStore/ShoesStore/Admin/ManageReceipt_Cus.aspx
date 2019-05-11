@@ -12,16 +12,17 @@
                 <asp:DropDownList runat="server" ID="ddlPropFilter" AutoPostBack="True" OnSelectedIndexChanged="ddlPropFilter_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="col-4">
-                <input type="text" id="datepicker" />
+                <input type="text" runat="server" visible="false" clientidmode="Static" id="datepicker" />
                 <script type="text/javascript">
 
                     $(document).ready(function () {
-                        
-                        $("#datepicker").datepicker($.datepicker.regional["vi"] );
+
+                        $("#datepicker").datepicker($.datepicker.regional["vi"]);
                     });
 
 
                 </script>
+                <asp:LinkButton ID="lbtnTim" runat="server" OnClick="lbtnTim_Click" Visible="false">Tìm</asp:LinkButton>
                 <asp:DropDownList runat="server" ID="ddlPropFilterDet" AutoPostBack="True" OnSelectedIndexChanged="ddlPropFilterDet_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="col-6">
@@ -30,15 +31,31 @@
             </div>
         </div>
         <div class="row">
-            <asp:ListView runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" OnItemCommand="lvRcptBuy_ItemCommand" OnSelectedIndexChanged="lvRcptBuy_SelectedIndexChanged" ID="lvRcptBuy">
+            <asp:ListView runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" OnSorting="lvRcptBuy_Sorting" OnItemCommand="lvRcptBuy_ItemCommand" OnSelectedIndexChanged="lvRcptBuy_SelectedIndexChanged" ID="lvRcptBuy">
                 <LayoutTemplate>
                     <table class="table table-border">
                         <tr>
                             <td>Xem chi tiết</td>
-                            <td>Mã hóa đơn</td>
-                            <td>Ngày đặt hàng</td>
+                            <td>
+                                <asp:LinkButton runat="server" ID="SortByRcptBuyIdButton"
+                                    CommandName="Sort" Text="Mã hóa đơn"
+                                    CommandArgument="RcptBuyId" />
+                                <asp:Image runat="server" ID="SortImage1"
+                                    ImageUrl="/images/ascending.png" Visible="false" /></td>
+                            <td>
+                                <asp:LinkButton runat="server" ID="SortByLastDateAddButton"
+                                    CommandName="Sort" Text="Ngày đặt hàng"
+                                    CommandArgument="DateAdd" />
+                                <asp:Image runat="server" ID="SortImage2"
+                                    ImageUrl="/images/ascending.png" Visible="false" />
+                            </td>
                             <td>Cửa hàng</td>
-                            <td>Khách hàng</td>
+                            <td>
+                                <asp:LinkButton runat="server" ID="SortByUsrNameButton"
+                                    CommandName="Sort" Text="Khách hàng"
+                                    CommandArgument="UsrName" />
+                                <asp:Image runat="server" ID="SortImage3"
+                                    ImageUrl="/images/ascending.png" Visible="false" /></td>
                         </tr>
                         <tr id="itemPlaceholder" runat="server" />
                     </table>
