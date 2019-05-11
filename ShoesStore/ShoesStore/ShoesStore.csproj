@@ -363,6 +363,7 @@
     <Content Include="Admin\partials\_navbar.html" />
     <Content Include="Admin\partials\_sidebar.html" />
     <Content Include="Admin\ReviewProductDetail.aspx" />
+    <Content Include="Admin\Usr_Det.aspx" />
     <Content Include="Admin\vendors\ace-builds\src-min\ace.js" />
     <Content Include="Admin\vendors\ace-builds\src-min\ext-beautify.js" />
     <Content Include="Admin\vendors\ace-builds\src-min\ext-elastic_tabstops_lite.js" />
@@ -3300,6 +3301,13 @@
     </Compile>
     <Compile Include="Admin\ReviewProductDetail.aspx.designer.cs">
       <DependentUpon>ReviewProductDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Usr_Det.aspx.cs">
+      <DependentUpon>Usr_Det.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Usr_Det.aspx.designer.cs">
+      <DependentUpon>Usr_Det.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

@@ -20,6 +20,7 @@ namespace ShoesStore
         private static readonly string proDetUrl = "/san-pham/";
         private static readonly string slidePath = "/images/slides";
         private static readonly string cusPath = "/images/usrs/cus";
+        private static readonly string merPath = "/images/usrs/mer";
         private static readonly string usrPath = "/images/usrs";
         private static readonly string _noImg = "/images/no_img.png";
         private static readonly string _noAvatar = "/images/avatar/no_img.jpg";
@@ -72,6 +73,13 @@ namespace ShoesStore
             if (string.IsNullOrEmpty(cus.Usr.Avatar))
                 return Path.Combine(usrPath, "default.jpg");
             return Path.Combine(cusPath, cus.CusId.ToString(), cus.Usr.Avatar);
+        }
+        public static string MerImgPath(object iMer)
+        {
+            var mer = (Mer)iMer;
+            if (string.IsNullOrEmpty(mer.Usr.Avatar))
+                return Path.Combine(usrPath, "default.jpg");
+            return Path.Combine(merPath, mer.MerId.ToString(), mer.Usr.Avatar);
         }
         public static int[] GetAllowCommentStepIds()
         {

@@ -19,8 +19,8 @@ namespace ShoesStore.Admin
 // Load bảng cus
         private void BindDataGridView()
         {
-            gvCustomer.DataSource = cus_BUS.Get_Cus_Info();
-            gvCustomer.DataBind();
+            lvCus.DataSource = MyLibrary.Cus_BUS.GetAll();
+            lvCus.DataBind();
         }
 
 // btn Tìm kiếm
@@ -42,14 +42,23 @@ namespace ShoesStore.Admin
                       || a.DateAdd != null && a.DateEdit.ToString().ContainsEx(search_key)
                       || a.Address.ContainsEx(search_key)
                 select a).ToList();
-            gvCustomer.DataSource = rs;
-            gvCustomer.DataBind();
+            lvCus.DataSource = rs;
+            lvCus.DataBind();
         }
 
-        protected void gvCustomer_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //protected void gvCustomer_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    lvCus.PageIndex = e.NewPageIndex;
+        //    BindDataGridView();
+        //}
+
+        protected void lvCus_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            gvCustomer.PageIndex = e.NewPageIndex;
-            BindDataGridView();
+            if(e.CommandName== "Detail")
+            {
+                int UsrId = Int32.Parse(e.CommandArgument.ToString());
+                Server.Transfer("/Admin/Usr_Det.aspx?UsrId=" + UsrId);
+            }
         }
     }
 }

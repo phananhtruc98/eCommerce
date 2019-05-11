@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>WebMaster Page</title>
-    
+
     <link href="/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-    
+
     <script src="/Scripts/jquery-3.3.1.js"></script>
     <!-- plugins:css -->
     <link rel="stylesheet" href="/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -47,7 +47,6 @@
                             <a href="/" class="logo_name"><img src="/Admin/images/logo.png" width="100" /></a>
                         </p>
                     </a>--%>
-                    
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-center">
                     <ul class="navbar-nav navbar-nav-right">
@@ -112,7 +111,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="<%= ResolveUrl("~/Admin/Default.aspx") %>">
                                 <i class="menu-icon mdi mdi-television"></i>
                                 <span class="menu-title">Tổng quan</span>
@@ -127,25 +126,25 @@
                             <div class="collapse" id="ui-basic">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("~/Admin/ManageAdministrator.aspx") %>">Quản trị web</a>
+                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/web-master") %>">Quản trị web</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("~/Admin/ManageMerchant.aspx") %>">Người bán</a>
+                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/merchant") %>">Người bán</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("~/Admin/ManageCustomer.aspx") %>">Người mua</a>
+                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/customer") %>">Người mua</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<%= ResolveUrl("~/Admin/ManageService.aspx") %>">
+                            <a class="nav-link" href="<%= ResolveUrl("/quan-tri/goi-thuong-nien") %>">
                                 <i class="menu-icon mdi mdi-server"></i>
                                 <span class="menu-title">Quản lý gói dịch vụ</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<%= ResolveUrl("~/Admin/ManageProduct.aspx") %>">
+                            <a class="nav-link" href="<%= ResolveUrl("/quan-tri/san-pham") %>">
                                 <i class="menu-icon mdi mdi-shopping"></i>
                                 <span class="menu-title">Quản lý sản phẩm</span>
                             </a>
@@ -159,22 +158,36 @@
                             <div class="collapse" id="ui-basic_2">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("~/Admin/CreateNewRcptSub.aspx") %>">Tạo hóa đơn mua gói dịch vụ</a>
+                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/mua-goi-thuong-nien") %>">Tạo hóa đơn mua gói dịch vụ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("~/Admin/ManageReceipt_Mer.aspx") %>">Hóa đơn mua dịch vụ</a>
+                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/hoa-don-goi-thuong-nien") %>">Hóa đơn mua dịch vụ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("~/Admin/ManageReceipt_Cus.aspx") %>">Hóa đơn mua hàng</a>
+                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/hoa-don-san-pham") %>">Hóa đơn mua hàng</a>
                                     </li>
                                 </ul>
                             </div>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<%= ResolveUrl("~/Admin/Overview.aspx") %>">
-                                    <i class="menu-icon mdi mdi-table-edit"></i>
-                                    <span class="menu-title">Thống kê</span>
-                                </a>
-                            </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<%= ResolveUrl("~/Admin/Overview.aspx") %>">
+                                <i class="menu-icon mdi mdi-table-edit"></i>
+                                <span class="menu-title">Thống kê</span>
+                            </a>
+                            <div class="collapse" id="ui-basic_3">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/thong-ke-don-hang-mua-sp-thanh-cong") %>">Thống kê hóa đơn bán sản phẩm</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Thống kê hóa đơn mua gói thường niên</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/thong-ke-loi-nhuan-W") %>">Thống kê lợi nhuận</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </nav>
                 <!-- partial -->
@@ -204,7 +217,7 @@
         </div>
         <!-- container-scroller -->
         <!-- plugins:js -->
-       
+
         <script src="/Admin/vendors/js/vendor.bundle.base.js"></script>
         <script src="/Admin/vendors/js/vendor.bundle.addons.js"></script>
         <!-- endinject -->
@@ -217,7 +230,7 @@
         <!-- Custom js for this page-->
         <!-- End custom js for this page-->
         <script src="/Scripts/jquery-ui-1.12.1.js"></script>
-        
+
         <script src="/Scripts/datepicker-vi.js"></script>
     </form>
 </body>

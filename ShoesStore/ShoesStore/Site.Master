@@ -120,7 +120,7 @@
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Mã xác minh không đúng!" ControlToValidate="active_code" ValidationGroup="Register" ForeColor="Red" ValidationExpression="^(\d{4})$">
                                     </asp:RegularExpressionValidator>
                                     <asp:CustomValidator runat="server" ID="customValidator_ActivateCode" ErrorMessage="Mã kích hoạt không khớp" ControlToValidate="active_code" ValidationGroup="Register" ForeColor="Red" OnServerValidate="customValidator_ActivateCode_OnServerValidate">
-                                    </asp:CustomValidator>
+                                    </asp:CustomValidator>--
                                 </div>
                                 <div class="form-group">
                                     <label for="username">Họ và tên</label>
