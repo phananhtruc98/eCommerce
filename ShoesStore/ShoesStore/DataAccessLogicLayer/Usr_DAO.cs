@@ -19,7 +19,8 @@ namespace ShoesStore.DataAccessLogicLayer
         public Usr Login(string login, string pwd)
         {
             var v = GetAll();
-            return GetAll().FirstOrDefault(m => m.Login == login && (m.Password == pwd || m.PasswordForget == pwd));
+            return GetAll().FirstOrDefault(m => m.Login == login && (m.Password == pwd));
+            return null;
         }
 
         public void Register(Usr obj)

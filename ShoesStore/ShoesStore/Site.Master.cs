@@ -176,7 +176,7 @@ namespace ShoesStore
                 Usr usr = MyLibrary.Usr_BUS.GetBy(RecoveryEmail.Value);
                 if (usr == null) { MyLibrary.ShowInUploadPannel("Email không tồn tại trong cơ sở dữ liệu"); return; } //can be return
 
-                usr.PasswordForget = EncryptHelper.Encrypt(recoveryPassword);
+      //          usr.PasswordForget = EncryptHelper.Encrypt(recoveryPassword);
                 MyLibrary.Usr_BUS.Update(usr);
                 Email.SendGmail(RecoveryEmail.Value, "Mã khôi phục mật khẩu",
                     $"Mã khôi phục của bạn là {recoveryPassword}");
