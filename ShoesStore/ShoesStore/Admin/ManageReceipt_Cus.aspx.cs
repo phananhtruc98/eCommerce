@@ -19,13 +19,14 @@ namespace ShoesStore.Admin
         private readonly Shp_BUS shp = new Shp_BUS();
         private readonly Usr_BUS usr = new Usr_BUS();
         public string selectedValProp = "";
-
+        List<RcptBuy> lstViewTemp = new List<RcptBuy>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LoadRcptBuy();
                 LoadDdlPropFilter();
+
             }
         }
 
@@ -53,7 +54,11 @@ namespace ShoesStore.Admin
             ddlPropFilterDet.DataTextField = "ShpName";
             ddlPropFilterDet.DataValueField = "ShpId";
             ddlPropFilterDet.DataBind();
-            ddlPropFilterDet.Items.Insert(0, new ListItem("--Tất cả--", String.Empty));
+            ListItem item = ddlPropFilterDet.Items.FindByValue(String.Empty);
+            if (item == null)
+            {
+                ddlPropFilterDet.Items.Insert(0, new ListItem("--Tất cả--", String.Empty));
+            }
             ddlPropFilterDet.SelectedIndex = 0;
         }
         public void LoadCusName()
@@ -119,149 +124,17 @@ namespace ShoesStore.Admin
             else MyLibrary.Show("Không có hóa đơn");
         }
 
-        // Ràng buộc và thêm xóa sửa
-        //        protected void gvBuy_RowCommand(object sender, GridViewCommandEventArgs e)
-        //        {
-        //            if (e.CommandName == "EditRow")
-        //            {
-        //                var rowIndex = ((GridViewRow) ((LinkButton) e.CommandSource).NamingContainer).RowIndex;
-        //                gvRcptBuy.EditIndex = rowIndex;
-        //                BindGridViewgvRcptBuy();
-        //            }
-        //            else if (e.CommandName == "DeleteRow")
-        //            {
-        //                var result2 = rcptBuyDet.GetAll()
-        //                    .FirstOrDefault(m => m.RcptBuyId == Convert.ToInt32(e.CommandArgument));
-        //                var result = rcptBuy.GetAll().FirstOrDefault(m => m.RcptBuyId == Convert.ToInt32(e.CommandArgument));
-        //                var result1 = (from c in rcpt.GetAll()
-        //                    where c.RcptId == Convert.ToInt32(e.CommandArgument)
-        //                    select c).FirstOrDefault();
-        //                rcptBuyDet.Delete(result2);
-        //                rcptBuy.Delete(result);
-        //                rcpt.Delete(result1);
-        //                BindGridViewgvRcptBuy();
-        //            }
-        //            else if (e.CommandName == "CancelUpdate")
-        //            {
-        //                //gvRcptBuy.EditIndex = -1;
-        //                //BindGridViewgvRcptBuy();
-        //            }
-        //            else if (e.CommandName == "UpdateRow")
-        //            {
-        //                var rowIndex = ((GridViewRow) ((LinkButton) e.CommandSource).NamingContainer).RowIndex;
-        //                var UsrEdit = ((TextBox) gvRcptBuy.Rows[rowIndex].FindControl("EditUsrEdit")).Text;
-        //// SỬA CODE Ở ĐÂY
-        //                var result = (from c in rcptBuy.GetAll()
-        //                    where c.RcptBuyId == Convert.ToInt32(e.CommandArgument)
-        //                    select c).FirstOrDefault();
-        //                if (result != null)
-        //                {
-        //// SỬA CODE Ở ĐÂY
-        //                    result.Rcpt.DateEdit = DateTime.Now;
-        //                    result.Rcpt.UsrEdit = Convert.ToInt32(UsrEdit);
-        //                    rcptBuy.Update(result);
-        //                }
-
-        //                gvRcptBuy.EditIndex = -1;
-        //                BindGridViewgvRcptBuy();
-        //            }
-        //            else if (e.CommandName == "InsertRow")
-        //            {
-        //// SỬA CODE Ở ĐÂY
-        //                var dateAdd = DateTime.Now.ToString();
-        //                var usrAdd = ((TextBox) gvRcptBuy.FooterRow.FindControl("InsertUsrAdd")).Text;
-        //                var cusId = ((TextBox) gvRcptBuy.FooterRow.FindControl("InsertCusId")).Text;
-        //                string usrEdit = null;
-        //                if (usrEdit == null) usrEdit = "0";
-        //                if (usrAdd == "") return;
-        //                var rcpt1 = new Rcpt
-        //                {
-        //                    DateAdd = DateTime.Now,
-        //                    DateEdit = null,
-        //                    UsrAdd = int.Parse(usrAdd),
-        //                    UsrEdit = null
-        //                };
-        //                rcpt.Insert(rcpt1);
-        //                var newRcptBuy = new RcptBuy
-        //                {
-        //                    RcptBuyId = rcpt.getMaxRcptId(),
-        //                    CusId = int.Parse(cusId)
-        //                };
-        //                rcptBuy.Insert(newRcptBuy);
-        //                BindGridViewgvRcptBuy();
-        //            }
-        //            else if (e.CommandName == "EInsertRow")
-        //            {
-        //                var dateAdd = DateTime.Now.ToString();
-        //                var usrAdd = ((TextBox) gvRcptBuy.Controls[0].Controls[0].FindControl("EInsertUsrAdd")).Text;
-        //                var cusId = ((TextBox) gvRcptBuy.Controls[0].Controls[0].FindControl("EInsertCusId")).Text;
-        //                string usrEdit = null;
-        //                if (usrEdit == null) usrEdit = "0";
-        //                if (usrAdd == "") return;
-        //                var rcpt1 = new Rcpt
-        //                {
-        //                    DateAdd = DateTime.Now,
-        //                    DateEdit = null,
-        //                    UsrAdd = int.Parse(usrAdd),
-        //                    UsrEdit = null
-        //                };
-        //                rcpt.Insert(rcpt1);
-        //                var newRcptBuy = new RcptBuy
-        //                {
-        //                    RcptBuyId = rcpt.getMaxRcptId(),
-        //                    CusId = int.Parse(cusId)
-        //                };
-        //                rcptBuy.Insert(newRcptBuy);
-        //                BindGridViewgvRcptBuy();
-        //            }
-        //        }
-
-        //// Sự kiện chọn rcpt trong rcptBuy
-        //        protected void gvRcptBuy_SelectedIndexChanged(object sender, EventArgs e)
-        //        {
-        //            var rcptBuyId = int.Parse((gvRcptBuy.SelectedRow.FindControl("rcptbuyid") as Label).Text);
-        //            BindGridViewgvRcptBuyDet(rcptBuyId);
-        //        }
-
-        //// Gộp những dòng trùng
-        //        protected void gvRcptBuyDet_RowDataBound1(object sender, GridViewRowEventArgs e)
-        //        {
-        //            var RowSpan = 2;
-        //            for (var i = gvRcptBuyDet.Rows.Count - 2; i >= 0; i--)
-        //            {
-        //                var currRow = gvRcptBuyDet.Rows[i];
-        //                var prevRow = gvRcptBuyDet.Rows[i + 1];
-        //                if (currRow.Cells[0].Text == prevRow.Cells[2].Text)
-        //                {
-        //                    currRow.Cells[0].RowSpan = RowSpan;
-        //                    prevRow.Cells[0].Visible = false;
-        //                    RowSpan += 1;
-        //                }
-        //                else
-        //                {
-        //                    RowSpan = 2;
-        //                }
-
-        //                if (currRow.Cells[1].Text == prevRow.Cells[2].Text)
-        //                {
-        //                    currRow.Cells[1].RowSpan = RowSpan;
-        //                    prevRow.Cells[1].Visible = false;
-        //                    RowSpan += 1;
-        //                }
-        //                else
-        //                {
-        //                    RowSpan = 2;
-        //                }
-        //            }
-        //        }
-
         protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            int rcptBuyId = Int32.Parse(e.CommandArgument.ToString());
-            int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
             if (e.CommandName == "Sel")
             {
+                int rcptBuyId = Int32.Parse(e.CommandArgument.ToString());
+                int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
                 Server.Transfer("~/Admin/RcptBuy_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
+            }
+            if (e.CommandName == "Sort")
+            {
+
             }
         }
 
@@ -278,28 +151,31 @@ namespace ShoesStore.Admin
 
         protected void ddlPropFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ListItem item = ddlPropFilterDet.Items.FindByValue(String.Empty);
             string selectedVal = ddlPropFilter.SelectedValue;
             selectedValProp = selectedVal;
             switch (selectedVal)
             {
                 case "All":
                     ddlPropFilterDet.Visible = true;
-                    //datepicker.Visible = false;
+                    datepicker.Visible = false;
+                    lbtnTim.Visible = false;
+                    ddlPropFilterDet.Items.Clear();
                     LoadRcptBuy();
                     break;
                 case "ShpName":
                     ddlPropFilterDet.Visible = true;
-                    //datepicker.Visible = false;
+                    datepicker.Visible = false; lbtnTim.Visible = false;
                     LoadShpName();
                     break;
                 case "CusName":
                     ddlPropFilterDet.Visible = true;
-                    //datepicker.Visible = false;
+                    datepicker.Visible = false; lbtnTim.Visible = false;
                     LoadCusName();
                     break;
                 case "DateAdd":
                     ddlPropFilterDet.Visible = false;
-                    //datepicker.Visible = true;
+                    datepicker.Visible = true; lbtnTim.Visible = true;
                     break;
 
             }
@@ -324,6 +200,7 @@ namespace ShoesStore.Admin
                 {
                     case "ShpName":
                         LoadRcptBuyByShpName(selectedVal);
+
                         break;
                     case "CusName":
                         LoadRcptBuyByCusName(selectedVal);
@@ -332,12 +209,6 @@ namespace ShoesStore.Admin
             }
         }
 
-        protected void datepicker_ServerChange(object sender, EventArgs e)
-        {
-            //string date = datepicker.Value;
-            //lvRcptBuy.DataSource = MyLibrary.RcptBuy_BUS.GetAll().Where(x=>x.Rcpt.DateAdd.ToShortDateString()==date).ToList();
-            lvRcptBuy.DataBind();
-        }
 
         protected void lvRcptBuy_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -345,6 +216,47 @@ namespace ShoesStore.Admin
             //BindGridViewgvRcptBuyDet(rcptBuyId);
             int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
             Server.Transfer("~/Merchant/Merchant_Rcpt_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
+        }
+
+        protected void lbtnTim_Click(object sender, EventArgs e)
+        {
+            DateTime s = Convert.ToDateTime(datepicker.Value);
+            string date = s.ToString("MM/dd/yyyy");
+            lvRcptBuy.DataSource = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.Rcpt.DateAdd.ToString("dd/MM/yyyy") == date).ToList();
+            lvRcptBuy.DataBind();
+
+        }
+
+
+        protected void lbtnSort_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in lvRcptBuy.Items)
+            {
+                Label lbRcptBuyId = (Label)item.FindControl("lbRcptId");
+                var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.RcptBuyId == Int32.Parse((lbRcptBuyId.Text))).FirstOrDefault();
+                lstViewTemp.Add(rs);
+            }
+
+            switch (SortList.SelectedValue)
+            {
+                case "DateAdd":
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
+                    break;
+                case "RcptBuyId":
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.RcptBuyId); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.RcptBuyId); lvRcptBuy.DataBind(); }
+                    break;
+                case "ShpName":
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Shp.ShpName); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Shp.ShpName); lvRcptBuy.DataBind(); }
+                    break;
+                case "CusName":
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Cus.Usr.UsrName); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Cus.Usr.UsrName); lvRcptBuy.DataBind(); }
+                    break;
+            }
+
         }
     }
 }

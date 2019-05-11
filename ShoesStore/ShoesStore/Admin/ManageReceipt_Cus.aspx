@@ -8,25 +8,46 @@
     <div id="TimKiem" class="container">
         <div class="btn btn-lg custom_bar row col-12">Danh sách hóa đơn bán hàng</div>
         <div class="row">
-            <div class="col-2">
-                <asp:DropDownList runat="server" ID="ddlPropFilter" AutoPostBack="True" OnSelectedIndexChanged="ddlPropFilter_SelectedIndexChanged"></asp:DropDownList>
+            <div class="col-3">
+               Lọc:  <asp:DropDownList runat="server" ID="ddlPropFilter" AutoPostBack="True" OnSelectedIndexChanged="ddlPropFilter_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="col-4">
-                <input type="text" id="datepicker" />
+                <input type="text" runat="server" visible="false" clientidmode="Static" id="datepicker" />
                 <script type="text/javascript">
 
                     $(document).ready(function () {
-                        
-                        $("#datepicker").datepicker($.datepicker.regional["vi"] );
+
+                        $("#datepicker").datepicker($.datepicker.regional["vi"]);
                     });
 
 
                 </script>
+                <asp:LinkButton ID="lbtnTim" runat="server" OnClick="lbtnTim_Click" Visible="false">Tìm</asp:LinkButton>
                 <asp:DropDownList runat="server" ID="ddlPropFilterDet" AutoPostBack="True" OnSelectedIndexChanged="ddlPropFilterDet_SelectedIndexChanged"></asp:DropDownList>
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <asp:TextBox runat="server" placeholder="Gõ vào đây..." ID="txtTimKiem"></asp:TextBox>
                 <asp:Button runat="server" ID="btnTimKiem" Text="Tìm" CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                Sắp xếp:
+                <asp:DropDownList runat="server" ID="SortList">
+                    <asp:ListItem Value="RcptBuyId" Text="Mã hóa đơn" Selected="True" />
+                    <asp:ListItem Value="DateAdd" Text="Ngày đặt hàng" />
+                    <asp:ListItem Value="ShpName" Text="Cửa hàng" />
+                    <asp:ListItem Value="CusName" Text="Khách hàng" />
+                </asp:DropDownList>
+            </div>
+            <div class="col-2">
+                <asp:DropDownList runat="server" ID="DirectionList">
+                    <asp:ListItem Value="ASC" Text="Tăng dần" Selected="True" />
+                    <asp:ListItem Value="DESC" Text="Giảm dần" />
+                </asp:DropDownList>
+            </div>
+            <div class="col-7">
+                <asp:LinkButton runat="server" ID="lbtnSort" OnClick="lbtnSort_Click"><i class="fas fa-sort-amount-down"></i></asp:LinkButton>
             </div>
         </div>
         <div class="row">

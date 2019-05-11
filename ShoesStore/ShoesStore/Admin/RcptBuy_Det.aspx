@@ -25,23 +25,27 @@
                     </tr>
                     <tr>
                         <td>Thông tin cửa hàng: </td>
-                        <td colspan="6">Tên cửa hàng:
-                            <asp:Label ID="lbShpName" runat="server"></asp:Label><br />
-                            Địa chỉ:
-                            <asp:Label ID="lbAddress" runat="server"></asp:Label><br />
+                        <td>Tên cửa hàng:<br /><br />
+                            Địa chỉ:<br /><br />
                             Số điện thoại:
+                        </td>
+                        <td colspan="5">
+                            <asp:Label ID="lbShpName" runat="server"></asp:Label><br /><br />
+                            <asp:Label ID="lbAddress" runat="server"></asp:Label><br /><br />
                             <asp:Label ID="lbPhone" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td>Thông tin khách hàng: </td>
-                        <td colspan="6">Cửa hàng:
-                            <asp:Label ID="lbCusName" runat="server"></asp:Label><br />
-                            Địa chỉ:
-                            <asp:Label ID="lbAddressCus" runat="server"></asp:Label><br />
-                            Số điện thoại:
-                            <asp:Label ID="lbPhoneCus" runat="server"></asp:Label><br />
+                        <td>Cửa hàng:<br /><br />
+                            Địa chỉ:<br /><br />
+                            Số điện thoại:<br /><br />
                             Email:
+                        </td>
+                        <td colspan="5">
+                            <asp:Label ID="lbCusName" runat="server"></asp:Label><br /><br />
+                            <asp:Label ID="lbAddressCus" runat="server"></asp:Label><br /><br />
+                            <asp:Label ID="lbPhoneCus" runat="server"></asp:Label><br /><br />
                             <asp:Label ID="lbEmail" runat="server"></asp:Label>
                         </td>
                     </tr>
@@ -63,7 +67,7 @@
                                     <tr>
                                         <td>
                                             <a href="#">
-                                                <img style="height: 200px; width: 200px;" src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
+                                                <img class="rounded" style="height: 200px; width: 200px;" src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                             </a>
                                         </td>
                                         <td><%# Item.ProDet.Pro.ProName %></td>
