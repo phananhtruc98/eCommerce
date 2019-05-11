@@ -3,6 +3,7 @@
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore.Merchant" %>
 <%@ Import Namespace="ShoesStore" %>
+<%@ Import Namespace="Utilities" %>
 <%@ Register TagPrefix="friendlyUrls" TagName="ViewSwitcher" Src="~/ViewSwitcher.ascx" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -225,7 +226,7 @@
                                             <div class="widget-categories__subs" data-collapse-content>
                                                 <ul>
                                                     <li>
-                                                        <a href="/nguoi-ban/thong-tin">Thông tin cửa hàng</a>
+                                                        <a href="/<%: MerchantSession.LoginMer!=null?TextHelper.UrlFriendly(MerchantSession.LoginMer.Shp.FirstOrDefault()?.ShpName):"" %>">Thông tin cửa hàng</a>
                                                     </li>
                                                     <li>
                                                         <a href="/cua-hang/quan-ly-san-pham/them-san-pham">Thêm Sản Phẩm</a>
@@ -282,56 +283,56 @@
                             </div>
                             <div class="block-sidebar__item">
                                 <div class="widget-products widget">
-                                    <h4 class="widget__title">Sản Phẩm Mới Nhất</h4>
+                                    <h4 class="widget__title">Hàng Sắp Về</h4>
                                     <div class="widget-products__list">
                                         <div class="widget-products__item">
                                             <div class="widget-products__image">
-                                                <a href="product.html">
+                                                <a href="#">
                                                     <img src="/Merchant/images/products/product-1.jpg" alt="">
                                                 </a>
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Vans Old Sckool</a>
+                                                    <a href="#">Vans Old Sckool</a>
                                                 </div>
                                                 <div class="widget-products__prices">$749.00</div>
                                             </div>
                                         </div>
                                         <div class="widget-products__item">
                                             <div class="widget-products__image">
-                                                <a href="product.html">
+                                                <a href="#">
                                                     <img src="/Merchant/images/products/product-2.jpg" alt="">
                                                 </a>
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Air Force Cổ Cao</a>
+                                                    <a href="#">Air Force Cổ Cao</a>
                                                 </div>
                                                 <div class="widget-products__prices">$1,019.00</div>
                                             </div>
                                         </div>
                                         <div class="widget-products__item">
                                             <div class="widget-products__image">
-                                                <a href="product.html">
+                                                <a href="#">
                                                     <img src="/Merchant/images/products/product-3.jpg" alt="">
                                                 </a>
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Yeezy 500</a>
+                                                    <a href="#">Yeezy 500</a>
                                                 </div>
                                                 <div class="widget-products__prices">$850.00</div>
                                             </div>
                                         </div>
                                         <div class="widget-products__item">
                                             <div class="widget-products__image">
-                                                <a href="product.html">
+                                                <a href="#">
                                                     <img src="/Merchant/images/products/product-4.jpg" alt="" />
                                                 </a>
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Gucci Season 4</a>
+                                                    <a href="#">Gucci Season 4</a>
                                                 </div>
                                                 <div class="widget-products__prices">
                                                     <span class="widget-products__new-price">$949.00</span> <span class="widget-products__old-price">$1189.00</span>
@@ -340,13 +341,13 @@
                                         </div>
                                         <div class="widget-products__item">
                                             <div class="widget-products__image">
-                                                <a href="product.html">
+                                                <a href="#">
                                                     <img src="/Merchant/images/products/product-5.jpg" alt="">
                                                 </a>
                                             </div>
                                             <div class="widget-products__info">
                                                 <div class="widget-products__name">
-                                                    <a href="product.html">Air Jordan V</a>
+                                                    <a href="#">Air Jordan V</a>
                                                 </div>
                                                 <div class="widget-products__prices">$1,700.00</div>
                                             </div>
