@@ -49,6 +49,42 @@ namespace ShoesStore.Merchant {
         protected global::System.Web.UI.WebControls.TextBox inputDesc;
         
         /// <summary>
+        /// inputAddr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox inputAddr;
+        
+        /// <summary>
+        /// rfvEditAddrAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditAddrAdd;
+        
+        /// <summary>
+        /// inputNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox inputNum;
+        
+        /// <summary>
+        /// rfvEditNumAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditNumAdd;
+        
+        /// <summary>
         /// lbSubmit control.
         /// </summary>
         /// <remarks>

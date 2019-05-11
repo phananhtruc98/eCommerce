@@ -22,33 +22,24 @@
                             <asp:RequiredFieldValidator ID="rfvEditNameAdd" runat="server" ErrorMessage="Chưa nhập tên cửa hàng" ControlToValidate="inputShpName" Text="*" ForeColor="Red" ValidationGroup="Insert">
                             </asp:RequiredFieldValidator>
                         </div>
-                        <hr />
                         <div>
-                            <label for="inputDesc">Mô tả chi tiết</label>
+                            <label for="inputDesc">Mô tả chi tiết :</label>
+                            <asp:TextBox runat="server" ID="inputDesc" class="form-control col-12" />
+                            
                         </div>
                         <div>
-                            <asp:TextBox TextMode="MultiLine" runat="server" ID="inputDesc" name="editor1"></asp:TextBox>
+                            <label for="inputAddr">Địa chỉ cửa hàng : </label>
+                            <asp:TextBox runat="server" ID="inputAddr" class="form-control col-12" />
+                            <asp:RequiredFieldValidator ID="rfvEditAddrAdd" runat="server" ErrorMessage="Chưa nhập địa chỉ cửa hàng" ControlToValidate="inputAddr" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
                         </div>
-                        <script>
-                            CKEDITOR.replace('MainPlaceHolder_editor1', { htmlEncodeOutput: true });
-                            CKEDITOR.config.toolbar = [
-
-                                { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', '-', 'Undo', 'Redo'] },
-
-                                { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll'] },
-
-                                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'] },
-
-                                {
-                                    name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
-                                        '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
-                                },
-
-                                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
-
-                                { name: 'colors', items: ['TextColor', 'BGColor'] }];
-                            CKEDITOR.config.FileTypesPath["Image"]('C:\eCommerce\ShoesStore\ShoesStore\Admin\images\faces');
-                        </script>
+                        <div>
+                            <label for="inputNum">Số điện thoại liên hệ :</label>
+                            <asp:TextBox runat="server" ID="inputNum" class="form-control col-12" />
+                            <asp:RequiredFieldValidator ID="rfvEditNumAdd" runat="server" ErrorMessage="Chưa nhập số điện thoại để liên hệ cửa hàng" ControlToValidate="inputNum" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </div>
+                        
                         <hr />
                         <asp:LinkButton ID="lbSubmit" ValidationGroup="Insert" OnClick="btnSubmit_OnClick" CommandName="Submit" ForeColor="#8C4510" runat="server" class="btn btn-lg btn-primary btn-block text-uppercase">Tạo Cửa Hàng Ngay</asp:LinkButton>
                     </div>
