@@ -24,14 +24,22 @@ namespace ShoesStore.Merchant
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //HtmlGenericControl listItem = this.fooItem as HtmlGenericControl;
-            //var ctrl = this.Master.FindControl("fooItem");
-            //var mer = (Mer)MerchantSession.LoginMerchant;
-            //var Shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.ShpId == mer.MerId);
-            //if (Shp.ShpId == 0)
-            //{
-            //    ctrl.Visible = false;
-            //}
+            if (!IsPostBack)
+            {
+                var mer = (Mer)MerchantSession.LoginMerchant;
+                var Shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.MerId == mer.MerId);
+                if (Shp == null)
+                {
+                    createshop.Visible = true;
+                    dropdown.Visible = false;
+                }
+                else
+                {
+                    createshop.Visible = false;
+                    dropdown.Visible = true;
+                }
+            }
+            
         }
 
         private void Page_Init(object sender, EventArgs e)

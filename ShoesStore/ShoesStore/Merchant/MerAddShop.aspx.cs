@@ -17,7 +17,7 @@ namespace ShoesStore.Merchant
         {
             if (!IsPostBack)
             {
-                phdPage.MerExpired();
+               
             }
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
@@ -41,6 +41,7 @@ namespace ShoesStore.Merchant
                 Phone = phone
             };
             MyLibrary.Shp_Bus.Insert(shp1);
+            Response.Redirect("MerHome.aspx");
         }
     }
 }
