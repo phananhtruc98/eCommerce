@@ -13,7 +13,9 @@ namespace ShoesStore.Merchant
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-             MyLibrary.ExposeProperty( () => new Usr().UsrName);
+             //MyLibrary.ExposeProperty( () => new Usr().UsrName);
+
+             
         }
     }
 }
