@@ -65,7 +65,7 @@ namespace ShoesStore
                                     IEnumerable<Pro> willSource = new List<Pro>();
                                     if (rptTable.SearchText != "")
                                         willSource = MyLibrary.Pro_BUS.GetAllActive()
-                                       .Where(m => m.ProName.ToLower().Contains(rptTable.SearchText.ToLower()));
+                                       .Where(m => (rptTable.ShpId == 0 || m.ShpId == rptTable.ShpId) && m.ProName.ToLower().Contains(rptTable.SearchText.ToLower()));
                                     else
                                         willSource = MyLibrary.Pro_BUS.GetAllActive()
                                        .Where(m => m.ProName.ToLower().Contains(rptTable.SearchText.ToLower()) ||

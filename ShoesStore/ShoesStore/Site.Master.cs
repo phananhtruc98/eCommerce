@@ -34,6 +34,11 @@ namespace ShoesStore
         protected void Page_Load(object sender, EventArgs e)
 
         {
+            foreach (var x in MyLibrary.GetProperties(new Usr())) 
+            {
+                var key = x.Key;
+                var val = x.Value;
+            }
             //ZaloMessager.Send("Hello");
         }
 

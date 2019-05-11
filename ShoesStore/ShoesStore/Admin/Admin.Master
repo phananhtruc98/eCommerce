@@ -38,7 +38,7 @@
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row nav_custom">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-                    <a class="navbar-brand brand-logo" href="<%= ResolveUrl("~/Admin/Default.aspx") %>">
+                    <a class="navbar-brand brand-logo" href="/quan-tri">
                         <a href="/" class="logo_name">
                             <img src="/Admin/images/logo.png" width="100" /></a>
                     </a>
@@ -112,7 +112,7 @@
                             </div>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="<%= ResolveUrl("~/Admin/Default.aspx") %>">
+                            <a class="nav-link" href="#">
                                 <i class="menu-icon mdi mdi-television"></i>
                                 <span class="menu-title">Tổng quan</span>
                             </a>
