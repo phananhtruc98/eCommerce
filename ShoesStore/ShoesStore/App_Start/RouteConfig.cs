@@ -27,7 +27,10 @@ namespace ShoesStore
             routes.MapPageRoute("ManagerService", "quan-tri/goi-thuong-nien", "~/Admin/ManageService.aspx");
             routes.MapPageRoute("LoginMstr", "quan-tri/dang-nhap", "~/Admin/Login_Mstr.aspx");
             routes.MapPageRoute("AccountMstr", "quan-tri/thong-tin-ca-nhan", "~/Admin/Account_Mstr.aspx");
-            routes.MapPageRoute("CusHome", "nguoi-dung", "~/Customer/CusHome.aspx");
+            routes.MapPageRoute("Overview_Profit_W", "quan-tri/thong-ke-loi-nhuan-W", "~/Admin/Overview_Profit_W.aspx");
+            routes.MapPageRoute("Overview_RcptSuccess", "quan-tri/thong-ke-don-hang-mua-sp-thanh-cong", "~/Admin/Overview.aspx");
+            routes.MapPageRoute("Create_RcptSub", "quan-tri/mua-goi-thuong-nien", "~/Admin/CreateNewRcptSub.aspx");
+            
             //
             routes.MapPageRoute("Mer_About", "thong-tin", "~/Merchant/About.aspx");
             routes.MapPageRoute("Mer_CheckOut", "nguoi-ban/dang-ky-sub/thanh-toan", "~/Merchant/CheckOut.aspx");
@@ -50,6 +53,7 @@ namespace ShoesStore
             //
             //routes.MapPageRoute("Shp_Home", "/{ShpName}", "~/Merchant/MerShop.aspx");
             //
+            routes.MapPageRoute("CusHome", "nguoi-dung", "~/Customer/CusHome.aspx");
             routes.MapPageRoute("Cushome_Profile", "nguoi-dung/tai-khoan", "~/Customer/CusHome.aspx");
             routes.MapPageRoute("Cushome_ChangePassword", "nguoi-dung/tai-khoan/mat-khau", "~/Customer/CusHome_ChangePassword.aspx");
             routes.MapPageRoute("Cushome_Comment", "nguoi-dung/tai-khoan/nhan-xet", "~/Customer/CusHome_Cmt.aspx");
