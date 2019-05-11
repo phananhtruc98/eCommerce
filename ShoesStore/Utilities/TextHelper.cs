@@ -12,6 +12,24 @@ namespace Utilities
 {
     public class TextHelper
     {
+        public static string FindPhoneNumberVietNamFromText(string inputText)
+        {
+            var exp = new Regex(@"0(1\d{9}|9\d{8})", RegexOptions.IgnoreCase);
+
+            var text = inputText.Replace(".", "").Replace(" ", "");
+
+            var matchList = exp.Matches(text).Cast<Match>()
+              .Select(m => m.Groups[0].Value)
+              .ToArray();
+            if (matchList.Length > 0)
+            {
+                return matchList[0];
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
         public static string RandomString(int length)
         {
             Random random = new Random();
