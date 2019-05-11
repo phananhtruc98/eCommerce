@@ -72,5 +72,11 @@ namespace ShoesStore.Admin
                 Server.Transfer("/Admin/Usr_Det.aspx?UsrId=" + UsrId);
             }
         }
+
+        protected void lvMer_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            BindGridViewData();
+        }
     }
 }

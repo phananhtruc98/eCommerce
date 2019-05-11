@@ -19,7 +19,7 @@ namespace ShoesStore.Admin
                 var loginUsr = _usr.LoginAdmin(login_login.Value, login_pwd.Value);
                 if (loginUsr == null) return;
                 AdminSession.LoginAdmin = loginUsr;
-                Response.Redirect("~/quan-tri");
+                Response.Redirect("~/quan-tri/");
             }
             catch (Exception exception)
             {

@@ -40,6 +40,15 @@ namespace ShoesStore.Admin {
         protected global::System.Web.UI.WebControls.ListView lvMaster;
         
         /// <summary>
+        /// DataPager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataPager DataPager1;
+        
+        /// <summary>
         /// gvMstrRole control.
         /// </summary>
         /// <remarks>

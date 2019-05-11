@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoesStore.DataAccessLogicLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,12 +15,12 @@ namespace ShoesStore.Admin
             int UsrId = int.Parse(Request.QueryString["UsrId"]);
             if (!IsPostBack)
             {
-                LoadInfo();
+                LoadInfo(UsrId);
             }
         }
-        public void LoadInfo()
+        public void LoadInfo(int UsrId)
         {
-            var rs = MyLibrary.Usr_BUS.GetAll().FirstOrDefault();
+            var rs = MyLibrary.Usr_BUS.GetAll().Where(x=>x.UsrId==UsrId).FirstOrDefault();
             lbUsrId.Text = rs.UsrId.ToString();
             lbUsrName.Text = rs.UsrName;
             lbPhone.Text = rs.Phone;
@@ -29,18 +30,21 @@ namespace ShoesStore.Admin
 
             if (MyLibrary.Cus_BUS.GetAll().Select(x => x.CusId).Contains(rs.UsrId))
             {
+                Cus cus = MyLibrary.Cus_BUS.GetAll().Where(x => x.CusId == UsrId).FirstOrDefault();
                 lbUsrType.Text = "Người mua";
-                avatar.Attributes["src"] = MyLibrary.CusImgPath(rs);
+                avatar.Attributes["src"] = MyLibrary.CusImgPath(cus);
             }
             else if (MyLibrary.Mer_BUS.GetAll().Select(x => x.MerId).Contains(rs.UsrId))
             {
+                Mer mer = MyLibrary.Mer_BUS.GetAll().Where(x => x.MerId == UsrId).FirstOrDefault();
                 lbUsrType.Text = "Người bán";
-                avatar.Attributes["src"] = MyLibrary.MerImgPath(rs);
+                avatar.Attributes["src"] = MyLibrary.MerImgPath(mer);
             }
             else
             {
+                Mstr mstr = MyLibrary.Mstr_BUS.GetAll().Where(x => x.MstrId == UsrId).FirstOrDefault();
                 lbUsrType.Text = "Quản trị viên";
-                avatar.Attributes["src"] = MyLibrary.AdminImgPath(rs);
+                avatar.Attributes["src"] = MyLibrary.AdminImgPath(mstr);
             }
         }
     }

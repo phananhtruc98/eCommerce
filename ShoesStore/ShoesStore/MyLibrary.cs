@@ -52,6 +52,7 @@ namespace ShoesStore
         ///     Return <c>WebSlide_BUS</c>
         /// </summary>
         public static WebSlide_BUS WebSlide_BUS => new WebSlide_BUS();
+        public static Mstr_BUS Mstr_BUS => new Mstr_BUS();
 
         public static Sub_BUS Sub_BUS => new Sub_BUS();
         public static Pro_BUS Pro_BUS => new Pro_BUS();
@@ -78,7 +79,7 @@ namespace ShoesStore
         {
             var mer = (Mer)iMer;
             if (string.IsNullOrEmpty(mer.Usr.Avatar))
-                return Path.Combine(usrPath, "default.jpg");
+                return Path.Combine(merPath, "default.jpg");
             return Path.Combine(merPath, mer.MerId.ToString(), mer.Usr.Avatar);
         }
         public static int[] GetAllowCommentStepIds()

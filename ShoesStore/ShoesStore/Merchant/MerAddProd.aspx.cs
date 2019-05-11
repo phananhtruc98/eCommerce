@@ -138,8 +138,8 @@ namespace ShoesStore.Merchant
                 txtKl.Text = txtCl.Text + "(" + txtSl.Text + ")";
 
                 var rs = (from sc in sizeColors
-                         where sc.Size.SizeName == txtSz.Text && sc.Color.ColorName == txtCl.Text
-                         select sc).FirstOrDefault();
+                          where sc.Size.SizeName == txtSz.Text && sc.Color.ColorName == txtCl.Text
+                          select sc).FirstOrDefault();
                 rs.Qty = Int32.Parse(txtSl.Text);
             }
             else if (e.CommandName == "Del")
@@ -206,11 +206,12 @@ namespace ShoesStore.Merchant
 
         protected void lbtnChon_Click(object sender, EventArgs e)
         {
-            if (ddlColorSelected.Text == "" || ddlSizeSelected.Text=="")
+            if (ddlColorSelected.Text == "" || ddlSizeSelected.Text == "")
             {
                 MyLibrary.Show("Chưa chọn màu hoặc kích cỡ");
                 return;
             }
+
             SizeColor sizeColor = new SizeColor();
             ProSize size = MyLibrary.ProSize_BUS.GetById(Int32.Parse(ddlSizeSelected.SelectedValue));
             ProColor color = MyLibrary.ProColor_BUS.GetById(Int32.Parse(ddlColorSelected.SelectedValue));
@@ -226,25 +227,29 @@ namespace ShoesStore.Merchant
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            lbError.Text = "";
+            if (!fulImgChinh.HasFile || !fulImgPhu.HasFile || ddlColorSelected.SelectedItem == null || ddlSizeSelected.SelectedItem == null || sizeColors.Count == 0)
+            {
+                if (!fulImgChinh.HasFile) lbError.Text = "Chưa chọn ảnh chính<br />";
+                if (!fulImgPhu.HasFile) lbError.Text = lbError.Text + "Chưa có ảnh phụ<br />";
+                if (ddlColorSelected.SelectedItem == null) lbError.Text = lbError.Text + "Chưa chọn màu<br />";
+                if (ddlSizeSelected.SelectedItem == null) lbError.Text = lbError.Text + "Chưa chọn kích cỡ<br />";
+                if (sizeColors.Count == 0) lbError.Text = lbError.Text + "Chưa thêm màu và kích cỡ<br />";
+                if (lbError.Text != "") editor1.Text = "";
+                return;
+            }
             var mer = (Mer)MerchantSession.LoginMerchant;
             var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
             int ShpId = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == usr1.UsrId).Select(x => x.ShpId).FirstOrDefault();
+
             int catId = Int32.Parse(DropDownListCat.SelectedValue.ToString());
             int brandId = int.Parse(DropDownListBrand.SelectedValue.ToString());
             string proName = inputProName.Text;
             string desc = editor1.Text;
             string descShort = inputDescShort.Text;
             string price = inputPrice.Text;
-            string Img = "";
-            if (fulImgChinh.HasFile)
-            {
-                Img = fulImgChinh.FileName;
-            }
-            if(ShpId == 0 )
-            {
-                MyLibrary.Show("Chưa có thông tin cửa hàng");
-                return;
-            }
+
+
             var pro1 = new Pro
             {
                 ShpId = ShpId,
@@ -259,10 +264,10 @@ namespace ShoesStore.Merchant
                 IsOutOfStock = true,
                 Active = false,
                 PriceAfter = null,
-                Img = Img
+                Img = fulImgChinh.FileName
             };
             MyLibrary.Pro_BUS.Insert(pro1);
-            
+
             foreach (SizeColor item in sizeColors)
             {
                 ProDet proDet = new ProDet
