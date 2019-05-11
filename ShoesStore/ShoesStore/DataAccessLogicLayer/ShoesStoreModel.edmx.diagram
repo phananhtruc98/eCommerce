@@ -4,15 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="81202e85a36948b7b1f1d9f1078ce5f5" Name="Diagram1">
-        <EntityTypeShape EntityType="ShoesStoreModel.Adv" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="dc8803adde154b6aa10df38130e36cbb" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="ShoesStoreModel.Adv" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Cart" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.CartDet" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Chat" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.ChatBox" Width="1.5" PointX="7.5" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Config" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Config" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Country" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Coupon" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Cus" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.District" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Log" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.LogType" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Mer" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Mstr" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.MstrDet" Width="1.5" PointX="8.25" PointY="23" IsExpanded="true" />
@@ -25,6 +29,7 @@
         <EntityTypeShape EntityType="ShoesStoreModel.ProSize" Width="1.5" PointX="13.5" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.ProSlide" Width="1.5" PointX="12.75" PointY="21.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.ProSlideImg" Width="1.5" PointX="12.75" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Province" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Rcpt" Width="1.5" PointX="3" PointY="21.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.RcptBuy" Width="1.5" PointX="7.5" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.RcptBuyDet" Width="1.5" PointX="12.75" PointY="16.75" IsExpanded="true" />
@@ -35,18 +40,23 @@
         <EntityTypeShape EntityType="ShoesStoreModel.RcptSubDet" Width="1.5" PointX="10.5" PointY="23.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Shp" Width="1.5" PointX="5.25" PointY="18.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.Sub" Width="1.5" PointX="8.25" PointY="39.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.Usr" Width="1.5" PointX="0.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Usr" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShoesStoreModel.UsrAct" Width="1.5" PointX="3" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.WebInfo" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShoesStoreModel.WebSlide" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.Ward" Width="1.5" PointX="7.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.WebInfo" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoesStoreModel.WebSlide" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="ShoesStoreModel.FK_UsersCustomersCarts_UsersCustomers" ManuallyRouted="false" />
         <AssociationConnector Association="ShoesStoreModel.FK_UsersCustomersCartsDetails_UsersCustomersCarts" ManuallyRouted="false" />
         <AssociationConnector Association="ShoesStoreModel.FK_CartDet_ProDet" ManuallyRouted="false" />
         <AssociationConnector Association="ShoesStoreModel.FK_Chat_ChatBox" ManuallyRouted="false" />
         <AssociationConnector Association="ShoesStoreModel.FK_ChatBox_Cus" ManuallyRouted="false" />
         <AssociationConnector Association="ShoesStoreModel.FK_ChatBox_Shp" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesStoreModel.FK_Province_Country" ManuallyRouted="false" />
         <AssociationConnector Association="ShoesStoreModel.FK_Cus_Usr" ManuallyRouted="false" />
         <AssociationConnector Association="ShoesStoreModel.FK_RcptBuy_Cus" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesStoreModel.FK_District_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesStoreModel.FK_Ward_District" ManuallyRouted="false" />
+        <AssociationConnector Association="ShoesStoreModel.FK_Log_LogType" ManuallyRouted="false" />
         <AssociationConnector Association="ShoesStoreModel.FK_Mer_Usr" ManuallyRouted="false" />
         <AssociationConnector Association="ShoesStoreModel.FK_RcptSub_Mer" ManuallyRouted="false" />
         <AssociationConnector Association="ShoesStoreModel.FK_Shp_Mer" ManuallyRouted="false" />
