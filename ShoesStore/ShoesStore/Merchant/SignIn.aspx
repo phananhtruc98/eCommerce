@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css" />
 <link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.base.css" />
 <link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.addons.css" />
-<link rel="stylesheet" href="/Admin/css/logincss.css" />
+<%--<link rel="stylesheet" href="/Admin/css/logincss.css" />--%>
 
 <head runat="server">
     <meta charset="utf-8" />
@@ -25,9 +25,9 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     
     <script src="/js/cusHome_RcptSuccess.js"></script>
-    <link rel="stylesheet" href="/Admin/css/logincss.css" />
+    <%--<link rel="stylesheet" href="/Admin/css/logincss.css" />--%>
 </head>
-<body class="bodyhihi">
+<body style="background-image:url(https://wallpaperaccess.com/full/680128.jpg);background-repeat: no-repeat;background-size: cover;" class="bodyhihi">
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -123,25 +123,38 @@
         </div>
 
         <!--Đăng Nhập-->
-        <div style="margin-top: -200px;" class="login">
-            <h1 class="fc-center">
-                <img src="/Admin/images/logo.png" width="200" />
-            </h1>
-            <input type="text" name="u" placeholder="Tên đăng nhập"  id="login_login" runat="server" />
-            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginUsername" runat="server" ErrorMessage="Chưa nhập tài khoản!" ControlToValidate="login_login" ValidationGroup="Login" ForeColor="Red">
-            </asp:RequiredFieldValidator>
-            <input type="password" name="p" placeholder="Mật khẩu"  id="login_pwd" runat="server" />
-            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginPassword" runat="server" ErrorMessage="Chưa nhập mật khẩu!" ControlToValidate="login_pwd" ValidationGroup="Login" ForeColor="Red">
-            </asp:RequiredFieldValidator>
-
-            <asp:Button runat="server" Width="300px" class="btn btn-primary btn-block btn-large" ValidationGroup="Login" Text="Đăng nhập" ID="btnLogin" OnClick="btnLogin_Click" />
-
-            <div style="width: 280px" class="btn btn-primary btn-block btn-large" id="usr_register" runat="server">
-                <a href="#" data-toggle="modal" class="link_class" data-target="#DangKy">Đăng ký</a>
+        <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content  p-4 m-5 ">
+                    <asp:UpdatePanel runat="server" ID="udp_Login">
+                        <ContentTemplate>
+                            <div class="modal-header">
+                                <h3>Đăng nhập</h3>
+                                
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <a href="#" class="float-right" data-dismiss="modal" data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
+                                    <label for="login_login">Tài khoản</label>
+                                    <input type="text" class="form-control form-control-lg" id="login_login" runat="server" />
+                                    <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginUsername" runat="server" ErrorMessage="Chưa nhập tài khoản!" ControlToValidate="login_login" ValidationGroup="Login" ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                                </div>
+                                <div class="form-group">
+                                    <label for="login_pwd">Mật khẩu</label>
+                                    <input type="password" class="form-control form-control-lg" id="login_pwd" runat="server" />
+                                    <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginPassword" runat="server" ErrorMessage="Chưa nhập mật khẩu!" ControlToValidate="login_pwd" ValidationGroup="Login" ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                                    
+                                </div>
+                                <div class="form-group py-4">
+                                    
+                                    <asp:Button runat="server" ID="btnLogin" Text="Đăng nhập" ValidationGroup="Login" CssClass="btn btn-primary btn-lg float-right custom_font" OnClick="btnLogin_Click" />
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
             </div>
-
-
-        </div>
         <!--Đăng Nhập/END-->
 
     </form>
