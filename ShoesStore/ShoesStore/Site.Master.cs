@@ -4,6 +4,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces.Pages;
+using ShoesStore.Zalo;
 using Utilities;
 using Convert = System.Convert;
 namespace ShoesStore
@@ -33,6 +34,7 @@ namespace ShoesStore
         protected void Page_Load(object sender, EventArgs e)
 
         {
+            //ZaloMessager.Send("Hello");
         }
 
         private void Page_Init(object sender, EventArgs e)
