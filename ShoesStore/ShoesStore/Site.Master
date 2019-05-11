@@ -15,11 +15,10 @@
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <script src="jquery.min.js" type="text/javascript"></script>
+    <script src="/vendor/jquery-3.3.1/jquery.min.js" type="text/javascript"></script>
     <script src="/js/cusHome_RcptSuccess.js"></script>
     <script src="/js/customscript.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="phdHeader" runat="server">
-        
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -58,29 +57,34 @@
         <div id="DangNhap" class="modal">
             <div class="modal-dialog modal-dialog-centered ">
                 <div class="modal-content  p-4 m-5 ">
-                    <div class="modal-header">
-                        <h3>Đăng nhập</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <a href="#" class="float-right" data-dismiss="modal" data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
-                            <label for="login_login">Tài khoản</label>
-                            <input type="text" class="form-control form-control-lg" id="login_login" runat="server" />
-                            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginUsername" runat="server" ErrorMessage="Chưa nhập tài khoản!" ControlToValidate="login_login" ValidationGroup="Login" ForeColor="Red">
-                            </asp:RequiredFieldValidator>
-                        </div>
-                        <div class="form-group">
-                            <label for="login_pwd">Mật khẩu</label>
-                            <input type="password" class="form-control form-control-lg" id="login_pwd" runat="server" />
-                            <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginPassword" runat="server" ErrorMessage="Chưa nhập mật khẩu!" ControlToValidate="login_pwd" ValidationGroup="Login" ForeColor="Red">
-                            </asp:RequiredFieldValidator>
-                        </div>
-                        <div class="form-group py-4">
-                            <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
-                            <asp:Button runat="server" ID="btnLogin" Text="Đăng nhập" ValidationGroup="Login" CssClass="btn btn-primary btn-lg float-right custom_font" OnClick="btnLogin_Click" />
-                        </div>
-                    </div>
+                    <asp:UpdatePanel runat="server" ID="udp_Login">
+                        <ContentTemplate>
+                            <div class="modal-header">
+                                <h3>Đăng nhập</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <a href="#" class="float-right" data-dismiss="modal" data-toggle="modal" data-target="#DangKy">Bạn chưa có tài khoản?</a>
+                                    <label for="login_login">Tài khoản</label>
+                                    <input type="text" class="form-control form-control-lg" id="login_login" runat="server" />
+                                    <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginUsername" runat="server" ErrorMessage="Chưa nhập tài khoản!" ControlToValidate="login_login" ValidationGroup="Login" ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                                </div>
+                                <div class="form-group">
+                                    <label for="login_pwd">Mật khẩu</label>
+                                    <input type="password" class="form-control form-control-lg" id="login_pwd" runat="server" />
+                                    <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredLoginPassword" runat="server" ErrorMessage="Chưa nhập mật khẩu!" ControlToValidate="login_pwd" ValidationGroup="Login" ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                                    <a href="#" class="float-right" data-dismiss="modal" data-toggle="modal" data-target="#QuenMatKhau">Quên mật khẩu ?</a>
+                                </div>
+                                <div class="form-group py-4">
+                                    <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button>
+                                    <asp:Button runat="server" ID="btnLogin" Text="Đăng nhập" ValidationGroup="Login" CssClass="btn btn-primary btn-lg float-right custom_font" OnClick="btnLogin_Click" />
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
         </div>
@@ -155,6 +159,35 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+         <div id="QuenMatKhau" class="modal">
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <div class="modal-dialog modal-dialog-centered ">
+                        <div class="modal-content  p-4 m-5 ">
+                            <div class="modal-header">
+                                <h3>Khôi phục mật khẩu</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <a href="#" data-dismiss="modal" class="float-right" data-toggle="modal" data-target="#DangNhap">Đăng nhập</a>
+                                    <label for="RecoveryEmail">Email</label>
+                                    <input type="text" class="form-control form-control-lg" name="emailRecovery" id="RecoveryEmail" runat="server" />
+                                    <div class="mt-1">
+                                        <asp:Button type="button" ID="btnRecovery" class="btn btn-primary" Text="Gửi mã xác minh" runat="server" OnClick="btnRecovery_Click" />
+                                    </div>
+                                    <asp:RequiredFieldValidator Display="Dynamic" ID="RfvRecovery" runat="server" ErrorMessage="Chưa nhập Email!" ControlToValidate="RecoveryEmail" ValidationGroup="Register" ForeColor="Red">
+                                    </asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RevRecovery" runat="server" ErrorMessage="Email không đúng!" ControlToValidate="RecoveryEmail" ForeColor="Red" ValidationGroup="Register" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+                                    </asp:RegularExpressionValidator>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
         <div class="site">
             <header class="site__header d-lg-block d-none">
                 <div class="site-header">
@@ -219,7 +252,8 @@
                             <div class="nav-panel__container container">
                                 <div class="nav-panel__row">
                                     <div class="nav-panel__logo">
-                                        <a href="/" class="logo_name"><img src="/Admin/images/logo.png" width="100" /></a>
+                                        <a href="/" class="logo_name">
+                                            <img src="/Admin/images/logo.png" width="100" /></a>
                                     </div>
                                     <!-- .nav-links -->
                                     <div class="nav-panel__nav-links nav-links">

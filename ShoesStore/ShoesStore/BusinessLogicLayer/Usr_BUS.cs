@@ -19,7 +19,10 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return _dao.Login(login, EncryptHelper.Encrypt(pwd));
         }
-
+        public Usr GetBy(string email)
+        {
+            return _dao.GetBy("Email", email);
+        }
         public void Register(Usr obj)
         {
             throw new NotImplementedException();

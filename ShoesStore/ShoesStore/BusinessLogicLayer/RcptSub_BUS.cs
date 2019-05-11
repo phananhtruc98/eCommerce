@@ -32,7 +32,7 @@ namespace ShoesStore.BusinessLogicLayer
         public string SumDayRcptSub(Rcpt Rcpt, int MerId)
         {
             double Ngay = 0;
-            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(x => x.RcptSubId == Rcpt.RcptId && x.MerId==MerId).FirstOrDefault();
+            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(x => x.RcptSubId == Rcpt.RcptId && x.MerId == MerId).FirstOrDefault();
             var rcptSubDetLst = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == rcptSub.RcptSubId).ToList();
             foreach (RcptSubDet item in rcptSubDetLst)
             {
@@ -53,6 +53,10 @@ namespace ShoesStore.BusinessLogicLayer
                 Tien = Tien + tongTien;
             }
             return Tien.ToString();
+        }
+        public double SumAll()
+        {
+            return GetAll().Sum(m => m.RcptSubDet.Sum(n => double.Parse(n.Sub.Price)));
         }
     }
 }

@@ -18,10 +18,8 @@
     <AssemblyName>ShoesStore</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>
-    </Use64BitIISExpress>
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <Use64BitIISExpress>false</Use64BitIISExpress>
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>
     </IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>
@@ -67,6 +65,9 @@
     </Reference>
     <Reference Include="Flurl, Version=2.8.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Flurl.2.8.1\lib\net40\Flurl.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
@@ -2432,6 +2433,7 @@
     <Content Include="Content\themes\base\base.css" />
     <Content Include="Content\themes\base\button.css" />
     <Content Include="Content\themes\base\core.css" />
+    <Content Include="Scripts\datepicker-vi.js" />
     <Content Include="Content\themes\base\datepicker.css" />
     <Content Include="Content\themes\base\dialog.css" />
     <Content Include="Content\themes\base\draggable.css" />
@@ -3426,6 +3428,12 @@
     <Compile Include="DataAccessLogicLayer\Cus.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\Log.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\LogType.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\Mer.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
@@ -3664,6 +3672,7 @@
     </Compile>
     <Compile Include="Interfaces\Pages\IMaster.cs" />
     <Compile Include="Interfaces\Pages\IValidation.cs" />
+    <Compile Include="LogHelper.cs" />
     <Compile Include="Merchant\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3946,7 +3955,6 @@
       <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

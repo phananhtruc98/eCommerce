@@ -394,7 +394,12 @@ namespace ShoesStore
             if (page != null && !page.ClientScript.IsClientScriptBlockRegistered("alert"))
                 page.ClientScript.RegisterClientScriptBlock(page.GetType(), "alert", script, true /* addScriptTags */);
         }
-
+        public static void ShowInUploadPannel(string message)
+        {
+            string TransferPage = $"<script>alert('{message}')</script>";
+            Page currentPage = HttpContext.Current.Handler as Page;
+            ScriptManager.RegisterStartupScript(currentPage, currentPage.GetType(), "temp", TransferPage, false);
+        }
         public static string ShpUrl(Shp obj)
         {
             return HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + $"/{TextHelper.UrlFriendly(obj.ShpName)}";

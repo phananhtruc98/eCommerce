@@ -20,7 +20,7 @@ namespace Utilities
             }
         }
 
-        public static string SendGmail(string fromMail, string passFromMail, string mailTo, string subject, string body)
+        public static string SendGmail(string mailTo, string subject, string body, string fromMail = "nomad1234vn@gmail.com", string passFromMail = "ma8635047")
         {
             var msg = "";
             try
@@ -37,9 +37,9 @@ namespace Utilities
                 {
                     Port = 587,
                     Host = "smtp.gmail.com",
-//danh cho gmail
+                    //danh cho gmail
                     UseDefaultCredentials = false,
-//...........
+                    //...........
                     Credentials = new NetworkCredential(fromMail, passFromMail),
                     EnableSsl = true
                 };

@@ -6,11 +6,14 @@ using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces.Pages;
 using Utilities;
 using Convert = System.Convert;
-
 namespace ShoesStore
 {
     public partial class SiteMaster : MasterPage, IMaster
     {
+        //private static readonly log4net.ILog log =
+        //   log4net.LogManager.GetLogger(
+        //            System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly log4net.ILog log = LogHelper.GetLogger();
         private static string _actCode = "";
 
         public bool IsValidLogin()
@@ -21,15 +24,15 @@ namespace ShoesStore
         public bool IsValidRegister()
         {
             if (!Email.IsValidEmail(email.Value)) return false;
-//if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
+            //if (TextHelper.IsSpecialCharacters(this.username.Value)) return false;
             if (TextHelper.IsSpecialCharacters(login.Value)) return false;
             if (active_code.Value != _actCode) return false;
             return password.Value == re_password.Value;
         }
 
         protected void Page_Load(object sender, EventArgs e)
+
         {
-            
         }
 
         private void Page_Init(object sender, EventArgs e)
@@ -75,7 +78,10 @@ namespace ShoesStore
             try
             {
                 var loginUsr = MyLibrary.Usr_BUS.Login(login_login.Value, login_pwd.Value);
-                if (loginUsr == null) return;
+                if (loginUsr == null)
+                {
+                    MyLibrary.ShowInUploadPannel("Tài khoản hoặc mật khẩu không đúng !"); return;
+                }
                 WebSession.LoginUsr = loginUsr;
                 Response.Redirect(Request.RawUrl);
             }
@@ -105,7 +111,7 @@ namespace ShoesStore
             }
 
             MyLibrary.Usr_BUS.Insert(usr);
-            MyLibrary.Cus_BUS.Insert(new Cus {CusId = usr.UsrId});
+            MyLibrary.Cus_BUS.Insert(new Cus { CusId = usr.UsrId });
             MyLibrary.Usr_BUS.CreateActCode(usr);
             Response.Redirect(Request.RawUrl);
         }
@@ -128,7 +134,7 @@ namespace ShoesStore
             if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
             {
                 _actCode = TextHelper.RandomNumber(4);
-                Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
+                Email.SendGmail(email.Value, "Mã kích hoạt đăng ký",
                     $"Mã kích hoạt của bạn là {_actCode}");
                 Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
             }
@@ -158,6 +164,30 @@ namespace ShoesStore
             if (args.Value != _actCode)
                 args.IsValid = false;
             else args.IsValid = true;
+        }
+
+        protected void btnRecovery_Click(object sender, EventArgs e)
+        {
+            RfvRecovery.Validate();
+            RevRecovery.Validate();
+            if (RevRecovery.IsValid && RfvRecovery.IsValid)
+            {
+                string recoveryPassword = TextHelper.RandomString(8);
+                Usr usr = MyLibrary.Usr_BUS.GetBy(RecoveryEmail.Value);
+                if (usr == null) { MyLibrary.ShowInUploadPannel("Email không tồn tại trong cơ sở dữ liệu"); return; } //can be return
+
+                usr.PasswordForget = EncryptHelper.Encrypt(recoveryPassword);
+                MyLibrary.Usr_BUS.Update(usr);
+                Email.SendGmail(RecoveryEmail.Value, "Mã khôi phục mật khẩu",
+                    $"Mã khôi phục của bạn là {recoveryPassword}");
+                MyLibrary.ShowInUploadPannel($"Đã gửi mã khôi phục đến {RecoveryEmail.Value}");
+
+
+                log4net.LogicalThreadContext.Properties["LogTypeId"] = 1;
+                log.Info($"Usr {usr.UsrId} thực hiện khôi phục mật khẩu");
+
+            }
+
         }
     }
 }

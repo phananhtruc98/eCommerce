@@ -9,6 +9,7 @@ namespace ShoesStore.Customer
 {
     public partial class ThanhToan : Page
     {
+        private static readonly log4net.ILog log = LogHelper.GetLogger();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,8 +27,11 @@ namespace ShoesStore.Customer
 
                 rptCartDetCheckout.DataSource = MyLibrary.CartDet_BUS.ListCartPreview();
                 rptCartDetCheckout.DataBind();
+
+
             }
         }
+
 
         protected void btnOrder_OnClick(object sender, EventArgs e)
         {
@@ -64,7 +68,7 @@ namespace ShoesStore.Customer
                             MyLibrary.Show("Lỗi captcha !");
                             break;
 
-                            
+
 
                     }
                     return;
@@ -124,10 +128,13 @@ namespace ShoesStore.Customer
                         MyLibrary.RcptBuyDet_BUS.Insert(rcptBuyDet);
                         MyLibrary.CartDet_BUS.Delete(groupItem);
                     }
+                    log.Info($"Cus with id {WebSession.LoginCus.CusId} submit a RcptBuy with id {rcptBuy.RcptBuyId}");
                 }
             }
 
             Response.Redirect("/");
         }
+
+
     }
 }
