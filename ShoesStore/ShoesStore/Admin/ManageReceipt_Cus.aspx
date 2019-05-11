@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="row">
-            <asp:ListView runat="server" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" OnItemCommand="lvRcptBuy_ItemCommand" OnSelectedIndexChanged="lvRcptBuy_SelectedIndexChanged" ID="lvRcptBuy">
+            <asp:ListView runat="server" OnPagePropertiesChanging="lvRcptBuy_PagePropertiesChanging" AllowPaging="true" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" OnItemCommand="lvRcptBuy_ItemCommand" OnSelectedIndexChanged="lvRcptBuy_SelectedIndexChanged" ID="lvRcptBuy">
                 <LayoutTemplate>
                     <table class="table table-border">
                         <tr>
@@ -80,6 +80,16 @@
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
+            <asp:DataPager ID="DataPager1" runat="server" PageSize="5"
+                    PagedControlID="lvRcptBuy">
+                    <Fields>
+                        <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True"
+                            ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
+                        <asp:NumericPagerField />
+                        <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True"
+                            ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
+                    </Fields>
+                </asp:DataPager>
         </div>
     </div>
 
