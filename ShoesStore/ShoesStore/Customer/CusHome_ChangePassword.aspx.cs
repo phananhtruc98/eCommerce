@@ -30,7 +30,7 @@ namespace ShoesStore.Customer
             var rs1 = (from c in Master._usr.GetAll()
                 where c.UsrId == usr1.UsrId
                 select c).FirstOrDefault();
-            if (EncryptHelper.Encrypt(txtPassword.Text) == rs1.Password)
+            if (EncryptHelper.Encrypt(txtPassword.Text) == rs1.Password || EncryptHelper.Encrypt(txtPassword.Text)==rs1.PasswordForget)
             {
                 if (txtNewPassword.Text == txtRePassword.Text)
                 {

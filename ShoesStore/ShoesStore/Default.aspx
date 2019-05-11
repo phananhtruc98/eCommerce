@@ -136,11 +136,11 @@
         <div class="container">
             <div class="block-brands__slider">
                 <div class="owl-carousel">
-                    <asp:Repeater runat="server" ID="rptBrandLogos" OnInit="brandLogos_Init">
+                    <asp:Repeater runat="server" ID="rptBrandLogos" OnInit="brandLogos_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProBrand">
                         <ItemTemplate>
                             <div class="block-brands__item">
                                 <a href="#">
-                                    <img src="images/logos/<%# Eval("Img") %>" alt="">
+                                    <img src="images/logos/<%# Item.Img %>" alt="">
                                 </a>
                             </div>
                         </ItemTemplate>
