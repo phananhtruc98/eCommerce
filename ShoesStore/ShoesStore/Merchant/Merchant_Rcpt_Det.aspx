@@ -62,15 +62,16 @@
                                 <ItemTemplate>
                                     <tr>
                                         <td>
-                                            <a href="#">
+                                            <a href="<%# MyLibrary.ProDetUrl(Item.ProDet.Pro) %>">
                                                 <img style="height: 200px; width: 200px;" src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                             </a>
                                         </td>
                                         <td><%# Item.ProDet.Pro.ProName %></td>
-                                        <td><%# Item.ProDet.ProColor.ColorName %></td>
+                                        <td><%# Item.ProDet.ProColor.ColorName %> <%# MyLibrary.FormatProdetColor(Item.ProDet) %>
+                                        </td>
                                         <td><%# Item.ProDet.ProSize.SizeName %></td>
                                         <td><%# Item.Quantity %></td>
-                                        <td><%# (Item.Quantity * int.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>
+                                        <td><%# (Item.Quantity * int.Parse(Item.PriceWhenBuy)).ToFormatMoney() %></td>
                                         <td>
                                             <asp:LinkButton runat="server" ID="lbtnDanhGia" Visible="false" Text="ĐÁNH GIÁ" PostBackUrl="<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>"></asp:LinkButton>
                                         </td>

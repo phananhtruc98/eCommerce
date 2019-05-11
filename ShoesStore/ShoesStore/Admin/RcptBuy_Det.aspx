@@ -67,7 +67,7 @@
                                             </a>
                                         </td>
                                         <td><%# Item.ProDet.Pro.ProName %></td>
-                                        <td><%# Item.ProDet.ProColor.ColorName %></td>
+                                        <td><%# Item.ProDet.ProColor.ColorName %> <div style="background-color: #<%# Item.ProDet.ProColor.HexCode %>; height: 32px; width: 32px; border: black solid 1px; display: inline-block; float: right" /></td>
                                         <td><%# Item.ProDet.ProSize.SizeName %></td>
                                         <td><%# Item.Quantity %></td>
                                         <td><%# (Item.Quantity * int.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>

@@ -50,7 +50,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public override bool IsExist(Usr obj)
         {
-            return GetAll().FirstOrDefault(m => m.Login == obj.Login || m.Email == obj.Email) == null ? false : true;
+                return GetAll().FirstOrDefault(m => m.Login == obj.Login || m.Email == obj.Email) == null ? false : true;
         }
 
         public override void SetActive(Usr obj)

@@ -98,6 +98,7 @@ namespace ShoesStore
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
             if (!IsValidRegister()) return;
+            if (!Page.IsValid) return;
             var usr = new Usr
             {
                 Email = email.Value,
@@ -116,7 +117,8 @@ namespace ShoesStore
             MyLibrary.Usr_BUS.Insert(usr);
             MyLibrary.Cus_BUS.Insert(new Cus { CusId = usr.UsrId });
             MyLibrary.Usr_BUS.CreateActCode(usr);
-            Response.Redirect(Request.RawUrl);
+            MyLibrary.ShowInUploadPannel("Bạn đã đăng kí người mua thành công !", Request.RawUrl);
+            
         }
 
         protected void lbtnLogout_Click(object sender, EventArgs e)

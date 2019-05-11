@@ -12,9 +12,17 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public override bool IsExist(CartDet obj)
         {
-            return GetAll().Any(m =>
+            try
+            {
+                return GetAll().Any(m =>
                 m.CartId == obj.CartId && m.ShpId == obj.ShpId && m.ProId == obj.ProId && m.ColorId == obj.ColorId &&
                 m.SizeId == obj.SizeId);
+            }
+            catch
+            {
+                return false;
+            }
+
         }
     }
 }

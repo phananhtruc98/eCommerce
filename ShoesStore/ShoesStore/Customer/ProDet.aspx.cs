@@ -141,6 +141,10 @@ namespace ShoesStore.Customer
         }
         public CartDet GetCartDet(ProDet proDet)
         {
+            try
+            {
+
+            
             return new CartDet()
             {
                 CartId = MyLibrary.Cart_BUS.GetMyCart().CartId,
@@ -150,7 +154,14 @@ namespace ShoesStore.Customer
                 SizeId = Convert.ToInt32(proDet.SizeId),
 
             };
+            }
 
+
+
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         //protected void rptProColor_ItemDataBound(object sender, RepeaterItemEventArgs e)

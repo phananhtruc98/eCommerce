@@ -394,6 +394,13 @@ namespace ShoesStore
             if (page != null && !page.ClientScript.IsClientScriptBlockRegistered("alert"))
                 page.ClientScript.RegisterClientScriptBlock(page.GetType(), "alert", script, true /* addScriptTags */);
         }
+        public static void ShowInUploadPannel(string message, string reUrl = "")
+        {
+            var cleanMessage = message.Replace("'", "\'");
+            string TransferPage = string.Format("<script>alert('{0}');{1}</script>", cleanMessage, reUrl != "" ? "window.location.href ='" + reUrl + "'" : "");
+            Page currentPage = HttpContext.Current.Handler as Page;
+            ScriptManager.RegisterStartupScript(currentPage, currentPage.GetType(), "temp2", TransferPage, false);
+        }
         public static void ShowInUploadPannel(string message)
         {
             string TransferPage = $"<script>alert('{message}')</script>";
@@ -417,6 +424,11 @@ namespace ShoesStore
             {
 
             }
+        }
+
+        public static string FormatProdetColor(ProDet proDet)
+        {
+            return $"<div style = 'background-color: #{proDet.ProColor.HexCode}; height: 32px; width: 32px; border: black solid 1px; display: inline-block; float: right' />'";
         }
     }
 }

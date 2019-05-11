@@ -211,6 +211,15 @@ namespace ShoesStore.Merchant
                         AddDate = DateTime.Now
                     };
 
+                    if (stepId == 2)
+                    {
+                        MyLibrary.RcptBuy_BUS.RenewProDetQty(rb,"decrease");
+                    }
+                    int[] increaseStep =  new int[]{8,9,10,11 };
+                    if (increaseStep.Contains(stepId))
+                    {
+                        MyLibrary.RcptBuy_BUS.RenewProDetQty(rb,"increase");
+                    }
                     MyLibrary.RcptBuyStaDet_BUS.Insert(rcptBuyStaDet);
                     rcptBuy.Update(result);
                 }
@@ -354,6 +363,6 @@ namespace ShoesStore.Merchant
             HiddenField hdf = (HiddenField)gvr.FindControl("StepId");
             hdf.Value = (string)drl.SelectedValue;
         }
-       
+
     }
 }
