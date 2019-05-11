@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
@@ -23,6 +24,14 @@ namespace ShoesStore.Merchant
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //HtmlGenericControl listItem = this.fooItem as HtmlGenericControl;
+            //var ctrl = this.Master.FindControl("fooItem");
+            //var mer = (Mer)MerchantSession.LoginMerchant;
+            //var Shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.ShpId == mer.MerId);
+            //if (Shp.ShpId == 0)
+            //{
+            //    ctrl.Visible = false;
+            //}
         }
 
         private void Page_Init(object sender, EventArgs e)
@@ -157,5 +166,7 @@ namespace ShoesStore.Merchant
             else args.IsValid = true;
         }
 
-    }
+        
+
+}
 }

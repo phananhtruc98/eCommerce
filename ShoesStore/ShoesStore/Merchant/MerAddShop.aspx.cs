@@ -23,46 +23,24 @@ namespace ShoesStore.Merchant
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
             var mer = (Mer)MerchantSession.LoginMerchant;
-            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            int ShpId = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == usr1.UsrId).Select(x => x.ShpId).FirstOrDefault();
-
-            //string proName = inputProName.Text;
             string desc = inputDesc.Text;
             string shpname = inputShpName.Text;
+            string address = inputAddr.Text;
+            string phone = inputNum.Text;
 
-            //if (ShpId == 0)
-            //{
-            //    MyLibrary.Show("Chưa có thông tin cửa hàng");
-            //    return;
-            //}
-            if (ShpId == usr1.UsrId)
+
+            var shp1 = new Shp
             {
-                MyLibrary.Show("Bạn đã có trang bán hàng rồi !");
-                return;
-            }
-            if (ShpId == 0)
-            {
-                var shp = new Shp
-                {
-                    ShpName = shpname,
-                    Desc = desc,
-                };
-                MyLibrary.Shp_Bus.Insert(shp);
-            }
-            //foreach (SizeColor item in sizeColors)
-            //{
-            //    ProDet proDet = new ProDet
-            //    {
-            //        ShpId = ShpId,
-            //        ProId = MyLibrary.Pro_BUS.GetMaxId(),
-            //        SizeId = item.Size.SizeId,
-            //        ColorId = item.Color.ColorId,
-            //        Qty = item.Qty
-            //    };
-            //    MyLibrary.ProDet_BUS.Insert(proDet);
-            //}
-            //MyLibrary.Show("Bài đăng của bạn sẽ được kiểm duyệt trong 24 giờ! :) ");
-            Response.Redirect(Request.Url.PathAndQuery, true);
+                ShpId = mer.MerId,
+                MerId = mer.MerId,
+                ShpName = shpname,
+                DateStart =  DateTime.Now,
+                Active = true,
+                Desc = desc,
+                Address = address,
+                Phone = phone
+            };
+            MyLibrary.Shp_Bus.Insert(shp1);
         }
     }
 }

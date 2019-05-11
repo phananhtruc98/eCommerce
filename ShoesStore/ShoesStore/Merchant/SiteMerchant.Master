@@ -47,10 +47,12 @@
         <!-- Dang Nhap modal-->
         <!-- Dang Nhap modal/end-->
         <div class="site">
+        
             <div class="mer-info">
                 <div class="text-left float-left">
                     Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1))<0?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>
                 </div>
+                                
                 <%--<div class="text-right float-right">
                     Tổng doanh thu: <%: MyLibrary.Shp_Bus.ShopMoney(MerchantSession.LoginMer.Shp.FirstOrDefault()) %>
                 </div>--%>
@@ -210,7 +212,7 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li class="widget-categories__item" data-collapse-item>
+                                        <li id="fooItem" class="widget-categories__item" data-collapse-item>
                                             <div class="widget-categories__row">
                                                 <a href="#">
                                                     <svg class="widget-categories__arrow" width="6px" height="9px">
@@ -243,6 +245,16 @@
 
 
                                                 </ul>
+                                            </div>
+                                        </li>
+                                        <li class="widget-categories__item" data-collapse-item>
+                                            <div class="widget-categories__row">
+                                                <a href="/Merchant/MerAddShop.aspx">
+                                                    <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                        <use href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                    </svg>
+                                                    Tạo Cửa Hàng
+                                                </a>
                                             </div>
                                         </li>
                                         <li class="widget-categories__item" data-collapse-item>
