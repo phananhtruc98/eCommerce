@@ -60,6 +60,7 @@ namespace ShoesStore
             routes.MapPageRoute("Cushome_Rcpt_Success", "nguoi-dung/theo-doi-don-hang", "~/Customer/CusHome_RcptSuccess.aspx");
             routes.MapPageRoute("Cushome_Rcpt_Det", "nguoi-dung/hoa-don/chi-tiet", "~/Customer/CusHome_Rcpt_Det.aspx");
             routes.MapPageRoute("Shp_Home", "{ShpName}", "~/Merchant/MerShop.aspx");
+            routes.MapPageRoute("Cus_PublicInfo", "thong-tin-nguoi-dung/{CusLogin}", "~/Customer/CusPublicInfo.aspx");
         }
     }
 }

@@ -4,9 +4,11 @@
 
 <%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
 <%@ Register Src="~/UserControls/UcProCarousel.ascx" TagPrefix="uc1" TagName="UcProCarousel" %>
+<%@ Register Src="~/UserControls/UcCusCmt.ascx" TagPrefix="uc1" TagName="UcCusCmt" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <!--Thông Tin Shop-->
-    <div>
+    
 
         <div class="tab-content py-4">
             <div class="tab-pane active" id="profile">
@@ -50,4 +52,6 @@
                 </div>
             </div>
         </div>
+    <uc1:UcCusCmt runat="server" ID="UcCusCmt" ObjCmt="CusCmt" />
+
 </asp:Content>

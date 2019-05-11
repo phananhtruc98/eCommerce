@@ -27,7 +27,7 @@ namespace ShoesStore
         public static string DrawStar(int star)
         {
             var sb = new StringBuilder();
-            sb.Append(" <div class='rating__body'>");
+            sb.Append(" <div class='rating__body' style='display:inline-block'>");
             for (var i = 1; i <= 5; i++)
             {
                 var hasStar = i <= star ? "rating__star--active" : "";

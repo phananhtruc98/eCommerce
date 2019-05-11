@@ -38,5 +38,14 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ShoesStore.UserControls.UcPro ucPro;
+        
+        /// <summary>
+        /// UcCusCmt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ShoesStore.UserControls.UcCusCmt UcCusCmt;
     }
 }

@@ -31,7 +31,7 @@ namespace ShoesStore.BusinessLogicLayer
         }
         public List<RcptBuyDet> GetAllBy(Pro iPro, Cus iCus)
         {
-            return GetAll().Where(m => m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt) && m.RcptBuy.CusId == iCus.CusId).ToList();
+            return GetAll().Where(m => m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && string.IsNullOrEmpty(m.Cmt) && m.RcptBuy.CusId == iCus.CusId).ToList();
         }
         public int GetCommentLeft(Pro iPro)
         {

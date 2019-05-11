@@ -12,7 +12,13 @@ namespace ShoesStore.Customer
 
         protected override void Page_Load(object sender, EventArgs e)
         {
-            LoadThongTin();
+            if (!IsPostBack)
+            {
+                LoadThongTin();
+                UcCusCmt.Cus = WebSession.LoginCus;
+                
+            }
+
         }
 
         public void LoadThongTin()

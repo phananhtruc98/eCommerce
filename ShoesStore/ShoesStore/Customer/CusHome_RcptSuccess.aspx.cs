@@ -151,7 +151,7 @@ namespace ShoesStore.Customer
             var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
             var rs1 = from r in rs
                 join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
-                where s.StepId == 3
+                where s.StepId == 4
                 select r;
             if (rs1.Count() != 0)
             {

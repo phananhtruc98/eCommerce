@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Policy;
 using System.Web.UI.WebControls;
 using Microsoft.Ajax.Utilities;
 using ShoesStore.DataAccessLogicLayer;
@@ -144,21 +145,21 @@ namespace ShoesStore.Customer
             try
             {
 
-            
-            return new CartDet()
-            {
-                CartId = MyLibrary.Cart_BUS.GetMyCart().CartId,
-                ShpId = proDet.ShpId,
-                ProId = proDet.ProId,
-                ColorId = Convert.ToInt32(proDet.ColorId),
-                SizeId = Convert.ToInt32(proDet.SizeId),
 
-            };
+                return new CartDet()
+                {
+                    CartId = MyLibrary.Cart_BUS.GetMyCart().CartId,
+                    ShpId = proDet.ShpId,
+                    ProId = proDet.ProId,
+                    ColorId = Convert.ToInt32(proDet.ColorId),
+                    SizeId = Convert.ToInt32(proDet.SizeId),
+
+                };
             }
 
 
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -212,6 +213,17 @@ namespace ShoesStore.Customer
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            var rcptBuyDetNotCommented = MyLibrary.RcptBuyDet_BUS.GetAllBy(ProDetView, WebSession.LoginCus).FirstOrDefault();
+            if (rcptBuyDetNotCommented != null)
+            {
+                rcptBuyDetNotCommented.Cmt = review_text.Text;
+                rcptBuyDetNotCommented.Point = int.Parse(review_stars.SelectedValue.Split(' ')[0]);
+                MyLibrary.RcptBuyDet_BUS.Update(rcptBuyDetNotCommented);
+                MyLibrary.Show("Đã gửi nhận xét",Request.RawUrl);
+            }
+
+
+
         }
 
         protected void rptProSize_Init(object sender, EventArgs e)

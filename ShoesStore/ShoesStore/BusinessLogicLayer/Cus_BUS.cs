@@ -99,5 +99,22 @@ namespace ShoesStore.BusinessLogicLayer
         {
             throw new NotImplementedException();
         }
+        public int AverageStar(Cus obj)
+        {
+            try
+            {
+
+
+                var doub = MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => m.RcptBuy.CusId == obj.CusId)
+                    .Where(m => m.RcptBuy.MerMessage != null)
+                    .Average(m => m.RcptBuy.MerPoint);
+                return doub == null ? 0 : Convert.ToInt32(doub);
+            }
+
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }

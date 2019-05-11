@@ -37,6 +37,7 @@ namespace ShoesStore.Merchant
                 CollectUrl();
                 // Từ ShpName lấy ra đối tượng Shp //Có hàm trong Shp_BUS
                 var ShpId = _shpView.ShpId;
+                UcCusCmt.Shp = MyLibrary.Shp_Bus.GetAll().First(m=>m.ShpId==ShpId);
 
                 ucPro.ShpId = ShpId;
                 ucPro.Reload();
