@@ -342,6 +342,8 @@
     <Content Include="Admin\ManageReceipt_Cus.aspx" />
     <Content Include="Admin\ManageReceipt_Mer.aspx" />
     <Content Include="Admin\ManageService.aspx" />
+    <Content Include="Admin\Overview_Profit_W.aspx" />
+    <Content Include="Admin\Overview_RcptSub.aspx" />
     <Content Include="Admin\RcptBuy_Det.aspx" />
     <Content Include="Admin\Overview.aspx" />
     <Content Include="Admin\pages\charts\chartjs.html" />
@@ -3261,6 +3263,20 @@
     </Compile>
     <Compile Include="Admin\ManageService.aspx.designer.cs">
       <DependentUpon>ManageService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Overview_Profit_W.aspx.cs">
+      <DependentUpon>Overview_Profit_W.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Overview_Profit_W.aspx.designer.cs">
+      <DependentUpon>Overview_Profit_W.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Overview_RcptSub.aspx.cs">
+      <DependentUpon>Overview_RcptSub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Overview_RcptSub.aspx.designer.cs">
+      <DependentUpon>Overview_RcptSub.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\RcptBuy_Det.aspx.cs">
       <DependentUpon>RcptBuy_Det.aspx</DependentUpon>
