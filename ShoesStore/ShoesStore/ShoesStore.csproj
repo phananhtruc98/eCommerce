@@ -18,8 +18,10 @@
     <AssemblyName>ShoesStore</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>false</Use64BitIISExpress>
-    <IISExpressSSLPort>44383</IISExpressSSLPort>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>
     </IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>
@@ -2438,6 +2440,16 @@
     <Content Include="Content\themes\base\core.css" />
     <Content Include="Customer\CallBack.aspx" />
     <Content Include="Customer\LoginFacebook.aspx" />
+    <Content Include="DataAccessLogicLayer\ShoesStoreModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
+      <LastGenOutput>ShoesStoreModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccessLogicLayer\ShoesStoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
+      <LastGenOutput>ShoesStoreModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\datepicker-vi.js" />
     <Content Include="Content\themes\base\datepicker.css" />
     <Content Include="Content\themes\base\dialog.css" />
@@ -2487,16 +2499,6 @@
     <Content Include="Customer\ProDet.aspx" />
     <Content Include="Customer\Pro.aspx" />
     <Content Include="Customer\Test.aspx" />
-    <Content Include="DataAccessLogicLayer\ShoesStoreModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
-      <LastGenOutput>ShoesStoreModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataAccessLogicLayer\ShoesStoreModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
-      <LastGenOutput>ShoesStoreModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Default.aspx" />
     <Content Include="Error\404.html" />
     <Content Include="Error\assets\avatars\avatar.png" />
@@ -3441,10 +3443,16 @@
     <Compile Include="DataAccessLogicLayer\Config.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLogicLayer\Country.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\Coupon.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Cus.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLogicLayer\District.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\Log.cs">
@@ -3497,6 +3505,9 @@
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\ProSlide_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\Province.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\Pro_DAO.cs" />
     <Compile Include="DataAccessLogicLayer\Rcpt.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
@@ -3623,6 +3634,9 @@
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLogicLayer\UsrAct_DAO.cs" />
+    <Compile Include="DataAccessLogicLayer\Ward.cs">
+      <DependentUpon>ShoesStoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessLogicLayer\WebInfo.cs">
       <DependentUpon>ShoesStoreModel.tt</DependentUpon>
     </Compile>
