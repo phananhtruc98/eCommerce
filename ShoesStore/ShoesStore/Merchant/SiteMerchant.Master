@@ -51,9 +51,9 @@
                 <div class="text-left float-left">
                     Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1))<0?"Hết hạn": MerchantSession.LoginMer.GetSubEndDate().ToString()%>
                 </div>
-                <div class="text-right float-right">
+                <%--<div class="text-right float-right">
                     Tổng doanh thu: <%: MyLibrary.Shp_Bus.ShopMoney(MerchantSession.LoginMer.Shp.FirstOrDefault()) %>
-                </div>
+                </div>--%>
             </div>
             <header class="site__header d-lg-block d-none">
                 <div class="site-header">

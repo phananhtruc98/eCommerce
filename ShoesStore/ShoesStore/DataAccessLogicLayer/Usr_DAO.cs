@@ -20,7 +20,6 @@ namespace ShoesStore.DataAccessLogicLayer
         {
             var v = GetAll();
             return GetAll().FirstOrDefault(m => m.Login == login && (m.Password == pwd || m.PasswordForget ==pwd));
-            return null;
         }
 
         public void Register(Usr obj)
