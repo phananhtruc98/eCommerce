@@ -209,11 +209,10 @@ namespace ShoesStore.Admin
             }
         }
 
-
+        // Chi tiết hóa đơn
         protected void lvRcptBuy_SelectedIndexChanged(object sender, EventArgs e)
         {
             var rcptBuyId = int.Parse((lvRcptBuy.FindControl("rcptbuyid") as Label).Text);
-            //BindGridViewgvRcptBuyDet(rcptBuyId);
             int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
             Server.Transfer("~/Merchant/Merchant_Rcpt_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
         }
@@ -227,7 +226,7 @@ namespace ShoesStore.Admin
 
         }
 
-
+        // Sắp xếp 
         protected void lbtnSort_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in lvRcptBuy.Items)
