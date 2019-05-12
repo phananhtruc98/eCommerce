@@ -69,13 +69,15 @@ namespace ShoesStore
                                     else
                                         willSource = MyLibrary.Pro_BUS.GetAllActive()
                                        .Where(m => (rptTable.ShpId == 0 || m.ShpId == rptTable.ShpId)
-                                       && (m.ProName.ToLower().Contains(rptTable.SearchText.ToLower()) ||
+                                       && (rptTable.SearchText!="" && m.ProName.ToLower().Contains(rptTable.SearchText.ToLower()) ||
                                        (
                                        (IsBrand || rptTable.BrandIds.Contains(m.BrandId))
                                        && (IsProCat || rptTable.ProCatIds.Contains(m.CatId))
                                        && (double.Parse(MyLibrary.Pro_BUS.GetPrice(m)) >= priceFrom && double.Parse(MyLibrary.Pro_BUS.GetPrice(m)) <= priceTo)
                                        && m.ProDet
                                            .Any(color => IsColor || rptTable.ColorIds.Contains(color.ColorId)))));
+                                
+
                                     rptWc.DataSource = (rptTable.VFilterPro == 2 || rptTable.VFilterPro == 4) ? willSource.OrderBy(rptTable.FuncFilter) : willSource.OrderByDescending(rptTable.FuncFilter);
                                 }
                                 else
