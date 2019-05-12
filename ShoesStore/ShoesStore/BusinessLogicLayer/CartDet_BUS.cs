@@ -26,7 +26,7 @@ namespace ShoesStore.BusinessLogicLayer
             try
             {
                 var money = GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId)
-                    .Sum(m => (MyLibrary.Pro_BUS.IsSale(m.ProDet.Pro) ? Convert.ToInt32(m.ProDet.Pro.PriceAfter) : Convert.ToInt32(m.ProDet.Pro.Price)) * m.Qty);
+                    .Sum(m => (double.Parse(MyLibrary.Pro_BUS.GetPrice(m.ProDet.Pro)) * m.Qty));
                 return money.ToString();
             }
             catch (Exception)

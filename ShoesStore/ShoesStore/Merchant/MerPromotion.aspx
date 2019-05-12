@@ -19,7 +19,7 @@
                                     <th>Ảnh</th>
                                     <th>Loại sản phẩm</th>
                                     <th>Thương hiệu</th>
-                                    <th>Gía</th>
+                                    <th>Giá</th>
                                     <th></th>
                                 </tr>
                                 <tr id="itemPlaceholder" runat="server" />
@@ -41,7 +41,7 @@
                                 <td>
                                     <asp:Label runat="server" ID="lbBrandName" Text="<%# Item.ProBrand.BrandName %>"></asp:Label></td>
                                 <td>
-                                    <asp:Label runat="server" ID="lbPrice" Text="<%# Item.Price.ToFormatMoney() %>"></asp:Label></td>
+                                    <asp:Label runat="server" ID="lbPrice" Text="<%#  MyLibrary.Pro_BUS.GetPriceFormat( Item) %>"></asp:Label></td>
                                 <td>
                                     <asp:LinkButton runat="server" ID="lbtnActive" CommandName="Submit" CommandArgument='<%# Item.ProId %>' CssClass="btn btn-outline-warning">Chọn</asp:LinkButton></td>
                             </tr>

@@ -126,7 +126,7 @@ namespace ShoesStore.Admin
 
         protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            
+
             if (e.CommandName == "Sel")
             {
                 int rcptBuyId = Int32.Parse(e.CommandArgument.ToString());
@@ -230,11 +230,11 @@ namespace ShoesStore.Admin
         // Sắp xếp 
         protected void lbtnSort_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in lvRcptBuy.Items)
+            lstViewTemp.Clear();
+            foreach (var item in MyLibrary.RcptBuy_BUS.GetAll())
             {
-                Label lbRcptBuyId = (Label)item.FindControl("lbRcptId");
-                var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.RcptBuyId == Int32.Parse((lbRcptBuyId.Text))).FirstOrDefault();
-                lstViewTemp.Add(rs);
+              
+                lstViewTemp.Add(item);
             }
             switch (SortList.SelectedValue)
             {
@@ -256,19 +256,21 @@ namespace ShoesStore.Admin
                     break;
             }
 
+            
+
         }
 
         protected void lvRcptBuy_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
             DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
-            LoadRcptBuy();
+            lbtnSort_Click(null, null);
         }
 
         protected void lvRcptBuy_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
             {
-                
+
                 //Label lbRcptBuyId = (Label)e.Item.FindControl("lbRcptId");
                 //var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.RcptBuyId == Int32.Parse((lbRcptBuyId.Text))).FirstOrDefault();
                 //lstViewTemp.Add(rs);

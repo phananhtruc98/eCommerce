@@ -251,7 +251,7 @@
 
 
 
-                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="3" />
+                                    <uc1:UcPro runat="server" ID="UcPro" PageSize="20" NumberPerRow="3" />
                                 </div>
                             </div>
                         </ContentTemplate>

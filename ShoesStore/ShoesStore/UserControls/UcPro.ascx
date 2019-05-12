@@ -9,7 +9,7 @@
                 <div class="products-list__body">
                     <wcCustom:RepeaterTable runat="server" ID="rptPro" AllowPage="True" TableName="Pro" ItemType="ShoesStore.DataAccessLogicLayer.Pro">
                         <ItemTemplate>
-                            <div class="products-list__item col-<%: 12 / PageSize %> <%# PageSize == 5 && (Container.ItemIndex + 5) % 5 == 0 ? "col-xs-offset-1" : "" %>">
+                            <div class="products-list__item col-<%: 12 / NumberPerRow %> <%# NumberPerRow == 5 && (Container.ItemIndex + 5) % 5 == 0 ? "col-xs-offset-1" : "" %>">
                                 <div class="product-card">
                                     <div class="product-card__badges-list">
                                         <div class="product-card__badge product-card__badge--<%# MyLibrary.Pro_BUS.IsSale(Item)?"sale":"new" %>"><%# MyLibrary.Pro_BUS.IsSale(Item)?"Giảm giá":"Mới" %></div>

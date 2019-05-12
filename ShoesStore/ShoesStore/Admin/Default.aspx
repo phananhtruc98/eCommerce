@@ -157,7 +157,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-4">Bình luận gần đây</h5>
                         <asp:Label ID="lbEmpty2" runat="server" Text="Không có nhận xét nào" Visible="false"></asp:Label>
-                        <asp:ListView ID="lvCmt" ItemType="ShoesStore.DataAccessLogicLayer.Pro" runat="server">
+                        <asp:ListView ID="lvCmt" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet" runat="server">
                             <LayoutTemplate>
                                 <table class="table">
                                     <tr>
@@ -173,9 +173,9 @@
                             </LayoutTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%# Item.ProId %></td>
-                                    <td><%# Item.ProName %></td>
-                                    <td><%#MyLibrary.DrawStar(MyLibrary.Pro_BUS.AverageStar(Item))%></td>
+                                    <td><%# Item.ProDet.ProId %></td>
+                                    <td><%# Item.ProDet.Pro.ProName %></td>
+                                    <td><%#MyLibrary.DrawStar(MyLibrary.Pro_BUS.AverageStar(Item.ProDet.Pro))%></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:ListView>
