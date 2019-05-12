@@ -2170,7 +2170,7 @@
             <End Role="Coupon" EntitySet="Coupon" />
             <End Role="Pro" EntitySet="Pro" />
           </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
         <ComplexType Name="sp_Admin_Info_Result">
           <Property Type="Int32" Name="UsrId" Nullable="false" />
           <Property Type="String" Name="UsrName" Nullable="false" MaxLength="255" />
@@ -3424,7 +3424,7 @@
           <End Type="ShoesStoreModel.Coupon" Role="Coupon" Multiplicity="*" />
           <End Type="ShoesStoreModel.Pro" Role="Pro" Multiplicity="*" />
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -4279,7 +4279,7 @@
               <ScalarProperty Name="CouponID" ColumnName="CouponId" />
             </EndProperty>
           </AssociationSetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -312,7 +312,7 @@ namespace ShoesStore.Admin
             string Address = (Only_Admin_Create_Administrator.FindControl("txtAddress") as TextBox).Text;
             string Email = (Only_Admin_Create_Administrator.FindControl("txtEmail") as TextBox).Text;
             string Login = (Only_Admin_Create_Administrator.FindControl("txtLogin") as TextBox).Text;
-            string Password = EncryptHelper.Encrypt((Only_Admin_Create_Administrator.FindControl("txtPassword") as TextBox).Text);
+            string Password = (Only_Admin_Create_Administrator.FindControl("txtPassword") as TextBox).Text;
             string Repassword = (Only_Admin_Create_Administrator.FindControl("txtRepassword") as TextBox).Text;
             DateTime DateAdd = DateTime.Now;
             DropDownList ddlRoleName = (DropDownList)Only_Admin_Create_Administrator.FindControl("InsertRoleName");
@@ -344,7 +344,6 @@ namespace ShoesStore.Admin
             {
                 MyLibrary.Show("Nhập lại mật khẩu không đúng!");
             }
-            if (Avatar == "") Avatar = "default.jpg";
             if (!MyLibrary.IsValidEmailAddress(Email))
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Email chưa đúng')",
@@ -355,7 +354,7 @@ namespace ShoesStore.Admin
             {
                 var result = new Usr
                 {
-                    Password = Password,
+                    Password = EncryptHelper.Encrypt(Password),
                     UsrName = UsrName,
                     Address = Address,
                     Login = Login,
@@ -363,7 +362,7 @@ namespace ShoesStore.Admin
                     Phone = Phone,
                     DateEdit = null,
                     Active = true,
-                    Avatar = Avatar,
+                    Avatar = fileInsert.FileName,
                     DateAdd = DateTime.Now
                 };
                 usr.Insert(result);

@@ -12,19 +12,20 @@
 
         <div class="tab-content py-4">
             <div class="tab-pane active" id="profile">
-                <h5 runat="server" class="mb-3">Shop : 
+                <h2 runat="server" class="mb-3">Shop : 
                 <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblShpName"></asp:Label>
-                </h5>
+                </h2>
                 <br />
                 <div class="row">
                     <div class="col-md-6">
-                        <h6>About</h6>
+                        <h6>Ngày Bắt Đầu Hoạt Động Trên The Shuz : 
+                            
+                        </h6>
+                        <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblDateStart"></asp:Label>
+                        <p> </p>
+                        <h6>Mô Tả Về Shop : </h6>
                         <p>
-                            <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="Label1"></asp:Label>
-                        </p>
-                        <h6>Categories</h6>
-                        <p>
-                            Male Sneakers, Casual and Sporty Sneakers
+                            <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblDesc"></asp:Label>
                         </p>
                     </div>
 

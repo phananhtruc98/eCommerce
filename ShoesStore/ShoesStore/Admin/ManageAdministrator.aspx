@@ -133,7 +133,7 @@
                             </td>
                             <td>
                                 <asp:RegularExpressionValidator ID="revPhone" runat="server"
-                                    ErrorMessage="Not a valid phone" ControlToValidate="txtPhone"
+                                    ErrorMessage="Số điện thoại không đúng" ControlToValidate="txtPhone"
                                     ValidationGroup="Insert"
                                     ValidationExpression="[0-9]{10}">
                                 </asp:RegularExpressionValidator>

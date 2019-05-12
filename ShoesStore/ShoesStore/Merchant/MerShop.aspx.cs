@@ -26,12 +26,21 @@ namespace ShoesStore.Merchant
             set => ViewState["PageNumber"] = value;
         }
         */
-
+        public void LoadThongTin()
+        {
+            var mer = (Mer)MerchantSession.LoginMerchant;
+            //var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
+            var shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.MerId == mer.MerId);
+            lblShpName.Text = shp.ShpName;
+            lblDateStart.Text = shp.DateStart.ToString();
+            lblDesc.Text = shp.Desc;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
+                LoadThongTin();
                 string a = new Usr().UsrName.GetName() ;
                 //đọc url -> lấy được ShpName //Tham khảo trang ProDet
                 CollectUrl();
