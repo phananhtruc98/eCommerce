@@ -34,6 +34,20 @@ namespace ShoesStore.BusinessLogicLayer
                 return "0";
             }
         }
+        public string SumCartDetPriceNoDiscount()
+        {
+            if (WebSession.LoginCus == null) return "0";
+            try
+            {
+                var money = GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId)
+                    .Sum(m => (double.Parse(m.ProDet.Pro.Price) * m.Qty));
+                return money.ToString();
+            }
+            catch (Exception)
+            {
+                return "0";
+            }
+        }
 
         public string SumCartDetPrice_Shop(int shpId)
         {

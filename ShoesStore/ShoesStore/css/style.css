@@ -12,9 +12,15 @@ body, html {
     height: 100%;
 }
 
+
+
 .pointer-event__none {
     pointer-events: none;
 }
+
+
+
+
 body {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -10561,7 +10567,3 @@ margin: 6px;*/
     border-radius: 2px;
     padding: 28px;
 }
-
-
-
-

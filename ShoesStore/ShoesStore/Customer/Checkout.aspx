@@ -32,11 +32,11 @@
         <div class="checkout block" runat="server" id="checkoutContent">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 mb-3">
+               <%--     <div class="col-12 mb-3">
                         <div class="alert alert-lg alert-primary">
                             Đăng nhập <a href="#">Tại đây</a>
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="col-12 col-lg-6 col-xl-7">
                         <div class="card mb-lg-0">
                             <div class="card-body">
@@ -135,7 +135,7 @@
                                     <tfoot class="checkout__totals-footer">
                                         <tr>
                                             <th>Tổng</th>
-                                            <td><%#MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
+                                            <td><%#MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount() ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount().ToFormatMoney(), MyLibrary.CartDet_BUS.SumCartDetPrice()) : MyLibrary.CartDet_BUS.SumCartDetPrice() %></td>
                                         </tr>
                                     </tfoot>
                                 </table>

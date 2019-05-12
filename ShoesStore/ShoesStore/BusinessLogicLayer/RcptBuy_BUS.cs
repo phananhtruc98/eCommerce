@@ -84,6 +84,11 @@ namespace ShoesStore.BusinessLogicLayer
                 .OrderByDescending(x => x.Rcpt.DateAdd).ToList();
             return tmp;
         }
+
+        public double SumPriceNoDiscount(RcptBuy rcptBuy)
+        {
+            return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.ProDet.Pro.Price));
+        }
         public double SumPrice(RcptBuy rcptBuy)
         {
             return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.PriceWhenBuy));

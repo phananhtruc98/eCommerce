@@ -71,7 +71,13 @@
                                         </td>
                                         <td><%# Item.ProDet.ProSize.SizeName %></td>
                                         <td><%# Item.Quantity %></td>
-                                        <td><%# (Item.Quantity * int.Parse(Item.PriceWhenBuy)).ToFormatMoney() %></td>
+                                        <td><%#
+                                                
+                                             MyLibrary.Pro_BUS.IsSale(Item.ProDet.Pro)?
+                                                    MyLibrary.GetPriceFormat(Item.Quantity*int.Parse(Item.ProDet.Pro.Price),Item.Quantity * int.Parse(MyLibrary.Pro_BUS.GetPrice( Item.ProDet.Pro)))
+                                                  :(Item.Quantity* int.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %>
+    
+    </td>
                                         <td>
                                             <asp:LinkButton runat="server" ID="lbtnDanhGia" Visible="false" Text="ĐÁNH GIÁ" PostBackUrl="<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>"></asp:LinkButton>
                                         </td>
@@ -79,7 +85,9 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                             <tr>
-                                <td colspan="7" style="font-size: 30px; text-align: right;">Tổng cộng: <%# MyLibrary.RcptBuy_BUS.SumPrice(Item).ToFormatMoney() %></td>
+                                <td colspan="7" style="font-size: 30px; text-align: right;">Tổng cộng: <%# MyLibrary.RcptBuy_BUS.SumPrice(Item)==MyLibrary.RcptBuy_BUS.SumPriceNoDiscount(Item)
+                                                                                                               ?MyLibrary.RcptBuy_BUS.SumPrice(Item).ToFormatMoney()
+                                                                                                               : MyLibrary.GetPriceFormat(MyLibrary.RcptBuy_BUS.SumPriceNoDiscount(Item),MyLibrary.RcptBuy_BUS.SumPrice(Item)) %></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -111,7 +119,7 @@
                         <div class="form-group">
 
                             <label for="review-text">Nội dung đánh giá</label>
-                         
+
                             <asp:TextBox TextMode="MultiLine" runat="server" CssClass="form-control" ID="review_text" Rows="6" />
                         </div>
                         <div class="form-group mb-0">

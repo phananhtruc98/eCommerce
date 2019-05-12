@@ -17,7 +17,7 @@
                         <div class="block-products-carousel__cell">
                             <div class="product-card">
                                 <div class="product-card__badges-list">
-                                    <div class="product-card__badge product-card__badge--new">New</div>
+                                    <div class="product-card__badge product-card__badge--<%# MyLibrary.Pro_BUS.IsSale(Item)?"sale":"new" %>"><%# MyLibrary.Pro_BUS.IsSale(Item)?"Giảm giá":"Mới" %></div>
                                 </div>
                                 <div class="product-card__image">
                                     <asp:LinkButton runat="server" ID="proImgLink" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>">

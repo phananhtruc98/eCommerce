@@ -44,7 +44,7 @@ namespace ShoesStore.Customer
 // Load Bảng hóa đơn trong
         private void BindlvDaGiao(int CusId)
         {
-            var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(m=>m.CusId==CusId);
             var rs1 = from r in rs
                 join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
                 where s.StepId == 7
@@ -96,7 +96,7 @@ namespace ShoesStore.Customer
 // Load Bảng hóa đơn trong
         private void BindlvChoThanhToan(int CusId)
         {
-            var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == CusId);
             var rs1 = from r in rs
                 join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
                 where s.StepId == 1
@@ -148,7 +148,7 @@ namespace ShoesStore.Customer
 // Load Bảng hóa đơn trong
         private void BindlvChoLayHang(int CusId)
         {
-            var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == CusId);
             var rs1 = from r in rs
                 join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
                 where s.StepId == 4
@@ -200,7 +200,7 @@ namespace ShoesStore.Customer
 // Load Bảng hóa đơn trong
         private void BindlvDangGiao(int CusId)
         {
-            var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == CusId);
             var rs1 = from r in rs
                 join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
                 where s.StepId == 6
@@ -248,7 +248,7 @@ namespace ShoesStore.Customer
 
         private void BindlvDaHuy(int CusId)
         {
-            var rs = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Rcpt(CusId);
+            var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == CusId);
             var rs1 = from r in rs
                 join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
                 where s.StepId == 9 || s.StepId == 10

@@ -89,7 +89,7 @@ namespace ShoesStore.Customer
                 }
             }
 
-            ltrSumAll.Text = MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney();
+            ltrSumAll.Text = MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount() ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount().ToFormatMoney(), MyLibrary.CartDet_BUS.SumCartDetPrice()) : MyLibrary.CartDet_BUS.SumCartDetPrice();
         }
 
         protected void btnCartDetPreviewClose_OnCommand(object sender, CommandEventArgs e)

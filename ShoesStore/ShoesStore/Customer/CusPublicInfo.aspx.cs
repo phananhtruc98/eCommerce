@@ -16,6 +16,7 @@ namespace ShoesStore.Customer
         {
             CollectUrl();
             UcCusCmt.Cus = _cus;
+            lbHoTen.Text = _cus.Usr.UsrName;
         }
         private void CollectUrl()
         {

@@ -64,7 +64,7 @@
                                 <ItemTemplate>
                                     <tr>
                                         <td>
-                                            <a href="#">
+                                            <a href="<%# MyLibrary.ProDetUrl(Item.ProDet.Pro) %>">
                                                 <img style="height: 200px; width: 200px;" src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                             </a>
                                         </td>
@@ -72,15 +72,20 @@
                                         <td><%# Item.ProDet.ProColor.ColorName %></td>
                                         <td><%# Item.ProDet.ProSize.SizeName %></td>
                                         <td><%# Item.Quantity %></td>
-                                        <td><%# (Item.Quantity * int.Parse(MyLibrary.Pro_BUS.GetPrice( Item.ProDet.Pro))).ToFormatMoney() %></td>
+                                        <td><%#     MyLibrary.Pro_BUS.IsSale(Item.ProDet.Pro)?
+                                                    MyLibrary.GetPriceFormat(Item.Quantity*int.Parse(Item.ProDet.Pro.Price),Item.Quantity * int.Parse(MyLibrary.Pro_BUS.GetPrice( Item.ProDet.Pro)))
+                                                  :(Item.Quantity* int.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>
                                         <td>
-                                            <asp:LinkButton runat="server" ID="lbtnDanhGia" Visible="false" Text="ĐÁNH GIÁ" PostBackUrl="<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>"></asp:LinkButton>
+                                            <%--<asp:LinkButton runat="server" ID="lbtnDanhGia" Visible="false" Text="ĐÁNH GIÁ" PostBackUrl="<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>"></asp:LinkButton>--%>
+                                            <%# Item.MerCmt %>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
                             <tr>
-                                <td colspan="7" style="font-size: 30px; text-align: right;">Tổng cộng: <%# MyLibrary.RcptBuy_BUS.SumPrice(Item).ToFormatMoney() %></td>
+                                <td colspan="7" style="font-size: 30px; text-align: right;">Tổng cộng: <%# MyLibrary.RcptBuy_BUS.SumPrice(Item)==MyLibrary.RcptBuy_BUS.SumPriceNoDiscount(Item)
+                                                                                                               ?MyLibrary.RcptBuy_BUS.SumPrice(Item).ToFormatMoney()
+                                                                                                               : MyLibrary.GetPriceFormat(MyLibrary.RcptBuy_BUS.SumPriceNoDiscount(Item),MyLibrary.RcptBuy_BUS.SumPrice(Item)) %></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

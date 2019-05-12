@@ -56,8 +56,8 @@ namespace ShoesStore.Customer
             switch (vFilterPro)
             {
                 case 0: { funcFilter = pro => pro.Shp.RcptBuy.Count; break; }
-                case 1: { funcFilter = pro => Convert.ToInt32(pro.Price); break; }
-                case 2: { funcFilter = pro => Convert.ToInt32(pro.Price); break; }//giam
+                case 1: { funcFilter = pro => Convert.ToInt32(MyLibrary.Pro_BUS.GetPrice(pro)); break; }
+                case 2: { funcFilter = pro => Convert.ToInt32(MyLibrary.Pro_BUS.GetPrice(pro)); break; }//giam
                 case 3: { funcFilter = pro => MyLibrary.Pro_BUS.AverageStar(pro); break; }
                 case 4: { funcFilter = pro => MyLibrary.Pro_BUS.AverageStar(pro); break; }//giam
                 default: { funcFilter = pro => pro.DateAdd == null ? 0 : pro.DateAdd.Value.Ticks; break; }
@@ -101,7 +101,7 @@ namespace ShoesStore.Customer
                 Where(pro => pro.ProDet.Any(color => (colorIds.Count == 0 || colorIds.Contains(color.ColorId))) &&
                 (brandIds.Count == 0 || brandIds.Contains(pro.BrandId)) &&
                 (proCatIds.Count == 0 || proCatIds.Contains(pro.CatId)) &&
-                (Convert.ToInt32(pro.Price) >= filterPriceFrom && Convert.ToInt32(pro.Price) <= filterPriceTo)
+                (Convert.ToInt32(MyLibrary.Pro_BUS.GetPrice(pro)) >= filterPriceFrom && Convert.ToInt32(MyLibrary.Pro_BUS.GetPrice(pro)) <= filterPriceTo)
                 );
 
             UcPro.SetFilter(txtSearch.Value, colorIds, brandIds, proCatIds, filterPriceFrom, filterPriceTo, funcFilter, vFilterPro);

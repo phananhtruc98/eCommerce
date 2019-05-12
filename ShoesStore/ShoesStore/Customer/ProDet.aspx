@@ -6,19 +6,7 @@
 <%@ Import Namespace="ShoesStore.DataAccessLogicLayer" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <style type="text/css">
-        .alertBox {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            left: 50%;
-            margin-left: -250px;
-            padding: 4px 8px;
-            position: absolute;
-            top: 100px;
-            width: 500px;
-        }
-    </style>
+
     <script type="text/javascript" language="javascript">
         function setExclusiveRadioButton(name, current) {
             debugger;
@@ -71,7 +59,7 @@
                         <div class="product__gallery">
                             <div class="product-gallery">
                                 <div class="product-gallery__featured">
-                                    <div class="owl-carousel" id="product-image">
+                                    <div class="owl-carousel zoom" id="product-image">
                                         <asp:Repeater runat="server" ID="rptProSlidePresent">
                                             <ItemTemplate>
                                                 <a href="#" target="_blank">
@@ -283,7 +271,10 @@
                                                     <li class="reviews-list__item">
                                                         <div class="review">
                                                             <div class="review__avatar">
-                                                                <img src="<%# MyLibrary.CusImgPath(Eval("RcptBuy.Cus")) %>" alt="">
+                                                                <a href='<%# MyLibrary.CusInfoUrl(Item.RcptBuy.Cus) %>'>
+                                                                    <img src="<%# MyLibrary.CusImgPath(Eval("RcptBuy.Cus")) %>" >
+                                                                </a>
+
                                                             </div>
                                                             <div class="review__content">
                                                                 <div class="review__author"><%# Eval("RcptBuy.Cus.Usr.UsrName") %> </div>
@@ -302,7 +293,7 @@
                                                 </ItemTemplate>
                                             </asp:Repeater>
                                         </ol>
-                                     
+
                                     </div>
                                 </div>
                                 <asp:Panel CssClass="reviews-view__form" runat="server" ID="DivWriteComment" Enabled='<%# MyLibrary.RcptBuyDet_BUS.GetCommentLeft(ProDetView)==0? false:true%>'>

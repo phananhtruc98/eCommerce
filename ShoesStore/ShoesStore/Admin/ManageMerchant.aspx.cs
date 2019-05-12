@@ -3,7 +3,9 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
+using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.MyExtensions;
+using Utilities;
 
 namespace ShoesStore.Admin
 {
@@ -59,6 +61,13 @@ namespace ShoesStore.Admin
         {
             if (e.CommandName == "sel")
             {
+                int merId = Int32.Parse(e.CommandArgument.ToString());
+
+                Mer mer = MyLibrary.Mer_BUS.GetAll().FirstOrDefault(m => m.MerId == merId);
+                string content = mer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1)) < 0 ? "Hết hạn" : mer.GetSubEndDate().ToString();
+                Email.SendGmail(mer.Usr.Email, "Nhắc nhỡ thời hạn đăng ký sub",
+                   $"Thời hạn đăng ký của bạn {content}. Mời bạn gia hạn thêm sub");
+                MyLibrary.Show("Đã gởi mail !");
 
             }
             else if (e.CommandName == "Detail")

@@ -91,7 +91,7 @@
         <!-- Dang Nhap modal/end-->
         <!-- Dang Ky modal-->
         <div id="DangKy" class="modal">
-            <asp:UpdatePanel runat="server" >
+            <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <div class="modal-dialog modal-dialog-centered ">
                         <div class="modal-content  p-4 m-5 ">
@@ -149,16 +149,16 @@
                                     </asp:RequiredFieldValidator>
                                 </div>
                                 <div class="form-group py-4">
-                                    <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button><%--ValidationGroup="Register" --%> 
-                                    <asp:Button Text="Đăng ký" CssClass="btn btn-primary btn-lg float-right custom_font" ID="btnSignUp" runat="server"  OnClick="btnSignUp_Click" />
+                                    <button class="btn btn-outline-secondary btn-lg custom_font" data-dismiss="modal" aria-hidden="true">Hủy</button><%--ValidationGroup="Register" --%>
+                                    <asp:Button Text="Đăng ký" CssClass="btn btn-primary btn-lg float-right custom_font" ID="btnSignUp" runat="server" OnClick="btnSignUp_Click" />
                                     <label id="lbStatus" style="color: red" runat="server"></label>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </ContentTemplate>
-              
+
             </asp:UpdatePanel>
         </div>
         <div id="QuenMatKhau" class="modal">
@@ -237,9 +237,7 @@
                                                 <li id="usr_register" runat="server">
                                                     <a href="#" data-toggle="modal" data-target="#DangKy">Đăng ký</a>
                                                 </li>
-                                                <li>
-                                                    <a href="#">Đặt hàng</a>
-                                                </li>
+
                                             </ul>
                                             <!-- .menu / end -->
                                         </div>
@@ -378,16 +376,16 @@
                                                             <tr>
 
                                                                 <th>Tổng tiền sản phẩm</th>
-                                                                <td><%: MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
+                                                                <td><%= MyLibrary.CartDet_BUS.SumCartDetPrice()!=MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount()? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount().ToFormatMoney(),MyLibrary.CartDet_BUS.SumCartDetPrice()):MyLibrary.CartDet_BUS.SumCartDetPrice() %></td>
                                                             </tr>
                                                             <%-- <tr>
                                                                 <th>Phí giao hàng</th>
-                                                                <td>$25.00</td>
+                                                                <td>$25.00</td>w
                                                             </tr>--%>
-                                                            <tr>
+                                                           <%-- <tr>
                                                                 <th>Thành tiền</th>
                                                                 <td><%: MyLibrary.CartDet_BUS.SumCartDetPrice().ToFormatMoney() %></td>
-                                                            </tr>
+                                                            </tr>--%>
                                                         </table>
                                                     </div>
                                                     <div class="dropcart__buttons">

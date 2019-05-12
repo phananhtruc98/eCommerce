@@ -128,7 +128,7 @@ namespace ShoesStore.Customer
                 }
             }
 
-            MyLibrary.Show("Đã thanh toán thành công, đơn hàng sẽ xác nhận trong thời gian sớm nhất !", Request.Url.Authority);
+            MyLibrary.Show("Đã thanh toán thành công, đơn hàng sẽ xác nhận trong thời gian sớm nhất !", Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/'));
         }
 
 

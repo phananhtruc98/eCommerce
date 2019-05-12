@@ -49,7 +49,7 @@
                                     <td>
                                         <asp:Literal runat="server" ID="ltrPrice" Text="<%# Item.Price.ToFormatMoney() %>"></asp:Literal></td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="Qty" Text="1" min="1" TextMode="Number"></asp:TextBox></td>
+                                        <asp:TextBox runat="server" ID="Qty" Text="0" min="0" TextMode="Number"></asp:TextBox></td>
                                     <td>
                                         <asp:LinkButton runat="server" ID="lbtnThem" Text="Thêm" CommandName="sel" CommandArgument='<%# Container.DataItemIndex %>'></asp:LinkButton></td>
                                 </tr>

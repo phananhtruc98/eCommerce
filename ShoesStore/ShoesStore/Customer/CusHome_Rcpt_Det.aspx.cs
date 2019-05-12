@@ -110,14 +110,14 @@ namespace ShoesStore.Customer
 
         protected void rptRcptShpDet_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-                if (int.Parse(Request.QueryString["Sta"]) == 7)
-                {
-                    var lbtnDanhGia = (LinkButton)e.Item.FindControl("lbtnDanhGia");
-                    lbtnDanhGia.Visible = true;
-                    //var CatName = 
-                    //string CatName = e.Item.
-                }
+            //if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            //    if (int.Parse(Request.QueryString["Sta"]) == 7)
+            //    {
+            //        var lbtnDanhGia = (LinkButton)e.Item.FindControl("lbtnDanhGia");
+            //        lbtnDanhGia.Visible = true;
+            //        //var CatName = 
+            //        //string CatName = e.Item.
+            //    }
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {

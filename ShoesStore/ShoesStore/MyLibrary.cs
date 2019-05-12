@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using Utilities;
-
+using ShoesStore.MyExtensions;
 namespace ShoesStore
 {
     public partial class MyLibrary : Page
@@ -508,6 +508,16 @@ namespace ShoesStore
             string path = string.Concat(expression.Member.DeclaringType.FullName,
                 ".", expression.Member.Name);
             // Do ExposeProperty work here...
+        }
+
+        public static string CusInfoUrl(Cus cus)
+        {
+            return $"/thong-tin-nguoi-dung/{cus.Usr.Login}";
+        }
+        public static string GetPriceFormat(object orginPrice,object discountPrice)
+        {
+            return $"<span class='widget-products__new-price'>{double.Parse(discountPrice+"").ToFormatMoney()}</span> <span class='widget-products__old-price'>{orginPrice.ToFormatMoney()}</span>";
+                                              
         }
     }
 }

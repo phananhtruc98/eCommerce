@@ -75,7 +75,7 @@
                 </div>
                 <div class="block-features__content">
                     <div class="block-features__title">Giá Hấp Dẫn</div>
-                    <div class="block-features__subtitle">Cùng nhiều khuyến mãi cho cả 2 bên</div>
+                    <div class="block-features__subtitle">Cùng nhiều khuyến mãi hằng ngày</div>
                 </div>
             </div>
         </div>

@@ -12,14 +12,41 @@
     font-weight: bold;
 }
 
-.custom_font { font-size: 15px; }
+.custom_font {
+    font-size: 15px;
+}
 
 .big-btn {
     font-size: 16px;
     height: 40px;
     width: 90px;
 }
+
 .disabled-button {
     pointer-events: none;
     opacity: 0.4;
 }
+
+.alertBox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+
+
+    position: absolute;
+    top: 100px;
+    
+}
+
+.zoom {
+    padding: 50px;
+    
+    transition: transform .2s; /* Animation */
+
+    margin: 0 auto;
+}
+
+    .zoom:hover {
+        transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
