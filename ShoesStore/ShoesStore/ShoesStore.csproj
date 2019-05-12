@@ -18,10 +18,8 @@
     <AssemblyName>ShoesStore</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>
-    </Use64BitIISExpress>
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <Use64BitIISExpress>false</Use64BitIISExpress>
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>
     </IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>
@@ -2440,6 +2438,7 @@
     <Content Include="Content\themes\base\button.css" />
     <Content Include="Content\themes\base\core.css" />
     <Content Include="Customer\CallBack.aspx" />
+    <Content Include="Customer\CusPublicInfo.aspx" />
     <Content Include="Customer\LoginFacebook.aspx" />
     <Content Include="DataAccessLogicLayer\ShoesStoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -3146,6 +3145,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="UserControls\UcCusCmt.ascx" />
     <Content Include="UserControls\UcPro.ascx" />
     <Content Include="UserControls\UcProCarousel.ascx" />
     <Content Include="UserControls\UcSearch.ascx" />
@@ -3403,6 +3403,13 @@
     </Compile>
     <Compile Include="Customer\CusHome_Rcpt_Det.aspx.designer.cs">
       <DependentUpon>CusHome_Rcpt_Det.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CusPublicInfo.aspx.cs">
+      <DependentUpon>CusPublicInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CusPublicInfo.aspx.designer.cs">
+      <DependentUpon>CusPublicInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\LoginFacebook.aspx.cs">
       <DependentUpon>LoginFacebook.aspx</DependentUpon>
@@ -3916,6 +3923,13 @@
     </Compile>
     <Compile Include="SiteCus.Master.designer.cs">
       <DependentUpon>SiteCus.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcCusCmt.ascx.cs">
+      <DependentUpon>UcCusCmt.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcCusCmt.ascx.designer.cs">
+      <DependentUpon>UcCusCmt.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcPro.ascx.cs">
       <DependentUpon>UcPro.ascx</DependentUpon>

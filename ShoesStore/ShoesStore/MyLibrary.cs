@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.UI;
@@ -403,6 +405,13 @@ namespace ShoesStore
             if (page != null && !page.ClientScript.IsClientScriptBlockRegistered("alert"))
                 page.ClientScript.RegisterClientScriptBlock(page.GetType(), "alert", script, true /* addScriptTags */);
         }
+        public static void ShowInUploadPannel(string message, string reUrl = "")
+        {
+            var cleanMessage = message.Replace("'", "\'");
+            string TransferPage = string.Format("<script>alert('{0}');{1}</script>", cleanMessage, reUrl != "" ? "window.location.href ='" + reUrl + "'" : "");
+            Page currentPage = HttpContext.Current.Handler as Page;
+            ScriptManager.RegisterStartupScript(currentPage, currentPage.GetType(), "temp2", TransferPage, false);
+        }
         public static void ShowInUploadPannel(string message)
         {
             string TransferPage = $"<script>alert('{message}')</script>";
@@ -426,6 +435,79 @@ namespace ShoesStore
             {
 
             }
+        }
+
+        public static string FormatProdetColor(ProDet proDet)
+        {
+            return $"<div style = 'background-color: #{proDet.ProColor.HexCode}; height: 32px; width: 32px; border: black solid 1px; display: inline-block; float: right' />'";
+        }
+
+        public string PropertiesToString()
+        {
+            PropertyInfo[] _propertyInfos = null;
+
+            if (_propertyInfos == null)
+                _propertyInfos = this.GetType().GetProperties();
+
+            var sb = new StringBuilder();
+
+            foreach (var info in _propertyInfos)
+            {
+                var value = info.GetValue(this, null) ?? "(null)";
+                sb.AppendLine(info.Name + ": " + value.ToString());
+            }
+
+            return sb.ToString();
+        }
+        public static Dictionary<string, string> GetProperties(object obj)
+        {
+            var props = new Dictionary<string, string>();
+            if (obj == null)
+                return props;
+
+            var type = obj.GetType();
+            foreach (var prop in type.GetProperties())
+            {
+                var val = prop.GetValue(obj, new object[] { });
+                var valStr = val == null ? "" : val.ToString();
+                props.Add(prop.Name, valStr);
+            }
+
+            return props;
+        }
+        public static object GetPropValue(object src, string propName)
+        {
+            return src.GetType().GetProperty(propName).GetValue(src, null);
+        }
+        private static MemberExpression GetMemberInfo(Expression method)
+        {
+            LambdaExpression lambda = method as LambdaExpression;
+            if (lambda == null)
+                throw new ArgumentNullException("method");
+
+            MemberExpression memberExpr = null;
+
+            if (lambda.Body.NodeType == ExpressionType.Convert)
+            {
+                memberExpr =
+                    ((UnaryExpression)lambda.Body).Operand as MemberExpression;
+            }
+            else if (lambda.Body.NodeType == ExpressionType.MemberAccess)
+            {
+                memberExpr = lambda.Body as MemberExpression;
+            }
+
+            if (memberExpr == null)
+                throw new ArgumentException("method");
+
+            return memberExpr;
+        }
+        public static void ExposeProperty<T>(Expression<Func<T>> property)
+        {
+            var expression = GetMemberInfo(property);
+            string path = string.Concat(expression.Member.DeclaringType.FullName,
+                ".", expression.Member.Name);
+            // Do ExposeProperty work here...
         }
     }
 }

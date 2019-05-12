@@ -67,7 +67,7 @@ namespace ShoesStore.BusinessLogicLayer
             return tmp;
         }
 
-        public List<RcptBuy> ListRcptBuyPreview_Shop(int RcptId,int CusId)
+        public List<RcptBuy> ListRcptBuyPreview_Shop(int RcptId, int CusId)
         {
             var shpIds = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(RcptId, CusId).Select(m => m.ShpId).OrderBy(x => x)
                 .Distinct().ToArray();
@@ -86,7 +86,7 @@ namespace ShoesStore.BusinessLogicLayer
         }
         public double SumPrice(RcptBuy rcptBuy)
         {
-            return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.ProDet.Pro.Price));
+            return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.PriceWhenBuy));
         }
 
         /// <summary>
@@ -101,7 +101,19 @@ namespace ShoesStore.BusinessLogicLayer
             }
         }
 
+        internal void RenewProDetQty(RcptBuy rb, string chose)
+        {
 
-        
+            foreach (RcptBuyDet rcptBuyDet in rb.RcptBuyDet)
+            {
+                if (chose == "decrease")
+                    rcptBuyDet.ProDet.Qty -= rcptBuyDet.Quantity;
+                if (chose == "increase")
+                    rcptBuyDet.ProDet.Qty += rcptBuyDet.Quantity;
+
+                if (rcptBuyDet.ProDet.Qty < 0) rcptBuyDet.ProDet.Qty = 0;
+                MyLibrary.ProDet_BUS.Update(rcptBuyDet.ProDet);
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace ShoesStore.DataAccessLogicLayer
         public Usr Login(string login, string pwd)
         {
             var v = GetAll();
-            return GetAll().FirstOrDefault(m => (m.Login == login || m.Email == login) && (m.Password == pwd || m.PasswordForget == pwd));
+            return GetAll().FirstOrDefault(m => (m.Login.ToLower() == login.ToLower() || m.Email.ToLower() == login.ToLower()) && (m.Password == pwd || m.PasswordForget == pwd));
         }
 
         public void Register(Usr obj)
@@ -50,7 +50,7 @@ namespace ShoesStore.DataAccessLogicLayer
 
         public override bool IsExist(Usr obj)
         {
-            return GetAll().FirstOrDefault(m => m.Login == obj.Login || m.Email == obj.Email) == null ? false : true;
+                return GetAll().FirstOrDefault(m => m.Login == obj.Login || m.Email == obj.Email) == null ? false : true;
         }
 
         public override void SetActive(Usr obj)

@@ -72,7 +72,7 @@
                                         </td>
                                         <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
                                             <div class="input-number">
-                                                <asp:TextBox runat="server" TextMode="Number" ID="txtQty" CssClass="form-control input-number__input" OnTextChanged="txtQty_OnTextChanged" AutoPostBack="True" min="1" max='<%# MyLibrary.ProDet_BUS.ProDetLeft(Item.ProDet) %>' value="<%# Item.Qty %>">
+                                                <asp:TextBox runat="server" TextMode="Number" ID="txtQty" CssClass="form-control input-number__input cart-prodet" OnTextChanged="txtQty_OnTextChanged" AutoPostBack="True" min="1" max='<%# MyLibrary.ProDet_BUS.ProDetLeft(Item.ProDet) %>' value="<%# Item.Qty %>">
                                                 </asp:TextBox>
                                                 <div class="input-number__add"></div>
                                                 <div class="input-number__sub"></div>

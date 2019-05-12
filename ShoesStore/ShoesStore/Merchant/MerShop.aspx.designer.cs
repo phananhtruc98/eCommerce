@@ -40,15 +40,12 @@ namespace ShoesStore.Merchant {
         protected global::ShoesStore.UserControls.UcPro ucPro;
         
         /// <summary>
-        /// Master property.
+        /// UcCusCmt control.
         /// </summary>
         /// <remarks>
-        /// Auto-generated property.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        public new ShoesStore.SiteMaster Master {
-            get {
-                return ((ShoesStore.SiteMaster)(base.Master));
-            }
-        }
+        protected global::ShoesStore.UserControls.UcCusCmt UcCusCmt;
     }
 }

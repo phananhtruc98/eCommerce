@@ -7,7 +7,7 @@ using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.WebControls;
 using Utilities;
-
+using ShoesStore.MyExtensions;
 namespace ShoesStore.Merchant
 {
     public partial class MerShop : Page
@@ -32,13 +32,15 @@ namespace ShoesStore.Merchant
 
             if (!IsPostBack)
             {
+                string a = new Usr().UsrName.GetName() ;
                 //đọc url -> lấy được ShpName //Tham khảo trang ProDet
                 CollectUrl();
                 // Từ ShpName lấy ra đối tượng Shp //Có hàm trong Shp_BUS
                 var ShpId = _shpView.ShpId;
+                UcCusCmt.Shp = MyLibrary.Shp_Bus.GetAll().First(m=>m.ShpId==ShpId);
 
                 ucPro.ShpId = ShpId;
-
+                ucPro.Reload();
                 //Từ đối tượng Shp lấy ra mã Shp 
 
                 //Từ mã Shp gán vào UcPro trong aspx -> Ucpro.ShpId={}

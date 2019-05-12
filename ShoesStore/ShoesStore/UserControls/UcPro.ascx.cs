@@ -169,24 +169,6 @@ namespace ShoesStore.UserControls
 
 
         }
-        //public RepeaterTable RptPro
-        //{
-        //    get
-        //    {
-        //        if (ViewState["RptPro"] == null)
-        //        {
-        //            ViewState["RptPro"] = rptPro;
-        //        }
-
-        //        return (RepeaterTable)ViewState["RptPro"];
-        //        //return rptPro;
-        //    }
-        //    set
-        //    {
-        //        ViewState["RptPro"] = value;
-        //    }
-
-        //}
 
         public int PageSize
         {
@@ -207,9 +189,18 @@ namespace ShoesStore.UserControls
         }
         public int ShpId
         {
+            get
+            {
+
+                if (ViewState["ShpId"] == null)
+                {
+                    ViewState["ShpId"] = 0;
+                }
+                return (int)ViewState["ShpId"];
+            }
             set
             {
-                if (rptPro != null) rptPro.ShpId = value;
+                ViewState["ShpId"] = value;
             }
         }
 
@@ -294,6 +285,7 @@ namespace ShoesStore.UserControls
             rptPro.FilterPriceTo = FilterPriceTo;
             rptPro.FuncFilter = FuncFilter;
             rptPro.VFilterPro = VFilterPro;
+            rptPro.ShpId = ShpId;
             rptPro.Reload();
             LoadPage();
             DataBind();
