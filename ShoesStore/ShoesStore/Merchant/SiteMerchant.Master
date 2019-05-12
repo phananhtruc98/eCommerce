@@ -20,7 +20,9 @@
     <script
         src="https://www.paypal.com/sdk/js?client-id=AW70rNk98eTP9zPPpkP4nJfOulOCt8yvtXtGseUz9_m5JX_NkY1_FlD3bN0oxizRTN3lZ5ZVAYJAnnMW">
     </script>
+    <link href="/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 
+    <script src="/Scripts/jquery-3.3.1.js"></script>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="/Merchant/css/style.css" rel="stylesheet" />
