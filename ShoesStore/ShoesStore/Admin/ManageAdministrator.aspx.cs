@@ -56,16 +56,12 @@ namespace ShoesStore.Admin
 
         public void TimKiem(string search_key)
         {
-            var rs = (from a in mstr.Get_Admin_Info().ToList()
-                      where a.UsrId.ToString().ContainsEx(search_key)
-                            || a.UsrName.ContainsEx(search_key)
-                            || a.RoleName.ContainsEx(search_key)
-                            || a.Login.ContainsEx(search_key)
-                            || a.Password.ContainsEx(search_key)
-                            || a.Phone.ContainsEx(search_key)
-                            || a.DateAdd != null && a.DateAdd.ToString().ContainsEx(search_key)
-                            || a.DateAdd != null && a.DateEdit.ToString().ContainsEx(search_key)
-                            || a.Address.ContainsEx(search_key)
+            var rs = (from a in MyLibrary.Mstr_BUS.GetAll().ToList()
+                      where a.MstrId.ToString().ContainsEx(search_key)
+                            || a.Usr.UsrName.ContainsEx(search_key)
+                            || a.MstrDet.Select(x=>x.MstrRole.RoleName).FirstOrDefault().ContainsEx(search_key)
+                            || a.Usr.Email.ContainsEx(search_key)
+                            || a.Usr.DateAdd != null && a.Usr.DateAdd.ToString().ContainsEx(search_key)
                       select a).ToList();
             lvMaster.DataSource = rs;
             lvMaster.DataBind();

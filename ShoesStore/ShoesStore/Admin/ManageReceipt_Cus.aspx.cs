@@ -107,9 +107,7 @@ namespace ShoesStore.Admin
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
-        }
-
-        public void TimKiem(string search_key)
+        }public void TimKiem(string search_key)
         {
             var rs = (from a in rcptBuy.GetAll().ToList()
                       where a.Cus.Usr.UsrName.ToString().ContainsEx(search_key)
@@ -124,6 +122,8 @@ namespace ShoesStore.Admin
             else MyLibrary.Show("Không có hóa đơn");
         }
 
+
+        
         protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
 
@@ -213,9 +213,7 @@ namespace ShoesStore.Admin
         // Chi tiết hóa đơn
         protected void lvRcptBuy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var rcptBuyId = int.Parse((lvRcptBuy.FindControl("rcptbuyid") as Label).Text);
-            int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
-            Server.Transfer("~/Merchant/Merchant_Rcpt_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
+            
         }
 
         protected void lbtnTim_Click(object sender, EventArgs e)

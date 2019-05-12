@@ -74,6 +74,9 @@
                                 <asp:LinkButton ID="lbUpdate" CommandArgument='<%# Eval("RoleId") %>' CommandName="UpdateRow" ForeColor="#8C4510" runat="server">Cập nhật</asp:LinkButton>
                                 <asp:LinkButton ID="lbCancel" CommandArgument='<%# Eval("RoleId") %>' CommandName="CancelUpdate" ForeColor="#8C4510" runat="server" CausesValidation="false">Hủy</asp:LinkButton>
                             </EditItemTemplate>
+                            <FooterTemplate>
+                                <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="InsertRow"  CausesValidation="false" ForeColor="#8C4510">Thêm</asp:LinkButton>
+                            </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Mã gói">
                             <ItemTemplate>
@@ -87,6 +90,11 @@
                             <EditItemTemplate>
                                 <asp:TextBox runat="server" ID="EditRoleName" Text='<%# Bind("RoleName") %>' />
                             </EditItemTemplate>
+                             <FooterTemplate>
+                                <asp:TextBox runat="server" ID="InsertRoleName" Text=' <%# Bind("RoleName") %>'/>
+                                <asp:RequiredFieldValidator ID="rfvEditName" runat="server" ErrorMessage="Chưa nhập tên chức vụ" ControlToValidate="InsertRoleName" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                                </asp:RequiredFieldValidator>
+                            </FooterTemplate>
                         </asp:TemplateField>
                     </Columns>
                     <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />

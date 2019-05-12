@@ -7,6 +7,13 @@
     <div class="btn btn-lg custom_bar">Thông tin sản phẩm</div>
     <div class="container">
         <div class="row">
+            <div class="col-3"></div>
+            <div class="col-9">
+                <asp:TextBox runat="server" placeholder="Gõ vào đây..." ID="txtTimKiem"></asp:TextBox>
+                <asp:Button runat="server" ID="btnTimKiem" Text="Tìm" CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click" />
+            </div>
+        </div>
+        <div class="row">
             <div class="table-responsive">
                             <asp:ListView ID="lvPro" OnPagePropertiesChanging="lvPro_PagePropertiesChanging" ItemType="ShoesStore.DataAccessLogicLayer.Pro" runat="server"  OnItemCommand="lvPro_ItemCommand">
                                 <LayoutTemplate>
