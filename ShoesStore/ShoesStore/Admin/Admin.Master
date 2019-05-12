@@ -38,7 +38,7 @@
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row nav_custom">
                 <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-                    <a class="navbar-brand brand-logo" href="/quan-tri">
+                    <a class="navbar-brand brand-logo" href="<%= ResolveUrl("~/Admin/Default.aspx") %>">
                         <a href="/" class="logo_name">
                             <img src="/Admin/images/logo.png" width="100" /></a>
                     </a>
@@ -112,7 +112,7 @@
                             </div>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/quan-tri">
                                 <i class="menu-icon mdi mdi-television"></i>
                                 <span class="menu-title">Tổng quan</span>
                             </a>
@@ -150,7 +150,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#ui-basic_2" aria-expanded="false" aria-controls="ui-basic">
+                            <a class="nav-link" data-toggle="collapse" href="#ui-basic_2" aria-expanded="false" aria-controls="ui-basic2">
                                 <i class="menu-icon mdi mdi-account"></i>
                                 <span class="menu-title">Quản lý hóa đơn</span>
                                 <i class="menu-arrow"></i>
@@ -158,32 +158,33 @@
                             <div class="collapse" id="ui-basic_2">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/mua-goi-thuong-nien") %>">Tạo hóa đơn mua gói dịch vụ</a>
+                                        <a class="nav-link" href="/quan-tri/mua-goi-thuong-nien">Tạo hóa đơn mua gói dịch vụ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/hoa-don-goi-thuong-nien") %>">Hóa đơn mua dịch vụ</a>
+                                        <a class="nav-link" href="/quan-tri/hoa-don-goi-thuong-nien">Hóa đơn mua dịch vụ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/hoa-don-san-pham") %>">Hóa đơn mua hàng</a>
+                                        <a class="nav-link" href="/quan-tri/hoa-don-san-pham">Hóa đơn mua hàng</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<%= ResolveUrl("~/Admin/Overview.aspx") %>">
-                                <i class="menu-icon mdi mdi-table-edit"></i>
+                            <a class="nav-link" data-toggle="collapse" href="#ui-basic_3" aria-expanded="false" aria-controls="ui-basic_3">
+                                <i class="menu-icon mdi mdi-account"></i>
                                 <span class="menu-title">Thống kê</span>
+                                <i class="menu-arrow"></i>
                             </a>
                             <div class="collapse" id="ui-basic_3">
                                 <ul class="nav flex-column sub-menu">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/thong-ke-don-hang-mua-sp-thanh-cong") %>">Thống kê hóa đơn bán sản phẩm</a>
+                                        <a class="nav-link" href="/quan-tri/thong-ke-don-hang-mua-sp-thanh-cong">Thống kê hóa đơn bán sản phẩm</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Thống kê hóa đơn mua gói thường niên</a>
+                                        <a class="nav-link" href="/quan-tri/thong-ke-loi-nhuan-M">Thống kê thi chi người bán</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<%= ResolveUrl("/quan-tri/thong-ke-loi-nhuan-W") %>">Thống kê lợi nhuận</a>
+                                        <a class="nav-link" href="/quan-tri/thong-ke-loi-nhuan-W">Thống kê lợi nhuận</a>
                                     </li>
                                 </ul>
                             </div>

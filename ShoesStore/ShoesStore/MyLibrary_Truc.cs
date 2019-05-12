@@ -1,6 +1,8 @@
 ﻿using ShoesStore.DataAccessLogicLayer;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Web.UI;
@@ -122,5 +124,57 @@ class='rating__star rating__star--only-edge rating__star--active'>
         //    ViewState["fPath"] = @"~/Admin/Images/avatar/" + strFilePath;
         //    return strFilePath;
         //}
+
+        public static double SumIn(Shp shp)
+        {
+            var rs = MyLibrary.RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == shp.ShpId).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy))).Sum().ToString();
+            return double.Parse(rs);
+           
+        }
+
+        public static double SumIn(int ShpId, int month, int year)
+        {
+            if(month==0)
+            {
+                var rs = MyLibrary.RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == ShpId).Where(x => x.RcptBuy.Rcpt.DateAdd.Year == year).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy))).Sum().ToString();
+                return double.Parse(rs);
+            }
+            else if(year == 0)
+            {
+                var rs = MyLibrary.RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == ShpId).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy))).Sum().ToString();
+                return double.Parse(rs);
+            }
+            else
+            {
+                var rs = MyLibrary.RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == ShpId).Where(x=>(x.RcptBuy.Rcpt.DateAdd.Month==month && x.RcptBuy.Rcpt.DateAdd.Year==year)).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy))).Sum().ToString();
+                return double.Parse(rs);
+            }
+        }
+
+        public static double SumOut(int ShpId, int month, int year)
+        {
+            int merId = MyLibrary.Shp_Bus.GetAll().Where(x => x.ShpId == ShpId).Select(x => x.MerId).FirstOrDefault();
+            if (month == 0)
+            {
+                var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId).Where(x => x.RcptSub.Rcpt.DateAdd.Year == year).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price.ToString()))).Sum().ToString();
+                return double.Parse(rs);
+            }
+            else if (year == 0)
+            {
+                var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price.ToString()))).Sum().ToString();
+                return double.Parse(rs);
+            }
+            else
+            {
+                var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId).Where(x => (x.RcptSub.Rcpt.DateAdd.Month == month && x.RcptSub.Rcpt.DateAdd.Year == year)).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price.ToString()))).Sum().ToString();
+                return double.Parse(rs);
+            }
+        }
+        public static double SumOut(Shp shp)
+        {
+            int merId = MyLibrary.Shp_Bus.GetAll().Where(x => x.ShpId == shp.ShpId).Select(x => x.MerId).FirstOrDefault();
+            var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price))).Sum().ToString();
+            return double.Parse(rs);
+        }
     }
 }

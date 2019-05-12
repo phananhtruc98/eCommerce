@@ -15,7 +15,7 @@
         </div>
         <div class="row">
             <div class="col-12 table-responsive">
-                <asp:ListView runat="server" ID="lvMaster" OnItemCommand="lvMaster_ItemCommand" ItemType="ShoesStore.DataAccessLogicLayer.Mstr">
+                <asp:ListView runat="server" OnPagePropertiesChanging="lvMaster_PagePropertiesChanging" ID="lvMaster" OnItemCommand="lvMaster_ItemCommand" ItemType="ShoesStore.DataAccessLogicLayer.Mstr">
                     <LayoutTemplate>
                         <table class="table">
                             <tr>
@@ -46,6 +46,16 @@
                         </tr>
                     </ItemTemplate>
                 </asp:ListView>
+                <asp:DataPager ID="DataPager1" runat="server" PageSize="5"
+                    PagedControlID="lvMaster">
+                    <Fields>
+                        <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True"
+                            ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
+                        <asp:NumericPagerField />
+                        <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True"
+                            ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
+                    </Fields>
+                </asp:DataPager>
             </div>
         </div>
     </div>

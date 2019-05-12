@@ -17,7 +17,7 @@ namespace ShoesStore
             routes.MapPageRoute("Cart", "gio-hang", "~/Customer/Cart.aspx");
             routes.MapPageRoute("CartCheckout", "gio-hang/thanh-toan", "~/Customer/Checkout.aspx");
 
-            routes.MapPageRoute("Admin", "quan-tri", "~/Admin/Default.aspx");
+            routes.MapPageRoute("Admin", "quan-tri/", "~/Admin/Default.aspx");
             routes.MapPageRoute("ManagerAdministrator", "quan-tri/web-master", "~/Admin/ManageAdministrator.aspx");
             routes.MapPageRoute("ManagerCustomer", "quan-tri/customer", "~/Admin/ManageCustomer.aspx");
             routes.MapPageRoute("ManagerMerchant", "quan-tri/merchant", "~/Admin/ManageMerchant.aspx");
@@ -29,6 +29,7 @@ namespace ShoesStore
             routes.MapPageRoute("AccountMstr", "quan-tri/thong-tin-ca-nhan", "~/Admin/Account_Mstr.aspx");
             routes.MapPageRoute("Overview_Profit_W", "quan-tri/thong-ke-loi-nhuan-W", "~/Admin/Overview_Profit_W.aspx");
             routes.MapPageRoute("Overview_RcptSuccess", "quan-tri/thong-ke-don-hang-mua-sp-thanh-cong", "~/Admin/Overview.aspx");
+            routes.MapPageRoute("Overview_RcptSub", "quan-tri/thong-ke-loi-nhuan-M", "~/Admin/Overview_RcptSub.aspx");
             routes.MapPageRoute("Create_RcptSub", "quan-tri/mua-goi-thuong-nien", "~/Admin/CreateNewRcptSub.aspx");
 
             //

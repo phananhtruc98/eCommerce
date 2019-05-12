@@ -48,7 +48,7 @@
                             <div style="float: right">
                                 <asp:TextBox runat="server" TextMode="Number" ID="inputPrice" class="form-control" />
                             </div>
-                            <asp:RequiredFieldValidator ID="rfvEditPricetAdd" runat="server" ErrorMessage="Chưa nhập tóm tắt" ControlToValidate="inputPrice" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            <asp:RequiredFieldValidator ID="rfvEditPricetAdd" runat="server" ErrorMessage="Chưa nhập giá tiền" ControlToValidate="inputPrice" Text="*" ForeColor="Red" ValidationGroup="Insert">
                             </asp:RequiredFieldValidator>
                         </div>
                         <hr />
@@ -65,7 +65,8 @@
                             Kích cỡ:
                                     <asp:DropDownList runat="server" ID="ddlSizeSelected"></asp:DropDownList>Màu:
                                     <asp:DropDownList runat="server" ID="ddlColorSelected"></asp:DropDownList><asp:LinkButton runat="server" ID="lbtnChon" Text="Chọn" OnClick="lbtnChon_Click"></asp:LinkButton>
-                        </div>
+                       
+                            </div>
                         <div>
                             <asp:ListView ID="lvColoSize" runat="server" OnItemCommand="lvColoSize_ItemCommand">
                                 <LayoutTemplate>
@@ -124,9 +125,11 @@
                         </div>
                         <div>
                             <asp:TextBox TextMode="MultiLine" runat="server" ID="editor1" name="editor1"></asp:TextBox>
+                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Mô tả chi tiết" ControlToValidate="inputDescShort" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
                         </div>
                         <script>
-                            CKEDITOR.replace('MainPlaceHolder_editor1', { htmlEncodeOutput: true });
+                            CKEDITOR.replace('MainPlaceHolder_editor1', { htmlEncodeOutput: false });
                             CKEDITOR.config.toolbar = [
 
                                 { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', '-', 'Undo', 'Redo'] },
@@ -147,6 +150,8 @@
                         </script>
                         <hr />
                         <asp:LinkButton ID="lbSubmit" ValidationGroup="Insert" OnClick="btnSubmit_OnClick" CommandName="Submit" ForeColor="#8C4510" runat="server" class="btn btn-lg btn-primary btn-block text-uppercase">Đăng bài</asp:LinkButton>
+                        <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert" runat="server" />
+                        <asp:Label runat="server" ID="lbError"></asp:Label>
                     </div>
                 </div>
             </div>

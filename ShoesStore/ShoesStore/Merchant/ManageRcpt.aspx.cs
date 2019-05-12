@@ -13,6 +13,7 @@ namespace ShoesStore.Merchant
 {
     public partial class ManageRcpt : System.Web.UI.Page
     {
+        public string selectedValProp = "";
         private readonly Pro_BUS pro = new Pro_BUS();
         private readonly Rcpt_BUS rcpt = new Rcpt_BUS();
         private readonly RcptBuy_BUS rcptBuy = new RcptBuy_BUS();
@@ -29,6 +30,7 @@ namespace ShoesStore.Merchant
         {
             if (!IsPostBack)
             {
+                LoadDdlPropFilter();
                 cthd.Visible = false;
                 sumprice.Visible = false;
                 BindGridViewgvRcptBuy();
@@ -41,7 +43,7 @@ namespace ShoesStore.Merchant
             //gvRcptBuy.DataBind();
             var src1 = (from r in MyLibrary.Rcpt_BUS.GetAll()
                         join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
-
+                        join i in MyLibrary.Usr_BUS.GetAll() on b.CusId equals i.UsrId
                         join s in shp.GetAll() on b.ShpId equals s.ShpId
                         join z in mer.GetAll() on s.MerId equals z.MerId
                         join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
@@ -54,7 +56,7 @@ namespace ShoesStore.Merchant
                             r.DateEdit,
                             r.UsrAdd,
                             r.UsrEdit,
-                            b.CusId,
+                            i.UsrName,
                             s.ShpName,
                             z.MerId,
                             e.StepId,
@@ -63,6 +65,8 @@ namespace ShoesStore.Merchant
             //var distinct = src1.DistinctBy(i => i.RcptBuyId);
             gvRcptBuy.DataSource = src1.DistinctBy(i => i.RcptBuyId).ToList();
             gvRcptBuy.DataBind();
+            ddlPropFilterDet.Items.Insert(0, new ListItem("--Tất cả--", String.Empty));
+            ddlPropFilterDet.SelectedIndex = 0;
         }
 
 
@@ -102,23 +106,20 @@ namespace ShoesStore.Merchant
             gvRcptBuy.DataBind();// your gridview binding function
         }
         */
-        // Tìm kiếm
-        protected void btnTimKiem_Click(object sender, EventArgs e)
-        {
-            TimKiem(txtTimKiem.Text.UnSign().ToLower());
-        }
+
+        
 
         public void TimKiem(string search_key)
         {
 
             var rs = (from r in MyLibrary.Rcpt_BUS.GetAll()
                       join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
-
+                      join i in MyLibrary.Usr_BUS.GetAll() on b.CusId equals i.UsrId
                       join s in shp.GetAll() on b.ShpId equals s.ShpId
                       join z in mer.GetAll() on s.MerId equals z.MerId
                       join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
                       join e in rcptbuystastep.GetAll() on t.StepId equals e.StepId
-                      where b.CusId.ToString().ContainsEx(search_key)
+                      where i.UsrName.ToString().ContainsEx(search_key)
                             || b.RcptBuyId.ToString().ContainsEx(search_key)
                             || r.DateAdd != null && r.DateAdd.ToString().ContainsEx(search_key)
                             || r.DateEdit != null && r.DateEdit.ToString().ContainsEx(search_key)
@@ -132,7 +133,7 @@ namespace ShoesStore.Merchant
                           r.DateEdit,
                           r.UsrAdd,
                           r.UsrEdit,
-                          b.CusId,
+                          i.UsrName,
                           s.ShpName,
                           z.MerId,
                           e.StepId,
@@ -346,23 +347,250 @@ namespace ShoesStore.Merchant
                     {
                         ddList.Visible = false;
                     }
-                    //DataRowView dr = e.Row.DataItem as DataRowView;
-                    //ddList.SelectedItem.Text = dr["category_name"].ToString();
-                    //ddList.SelectedValue = dr["StepCont"].ToString();
                 }
             }
         }
 
         protected void drpcategory1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //HiddenField hdnfld = (HiddenField)e.Row.FindControl("stepId");
-            //DropDownList ddList = (DropDownList)e.Row.FindControl("drpcategory1");
-            //hdnfld.Text = ddList.SelectedItem.Text;
             DropDownList drl = (DropDownList)sender;
             GridViewRow gvr = (GridViewRow)drl.NamingContainer;
             HiddenField hdf = (HiddenField)gvr.FindControl("StepId");
             hdf.Value = (string)drl.SelectedValue;
         }
 
+
+
+        protected void ddlPropFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListItem item = ddlPropFilterDet.Items.FindByValue(String.Empty);
+            string selectedVal = ddlPropFilter.SelectedValue;
+            selectedValProp = selectedVal;
+            switch (selectedVal)
+            {
+                case "All":
+                    ddlPropFilterDet.Visible = true;
+                    datepicker.Visible = false;
+                    lbtnTim.Visible = false;
+                    ddlPropFilterDet.Items.Clear();
+                    BindGridViewgvRcptBuy();
+                    break;
+                case "StepCont":
+                    ddlPropFilterDet.Visible = true;
+                    datepicker.Visible = false; lbtnTim.Visible = false;
+                    LoadStepCont();
+                    break;
+                case "CusName":
+                    ddlPropFilterDet.Visible = true;
+                    datepicker.Visible = false; lbtnTim.Visible = false;
+                    LoadCusName();
+                    break;
+                case "DateAdd":
+                    ddlPropFilterDet.Visible = false;
+                    datepicker.Visible = true; lbtnTim.Visible = true;
+                    break;
+
+            }
+        }
+        public void LoadRcptBuy()
+        {
+            gvRcptBuy.DataSource = MyLibrary.RcptBuy_BUS.GetAll().ToList();
+            gvRcptBuy.DataBind();
+            ddlPropFilterDet.Items.Insert(0, new ListItem("--Tất cả--", String.Empty));
+            ddlPropFilterDet.SelectedIndex = 0;
+        }
+        /// <summary>
+        /// ///////////////////////////////////////////
+        /// </summary>
+        //public void LoadStepCont()
+        //{
+        //    var rs = MyLibrary.RcptBuy_BUS.GetAll().Select(x => x.Rcpt.RcptBuyStaStep).Distinct();
+        //    ddlPropFilterDet.DataSource = rs.ToList();
+        //    ddlPropFilterDet.DataTextField = "UsrName";
+        //    ddlPropFilterDet.DataValueField = "UsrId";
+        //    ddlPropFilterDet.DataBind();
+        //    ddlPropFilterDet.Items.Insert(0, new ListItem("--Tất cả--", String.Empty));
+        //    ddlPropFilterDet.SelectedIndex = 0;
+        //}
+        public void LoadCusName()
+        {
+            var rs = MyLibrary.RcptBuy_BUS.GetAll().Select(x => x.Cus.Usr).Distinct();
+            ddlPropFilterDet.DataSource = rs.ToList();
+            ddlPropFilterDet.DataTextField = "UsrName";
+            ddlPropFilterDet.DataValueField = "UsrId";
+            ddlPropFilterDet.DataBind();
+            ddlPropFilterDet.Items.Insert(0, new ListItem("--Tất cả--", String.Empty));
+            ddlPropFilterDet.SelectedIndex = 0;
+        }
+        protected void lbtnTim_Click(object sender, EventArgs e)
+        {
+            DateTime s = Convert.ToDateTime(datepicker.Value);
+            string date = s.ToString("MM/dd/yyyy");
+            gvRcptBuy.DataSource = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.Rcpt.DateAdd.ToString("dd/MM/yyyy") == date).ToList();
+            gvRcptBuy.DataBind();
+        }
+        protected void ddlPropFilterDet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList props = ddlPropFilter;
+            string selectedValProp = props.SelectedValue;
+            int selectedVal = 0;
+            if (ddlPropFilterDet.SelectedValue == "") { selectedVal = 0; }
+            else { selectedVal = Int32.Parse(ddlPropFilterDet.SelectedValue); }
+            if (selectedVal == 0)
+            {
+                BindGridViewgvRcptBuy();
+                ddlPropFilterDet.Items.RemoveAt(0);
+            }
+            else
+            {
+                switch (selectedValProp)
+                {
+                    case "StepCont":
+                        LoadRcptBuyByStepCont(selectedVal);
+                        break;
+                    case "CusName":
+                        LoadRcptBuyByCusName(selectedVal);
+                        break;
+                }
+            }
+        }
+        public void LoadRcptBuyByStepCont(int StepId)
+        {
+            var src1 = (from r in MyLibrary.Rcpt_BUS.GetAll()
+                        join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
+                        join i in MyLibrary.Usr_BUS.GetAll() on b.CusId equals i.UsrId
+                        join s in shp.GetAll() on b.ShpId equals s.ShpId
+                        join z in mer.GetAll() on s.MerId equals z.MerId
+                        join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
+                        join e in rcptbuystastep.GetAll() on t.StepId equals e.StepId
+                        where z.MerId == (MerchantSession.LoginMer)?.MerId
+                        select new
+                        {
+                            b.RcptBuyId,
+                            r.DateAdd,
+                            r.DateEdit,
+                            r.UsrAdd,
+                            r.UsrEdit,
+                            i.UsrName,
+                            i.UsrId,
+                            s.ShpName,
+                            z.MerId,
+                            e.StepId,
+                            e.StepCont
+                        });
+            gvRcptBuy.DataSource = src1.DistinctBy(i => i.RcptBuyId).Where(x => x.StepId == StepId).ToList();
+            gvRcptBuy.DataBind();
+        }
+        public void LoadRcptBuyByCusName(int CusId)
+        {
+            var src1 = (from r in MyLibrary.Rcpt_BUS.GetAll()
+                        join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
+                        join i in MyLibrary.Usr_BUS.GetAll() on b.CusId equals i.UsrId
+                        join s in shp.GetAll() on b.ShpId equals s.ShpId
+                        join z in mer.GetAll() on s.MerId equals z.MerId
+                        join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
+                        join e in rcptbuystastep.GetAll() on t.StepId equals e.StepId
+                        where z.MerId == (MerchantSession.LoginMer)?.MerId
+                        select new
+                        {
+                            b.RcptBuyId,
+                            r.DateAdd,
+                            r.DateEdit,
+                            r.UsrAdd,
+                            r.UsrEdit,
+                            i.UsrName,
+                            i.UsrId,
+                            s.ShpName,
+                            z.MerId,
+                            e.StepId,
+                            e.StepCont
+                        });
+            gvRcptBuy.DataSource = src1.DistinctBy(i => i.RcptBuyId).Where(x => x.UsrId == CusId).ToList();
+            gvRcptBuy.DataBind();
+        }
+
+        //Tìm kiếm
+        protected void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            TimKiem(txtTimKiem.Text.UnSign().ToLower());
+        }
+        public void LoadDdlPropFilter()
+        {
+            List<ListItem> items = new List<ListItem>();
+            items.Add(new ListItem("-- Tất cả --", "All"));
+            items.Add(new ListItem("Ngày đặt hàng", "DateAdd"));
+            items.Add(new ListItem("Khách hàng", "CusName"));
+            items.Sort(delegate (ListItem item1, ListItem item2) { return item1.Text.CompareTo(item2.Text); });
+            ddlPropFilter.Items.AddRange(items.ToArray());
+        }
+
+        protected void gvRcptBuy_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            
+            gvRcptBuy.PageIndex = e.NewPageIndex;
+            BindGridViewgvRcptBuy();
+        }
+
+        //protected void Datagrid1_SortCommand(object source, DataGridSortCommandEventArgs e)
+        //{
+
+        //    DataTable dt;
+        //    var src1 = (from r in MyLibrary.Rcpt_BUS.GetAll()
+        //                join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
+        //                join i in MyLibrary.Usr_BUS.GetAll() on b.CusId equals i.UsrId
+        //                join s in shp.GetAll() on b.ShpId equals s.ShpId
+        //                join z in mer.GetAll() on s.MerId equals z.MerId
+        //                join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
+        //                join l in rcptbuystastep.GetAll() on t.StepId equals l.StepId
+        //                where z.MerId == (MerchantSession.LoginMer)?.MerId
+        //                select new
+        //                {
+        //                    b.RcptBuyId,
+        //                    r.DateAdd,
+        //                    r.DateEdit,
+        //                    r.UsrAdd,
+        //                    r.UsrEdit,
+        //                    i.UsrName,
+        //                    i.UsrId,
+        //                    s.ShpName,
+        //                    z.MerId,
+        //                    l.StepId,
+        //                    l.StepCont
+        //                });
+        //    dt = src1.AsEnumerable();
+        //    {
+        //        string SortDir = string.Empty;
+        //        if (dir == SortDirection.Ascending)
+        //        {
+        //            dir = SortDirection.Descending;
+        //            SortDir = "Desc";
+        //        }
+        //        else
+        //        {
+        //            dir = SortDirection.Ascending;
+        //            SortDir = "Asc";
+        //        }
+        //        DataView sortedView = new DataView(dt);
+        //        sortedView.Sort = e.SortExpression + " " + SortDir;
+        //        gvRcptBuy.DataSource = sortedView;
+        //        gvRcptBuy.DataBind();
+        //    }
+        //}
+
+        //protected SortDirection dir
+        //{
+        //    get
+        //    {
+        //        if (ViewState["dirState"] == null)
+        //        {
+        //            ViewState["dirState"] = SortDirection.Ascending;
+        //        }
+        //        return (SortDirection)ViewState["dirState"];
+        //    }
+        //    set
+        //    {
+        //        ViewState["dirState"] = value;
+        //    }
+        //}
     }
 }

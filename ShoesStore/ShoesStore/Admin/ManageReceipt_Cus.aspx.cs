@@ -19,7 +19,7 @@ namespace ShoesStore.Admin
         private readonly Shp_BUS shp = new Shp_BUS();
         private readonly Usr_BUS usr = new Usr_BUS();
         public string selectedValProp = "";
-        List<RcptBuy> lstViewTemp = new List<RcptBuy>();
+        public static List<RcptBuy> lstViewTemp = new List<RcptBuy>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -126,6 +126,7 @@ namespace ShoesStore.Admin
 
         protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+            
             if (e.CommandName == "Sel")
             {
                 int rcptBuyId = Int32.Parse(e.CommandArgument.ToString());
@@ -235,27 +236,43 @@ namespace ShoesStore.Admin
                 var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.RcptBuyId == Int32.Parse((lbRcptBuyId.Text))).FirstOrDefault();
                 lstViewTemp.Add(rs);
             }
-
             switch (SortList.SelectedValue)
             {
                 case "DateAdd":
-                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
-                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Rcpt.DateAdd); lvRcptBuy.DataBind(); }
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Rcpt.DateAdd).ToList(); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Rcpt.DateAdd).ToList(); lvRcptBuy.DataBind(); }
                     break;
                 case "RcptBuyId":
-                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.RcptBuyId); lvRcptBuy.DataBind(); }
-                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.RcptBuyId); lvRcptBuy.DataBind(); }
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.RcptBuyId).ToList(); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.RcptBuyId).ToList(); lvRcptBuy.DataBind(); }
                     break;
                 case "ShpName":
-                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Shp.ShpName); lvRcptBuy.DataBind(); }
-                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Shp.ShpName); lvRcptBuy.DataBind(); }
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Shp.ShpName).ToList(); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Shp.ShpName).ToList(); lvRcptBuy.DataBind(); }
                     break;
                 case "CusName":
-                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Cus.Usr.UsrName); lvRcptBuy.DataBind(); }
-                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Cus.Usr.UsrName); lvRcptBuy.DataBind(); }
+                    if (DirectionList.SelectedValue == "DESC") { lvRcptBuy.DataSource = lstViewTemp.OrderByDescending(x => x.Cus.Usr.UsrName).ToList(); lvRcptBuy.DataBind(); }
+                    else { lvRcptBuy.DataSource = lstViewTemp.OrderBy(x => x.Cus.Usr.UsrName).ToList(); lvRcptBuy.DataBind(); }
                     break;
             }
 
+        }
+
+        protected void lvRcptBuy_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            LoadRcptBuy();
+        }
+
+        protected void lvRcptBuy_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                
+                //Label lbRcptBuyId = (Label)e.Item.FindControl("lbRcptId");
+                //var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.RcptBuyId == Int32.Parse((lbRcptBuyId.Text))).FirstOrDefault();
+                //lstViewTemp.Add(rs);
+            }
         }
     }
 }
