@@ -368,7 +368,7 @@ namespace ShoesStore.Merchant
                 case "StepCont":
                     ddlPropFilterDet.Visible = true;
                     datepicker.Visible = false; lbtnTim.Visible = false;
-                    LoadStepCont();
+                    //LoadStepCont();
                     break;
                 case "CusName":
                     ddlPropFilterDet.Visible = true;
