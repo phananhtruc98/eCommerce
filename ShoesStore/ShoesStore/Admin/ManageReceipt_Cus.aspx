@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="row">
-            <asp:ListView runat="server" OnPagePropertiesChanging="lvRcptBuy_PagePropertiesChanging" AllowPaging="true" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" OnItemCommand="lvRcptBuy_ItemCommand" OnSelectedIndexChanged="lvRcptBuy_SelectedIndexChanged" ID="lvRcptBuy">
+            <asp:ListView runat="server"  OnItemDataBound="lvRcptBuy_ItemDataBound" OnPagePropertiesChanging="lvRcptBuy_PagePropertiesChanging" AllowPaging="true" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" OnItemCommand="lvRcptBuy_ItemCommand" OnSelectedIndexChanged="lvRcptBuy_SelectedIndexChanged" ID="lvRcptBuy">
                 <LayoutTemplate>
                     <table class="table table-border">
                         <tr>

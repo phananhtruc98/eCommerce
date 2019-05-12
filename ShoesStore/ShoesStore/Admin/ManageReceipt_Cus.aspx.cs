@@ -19,7 +19,7 @@ namespace ShoesStore.Admin
         private readonly Shp_BUS shp = new Shp_BUS();
         private readonly Usr_BUS usr = new Usr_BUS();
         public string selectedValProp = "";
-        List<RcptBuy> lstViewTemp = new List<RcptBuy>();
+        public static List<RcptBuy> lstViewTemp = new List<RcptBuy>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -126,6 +126,7 @@ namespace ShoesStore.Admin
 
         protected void lvRcptBuy_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
+            
             if (e.CommandName == "Sel")
             {
                 int rcptBuyId = Int32.Parse(e.CommandArgument.ToString());
@@ -235,7 +236,6 @@ namespace ShoesStore.Admin
                 var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.RcptBuyId == Int32.Parse((lbRcptBuyId.Text))).FirstOrDefault();
                 lstViewTemp.Add(rs);
             }
-
             switch (SortList.SelectedValue)
             {
                 case "DateAdd":
@@ -262,6 +262,17 @@ namespace ShoesStore.Admin
         {
             DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
             LoadRcptBuy();
+        }
+
+        protected void lvRcptBuy_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                
+                //Label lbRcptBuyId = (Label)e.Item.FindControl("lbRcptId");
+                //var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.RcptBuyId == Int32.Parse((lbRcptBuyId.Text))).FirstOrDefault();
+                //lstViewTemp.Add(rs);
+            }
         }
     }
 }
