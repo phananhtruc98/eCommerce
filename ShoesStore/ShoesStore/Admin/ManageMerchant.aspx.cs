@@ -39,18 +39,13 @@ namespace ShoesStore.Admin
 
         public void TimKiem(string search_key)
         {
-            var rs = (from a in mer_BUS.Get_Mer_Info().ToList()
-                      where a.UsrId.ToString().ContainsEx(search_key)
-                            || a.UsrName.ContainsEx(search_key)
-                            || a.Login.ContainsEx(search_key)
-                            || a.Password.ContainsEx(search_key)
-                            || a.Phone.ContainsEx(search_key)
-                            || a.DateAdd != null && a.DateAdd.ToString().ContainsEx(search_key)
-                            || a.DateAdd != null && a.DateEdit.ToString().ContainsEx(search_key)
-                            || a.Address.ContainsEx(search_key)
+            var rs = (from a in MyLibrary.Mer_BUS.GetAll().ToList()
+                      where a.MerId.ToString().ContainsEx(search_key)
+                            || a.Usr.UsrName.ContainsEx(search_key)
+                            || a.Usr.DateAdd != null && a.Usr.DateAdd.ToString().ContainsEx(search_key)
                       select a).ToList();
-            gvMerchant.DataSource = rs;
-            gvMerchant.DataBind();
+            lvMer.DataSource = rs;
+            lvMer.DataBind();
         }
 
         //Phân trang
