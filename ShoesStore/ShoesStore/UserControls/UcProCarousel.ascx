@@ -5,39 +5,14 @@
 <div class="block block-products-carousel" data-layout="grid-5">
     <div class="container">
         <div class="block-header">
-            <h3 class="block-header__title">Sản phẩm nổi bật </h3>
+            <h3 class="block-header__title">Sản phẩm ngẫu nhiên</h3>
             <div class="block-header__divider"></div>
-            <ul class="block-header__groups-list">
-                <li>
-                    <button type="button" class="block-header__group block-header__group--active">
-                        Tất cả
-                    </button>
-                </li>
-                <asp:Repeater runat="server" ID="featuredProducts" OnInit="featuredProducts_Init">
-                    <ItemTemplate>
-                        <li>
-                            <button type="button" class="block-header__group"><%#Eval("CatName") %></button>
-                        </li>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </ul>
-            <div class="block-header__arrows-list">
-                <button class="block-header__arrow block-header__arrow--left" type="button">
-                    <svg width="7px" height="11px">
-                        <use href="images/sprite.svg#arrow-rounded-left-7x11"></use>
-                    </svg>
-                </button>
-                <button class="block-header__arrow block-header__arrow--right" type="button">
-                    <svg width="7px" height="11px">
-                        <use href="images/sprite.svg#arrow-rounded-right-7x11"></use>
-                    </svg>
-                </button>
-            </div>
+
         </div>
         <div class="block-products-carousel__slider">
             <div class="block-products-carousel__preloader"></div>
             <div class="owl-carousel">
-                <wccustom:repeatertable runat="server" id="rptPro" allowpage="True" tablename="Pro">
+                <wcCustom:RepeaterTable runat="server" ID="rptPro" AllowPage="True" ItemType="ShoesStore.DataAccessLogicLayer.Pro">
                     <ItemTemplate>
                         <div class="block-products-carousel__cell">
                             <div class="product-card">
@@ -57,121 +32,29 @@
                                     </div>
                                     <div class="product-card__rating">
                                         <div class="rating">
-                                            <div class="rating__body">
-                                                <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                                    <g class="rating__fill">
-                                                        <use href="images/sprite.svg#star-normal">
-                                                        </use>
-                                                    </g>
-                                                    <g class="rating__stroke">
-                                                        <use href="images/sprite.svg#star-normal-stroke">
-                                                        </use>
-                                                    </g>
-                                                </svg>
-                                                <div class="rating__star rating__star--only-edge rating__star--active">
-                                                    <div class="rating__fill">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                    <div class="rating__stroke">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                </div>
-                                                <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                                    <g class="rating__fill">
-                                                        <use href="images/sprite.svg#star-normal">
-                                                        </use>
-                                                    </g>
-                                                    <g class="rating__stroke">
-                                                        <use href="images/sprite.svg#star-normal-stroke">
-                                                        </use>
-                                                    </g>
-                                                </svg>
-                                                <div class="rating__star rating__star--only-edge rating__star--active">
-                                                    <div class="rating__fill">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                    <div class="rating__stroke">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                </div>
-                                                <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                                    <g class="rating__fill">
-                                                        <use href="images/sprite.svg#star-normal">
-                                                        </use>
-                                                    </g>
-                                                    <g class="rating__stroke">
-                                                        <use href="images/sprite.svg#star-normal-stroke">
-                                                        </use>
-                                                    </g>
-                                                </svg>
-                                                <div class="rating__star rating__star--only-edge rating__star--active">
-                                                    <div class="rating__fill">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                    <div class="rating__stroke">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                </div>
-                                                <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                                    <g class="rating__fill">
-                                                        <use href="images/sprite.svg#star-normal">
-                                                        </use>
-                                                    </g>
-                                                    <g class="rating__stroke">
-                                                        <use href="images/sprite.svg#star-normal-stroke">
-                                                        </use>
-                                                    </g>
-                                                </svg>
-                                                <div class="rating__star rating__star--only-edge rating__star--active">
-                                                    <div class="rating__fill">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                    <div class="rating__stroke">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                </div>
-                                                <svg class="rating__star" width="13px" height="12px">
-                                                    <g class="rating__fill">
-                                                        <use href="images/sprite.svg#star-normal">
-                                                        </use>
-                                                    </g>
-                                                    <g class="rating__stroke">
-                                                        <use href="images/sprite.svg#star-normal-stroke">
-                                                        </use>
-                                                    </g>
-                                                </svg>
-                                                <div class="rating__star rating__star--only-edge">
-                                                    <div class="rating__fill">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                    <div class="rating__stroke">
-                                                        <div class="fake-svg-icon"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <%# MyLibrary.DrawStar(MyLibrary.Pro_BUS.AverageStar(Item)) %>
                                         </div>
-                                        <div class="product-card__rating-legend">9 Đánh giá</div>
+                                        <div class="product-card__rating-legend"><%# MyLibrary.RcptBuyDet_BUS.GetNumberReview(Item) %> Đánh giá</div>
                                     </div>
                                 </div>
                                 <div class="product-card__actions">
                                     <div class="product-card__availability">
                                         Availability:
-                                        <span class="text-success">
-                                            In Stock
+                                        <span class="text-success">In Stock
                                         </span>
                                     </div>
-                                    <div class="product-card__prices"><%# Eval("Price").ToFormatMoney() %></div>
+                                    <div class="product-card__prices"><%# MyLibrary.Pro_BUS.GetPriceFormat(Item)%></div>
                                     <div class="product-card__shop text-right small text-monospace">
                                         <a href="product.html"><%#Eval("Shp.ShpName") %></a>
                                     </div>
                                     <div class="product-card__buttons">
-                                        <asp:LinkButton runat="server" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>" ID="addToCart" Text="Xem sản phẩm" CssClass="btn btn-primary product-card__addtocart"/>
+                                        <asp:LinkButton runat="server" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>" ID="addToCart" Text="Xem sản phẩm" CssClass="btn btn-primary product-card__addtocart" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </ItemTemplate>
-                </wccustom:repeatertable>
+                </wcCustom:RepeaterTable>
             </div>
         </div>
     </div>

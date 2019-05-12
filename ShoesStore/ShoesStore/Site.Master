@@ -281,12 +281,12 @@
                                     </svg>
                                                     </span>
                                                 </a>
-                                                <div class="nav-links__menu">
+                                                <div class="nav-links__menu ">
                                                     <!-- .megamenu -->
                                                     <ul class="menu ">
                                                         <asp:Repeater ID="rptProCat" runat="server" OnInit="rptProCat_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProCat">
                                                             <ItemTemplate>
-                                                                <li>
+                                                                <li class="pointer-event__none">
                                                                     <a href="/san-pham?catId=<%# Item.CatId%>"><%# Item.CatName %></a>
                                                                 </li>
                                                             </ItemTemplate>
@@ -308,7 +308,7 @@
                                                     <ul class="menu ">
                                                         <asp:Repeater ID="rptProBrand" runat="server" OnInit="rptProBrand_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProBrand">
                                                             <ItemTemplate>
-                                                                <li>
+                                                                <li class="pointer-event__none">
                                                                     <a href="san-pham?branId=<%# Item.BrandId %>"><%# Item.BrandName %></a>
                                                                 </li>
                                                             </ItemTemplate>
@@ -416,7 +416,7 @@
         </div>
         <div>
             <!-- site__footer -->
-            <footer class="site__footer">
+            <footer class="site__footer pointer-event__none">
                 <div class="site-footer">
                     <div class="container">
                         <div class="site-footer__widgets">

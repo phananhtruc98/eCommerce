@@ -12,7 +12,7 @@
 
     <%--
 	<Sagara:BreadCrumbControl id="breadcrumb" runat="Server" />--%>
-    <asp:SiteMapPath runat="server" ID="smp1" OnItemCreated="smp1_ItemCreated"></asp:SiteMapPath>
+    
     <div class="site__body">
         <div class="page-header">
             <div class="page-header__container container">

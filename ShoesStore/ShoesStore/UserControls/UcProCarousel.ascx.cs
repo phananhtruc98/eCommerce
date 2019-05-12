@@ -1,13 +1,28 @@
 ﻿using System;
-
+using System.Linq;
+using ShoesStore.MyExtensions;
 namespace ShoesStore.UserControls
 {
     public partial class UcProCarousel : UcPro
     {
         protected void featuredProducts_Init(object sender, EventArgs e)
         {
-            featuredProducts.DataSource = MyLibrary.ProCat_BUS.GetAll();
-            featuredProducts.DataBind();
+
+
+        }
+
+
+        protected void Page_Load(object sender, EventArgs e)
+
+        {
+            if (!IsPostBack)
+            {
+
+                rptPro.DataSource = MyLibrary.Pro_BUS.GetAllActive().Shuffle(new Random());
+                rptPro.DataBind();
+
+            }
+
         }
     }
 }

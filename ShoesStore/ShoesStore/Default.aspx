@@ -109,8 +109,8 @@
                 <h3 class="block-header__title">Loại giày phổ biến</h3>
                 <div class="block-header__divider"></div>
             </div>
-            <div class="block-categories__list">
-                <asp:Repeater runat="server" ID="rptPopularCategories" OnInit="rptPopularCategories_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProCat">
+            <div class="block-categories__list pointer-event__none">
+                    <asp:Repeater runat="server" ID="rptPopularCategories" OnInit="rptPopularCategories_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProCat">
                     <ItemTemplate>
                         <div class="block-categories__item category-card category-card--layout--compact">
                             <div class="category-card__body">
@@ -134,13 +134,13 @@
     </div>
     <div class="block block-brands">
         <div class="container">
-            <div class="block-brands__slider">
+            <div class="block-brands__slider ">
                 <div class="owl-carousel">
                     <asp:Repeater runat="server" ID="rptBrandLogos" OnInit="brandLogos_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProBrand">
                         <ItemTemplate>
-                            <div class="block-brands__item">
+                            <div class="block-brands__item pointer-event__none">
                                 <a href="#">
-                                    <img src="images/logos/<%# Item.Img %>" alt="">
+                                    <img src="images/logos/<%# Item.Img %>" alt="" style="height:150px">
                                 </a>
                             </div>
                         </ItemTemplate>
