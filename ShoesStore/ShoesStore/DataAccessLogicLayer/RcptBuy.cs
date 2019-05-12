@@ -24,9 +24,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public int ShpId { get; set; }
         public int CusId { get; set; }
         public string CusMessage { get; set; }
-        public Nullable<int> CusPoint { get; set; }
-        public string MerMessage { get; set; }
-        public Nullable<int> MerPoint { get; set; }
     
         public virtual Cus Cus { get; set; }
         public virtual Rcpt Rcpt { get; set; }

@@ -21,6 +21,8 @@ namespace ShoesStore.DataAccessLogicLayer
         public int SizeId { get; set; }
         public string Cmt { get; set; }
         public Nullable<int> Point { get; set; }
+        public string MerCmt { get; set; }
+        public Nullable<int> MerPoint { get; set; }
         public Nullable<int> Quantity { get; set; }
         public string PriceWhenBuy { get; set; }
     

@@ -315,9 +315,6 @@
           <Property Name="ShpId" Type="int" Nullable="false" />
           <Property Name="CusId" Type="int" Nullable="false" />
           <Property Name="CusMessage" Type="nvarchar" MaxLength="255" />
-          <Property Name="CusPoint" Type="int" />
-          <Property Name="MerMessage" Type="nvarchar" MaxLength="255" />
-          <Property Name="MerPoint" Type="int" />
         </EntityType>
         <EntityType Name="RcptBuyDet">
           <Key>
@@ -334,6 +331,8 @@
           <Property Name="SizeId" Type="int" Nullable="false" />
           <Property Name="Cmt" Type="nvarchar" MaxLength="255" />
           <Property Name="Point" Type="int" />
+          <Property Name="MerCmt" Type="nvarchar" MaxLength="255" />
+          <Property Name="MerPoint" Type="int" />
           <Property Name="Quantity" Type="int" />
           <Property Name="PriceWhenBuy" Type="varchar" MaxLength="255" />
         </EntityType>
@@ -2722,9 +2721,6 @@
           <Property Name="ShpId" Type="Int32" Nullable="false" />
           <Property Name="CusId" Type="Int32" Nullable="false" />
           <Property Name="CusMessage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="CusPoint" Type="Int32" />
-          <Property Name="MerMessage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="MerPoint" Type="Int32" />
           <NavigationProperty Name="Cus" Relationship="ShoesStoreModel.FK_RcptBuy_Cus" FromRole="RcptBuy" ToRole="Cus" />
           <NavigationProperty Name="Rcpt" Relationship="ShoesStoreModel.FK_RcptBuy_Rcpt" FromRole="RcptBuy" ToRole="Rcpt" />
           <NavigationProperty Name="Shp" Relationship="ShoesStoreModel.FK_RcptBuy_Shp" FromRole="RcptBuy" ToRole="Shp" />
@@ -2746,6 +2742,8 @@
           <Property Name="SizeId" Type="Int32" Nullable="false" />
           <Property Name="Cmt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Point" Type="Int32" />
+          <Property Name="MerCmt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MerPoint" Type="Int32" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="PriceWhenBuy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProDet" Relationship="ShoesStoreModel.FK_RcptBuyDet_ProDet" FromRole="RcptBuyDet" ToRole="ProDet" />
@@ -4104,9 +4102,6 @@
           <EntitySetMapping Name="RcptBuy">
             <EntityTypeMapping TypeName="ShoesStoreModel.RcptBuy">
               <MappingFragment StoreEntitySet="RcptBuy">
-                <ScalarProperty Name="MerPoint" ColumnName="MerPoint" />
-                <ScalarProperty Name="MerMessage" ColumnName="MerMessage" />
-                <ScalarProperty Name="CusPoint" ColumnName="CusPoint" />
                 <ScalarProperty Name="CusMessage" ColumnName="CusMessage" />
                 <ScalarProperty Name="CusId" ColumnName="CusId" />
                 <ScalarProperty Name="ShpId" ColumnName="ShpId" />
@@ -4119,6 +4114,8 @@
               <MappingFragment StoreEntitySet="RcptBuyDet">
                 <ScalarProperty Name="PriceWhenBuy" ColumnName="PriceWhenBuy" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MerPoint" ColumnName="MerPoint" />
+                <ScalarProperty Name="MerCmt" ColumnName="MerCmt" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
                 <ScalarProperty Name="Cmt" ColumnName="Cmt" />
                 <ScalarProperty Name="SizeId" ColumnName="SizeId" />
