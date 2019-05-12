@@ -70,7 +70,7 @@ namespace ShoesStore.Admin
 
         public void BindDataListview()
         {
-            var rs1 = MyLibrary.Pro_BUS.GetAll().ToList();
+            var rs1 = MyLibrary.Pro_BUS.GetAll().Where(x => x.ProDet.Select(m => m.RcptBuyDet.Where(z => z.Cmt!=null))!=null).ToList();
             if (rs1.Count() == 0)
             {
                 lbEmpty2.Visible = true;
