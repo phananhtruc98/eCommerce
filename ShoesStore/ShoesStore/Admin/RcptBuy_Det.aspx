@@ -25,27 +25,37 @@
                     </tr>
                     <tr>
                         <td>Thông tin cửa hàng: </td>
-                        <td>Tên cửa hàng:<br /><br />
-                            Địa chỉ:<br /><br />
+                        <td>Tên cửa hàng:<br />
+                            <br />
+                            Địa chỉ:<br />
+                            <br />
                             Số điện thoại:
                         </td>
                         <td colspan="5">
-                            <asp:Label ID="lbShpName" runat="server"></asp:Label><br /><br />
-                            <asp:Label ID="lbAddress" runat="server"></asp:Label><br /><br />
+                            <asp:Label ID="lbShpName" runat="server"></asp:Label><br />
+                            <br />
+                            <asp:Label ID="lbAddress" runat="server"></asp:Label><br />
+                            <br />
                             <asp:Label ID="lbPhone" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td>Thông tin khách hàng: </td>
-                        <td>Cửa hàng:<br /><br />
-                            Địa chỉ:<br /><br />
-                            Số điện thoại:<br /><br />
+                        <td>Cửa hàng:<br />
+                            <br />
+                            Địa chỉ:<br />
+                            <br />
+                            Số điện thoại:<br />
+                            <br />
                             Email:
                         </td>
                         <td colspan="5">
-                            <asp:Label ID="lbCusName" runat="server"></asp:Label><br /><br />
-                            <asp:Label ID="lbAddressCus" runat="server"></asp:Label><br /><br />
-                            <asp:Label ID="lbPhoneCus" runat="server"></asp:Label><br /><br />
+                            <asp:Label ID="lbCusName" runat="server"></asp:Label><br />
+                            <br />
+                            <asp:Label ID="lbAddressCus" runat="server"></asp:Label><br />
+                            <br />
+                            <asp:Label ID="lbPhoneCus" runat="server"></asp:Label><br />
+                            <br />
                             <asp:Label ID="lbEmail" runat="server"></asp:Label>
                         </td>
                     </tr>
@@ -66,16 +76,18 @@
                                 <ItemTemplate>
                                     <tr>
                                         <td>
-                                             <asp:HiddenField runat="server" ID="hdfProId" Value="<%# Item.ProId %>" />
+                                            <asp:HiddenField runat="server" ID="hdfProId" Value="<%# Item.ProId %>" />
                                             <a runat="server" id="a1" onserverclick="a1_ServerClick">
                                                 <img class="rounded" style="height: 200px; width: 200px;" src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                             </a>
                                         </td>
                                         <td><%# Item.ProDet.Pro.ProName %></td>
-                                        <td><%# Item.ProDet.ProColor.ColorName %> <div style="background-color: #<%# Item.ProDet.ProColor.HexCode %>; height: 32px; width: 32px; border: black solid 1px; display: inline-block; float: right" /></td>
+                                        <td><%# Item.ProDet.ProColor.ColorName %>
+                                            <div style="background-color: #<%# Item.ProDet.ProColor.HexCode %>; height: 32px; width: 32px; border: black solid 1px; display: inline-block; float: right" />
+                                        </td>
                                         <td><%# Item.ProDet.ProSize.SizeName %></td>
                                         <td><%# Item.Quantity %></td>
-                                        <td><%# (Item.Quantity * int.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>
+                                        <td><%# (Item.Quantity * int.Parse(MyLibrary.Pro_BUS.GetPrice( Item.ProDet.Pro))).ToFormatMoney() %></td>
                                         <td>
                                             <asp:LinkButton runat="server" ID="lbtnDanhGia" Visible="false" Text="ĐÁNH GIÁ" PostBackUrl="<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>"></asp:LinkButton>
                                         </td>

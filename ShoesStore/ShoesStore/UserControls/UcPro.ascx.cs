@@ -187,6 +187,22 @@ namespace ShoesStore.UserControls
                 return int.Parse(ViewState["PageSize"].ToString());
             }
         }
+        public int NumberPerRow
+        {
+            set
+            {
+
+                ViewState["NumberPerRow"] = value; ;
+            }
+            get
+            {
+                if (ViewState["NumberPerRow"] == null)
+                {
+                    ViewState["NumberPerRow"] = 4;
+                }
+                return int.Parse(ViewState["NumberPerRow"].ToString());
+            }
+        }
         public int ShpId
         {
             get

@@ -103,7 +103,7 @@ namespace ShoesStore.BusinessLogicLayer
         public string SumRcptBuyPrice_Shop(int shpId)
         {
             var money = GetAll().Where(m => m.ProDet.Pro.ShpId == shpId && m.RcptBuy.CusId == WebSession.LoginCus.CusId)
-                .Sum(m => Convert.ToInt32(m.ProDet.Pro.Price) * m.Quantity);
+                .Sum(m => Convert.ToInt32(MyLibrary.Pro_BUS.GetPrice(m.ProDet.Pro)) * m.Quantity);
             var s = GetAll().Where(m => m.ProDet.Pro.ShpId == shpId && m.RcptBuy.CusId == WebSession.LoginCus.CusId);
             return money.ToString();
         }
