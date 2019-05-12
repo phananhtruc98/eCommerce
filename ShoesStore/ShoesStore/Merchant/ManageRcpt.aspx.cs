@@ -392,16 +392,20 @@ namespace ShoesStore.Merchant
         /// <summary>
         /// ///////////////////////////////////////////
         /// </summary>
-        //public void LoadStepCont()
-        //{
-        //    var rs = MyLibrary.RcptBuy_BUS.GetAll().Select(x => x.Rcpt.RcptBuyStaStep).Distinct();
-        //    ddlPropFilterDet.DataSource = rs.ToList();
-        //    ddlPropFilterDet.DataTextField = "UsrName";
-        //    ddlPropFilterDet.DataValueField = "UsrId";
-        //    ddlPropFilterDet.DataBind();
-        //    ddlPropFilterDet.Items.Insert(0, new ListItem("--Tất cả--", String.Empty));
-        //    ddlPropFilterDet.SelectedIndex = 0;
-        //}
+        public void LoadStepCont()
+        {
+            var rs = MyLibrary.RcptBuyStaStep_BUS.GetAll();
+            ddlPropFilterDet.DataSource = rs.ToList();
+            ddlPropFilterDet.DataTextField = "StepCont";
+            ddlPropFilterDet.DataValueField = "StepId";
+            ddlPropFilterDet.DataBind();
+            ListItem item = ddlPropFilterDet.Items.FindByValue(String.Empty);
+            if (item == null)
+            {
+                ddlPropFilterDet.Items.Insert(0, new ListItem("--Tất cả--", String.Empty));
+            }
+            ddlPropFilterDet.SelectedIndex = 0;
+        }
         public void LoadCusName()
         {
             var rs = MyLibrary.RcptBuy_BUS.GetAll().Select(x => x.Cus.Usr).Distinct();
@@ -409,7 +413,11 @@ namespace ShoesStore.Merchant
             ddlPropFilterDet.DataTextField = "UsrName";
             ddlPropFilterDet.DataValueField = "UsrId";
             ddlPropFilterDet.DataBind();
-            ddlPropFilterDet.Items.Insert(0, new ListItem("--Tất cả--", String.Empty));
+            ListItem item = ddlPropFilterDet.Items.FindByValue(String.Empty);
+            if (item == null)
+            {
+                ddlPropFilterDet.Items.Insert(0, new ListItem("--Tất cả--", String.Empty));
+            }
             ddlPropFilterDet.SelectedIndex = 0;
         }
         protected void lbtnTim_Click(object sender, EventArgs e)
@@ -444,7 +452,7 @@ namespace ShoesStore.Merchant
                 }
             }
         }
-        public void LoadRcptBuyByStepCont(int StepId)
+        public void LoadRcptBuyByStepCont(int stepId)
         {
             var src1 = (from r in MyLibrary.Rcpt_BUS.GetAll()
                         join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
@@ -468,7 +476,7 @@ namespace ShoesStore.Merchant
                             e.StepId,
                             e.StepCont
                         });
-            gvRcptBuy.DataSource = src1.DistinctBy(i => i.RcptBuyId).Where(x => x.StepId == StepId).ToList();
+            gvRcptBuy.DataSource = src1.Where(x => x.StepId == stepId).ToList();
             gvRcptBuy.DataBind();
         }
         public void LoadRcptBuyByCusName(int CusId)
@@ -509,6 +517,7 @@ namespace ShoesStore.Merchant
             List<ListItem> items = new List<ListItem>();
             items.Add(new ListItem("-- Tất cả --", "All"));
             items.Add(new ListItem("Ngày đặt hàng", "DateAdd"));
+            items.Add(new ListItem("Tình Trạng Đơn", "StepCont"));
             items.Add(new ListItem("Khách hàng", "CusName"));
             items.Sort(delegate (ListItem item1, ListItem item2) { return item1.Text.CompareTo(item2.Text); });
             ddlPropFilter.Items.AddRange(items.ToArray());
