@@ -72,7 +72,7 @@
                                         <td><%# Item.ProDet.ProColor.ColorName %></td>
                                         <td><%# Item.ProDet.ProSize.SizeName %></td>
                                         <td><%# Item.Quantity %></td>
-                                        <td><%# (Item.Quantity * int.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>
+                                        <td><%# (Item.Quantity * int.Parse(MyLibrary.Pro_BUS.GetPrice( Item.ProDet.Pro))).ToFormatMoney() %></td>
                                         <td>
                                             <asp:LinkButton runat="server" ID="lbtnDanhGia" Visible="false" Text="ĐÁNH GIÁ" PostBackUrl="<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>"></asp:LinkButton>
                                         </td>

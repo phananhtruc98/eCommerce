@@ -94,7 +94,7 @@
             </div>
             <div class="block-products__body">
                 <div class="block-products__list">
-                    <uc1:UcPro runat="server" ID="ucPro" PageSize="4" />
+                    <uc1:UcPro runat="server" NumberPerRow="4" ID="ucPro" PageSize="8" />
                 </div>
             </div>
             <div style="overflow: hidden;">
