@@ -321,5 +321,24 @@ namespace ShoesStore.Admin
                 Server.Transfer("/Admin/ReviewProductDetail.aspx?ProId=" + ProId + "&ShpId=" + ShpId);
             }
         }
+
+
+        protected void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            TimKiem(txtTimKiem.Text.UnSign().ToLower());
+        }
+
+        public void TimKiem(string search_key)
+        {
+            var rs = (from a in MyLibrary.Pro_BUS.GetAll().ToList()
+                      where a.ProName.ToString().ContainsEx(search_key)
+                            || a.Shp.ShpName.ContainsEx(search_key)
+                            || a.ProCat.CatName.ContainsEx(search_key)
+                            || a.ProBrand.BrandName.ContainsEx(search_key)
+                            || a.Price.ContainsEx(search_key)
+                      select a).ToList();
+            lvPro.DataSource = rs;
+            lvPro.DataBind();
+        }
     }
 }

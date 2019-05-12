@@ -362,6 +362,7 @@
     <Content Include="Admin\partials\_footer.html" />
     <Content Include="Admin\partials\_navbar.html" />
     <Content Include="Admin\partials\_sidebar.html" />
+    <Content Include="Admin\RcptSub_Det.aspx" />
     <Content Include="Admin\ReviewProductDetail.aspx" />
     <Content Include="Admin\Usr_Det.aspx" />
     <Content Include="Admin\vendors\ace-builds\src-min\ace.js" />
@@ -2452,6 +2453,7 @@
       <DependentUpon>ShoesStoreModel.edmx</DependentUpon>
       <LastGenOutput>ShoesStoreModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Merchant\Merchant_RcptSub_Det.aspx" />
     <Content Include="Scripts\datepicker-vi.js" />
     <Content Include="Content\themes\base\datepicker.css" />
     <Content Include="Content\themes\base\dialog.css" />
@@ -3297,6 +3299,13 @@
     <Compile Include="Admin\Overview.aspx.designer.cs">
       <DependentUpon>Overview.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\RcptSub_Det.aspx.cs">
+      <DependentUpon>RcptSub_Det.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\RcptSub_Det.aspx.designer.cs">
+      <DependentUpon>RcptSub_Det.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ReviewProductDetail.aspx.cs">
       <DependentUpon>ReviewProductDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3752,6 +3761,13 @@
     </Compile>
     <Compile Include="Merchant\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant\Merchant_RcptSub_Det.aspx.cs">
+      <DependentUpon>Merchant_RcptSub_Det.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Merchant\Merchant_RcptSub_Det.aspx.designer.cs">
+      <DependentUpon>Merchant_RcptSub_Det.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\Merchant_Rcpt_Det.aspx.cs">
       <DependentUpon>Merchant_Rcpt_Det.aspx</DependentUpon>

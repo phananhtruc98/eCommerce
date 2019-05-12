@@ -176,5 +176,13 @@ class='rating__star rating__star--only-edge rating__star--active'>
             var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price))).Sum().ToString();
             return double.Parse(rs);
         }
+
+        public static double SumRcptSubPrice(RcptSub rcptSub)
+        {
+
+            var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == rcptSub.RcptSubId)
+               .Select(x=>(double.Parse(x.Quantity.ToString())*double.Parse(x.Sub.Price))).Sum();
+            return double.Parse(rs.ToString());
+        }
     }
 }

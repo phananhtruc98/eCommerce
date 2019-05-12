@@ -10,105 +10,123 @@
 namespace ShoesStore.Admin {
     
     
-    public partial class ManageReceipt_Mer {
+    public partial class RcptSub_Det {
         
         /// <summary>
-        /// ddlPropFilter control.
+        /// rowRcptSubDet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPropFilter;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rowRcptSubDet;
         
         /// <summary>
-        /// datepicker control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText datepicker;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// lbtnTim control.
+        /// lbRcptSubId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnTim;
+        protected global::System.Web.UI.WebControls.Label lbRcptSubId;
         
         /// <summary>
-        /// ddlPropFilterDet control.
+        /// lbRcptSubDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPropFilterDet;
+        protected global::System.Web.UI.WebControls.Label lbRcptSubDate;
         
         /// <summary>
-        /// txtTimKiem control.
+        /// lbMerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTimKiem;
+        protected global::System.Web.UI.WebControls.Label lbMerName;
         
         /// <summary>
-        /// btnTimKiem control.
+        /// lbAddressMer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTimKiem;
+        protected global::System.Web.UI.WebControls.Label lbAddressMer;
         
         /// <summary>
-        /// SortList control.
+        /// lbPhoneMer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SortList;
+        protected global::System.Web.UI.WebControls.Label lbPhoneMer;
         
         /// <summary>
-        /// DirectionList control.
+        /// lbEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DirectionList;
+        protected global::System.Web.UI.WebControls.Label lbEmail;
         
         /// <summary>
-        /// lbtnSort control.
+        /// lbShpName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnSort;
+        protected global::System.Web.UI.WebControls.Label lbShpName;
         
         /// <summary>
-        /// lvRcptSub control.
+        /// lbAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvRcptSub;
+        protected global::System.Web.UI.WebControls.Label lbAddress;
         
         /// <summary>
-        /// DataPager1 control.
+        /// lbPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataPager DataPager1;
+        protected global::System.Web.UI.WebControls.Label lbPhone;
+        
+        /// <summary>
+        /// lvRcptSubDet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvRcptSubDet;
+        
+        /// <summary>
+        /// lbTotalPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTotalPrice;
     }
 }
