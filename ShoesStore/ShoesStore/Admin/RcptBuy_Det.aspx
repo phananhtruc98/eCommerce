@@ -66,7 +66,8 @@
                                 <ItemTemplate>
                                     <tr>
                                         <td>
-                                            <a href="#">
+                                             <asp:HiddenField runat="server" ID="hdfProId" Value="<%# Item.ProId %>" />
+                                            <a runat="server" id="a1" onserverclick="a1_ServerClick">
                                                 <img class="rounded" style="height: 200px; width: 200px;" src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                             </a>
                                         </td>
