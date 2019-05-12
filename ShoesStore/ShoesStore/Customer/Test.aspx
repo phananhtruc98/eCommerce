@@ -19,15 +19,7 @@
 <body>
     <h3>Repeater Example</h3>
     <form id="form1" runat="server">
-        <input type="text" id="datepicker" />
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $("#datepicker").datepicker();
-            });
-            
-
-        </script>
-
+     <asp:FileUpload ID="fulImgChinh" runat="server" ClientIDMode="Static" />
     </form>
 </body>
 </html>

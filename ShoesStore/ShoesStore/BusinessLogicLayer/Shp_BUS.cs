@@ -125,6 +125,22 @@ namespace ShoesStore.BusinessLogicLayer
         //        .Sum(rcptBuy => rcptBuy.RcptBuyDet
         //            .Sum(rcptBuyDet => int.Parse(MyLibrary.Pro_BUS.GetPrice(rcptBuyDet.ProDet.Pro))));
         //}
+        public int AverageStar(Shp obj)
+        {
+            try
+            {
 
+
+                var doub = MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => m.RcptBuy.ShpId == obj.ShpId)
+                    .Where(m => m.RcptBuy.CusPoint != null)
+                    .Average(m => m.RcptBuy.CusPoint);
+                return doub == null ? 0 : System.Convert.ToInt32(doub);
+            }
+
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }

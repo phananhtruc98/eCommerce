@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ShoesStore.Admin
@@ -11,12 +12,15 @@ namespace ShoesStore.Admin
         private int RcptBuyId;
         private string statusName = "";
         private int CusIdTemp = 0;
+        public static int ProId1 = 0;
+        public static int ShpId1 = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 RcptBuyId = int.Parse(Request.QueryString["RcptBuyId"]);
                 var status = int.Parse(Request.QueryString["Sta"]);
+                
                 switch (status)
                 {
                     case 1:
@@ -86,7 +90,10 @@ namespace ShoesStore.Admin
 
         protected void rptRcptShpDet_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-
+            
+            int ProId = int.Parse((e.Item.FindControl("hdfProId") as HiddenField).Value);
+          
+            ProId1 = ProId;
         }
 
         protected void rptRcptShp_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -99,7 +106,14 @@ namespace ShoesStore.Admin
                 rptRcptShpDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(RcptBuyId, CusIdTemp)
                     .Where(m => m.ShpId + "" == hdfShpId.Value);
                 rptRcptShpDet.DataBind();
+                ShpId1 = ShpId;
             }
+            
+        }
+
+        protected void a1_ServerClick(object sender, EventArgs e)
+        {
+            Server.Transfer("/Admin/ReviewProductDetail.aspx?ProId=" + ProId1 + "&ShpId=" + ShpId1);
         }
     }
 }

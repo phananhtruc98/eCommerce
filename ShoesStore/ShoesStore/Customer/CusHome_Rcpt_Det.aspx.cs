@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.Customer
 {
@@ -10,12 +11,24 @@ namespace ShoesStore.Customer
         private string dateadd = "";
         private int RcptBuyId;
         private string statusName = "";
-
+        RcptBuy rcptBuy = new RcptBuy();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 RcptBuyId = int.Parse(Request.QueryString["RcptBuyId"]);
+                rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => m.RcptBuyId == int.Parse(Request.QueryString["RcptBuyId"]));
+                if (string.IsNullOrEmpty(rcptBuy.CusMessage))
+                {
+
+                }
+                else
+
+                {
+                    DivWriteComment.Controls.Clear();
+                    Label txtComment = new Label() { Text = MyLibrary.DrawStar(rcptBuy.CusPoint.Value) + "</br>" + "Nhận xét của tôi: " + rcptBuy.CusMessage };
+                    DivWriteComment.Controls.Add(txtComment);
+                }
                 var status = int.Parse(Request.QueryString["Sta"]);
                 switch (status)
                 {
@@ -49,8 +62,8 @@ namespace ShoesStore.Customer
                 }
 
                 var d = (from r in MyLibrary.Rcpt_BUS.GetAll()
-                    where r.RcptId == RcptBuyId
-                    select r.DateAdd).Single();
+                         where r.RcptId == RcptBuyId
+                         select r.DateAdd).Single();
                 dateadd = d.ToString();
                 lbRcptBuyId.Text = "Đơn hàng #" + RcptBuyId;
                 lbRcptBuyDate.Text = "Ngày đặt hàng: " + dateadd;
@@ -86,9 +99,9 @@ namespace ShoesStore.Customer
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var hdfShpId = (HiddenField) e.Item.FindControl("hdfShpId");
+                var hdfShpId = (HiddenField)e.Item.FindControl("hdfShpId");
                 var ShpId = int.Parse(hdfShpId.Value);
-                var rptRcptShpDet = (Repeater) e.Item.FindControl("rptRcptShpDet");
+                var rptRcptShpDet = (Repeater)e.Item.FindControl("rptRcptShpDet");
                 rptRcptShpDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(RcptBuyId)
                     .Where(m => m.ShpId + "" == hdfShpId.Value);
                 rptRcptShpDet.DataBind();
@@ -100,11 +113,19 @@ namespace ShoesStore.Customer
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
                 if (int.Parse(Request.QueryString["Sta"]) == 7)
                 {
-                    var lbtnDanhGia = (LinkButton) e.Item.FindControl("lbtnDanhGia");
+                    var lbtnDanhGia = (LinkButton)e.Item.FindControl("lbtnDanhGia");
                     lbtnDanhGia.Visible = true;
-//var CatName = 
-//string CatName = e.Item.
+                    //var CatName = 
+                    //string CatName = e.Item.
                 }
+        }
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+            rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => m.RcptBuyId == int.Parse(Request.QueryString["RcptBuyId"]));
+            rcptBuy.CusMessage = review_text.Text;
+            rcptBuy.CusPoint = int.Parse(review_stars.SelectedValue.Split(' ')[0]);
+            MyLibrary.RcptBuy_BUS.Update(rcptBuy);
+            MyLibrary.Show("Đã thêm nhận xét", Request.RawUrl);
         }
     }
 }

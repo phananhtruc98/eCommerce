@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq.Expressions;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ShoesStore.MyExtensions
@@ -21,5 +23,13 @@ namespace ShoesStore.MyExtensions
                 return (T)formatter.Deserialize(ms);
             }
         }
+        public static string GetName<T>(this T item) where T : class
+        {
+            if (item == null)
+                return string.Empty;
+
+            return typeof(T).GetProperties()[0].Name;
+        }
+      
     }
 }

@@ -212,6 +212,15 @@ namespace ShoesStore.Merchant
                         AddDate = DateTime.Now
                     };
 
+                    if (stepId == 2)
+                    {
+                        MyLibrary.RcptBuy_BUS.RenewProDetQty(rb, "decrease");
+                    }
+                    int[] increaseStep = new int[] { 8, 9, 10, 11 };
+                    if (increaseStep.Contains(stepId))
+                    {
+                        MyLibrary.RcptBuy_BUS.RenewProDetQty(rb, "increase");
+                    }
                     MyLibrary.RcptBuyStaDet_BUS.Insert(rcptBuyStaDet);
                     rcptBuy.Update(result);
                 }
@@ -325,7 +334,7 @@ namespace ShoesStore.Merchant
                     //bind dropdown-list
                     //DataTable dt = RcptBuyStaStep_BUS.GetData("Select StepCont from RcptBuyStaStep");
                     int rcptBuyId1 = Convert.ToInt32(hdnfld.Value);
-                    int[] step = { 1, 2, 5, 6, 7, 8 };
+                    int[] step = { 1, 2, 4, 6, 7, 8 };
                     int[] stepExist = MyLibrary.RcptBuyStaDet_BUS.GetAllByExist(rcptBuyId1, step);
                     int[] stepNew = step.Except(stepExist).ToArray();
                     ddList.DataSource = MyLibrary.RcptBuyStaStep_BUS.GetAllBy(stepNew);
@@ -351,6 +360,7 @@ namespace ShoesStore.Merchant
         }
 
 
+
         protected void ddlPropFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListItem item = ddlPropFilterDet.Items.FindByValue(String.Empty);
@@ -368,7 +378,7 @@ namespace ShoesStore.Merchant
                 case "StepCont":
                     ddlPropFilterDet.Visible = true;
                     datepicker.Visible = false; lbtnTim.Visible = false;
-                    LoadStepCont();
+                    //LoadStepCont();
                     break;
                 case "CusName":
                     ddlPropFilterDet.Visible = true;

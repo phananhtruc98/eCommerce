@@ -9,6 +9,7 @@
             onpaste: function () {
                 return false;
             }
-        }, 'input[type=number]');
-    $('input[type=number]').attr('min', '0');
+        }, 'input[type=number]:not("#active_code")');
+    $('input[type=number]').not('.cart-prodet').attr('min', '0');
+    $('.cart-prodet').attr('min', '1');
 });

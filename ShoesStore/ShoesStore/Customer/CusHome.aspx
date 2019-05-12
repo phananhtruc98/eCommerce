@@ -1,15 +1,23 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteCus.Master" CodeBehind="~/Customer/CusHome.aspx.cs" Inherits="ShoesStore.Customer.CusHome" %>
+
+<%@ Import Namespace="ShoesStore" %>
 <%@ MasterType VirtualPath="~/SiteCus.Master" %>
+<%@ Register Src="~/UserControls/UcCusCmt.ascx" TagPrefix="uc1" TagName="UcCusCmt" %>
+
 <asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
     <div class="row">
         <div class="col-12">
             <h3>Hồ sơ của tôi</h3>
-            <div class="float-left">Ảnh đại diện</div>
-            <div class="float-left">
-                <asp:Image runat="server" ID="avaimg" class="rounded-circle"/>
+            
+            <div>
+                <uc1:UcCusCmt runat="server" id="UcCusCmt" ObjCmt="MerCmt" />
+            </div>
+            <div>Ảnh đại diện</div>
+            <div>
+                <asp:Image runat="server" ID="avaimg" class="rounded-circle" />
             </div>
             <div>
-                <asp:FileUpload runat="server" ID="fupava" CssClass="file-upload" Visible="false"/>
+                <asp:FileUpload runat="server" ID="fupava" CssClass="file-upload" Visible="false" />
             </div>
             <table id="ttcn" class="table table-responsive-sm table-responsive-xl table-by-truc">
                 <tr>

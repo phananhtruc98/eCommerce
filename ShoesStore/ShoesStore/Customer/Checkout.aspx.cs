@@ -73,10 +73,6 @@ namespace ShoesStore.Customer
                     }
                     return;
                 }
-                else
-                {
-                    MyLibrary.Show("Validated !");
-                }
 
                 var groupByShop = MyLibrary.CartDet_BUS.GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId)
                     .GroupBy(m => new { m.Cart.CusId, m.ShpId });
@@ -132,7 +128,7 @@ namespace ShoesStore.Customer
                 }
             }
 
-            Response.Redirect("/");
+            MyLibrary.Show("Đã thanh toán thành công, đơn hàng sẽ xác nhận trong thời gian sớm nhất !", Request.Url.Authority);
         }
 
 

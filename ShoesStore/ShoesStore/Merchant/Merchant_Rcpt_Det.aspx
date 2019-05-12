@@ -62,15 +62,16 @@
                                 <ItemTemplate>
                                     <tr>
                                         <td>
-                                            <a href="#">
+                                            <a href="<%# MyLibrary.ProDetUrl(Item.ProDet.Pro) %>">
                                                 <img style="height: 200px; width: 200px;" src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
                                             </a>
                                         </td>
                                         <td><%# Item.ProDet.Pro.ProName %></td>
-                                        <td><%# Item.ProDet.ProColor.ColorName %></td>
+                                        <td><%# Item.ProDet.ProColor.ColorName %> <%# MyLibrary.FormatProdetColor(Item.ProDet) %>
+                                        </td>
                                         <td><%# Item.ProDet.ProSize.SizeName %></td>
                                         <td><%# Item.Quantity %></td>
-                                        <td><%# (Item.Quantity * int.Parse(Item.ProDet.Pro.Price)).ToFormatMoney() %></td>
+                                        <td><%# (Item.Quantity * int.Parse(Item.PriceWhenBuy)).ToFormatMoney() %></td>
                                         <td>
                                             <asp:LinkButton runat="server" ID="lbtnDanhGia" Visible="false" Text="ĐÁNH GIÁ" PostBackUrl="<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>"></asp:LinkButton>
                                         </td>
@@ -84,6 +85,41 @@
                     </asp:Repeater>
                 </tbody>
             </table>
+
+        </div>
+        <div class="col-12">
+            <asp:Panel CssClass="reviews-view__form" runat="server" ID="DivWriteComment">
+                <h3 class="reviews-view__header">Viết đánh giá</h3>
+                <div class="row">
+                    <div class="col-12 col-lg-9 col-xl-8">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="review-stars">
+                                    Chấm sao
+                                </label>
+                                <asp:DropDownList ID="review_stars" class="form-control" runat="server">
+                                    <asp:ListItem Value="5 Sao" />
+                                    <asp:ListItem Value="4 Sao" />
+                                    <asp:ListItem Value="3 Sao" />
+                                    <asp:ListItem Value="2 Sao" />
+                                    <asp:ListItem Value="1 Sao" />
+
+
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="review-text">Nội dung đánh giá</label>
+                         
+                            <asp:TextBox TextMode="MultiLine" runat="server" CssClass="form-control" ID="review_text" Rows="6" />
+                        </div>
+                        <div class="form-group mb-0">
+                            <asp:Button runat="server" ID="btnSubmit" Text="Gửi đánh giá" OnClick="btnSubmit_OnClick" CssClass="btn btn-primary btn-lg" />
+                        </div>
+                    </div>
+                </div>
+            </asp:Panel>
         </div>
     </div>
 </asp:Content>
