@@ -59,7 +59,7 @@ namespace ShoesStore.Admin
             }
             else if (e.CommandName == "Sel")
             {
-                Server.Transfer("/Admin/ReviewProductDetail.aspx?ProId=" + ProId + "&ShpId="+ ShpId);
+                Response.Redirect("/Admin/ReviewProductDetail.aspx?ProId=" + ProId + "&ShpId="+ ShpId);
             }
         }
 

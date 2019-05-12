@@ -30,6 +30,7 @@ namespace ShoesStore.Merchant
         {
             if (!IsPostBack)
             {
+                gvRcptBuy.PageSize = 100;
                 LoadDdlPropFilter();
                 cthd.Visible = false;
                 sumprice.Visible = false;
@@ -286,7 +287,7 @@ namespace ShoesStore.Merchant
             var rcptBuyId = int.Parse((gvRcptBuy.SelectedRow.FindControl("rcptbuyid") as Label).Text);
             //BindGridViewgvRcptBuyDet(rcptBuyId);
             int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
-            Server.Transfer("~/Merchant/Merchant_Rcpt_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
+            Response.Redirect("~/Merchant/Merchant_Rcpt_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
         }
 
         // Gộp những dòng trùng
@@ -537,6 +538,7 @@ namespace ShoesStore.Merchant
         {
             
             gvRcptBuy.PageIndex = e.NewPageIndex;
+            
             BindGridViewgvRcptBuy();
         }
 

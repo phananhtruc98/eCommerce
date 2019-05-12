@@ -396,7 +396,7 @@ namespace ShoesStore.Admin
             if (e.CommandName == "Detail")
             {
                 int UsrId = Int32.Parse(e.CommandArgument.ToString());
-                Server.Transfer("/Admin/Usr_Det.aspx?UsrId=" + UsrId);
+                Response.Redirect("/Admin/Usr_Det.aspx?UsrId=" + UsrId);
             }
         }
 

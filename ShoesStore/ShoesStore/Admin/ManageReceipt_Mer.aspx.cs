@@ -85,7 +85,7 @@ namespace ShoesStore.Admin
             if(e.CommandName=="Sel")
             {
                 int rcptSubId = int.Parse(e.CommandArgument.ToString());
-                Server.Transfer("~/Admin/RcptSub_Det.aspx?RcptSubId=" + rcptSubId);
+                Response.Redirect("~/Admin/RcptSub_Det.aspx?RcptSubId=" + rcptSubId);
             }
         }
 

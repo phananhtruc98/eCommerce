@@ -97,7 +97,7 @@ namespace ShoesStore.Customer
 
         protected void lbtnHuy_Click(object sender, EventArgs e)
         {
-            fupava.Visible = true;
+            fupava.Visible = false;
             lblThaydoi.Visible = true;
             lbtnLuu.Visible = false;
             lbtnHuy.Visible = false;

@@ -32,13 +32,13 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="/index.html">Home</a>
+                                <a href="/">Home</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
                                     <use href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="/#">Sản phẩm</a>
+                                <a href="/san-pham">Sản phẩm</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
                                     <use href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>

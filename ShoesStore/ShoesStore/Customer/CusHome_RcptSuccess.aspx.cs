@@ -86,7 +86,7 @@ namespace ShoesStore.Customer
                 dateadd = d.ToString();
                 rcptTemp = RcptBuyId;
                 var lbtnChiTiet = (LinkButton) e.Item.FindControl("lbtnChiTiet");
-                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=7");
+                Response.Redirect("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=7");
             }
         }
 
@@ -138,7 +138,8 @@ namespace ShoesStore.Customer
                 dateadd = d.ToString();
                 rcptTemp = RcptBuyId;
                 var lbtnChiTiet = (LinkButton) e.Item.FindControl("lbtnChiTiet");
-                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=1");
+                //Response.Redirect("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=1");
+                Response.Redirect("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=1");
             }
         }
 
@@ -190,7 +191,7 @@ namespace ShoesStore.Customer
                 dateadd = d.ToString();
                 rcptTemp = RcptBuyId;
                 var lbtnChiTiet = (LinkButton) e.Item.FindControl("lbtnChiTiet");
-                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=3");
+                Response.Redirect("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=3");
             }
         }
 
@@ -242,7 +243,7 @@ namespace ShoesStore.Customer
                 dateadd = d.ToString();
                 rcptTemp = RcptBuyId;
                 var lbtnChiTiet = (LinkButton) e.Item.FindControl("lbtnChiTiet");
-                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=1");
+                Response.Redirect("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=1");
             }
         }
 
@@ -294,7 +295,7 @@ namespace ShoesStore.Customer
                 dateadd = d.ToString();
                 rcptTemp = RcptBuyId;
                 var lbtnChiTiet = (LinkButton) e.Item.FindControl("lbtnChiTiet");
-                Server.Transfer("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=" + staTemp);
+                Response.Redirect("~/Customer/CusHome_Rcpt_Det.aspx?RcptBuyId=" + rcptTemp + "&Sta=" + staTemp);
             }
         }
     }

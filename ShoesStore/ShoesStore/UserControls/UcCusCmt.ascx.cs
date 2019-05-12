@@ -39,14 +39,23 @@ namespace ShoesStore.UserControls
         {
             if (!IsPostBack)
             {
-                rptCusCmt.DataSource = (_objCmt == ObjCmt.MerCmt)
-                    ? MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == _cus.CusId && (!string.IsNullOrEmpty(m.MerMessage) || m.MerPoint != null))
-                    : MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.ShpId == _shp.ShpId && (!string.IsNullOrEmpty(m.CusMessage) || m.CusPoint != null));
-                rptCusCmt.DataBind();
-                if (_objCmt == ObjCmt.CusCmt)
-                    averagePoint.Text = MyLibrary.DrawStar(MyLibrary.Shp_Bus.AverageStar(_shp));
+                string returnUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                if (Request.UrlReferrer != null) returnUrl = Request.UrlReferrer.ToString();
+                if (_shp == null && _cus == null)
+
+
+                    MyLibrary.Show("Xin lỗi web đang bảo trì, vui lòng quay lại sau", returnUrl);
                 else
-                    averagePoint.Text = MyLibrary.DrawStar(MyLibrary.Cus_BUS.AverageStar(_cus));
+                {
+                    rptCusCmt.DataSource = (_objCmt == ObjCmt.MerCmt)
+                        ? MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == _cus.CusId && ((m.MerMessage != null && m.MerPoint != null) && (!string.IsNullOrEmpty(m.MerMessage) || m.MerPoint != null)))
+                        : MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.ShpId == _shp.ShpId && ((m.CusMessage != null && m.CusPoint != null) && (!string.IsNullOrEmpty(m.CusMessage) || m.CusPoint != null)));
+                    rptCusCmt.DataBind();
+                    if (_objCmt == ObjCmt.CusCmt)
+                        averagePoint.Text = MyLibrary.DrawStar(MyLibrary.Shp_Bus.AverageStar(_shp));
+                    else
+                        averagePoint.Text = MyLibrary.DrawStar(MyLibrary.Cus_BUS.AverageStar(_cus));
+                }
             }
         }
 

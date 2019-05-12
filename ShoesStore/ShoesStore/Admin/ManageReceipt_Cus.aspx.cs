@@ -131,7 +131,7 @@ namespace ShoesStore.Admin
             {
                 int rcptBuyId = Int32.Parse(e.CommandArgument.ToString());
                 int staId = MyLibrary.RcptBuyStaDet_BUS.GetMaxExist(rcptBuyId).StepId;
-                Server.Transfer("~/Admin/RcptBuy_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
+                Response.Redirect("~/Admin/RcptBuy_Det.aspx?RcptBuyId=" + rcptBuyId + "&Sta=" + staId);
             }
             if (e.CommandName == "Sort")
             {

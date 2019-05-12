@@ -113,7 +113,7 @@ namespace ShoesStore.Admin
 
         protected void a1_ServerClick(object sender, EventArgs e)
         {
-            Server.Transfer("/Admin/ReviewProductDetail.aspx?ProId=" + ProId1 + "&ShpId=" + ShpId1);
+            Response.Redirect("/Admin/ReviewProductDetail.aspx?ProId=" + ProId1 + "&ShpId=" + ShpId1);
         }
     }
 }

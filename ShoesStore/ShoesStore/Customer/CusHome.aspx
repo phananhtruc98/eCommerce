@@ -8,10 +8,8 @@
     <div class="row">
         <div class="col-12">
             <h3>Hồ sơ của tôi</h3>
-            
-            <div>
-                <uc1:UcCusCmt runat="server" id="UcCusCmt" ObjCmt="MerCmt" />
-            </div>
+
+
             <div>Ảnh đại diện</div>
             <div>
                 <asp:Image runat="server" ID="avaimg" class="rounded-circle" />
@@ -56,6 +54,13 @@
                     </td>
                 </tr>
             </table>
+        </div>
+
+        <hr />
+        <div class="col-12">
+
+            <uc1:UcCusCmt runat="server" ID="UcCusCmt" ObjCmt="MerCmt" />
+
         </div>
     </div>
 </asp:Content>

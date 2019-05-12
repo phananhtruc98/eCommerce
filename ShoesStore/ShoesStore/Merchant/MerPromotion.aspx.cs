@@ -58,7 +58,7 @@ namespace ShoesStore.Merchant
             }
             else if (e.CommandName == "Sel")
             {
-                Server.Transfer("/Merchant/ReviewProductDetail.aspx?ProId=" + ProId + "&ShpId=" + ShpId);
+                Response.Redirect("/Merchant/ReviewProductDetail.aspx?ProId=" + ProId + "&ShpId=" + ShpId);
             }
         }
 

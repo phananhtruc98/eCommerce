@@ -41,10 +41,10 @@
                                                             <div class="filter-categories">
                                                                 <ul class="filter-categories__list">
                                                                     <li class="filter-categories__item filter-categories__item--parent">
-                                                                        <a href="<%= ResolveUrl("~/Customer/CusHome.aspx") %>">Thông tin cá nhân</a>
+                                                                        <a href="/nguoi-dung">Thông tin cá nhân</a>
                                                                     </li>
                                                                     <li class="filter-categories__item filter-categories__item--parent">
-                                                                        <a href="<%= ResolveUrl("~/Customer/CusHome_ChangePassword.aspx") %>">Đổi mật khẩu</a>
+                                                                        <a href="/nguoi-dung/tai-khoan/mat-khau">Đổi mật khẩu</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -53,14 +53,10 @@
                                                 </div>
                                                 <div class="filter filter--opened" data-collapse-item>
                                                     <button type="button" class="filter__title" data-collapse-trigger>
-                                                        <a class="filter__title" href="<%= ResolveUrl("~/Customer/CusHome_RcptSuccess.aspx") %>">Đơn hàng của tôi</a>
+                                                        <a class="filter__title" href="/nguoi-dung/theo-doi-don-hang">Đơn hàng của tôi</a>
                                                     </button>
                                                 </div>
-                                                <div class="filter filter--opened" data-collapse-item>
-                                                    <button type="button" class="filter__title" data-collapse-trigger>
-                                                        <a class="filter__title" href="<%= ResolveUrl("~/Customer/CusHome_Cmt.aspx") %>">Nhận xét của tôi</a>
-                                                    </button>
-                                                </div>
+                                           
                                             </div>
                                         </div>
                                     </div>

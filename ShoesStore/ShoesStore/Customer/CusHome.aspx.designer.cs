@@ -13,15 +13,6 @@ namespace ShoesStore.Customer {
     public partial class CusHome {
         
         /// <summary>
-        /// UcCusCmt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ShoesStore.UserControls.UcCusCmt UcCusCmt;
-        
-        /// <summary>
         /// avaimg control.
         /// </summary>
         /// <remarks>
@@ -137,6 +128,15 @@ namespace ShoesStore.Customer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnHuy;
+        
+        /// <summary>
+        /// UcCusCmt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ShoesStore.UserControls.UcCusCmt UcCusCmt;
         
         /// <summary>
         /// Master property.

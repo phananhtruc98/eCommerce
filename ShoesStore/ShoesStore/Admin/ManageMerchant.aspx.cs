@@ -42,7 +42,7 @@ namespace ShoesStore.Admin
         public void TimKiem(string search_key)
         {
             var rs = (from a in MyLibrary.Mer_BUS.GetAll().ToList()
-                      where a.MerId.ToString().ContainsEx(search_key)
+                      where (search_key=="" || a.MerId.ToString().ContainsEx(search_key) )
                             || a.Usr.UsrName.ContainsEx(search_key)
                             || a.Usr.DateAdd != null && a.Usr.DateAdd.ToString().ContainsEx(search_key)
                       select a).ToList();
@@ -54,7 +54,8 @@ namespace ShoesStore.Admin
         protected void gvMerchant_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvMerchant.PageIndex = e.NewPageIndex;
-            BindGridViewData();
+            /*BindGridViewData*/
+            TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
 
         protected void lvMer_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -73,14 +74,14 @@ namespace ShoesStore.Admin
             else if (e.CommandName == "Detail")
             {
                 int UsrId = Int32.Parse(e.CommandArgument.ToString());
-                Server.Transfer("/Admin/Usr_Det.aspx?UsrId=" + UsrId);
+                Response.Redirect("/Admin/Usr_Det.aspx?UsrId=" + UsrId);
             }
         }
 
         protected void lvMer_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
         {
             DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
-            BindGridViewData();
+            TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
     }
 }

@@ -28,9 +28,9 @@ namespace ShoesStore.Merchant
         */
         public void LoadThongTin()
         {
-            var mer = (Mer)MerchantSession.LoginMerchant;
+            //var mer = (Mer)MerchantSession.LoginMerchant;
             //var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            var shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.MerId == mer.MerId);
+            var shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.ShpId == _shpView.ShpId);
             lblShpName.Text = shp.ShpName;
             lblDateStart.Text = shp.DateStart.ToString();
             lblDesc.Text = shp.Desc;
@@ -40,13 +40,15 @@ namespace ShoesStore.Merchant
 
             if (!IsPostBack)
             {
-                LoadThongTin();
-                string a = new Usr().UsrName.GetName() ;
-                //đọc url -> lấy được ShpName //Tham khảo trang ProDet
+                //if (MerchantSession.LoginMerchant == null) return;
                 CollectUrl();
+                LoadThongTin();
+                string a = new Usr().UsrName.GetName();
+                //đọc url -> lấy được ShpName //Tham khảo trang ProDet
+
                 // Từ ShpName lấy ra đối tượng Shp //Có hàm trong Shp_BUS
                 var ShpId = _shpView.ShpId;
-                UcCusCmt.Shp = MyLibrary.Shp_Bus.GetAll().First(m=>m.ShpId==ShpId);
+                UcCusCmt.Shp = MyLibrary.Shp_Bus.GetAll().First(m => m.ShpId == ShpId);
 
                 ucPro.ShpId = ShpId;
                 ucPro.Reload();
@@ -60,7 +62,7 @@ namespace ShoesStore.Merchant
             var ShpNameCode = RouteData.Values["shpName"].ToString();
             _shpView = MyLibrary.Shp_Bus.GetShp(ShpNameCode);
         }
-       
+
 
 
         /*
