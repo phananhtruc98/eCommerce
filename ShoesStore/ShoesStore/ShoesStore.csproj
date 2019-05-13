@@ -18,10 +18,8 @@
     <AssemblyName>ShoesStore</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>
-    </Use64BitIISExpress>
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <Use64BitIISExpress>false</Use64BitIISExpress>
+    <IISExpressSSLPort>44383</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>
     </IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>
@@ -348,17 +346,6 @@
     <Content Include="Admin\Overview_RcptSub.aspx" />
     <Content Include="Admin\RcptBuy_Det.aspx" />
     <Content Include="Admin\Overview.aspx" />
-    <Content Include="Admin\pages\charts\chartjs.html" />
-    <Content Include="Admin\pages\forms\basic_elements.html" />
-    <Content Include="Admin\pages\icons\font-awesome.html" />
-    <Content Include="Admin\pages\samples\blank-page.html" />
-    <Content Include="Admin\pages\samples\error-404.html" />
-    <Content Include="Admin\pages\samples\error-500.html" />
-    <Content Include="Admin\pages\samples\login.html" />
-    <Content Include="Admin\pages\samples\register.html" />
-    <Content Include="Admin\pages\tables\basic-table.html" />
-    <Content Include="Admin\pages\ui-features\buttons.html" />
-    <Content Include="Admin\pages\ui-features\typography.html" />
     <Content Include="Admin\partials\_footer.html" />
     <Content Include="Admin\partials\_navbar.html" />
     <Content Include="Admin\partials\_sidebar.html" />

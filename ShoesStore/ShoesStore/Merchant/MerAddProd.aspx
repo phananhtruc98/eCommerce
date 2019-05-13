@@ -146,7 +146,7 @@
                                 { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
 
                                 { name: 'colors', items: ['TextColor', 'BGColor'] }];
-                            CKEDITOR.config.FileTypesPath["Image"]('"' +<%: Server.MapPath("~")%> + '"');
+                            CKEDITOR.config.FileTypesPath["Image"]('" +<%# Server.MapPath("~")%> + "');
                         </script>
                         <hr />
                         <asp:LinkButton ID="lbSubmit" ValidationGroup="Insert" OnClick="btnSubmit_OnClick" CommandName="Submit" ForeColor="#8C4510" runat="server" class="btn btn-lg btn-primary btn-block text-uppercase">Đăng bài</asp:LinkButton>
