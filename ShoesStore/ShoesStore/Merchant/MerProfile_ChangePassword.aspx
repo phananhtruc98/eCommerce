@@ -12,21 +12,21 @@
                         <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblLogin"></asp:Label>
                     </td>
                 </tr>
-                <tr>
+                <tr runat="server" ID="trMatKhauHienTai">
                     <td>Mật khẩu hiện tại</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" TextMode="Password" CssClass="form-control-lg txt-by-truc" ID="txtPassword" Visible="false"></asp:TextBox>
                         <asp:Label runat="server" TextMode="Password" CssClass="form-control-lg txt-by-truc" ID="lblPassword"></asp:Label>
                     </td>
                 </tr>
-                <tr>
+                <tr runat="server" ID="trMatKhauMoi">
                     <td>Mật khẩu mới</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" TextMode="Password" CssClass="form-control-lg txt-by-truc" ID="txtNewPassword" Visible="false"></asp:TextBox>
                         <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblNewPassword"></asp:Label>
                     </td>
                 </tr>
-                <tr>
+                <tr runat="server" ID="trNhapLaiMatKhau">
                     <td>Nhập lại mật khẩu</td>
                     <td class="form-group">
                         <asp:TextBox runat="server" TextMode="Password" CssClass="form-control-lg txt-by-truc" ID="txtRePassword" Visible="false"></asp:TextBox>

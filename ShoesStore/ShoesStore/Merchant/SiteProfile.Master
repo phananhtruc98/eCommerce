@@ -36,7 +36,7 @@
 <!-- Dang Nhap modal-->
 <!-- Dang Nhap modal/end-->
 <div class="site">
-    Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate() %>
+    Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1)) < 0 ? "Hết hạn" : MerchantSession.LoginMer.GetSubEndDate().ToString() %>
     <header class="site__header d-lg-block d-none">
         <div class="site-header">
             <!-- .topbar -->

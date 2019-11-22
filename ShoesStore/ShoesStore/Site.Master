@@ -201,7 +201,7 @@
                 </a>
             </div>
             <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" href="#">
+                <a class="topbar-link" href="/lien-he">
                     Liên hệ
                 </a>
             </div>
@@ -211,7 +211,7 @@
                 </a>
             </div>
             <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" href="/Merchant/MerHome.aspx">
+                <a class="topbar-link" href="/nguoi-ban">
                     Kênh người bán
                 </a>
             </div>

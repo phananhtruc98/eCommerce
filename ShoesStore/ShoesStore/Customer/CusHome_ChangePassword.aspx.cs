@@ -20,6 +20,9 @@ namespace ShoesStore.Customer
             lblPassword.Visible = true;
             lblNewPassword.Visible = true;
             lblRePassword.Visible = true;
+            trMatKhau.Visible = false;
+            trMatKhauMoi.Visible = false;
+            trNhapLaiMatKhau.Visible = false;
         }
 
         protected void lbtnLuu_Click(object sender, EventArgs e)

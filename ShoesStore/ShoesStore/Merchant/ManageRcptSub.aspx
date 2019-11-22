@@ -79,7 +79,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <h4>Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().ToString() %> (còn lại <%: MerchantSession.LoginMer.GetSubExistDate() %> ngày)</h4>
+            <h4>Ngày hết hạn: <%: MerchantSession.LoginMer.GetSubEndDate().CompareTo(DateTime.Now.AddMinutes(1)) < 0 ? "Hết hạn" : MerchantSession.LoginMer.GetSubEndDate().ToString() %>
         </div>
     </div>
 </asp:Content>

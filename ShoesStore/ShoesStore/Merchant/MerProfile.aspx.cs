@@ -13,9 +13,8 @@ namespace ShoesStore.Merchant
 
         protected void lblThaydoi_Click(object sender, EventArgs e)
         {
-            var mer = (Mer) MerchantSession.LoginMerchant;
+            var mer = (Mer)MerchantSession.LoginMerchant;
             var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            fupava.Visible = true;
             lbtnLuu.Visible = true;
             lbtnHuy.Visible = true;
             lblThaydoi.Visible = false;
@@ -35,7 +34,6 @@ namespace ShoesStore.Merchant
 
         protected void lbtnHuy_Click(object sender, EventArgs e)
         {
-            fupava.Visible = true;
             lblThaydoi.Visible = true;
             lbtnLuu.Visible = false;
             lbtnHuy.Visible = false;
@@ -51,39 +49,12 @@ namespace ShoesStore.Merchant
 
         protected void lbtnLuu_Click(object sender, EventArgs e)
         {
-            var mer = (Mer) MerchantSession.LoginMerchant;
+            var mer = (Mer)MerchantSession.LoginMerchant;
             var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
             var rs1 = (from c in MyLibrary.Usr_BUS.GetAll()
-                where c.UsrId == usr1.UsrId
-                select c).FirstOrDefault();
-            if (fupava.HasFile)
-            {
-                var fname = fupava.FileName;
-                var fpath = Server.MapPath("/Admin/Images/avatar/");
-                fpath = fpath + @"/" + fupava.FileName;
-                var getext = Path.GetExtension(fupava.PostedFile.FileName);
-                var filename = Path.GetFileNameWithoutExtension(fupava.PostedFile.FileName);
-                var strFilePath = filename + getext;
-                avaimgstr = strFilePath;
-                if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" &&
-                    getext != ".png" && getext != ".tif" && getext != ".tiff")
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Chọn ảnh!!')",
-                        true);
-                    return;
-                }
-
-                fupava.SaveAs(Server.MapPath(@"~/Admin/Images/avatar/" + strFilePath));
-                ViewState["fname"] = fname;
-                ViewState["fPath"] = @"~/Admin/Images/avatar/" + strFilePath;
-                avaimg.Attributes["src"] = "/Admin/images/avatar/" + avaimgstr;
-                rs1.Avatar = avaimgstr;
-            }
-            else if (avaimgstr == usr1.Avatar)
-            {
-                avaimgstr = usr1.Avatar;
-            }
-
+                       where c.UsrId == usr1.UsrId
+                       select c).FirstOrDefault();
+            avaimgstr = usr1.Avatar;
             rs1.UsrName = txtUsrName.Text;
             rs1.Address = txtAddress.Text;
             rs1.Phone = txtPhone.Text;
@@ -107,14 +78,13 @@ namespace ShoesStore.Merchant
             lblPhone.Visible = true;
             lblEmail.Visible = true;
             lblAddress.Visible = true;
-            fupava.Visible = false;
             Response.Redirect(Request.RawUrl);
         }
 
 
         public void LoadThongTin()
         {
-            var mer = (Mer) MerchantSession.LoginMerchant;
+            var mer = (Mer)MerchantSession.LoginMerchant;
             var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
             lblUsrName.Text = usr1.UsrName;
             lblAddress.Text = usr1.Address;

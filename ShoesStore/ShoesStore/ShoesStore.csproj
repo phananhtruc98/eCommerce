@@ -2427,6 +2427,7 @@
     <Content Include="Content\themes\base\button.css" />
     <Content Include="Content\themes\base\core.css" />
     <Content Include="Customer\CallBack.aspx" />
+    <Content Include="Customer\Contact.aspx" />
     <Content Include="Customer\CusPublicInfo.aspx" />
     <Content Include="Customer\LoginFacebook.aspx" />
     <Content Include="DataAccessLogicLayer\ShoesStoreModel.Context.tt">
@@ -2989,10 +2990,8 @@
     <Content Include="js\cusHome_RcptSuccess.js" />
     <Content Include="js\customscript.js" />
     <Content Include="lib\AjaxControlToolkit.dll" />
-    <Content Include="Merchant\About.aspx" />
     <Content Include="Merchant\Cart.aspx" />
     <Content Include="Merchant\CheckOut.aspx" />
-    <Content Include="Merchant\Contact.aspx" />
     <Content Include="Merchant\css\style.css" />
     <Content Include="Merchant\Merchant_Rcpt_Det.aspx" />
     <Content Include="Merchant\DefaultMer.aspx" />
@@ -3443,6 +3442,13 @@
     <Compile Include="Customer\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\CusHome.aspx.cs">
       <DependentUpon>CusHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3797,13 +3803,6 @@
     <Compile Include="Interfaces\Pages\IMaster.cs" />
     <Compile Include="Interfaces\Pages\IValidation.cs" />
     <Compile Include="LogHelper.cs" />
-    <Compile Include="Merchant\About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Merchant\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3817,13 +3816,6 @@
     </Compile>
     <Compile Include="Merchant\CheckOut.aspx.designer.cs">
       <DependentUpon>CheckOut.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Merchant\Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Merchant\Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Merchant\Merchant_RcptSub_Det.aspx.cs">
       <DependentUpon>Merchant_RcptSub_Det.aspx</DependentUpon>
@@ -4127,17 +4119,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <!--<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>-->
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

@@ -55,7 +55,7 @@ namespace ShoesStore
                                                                 IsColor || rptTable.ColorIds.Contains(color.ColorId))));
 
 
-                                rptWc.DataSource = rptTable.VFilterPro == 2 || rptTable.VFilterPro == 4
+                                rptWc.DataSource = rptTable.VFilterPro == 1 || rptTable.VFilterPro == 4
                                     ? willSource.OrderBy(rptTable.FuncFilter)
                                     : willSource.OrderByDescending(rptTable.FuncFilter);
                             }

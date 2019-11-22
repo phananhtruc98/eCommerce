@@ -12,9 +12,6 @@
             <div>
                 <asp:Image runat="server" ID="avaimg" class="rounded-circle"/>
             </div>
-            <div>
-                <asp:FileUpload runat="server" ID="fupava" CssClass="file-upload" Visible="false"/>
-            </div>
             <table id="ttcn" class="table table-responsive-sm table-responsive-xl table-by-truc">
                 <tr>
                     <td>Họ và tên</td>

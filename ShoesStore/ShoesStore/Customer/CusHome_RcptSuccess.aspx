@@ -5,8 +5,8 @@
 <asp:Content ID="BodyContent2" ContentPlaceHolderID="MainContent2" runat="server">
 <div class="container">
 <ul class="nav nav-tabs">
-    <li runat="server" class="nav-item" id="tab1">
-        <a class="nav-link" data-toggle="tab" href="#home">Chờ thanh toán</a>
+    <li runat="server" class="nav-item active" id="tab1">
+        <a class="nav-link active" data-toggle="tab" href="#home">Chờ thanh toán</a>
     </li>
     <li runat="server" class="nav-item" id="tab2">
         <a class="nav-link" data-toggle="tab" href="#menu1">Chờ lấy hàng</a>
@@ -22,7 +22,7 @@
     </li>
 </ul>
 <div class="tab-content">
-<div id="home" class="tab-pane fade in active">
+<div id="home" class="tab-pane active">
     <h3>Chờ thanh toán</h3>
     <div class="row">
         <div class="col-12">

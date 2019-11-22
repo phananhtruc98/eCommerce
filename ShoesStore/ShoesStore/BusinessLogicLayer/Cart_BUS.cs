@@ -7,6 +7,12 @@ namespace ShoesStore.BusinessLogicLayer
 {
     public class Cart_BUS : Table_BUS<Cart, Cart_DAO>, ICart
     {
+        public Cart GetMyCart()
+        {
+            var cus = WebSession.LoginCus;
+            return MyLibrary.Cart_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+        }
+
         public override bool IsExist(Cart obj)
         {
             throw new NotImplementedException();
@@ -15,12 +21,6 @@ namespace ShoesStore.BusinessLogicLayer
         public override void SetActive(Cart obj)
         {
             throw new NotImplementedException();
-        }
-
-        public Cart GetMyCart()
-        {
-            var cus = WebSession.LoginCus;
-            return MyLibrary.Cart_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
         }
     }
 }
