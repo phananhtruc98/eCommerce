@@ -76,6 +76,7 @@ namespace ShoesStore
 
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
+            if(MyLibrary.ProBrand_BUS.GetAll()!=null)
             rptProBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll().ToList();
             rptProBrand.DataBind();
         }

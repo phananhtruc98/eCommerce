@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
-using Logger;
+
 
 namespace Utilities
 {
@@ -113,7 +113,6 @@ namespace Utilities
                 catch (Exception ex)
                 {
                     tran.Rollback();
-                    Log.info("DB err: " + ex.Message);
                     return 0;
                 }
             }

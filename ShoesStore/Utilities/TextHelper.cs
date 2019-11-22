@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using Logger;
+
 using System.Linq;
 namespace Utilities
 {
@@ -352,7 +352,6 @@ namespace Utilities
             }
             catch (Exception ex)
             {
-                Log.info("getImage err " + ex.Message);
                 return strFileName;
             }
         }

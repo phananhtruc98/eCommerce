@@ -23,6 +23,7 @@ namespace ShoesStore.BusinessLogicLayer
         }
         public int AverageStar(Pro obj)
         {
+            if (MyLibrary.RcptBuyDet_BUS.GetAll() == null) return 0;
             var doub = MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => m.ShpId == obj.ShpId && m.ProId == obj.ProId)
                 .Average(m => m.Point);
             return doub == null ? 0 : Convert.ToInt32(doub);

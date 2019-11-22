@@ -30,7 +30,9 @@ namespace ShoesStore.Merchant
         {
             //var mer = (Mer)MerchantSession.LoginMerchant;
             //var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            var shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.ShpId == _shpView.ShpId);
+            var shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.ShpId == _shpView?.ShpId);
+            if (shp == null) return;
+            //these code below cannot be reached if shp is null
             lblShpName.Text = shp.ShpName;
             lblDateStart.Text = shp.DateStart.ToString();
             lblDesc.Text = shp.Desc;
@@ -47,11 +49,13 @@ namespace ShoesStore.Merchant
                 //đọc url -> lấy được ShpName //Tham khảo trang ProDet
 
                 // Từ ShpName lấy ra đối tượng Shp //Có hàm trong Shp_BUS
-                var ShpId = _shpView.ShpId;
-                UcCusCmt.Shp = MyLibrary.Shp_Bus.GetAll().First(m => m.ShpId == ShpId);
-
-                ucPro.ShpId = ShpId;
-                ucPro.Reload();
+                var ShpId = _shpView?.ShpId;
+                UcCusCmt.Shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.ShpId == ShpId);
+                if (ShpId != null)
+                {
+                    ucPro.ShpId = ShpId.Value;
+                    ucPro.Reload();
+                }
                 //Từ đối tượng Shp lấy ra mã Shp 
 
                 //Từ mã Shp gán vào UcPro trong aspx -> Ucpro.ShpId={}
@@ -59,8 +63,11 @@ namespace ShoesStore.Merchant
         }
         private void CollectUrl()
         {
-            var ShpNameCode = RouteData.Values["shpName"].ToString();
-            _shpView = MyLibrary.Shp_Bus.GetShp(ShpNameCode);
+            if (RouteData.Values["shpName"] != null && RouteData.Values["shpName"].ToString() != "WebResource.axd")
+            {
+                var ShpNameCode = RouteData.Values["shpName"].ToString();
+                _shpView = MyLibrary.Shp_Bus.GetShp(ShpNameCode);
+            }
         }
 
 

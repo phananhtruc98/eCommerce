@@ -173,7 +173,7 @@
                                     <div class="form-check">
                                         <span class="form-check-input input-check">
                                             <span class="input-check__body">
-                                                <input class="input-check__input" runat="server" type="checkbox" id="checkout_terms" />
+                                                <input class="input-check__input" runat="server" type="checkbox" id="checkout_terms" checked="checked" />
                                                 <span class="input-check__box"></span>
                                                 <svg class="input-check__icon" width="9px" height="7px">
                                                     <use href="images/sprite.svg#check-9x7"></use>

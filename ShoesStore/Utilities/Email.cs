@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
-using Logger;
+
 
 namespace Utilities
 {
@@ -48,7 +48,6 @@ namespace Utilities
             }
             catch (Exception ex)
             {
-                Log.error("SendGmail " + mailTo + " err: " + ex.Message);
             }
 
             return msg;
@@ -80,7 +79,6 @@ namespace Utilities
             }
             catch (Exception ex)
             {
-                Log.error("SendMail " + mailTo + " err: " + ex.Message);
             }
 
             return msg;

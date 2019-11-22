@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Web;
-using Logger;
+
 
 namespace Utilities
 {
@@ -46,7 +46,6 @@ namespace Utilities
             }
             catch (Exception ex)
             {
-                Log.info("Exception GenerateThumbnail :" + ex.Message);
                 return false;
             }
         }
@@ -88,7 +87,6 @@ namespace Utilities
             }
             catch (Exception ex)
             {
-                Log.info("Exception getGenerateThumbnail :" + ex.Message);
                 return false;
             }
         }
@@ -129,7 +127,6 @@ namespace Utilities
             }
             catch (Exception ex)
             {
-                Log.info("Exception saveImageAs :" + ex.Message);
                 return false;
             }
         }

@@ -126,9 +126,14 @@ namespace ShoesStore.Customer
                     }
                     log.Info($"Cus with id {WebSession.LoginCus.CusId} submit a RcptBuy with id {rcptBuy.RcptBuyId}");
                 }
+                MyLibrary.Show("Đã thanh toán thành công, đơn hàng sẽ xác nhận trong thời gian sớm nhất !", Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/'));
+            }
+            else
+            {
+                MyLibrary.ShowInUploadPannel("Thanh toán không thành công, vui lòng kiểm tra lại !");
+               
             }
 
-            MyLibrary.Show("Đã thanh toán thành công, đơn hàng sẽ xác nhận trong thời gian sớm nhất !", Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/'));
         }
 
 

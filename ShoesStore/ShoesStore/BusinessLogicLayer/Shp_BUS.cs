@@ -142,5 +142,11 @@ namespace ShoesStore.BusinessLogicLayer
                 return 0;
             }
         }
+        public Shp GetShp(int shpId)
+        {
+
+            return GetAll().FirstOrDefault(m => m.ShpId == shpId);
+
+        }
     }
 }

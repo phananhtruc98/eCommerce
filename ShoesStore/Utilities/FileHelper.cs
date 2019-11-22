@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Logger;
+
 using sd = System.Drawing;
 
 namespace Utilities
@@ -63,7 +63,7 @@ namespace Utilities
             }
             catch (Exception ex)
             {
-                Log.error("DrawImageToWithHeight error:" + ex.Message);
+                
             }
         }
 
