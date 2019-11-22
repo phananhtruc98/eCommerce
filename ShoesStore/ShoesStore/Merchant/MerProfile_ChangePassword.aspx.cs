@@ -1,38 +1,34 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using ShoesStore.DataAccessLogicLayer;
 using Utilities;
 
 namespace ShoesStore.Merchant
 {
-    public partial class MerProfile_ChangePassword : System.Web.UI.Page
+    public partial class MerProfile_ChangePassword : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void lbtnHuy_Click(object sender, EventArgs e)
         {
-            LoadThongTin();
-        }
-
-        public void LoadThongTin()
-        {
-            var mer = (Mer)MerchantSession.LoginMerchant;
-            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            lblLogin.Text = usr1.Login;
-            txtPassword.Visible = true;
-            txtNewPassword.Visible = true;
-            txtRePassword.Visible = true;
+            lbtnLuu.Visible = false;
+            lbtnHuy.Visible = false;
+            txtLogin.Visible = false;
+            txtPassword.Visible = false;
+            txtNewPassword.Visible = false;
+            txtRePassword.Visible = false;
+            lblLogin.Visible = true;
+            lblPassword.Visible = true;
+            lblNewPassword.Visible = true;
+            lblRePassword.Visible = true;
         }
 
         protected void lbtnLuu_Click(object sender, EventArgs e)
         {
-            var mer = (Mer)MerchantSession.LoginMerchant;
+            var mer = (Mer) MerchantSession.LoginMerchant;
             var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
             var rs1 = (from c in MyLibrary.Usr_BUS.GetAll()
-                       where c.UsrId == usr1.UsrId
-                       select c).FirstOrDefault();
+                where c.UsrId == usr1.UsrId
+                select c).FirstOrDefault();
             if (EncryptHelper.Encrypt(txtPassword.Text) == rs1.Password)
             {
                 if (txtNewPassword.Text == txtRePassword.Text)
@@ -70,18 +66,19 @@ namespace ShoesStore.Merchant
                 true);
         }
 
-        protected void lbtnHuy_Click(object sender, EventArgs e)
+        public void LoadThongTin()
         {
-            lbtnLuu.Visible = false;
-            lbtnHuy.Visible = false;
-            txtLogin.Visible = false;
-            txtPassword.Visible = false;
-            txtNewPassword.Visible = false;
-            txtRePassword.Visible = false;
-            lblLogin.Visible = true;
-            lblPassword.Visible = true;
-            lblNewPassword.Visible = true;
-            lblRePassword.Visible = true;
+            var mer = (Mer) MerchantSession.LoginMerchant;
+            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
+            lblLogin.Text = usr1.Login;
+            txtPassword.Visible = true;
+            txtNewPassword.Visible = true;
+            txtRePassword.Visible = true;
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            LoadThongTin();
         }
     }
 }

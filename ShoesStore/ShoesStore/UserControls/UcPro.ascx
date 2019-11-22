@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcPro.ascx.cs" Inherits="ShoesStore.UserControls.UcPro" %>
-<%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ Register TagPrefix="wcCustom" Namespace="ShoesStore.WebControls" Assembly="ShoesStore" %>
 <div style="width: 100%">
@@ -12,7 +11,7 @@
                             <div class="products-list__item col-<%: 12 / NumberPerRow %> <%# NumberPerRow == 5 && (Container.ItemIndex + 5) % 5 == 0 ? "col-xs-offset-1" : "" %>">
                                 <div class="product-card">
                                     <div class="product-card__badges-list">
-                                        <div class="product-card__badge product-card__badge--<%# MyLibrary.Pro_BUS.IsSale(Item)?"sale":"new" %>"><%# MyLibrary.Pro_BUS.IsSale(Item)?"Giảm giá":"Mới" %></div>
+                                        <div class="product-card__badge product-card__badge--<%# MyLibrary.Pro_BUS.IsSale(Item) ? "sale" : "new" %>"><%# MyLibrary.Pro_BUS.IsSale(Item) ? "Giảm giá" : "Mới" %></div>
                                     </div>
                                     <div class="product-card__image">
                                         <asp:LinkButton runat="server" ID="proImgLink" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>">
@@ -35,18 +34,19 @@
                                     <div class="product-card__actions">
                                         <div class="product-card__availability">
                                             Availability:
-                                            <span class="text-success">In Stock
+                                            <span class="text-success">
+                                                In Stock
                                             </span>
                                         </div>
                                         <div class="product-card__prices">
 
-                                            <%# MyLibrary.Pro_BUS.GetPriceFormat(Item)%>
+                                            <%# MyLibrary.Pro_BUS.GetPriceFormat(Item) %>
                                         </div>
                                         <div class="product-card__shop text-right small text-monospace">
                                             <a href="<%#MyLibrary.ShpUrl(Item.Shp) %>"><%#Eval("Shp.ShpName") %></a>
                                         </div>
                                         <div class="product-card__buttons">
-                                            <asp:LinkButton runat="server" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>" ID="addToCart" Text="Xem sản phẩm" CssClass="btn btn-primary product-card__addtocart" />
+                                            <asp:LinkButton runat="server" PostBackUrl="<%#MyLibrary.ProDetUrl(Container.DataItem) %>" ID="addToCart" Text="Xem sản phẩm" CssClass="btn btn-primary product-card__addtocart"/>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                     </asp:Repeater>
                 </ul>
             </div>
-            
+
         </ContentTemplate>
     </asp:UpdatePanel>
 </div>

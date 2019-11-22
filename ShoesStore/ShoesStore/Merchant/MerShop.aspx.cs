@@ -1,19 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
-using ShoesStore.WebControls;
-using Utilities;
 using ShoesStore.MyExtensions;
+
 namespace ShoesStore.Merchant
 {
     public partial class MerShop : Page
     {
         protected static Pro _proDetView;
         protected static Shp _shpView;
+
+        private void CollectUrl()
+        {
+            if (RouteData.Values["shpName"] != null && RouteData.Values["shpName"].ToString() != "WebResource.axd")
+            {
+                var ShpNameCode = RouteData.Values["shpName"].ToString();
+                _shpView = MyLibrary.Shp_Bus.GetShp(ShpNameCode);
+            }
+        }
+
         /*
         public int PageNumber
         {
@@ -37,15 +43,15 @@ namespace ShoesStore.Merchant
             lblDateStart.Text = shp.DateStart.ToString();
             lblDesc.Text = shp.Desc;
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 //if (MerchantSession.LoginMerchant == null) return;
                 CollectUrl();
                 LoadThongTin();
-                string a = new Usr().UsrName.GetName();
+                var a = new Usr().UsrName.GetName();
                 //đọc url -> lấy được ShpName //Tham khảo trang ProDet
 
                 // Từ ShpName lấy ra đối tượng Shp //Có hàm trong Shp_BUS
@@ -61,15 +67,6 @@ namespace ShoesStore.Merchant
                 //Từ mã Shp gán vào UcPro trong aspx -> Ucpro.ShpId={}
             }
         }
-        private void CollectUrl()
-        {
-            if (RouteData.Values["shpName"] != null && RouteData.Values["shpName"].ToString() != "WebResource.axd")
-            {
-                var ShpNameCode = RouteData.Values["shpName"].ToString();
-                _shpView = MyLibrary.Shp_Bus.GetShp(ShpNameCode);
-            }
-        }
-
 
 
         /*
@@ -97,6 +94,5 @@ namespace ShoesStore.Merchant
             rptBrandLogos.DataBind();
         }
         */
-
     }
 }

@@ -8,9 +8,8 @@ namespace ShoesStore.Interfaces
         List<T> GetAll();
         T GetLast();
         void Insert(T obj);
-        void Update(T obj);
         bool IsExist(T obj);
         void SetActive(T obj);
-        
+        void Update(T obj);
     }
 }

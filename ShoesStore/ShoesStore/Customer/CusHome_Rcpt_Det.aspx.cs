@@ -9,26 +9,48 @@ namespace ShoesStore.Customer
     public partial class CusHome_Rcpt_Det : Page
     {
         private string dateadd = "";
+        private RcptBuy rcptBuy = new RcptBuy();
         private int RcptBuyId;
         private string statusName = "";
-        RcptBuy rcptBuy = new RcptBuy();
+
+        public void BindDataLvRcptBuyDet(int RcptId)
+        {
+            rptRcptShp.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(RcptId);
+            rptRcptShp.DataBind();
+        }
+
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+            rcptBuy = MyLibrary.RcptBuy_BUS.GetAll()
+                .FirstOrDefault(m => m.RcptBuyId == int.Parse(Request.QueryString["RcptBuyId"]));
+            rcptBuy.CusMessage = review_text.Text;
+            rcptBuy.CusPoint = int.Parse(review_stars.SelectedValue.Split(' ')[0]);
+            MyLibrary.RcptBuy_BUS.Update(rcptBuy);
+            MyLibrary.Show("Đã thêm nhận xét", Request.RawUrl);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 RcptBuyId = int.Parse(Request.QueryString["RcptBuyId"]);
-                rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => m.RcptBuyId == int.Parse(Request.QueryString["RcptBuyId"]));
+                rcptBuy = MyLibrary.RcptBuy_BUS.GetAll()
+                    .FirstOrDefault(m => m.RcptBuyId == int.Parse(Request.QueryString["RcptBuyId"]));
                 if (string.IsNullOrEmpty(rcptBuy.CusMessage))
                 {
-
                 }
                 else
 
                 {
                     DivWriteComment.Controls.Clear();
-                    Label txtComment = new Label() { Text = MyLibrary.DrawStar(rcptBuy.CusPoint.Value) + "</br>" + "Nhận xét của tôi: " + rcptBuy.CusMessage };
+                    var txtComment = new Label
+                    {
+                        Text = MyLibrary.DrawStar(rcptBuy.CusPoint.Value) + "</br>" + "Nhận xét của tôi: " +
+                               rcptBuy.CusMessage
+                    };
                     DivWriteComment.Controls.Add(txtComment);
                 }
+
                 var status = int.Parse(Request.QueryString["Sta"]);
                 switch (status)
                 {
@@ -62,8 +84,8 @@ namespace ShoesStore.Customer
                 }
 
                 var d = (from r in MyLibrary.Rcpt_BUS.GetAll()
-                         where r.RcptId == RcptBuyId
-                         select r.DateAdd).Single();
+                    where r.RcptId == RcptBuyId
+                    select r.DateAdd).Single();
                 dateadd = d.ToString();
                 lbRcptBuyId.Text = "Đơn hàng #" + RcptBuyId;
                 lbRcptBuyDate.Text = "Ngày đặt hàng: " + dateadd;
@@ -72,15 +94,15 @@ namespace ShoesStore.Customer
                 lbRcptBuyDate.Visible = true;
                 rowRcptBuyDet.Visible = true;
                 var s = (from rb in MyLibrary.RcptBuy_BUS.GetAll()
-                         where rb.RcptBuyId == RcptBuyId
-                         select rb.Shp).FirstOrDefault();
+                    where rb.RcptBuyId == RcptBuyId
+                    select rb.Shp).FirstOrDefault();
                 lbShpName.Text = s.ShpName;
                 lbAddress.Text = s.Address;
                 lbPhone.Text = s.Phone;
 
                 var z = (from rb in MyLibrary.RcptBuy_BUS.GetAll()
-                         where rb.RcptBuyId == RcptBuyId
-                         select rb.Cus).FirstOrDefault();
+                    where rb.RcptBuyId == RcptBuyId
+                    select rb.Cus).FirstOrDefault();
                 lbCusName.Text = z.Usr.UsrName;
                 lbAddressCus.Text = z.Usr.Address;
                 lbPhoneCus.Text = z.Usr.Phone;
@@ -89,19 +111,13 @@ namespace ShoesStore.Customer
             }
         }
 
-        public void BindDataLvRcptBuyDet(int RcptId)
-        {
-            rptRcptShp.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(RcptId);
-            rptRcptShp.DataBind();
-        }
-
         protected void rptRcptShp_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var hdfShpId = (HiddenField)e.Item.FindControl("hdfShpId");
+                var hdfShpId = (HiddenField) e.Item.FindControl("hdfShpId");
                 var ShpId = int.Parse(hdfShpId.Value);
-                var rptRcptShpDet = (Repeater)e.Item.FindControl("rptRcptShpDet");
+                var rptRcptShpDet = (Repeater) e.Item.FindControl("rptRcptShpDet");
                 rptRcptShpDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(RcptBuyId)
                     .Where(m => m.ShpId + "" == hdfShpId.Value);
                 rptRcptShpDet.DataBind();
@@ -118,14 +134,6 @@ namespace ShoesStore.Customer
             //        //var CatName = 
             //        //string CatName = e.Item.
             //    }
-        }
-        protected void btnSubmit_OnClick(object sender, EventArgs e)
-        {
-            rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => m.RcptBuyId == int.Parse(Request.QueryString["RcptBuyId"]));
-            rcptBuy.CusMessage = review_text.Text;
-            rcptBuy.CusPoint = int.Parse(review_stars.SelectedValue.Split(' ')[0]);
-            MyLibrary.RcptBuy_BUS.Update(rcptBuy);
-            MyLibrary.Show("Đã thêm nhận xét", Request.RawUrl);
         }
     }
 }

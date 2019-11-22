@@ -8,10 +8,6 @@ namespace ShoesStore.Admin
     {
         internal readonly Usr_BUS _usr = new Usr_BUS();
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -26,6 +22,10 @@ namespace ShoesStore.Admin
                 Console.WriteLine(exception);
                 MyLibrary.Show("Sai tên đăng nhập hoặc mật khẩu");
             }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
         }
     }
 }

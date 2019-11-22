@@ -4,37 +4,40 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <script
-                src="https://www.paypal.com/sdk/js?client-id=AW70rNk98eTP9zPPpkP4nJfOulOCt8yvtXtGseUz9_m5JX_NkY1_FlD3bN0oxizRTN3lZ5ZVAYJAnnMW">
-            </script>
-            <div id="paypal-button-container"></div>
-          
+<form id="form1" runat="server">
+    <div>
+        <script
+            src="https://www.paypal.com/sdk/js?client-id=AW70rNk98eTP9zPPpkP4nJfOulOCt8yvtXtGseUz9_m5JX_NkY1_FlD3bN0oxizRTN3lZ5ZVAYJAnnMW">
+        </script>
+        <div id="paypal-button-container"></div>
 
-            <script>
-                paypal.Buttons({
-                    createOrder: function (data, actions) {
-                        return actions.order.create({
-                            purchase_units: [{
+
+        <script>
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [
+                            {
                                 amount: {
                                     value: '0.01'
                                 }
-                            }]
-                        });
-                    },
-                    onApprove: function (data, actions) {
-                        return actions.order.capture().then(function (details) {
-                            alert('Transaction completed by ' + details.payer.name.given_name);
-                            
-                            // Call your server to save the transaction
-                            return fetch('.', {
+                            }
+                        ]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        alert('Transaction completed by ' + details.payer.name.given_name);
+
+                        // Call your server to save the transaction
+                        return fetch('.',
+                            {
                                 method: 'post',
                                 headers: {
                                     'content-type': 'application/json'
@@ -43,12 +46,12 @@
                                     orderID: data.orderID
                                 })
                             });
-                        });
-                    }
-                }).render('#paypal-button-container');
-            </script>
-            <div class="order-here"></div>
-        </div>
-    </form>
+                    });
+                }
+            }).render('#paypal-button-container');
+        </script>
+        <div class="order-here"></div>
+    </div>
+</form>
 </body>
 </html>

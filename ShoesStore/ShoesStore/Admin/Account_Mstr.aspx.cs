@@ -11,24 +11,12 @@ namespace ShoesStore.Admin
         private int accountId;
         private string avaimg = "";
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void lbtnCancel_Click(object sender, EventArgs e)
         {
-            if (!IsPostBack) LoadThongTin();
         }
 
-        public void LoadThongTin()
+        protected void lbtnHuy_Click(object sender, EventArgs e)
         {
-            var mstr = (Mstr) AdminSession.LoginAdmin;
-            var mstrUsr = Master.usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mstr.MstrId);
-            accountId = mstrUsr.UsrId;
-            txtUsrName.Text = mstrUsr.UsrName;
-            txtAddress.Text = mstrUsr.Address;
-            avaimg = mstrUsr.Avatar;
-            txtEmail.Text = mstrUsr.Email;
-            txtPhone.Text = mstrUsr.Phone;
-            txtLogin.Text = mstrUsr.Login;
-            txtPassword.Text = mstrUsr.Password;
-            upava.Attributes["src"] = MyLibrary.AdminImgPath(mstr);
         }
 
         protected void lbtnLuu_Click(object sender, EventArgs e)
@@ -52,10 +40,6 @@ namespace ShoesStore.Admin
             Response.Redirect(Request.RawUrl);
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Cập nhật thành công')",
                 true);
-        }
-
-        protected void lbtnHuy_Click(object sender, EventArgs e)
-        {
         }
 
         protected void lbtnSave_Click(object sender, EventArgs e)
@@ -100,8 +84,24 @@ namespace ShoesStore.Admin
                 true);
         }
 
-        protected void lbtnCancel_Click(object sender, EventArgs e)
+        public void LoadThongTin()
         {
+            var mstr = (Mstr) AdminSession.LoginAdmin;
+            var mstrUsr = Master.usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mstr.MstrId);
+            accountId = mstrUsr.UsrId;
+            txtUsrName.Text = mstrUsr.UsrName;
+            txtAddress.Text = mstrUsr.Address;
+            avaimg = mstrUsr.Avatar;
+            txtEmail.Text = mstrUsr.Email;
+            txtPhone.Text = mstrUsr.Phone;
+            txtLogin.Text = mstrUsr.Login;
+            txtPassword.Text = mstrUsr.Password;
+            upava.Attributes["src"] = MyLibrary.AdminImgPath(mstr);
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack) LoadThongTin();
         }
     }
 }

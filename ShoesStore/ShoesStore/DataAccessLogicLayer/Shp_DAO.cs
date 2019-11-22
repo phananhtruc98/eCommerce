@@ -6,6 +6,11 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     public class Shp_DAO : Table_DAO<Shp>, IShp
     {
+        public List<Shp> GetAll()
+        {
+            return GetAll();
+        }
+
         public override bool IsExist(Shp obj)
         {
             throw new NotImplementedException();
@@ -14,10 +19,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public override void SetActive(Shp obj)
         {
             throw new NotImplementedException();
-        }
-        public List<Shp> GetAll()
-        {
-            return GetAll();
         }
     }
 }

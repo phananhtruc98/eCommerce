@@ -15,6 +15,38 @@ namespace ShoesStore.BusinessLogicLayer
             return _dao.IsExist(obj);
         }
 
+        public List<CartDet> ListCartPreview()
+        {
+            try
+            {
+                var cus = _cusBus.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
+                var cart = _cartBus.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+                if (cart == null && cus != null)
+                {
+                    cart = new Cart {CusId = cus.CusId};
+                    _cartBus.Insert(cart);
+                    cart = _cartBus.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+                }
+
+                return GetAll().Where(m => cart != null && m.CartId == cart.CartId).ToList();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<Shp> ListCartPreview_Shop()
+        {
+            var shpIds = ListCartPreview().Select(m => m.ShpId).OrderBy(x => x).Distinct().ToArray();
+            return MyLibrary.Shp_Bus.GetAll().Where(m => shpIds.Contains(m.ShpId)).ToList();
+        }
+
+        public int ListCartPreviewNumber()
+        {
+            return ListCartPreview().GroupBy(m => new {m.ProDet.Pro.ShpId, m.ProDet.Pro.ProId}).Count();
+        }
+
         public override void SetActive(CartDet obj)
         {
             _dao.SetActive(obj);
@@ -26,21 +58,7 @@ namespace ShoesStore.BusinessLogicLayer
             try
             {
                 var money = GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId)
-                    .Sum(m => (double.Parse(MyLibrary.Pro_BUS.GetPrice(m.ProDet.Pro)) * m.Qty));
-                return money.ToString();
-            }
-            catch (Exception)
-            {
-                return "0";
-            }
-        }
-        public string SumCartDetPriceNoDiscount()
-        {
-            if (WebSession.LoginCus == null) return "0";
-            try
-            {
-                var money = GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId)
-                    .Sum(m => (double.Parse(m.ProDet.Pro.Price) * m.Qty));
+                    .Sum(m => double.Parse(MyLibrary.Pro_BUS.GetPrice(m.ProDet.Pro)) * m.Qty);
                 return money.ToString();
             }
             catch (Exception)
@@ -66,36 +84,19 @@ namespace ShoesStore.BusinessLogicLayer
             }
         }
 
-        public List<CartDet> ListCartPreview()
+        public string SumCartDetPriceNoDiscount()
         {
+            if (WebSession.LoginCus == null) return "0";
             try
             {
-                var cus = _cusBus.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
-                var cart = _cartBus.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
-                if (cart == null && cus != null)
-                {
-                    cart = new Cart { CusId = cus.CusId };
-                    _cartBus.Insert(cart);
-                    cart = _cartBus.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
-                }
-
-                return GetAll().Where(m => cart != null && m.CartId == cart.CartId).ToList();
+                var money = GetAll().Where(n => n.Cart.CusId == WebSession.LoginCus.CusId)
+                    .Sum(m => double.Parse(m.ProDet.Pro.Price) * m.Qty);
+                return money.ToString();
             }
-            catch
+            catch (Exception)
             {
-                return null;
+                return "0";
             }
-        }
-
-        public List<Shp> ListCartPreview_Shop()
-        {
-            var shpIds = ListCartPreview().Select(m => m.ShpId).OrderBy(x => x).Distinct().ToArray();
-            return MyLibrary.Shp_Bus.GetAll().Where(m => shpIds.Contains(m.ShpId)).ToList();
-        }
-
-        public int ListCartPreviewNumber()
-        {
-            return ListCartPreview().GroupBy(m => new { m.ProDet.Pro.ShpId, m.ProDet.Pro.ProId }).Count();
         }
     }
 }

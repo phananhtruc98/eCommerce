@@ -9,15 +9,15 @@ namespace ShoesStore
     {
         internal readonly Usr_BUS _usr = new Usr_BUS();
 
-        protected void Page_Load(object sender, EventArgs e)
+        public void LoadTenNguoiDung()
         {
-            LoadTenNguoiDung();
+            lbXinChao.Text = "Chào, " + (WebSession.LoginUsr as Usr)?.UsrName;
         }
+
         protected void Page_Init(object sender, EventArgs e)
         {
             if (WebSession.LoginCus != null)
             {
-               
             }
             else
             {
@@ -25,9 +25,9 @@ namespace ShoesStore
             }
         }
 
-        public void LoadTenNguoiDung()
+        protected void Page_Load(object sender, EventArgs e)
         {
-            lbXinChao.Text = "Chào, " + (WebSession.LoginUsr as Usr)?.UsrName;
+            LoadTenNguoiDung();
         }
     }
 }

@@ -4,12 +4,12 @@ namespace ShoesStore.DataAccessLogicLayer
 {
     public class RcptBuySta_DAO : Table_DAO<RcptBuySta>
     {
-        public override void SetActive(RcptBuySta obj)
+        public override bool IsExist(RcptBuySta obj)
         {
             throw new NotImplementedException();
         }
 
-        public override bool IsExist(RcptBuySta obj)
+        public override void SetActive(RcptBuySta obj)
         {
             throw new NotImplementedException();
         }

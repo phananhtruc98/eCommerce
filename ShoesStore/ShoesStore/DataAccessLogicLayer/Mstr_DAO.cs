@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Objects;
 using ShoesStore.Interfaces;
+
 namespace ShoesStore.DataAccessLogicLayer
 {
     public class Mstr_DAO : Table_DAO<Mstr>, IMstr
@@ -15,11 +16,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public void CreateActCode(IMstr obj)
         {
             throw new NotImplementedException();
-        }
-
-        public ObjectResult<sp_Admin_Info_Result> Get_Admin_Info()
-        {
-            return DataProvider.Instance.sp_Admin_Info();
         }
 
         public UsrAct GetUsrAct(int usrId)
@@ -37,6 +33,11 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
+        ObjectResult<sp_Admin_Info_Result> IMstr.Get_Admin_Info()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(IMstr obj)
         {
             throw new NotImplementedException();
@@ -47,9 +48,18 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
+        public ObjectResult<sp_Admin_Info_Result> Get_Admin_Info()
+        {
+            return DataProvider.Instance.sp_Admin_Info();
+        }
+
         public IMstr GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void getColumsToSort(string ColName)
+        {
         }
 
         public int GetLastestId()
@@ -78,15 +88,6 @@ namespace ShoesStore.DataAccessLogicLayer
         }
 
         public void Update(IMstr obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void getColumsToSort(string ColName)
-        {
-        }
-
-        System.Data.Objects.ObjectResult<sp_Admin_Info_Result> IMstr.Get_Admin_Info()
         {
             throw new NotImplementedException();
         }

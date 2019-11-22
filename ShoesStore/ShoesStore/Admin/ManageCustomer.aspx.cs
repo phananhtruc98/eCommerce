@@ -11,11 +11,6 @@ namespace ShoesStore.Admin
     {
         private readonly Cus_BUS cus_BUS = new Cus_BUS();
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack) BindDataGridView();
-        }
-
 // Load bảng cus
         private void BindDataGridView()
         {
@@ -29,6 +24,32 @@ namespace ShoesStore.Admin
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
 
+        //protected void gvCustomer_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    lvCus.PageIndex = e.NewPageIndex;
+        //    BindDataGridView();
+        //}
+
+        protected void lvCus_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Detail")
+            {
+                var UsrId = int.Parse(e.CommandArgument.ToString());
+                Response.Redirect("/Admin/Usr_Det.aspx?UsrId=" + UsrId);
+            }
+        }
+
+        protected void lvCus_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            BindDataGridView();
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack) BindDataGridView();
+        }
+
 // Tìm kiếm
         public void TimKiem(string search_key)
         {
@@ -39,27 +60,6 @@ namespace ShoesStore.Admin
                 select a).ToList();
             lvCus.DataSource = rs;
             lvCus.DataBind();
-        }
-
-        //protected void gvCustomer_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    lvCus.PageIndex = e.NewPageIndex;
-        //    BindDataGridView();
-        //}
-
-        protected void lvCus_ItemCommand(object sender, ListViewCommandEventArgs e)
-        {
-            if(e.CommandName== "Detail")
-            {
-                int UsrId = Int32.Parse(e.CommandArgument.ToString());
-                Response.Redirect("/Admin/Usr_Det.aspx?UsrId=" + UsrId);
-            }
-        }
-
-        protected void lvCus_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
-        {
-            DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
-            BindDataGridView();
         }
     }
 }

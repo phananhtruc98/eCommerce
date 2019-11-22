@@ -50,6 +50,11 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new NotImplementedException();
         }
 
+        ObjectResult<sp_Cus_Info_Result> ICus.Get_Cus_Info()
+        {
+            throw new NotImplementedException();
+        }
+
         public ObjectResult<sp_Cus_Info_Result> Get_Cus_Info()
         {
             return DataProvider.Instance.sp_Cus_Info();
@@ -76,11 +81,6 @@ namespace ShoesStore.DataAccessLogicLayer
         }
 
         public override void SetActive(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        System.Data.Objects.ObjectResult<sp_Cus_Info_Result> ICus.Get_Cus_Info()
         {
             throw new NotImplementedException();
         }

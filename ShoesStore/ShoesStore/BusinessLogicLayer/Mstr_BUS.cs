@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Objects;
-
 using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
@@ -21,11 +20,6 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ObjectResult<sp_Admin_Info_Result> Get_Admin_Info()
-        {
-            return _dao.Get_Admin_Info();
-        }
-
         public UsrAct GetUsrAct(int usrId)
         {
             throw new NotImplementedException();
@@ -37,6 +31,11 @@ namespace ShoesStore.BusinessLogicLayer
         }
 
         public void Register(IMstr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        ObjectResult<sp_Admin_Info_Result> IMstr.Get_Admin_Info()
         {
             throw new NotImplementedException();
         }
@@ -56,9 +55,19 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public ObjectResult<sp_Admin_Info_Result> Get_Admin_Info()
+        {
+            return _dao.Get_Admin_Info();
+        }
+
         public IMstr GetByPrimaryKeys(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void getColumnsToSort(string ColName)
+        {
+            MyExtensions.MyExtensions.SortBy(Get_Admin_Info().AsQueryable(), ColName);
         }
 
         public int GetLastestId()
@@ -76,22 +85,12 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public void SetActive()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(IMstr obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void getColumnsToSort(string ColName)
-        {
-            MyExtensions.MyExtensions.SortBy(Get_Admin_Info().AsQueryable(), ColName);
-        }
-
         public override bool IsExist(Mstr obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetActive()
         {
             throw new NotImplementedException();
         }
@@ -101,7 +100,7 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        System.Data.Objects.ObjectResult<sp_Admin_Info_Result> IMstr.Get_Admin_Info()
+        public void Update(IMstr obj)
         {
             throw new NotImplementedException();
         }

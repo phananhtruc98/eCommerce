@@ -7,6 +7,15 @@ namespace ShoesStore.MyExtensions
 {
     public static partial class MyExtensions
     {
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>
+            (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        {
+            var seenKeys = new HashSet<TKey>();
+            foreach (var element in source)
+                if (seenKeys.Add(keySelector(element)))
+                    yield return element;
+        }
+
         public static IOrderedEnumerable<TSource> OrderByWithDirection<TSource, TKey>
         (this IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector,
@@ -43,19 +52,6 @@ namespace ShoesStore.MyExtensions
                 new[] {source.ElementType, property.Type},
                 source.Expression, Expression.Quote(lambda));
             return source.Provider.CreateQuery<T>(methodCallExpression);
-        }
-
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey>
-    (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
-        {
-            HashSet<TKey> seenKeys = new HashSet<TKey>();
-            foreach (TSource element in source)
-            {
-                if (seenKeys.Add(keySelector(element)))
-                {
-                    yield return element;
-                }
-            }
         }
     }
 }

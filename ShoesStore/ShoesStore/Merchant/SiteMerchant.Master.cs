@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
@@ -22,53 +21,30 @@ namespace ShoesStore.Merchant
         private int UsrId;
         private string UsrName = "";
 
-        protected void Page_Load(object sender, EventArgs e)
+        /*
+        protected void btnActCodeSender_Click(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                var mer = (Mer)MerchantSession.LoginMerchant;
-                var Shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.MerId == mer.MerId);
-                if (Shp == null)
-                {
-                    createshop.Visible = true;
-                    dropdown.Visible = false;
-                }
-                else
-                {
-                    createshop.Visible = false;
-                    dropdown.Visible = true;
-                }
-            }
-            
+        RequiredEmail.Validate();
+        RegularExpressionValidator.Validate();
+        if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
+        {
+        _actCode = TextHelper.RandomNumber(4);
+        Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
+        $"Mã kích hoạt của bạn là {_actCode}");
+        Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
+        }
+        }
+        */
+        public void Alert(string message)
+        {
+            ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "alertMessage", message, true);
         }
 
-        private void Page_Init(object sender, EventArgs e)
+        protected void customValidator_ActivateCode_OnServerValidate(object source, ServerValidateEventArgs args)
         {
-            if (MerchantSession.LoginMerchant != null)
-            {
-                var mer = (Mer)MerchantSession.LoginMerchant;
-                var merUsr = usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-                UsrId = merUsr.UsrId;
-                UsrName = merUsr.UsrName;
-                Address = merUsr.Address;
-                Avatar = merUsr.Avatar;
-                Email = merUsr.Email;
-                Phone = merUsr.Phone;
-                login1 = merUsr.Login;
-                password1 = merUsr.Password;
-                var avaImg = Avatar;
-                Label1.Text = "Chào " + UsrName;
-            }
-            else
-            {
-                Response.Redirect("~/nguoi-ban/dang-nhap");
-            }
-        }
-
-        public void rptProCat_Init(object sender, EventArgs e)
-        {
-            rptProCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
-            rptProCat.DataBind();
+            if (args.Value != _actCode)
+                args.IsValid = false;
+            else args.IsValid = true;
         }
 
         public int GetCurrentCartItemsNumber()
@@ -76,10 +52,14 @@ namespace ShoesStore.Merchant
             return MyLibrary.CartDet_BUS.ListCartPreviewNumber();
         }
 
-        protected void rptProBrand_Init(object sender, EventArgs e)
+        protected void lbtnAccount_Click(object sender, EventArgs e)
         {
-            rptProBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll().ToList();
-            rptProBrand.DataBind();
+            Response.Redirect("~/nguoi-ban/trang-thong-tin");
+        }
+
+        protected void lbtnCusHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Customer/CusHome.aspx");
         }
 
         /*
@@ -138,43 +118,58 @@ namespace ShoesStore.Merchant
             Response.Redirect("~/nguoi-ban/dang-nhap");
         }
 
-        protected void lbtnCusHome_Click(object sender, EventArgs e)
+        private void Page_Init(object sender, EventArgs e)
         {
-            Response.Redirect("~/Customer/CusHome.aspx");
+            if (MerchantSession.LoginMerchant != null)
+            {
+                var mer = (Mer) MerchantSession.LoginMerchant;
+                var merUsr = usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
+                UsrId = merUsr.UsrId;
+                UsrName = merUsr.UsrName;
+                Address = merUsr.Address;
+                Avatar = merUsr.Avatar;
+                Email = merUsr.Email;
+                Phone = merUsr.Phone;
+                login1 = merUsr.Login;
+                password1 = merUsr.Password;
+                var avaImg = Avatar;
+                Label1.Text = "Chào " + UsrName;
+            }
+            else
+            {
+                Response.Redirect("~/nguoi-ban/dang-nhap");
+            }
         }
 
-        protected void lbtnAccount_Click(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("~/nguoi-ban/trang-thong-tin");
+            if (!IsPostBack)
+            {
+                var mer = (Mer) MerchantSession.LoginMerchant;
+                var Shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.MerId == mer.MerId);
+                if (Shp == null)
+                {
+                    createshop.Visible = true;
+                    dropdown.Visible = false;
+                }
+                else
+                {
+                    createshop.Visible = false;
+                    dropdown.Visible = true;
+                }
+            }
         }
 
-        /*
-        protected void btnActCodeSender_Click(object sender, EventArgs e)
+        protected void rptProBrand_Init(object sender, EventArgs e)
         {
-        RequiredEmail.Validate();
-        RegularExpressionValidator.Validate();
-        if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
-        {
-        _actCode = TextHelper.RandomNumber(4);
-        Email.SendGmail("nomad1234vn@gmail.com", "ma8635047", email.Value, "Mã kích hoạt đăng ký",
-        $"Mã kích hoạt của bạn là {_actCode}");
-        Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
-        }
-        }
-        */
-        public void Alert(string message)
-        {
-            ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "alertMessage", message, true);
+            rptProBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll().ToList();
+            rptProBrand.DataBind();
         }
 
-        protected void customValidator_ActivateCode_OnServerValidate(object source, ServerValidateEventArgs args)
+        public void rptProCat_Init(object sender, EventArgs e)
         {
-            if (args.Value != _actCode)
-                args.IsValid = false;
-            else args.IsValid = true;
+            rptProCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
+            rptProCat.DataBind();
         }
-
-        
-
-}
+    }
 }

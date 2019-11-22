@@ -1,26 +1,37 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ShoesStore.Admin
 {
     public partial class RcptBuy_Det : Page
     {
+        public static int ProId1;
+        public static int ShpId1;
+        private int CusIdTemp;
         private string dateadd = "";
         private int RcptBuyId;
         private string statusName = "";
-        private int CusIdTemp = 0;
-        public static int ProId1 = 0;
-        public static int ShpId1 = 0;
+
+        protected void a1_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect("/Admin/ReviewProductDetail.aspx?ProId=" + ProId1 + "&ShpId=" + ShpId1);
+        }
+
+        public void BindDataLvRcptBuyDet(int RcptId, int CusId)
+        {
+            rptRcptShp.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(RcptId, CusId);
+            rptRcptShp.DataBind();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 RcptBuyId = int.Parse(Request.QueryString["RcptBuyId"]);
                 var status = int.Parse(Request.QueryString["Sta"]);
-                
+
                 switch (status)
                 {
                     case 1:
@@ -53,8 +64,8 @@ namespace ShoesStore.Admin
                 }
 
                 var d = (from r in MyLibrary.Rcpt_BUS.GetAll()
-                         where r.RcptId == RcptBuyId
-                         select r.DateAdd).Single();
+                    where r.RcptId == RcptBuyId
+                    select r.DateAdd).Single();
                 dateadd = d.ToString();
                 lbRcptBuyId.Text = "Đơn hàng #" + RcptBuyId;
                 lbRcptBuyDate.Text = "Ngày đặt hàng: " + dateadd;
@@ -63,15 +74,15 @@ namespace ShoesStore.Admin
                 lbRcptBuyDate.Visible = true;
                 rowRcptBuyDet.Visible = true;
                 var s = (from rb in MyLibrary.RcptBuy_BUS.GetAll()
-                         where rb.RcptBuyId == RcptBuyId
-                         select rb.Shp).FirstOrDefault();
+                    where rb.RcptBuyId == RcptBuyId
+                    select rb.Shp).FirstOrDefault();
                 lbShpName.Text = s.ShpName;
                 lbAddress.Text = s.Address;
                 lbPhone.Text = s.Phone;
 
                 var z = (from rb in MyLibrary.RcptBuy_BUS.GetAll()
-                         where rb.RcptBuyId == RcptBuyId
-                         select rb.Cus).FirstOrDefault();
+                    where rb.RcptBuyId == RcptBuyId
+                    select rb.Cus).FirstOrDefault();
                 lbCusName.Text = z.Usr.UsrName;
                 lbAddressCus.Text = z.Usr.Address;
                 lbPhoneCus.Text = z.Usr.Phone;
@@ -81,39 +92,26 @@ namespace ShoesStore.Admin
             }
         }
 
-        public void BindDataLvRcptBuyDet(int RcptId, int CusId)
-        {
-            rptRcptShp.DataSource = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(RcptId, CusId);
-            rptRcptShp.DataBind();
-        }
-
-
-        protected void rptRcptShpDet_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            
-            int ProId = int.Parse((e.Item.FindControl("hdfProId") as HiddenField).Value);
-          
-            ProId1 = ProId;
-        }
-
         protected void rptRcptShp_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var hdfShpId = (HiddenField)e.Item.FindControl("hdfShpId");
+                var hdfShpId = (HiddenField) e.Item.FindControl("hdfShpId");
                 var ShpId = int.Parse(hdfShpId.Value);
-                var rptRcptShpDet = (Repeater)e.Item.FindControl("rptRcptShpDet");
+                var rptRcptShpDet = (Repeater) e.Item.FindControl("rptRcptShpDet");
                 rptRcptShpDet.DataSource = MyLibrary.RcptBuyDet_BUS.ListRcptBuyPreview(RcptBuyId, CusIdTemp)
                     .Where(m => m.ShpId + "" == hdfShpId.Value);
                 rptRcptShpDet.DataBind();
                 ShpId1 = ShpId;
             }
-            
         }
 
-        protected void a1_ServerClick(object sender, EventArgs e)
+
+        protected void rptRcptShpDet_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            Response.Redirect("/Admin/ReviewProductDetail.aspx?ProId=" + ProId1 + "&ShpId=" + ShpId1);
+            var ProId = int.Parse((e.Item.FindControl("hdfProId") as HiddenField).Value);
+
+            ProId1 = ProId;
         }
     }
 }

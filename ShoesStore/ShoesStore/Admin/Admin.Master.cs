@@ -21,8 +21,15 @@ namespace ShoesStore.Admin
         public string Login { get; set; } = "";
         public string Password { get; set; } = "";
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void lbtnAccount_Click(object sender, EventArgs e)
         {
+            Response.Redirect("~/quan-tri/thong-tin-ca-nhan");
+        }
+
+        protected void lbtnLogout_Click(object sender, EventArgs e)
+        {
+            AdminSession.LoginAdmin = null;
+            Response.Redirect("~/quan-tri/dang-nhap");
         }
 
         protected void Page_Init(object sender, EventArgs e)
@@ -60,15 +67,8 @@ namespace ShoesStore.Admin
             }
         }
 
-        protected void lbtnLogout_Click(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            AdminSession.LoginAdmin = null;
-            Response.Redirect("~/quan-tri/dang-nhap");
-        }
-
-        protected void lbtnAccount_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/quan-tri/thong-tin-ca-nhan");
         }
     }
 }

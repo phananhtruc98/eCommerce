@@ -1,205 +1,212 @@
 ﻿<%@ Page Language="C#" Title="Quản lý người bán" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageMerchant.aspx.cs" Inherits="ShoesStore.Admin.Manage_User" %>
-
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="btn btn-lg custom_bar">Danh sách người bán</div>
-    <div id="TimKiem" class="container">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-9">
-                <asp:TextBox runat="server" placeholder="Gõ vào đây..." ID="txtTimKiem"></asp:TextBox>
-                <asp:Button runat="server" ID="btnTimKiem" Text="Tìm" CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click" />
-            </div>
+<div class="btn btn-lg custom_bar">Danh sách người bán</div>
+<div id="TimKiem" class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-9">
+            <asp:TextBox runat="server" placeholder="Gõ vào đây..." ID="txtTimKiem"></asp:TextBox>
+            <asp:Button runat="server" ID="btnTimKiem" Text="Tìm" CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click"/>
         </div>
     </div>
-    <%--Thêm cột: Tên shop vô gridview --%>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 table table-responsive">
-                <asp:ListView runat="server" ID="lvMer" OnPagePropertiesChanging="lvMer_PagePropertiesChanging" OnItemCommand="lvMer_ItemCommand" ItemType="ShoesStore.DataAccessLogicLayer.Mer">
-                    <LayoutTemplate>
-                        <table class="table">
-                            <tr>
-                                <th>Xem chi tiết</th>
-                                <th>Mã người bán</th>
-                                <th>Tên người bán</th>
-                                <th>Email</th>
-                                <th>Ngày thêm</th>
-                            </tr>
-                            <tr id="itemPlaceholder" runat="server" />
-                        </table>
-                    </LayoutTemplate>
-                    <ItemTemplate>
+</div>
+<%--Thêm cột: Tên shop vô gridview --%>
+<div class="container">
+    <div class="row">
+        <div class="col-12 table table-responsive">
+            <asp:ListView runat="server" ID="lvMer" OnPagePropertiesChanging="lvMer_PagePropertiesChanging" OnItemCommand="lvMer_ItemCommand" ItemType="ShoesStore.DataAccessLogicLayer.Mer">
+                <LayoutTemplate>
+                    <table class="table">
                         <tr>
-                            <td>
-                                <asp:LinkButton runat="server" ID="lbtnDetail" CommandName="Detail" CommandArgument='<%# Item.MerId %>' CssClass="btn btn-icons btn-rounded btn-outline-warning"><i class="fas fa-info"></i></asp:LinkButton></td>
-                            <td>
-                                <asp:Label runat="server" ID="lbCusId" Text="<%# Item.MerId %>"></asp:Label></td>
-                            <td>
-                                <asp:Label runat="server" ID="lbUsrName" Text="<%# Item.Usr.UsrName %>"></asp:Label></td>
-                            <td>
-                                <asp:Label runat="server" ID="lbEmail" Text="<%# Item.Usr.Email %>"></asp:Label></td>
-                            <td>
-                                <asp:Label runat="server" ID="lbDateAdd" Text="<%# Item.Usr.DateAdd %>"></asp:Label></td>
-                            <td>
-                                <asp:LinkButton runat="server" ID="lbtnThem" CommandName="sel" Visible='<%# (Item.GetSubEndDate() -DateTime.Now ).TotalDays <= 3 ? true:false %>' CommandArgument='<%# Item.MerId %>' CssClass="alert alert-warning" Text="Gửi mail"></asp:LinkButton></td>
+                            <th>Xem chi tiết</th>
+                            <th>Mã người bán</th>
+                            <th>Tên người bán</th>
+                            <th>Email</th>
+                            <th>Ngày thêm</th>
                         </tr>
-                    </ItemTemplate>
-                </asp:ListView>
-                <asp:DataPager ID="DataPager1" runat="server" PageSize="5"
-                    PagedControlID="lvMer">
-                    <Fields>
-                        <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True"
-                            ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
-                        <asp:NumericPagerField />
-                        <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True"
-                            ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
-                    </Fields>
-                </asp:DataPager>
-                <asp:GridView ID="gvMerchant" ShowFooter="False" runat="server" AutoGeneratedColumns="false" BackColor="White" BorderColor="#CC9966" BorderWidth="1px" CellPadding="4" OnRowCommand="gvSub_RowCommand" BorderStyle="None" AutoGenerateColumns="False" AllowPaging="True" Style="margin-top: 0px" OnRowDataBound="gvMerchant_RowDataBound" OnPageIndexChanging="gvMerchant_PageIndexChanging">
-                    <Columns>
-                        <asp:TemplateField>
-                            <HeaderTemplate>Mã người bán</HeaderTemplate>
-                            <ItemTemplate>
-                                <%# Eval("UsrId") %>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Tên người bán">
-                            <HeaderTemplate>Tên người bán</HeaderTemplate>
-                            <ItemTemplate>
-                                <%# Eval("UsrName") %>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditUsrName" Text='<%# Bind("UsrName") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" ID="InsertUsrName" Text=' <%# Bind("UsrName") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditUsrName" runat="server" ErrorMessage="Chưa nhập tên người bán" ControlToValidate="InsertUsrName" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Tài khoản">
-                            <HeaderTemplate>Tài khoản</HeaderTemplate>
-                            <ItemTemplate>
-                                <%# Eval("Login") %>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditLogin" Text='<%# Bind("Login") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" ID="InsertLogin" Text=' <%# Bind("Login") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditLogin" runat="server" ErrorMessage="Chưa nhập tài khoản" ControlToValidate="InsertLogin" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Mật khẩu">
-                            <HeaderTemplate>Mật khẩu</HeaderTemplate>
-                            <ItemTemplate>
-                                <%# Eval("Password") %>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditPassword" Text='<%# Bind("Password") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" ID="InsertPassword" Text='<%# Bind("Password") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditPassword" runat="server" ErrorMessage="Chưa nhập mật khẩu" ControlToValidate="InsertPassword" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Email">
-                            <HeaderTemplate>Email</HeaderTemplate>
-                            <ItemTemplate>
-                                <%# Eval("Email") %>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditEmail" Text='<%# Bind("Email") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" type="email" ID="InsertEmail" Text='<%# Bind("Email") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditEmail" runat="server" ErrorMessage="Chưa nhập email" ControlToValidate="InsertEmail" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Địa chỉ">
-                            <HeaderTemplate>Địa chỉ</HeaderTemplate>
-                            <ItemTemplate>
-                                <%# Eval("Address") %>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditAddress" Text='<%# Bind("Address") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" ID="InsertAddress" Text='<%# Bind("Address") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditAddress" runat="server" ErrorMessage="Chưa nhập địa chỉ" ControlToValidate="InsertAddress" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Số điện thoại">
-                            <HeaderTemplate>Số điện thoại</HeaderTemplate>
-                            <ItemTemplate>
-                                <%# Eval("Phone") %>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditPhone" Text='<%# Bind("Phone") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" type="number" ID="InsertPhone" Text='<%# Bind("Phone") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditPhone" runat="server" ErrorMessage="Chưa nhập số điện thoại" ControlToValidate="InsertPhone" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Ngày thêm">
-                            <HeaderTemplate>Ngày thêm</HeaderTemplate>
-                            <ItemTemplate>
-                                <%# Eval("DateAdd") %>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditDateAdd" Text='<%# Bind("DateAdd") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" type="date" ID="InsertDateAdd" Text='<%# Bind("DateAdd") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditDateAdd" runat="server" ErrorMessage="Chưa nhập địa chỉ" ControlToValidate="InsertDateAdd" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Ngày sửa">
-                            <HeaderTemplate>Ngày sửa</HeaderTemplate>
-                            <ItemTemplate>
-                                <%# Eval("DateEdit") %>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditDateEdit" Text='<%# Bind("DateEdit") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox runat="server" type="date" ID="InsertDateEdit" Text='<%# Bind("DateEdit") %>' />
-                                <asp:RequiredFieldValidator ID="rfvEditDateEdit" runat="server" ErrorMessage="Chưa nhập số điện thoại" ControlToValidate="InsertDateEdit" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Kích hoạt">
-                            <ItemTemplate>
-                                <asp:CheckBox Enabled="false" runat="server" Checked='<%# Eval("Active") %>' />
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:CheckBox runat="server" ID="EditActive" Checked='<%# Bind("Active") %>' />
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:CheckBox runat="server" ID="InsertActive" Text='<%# Bind("Active") %>' />
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" Wrap="false" />
-                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" Wrap="false" />
-                    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Wrap="false" />
-                    <RowStyle BackColor="White" ForeColor="#330099" Wrap="false" />
-                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
-                    <SortedAscendingCellStyle BackColor="#FEFCEB" />
-                    <SortedAscendingHeaderStyle BackColor="#AF0101" />
-                    <SortedDescendingCellStyle BackColor="#F6F0C0" />
-                    <SortedDescendingHeaderStyle BackColor="#7E0000" />
-                </asp:GridView>
-                <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert" ForeColor="Red" runat="server" />
-            </div>
+                        <tr id="itemPlaceholder" runat="server"/>
+                    </table>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <asp:LinkButton runat="server" ID="lbtnDetail" CommandName="Detail" CommandArgument="<%# Item.MerId %>" CssClass="btn btn-icons btn-rounded btn-outline-warning">
+                                <i class="fas fa-info"></i>
+                            </asp:LinkButton>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbCusId" Text="<%# Item.MerId %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbUsrName" Text="<%# Item.Usr.UsrName %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbEmail" Text="<%# Item.Usr.Email %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbDateAdd" Text="<%# Item.Usr.DateAdd %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:LinkButton runat="server" ID="lbtnThem" CommandName="sel" Visible="<%# (Item.GetSubEndDate() - DateTime.Now).TotalDays <= 3 ? true : false %>" CommandArgument="<%# Item.MerId %>" CssClass="alert alert-warning" Text="Gửi mail"></asp:LinkButton>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:ListView>
+            <asp:DataPager ID="DataPager1" runat="server" PageSize="5"
+                           PagedControlID="lvMer">
+                <Fields>
+                    <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True"
+                                                ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước"/>
+                    <asp:NumericPagerField/>
+                    <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True"
+                                                ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước"/>
+                </Fields>
+            </asp:DataPager>
+            <asp:GridView ID="gvMerchant" ShowFooter="False" runat="server" AutoGeneratedColumns="false" BackColor="White" BorderColor="#CC9966" BorderWidth="1px" CellPadding="4" OnRowCommand="gvSub_RowCommand" BorderStyle="None" AutoGenerateColumns="False" AllowPaging="True" Style="margin-top: 0px" OnRowDataBound="gvMerchant_RowDataBound" OnPageIndexChanging="gvMerchant_PageIndexChanging">
+                <Columns>
+                    <asp:TemplateField>
+                        <HeaderTemplate>Mã người bán</HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("UsrId") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Tên người bán">
+                        <HeaderTemplate>Tên người bán</HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("UsrName") %>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditUsrName" Text='<%# Bind("UsrName") %>'/>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox runat="server" ID="InsertUsrName" Text=' <%# Bind("UsrName") %>'/>
+                            <asp:RequiredFieldValidator ID="rfvEditUsrName" runat="server" ErrorMessage="Chưa nhập tên người bán" ControlToValidate="InsertUsrName" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Tài khoản">
+                        <HeaderTemplate>Tài khoản</HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("Login") %>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditLogin" Text='<%# Bind("Login") %>'/>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox runat="server" ID="InsertLogin" Text=' <%# Bind("Login") %>'/>
+                            <asp:RequiredFieldValidator ID="rfvEditLogin" runat="server" ErrorMessage="Chưa nhập tài khoản" ControlToValidate="InsertLogin" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Mật khẩu">
+                        <HeaderTemplate>Mật khẩu</HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("Password") %>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditPassword" Text='<%# Bind("Password") %>'/>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox runat="server" ID="InsertPassword" Text='<%# Bind("Password") %>'/>
+                            <asp:RequiredFieldValidator ID="rfvEditPassword" runat="server" ErrorMessage="Chưa nhập mật khẩu" ControlToValidate="InsertPassword" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Email">
+                        <HeaderTemplate>Email</HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("Email") %>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditEmail" Text='<%# Bind("Email") %>'/>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox runat="server" type="email" ID="InsertEmail" Text='<%# Bind("Email") %>'/>
+                            <asp:RequiredFieldValidator ID="rfvEditEmail" runat="server" ErrorMessage="Chưa nhập email" ControlToValidate="InsertEmail" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Địa chỉ">
+                        <HeaderTemplate>Địa chỉ</HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("Address") %>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditAddress" Text='<%# Bind("Address") %>'/>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox runat="server" ID="InsertAddress" Text='<%# Bind("Address") %>'/>
+                            <asp:RequiredFieldValidator ID="rfvEditAddress" runat="server" ErrorMessage="Chưa nhập địa chỉ" ControlToValidate="InsertAddress" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Số điện thoại">
+                        <HeaderTemplate>Số điện thoại</HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("Phone") %>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditPhone" Text='<%# Bind("Phone") %>'/>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox runat="server" type="number" ID="InsertPhone" Text='<%# Bind("Phone") %>'/>
+                            <asp:RequiredFieldValidator ID="rfvEditPhone" runat="server" ErrorMessage="Chưa nhập số điện thoại" ControlToValidate="InsertPhone" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Ngày thêm">
+                        <HeaderTemplate>Ngày thêm</HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("DateAdd") %>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditDateAdd" Text='<%# Bind("DateAdd") %>'/>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox runat="server" type="date" ID="InsertDateAdd" Text='<%# Bind("DateAdd") %>'/>
+                            <asp:RequiredFieldValidator ID="rfvEditDateAdd" runat="server" ErrorMessage="Chưa nhập địa chỉ" ControlToValidate="InsertDateAdd" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Ngày sửa">
+                        <HeaderTemplate>Ngày sửa</HeaderTemplate>
+                        <ItemTemplate>
+                            <%# Eval("DateEdit") %>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditDateEdit" Text='<%# Bind("DateEdit") %>'/>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox runat="server" type="date" ID="InsertDateEdit" Text='<%# Bind("DateEdit") %>'/>
+                            <asp:RequiredFieldValidator ID="rfvEditDateEdit" runat="server" ErrorMessage="Chưa nhập số điện thoại" ControlToValidate="InsertDateEdit" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Kích hoạt">
+                        <ItemTemplate>
+                            <asp:CheckBox Enabled="false" runat="server" Checked='<%# Eval("Active") %>'/>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:CheckBox runat="server" ID="EditActive" Checked='<%# Bind("Active") %>'/>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:CheckBox runat="server" ID="InsertActive" Text='<%# Bind("Active") %>'/>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                </Columns>
+                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" Wrap="false"/>
+                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" Wrap="false"/>
+                <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" Wrap="false"/>
+                <RowStyle BackColor="White" ForeColor="#330099" Wrap="false"/>
+                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399"/>
+                <SortedAscendingCellStyle BackColor="#FEFCEB"/>
+                <SortedAscendingHeaderStyle BackColor="#AF0101"/>
+                <SortedDescendingCellStyle BackColor="#F6F0C0"/>
+                <SortedDescendingHeaderStyle BackColor="#7E0000"/>
+            </asp:GridView>
+            <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Insert" ForeColor="Red" runat="server"/>
         </div>
     </div>
+</div>
 </asp:Content>

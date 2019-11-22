@@ -1,8 +1,6 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-
-namespace ShoesStore.Interfaces
+﻿namespace ShoesStore.Interfaces
 {
-    internal interface IShp 
+    internal interface IShp
     {
     }
 }

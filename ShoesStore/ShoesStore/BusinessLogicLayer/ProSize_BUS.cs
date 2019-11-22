@@ -29,7 +29,7 @@ namespace ShoesStore.BusinessLogicLayer
 
         public ProSize GetById(int id)
         {
-          return  GetAll().FirstOrDefault(x => x.SizeId == id);
+            return GetAll().FirstOrDefault(x => x.SizeId == id);
         }
     }
 }

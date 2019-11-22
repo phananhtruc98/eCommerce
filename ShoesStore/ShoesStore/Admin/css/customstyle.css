@@ -20,24 +20,25 @@
 
 .custom_bar {
     background-color: white;
-    color: black;
     border: 1px solid #ffd333;
+    color: black;
     font-size: 40px;
     font-weight: bold
 }
 
 .custom_bar_hover {
     background-color: white;
-    color: black;
     border: 1px solid #ffd333;
+    color: black;
     font-size: 40px;
     font-weight: bold
 }
 
-    .custom_bar_hover:hover {
-        background-color: #ffd333;
-        color: black;
-    }
+.custom_bar_hover:hover {
+    background-color: #ffd333;
+    color: black;
+}
+
 .custom_table { padding: 0; }
 
 .table-by-truc td { font-size: 20px; }
@@ -55,10 +56,9 @@
 
 .my-info__save { text-align: center; }
 
-.img-listview-pro img{
+.img-listview-pro img {
+    height: 50px;
     width: 50px;
-    height:50px;
-
 }
 
 .rating__body {
@@ -66,13 +66,9 @@
     display: flex;
 }
 
-.rating__star + .rating__star {
-    margin-left: 3px;
-}
+.rating__star + .rating__star { margin-left: 3px; }
 
-.rating__star:first-child + .rating__star--only-edge {
-    margin-left: 0;
-}
+.rating__star:first-child + .rating__star--only-edge { margin-left: 0; }
 
 .rating__fill {
     color: #ccc;
@@ -84,13 +80,9 @@
     fill: currentColor;
 }
 
-.rating__star--active .rating__fill {
-    color: #ffd333;
-}
+.rating__star--active .rating__fill { color: #ffd333; }
 
-.rating__star--active .rating__stroke {
-    color: rgba(0, 0, 0, .08);
-}
+.rating__star--active .rating__stroke { color: rgba(0, 0, 0, .08); }
 
 .rating__star--only-edge {
     display: none;

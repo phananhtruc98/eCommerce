@@ -1,10 +1,6 @@
-﻿using ShoesStore.BusinessLogicLayer;
-
-namespace ShoesStore
+﻿namespace ShoesStore
 {
     public partial class MyLibrary
     {
-
-        
     }
 }

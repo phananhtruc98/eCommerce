@@ -12,9 +12,7 @@
     font-weight: bold;
 }
 
-.custom_font {
-    font-size: 15px;
-}
+.custom_font { font-size: 15px; }
 
 .big-btn {
     font-size: 16px;
@@ -23,8 +21,8 @@
 }
 
 .disabled-button {
-    pointer-events: none;
     opacity: 0.4;
+    pointer-events: none;
 }
 
 .alertBox {
@@ -35,18 +33,17 @@
 
 
     position: absolute;
-    top: 100px;
-    
+    top: 100px;    
 }
 
 .zoom {
-    padding: 50px;
-    
-    transition: transform .2s; /* Animation */
-
     margin: 0 auto;
+    
+    padding: 50px;
+
+    transition: transform .2s; /* Animation */
 }
 
-    .zoom:hover {
-        transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-    }
+.zoom:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}

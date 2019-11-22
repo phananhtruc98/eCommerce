@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" Title="Thanh toán" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="~/Customer/Checkout.aspx.cs" Inherits="ShoesStore.Customer.ThanhToan" %>
-
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
@@ -17,7 +16,7 @@
                             <li class="breadcrumb-item">
                                 <a href="/">Trang chủ</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use href="/images/sprite.svg#arrow-rounded-right-6x9" />
+                                    <use href="/images/sprite.svg#arrow-rounded-right-6x9"/>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" <%--aria-current="page"--%>>Thanh toán</li>
@@ -32,7 +31,7 @@
         <div class="checkout block" runat="server" id="checkoutContent">
             <div class="container">
                 <div class="row">
-               <%--     <div class="col-12 mb-3">
+                    <%--     <div class="col-12 mb-3">
                         <div class="alert alert-lg alert-primary">
                             Đăng nhập <a href="#">Tại đây</a>
                         </div>
@@ -47,7 +46,7 @@
                                             Họ và tên
                                         </label>
                                         <input runat="server" id="txtCusName" type="text" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.UsrName %>" onfocus="">
-                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtCusName" ControlToValidate="txtCusName" ForeColor="Red" ErrorMessage="Vui lòng nhập tên" />
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtCusName" ControlToValidate="txtCusName" ForeColor="Red" ErrorMessage="Vui lòng nhập tên"/>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -56,7 +55,7 @@
                                             Địa chỉ
                                         </label>
                                         <input runat="server" id="txtAddress" type="text" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.Address %>">
-                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtAddress" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Vui lòng nhập địa chỉ" />
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtAddress" ControlToValidate="txtAddress" ForeColor="Red" ErrorMessage="Vui lòng nhập địa chỉ"/>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -65,7 +64,7 @@
                                             Email
                                         </label>
                                         <input runat="server" id="txtEmail" type="email" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.Email %>">
-                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtEmail" Display="Dynamic" ControlToValidate="txtEmail" ForeColor="Red" ErrorMessage="Vui lòng nhập địa chỉ Email" />
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtEmail" Display="Dynamic" ControlToValidate="txtEmail" ForeColor="Red" ErrorMessage="Vui lòng nhập địa chỉ Email"/>
                                         <asp:RegularExpressionValidator ID="revTxtEmail" runat="server" ErrorMessage="Email không đúng!" ControlToValidate="txtEmail" ForeColor="Red" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
                                         </asp:RegularExpressionValidator>
                                     </div>
@@ -74,7 +73,7 @@
                                     <div class="form-group col-md-12">
                                         <label for="checkout-phone">Số điện thoại</label>
                                         <input runat="server" id="txtPhone" type="text" class="form-control form-control-lg" value="<%#WebSession.LoginCus?.Usr.Phone %>">
-                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtPhone" ControlToValidate="txtPhone" ForeColor="Red" ErrorMessage="Vui lòng nhập số điện thoại" />
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvTxtPhone" ControlToValidate="txtPhone" ForeColor="Red" ErrorMessage="Vui lòng nhập số điện thoại"/>
                                     </div>
                                 </div>
 
@@ -90,36 +89,38 @@
                                 <h3 class="card-title">Hóa đơn</h3>
                                 <table class="checkout__totals">
                                     <thead class="checkout__totals-header">
-                                        <tr>
-                                            <th>Hình</th>
-                                            <th>Sản phẩm</th>
-                                            <th>Kích cỡ</th>
-                                            <th>Màu</th>
-                                            <th>Số lượng</th>
-                                            <th>Thành tiền</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Hình</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Kích cỡ</th>
+                                        <th>Màu</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                    </tr>
                                     </thead>
                                     <tbody class="checkout__totals-products">
-                                        <asp:Repeater runat="server" ID="rptCartDetCheckout" ItemType="ShoesStore.DataAccessLogicLayer.CartDet">
-                                            <ItemTemplate>
-                                                <tr>
-                                                    <td>
-                                                        <a href='<%# MyLibrary.ProDetUrl(Item.ProDet.Pro) %>'>
-                                                            <img src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" style="height: 50px; width: 50px" alt="">
-                                                        </a>
+                                    <asp:Repeater runat="server" ID="rptCartDetCheckout" ItemType="ShoesStore.DataAccessLogicLayer.CartDet">
+                                        <ItemTemplate>
+                                            <tr>
+                                                <td>
+                                                    <a href="<%# MyLibrary.ProDetUrl(Item.ProDet.Pro) %>">
+                                                        <img src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" style="height: 50px; width: 50px" alt="">
+                                                    </a>
 
-                                                    </td>
-                                                    <td><a href="<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>"><%# Item.ProDet.Pro.ProName %></a>   </td>
-                                                    <td><%# Item.ProDet.ProSize.SizeName %></td>
-                                                    <td><%# Item.ProDet.ProColor.ColorName %></td>
-                                                    <td><%# Item.Qty %></td>
-                                                    <td><%# (decimal.Parse(MyLibrary.Pro_BUS.GetPrice(Item.ProDet.Pro)) * Item.Qty.Value).ToFormatMoney() %></td>
-                                                </tr>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
+                                                </td>
+                                                <td>
+                                                    <a href="<%#MyLibrary.ProDetUrl(Item.ProDet.Pro) %>"><%# Item.ProDet.Pro.ProName %></a>
+                                                </td>
+                                                <td><%# Item.ProDet.ProSize.SizeName %></td>
+                                                <td><%# Item.ProDet.ProColor.ColorName %></td>
+                                                <td><%# Item.Qty %></td>
+                                                <td><%# (decimal.Parse(MyLibrary.Pro_BUS.GetPrice(Item.ProDet.Pro)) * Item.Qty.Value).ToFormatMoney() %></td>
+                                            </tr>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                     </tbody>
                                     <tbody class="checkout__totals-subtotals">
-                                        <%--<tr>
+                                    <%--<tr>
 <th>Tổng con</th>
 <td>$5,877.00</td>
 </tr>
@@ -133,10 +134,10 @@
 </tr>--%>
                                     </tbody>
                                     <tfoot class="checkout__totals-footer">
-                                        <tr>
-                                            <th>Tổng</th>
-                                            <td><%#MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount() ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount().ToFormatMoney(), MyLibrary.CartDet_BUS.SumCartDetPrice()) : MyLibrary.CartDet_BUS.SumCartDetPrice() %></td>
-                                        </tr>
+                                    <tr>
+                                        <th>Tổng</th>
+                                        <td><%#MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount() ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount().ToFormatMoney(), MyLibrary.CartDet_BUS.SumCartDetPrice()) : MyLibrary.CartDet_BUS.SumCartDetPrice() %></td>
+                                    </tr>
                                     </tfoot>
                                 </table>
                                 <div class="payment-methods">
@@ -173,7 +174,7 @@
                                     <div class="form-check">
                                         <span class="form-check-input input-check">
                                             <span class="input-check__body">
-                                                <input class="input-check__input" runat="server" type="checkbox" id="checkout_terms" checked="checked" />
+                                                <input class="input-check__input" runat="server" type="checkbox" id="checkout_terms" checked="checked"/>
                                                 <span class="input-check__box"></span>
                                                 <svg class="input-check__icon" width="9px" height="7px">
                                                     <use href="images/sprite.svg#check-9x7"></use>
@@ -182,14 +183,15 @@
                                         </span>
                                         <label class="form-check-label" for="checkout-terms">
                                             Tôi đã đọc và đồng ý với
-                                            <a target="_blank" href="#">các điều khoản
+                                            <a target="_blank" href="#">
+                                                các điều khoản
                                             </a>của website THE SHUZ*
                                         </label>
                                     </div>
                                 </div>
                                 <div class="g-recaptcha" data-sitekey="6Lecx6EUAAAAAHuRMoMzJapnyeIvfeY6WxZH2wEy"></div>
 
-                                <asp:Button runat="server" Text="Đặt hàng" ID="btnOrder" OnClick="btnOrder_OnClick" CssClass="btn btn-primary btn-xl btn-block" />
+                                <asp:Button runat="server" Text="Đặt hàng" ID="btnOrder" OnClick="btnOrder_OnClick" CssClass="btn btn-primary btn-xl btn-block"/>
                             </div>
                         </div>
                     </div>

@@ -9,32 +9,53 @@ namespace ShoesStore.Merchant
     public partial class MerProfile : Page
     {
         private string avaimgstr = "";
-        
-        protected void Page_Load(object sender, EventArgs e)
+
+
+        protected void lblThaydoi_Click(object sender, EventArgs e)
         {
-            LoadThongTin();
+            var mer = (Mer) MerchantSession.LoginMerchant;
+            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
+            fupava.Visible = true;
+            lbtnLuu.Visible = true;
+            lbtnHuy.Visible = true;
+            lblThaydoi.Visible = false;
+            txtUsrName.Visible = true;
+            txtPhone.Visible = true;
+            txtAddress.Visible = true;
+            txtEmail.Visible = true;
+            txtUsrName.Text = usr1.UsrName;
+            txtPhone.Text = usr1.Phone;
+            txtEmail.Text = usr1.Email;
+            txtAddress.Text = usr1.Address;
+            lblUsrName.Visible = false;
+            lblPhone.Visible = false;
+            lblEmail.Visible = false;
+            lblAddress.Visible = false;
         }
 
-        
-        public void LoadThongTin()
+        protected void lbtnHuy_Click(object sender, EventArgs e)
         {
-            var mer = (Mer)MerchantSession.LoginMerchant;
-            var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            lblUsrName.Text = usr1.UsrName;
-            lblAddress.Text = usr1.Address;
-            avaimgstr = usr1.Avatar;
-            lblEmail.Text = usr1.Email;
-            lblPhone.Text = usr1.Phone;
-            avaimg.Attributes["src"] = "/Admin/images/avatar/" + usr1.Avatar;
+            fupava.Visible = true;
+            lblThaydoi.Visible = true;
+            lbtnLuu.Visible = false;
+            lbtnHuy.Visible = false;
+            txtUsrName.Visible = false;
+            txtPhone.Visible = false;
+            txtAddress.Visible = false;
+            txtEmail.Visible = false;
+            lblUsrName.Visible = true;
+            lblPhone.Visible = true;
+            lblEmail.Visible = true;
+            lblAddress.Visible = true;
         }
-        
+
         protected void lbtnLuu_Click(object sender, EventArgs e)
         {
-            var mer = (Mer)MerchantSession.LoginMerchant;
+            var mer = (Mer) MerchantSession.LoginMerchant;
             var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
             var rs1 = (from c in MyLibrary.Usr_BUS.GetAll()
-                       where c.UsrId == usr1.UsrId
-                       select c).FirstOrDefault();
+                where c.UsrId == usr1.UsrId
+                select c).FirstOrDefault();
             if (fupava.HasFile)
             {
                 var fname = fupava.FileName;
@@ -89,45 +110,23 @@ namespace ShoesStore.Merchant
             fupava.Visible = false;
             Response.Redirect(Request.RawUrl);
         }
-        
-        protected void lbtnHuy_Click(object sender, EventArgs e)
-        {
-            fupava.Visible = true;
-            lblThaydoi.Visible = true;
-            lbtnLuu.Visible = false;
-            lbtnHuy.Visible = false;
-            txtUsrName.Visible = false;
-            txtPhone.Visible = false;
-            txtAddress.Visible = false;
-            txtEmail.Visible = false;
-            lblUsrName.Visible = true;
-            lblPhone.Visible = true;
-            lblEmail.Visible = true;
-            lblAddress.Visible = true;
-        }
 
-        
-        protected void lblThaydoi_Click(object sender, EventArgs e)
+
+        public void LoadThongTin()
         {
-            var mer = (Mer)MerchantSession.LoginMerchant;
+            var mer = (Mer) MerchantSession.LoginMerchant;
             var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            fupava.Visible = true;
-            lbtnLuu.Visible = true;
-            lbtnHuy.Visible = true;
-            lblThaydoi.Visible = false;
-            txtUsrName.Visible = true;
-            txtPhone.Visible = true;
-            txtAddress.Visible = true;
-            txtEmail.Visible = true;
-            txtUsrName.Text = usr1.UsrName;
-            txtPhone.Text = usr1.Phone;
-            txtEmail.Text = usr1.Email;
-            txtAddress.Text = usr1.Address;
-            lblUsrName.Visible = false;
-            lblPhone.Visible = false;
-            lblEmail.Visible = false;
-            lblAddress.Visible = false;
+            lblUsrName.Text = usr1.UsrName;
+            lblAddress.Text = usr1.Address;
+            avaimgstr = usr1.Avatar;
+            lblEmail.Text = usr1.Email;
+            lblPhone.Text = usr1.Phone;
+            avaimg.Attributes["src"] = "/Admin/images/avatar/" + usr1.Avatar;
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            LoadThongTin();
+        }
     }
 }

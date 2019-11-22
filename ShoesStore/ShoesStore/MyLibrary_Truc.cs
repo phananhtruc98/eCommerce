@@ -1,29 +1,42 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore
 {
     public partial class MyLibrary
     {
-      
-        public static bool IsValidEmailAddress(string email)
+        public static string AlertShp(Shp shp, int year)
         {
-            try
+            var s = "";
+            if (Shp_Bus.CountRcptBuySuccess(shp, year) < 3)
+                s = "<span class='alert alert-danger' role='alert'>Nguy hiểm</span>";
+            return s;
+        }
+
+        public static string AlertShp(Shp shp, int month, int year)
+        {
+            var s = "";
+            if (Shp_Bus.CountRcptBuySuccess(shp, month, year) < 3)
+                s = "<span class='alert alert-danger' role='alert'>Nguy hiểm</span>";
+            return s;
+        }
+
+        public static string DisplayImg(List<string> lst)
+        {
+            var s = "";
+            var p = "";
+            foreach (var item in lst)
             {
-                var emailChecked = new MailAddress(email);
-                return true;
+                p =
+                    "<img class='img-thumbnail' style='width:50px; height:50px' src= '/images/products/kickz/UltraBoost 19/slides/" +
+                    item + "'>";
+                s = s + p;
             }
-            catch
-            {
-                return false;
-            }
+
+            return s;
         }
 
         public static string DrawStar(int star)
@@ -70,39 +83,17 @@ class='rating__star rating__star--only-edge rating__star--active'>
             return sb.ToString();
         }
 
-        public static string DisplayImg(List<string> lst)
+        public static bool IsValidEmailAddress(string email)
         {
-            var s = "";
-            var p = "";
-            foreach (var item in lst)
+            try
             {
-                p =
-                    "<img class='img-thumbnail' style='width:50px; height:50px' src= '/images/products/kickz/UltraBoost 19/slides/" +
-                    item + "'>";
-                s = s + p;
+                var emailChecked = new MailAddress(email);
+                return true;
             }
-
-            return s;
-        }
-   
-        public static string  AlertShp(Shp shp,int year)
-        {
-            string s = "";
-            if(Shp_Bus.CountRcptBuySuccess(shp,year) < 3)
+            catch
             {
-                s = "<span class='alert alert-danger' role='alert'>Nguy hiểm</span>";
+                return false;
             }
-            return s;
-        }
-
-        public static string AlertShp(Shp shp,int month, int year)
-        {
-            string s = "";
-            if (Shp_Bus.CountRcptBuySuccess(shp,month,year) < 3)
-            {
-                s = "<span class='alert alert-danger' role='alert'>Nguy hiểm</span>";
-            }
-            return s;
         }
         //public static string uploadAvaAdmin(FileUpload file)
         //{
@@ -127,61 +118,76 @@ class='rating__star rating__star--only-edge rating__star--active'>
 
         public static double SumIn(Shp shp)
         {
-            var rs = MyLibrary.RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == shp.ShpId).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy))).Sum().ToString();
+            var rs = RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == shp.ShpId)
+                .Select(x => double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy)).Sum().ToString();
             return double.Parse(rs);
-           
         }
 
         public static double SumIn(int ShpId, int month, int year)
         {
-            if(month==0)
+            if (month == 0)
             {
-                var rs = MyLibrary.RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == ShpId).Where(x => x.RcptBuy.Rcpt.DateAdd.Year == year).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy))).Sum().ToString();
+                var rs = RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == ShpId)
+                    .Where(x => x.RcptBuy.Rcpt.DateAdd.Year == year)
+                    .Select(x => double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy)).Sum().ToString();
                 return double.Parse(rs);
             }
-            else if(year == 0)
+
+            if (year == 0)
             {
-                var rs = MyLibrary.RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == ShpId).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy))).Sum().ToString();
+                var rs = RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == ShpId)
+                    .Select(x => double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy)).Sum().ToString();
                 return double.Parse(rs);
             }
             else
             {
-                var rs = MyLibrary.RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == ShpId).Where(x=>(x.RcptBuy.Rcpt.DateAdd.Month==month && x.RcptBuy.Rcpt.DateAdd.Year==year)).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy))).Sum().ToString();
+                var rs = RcptBuyDet_BUS.GetAll().Where(x => x.ShpId == ShpId)
+                    .Where(x => x.RcptBuy.Rcpt.DateAdd.Month == month && x.RcptBuy.Rcpt.DateAdd.Year == year)
+                    .Select(x => double.Parse(x.Quantity.ToString()) * double.Parse(x.PriceWhenBuy)).Sum().ToString();
                 return double.Parse(rs);
             }
         }
 
         public static double SumOut(int ShpId, int month, int year)
         {
-            int merId = MyLibrary.Shp_Bus.GetAll().Where(x => x.ShpId == ShpId).Select(x => x.MerId).FirstOrDefault();
+            var merId = Shp_Bus.GetAll().Where(x => x.ShpId == ShpId).Select(x => x.MerId).FirstOrDefault();
             if (month == 0)
             {
-                var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId).Where(x => x.RcptSub.Rcpt.DateAdd.Year == year).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price.ToString()))).Sum().ToString();
+                var rs = RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId)
+                    .Where(x => x.RcptSub.Rcpt.DateAdd.Year == year).Select(x =>
+                        double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price.ToString())).Sum().ToString();
                 return double.Parse(rs);
             }
-            else if (year == 0)
+
+            if (year == 0)
             {
-                var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price.ToString()))).Sum().ToString();
+                var rs = RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId)
+                    .Select(x => double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price.ToString())).Sum()
+                    .ToString();
                 return double.Parse(rs);
             }
             else
             {
-                var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId).Where(x => (x.RcptSub.Rcpt.DateAdd.Month == month && x.RcptSub.Rcpt.DateAdd.Year == year)).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price.ToString()))).Sum().ToString();
+                var rs = RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId)
+                    .Where(x => x.RcptSub.Rcpt.DateAdd.Month == month && x.RcptSub.Rcpt.DateAdd.Year == year)
+                    .Select(x => double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price.ToString())).Sum()
+                    .ToString();
                 return double.Parse(rs);
             }
         }
+
         public static double SumOut(Shp shp)
         {
-            int merId = MyLibrary.Shp_Bus.GetAll().Where(x => x.ShpId == shp.ShpId).Select(x => x.MerId).FirstOrDefault();
-            var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId).Select(x => (double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price))).Sum().ToString();
+            var merId = Shp_Bus.GetAll().Where(x => x.ShpId == shp.ShpId).Select(x => x.MerId).FirstOrDefault();
+            var rs = RcptSubDet_BUS.GetAll().Where(x => x.RcptSub.MerId == merId)
+                .Select(x => double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price)).Sum().ToString();
             return double.Parse(rs);
         }
 
         public static double SumRcptSubPrice(RcptSub rcptSub)
         {
-
-            var rs = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == rcptSub.RcptSubId)
-               .Select(x=>(double.Parse(x.Quantity.ToString())*double.Parse(x.Sub.Price))).Sum();
+            var rs = RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == rcptSub.RcptSubId)
+                .Select(x => double.Parse(x.Quantity.ToString()) * double.Parse(x.Sub.Price)).Sum();
             return double.Parse(rs.ToString());
         }
     }

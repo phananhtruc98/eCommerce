@@ -6,6 +6,7 @@ using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
 using ShoesStore.Merchant;
 using ShoesStore.MyExtensions;
+using Utilities;
 
 namespace ShoesStore.BusinessLogicLayer
 {
@@ -20,11 +21,6 @@ namespace ShoesStore.BusinessLogicLayer
         public void CreateActCode(Mer obj)
         {
             throw new NotImplementedException();
-        }
-
-        public ObjectResult<sp_Mer_Info_Result> Get_Mer_Info()
-        {
-            return _dao.Get_Mer_Info();
         }
 
         public UsrAct GetUsrAct(int usrId)
@@ -42,9 +38,19 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        ObjectResult<sp_Mer_Info_Result> IMer.Get_Mer_Info()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Mer> Filter(Mer obj)
         {
             throw new NotImplementedException();
+        }
+
+        public ObjectResult<sp_Mer_Info_Result> Get_Mer_Info()
+        {
+            return _dao.Get_Mer_Info();
         }
 
         public Mer GetByPrimaryKeys(int id)
@@ -57,47 +63,35 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public void SetActive()
-        {
-            throw new NotImplementedException();
-        }
 
-        public override bool IsExist(Mer obj)
+        public string GetShpName(int MerId)
         {
-            throw new NotImplementedException();
-        }
-
-        public override void SetActive(Mer obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        System.Data.Objects.ObjectResult<sp_Mer_Info_Result> IMer.Get_Mer_Info()
-        {
-            throw new NotImplementedException();
+            var shpName = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == MerId).FirstOrDefault().ShpName;
+            return TextHelper.UrlFriendly(shpName);
         }
 
 
         public DateTime GetSubEndDate(Mer mer)
         {
-            List<Tuple<DateTime, DateTime>> BuyHistory = new List<Tuple<DateTime, DateTime>>();
+            var BuyHistory = new List<Tuple<DateTime, DateTime>>();
 
             var merSubs = mer.RcptSub.Where(rcptSub => rcptSub.Status == true && rcptSub.RcptSubDet.Count != 0);
             foreach (var sub in merSubs)
             {
-                DateTime startDate = sub.Rcpt.DateAdd;
-                DateTime endDate = startDate.AddDays(sub.RcptSubDet.Sum(rcptSubDet => rcptSubDet.Sub.DurDay));
-                Tuple<DateTime, DateTime> tup = new Tuple<DateTime, DateTime>(startDate, endDate);
+                var startDate = sub.Rcpt.DateAdd;
+                var endDate = startDate.AddDays(sub.RcptSubDet.Sum(rcptSubDet => rcptSubDet.Sub.DurDay));
+                var tup = new Tuple<DateTime, DateTime>(startDate, endDate);
                 BuyHistory.Add(tup);
             }
+
             if (BuyHistory.Count != 0)
             {
-                DateTime SubEndDate = BuyHistory[0].Item2;
-                for (int i = 1; i < BuyHistory.Count; i++)
+                var SubEndDate = BuyHistory[0].Item2;
+                for (var i = 1; i < BuyHistory.Count; i++)
                 {
-                    DateTime rowBeforeEndDate = SubEndDate;
-                    DateTime rowStartDate = BuyHistory[i].Item1;
-                    DateTime rowEndDate = BuyHistory[i].Item2;
+                    var rowBeforeEndDate = SubEndDate;
+                    var rowStartDate = BuyHistory[i].Item1;
+                    var rowEndDate = BuyHistory[i].Item2;
 
                     TimeSpan gap;
                     if (rowStartDate.CompareTo(rowBeforeEndDate) < 0)
@@ -110,9 +104,11 @@ namespace ShoesStore.BusinessLogicLayer
                         SubEndDate = rowEndDate;
                     }
                 }
+
                 //.Sum(rcptSub => rcptSub.RcptSubDet.Sum(rcptSubDet => rcptSubDet.Sub.DurDay));
                 return SubEndDate;
             }
+
             return DateTime.Now;
         }
 
@@ -121,11 +117,19 @@ namespace ShoesStore.BusinessLogicLayer
             return MerchantSession.LoginMer.GetSubEndDate().Subtract(DateTime.Now).Days;
         }
 
-
-        public string GetShpName(int MerId)
+        public override bool IsExist(Mer obj)
         {
-            string shpName = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == MerId).FirstOrDefault().ShpName;
-            return Utilities.TextHelper.UrlFriendly(shpName);
+            throw new NotImplementedException();
+        }
+
+        public void SetActive()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetActive(Mer obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

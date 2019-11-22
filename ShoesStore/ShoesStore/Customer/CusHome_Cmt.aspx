@@ -27,7 +27,7 @@
                         <td><%# Eval("ColorName") %></td>
                         <td><%# Eval("SizeName") %></td>
                         <td><%# Eval("Cmt") %></td>
-                        <td><%#MyLibrary.DrawStar(int.Parse(Eval("Point")==null?"0":Eval("Point").ToString())) %></td>
+                        <td><%#MyLibrary.DrawStar(int.Parse(Eval("Point") == null ? "0" : Eval("Point").ToString())) %></td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>

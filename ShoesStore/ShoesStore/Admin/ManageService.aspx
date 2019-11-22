@@ -16,7 +16,7 @@
                                 <asp:LinkButton ID="lbCancel" CommandArgument='<%# Eval("SubId") %>' CommandName="CancelUpdate" ForeColor="#8C4510" runat="server" CausesValidation="false">Hủy</asp:LinkButton>
                             </EditItemTemplate>
                             <FooterTemplate>
-                                <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="InsertRow"  CausesValidation="false" ForeColor="#8C4510">Thêm</asp:LinkButton>
+                                <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="InsertRow" CausesValidation="false" ForeColor="#8C4510">Thêm</asp:LinkButton>
                             </FooterTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Mã gói">

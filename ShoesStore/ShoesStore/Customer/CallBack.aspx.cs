@@ -1,33 +1,46 @@
-﻿using ShoesStore.Facebook;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using ShoesStore.Facebook;
 
 namespace ShoesStore.Customer
 {
-    public partial class CallBack : System.Web.UI.Page
+    public partial class CallBack : Page
     {
         public const string FaceBookAppKey = "2062955750677936";
         private char[] userInfo;
 
+        private static string GetFacebookUserJSON(string access_token)
+        {
+            var url = string.Format(
+                "https://graph.facebook.com/me?access_token={0}&fields=email,name,first_name,last_name,link,birthday,cover,devices,gender",
+                access_token);
+
+            var wc = new WebClient();
+            var data = wc.OpenRead(url);
+            var reader = new StreamReader(data);
+            var s = reader.ReadToEnd();
+            data.Close();
+            reader.Close();
+
+            return s;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Request.QueryString["access_token"])) return; //ERROR! No token returned from Facebook!!
+            if (string.IsNullOrEmpty(Request.QueryString["access_token"]))
+                return; //ERROR! No token returned from Facebook!!
 
             //let's send an http-request to facebook using the token            
-            string json = GetFacebookUserJSON(Request.QueryString["access_token"]);
+            var json = GetFacebookUserJSON(Request.QueryString["access_token"]);
 
 
             //and Deserialize the JSON response
-            JavaScriptSerializer js = new JavaScriptSerializer();
+            var js = new JavaScriptSerializer();
 
-            FacebookUser oUser = js.Deserialize<FacebookUser>(json);
+            var oUser = js.Deserialize<FacebookUser>(json);
             if (oUser != null)
             {
                 Response.Write("Welcome, " + oUser.name);
@@ -37,22 +50,7 @@ namespace ShoesStore.Customer
                 Response.Write("<br />Last_name: " + oUser.last_name);
                 Response.Write("<br />Gender: " + oUser.gender);
                 Response.Write("<br />Link: " + oUser.link);
-
             }
-
-        }
-        private static string GetFacebookUserJSON(string access_token)
-        {
-            string url = string.Format("https://graph.facebook.com/me?access_token={0}&fields=email,name,first_name,last_name,link,birthday,cover,devices,gender", access_token);
-
-            WebClient wc = new WebClient();
-            Stream data = wc.OpenRead(url);
-            StreamReader reader = new StreamReader(data);
-            string s = reader.ReadToEnd();
-            data.Close();
-            reader.Close();
-
-            return s;
         }
     }
 }

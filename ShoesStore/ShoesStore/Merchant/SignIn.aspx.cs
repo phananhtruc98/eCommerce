@@ -12,10 +12,28 @@ namespace ShoesStore.Merchant
         private static string _actCode = "";
         internal readonly Usr_BUS _usr = new Usr_BUS();
 
-        protected void Page_Load(object sender, EventArgs e)
+        public void Alert(string message)
         {
-           
-            
+            ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "alertMessage", message, true);
+        }
+
+        protected void btnActCodeSender_Click(object sender, EventArgs e)
+        {
+            RequiredEmail.Validate();
+            RegularExpressionValidator.Validate();
+            if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
+            {
+                if (MyLibrary.Usr_BUS.GetBy(email.Value) != null)
+                {
+                    MyLibrary.ShowInUploadPannel("Email này đã được đăng ký");
+                    return;
+                }
+
+                _actCode = TextHelper.RandomNumber(4);
+                Email.SendGmail(email.Value, "Mã kích hoạt đăng ký",
+                    $"Mã kích hoạt của bạn là {_actCode}");
+                Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -33,33 +51,7 @@ namespace ShoesStore.Merchant
                 MyLibrary.Show("Đăng nhập không chính xác");
             }
         }
-        protected void btnActCodeSender_Click(object sender, EventArgs e)
-        {
-            RequiredEmail.Validate();
-            RegularExpressionValidator.Validate();
-            if (RegularExpressionValidator.IsValid && RequiredEmail.IsValid)
-            {
-                if (MyLibrary.Usr_BUS.GetBy(email.Value) != null)
-                {
-                    MyLibrary.ShowInUploadPannel("Email này đã được đăng ký");
-                    return;
-                }
-                _actCode = TextHelper.RandomNumber(4);
-                Email.SendGmail(email.Value, "Mã kích hoạt đăng ký",
-                    $"Mã kích hoạt của bạn là {_actCode}");
-                Alert($"alert('Đã gửi mã kích hoạt đến {email.Value}')");
-            }
-        }
-        public void Alert(string message)
-        {
-            ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "alertMessage", message, true);
-        }
-        protected void customValidator_ActivateCode_OnServerValidate(object source, ServerValidateEventArgs args)
-        {
-            if (args.Value != _actCode)
-                args.IsValid = false;
-            else args.IsValid = true;
-        }
+
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
             if (!IsValidRegister()) return;
@@ -80,12 +72,19 @@ namespace ShoesStore.Merchant
             }
 
             MyLibrary.Usr_BUS.Insert(usr);
-            MyLibrary.Mer_BUS.Insert(new Mer { MerId = usr.UsrId });
+            MyLibrary.Mer_BUS.Insert(new Mer {MerId = usr.UsrId});
             MyLibrary.Usr_BUS.CreateActCode(usr);
-            
-            MyLibrary.ShowInUploadPannel("Bạn đã đăng ký thành công", Request.RawUrl);
 
+            MyLibrary.ShowInUploadPannel("Bạn đã đăng ký thành công", Request.RawUrl);
         }
+
+        protected void customValidator_ActivateCode_OnServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (args.Value != _actCode)
+                args.IsValid = false;
+            else args.IsValid = true;
+        }
+
         public bool IsValidRegister()
         {
             if (!Email.IsValidEmail(email.Value)) return false;
@@ -101,5 +100,8 @@ namespace ShoesStore.Merchant
             Response.Redirect("/");
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
     }
 }

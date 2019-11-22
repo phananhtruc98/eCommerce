@@ -11,11 +11,6 @@ namespace ShoesStore.Admin
     {
         private readonly Sub_BUS sub_BUS = new Sub_BUS();
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack) BindGridViewData();
-        }
-
         private void BindGridViewData()
         {
             gvSub.DataSource = sub_BUS.GetAll();
@@ -74,6 +69,11 @@ namespace ShoesStore.Admin
                 sub_BUS.Insert(newSub);
                 BindGridViewData();
             }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack) BindGridViewData();
         }
     }
 }

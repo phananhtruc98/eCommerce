@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Mail;
 
-
 namespace Utilities
 {
     public class Email
@@ -20,7 +19,8 @@ namespace Utilities
             }
         }
 
-        public static string SendGmail(string mailTo, string subject, string body, string fromMail = "nomad1234vn@gmail.com", string passFromMail = "ma8635047")
+        public static string SendGmail(string mailTo, string subject, string body,
+            string fromMail = "nomad1234vn@gmail.com", string passFromMail = "ma8635047")
         {
             var msg = "";
             try

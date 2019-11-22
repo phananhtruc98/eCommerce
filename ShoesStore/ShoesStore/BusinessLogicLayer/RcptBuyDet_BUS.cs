@@ -18,6 +18,30 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public List<RcptBuyDet> GetAllBy(Pro iPro, Cus iCus)
+        {
+            return GetAll().Where(m =>
+                m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && string.IsNullOrEmpty(m.Cmt) &&
+                m.RcptBuy.CusId == iCus.CusId).ToList();
+        }
+
+        public int GetCommentLeft(Pro iPro)
+        {
+            var allowCommentSteps = MyLibrary.GetAllowCommentStepIds();
+            var cus = WebSession.LoginCus;
+            if (cus != null)
+            {
+                var rcptBuyDetNotCommented = GetAllBy(iPro, cus);
+                var rcptBuyStaDet = MyLibrary.RcptBuyStaDet_BUS.GetAll();
+                return rcptBuyStaDet.Join(rcptBuyDetNotCommented,
+                    a => a.RcptBuyId,
+                    b => b.RcptBuyId,
+                    (a, b) => a).Count(a => allowCommentSteps.Contains(a.StepId));
+            }
+
+            return 0;
+        }
+
         public int GetNumberReview(Pro iPro)
         {
             try
@@ -29,31 +53,21 @@ namespace ShoesStore.BusinessLogicLayer
                 return 0;
             }
         }
-        public List<RcptBuyDet> GetAllBy(Pro iPro, Cus iCus)
-        {
-            return GetAll().Where(m => m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && string.IsNullOrEmpty(m.Cmt) && m.RcptBuy.CusId == iCus.CusId).ToList();
-        }
-        public int GetCommentLeft(Pro iPro)
-        {
-
-            int[] allowCommentSteps = MyLibrary.GetAllowCommentStepIds();
-            Cus cus = WebSession.LoginCus;
-            if (cus != null)
-            {
-                var rcptBuyDetNotCommented = GetAllBy(iPro, cus);
-                var rcptBuyStaDet = MyLibrary.RcptBuyStaDet_BUS.GetAll();
-                return rcptBuyStaDet.Join(rcptBuyDetNotCommented,
-                    a => a.RcptBuyId,
-                    b => b.RcptBuyId,
-                    (a, b) => a).Count(a => allowCommentSteps.Contains(a.StepId));
-            }
-            return 0;
-
-        }
 
         public IEnumerable<RcptBuyDet> GetProComments(Pro iPro)
         {
             return GetAll().Where(m => m.ShpId == iPro.ShpId && m.ProId == iPro.ProId && !string.IsNullOrEmpty(m.Cmt));
+        }
+
+        public List<RcptBuyDet> ListRcptBuyDet_Ìmg()
+        {
+            var cus = MyLibrary.Cus_BUS.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
+            //RcptBuy rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+            var rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == cus.CusId).ToList();
+            return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && rcptBuy.Contains(m.RcptBuy))
+                .GroupBy(m => m.ProId).Select(x => x.FirstOrDefault())
+                .ToList();
+            //return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && m.RcptBuyId == rcptBuy.RcptBuyId).ToList();
         }
 
         public List<RcptBuyDet> ListRcptBuyPreview(int RcptId)
@@ -88,16 +102,6 @@ namespace ShoesStore.BusinessLogicLayer
             {
                 return null;
             }
-        }
-
-        public List<RcptBuyDet> ListRcptBuyDet_Ìmg()
-        {
-            var cus = MyLibrary.Cus_BUS.GetAll().FirstOrDefault(m => m.CusId == (WebSession.LoginUsr as Usr)?.UsrId);
-            //RcptBuy rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
-            var rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == cus.CusId).ToList();
-            return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && rcptBuy.Contains(m.RcptBuy)).GroupBy(m => m.ProId).Select(x => x.FirstOrDefault())
-                .ToList();
-            //return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && m.RcptBuyId == rcptBuy.RcptBuyId).ToList();
         }
 
         public string SumRcptBuyPrice_Shop(int shpId)

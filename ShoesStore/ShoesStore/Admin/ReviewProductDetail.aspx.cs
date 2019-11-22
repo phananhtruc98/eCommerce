@@ -1,24 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace ShoesStore.Admin
 {
-    public partial class ReviewProductDetail : System.Web.UI.Page
+    public partial class ReviewProductDetail : Page
     {
-        int ProId = 0;
-        int ShpId = 0;
-        protected void Page_Load(object sender, EventArgs e)
+        private int ProId;
+        private int ShpId;
+
+        public void LoadLvImgSlides()
         {
-            ProId = int.Parse(Request.QueryString["ProId"]);
-            ShpId = int.Parse(Request.QueryString["ShpId"]);
-            if (!IsPostBack)
-            {
-                LoadProduct();
-            }
+            var rs = MyLibrary.ProSlide_BUS.GetAll().Where(x => x.ProId == ProId && x.ShpId == ShpId);
+            lvImgSlide.DataSource = rs.ToList();
+            lvImgSlide.DataBind();
+        }
+
+        public void LoadlvSizeColorQty()
+        {
+            var rs = MyLibrary.ProDet_BUS.GetAll().Where(x => x.ProId == ProId && x.ShpId == ShpId);
+            lvSizeColorQty.DataSource = rs.ToList();
+            lvSizeColorQty.DataBind();
         }
 
         public void LoadProduct()
@@ -36,18 +38,11 @@ namespace ShoesStore.Admin
             LoadlvSizeColorQty();
         }
 
-        public void LoadLvImgSlides()
+        protected void Page_Load(object sender, EventArgs e)
         {
-            var rs = MyLibrary.ProSlide_BUS.GetAll().Where(x => x.ProId == ProId && x.ShpId == ShpId);
-            lvImgSlide.DataSource = rs.ToList();
-            lvImgSlide.DataBind();
-        }
-
-        public void LoadlvSizeColorQty()
-        {
-            var rs = MyLibrary.ProDet_BUS.GetAll().Where(x => x.ProId == ProId && x.ShpId == ShpId);
-            lvSizeColorQty.DataSource = rs.ToList();
-            lvSizeColorQty.DataBind();
+            ProId = int.Parse(Request.QueryString["ProId"]);
+            ShpId = int.Parse(Request.QueryString["ShpId"]);
+            if (!IsPostBack) LoadProduct();
         }
     }
 }

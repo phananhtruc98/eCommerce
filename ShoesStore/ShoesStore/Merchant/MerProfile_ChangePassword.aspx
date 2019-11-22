@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" Title="Trang Cá Nhân" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerProfile_ChangePassword.aspx.cs" Inherits="ShoesStore.Merchant.MerProfile_ChangePassword" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-<!-- site__body -->
-<div class="row">
+    <!-- site__body -->
+    <div class="row">
         <div class="col-12">
             <h3>Mật khẩu của tôi</h3>
             <table id="ttmk" class="table table-responsive-sm table-responsive-xl table-by-truc">
@@ -42,5 +42,5 @@
             </table>
         </div>
     </div>
-<!-- site__body / end -->
-</asp:Content>  
+    <!-- site__body / end -->
+</asp:Content>

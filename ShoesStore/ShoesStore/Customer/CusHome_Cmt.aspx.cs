@@ -15,13 +15,6 @@ namespace ShoesStore.Customer
         private readonly RcptBuyDet_BUS rcptBuyDet = new RcptBuyDet_BUS();
         private readonly Shp_BUS shp_BUS = new Shp_BUS();
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            var usr = (Usr) WebSession.LoginUsr;
-            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
-            BindDataListview(usr1.UsrId);
-        }
-
         public void BindDataListview(int CusId)
         {
             var rs = from d in rcptBuyDet.GetAll()
@@ -61,6 +54,13 @@ namespace ShoesStore.Customer
                 ListView1.DataSource = rs1;
                 ListView1.DataBind();
             }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            var usr = (Usr) WebSession.LoginUsr;
+            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
+            BindDataListview(usr1.UsrId);
         }
     }
 }

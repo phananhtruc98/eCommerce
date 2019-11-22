@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerPromotion.aspx.cs" Inherits="ShoesStore.Merchant.MerPromotion" %>
-
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainPlaceHolder" runat="server">
@@ -22,40 +21,50 @@
                                     <th>Giá</th>
                                     <th></th>
                                 </tr>
-                                <tr id="itemPlaceholder" runat="server" />
+                                <tr id="itemPlaceholder" runat="server"/>
                             </table>
                         </LayoutTemplate>
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <asp:LinkButton runat="server" ID="lbtnDetail" CommandName="Sel" CommandArgument='<%# Item.ProId %>' CssClass="btn btn-icons btn-rounded btn-outline-warning"><i class="fas fa-info"></i></asp:LinkButton></td>
+                                    <asp:LinkButton runat="server" ID="lbtnDetail" CommandName="Sel" CommandArgument="<%# Item.ProId %>" CssClass="btn btn-icons btn-rounded btn-outline-warning">
+                                        <i class="fas fa-info"></i>
+                                    </asp:LinkButton>
+                                </td>
                                 <td>
-                                    <asp:HiddenField ID="hdfShpId" runat="server" Value="<%# Item.ShpId %>" />
-                                    <asp:Label runat="server" ID="lbShpName" Text="<%# Item.Shp.ShpName %>"></asp:Label></td>
+                                    <asp:HiddenField ID="hdfShpId" runat="server" Value="<%# Item.ShpId %>"/>
+                                    <asp:Label runat="server" ID="lbShpName" Text="<%# Item.Shp.ShpName %>"></asp:Label>
+                                </td>
                                 <td>
-                                    <asp:Label runat="server" ID="lbProName" Text="<%# Item.ProName %>"></asp:Label></td>
+                                    <asp:Label runat="server" ID="lbProName" Text="<%# Item.ProName %>"></asp:Label>
+                                </td>
                                 <td>
-                                    <img width="50" height="50" class="img-listview-pro" src="<%# MyLibrary.ProImgPath(Item) %>" /></td>
+                                    <img width="50" height="50" class="img-listview-pro" src="<%# MyLibrary.ProImgPath(Item) %>"/>
+                                </td>
                                 <td>
-                                    <asp:Label runat="server" ID="lbCatName" Text="<%# Item.ProCat.CatName %>"></asp:Label></td>
+                                    <asp:Label runat="server" ID="lbCatName" Text="<%# Item.ProCat.CatName %>"></asp:Label>
+                                </td>
                                 <td>
-                                    <asp:Label runat="server" ID="lbBrandName" Text="<%# Item.ProBrand.BrandName %>"></asp:Label></td>
+                                    <asp:Label runat="server" ID="lbBrandName" Text="<%# Item.ProBrand.BrandName %>"></asp:Label>
+                                </td>
                                 <td>
-                                    <asp:Label runat="server" ID="lbPrice" Text="<%#  MyLibrary.Pro_BUS.GetPriceFormat( Item) %>"></asp:Label></td>
+                                    <asp:Label runat="server" ID="lbPrice" Text="<%#  MyLibrary.Pro_BUS.GetPriceFormat(Item) %>"></asp:Label>
+                                </td>
                                 <td>
-                                    <asp:LinkButton runat="server" ID="lbtnActive" CommandName="Submit" CommandArgument='<%# Item.ProId %>' CssClass="btn btn-outline-warning">Chọn</asp:LinkButton></td>
+                                    <asp:LinkButton runat="server" ID="lbtnActive" CommandName="Submit" CommandArgument="<%# Item.ProId %>" CssClass="btn btn-outline-warning">Chọn</asp:LinkButton>
+                                </td>
                             </tr>
                         </ItemTemplate>
 
                     </asp:ListView>
                     <asp:DataPager ID="DataPager1" runat="server" PageSize="5"
-                        PagedControlID="lvPro">
+                                   PagedControlID="lvPro">
                         <Fields>
                             <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True"
-                                ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
-                            <asp:NumericPagerField />
+                                                        ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước"/>
+                            <asp:NumericPagerField/>
                             <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True"
-                                ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
+                                                        ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước"/>
                         </Fields>
                     </asp:DataPager>
                     <asp:Label runat="server" ID="lbEmpty" Text="Không có sản phẩm cần duyệt" Visible="false"></asp:Label>
@@ -80,26 +89,34 @@
                                     <th>Xác nhận</th>
                                     <th>Xóa</th>
                                 </tr>
-                                <tr id="itemPlaceholder" runat="server" />
+                                <tr id="itemPlaceholder" runat="server"/>
                             </table>
                         </LayoutTemplate>
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <asp:HiddenField ID="hdfShpId" runat="server" Value="<%# Item.ShpId %>" />
-                                    <asp:Label runat="server" ID="lbProName" Text="<%# Item.ProName %>"></asp:Label></td>
-                                <td>
-                                    <asp:Label runat="server" ID="lbPrice" Text="<%# Item.Price.ToFormatMoney() %>"></asp:Label></td>
-                                <td>
-                                    <asp:TextBox Width="50%" min="1" TextMode="Number" ID="txtMoney" runat="server">
-                                    </asp:TextBox><asp:LinkButton runat="server" ID="lbtnCheck" CommandName="Check" CommandArgument='<%# Item.ProId %>'><i class="far fa-arrow-alt-circle-right"></i></asp:LinkButton>
+                                    <asp:HiddenField ID="hdfShpId" runat="server" Value="<%# Item.ShpId %>"/>
+                                    <asp:Label runat="server" ID="lbProName" Text="<%# Item.ProName %>"></asp:Label>
                                 </td>
                                 <td>
-                                    <asp:Label runat="server" ID="lbPriceAfter"></asp:Label></td>
+                                    <asp:Label runat="server" ID="lbPrice" Text="<%# Item.Price.ToFormatMoney() %>"></asp:Label>
+                                </td>
                                 <td>
-                                    <asp:LinkButton runat="server" ID="lbtnSubmit" CommandName="Submit" CommandArgument='<%# Item.ProId %>' CssClass="btn btn-outline-warning">OK</asp:LinkButton></td>
+                                    <asp:TextBox Width="50%" min="1" TextMode="Number" ID="txtMoney" runat="server">
+                                    </asp:TextBox>
+                                    <asp:LinkButton runat="server" ID="lbtnCheck" CommandName="Check" CommandArgument="<%# Item.ProId %>">
+                                        <i class="far fa-arrow-alt-circle-right"></i>
+                                    </asp:LinkButton>
+                                </td>
                                 <td>
-                                    <asp:LinkButton runat="server" ID="lbtnDelete" CommandName="Del" CommandArgument='<%# Item.ProId %>' CssClass="btn btn-outline-warning">X</asp:LinkButton></td>
+                                    <asp:Label runat="server" ID="lbPriceAfter"></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:LinkButton runat="server" ID="lbtnSubmit" CommandName="Submit" CommandArgument="<%# Item.ProId %>" CssClass="btn btn-outline-warning">OK</asp:LinkButton>
+                                </td>
+                                <td>
+                                    <asp:LinkButton runat="server" ID="lbtnDelete" CommandName="Del" CommandArgument="<%# Item.ProId %>" CssClass="btn btn-outline-warning">X</asp:LinkButton>
+                                </td>
                             </tr>
                         </ItemTemplate>
 

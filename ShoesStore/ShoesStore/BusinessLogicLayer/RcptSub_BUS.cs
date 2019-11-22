@@ -29,34 +29,39 @@ namespace ShoesStore.BusinessLogicLayer
             return tmp;
         }
 
+        public double SumAll()
+        {
+            return GetAll().Sum(m => m.RcptSubDet.Sum(n => double.Parse(n.Sub.Price)));
+        }
+
         public string SumDayRcptSub(Rcpt Rcpt, int MerId)
         {
             double Ngay = 0;
-            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(x => x.RcptSubId == Rcpt.RcptId && x.MerId == MerId).FirstOrDefault();
+            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(x => x.RcptSubId == Rcpt.RcptId && x.MerId == MerId)
+                .FirstOrDefault();
             var rcptSubDetLst = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == rcptSub.RcptSubId).ToList();
-            foreach (RcptSubDet item in rcptSubDetLst)
+            foreach (var item in rcptSubDetLst)
             {
-                double tongNgay = double.Parse(item.Quantity.ToString()) * Double.Parse(item.Sub.DurDay.ToString());
+                var tongNgay = double.Parse(item.Quantity.ToString()) * double.Parse(item.Sub.DurDay.ToString());
                 Ngay = Ngay + tongNgay;
             }
+
             return Ngay.ToString();
         }
 
         public string SumPriceRcptSub(Rcpt Rcpt, int MerId)
         {
             double Tien = 0;
-            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(x => x.RcptSubId == Rcpt.RcptId && x.MerId == MerId).FirstOrDefault();
+            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(x => x.RcptSubId == Rcpt.RcptId && x.MerId == MerId)
+                .FirstOrDefault();
             var rcptSubDetLst = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == rcptSub.RcptSubId).ToList();
-            foreach (RcptSubDet item in rcptSubDetLst)
+            foreach (var item in rcptSubDetLst)
             {
-                double tongTien = double.Parse(item.Quantity.ToString()) * Double.Parse(item.Sub.Price.ToString());
+                var tongTien = double.Parse(item.Quantity.ToString()) * double.Parse(item.Sub.Price);
                 Tien = Tien + tongTien;
             }
+
             return Tien.ToString();
-        }
-        public double SumAll()
-        {
-            return GetAll().Sum(m => m.RcptSubDet.Sum(n => double.Parse(n.Sub.Price)));
         }
     }
 }

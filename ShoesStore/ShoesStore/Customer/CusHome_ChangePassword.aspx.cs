@@ -8,19 +8,18 @@ namespace ShoesStore.Customer
 {
     public partial class CusHome_ChangePassword : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void lbtnHuy_Click(object sender, EventArgs e)
         {
-            LoadThongTin();
-        }
-
-        public void LoadThongTin()
-        {
-            var usr = (Usr) WebSession.LoginUsr;
-            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
-            lblLogin.Text = usr1.Login;
-            txtPassword.Visible = true;
-            txtNewPassword.Visible = true;
-            txtRePassword.Visible = true;
+            lbtnLuu.Visible = false;
+            lbtnHuy.Visible = false;
+            txtLogin.Visible = false;
+            txtPassword.Visible = false;
+            txtNewPassword.Visible = false;
+            txtRePassword.Visible = false;
+            lblLogin.Visible = true;
+            lblPassword.Visible = true;
+            lblNewPassword.Visible = true;
+            lblRePassword.Visible = true;
         }
 
         protected void lbtnLuu_Click(object sender, EventArgs e)
@@ -30,7 +29,8 @@ namespace ShoesStore.Customer
             var rs1 = (from c in Master._usr.GetAll()
                 where c.UsrId == usr1.UsrId
                 select c).FirstOrDefault();
-            if (EncryptHelper.Encrypt(txtPassword.Text) == rs1.Password || EncryptHelper.Encrypt(txtPassword.Text)==rs1.PasswordForget)
+            if (EncryptHelper.Encrypt(txtPassword.Text) == rs1.Password ||
+                EncryptHelper.Encrypt(txtPassword.Text) == rs1.PasswordForget)
             {
                 if (txtNewPassword.Text == txtRePassword.Text)
                 {
@@ -67,18 +67,19 @@ namespace ShoesStore.Customer
                 true);
         }
 
-        protected void lbtnHuy_Click(object sender, EventArgs e)
+        public void LoadThongTin()
         {
-            lbtnLuu.Visible = false;
-            lbtnHuy.Visible = false;
-            txtLogin.Visible = false;
-            txtPassword.Visible = false;
-            txtNewPassword.Visible = false;
-            txtRePassword.Visible = false;
-            lblLogin.Visible = true;
-            lblPassword.Visible = true;
-            lblNewPassword.Visible = true;
-            lblRePassword.Visible = true;
+            var usr = (Usr) WebSession.LoginUsr;
+            var usr1 = Master._usr.GetAll().FirstOrDefault(m => m.UsrId == usr.UsrId);
+            lblLogin.Text = usr1.Login;
+            txtPassword.Visible = true;
+            txtNewPassword.Visible = true;
+            txtRePassword.Visible = true;
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            LoadThongTin();
         }
     }
 }

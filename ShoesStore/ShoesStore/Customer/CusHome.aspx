@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SiteCus.Master" CodeBehind="~/Customer/CusHome.aspx.cs" Inherits="ShoesStore.Customer.CusHome" %>
-
-<%@ Import Namespace="ShoesStore" %>
 <%@ MasterType VirtualPath="~/SiteCus.Master" %>
 <%@ Register Src="~/UserControls/UcCusCmt.ascx" TagPrefix="uc1" TagName="UcCusCmt" %>
 
@@ -12,10 +10,10 @@
 
             <div>Ảnh đại diện</div>
             <div>
-                <asp:Image runat="server" ID="avaimg" class="rounded-circle" />
+                <asp:Image runat="server" ID="avaimg" class="rounded-circle"/>
             </div>
             <div>
-                <asp:FileUpload runat="server" ID="fupava" CssClass="file-upload" Visible="false" />
+                <asp:FileUpload runat="server" ID="fupava" CssClass="file-upload" Visible="false"/>
             </div>
             <table id="ttcn" class="table table-responsive-sm table-responsive-xl table-by-truc">
                 <tr>
@@ -56,10 +54,10 @@
             </table>
         </div>
 
-        <hr />
+        <hr/>
         <div class="col-12">
 
-            <uc1:UcCusCmt runat="server" ID="UcCusCmt" ObjCmt="MerCmt" />
+            <uc1:UcCusCmt runat="server" ID="UcCusCmt" ObjCmt="MerCmt"/>
 
         </div>
     </div>

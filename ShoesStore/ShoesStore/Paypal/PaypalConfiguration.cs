@@ -7,6 +7,7 @@ namespace ShoesStore.Paypal
     {
         public static readonly string ClientId;
         public static readonly string ClientSecret;
+
         static PaypalConfiguration()
         {
             var config = GetConfig();
@@ -14,15 +15,10 @@ namespace ShoesStore.Paypal
             ClientSecret = config["clientSecret"];
         }
 
-        public static Dictionary<string, string> GetConfig()
-        {
-            return ConfigManager.Instance.GetProperties();
-        }
-
         //Create access token
         private static string GetAccessToken()
         {
-            string accessToken = new OAuthTokenCredential(ClientId, ClientSecret, GetConfig()).GetAccessToken();
+            var accessToken = new OAuthTokenCredential(ClientId, ClientSecret, GetConfig()).GetAccessToken();
             return accessToken;
         }
 
@@ -33,6 +29,11 @@ namespace ShoesStore.Paypal
             apiContext.Config = GetConfig();
             return apiContext;
             //return new APIContext();
+        }
+
+        public static Dictionary<string, string> GetConfig()
+        {
+            return ConfigManager.Instance.GetProperties();
         }
     }
 }

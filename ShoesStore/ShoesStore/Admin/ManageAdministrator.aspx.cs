@@ -19,23 +19,14 @@ namespace ShoesStore.Admin
         private readonly MstrRole_BUS mstrRole = new MstrRole_BUS();
         private readonly Usr_BUS usr = new Usr_BUS();
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                BindDataGridView();
-                BindDataGridViewMstrRole();
-            }
-        }
-
         // Load bảng danh sách người quản trị
         private void BindDataGridView()
         {
             var rs = (from m in mstr.GetAll()
-                      join u in usr.GetAll() on m.MstrId equals u.UsrId
-                      join d in mstrDet_bus.GetAll() on m.MstrId equals d.MstrId
-                      join r in mstrRole.GetAll() on d.RoleId equals r.RoleId
-                      select m).Distinct();
+                join u in usr.GetAll() on m.MstrId equals u.UsrId
+                join d in mstrDet_bus.GetAll() on m.MstrId equals d.MstrId
+                join r in mstrRole.GetAll() on d.RoleId equals r.RoleId
+                select m).Distinct();
             lvMaster.DataSource = rs.ToList();
             lvMaster.DataBind();
         }
@@ -48,23 +39,51 @@ namespace ShoesStore.Admin
             gvMstrRole.DataBind();
         }
 
+        protected void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            CreateAdministrator();
+        }
+
         // Btn Tìm kiếm 
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
 
-        public void TimKiem(string search_key)
+        //Phân trang
+        //protected void gvAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    gvAdmin.PageIndex = e.NewPageIndex;
+        //    BindDataGridView();
+        //}
+
+        // Hiển thị Thêm quản trị viên (Chỉ có chức vụ admin mới thấy được)
+        public void CreateAdministrator()
         {
-            var rs = (from a in MyLibrary.Mstr_BUS.GetAll().ToList()
-                      where a.MstrId.ToString().ContainsEx(search_key)
-                            || a.Usr.UsrName.ContainsEx(search_key)
-                            || a.MstrDet.Select(x=>x.MstrRole.RoleName).FirstOrDefault().ContainsEx(search_key)
-                            || a.Usr.Email.ContainsEx(search_key)
-                            || a.Usr.DateAdd != null && a.Usr.DateAdd.ToString().ContainsEx(search_key)
-                      select a).ToList();
-            lvMaster.DataSource = rs;
-            lvMaster.DataBind();
+            var mstr = (Mstr) AdminSession.LoginAdmin;
+            var mstrUsr = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mstr.MstrId);
+            var roleid = mstrUsr.Mstr.MstrDet.Any(d => d.RoleId == 1);
+            if (roleid)
+            {
+                if (!Only_Admin_Create_Administrator.Visible)
+                    Only_Admin_Create_Administrator.Visible = true;
+                else Only_Admin_Create_Administrator.Visible = false;
+
+                var rs = (from r in mstrRole.GetAll()
+                    select r).ToList();
+                var rsId = (from r in mstrRole.GetAll()
+                    select r.RoleId).ToString().ToList();
+
+                var ddlRoleName = (DropDownList) Only_Admin_Create_Administrator.FindControl("InsertRoleName");
+                ddlRoleName.DataSource = rs;
+                ddlRoleName.DataTextField = "RoleName";
+                ddlRoleName.DataValueField = "RoleId";
+                ddlRoleName.DataBind();
+            }
+            else
+            {
+                MyLibrary.Show("Bạn không đủ quyền để thực hiện chức năng này!!!");
+            }
         }
 
         // Sorting
@@ -75,6 +94,55 @@ namespace ShoesStore.Admin
             var rs = mstr.Get_Admin_Info().OrderBy(sortExpression + direction).ToList();
             lvMaster.DataSource = rs.ToList();
             lvMaster.DataBind();
+        }
+
+        // thêm xóa sửa bảng chức vụ
+        protected void gvMstrRole_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EditRow")
+            {
+                var rowIndex = ((GridViewRow) ((LinkButton) e.CommandSource).NamingContainer).RowIndex;
+                gvMstrRole.EditIndex = rowIndex;
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "DeleteRow")
+            {
+                var result = (from c in mstrRole.GetAll()
+                    where c.RoleId == Convert.ToInt32(e.CommandArgument)
+                    select c).FirstOrDefault();
+                mstrRole.Delete(result);
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "CancelUpdate")
+            {
+                gvMstrRole.EditIndex = -1;
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "UpdateRow")
+            {
+                var rowIndex = ((GridViewRow) ((LinkButton) e.CommandSource).NamingContainer).RowIndex;
+                var subId = Convert.ToInt32(e.CommandArgument);
+                var roleName = ((TextBox) gvMstrRole.Rows[rowIndex].FindControl("EditRoleName")).Text;
+                var result = (from c in mstrRole.GetAll()
+                    where c.RoleId == Convert.ToInt32(e.CommandArgument)
+                    select c).FirstOrDefault();
+                if (result != null)
+                {
+                    result.RoleName = roleName;
+                    mstrRole.Update(result);
+                }
+
+                gvMstrRole.EditIndex = -1;
+                BindDataGridViewMstrRole();
+            }
+            else if (e.CommandName == "InsertRow")
+            {
+                var roleName = ((TextBox) gvMstrRole.FooterRow.FindControl("InsertRoleName")).Text;
+                if (roleName == "") return;
+                var newSub = new MstrRole {RoleName = roleName};
+                mstrRole.Insert(newSub);
+                BindDataGridViewMstrRole();
+            }
         }
 
         // Ràng buộc + thêm xóa sửa
@@ -207,94 +275,10 @@ namespace ShoesStore.Admin
         {
             var kq = true;
             var data = (from u in usr.GetAll()
-                        where u.Login == Login
-                        select u.Login).ToList().Count;
+                where u.Login == Login
+                select u.Login).ToList().Count;
             if (data == 0) kq = false;
             return kq;
-        }
-
-        // thêm xóa sửa bảng chức vụ
-        protected void gvMstrRole_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "EditRow")
-            {
-                var rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
-                gvMstrRole.EditIndex = rowIndex;
-                BindDataGridViewMstrRole();
-            }
-            else if (e.CommandName == "DeleteRow")
-            {
-                var result = (from c in mstrRole.GetAll()
-                              where c.RoleId == Convert.ToInt32(e.CommandArgument)
-                              select c).FirstOrDefault();
-                mstrRole.Delete(result);
-                BindDataGridViewMstrRole();
-            }
-            else if (e.CommandName == "CancelUpdate")
-            {
-                gvMstrRole.EditIndex = -1;
-                BindDataGridViewMstrRole();
-            }
-            else if (e.CommandName == "UpdateRow")
-            {
-                var rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
-                var subId = Convert.ToInt32(e.CommandArgument);
-                var roleName = ((TextBox)gvMstrRole.Rows[rowIndex].FindControl("EditRoleName")).Text;
-                var result = (from c in mstrRole.GetAll()
-                              where c.RoleId == Convert.ToInt32(e.CommandArgument)
-                              select c).FirstOrDefault();
-                if (result != null)
-                {
-                    result.RoleName = roleName;
-                    mstrRole.Update(result);
-                }
-
-                gvMstrRole.EditIndex = -1;
-                BindDataGridViewMstrRole();
-            }
-            else if (e.CommandName == "InsertRow")
-            {
-                var roleName = ((TextBox)gvMstrRole.FooterRow.FindControl("InsertRoleName")).Text;
-                if (roleName == "") return;
-                var newSub = new MstrRole { RoleName = roleName };
-                mstrRole.Insert(newSub);
-                BindDataGridViewMstrRole();
-            }
-        }
-
-        //Phân trang
-        //protected void gvAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    gvAdmin.PageIndex = e.NewPageIndex;
-        //    BindDataGridView();
-        //}
-
-        // Hiển thị Thêm quản trị viên (Chỉ có chức vụ admin mới thấy được)
-        public void CreateAdministrator()
-        {
-            var mstr = (Mstr)AdminSession.LoginAdmin;
-            var mstrUsr = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mstr.MstrId);
-            bool roleid = mstrUsr.Mstr.MstrDet.Any(d => d.RoleId == 1);
-            if (roleid)
-            {
-                if (!Only_Admin_Create_Administrator.Visible)
-                {
-                    Only_Admin_Create_Administrator.Visible = true;
-                }
-                else Only_Admin_Create_Administrator.Visible = false;
-
-                var rs = (from r in mstrRole.GetAll()
-                          select r).ToList();
-                var rsId = (from r in mstrRole.GetAll()
-                            select r.RoleId).ToString().ToList();
-
-                var ddlRoleName = (DropDownList)Only_Admin_Create_Administrator.FindControl("InsertRoleName");
-                ddlRoleName.DataSource = rs;
-                ddlRoleName.DataTextField = "RoleName";
-                ddlRoleName.DataValueField = "RoleId";
-                ddlRoleName.DataBind();
-            }
-            else MyLibrary.Show("Bạn không đủ quyền để thực hiện chức năng này!!!");
         }
 
 
@@ -302,16 +286,16 @@ namespace ShoesStore.Admin
         protected void lbtnTao_Click(object sender, EventArgs e)
         {
             var Avatar = "";
-            FileUpload fileInsert = (FileUpload)Only_Admin_Create_Administrator.FindControl("fupava");
-            string UsrName = (Only_Admin_Create_Administrator.FindControl("txtUsrName") as TextBox).Text;
-            string Phone = (Only_Admin_Create_Administrator.FindControl("txtPhone") as TextBox).Text;
-            string Address = (Only_Admin_Create_Administrator.FindControl("txtAddress") as TextBox).Text;
-            string Email = (Only_Admin_Create_Administrator.FindControl("txtEmail") as TextBox).Text;
-            string Login = (Only_Admin_Create_Administrator.FindControl("txtLogin") as TextBox).Text;
-            string Password = (Only_Admin_Create_Administrator.FindControl("txtPassword") as TextBox).Text;
-            string Repassword = (Only_Admin_Create_Administrator.FindControl("txtRepassword") as TextBox).Text;
-            DateTime DateAdd = DateTime.Now;
-            DropDownList ddlRoleName = (DropDownList)Only_Admin_Create_Administrator.FindControl("InsertRoleName");
+            var fileInsert = (FileUpload) Only_Admin_Create_Administrator.FindControl("fupava");
+            var UsrName = (Only_Admin_Create_Administrator.FindControl("txtUsrName") as TextBox).Text;
+            var Phone = (Only_Admin_Create_Administrator.FindControl("txtPhone") as TextBox).Text;
+            var Address = (Only_Admin_Create_Administrator.FindControl("txtAddress") as TextBox).Text;
+            var Email = (Only_Admin_Create_Administrator.FindControl("txtEmail") as TextBox).Text;
+            var Login = (Only_Admin_Create_Administrator.FindControl("txtLogin") as TextBox).Text;
+            var Password = (Only_Admin_Create_Administrator.FindControl("txtPassword") as TextBox).Text;
+            var Repassword = (Only_Admin_Create_Administrator.FindControl("txtRepassword") as TextBox).Text;
+            var DateAdd = DateTime.Now;
+            var ddlRoleName = (DropDownList) Only_Admin_Create_Administrator.FindControl("InsertRoleName");
 
             if (fileInsert.HasFile)
             {
@@ -336,16 +320,15 @@ namespace ShoesStore.Admin
                     ViewState["fPath"] = @"~/Admin/Images/avatar/" + strFilePath;
                 }
             }
-            if (Password != Repassword)
-            {
-                MyLibrary.Show("Nhập lại mật khẩu không đúng!");
-            }
+
+            if (Password != Repassword) MyLibrary.Show("Nhập lại mật khẩu không đúng!");
             if (!MyLibrary.IsValidEmailAddress(Email))
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Email chưa đúng')",
                     true);
                 return;
             }
+
             try
             {
                 var result = new Usr
@@ -383,19 +366,13 @@ namespace ShoesStore.Admin
             {
                 MyLibrary.Show("Tên đăng nhập đã tồn tại");
             }
-
-        }
-
-        protected void btnCreateUser_Click(object sender, EventArgs e)
-        {
-            CreateAdministrator();
         }
 
         protected void lvMaster_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "Detail")
             {
-                int UsrId = Int32.Parse(e.CommandArgument.ToString());
+                var UsrId = int.Parse(e.CommandArgument.ToString());
                 Response.Redirect("/Admin/Usr_Det.aspx?UsrId=" + UsrId);
             }
         }
@@ -404,6 +381,28 @@ namespace ShoesStore.Admin
         {
             DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
             BindDataGridView();
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                BindDataGridView();
+                BindDataGridViewMstrRole();
+            }
+        }
+
+        public void TimKiem(string search_key)
+        {
+            var rs = (from a in MyLibrary.Mstr_BUS.GetAll().ToList()
+                where a.MstrId.ToString().ContainsEx(search_key)
+                      || a.Usr.UsrName.ContainsEx(search_key)
+                      || a.MstrDet.Select(x => x.MstrRole.RoleName).FirstOrDefault().ContainsEx(search_key)
+                      || a.Usr.Email.ContainsEx(search_key)
+                      || a.Usr.DateAdd != null && a.Usr.DateAdd.ToString().ContainsEx(search_key)
+                select a).ToList();
+            lvMaster.DataSource = rs;
+            lvMaster.DataBind();
         }
     }
 }

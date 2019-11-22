@@ -75,12 +75,6 @@ namespace ShoesStore
 
             public string RootName { get; set; }
 
-// EVENT HANDLERS
-            protected override void Render(HtmlTextWriter output)
-            {
-                output.Write(sbResult + "<br>");
-            }
-
 /*
 			 *	EventHandler: Control_Load
 			 *	This event handler contains the meat of the control's functionality.
@@ -136,6 +130,12 @@ namespace ShoesStore
 // If the user wants to display file names, do it now.
 //
                 if (ShowFileName) sbResult.Append(string.Format(" {0} {1}", Separator, Path.GetFileName(scriptName)));
+            }
+
+// EVENT HANDLERS
+            protected override void Render(HtmlTextWriter output)
+            {
+                output.Write(sbResult + "<br>");
             }
         }
     }

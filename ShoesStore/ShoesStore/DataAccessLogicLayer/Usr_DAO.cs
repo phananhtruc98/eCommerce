@@ -19,7 +19,9 @@ namespace ShoesStore.DataAccessLogicLayer
         public Usr Login(string login, string pwd)
         {
             var v = GetAll();
-            return GetAll().FirstOrDefault(m => (m.Login.ToLower() == login.ToLower() || (m.Email!=null&& m.Email.ToLower() == login.ToLower())) && (m.Password == pwd || m.PasswordForget == pwd));
+            return GetAll().FirstOrDefault(m =>
+                (m.Login.ToLower() == login.ToLower() || m.Email != null && m.Email.ToLower() == login.ToLower()) &&
+                (m.Password == pwd || m.PasswordForget == pwd));
         }
 
         public void Register(Usr obj)
@@ -38,24 +40,15 @@ namespace ShoesStore.DataAccessLogicLayer
             _usrAct_DAO.Insert(uAct);
         }
 
-        public Usr GetByPrimaryKeys(int id)
+        public Mstr CheckAdmin(string login, string pwd)
         {
-            throw new NotImplementedException();
-        }
-
-        public int GetLastestId()
-        {
-            return DataProvider.Instance.Usr.Max(m => m.UsrId);
-        }
-
-        public override bool IsExist(Usr obj)
-        {
-                return GetAll().FirstOrDefault(m => m.Login == obj.Login || m.Email == obj.Email) == null ? false : true;
-        }
-
-        public override void SetActive(Usr obj)
-        {
-            throw new NotImplementedException();
+            var usr = Login(login, pwd);
+            // tu day tro xuong kt
+            var usrId = usr.UsrId;
+            var rs = _mstr_DAO.GetAll().FirstOrDefault(m => m.MstrId == usrId);
+            if (rs != null)
+                return rs;
+            return null;
         }
 
         public Mer CheckMerchant(string login, string pwd)
@@ -68,21 +61,32 @@ namespace ShoesStore.DataAccessLogicLayer
                 return rs;
             return null;
         }
-        public Mstr CheckAdmin(string login, string pwd)
-        {
-            var usr = Login(login, pwd);
-            // tu day tro xuong kt
-            var usrId = usr.UsrId;
-            var rs = _mstr_DAO.GetAll().FirstOrDefault(m => m.MstrId == usrId);
-            if (rs != null)
-                return rs;
-            return null;
-        }
 
         public Usr GetBy(string ColumnName, string value)
         {
-            return GetAll().FirstOrDefault(usr => usr.GetType().GetProperty(ColumnName).GetValue(usr) != null && usr.GetType().GetProperty(ColumnName).GetValue(usr).ToString() == value);
+            return GetAll().FirstOrDefault(usr =>
+                usr.GetType().GetProperty(ColumnName).GetValue(usr) != null &&
+                usr.GetType().GetProperty(ColumnName).GetValue(usr).ToString() == value);
         }
 
+        public Usr GetByPrimaryKeys(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetLastestId()
+        {
+            return DataProvider.Instance.Usr.Max(m => m.UsrId);
+        }
+
+        public override bool IsExist(Usr obj)
+        {
+            return GetAll().FirstOrDefault(m => m.Login == obj.Login || m.Email == obj.Email) == null ? false : true;
+        }
+
+        public override void SetActive(Usr obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,14 +1,14 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(function() {
 
-    $('.alert-success').hide();
-    $('.alert-danger').hide();
-    
+    $(".alert-success").hide();
+    $(".alert-danger").hide();
+
 });
 
 function ShowAlertSuccess() {
-    $('.alert-success').show();
+    $(".alert-success").show();
 }
 
 function ShowAlertFail() {
-    $('.alert-danger').show();
+    $(".alert-danger").show();
 }

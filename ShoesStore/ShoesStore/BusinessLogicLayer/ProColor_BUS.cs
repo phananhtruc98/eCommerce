@@ -33,14 +33,14 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public void SetActive()
-        {
-            throw new NotImplementedException();
-        }
-
         public ProColor GetById(int id)
         {
             return GetAll().FirstOrDefault(x => x.ColorId == id);
+        }
+
+        public void SetActive()
+        {
+            throw new NotImplementedException();
         }
     }
 }

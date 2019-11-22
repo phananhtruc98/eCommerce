@@ -19,10 +19,7 @@ namespace ShoesStore.BusinessLogicLayer
         {
             return _dao.Login(login, EncryptHelper.Encrypt(pwd));
         }
-        public Usr GetBy(string email)
-        {
-            return _dao.GetBy("Email", email);
-        }
+
         public void Register(Usr obj)
         {
             throw new NotImplementedException();
@@ -33,19 +30,14 @@ namespace ShoesStore.BusinessLogicLayer
             _dao.CreateActCode(obj);
         }
 
-        public Mstr LoginAdmin(string login, string pwd)
-        {
-            return _dao.CheckAdmin(login, EncryptHelper.Encrypt(pwd));
-        }
-
-        public Mer LoginMerchant(string login, string pwd)
-        {
-            return _dao.CheckMerchant(login, EncryptHelper.Encrypt(pwd));
-        }
-
         public List<Usr> Filter(Usr obj)
         {
             throw new NotImplementedException();
+        }
+
+        public Usr GetBy(string email)
+        {
+            return _dao.GetBy("Email", email);
         }
 
         public Usr GetByPrimaryKeys(int id)
@@ -58,16 +50,26 @@ namespace ShoesStore.BusinessLogicLayer
             return _dao.GetLastestId();
         }
 
+        public override bool IsExist(Usr obj)
+        {
+            return _dao.IsExist(obj);
+        }
+
+        public Mstr LoginAdmin(string login, string pwd)
+        {
+            return _dao.CheckAdmin(login, EncryptHelper.Encrypt(pwd));
+        }
+
+        public Mer LoginMerchant(string login, string pwd)
+        {
+            return _dao.CheckMerchant(login, EncryptHelper.Encrypt(pwd));
+        }
+
         public void SetActive()
         {
             throw new NotImplementedException();
         }
 
-        public override bool IsExist(Usr obj)
-        {
-            return _dao.IsExist(obj);
-        }
-     
         public override void SetActive(Usr obj)
         {
             throw new NotImplementedException();

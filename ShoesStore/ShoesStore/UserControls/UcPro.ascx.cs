@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
-using ShoesStore.WebControls;
 
 namespace ShoesStore.UserControls
 {
     public partial class UcPro : UserControl
     {
-
         //public Button Btnn
         //{
         //    get
@@ -34,208 +31,126 @@ namespace ShoesStore.UserControls
         {
             get
             {
-
-                if (ViewState["SearchText"] == null)
-                {
-                    ViewState["SearchText"] = "";
-                }
+                if (ViewState["SearchText"] == null) ViewState["SearchText"] = "";
                 return ViewState["SearchText"].ToString();
             }
-            set
-            {
-                ViewState["SearchText"] = value;
-            }
+            set => ViewState["SearchText"] = value;
         }
+
         public List<int> ColorIds
         {
             get
             {
-
-                if (ViewState["ColorIds"] == null)
-                {
-                    ViewState["ColorIds"] = new List<int>();
-                }
-                return (List<int>)ViewState["ColorIds"];
+                if (ViewState["ColorIds"] == null) ViewState["ColorIds"] = new List<int>();
+                return (List<int>) ViewState["ColorIds"];
             }
-            set
-            {
-                ViewState["ColorIds"] = value;
-            }
-
+            set => ViewState["ColorIds"] = value;
         }
+
         public List<int> BrandIds
         {
             get
             {
-
-                if (ViewState["BrandIds"] == null)
-                {
-                    ViewState["BrandIds"] = new List<int>();
-                }
-                return (List<int>)ViewState["BrandIds"];
+                if (ViewState["BrandIds"] == null) ViewState["BrandIds"] = new List<int>();
+                return (List<int>) ViewState["BrandIds"];
             }
-            set
-            {
-                ViewState["BrandIds"] = value;
-            }
-
+            set => ViewState["BrandIds"] = value;
         }
 
         public List<int> ProCatIds
         {
             get
             {
-
-                if (ViewState["ProCatIds"] == null)
-                {
-                    ViewState["ProCatIds"] = new List<int>();
-                }
-                return (List<int>)ViewState["ProCatIds"];
+                if (ViewState["ProCatIds"] == null) ViewState["ProCatIds"] = new List<int>();
+                return (List<int>) ViewState["ProCatIds"];
             }
-            set
-            {
-                ViewState["ProCatIds"] = value;
-            }
-
+            set => ViewState["ProCatIds"] = value;
         }
+
         public double FilterPriceFrom
         {
             get
             {
-
-                if (ViewState["FilterPriceFrom"] == null)
-                {
-                    ViewState["FilterPriceFrom"] = 0;
-                }
+                if (ViewState["FilterPriceFrom"] == null) ViewState["FilterPriceFrom"] = 0;
                 return double.Parse(ViewState["FilterPriceFrom"].ToString());
             }
-            set
-            {
-                ViewState["FilterPriceFrom"] = value;
-            }
-
+            set => ViewState["FilterPriceFrom"] = value;
         }
+
         public double FilterPriceTo
         {
             get
             {
-
-                if (ViewState["FilterPriceTo"] == null)
-                {
-                    ViewState["FilterPriceTo"] = 9999999;
-                }
+                if (ViewState["FilterPriceTo"] == null) ViewState["FilterPriceTo"] = 9999999;
                 return double.Parse(ViewState["FilterPriceTo"].ToString());
             }
-            set
-            {
-                ViewState["FilterPriceTo"] = value;
-            }
-
+            set => ViewState["FilterPriceTo"] = value;
         }
+
         public int VFilterPro
         {
             get
             {
-
-                if (ViewState["VFilterPro"] == null)
-                {
-                    ViewState["VFilterPro"] = 0;
-                }
-                return (int)ViewState["VFilterPro"];
+                if (ViewState["VFilterPro"] == null) ViewState["VFilterPro"] = 0;
+                return (int) ViewState["VFilterPro"];
             }
-            set
-            {
-                ViewState["VFilterPro"] = value;
-            }
-
+            set => ViewState["VFilterPro"] = value;
         }
+
         public Func<Pro, long> FuncFilter
         {
             get
             {
-
                 if (ViewState["FuncFilter"] == null)
                 {
                     Func<Pro, long> tmp = pro => pro.DateAdd == null ? 0 : pro.DateAdd.Value.Ticks;
 
                     ViewState["FuncFilter"] = tmp;
                 }
-                return (Func<Pro, long>)ViewState["FuncFilter"];
-            }
-            set
-            {
-                ViewState["FuncFilter"] = value;
-            }
 
-
+                return (Func<Pro, long>) ViewState["FuncFilter"];
+            }
+            set => ViewState["FuncFilter"] = value;
         }
 
         public int PageSize
         {
             set
             {
-
-                ViewState["PageSize"] = value; ;
+                ViewState["PageSize"] = value;
+                ;
                 if (rptPro != null) rptPro.PageSize = value;
             }
             get
             {
-                if (ViewState["PageSize"] == null)
-                {
-                    ViewState["PageSize"] = 1;
-                }
+                if (ViewState["PageSize"] == null) ViewState["PageSize"] = 1;
                 return int.Parse(ViewState["PageSize"].ToString());
             }
         }
+
         public int NumberPerRow
         {
-            set
-            {
-
-                ViewState["NumberPerRow"] = value; ;
-            }
+            set => ViewState["NumberPerRow"] = value;
             get
             {
-                if (ViewState["NumberPerRow"] == null)
-                {
-                    ViewState["NumberPerRow"] = 4;
-                }
+                if (ViewState["NumberPerRow"] == null) ViewState["NumberPerRow"] = 4;
                 return int.Parse(ViewState["NumberPerRow"].ToString());
             }
         }
+
         public int ShpId
         {
             get
             {
-
-                if (ViewState["ShpId"] == null)
-                {
-                    ViewState["ShpId"] = 0;
-                }
-                return (int)ViewState["ShpId"];
+                if (ViewState["ShpId"] == null) ViewState["ShpId"] = 0;
+                return (int) ViewState["ShpId"];
             }
-            set
-            {
-                ViewState["ShpId"] = value;
-            }
+            set => ViewState["ShpId"] = value;
         }
 
         public int GetCurrent()
         {
             return rptPro.Items.Count;
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-
-        {
-            if (!IsPostBack)
-            {
-
-                rptPro.Reload();
-                LoadPage();
-
-            }
-
         }
 
 
@@ -251,9 +166,10 @@ namespace ShoesStore.UserControls
                 rptProPage.DataBind();
             }
         }
+
         protected void MyBtnHandler(object sender, EventArgs e)
         {
-            var btn = (LinkButton)sender;
+            var btn = (LinkButton) sender;
             switch (btn.CommandName)
             {
                 case "ThisBtnClick":
@@ -268,29 +184,16 @@ namespace ShoesStore.UserControls
             }
         }
 
-        protected void rptProPage_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
+
         {
-            if (e.Item.ItemType == ListItemType.Footer)
+            if (!IsPostBack)
             {
-                var btnPagingLast = (LinkButton)e.Item.FindControl("btnPagingLast");
-                btnPagingLast.CommandArgument = rptProPage.Items.Count + "";
+                rptPro.Reload();
+                LoadPage();
             }
         }
 
-        public void SetFilter(string searchText, List<int> colorids, List<int> brandIds, List<int> proCatIds, double filterPriceFrom, double filterPriceTo, Func<Pro, long> funcFilter, int vFilterPro)
-        {
-            SearchText = searchText;
-            ColorIds = colorids;
-            BrandIds = brandIds;
-            ProCatIds = proCatIds;
-            FilterPriceFrom = filterPriceFrom;
-            FilterPriceTo = filterPriceTo;
-            FuncFilter = funcFilter;
-            VFilterPro = vFilterPro;
-            //
-
-
-        }
         public void Reload()
         {
             rptPro.SearchText = SearchText;
@@ -305,6 +208,29 @@ namespace ShoesStore.UserControls
             rptPro.Reload();
             LoadPage();
             DataBind();
+        }
+
+        protected void rptProPage_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Footer)
+            {
+                var btnPagingLast = (LinkButton) e.Item.FindControl("btnPagingLast");
+                btnPagingLast.CommandArgument = rptProPage.Items.Count + "";
+            }
+        }
+
+        public void SetFilter(string searchText, List<int> colorids, List<int> brandIds, List<int> proCatIds,
+            double filterPriceFrom, double filterPriceTo, Func<Pro, long> funcFilter, int vFilterPro)
+        {
+            SearchText = searchText;
+            ColorIds = colorids;
+            BrandIds = brandIds;
+            ProCatIds = proCatIds;
+            FilterPriceFrom = filterPriceFrom;
+            FilterPriceTo = filterPriceTo;
+            FuncFilter = funcFilter;
+            VFilterPro = vFilterPro;
+            //
         }
     }
 }

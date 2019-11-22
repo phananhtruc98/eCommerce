@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Overview_RcptSub.aspx.cs" Inherits="ShoesStore.Admin.Overview_RcptSub" %>
-
-<%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
@@ -10,12 +8,12 @@
         <div class="row">
             <div class="col-6">
                 Chọn cửa hàng:
-                <asp:DropDownList runat="server" ID="ddlShpName" AutoPostBack="True"  OnSelectedIndexChanged="ddlShpName_SelectedIndexChanged"></asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddlShpName" AutoPostBack="True" OnSelectedIndexChanged="ddlShpName_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="col-6">
                 Chọn thời gian:
-                <asp:DropDownList runat="server" AutoPostBack="True"  ID="ddlMonth"></asp:DropDownList>
-                <asp:DropDownList runat="server" AutoPostBack="True"  ID="ddlYear"></asp:DropDownList>
+                <asp:DropDownList runat="server" AutoPostBack="True" ID="ddlMonth"></asp:DropDownList>
+                <asp:DropDownList runat="server" AutoPostBack="True" ID="ddlYear"></asp:DropDownList>
                 <asp:LinkButton runat="server" ID="lbtn" OnClick="lbtn_Click">Chọn</asp:LinkButton>
             </div>
         </div>
@@ -29,15 +27,23 @@
                             <th>Tổng thu</th>
                             <th>Tổng chi</th>
                         </tr>
-                        <tr id="itemPlaceholder" runat="server" />
+                        <tr id="itemPlaceholder" runat="server"/>
                     </table>
                 </LayoutTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td><asp:Label runat="server" ID="lbShpId" Text='<%# Item.ShpId %>'></asp:Label></td>
-                        <td><asp:Label runat="server" ID="lbShpName" Text='<%# Item.ShpName %>'></asp:Label></td>
-                        <td><asp:Label runat="server" ID="lbSumIn" Text='<%# MyLibrary.SumIn(Item) %>'></asp:Label></td>
-                        <td><asp:Label runat="server" ID="lbSumOut" Text='<%# MyLibrary.SumOut(Item) %>'></asp:Label></td>
+                        <td>
+                            <asp:Label runat="server" ID="lbShpId" Text="<%# Item.ShpId %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbShpName" Text="<%# Item.ShpName %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbSumIn" Text="<%# MyLibrary.SumIn(Item) %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbSumOut" Text="<%# MyLibrary.SumOut(Item) %>"></asp:Label>
+                        </td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>
@@ -52,15 +58,23 @@
                             <th>Tổng thu</th>
                             <th>Tổng chi</th>
                         </tr>
-                        <tr id="itemPlaceholder" runat="server" />
+                        <tr id="itemPlaceholder" runat="server"/>
                     </table>
                 </LayoutTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td><asp:Label runat="server" ID="lbShpId" Text='<%# Item.ShpId %>'></asp:Label></td>
-                        <td><asp:Label runat="server" ID="lbShpName" Text='<%# Item.ShpName %>'></asp:Label></td>
-                        <td><asp:Label runat="server" ID="lbSumIn" Text='<%# MyLibrary.SumIn(Item.ShpId,Int32.Parse(ddlMonth.SelectedValue),Int32.Parse(ddlYear.SelectedValue)) %>'></asp:Label></td>
-                        <td><asp:Label runat="server" ID="lbSumOut" Text='<%# MyLibrary.SumOut(Item.ShpId,Int32.Parse(ddlMonth.SelectedValue),Int32.Parse(ddlYear.SelectedValue)) %>'></asp:Label></td>
+                        <td>
+                            <asp:Label runat="server" ID="lbShpId" Text="<%# Item.ShpId %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbShpName" Text="<%# Item.ShpName %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbSumIn" Text="<%# MyLibrary.SumIn(Item.ShpId, int.Parse(ddlMonth.SelectedValue), int.Parse(ddlYear.SelectedValue)) %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbSumOut" Text="<%# MyLibrary.SumOut(Item.ShpId, int.Parse(ddlMonth.SelectedValue), int.Parse(ddlYear.SelectedValue)) %>"></asp:Label>
+                        </td>
                     </tr>
                 </ItemTemplate>
             </asp:ListView>

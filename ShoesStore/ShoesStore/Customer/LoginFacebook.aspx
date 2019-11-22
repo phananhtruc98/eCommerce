@@ -1,7 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="LoginFacebook.aspx.cs" Inherits="ShoesStore.Customer.LoginFacebook" %>
-
-<%@ Import Namespace="ShoesStore.MyExtensions" %>
-<%@ Import Namespace="ShoesStore" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <a href="#" onclick="loginByFacebook();">Login with Facebook</a>
 
@@ -9,7 +6,7 @@
     1. setting the ApplicationID, To make this project work you have to edit "callback.aspx.cs" and put your facebook-app-key there
     2. Adjust the permissions you want to get from user, set that in scope options below. --%>
     <script type="text/javascript">
-        window.fbAsyncInit = function () {
+        window.fbAsyncInit = function() {
             FB.init({
                 appId: '2062955750677936',
                 status: true, // check login status
@@ -18,21 +15,23 @@
                 oauth: true // enable OAuth 2.0
             });
         };
-        (function () {
-            var e = document.createElement('script'); e.async = true;
+        (function() {
+            var e = document.createElement('script');
+            e.async = true;
             e.src = document.location.protocol +
                 '//connect.facebook.net/en_US/all.js';
             document.getElementById('fb-root').appendChild(e);
         }());
 
         function loginByFacebook() {
-            FB.login(function (response) {
-                if (response.authResponse) {
-                    FacebookLoggedIn(response);
-                } else {
-                    console.log('User cancelled login or did not fully authorize.');
-                }
-            }, { scope: 'user_birthday,user_about_me,user_hometown,user_location,email,publish_stream' });
+            FB.login(function(response) {
+                    if (response.authResponse) {
+                        FacebookLoggedIn(response);
+                    } else {
+                        console.log('User cancelled login or did not fully authorize.');
+                    }
+                },
+                { scope: 'user_birthday,user_about_me,user_hometown,user_location,email,publish_stream' });
         }
 
         function FacebookLoggedIn(response) {

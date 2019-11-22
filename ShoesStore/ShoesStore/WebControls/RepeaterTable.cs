@@ -1,10 +1,9 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ShoesStore.DataAccessLogicLayer;
 
 namespace ShoesStore.WebControls
 {
@@ -23,57 +22,29 @@ namespace ShoesStore.WebControls
         public double FilterPriceTo { get; set; } = 9999999;
         public int VFilterPro { get; set; }
         public Func<Pro, long> FuncFilter { get; set; } = pro => pro.DateAdd == null ? 0 : pro.DateAdd.Value.Ticks;
+
         public int PageCurrent
         {
             get => _pageCurrent;
-            set
-            {
-                _pageCurrent = value;
-                //BindRptPaged();
-            }
+            set => _pageCurrent = value;
         }
 
         public int PageTotal { get; private set; }
 
         public int PageSize
         {
-            set
-            {
-                _pageSize = value;
-                //BindRptPaged();
-            }
-            get
-            {
-                return _pageSize;
-            }
+            set => _pageSize = value;
+            get => _pageSize;
         }
 
         public int ShpId
         {
-            set
-            {
-                _shpId = value;
-                //Bind
-            }
-            get
-            {
-                return _shpId;
-            }
-
+            set => _shpId = value;
+            get => _shpId;
         }
 
         public bool AllowPage { get; set; }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            BindRpt();
-        }
-
-        private void BindRptPaged()
-        {
-            PageTotal = (int)Math.Ceiling((double)((DataSource as IEnumerable<object>) ?? throw new InvalidOperationException()).Count() / _pageSize);
-            DataSource = (DataSource as IEnumerable<object>).Skip((_pageCurrent - 1) * _pageSize).Take(_pageSize);
-        }
         private void BindRpt()
         {
             new BasePage
@@ -83,18 +54,26 @@ namespace ShoesStore.WebControls
                     new Tuple<Control, TableName>(this, TableName)
                 }
             }.Bind();
-
         }
+
+        private void BindRptPaged()
+        {
+            PageTotal = (int) Math.Ceiling(
+                (double) (DataSource as IEnumerable<object> ?? throw new InvalidOperationException()).Count() /
+                _pageSize);
+            DataSource = (DataSource as IEnumerable<object>).Skip((_pageCurrent - 1) * _pageSize).Take(_pageSize);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            BindRpt();
+        }
+
         public void Reload()
         {
             BindRpt();
-            if (AllowPage)
-            {
-                BindRptPaged();
-            }
+            if (AllowPage) BindRptPaged();
             DataBind();
         }
-
-        
     }
 }

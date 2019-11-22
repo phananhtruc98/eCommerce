@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Objects;
+using System.Linq;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.Interfaces;
-using System.Linq;
+
 namespace ShoesStore.BusinessLogicLayer
 {
     public class Cus_BUS : Table_BUS<Cus, Cus_DAO>, ICus
@@ -52,14 +53,35 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public ObjectResult<sp_Cus_Info_Result> Get_Cus_Info()
+        ObjectResult<sp_Cus_Info_Result> ICus.Get_Cus_Info()
         {
-            return _dao.Get_Cus_Info();
+            throw new NotImplementedException();
+        }
+
+        public int AverageStar(Cus obj)
+        {
+            try
+            {
+                var doub = MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => m.RcptBuy.CusId == obj.CusId)
+                    .Where(m => m.RcptBuy.MerMessage != null)
+                    .Average(m => m.RcptBuy.MerPoint);
+                return doub == null ? 0 : Convert.ToInt32(doub);
+            }
+
+            catch
+            {
+                return 0;
+            }
         }
 
         public List<Cus> Filter(Cus obj)
         {
             throw new NotImplementedException();
+        }
+
+        public ObjectResult<sp_Cus_Info_Result> Get_Cus_Info()
+        {
+            return _dao.Get_Cus_Info();
         }
 
         public Cus GetByPrimaryKeys(int id)
@@ -72,9 +94,14 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
+        public override bool IsExist(Cus obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public Cus Login(string username, string password)
         {
-            Usr usr = MyLibrary.Usr_BUS.Login(username, password);
+            var usr = MyLibrary.Usr_BUS.Login(username, password);
             if (usr != null)
                 return GetAll().FirstOrDefault(cus => cus.CusId == usr.UsrId);
             return null;
@@ -85,36 +112,9 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public override bool IsExist(Cus obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void SetActive(Cus obj)
         {
             throw new NotImplementedException();
-        }
-
-        System.Data.Objects.ObjectResult<sp_Cus_Info_Result> ICus.Get_Cus_Info()
-        {
-            throw new NotImplementedException();
-        }
-        public int AverageStar(Cus obj)
-        {
-            try
-            {
-
-
-                var doub = MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => m.RcptBuy.CusId == obj.CusId)
-                    .Where(m => m.RcptBuy.MerMessage != null)
-                    .Average(m => m.RcptBuy.MerPoint);
-                return doub == null ? 0 : Convert.ToInt32(doub);
-            }
-
-            catch
-            {
-                return 0;
-            }
         }
     }
 }

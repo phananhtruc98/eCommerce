@@ -11,12 +11,11 @@ namespace ShoesStore.Paypal
         {
             try
             {
-                StreamWriter strw = new StreamWriter(LogDirectoryPath + "\\PaypalError.log", true);
+                var strw = new StreamWriter(LogDirectoryPath + "\\PaypalError.log", true);
                 strw.WriteLine("{0}--->{1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), message);
             }
             catch
             {
-
             }
         }
     }

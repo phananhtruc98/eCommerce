@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Policy;
 using System.Web.UI.WebControls;
-using Microsoft.Ajax.Utilities;
 using ShoesStore.DataAccessLogicLayer;
 using Utilities;
 using Convert = System.Convert;
@@ -20,33 +18,13 @@ namespace ShoesStore.Customer
             {
                 if (ViewState["_proDetView"] == null)
                 {
-
                     CollectUrl();
                     return _proDetView;
                 }
 
-                return (Pro)ViewState["_proDetView"];
+                return (Pro) ViewState["_proDetView"];
             }
             set => ViewState["_proDetView"] = value;
-        }
-
-        protected override void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                BindData();
-                CollectUrl();
-                Bind_Slides();
-                Bind_CusReview();
-                //Bind_ProColors();
-                //Bind_ProSizes();
-            }
-        }
-
-        private void BindData()
-        {
-            DivWriteComment.DataBind();
-
         }
 
         //private void Bind_ProSizes()
@@ -78,11 +56,9 @@ namespace ShoesStore.Customer
             rptProSlidePresent.DataBind();
         }
 
-        private void CollectUrl()
+        private void BindData()
         {
-            _proDetView = MyLibrary.Pro_BUS.GetAll().ToList().FirstOrDefault(m =>
-                TextHelper.UrlFriendly(m.Shp.ShpName) == RouteData.Values["shpName"].ToString()
-                && TextHelper.UrlFriendly(m.ProName) == RouteData.Values["proName"].ToString());
+            DivWriteComment.DataBind();
         }
 
         protected void btnAddCart_OnClick(object sender, EventArgs e)
@@ -92,17 +68,16 @@ namespace ShoesStore.Customer
                 MyLibrary.Show("Bạn chưa đăng nhập");
                 return;
             }
-            bool atLeastOneCheck = false;
 
+            var atLeastOneCheck = false;
 
 
             foreach (RepeaterItem pd in rptProDet.Items)
             {
-
-                HiddenField hdfSizeId = (HiddenField)pd.FindControl("hdfSizeId");
-                HiddenField hdfColorId = (HiddenField)pd.FindControl("hdfColorId");
-                TextBox txtQty = (TextBox)pd.FindControl("txtQty");
-                int qty = txtQty.Text != "" ? Convert.ToInt32(txtQty.Text) : 0;
+                var hdfSizeId = (HiddenField) pd.FindControl("hdfSizeId");
+                var hdfColorId = (HiddenField) pd.FindControl("hdfColorId");
+                var txtQty = (TextBox) pd.FindControl("txtQty");
+                var qty = txtQty.Text != "" ? Convert.ToInt32(txtQty.Text) : 0;
                 if (txtQty.Text != "" && qty > 0)
                 {
                     atLeastOneCheck = true;
@@ -118,51 +93,29 @@ namespace ShoesStore.Customer
                     if (!MyLibrary.CartDet_BUS.IsExist(_cartDetView))
                     {
                         MyLibrary.CartDet_BUS.Insert(_cartDetView);
-
                     }
                     else
                     {
-                        CartDet cartDet = MyLibrary.CartDet_BUS.GetAll().FirstOrDefault(m => m.CartId == _cartDetView.CartId
-                        && m.ShpId == _cartDetView.ShpId
-                        && m.ProId == _cartDetView.ProId
-                        && m.ColorId == _cartDetView.ColorId
-                        && m.SizeId == _cartDetView.SizeId);
-                        int maxQty = MyLibrary.ProDet_BUS.ProDetLeft(cartDet.ProDet);
-                        cartDet.Qty = (_cartDetView.Qty + cartDet.Qty <= maxQty) ? cartDet.Qty + _cartDetView.Qty : maxQty;
+                        var cartDet = MyLibrary.CartDet_BUS.GetAll().FirstOrDefault(m => m.CartId == _cartDetView.CartId
+                                                                                         && m.ShpId ==
+                                                                                         _cartDetView.ShpId
+                                                                                         && m.ProId ==
+                                                                                         _cartDetView.ProId
+                                                                                         && m.ColorId ==
+                                                                                         _cartDetView.ColorId
+                                                                                         && m.SizeId ==
+                                                                                         _cartDetView.SizeId);
+                        var maxQty = MyLibrary.ProDet_BUS.ProDetLeft(cartDet.ProDet);
+                        cartDet.Qty = _cartDetView.Qty + cartDet.Qty <= maxQty
+                            ? cartDet.Qty + _cartDetView.Qty
+                            : maxQty;
                         MyLibrary.CartDet_BUS.Update(cartDet);
                     }
                 }
-
             }
+
             Master.LoadCartPreview();
             if (!atLeastOneCheck) MyLibrary.Show("Bạn cần chọn ít nhất 1 sản phẩm");
-
-
-
-        }
-        public CartDet GetCartDet(ProDet proDet)
-        {
-            try
-            {
-
-
-                return new CartDet()
-                {
-                    CartId = MyLibrary.Cart_BUS.GetMyCart().CartId,
-                    ShpId = proDet.ShpId,
-                    ProId = proDet.ProId,
-                    ColorId = Convert.ToInt32(proDet.ColorId),
-                    SizeId = Convert.ToInt32(proDet.SizeId),
-
-                };
-            }
-
-
-
-            catch (Exception ex)
-            {
-                return null;
-            }
         }
 
         //protected void rptProColor_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -213,22 +166,68 @@ namespace ShoesStore.Customer
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            var rcptBuyDetNotCommented = MyLibrary.RcptBuyDet_BUS.GetAllBy(ProDetView, WebSession.LoginCus).FirstOrDefault();
+            var rcptBuyDetNotCommented =
+                MyLibrary.RcptBuyDet_BUS.GetAllBy(ProDetView, WebSession.LoginCus).FirstOrDefault();
             if (rcptBuyDetNotCommented != null)
             {
                 rcptBuyDetNotCommented.Cmt = review_text.Text;
                 rcptBuyDetNotCommented.Point = int.Parse(review_stars.SelectedValue.Split(' ')[0]);
                 MyLibrary.RcptBuyDet_BUS.Update(rcptBuyDetNotCommented);
-                MyLibrary.Show("Đã gửi nhận xét",Request.RawUrl);
+                MyLibrary.Show("Đã gửi nhận xét", Request.RawUrl);
+            }
+        }
+
+        private void CollectUrl()
+        {
+            _proDetView = MyLibrary.Pro_BUS.GetAll().ToList().FirstOrDefault(m =>
+                TextHelper.UrlFriendly(m.Shp.ShpName) == RouteData.Values["shpName"].ToString()
+                && TextHelper.UrlFriendly(m.ProName) == RouteData.Values["proName"].ToString());
+        }
+
+        public CartDet GetCartDet(ProDet proDet)
+        {
+            try
+            {
+                return new CartDet
+                {
+                    CartId = MyLibrary.Cart_BUS.GetMyCart().CartId,
+                    ShpId = proDet.ShpId,
+                    ProId = proDet.ProId,
+                    ColorId = Convert.ToInt32(proDet.ColorId),
+                    SizeId = Convert.ToInt32(proDet.SizeId)
+                };
             }
 
 
-
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        protected void rptProSize_Init(object sender, EventArgs e)
+        private void lvColorName_Bind()
         {
+            lvColorName.DataSource = MyLibrary.Pro_BUS.GetAvailableColors(_proDetView);
+            lvColorName.DataBind();
+        }
 
+        protected override void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                BindData();
+                CollectUrl();
+                Bind_Slides();
+                Bind_CusReview();
+                //Bind_ProColors();
+                //Bind_ProSizes();
+            }
+        }
+
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            lvColorName_Bind();
+            rptProDet_Bind();
         }
 
         private void rptProDet_Bind()
@@ -237,15 +236,8 @@ namespace ShoesStore.Customer
             rptProDet.DataBind();
         }
 
-        private void lvColorName_Bind()
+        protected void rptProSize_Init(object sender, EventArgs e)
         {
-            lvColorName.DataSource = MyLibrary.Pro_BUS.GetAvailableColors(_proDetView);
-            lvColorName.DataBind();
-        }
-        protected void Page_LoadComplete(object sender, EventArgs e)
-        {
-            lvColorName_Bind();
-            rptProDet_Bind();
         }
     }
 }

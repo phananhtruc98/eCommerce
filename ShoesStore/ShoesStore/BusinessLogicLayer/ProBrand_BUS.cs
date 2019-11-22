@@ -37,7 +37,7 @@ namespace ShoesStore.BusinessLogicLayer
         public static int GetTotalPro(object brandId)
         {
             return new ProBrand_BUS().GetAll().FirstOrDefault(m => brandId != null && m.BrandId == (int) brandId).Pro
-                .Where(p=>p.Active==true && p.ProDet.Count!=0)
+                .Where(p => p.Active == true && p.ProDet.Count != 0)
                 .Count();
         }
     }

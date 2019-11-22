@@ -16,9 +16,20 @@ namespace ShoesStore
             set => ViewState["PageNumber"] = value;
         }
 
+        protected void brandLogos_Init(object sender, EventArgs e)
+        {
+            rptBrandLogos.DataSource = MyLibrary.ProBrand_BUS.GetAll();
+            rptBrandLogos.DataBind();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+        }
+
+        protected void rptPopularCategories_Init(object sender, EventArgs e)
+        {
+            rptPopularCategories.DataSource = MyLibrary.ProCat_BUS.GetAll();
+            rptPopularCategories.DataBind();
         }
 
         protected void rptProCat_Init(object sender, EventArgs e)
@@ -31,18 +42,6 @@ namespace ShoesStore
         {
             rptSlides.DataSource = MyLibrary.WebSlide_BUS.GetAll();
             rptSlides.DataBind();
-        }
-
-        protected void rptPopularCategories_Init(object sender, EventArgs e)
-        {
-            rptPopularCategories.DataSource = MyLibrary.ProCat_BUS.GetAll();
-            rptPopularCategories.DataBind();
-        }
-
-        protected void brandLogos_Init(object sender, EventArgs e)
-        {
-            rptBrandLogos.DataSource = MyLibrary.ProBrand_BUS.GetAll();
-            rptBrandLogos.DataBind();
         }
     }
 }

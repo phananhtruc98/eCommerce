@@ -1,220 +1,227 @@
 ﻿<%@ Page Language="C#" Title="Quản lý người mua" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageAdministrator.aspx.cs" Inherits="ShoesStore.Admin.Manage_Administrator" %>
-
-<%@ Import Namespace="ShoesStore" %>
 <%@ MasterType VirtualPath="~/Admin/Admin.Master" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div id="TimKiem" class="container">
-        <div class="btn btn-lg custom_bar col-12">Danh sách quản trị viên</div>
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-9">
-                <asp:TextBox runat="server" placeholder="Gõ vào đây..." ID="txtTimKiem"></asp:TextBox>
-                <asp:Button runat="server" ID="btnTimKiem" Text="Tìm" CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 table-responsive">
-                <asp:ListView runat="server" OnPagePropertiesChanging="lvMaster_PagePropertiesChanging" ID="lvMaster" OnItemCommand="lvMaster_ItemCommand" ItemType="ShoesStore.DataAccessLogicLayer.Mstr">
-                    <LayoutTemplate>
-                        <table class="table">
-                            <tr>
-                                <th>Xem chi tiết</th>
-                                <th>Mã quản trị viên</th>
-                                <th>Tên quản trị viên</th>
-                                <th>Chức vụ</th>
-                                <th>Email</th>
-                                <th>Ngày thêm</th>
-                            </tr>
-                            <tr id="itemPlaceholder" runat="server" />
-                        </table>
-                    </LayoutTemplate>
-                    <ItemTemplate>
-                        <tr>
-                            <td>
-                                <asp:LinkButton runat="server" ID="lbtnDetail" CommandName="Detail" CommandArgument='<%# Item.MstrId %>' CssClass="btn btn-icons btn-rounded btn-outline-warning"><i class="fas fa-info"></i></asp:LinkButton></td>
-                            <td>
-                                <asp:Label runat="server" ID="lbCusId" Text="<%# Item.MstrId %>"></asp:Label></td>
-                            <td>
-                                <asp:Label runat="server" ID="lbUsrName" Text="<%# Item.Usr.UsrName %>"></asp:Label></td>
-                            <td>
-                                <asp:Label runat="server" ID="lbMstrRoleName" Text="<%# Item.MstrDet.Select(x=>x.MstrRole.RoleName).FirstOrDefault() %>"></asp:Label></td>
-                            <td>
-                                <asp:Label runat="server" ID="lbEmail" Text="<%# Item.Usr.Email %>"></asp:Label></td>
-                            <td>
-                                <asp:Label runat="server" ID="lbDateAdd" Text="<%# Item.Usr.DateAdd %>"></asp:Label></td>
-                        </tr>
-                    </ItemTemplate>
-                </asp:ListView>
-                <asp:DataPager ID="DataPager1" runat="server" PageSize="5"
-                    PagedControlID="lvMaster">
-                    <Fields>
-                        <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True"
-                            ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
-                        <asp:NumericPagerField />
-                        <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True"
-                            ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
-                    </Fields>
-                </asp:DataPager>
-            </div>
+<div id="TimKiem" class="container">
+    <div class="btn btn-lg custom_bar col-12">Danh sách quản trị viên</div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-9">
+            <asp:TextBox runat="server" placeholder="Gõ vào đây..." ID="txtTimKiem"></asp:TextBox>
+            <asp:Button runat="server" ID="btnTimKiem" Text="Tìm" CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click"/>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12 table-responsive">
+            <asp:ListView runat="server" OnPagePropertiesChanging="lvMaster_PagePropertiesChanging" ID="lvMaster" OnItemCommand="lvMaster_ItemCommand" ItemType="ShoesStore.DataAccessLogicLayer.Mstr">
+                <LayoutTemplate>
+                    <table class="table">
+                        <tr>
+                            <th>Xem chi tiết</th>
+                            <th>Mã quản trị viên</th>
+                            <th>Tên quản trị viên</th>
+                            <th>Chức vụ</th>
+                            <th>Email</th>
+                            <th>Ngày thêm</th>
+                        </tr>
+                        <tr id="itemPlaceholder" runat="server"/>
+                    </table>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <asp:LinkButton runat="server" ID="lbtnDetail" CommandName="Detail" CommandArgument="<%# Item.MstrId %>" CssClass="btn btn-icons btn-rounded btn-outline-warning">
+                                <i class="fas fa-info"></i>
+                            </asp:LinkButton>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbCusId" Text="<%# Item.MstrId %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbUsrName" Text="<%# Item.Usr.UsrName %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbMstrRoleName" Text="<%# Item.MstrDet.Select(x => x.MstrRole.RoleName).FirstOrDefault() %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbEmail" Text="<%# Item.Usr.Email %>"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lbDateAdd" Text="<%# Item.Usr.DateAdd %>"></asp:Label>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:ListView>
+            <asp:DataPager ID="DataPager1" runat="server" PageSize="5"
+                           PagedControlID="lvMaster">
+                <Fields>
+                    <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True"
+                                                ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước"/>
+                    <asp:NumericPagerField/>
+                    <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True"
+                                                ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước"/>
+                </Fields>
+            </asp:DataPager>
+        </div>
+    </div>
+</div>
 
-    <div class="container">
-        <div class="btn btn-lg custom_bar col-12">Bảng chức vụ</div>
+<div class="container">
+    <div class="btn btn-lg custom_bar col-12">Bảng chức vụ</div>
+    <div class="row">
+        <div class="col-12">
+            <asp:GridView ID="gvMstrRole" ShowFooter="True" runat="server" AutoGeneratedColumns="false" BackColor="White" BorderColor="#CC9966" BorderWidth="1px" CellPadding="4" BorderStyle="None" AutoGenerateColumns="False" OnRowCommand="gvMstrRole_RowCommand">
+                <Columns>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lbEdit" CommandArgument='<%# Eval("RoleId") %>' CommandName="EditRow" ForeColor="#8C4510" runat="server">Sửa</asp:LinkButton>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:LinkButton ID="lbUpdate" CommandArgument='<%# Eval("RoleId") %>' CommandName="UpdateRow" ForeColor="#8C4510" runat="server">Cập nhật</asp:LinkButton>
+                            <asp:LinkButton ID="lbCancel" CommandArgument='<%# Eval("RoleId") %>' CommandName="CancelUpdate" ForeColor="#8C4510" runat="server" CausesValidation="false">Hủy</asp:LinkButton>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="InsertRow" CausesValidation="false" ForeColor="#8C4510">Thêm</asp:LinkButton>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Mã gói">
+                        <ItemTemplate>
+                            <%# Eval("RoleId") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Tên chức vụ">
+                        <ItemTemplate>
+                            <%# Eval("RoleName") %>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox runat="server" ID="EditRoleName" Text='<%# Bind("RoleName") %>'/>
+                        </EditItemTemplate>
+                        <FooterTemplate>
+                            <asp:TextBox runat="server" ID="InsertRoleName" Text=' <%# Bind("RoleName") %>'/>
+                            <asp:RequiredFieldValidator ID="rfvEditName" runat="server" ErrorMessage="Chưa nhập tên chức vụ" ControlToValidate="InsertRoleName" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                </Columns>
+                <FooterStyle BackColor="#FFFFCC" ForeColor="#330099"/>
+                <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC"/>
+                <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center"/>
+                <RowStyle BackColor="White" ForeColor="#330099"/>
+                <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399"/>
+                <SortedAscendingCellStyle BackColor="#FEFCEB"/>
+                <SortedAscendingHeaderStyle BackColor="#AF0101"/>
+                <SortedDescendingCellStyle BackColor="#F6F0C0"/>
+                <SortedDescendingHeaderStyle BackColor="#7E0000"/>
+            </asp:GridView>
+            <asp:ValidationSummary ID="ValidationSummary2" ValidationGroup="Role" ForeColor="Red" runat="server"/>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <asp:LinkButton runat="server" ID="btnCreateUser" CssClass="btn btn-lg custom_bar_hover col-12" Text="Tạo quản trị viên mới" OnClick="btnCreateUser_Click"></asp:LinkButton>
+    <asp:PlaceHolder ID="Only_Admin_Create_Administrator" runat="server" Visible="false">
         <div class="row">
             <div class="col-12">
-                <asp:GridView ID="gvMstrRole" ShowFooter="True" runat="server" AutoGeneratedColumns="false" BackColor="White" BorderColor="#CC9966" BorderWidth="1px" CellPadding="4" BorderStyle="None" AutoGenerateColumns="False" OnRowCommand="gvMstrRole_RowCommand">
-                    <Columns>
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:LinkButton ID="lbEdit" CommandArgument='<%# Eval("RoleId") %>' CommandName="EditRow" ForeColor="#8C4510" runat="server">Sửa</asp:LinkButton>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:LinkButton ID="lbUpdate" CommandArgument='<%# Eval("RoleId") %>' CommandName="UpdateRow" ForeColor="#8C4510" runat="server">Cập nhật</asp:LinkButton>
-                                <asp:LinkButton ID="lbCancel" CommandArgument='<%# Eval("RoleId") %>' CommandName="CancelUpdate" ForeColor="#8C4510" runat="server" CausesValidation="false">Hủy</asp:LinkButton>
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:LinkButton ID="lbInsert" ValidationGroup="Insert" runat="server" CommandName="InsertRow"  CausesValidation="false" ForeColor="#8C4510">Thêm</asp:LinkButton>
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Mã gói">
-                            <ItemTemplate>
-                                <%# Eval("RoleId") %>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Tên chức vụ">
-                            <ItemTemplate>
-                                <%# Eval("RoleName") %>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox runat="server" ID="EditRoleName" Text='<%# Bind("RoleName") %>' />
-                            </EditItemTemplate>
-                             <FooterTemplate>
-                                <asp:TextBox runat="server" ID="InsertRoleName" Text=' <%# Bind("RoleName") %>'/>
-                                <asp:RequiredFieldValidator ID="rfvEditName" runat="server" ErrorMessage="Chưa nhập tên chức vụ" ControlToValidate="InsertRoleName" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </FooterTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
-                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
-                    <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
-                    <RowStyle BackColor="White" ForeColor="#330099" />
-                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
-                    <SortedAscendingCellStyle BackColor="#FEFCEB" />
-                    <SortedAscendingHeaderStyle BackColor="#AF0101" />
-                    <SortedDescendingCellStyle BackColor="#F6F0C0" />
-                    <SortedDescendingHeaderStyle BackColor="#7E0000" />
-                </asp:GridView>
-                <asp:ValidationSummary ID="ValidationSummary2" ValidationGroup="Role" ForeColor="Red" runat="server" />
+                <table id="ttcn" class="table table-striped table-responsive-sm table-responsive-xl table-by-truc">
+                    <tr>
+                        <td>Ảnh đại diện</td>
+                        <td class="form-group">
+                            <asp:Image runat="server" ID="upava"/>
+                            <asp:FileUpload runat="server" ID="fupava"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Họ và tên</td>
+                        <td class="form-group">
+                            <asp:TextBox runat="server" CssClass="form-control txt-by-truc" ID="txtUsrName"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="rfvEditUsrName" runat="server" ErrorMessage="Chưa nhập họ và tên" ControlToValidate="txtUsrName" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại</td>
+                        <td class="form-group">
+                            <asp:TextBox runat="server" TextMode="Phone" CssClass="form-control txt-by-truc" ID="txtPhone"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:RegularExpressionValidator ID="revPhone" runat="server"
+                                                            ErrorMessage="Số điện thoại không đúng" ControlToValidate="txtPhone"
+                                                            ValidationGroup="Insert"
+                                                            ValidationExpression="[0-9]{10}">
+                            </asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator ID="rfvEditPhone" runat="server" ErrorMessage="Chưa nhập số điện thoại" ControlToValidate="txtPhone" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ</td>
+                        <td class="form-group">
+                            <asp:TextBox runat="server" CssClass="form-control txt-by-truc" ID="txtAddress"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="rfvEditAddress" runat="server" ErrorMessage="Chưa nhập địa chỉ" ControlToValidate="txtAddress" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td class="form-group">
+                            <asp:TextBox runat="server" TextMode="Email" CssClass="form-control txt-by-truc" ID="txtEmail"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="rfvEditEmail" runat="server" ErrorMessage="Chưa nhập email" ControlToValidate="txtEmail" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chức vụ</td>
+                        <td class="form-group">
+                            <asp:DropDownList runat="server" ID="InsertRoleName"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tên đăng nhập</td>
+                        <td class="form-group">
+                            <asp:TextBox runat="server" CssClass="form-control txt-by-truc" ID="txtLogin"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="rfvEditLogin" runat="server" ErrorMessage="Chưa nhập tên đăng nhập" ControlToValidate="txtLogin" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mật khẩu</td>
+                        <td class="form-group">
+                            <asp:TextBox runat="server" CssClass="form-control txt-by-truc" TextMode="Password" ID="txtPassword"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="rfvEditPassword" runat="server" ErrorMessage="Chưa nhập mật khẩu" ControlToValidate="txtPassword" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                            </asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nhập lại mật khẩu</td>
+                        <td class="form-group">
+                            <asp:TextBox runat="server" CssClass="form-control txt-by-truc" TextMode="Password" ID="txtRepassword"></asp:TextBox>
+                        </td>
+                        <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Chưa nhập lại mật khẩu" ControlToValidate="txtRepassword" Text="*" ForeColor="Red" ValidationGroup="Insert">
+                        </asp:RequiredFieldValidator>
+                    </tr>
+                    <tr>
+                        <td class="my-info__save">
+                            <asp:LinkButton runat="server" ID="lbtnTao" Text="Tạo" CssClass="txt-by-truc center" ValidationGroup="Insert" OnClick="lbtnTao_Click"></asp:LinkButton>
+                        </td>
+                        <td>
+                            <asp:LinkButton runat="server" ID="lbtnHuy" Text="Hủy" CssClass="txt-by-truc center"></asp:LinkButton>
+                        </td>
+                    </tr>
+                </table>
+                <asp:ValidationSummary ID="ValidationSummary3" ValidationGroup="Insert" ForeColor="Red" runat="server"/>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <asp:LinkButton runat="server" ID="btnCreateUser" CssClass="btn btn-lg custom_bar_hover col-12" Text="Tạo quản trị viên mới" OnClick="btnCreateUser_Click"></asp:LinkButton>
-        <asp:PlaceHolder ID="Only_Admin_Create_Administrator" runat="server" Visible="false">
-            <div class="row">
-                <div class="col-12">
-                    <table id="ttcn" class="table table-striped table-responsive-sm table-responsive-xl table-by-truc">
-                        <tr>
-                            <td>Ảnh đại diện</td>
-                            <td class="form-group">
-                                <asp:Image runat="server" ID="upava" />
-                                <asp:FileUpload runat="server" ID="fupava" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Họ và tên</td>
-                            <td class="form-group">
-                                <asp:TextBox runat="server" CssClass="form-control txt-by-truc" ID="txtUsrName"></asp:TextBox>
-                            </td>
-                            <td>
-                                <asp:RequiredFieldValidator ID="rfvEditUsrName" runat="server" ErrorMessage="Chưa nhập họ và tên" ControlToValidate="txtUsrName" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Số điện thoại</td>
-                            <td class="form-group">
-                                <asp:TextBox runat="server" TextMode="Phone" CssClass="form-control txt-by-truc" ID="txtPhone"></asp:TextBox>
-                            </td>
-                            <td>
-                                <asp:RegularExpressionValidator ID="revPhone" runat="server"
-                                    ErrorMessage="Số điện thoại không đúng" ControlToValidate="txtPhone"
-                                    ValidationGroup="Insert"
-                                    ValidationExpression="[0-9]{10}">
-                                </asp:RegularExpressionValidator>
-                                <asp:RequiredFieldValidator ID="rfvEditPhone" runat="server" ErrorMessage="Chưa nhập số điện thoại" ControlToValidate="txtPhone" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Địa chỉ</td>
-                            <td class="form-group">
-                                <asp:TextBox runat="server" CssClass="form-control txt-by-truc" ID="txtAddress"></asp:TextBox>
-                            </td>
-                            <td>
-                                <asp:RequiredFieldValidator ID="rfvEditAddress" runat="server" ErrorMessage="Chưa nhập địa chỉ" ControlToValidate="txtAddress" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td class="form-group">
-                                <asp:TextBox runat="server" TextMode="Email" CssClass="form-control txt-by-truc" ID="txtEmail"></asp:TextBox>
-                            </td>
-                            <td>
-                                <asp:RequiredFieldValidator ID="rfvEditEmail" runat="server" ErrorMessage="Chưa nhập email" ControlToValidate="txtEmail" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Chức vụ</td>
-                            <td class="form-group">
-                                <asp:DropDownList runat="server" ID="InsertRoleName"></asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tên đăng nhập</td>
-                            <td class="form-group">
-                                <asp:TextBox runat="server" CssClass="form-control txt-by-truc" ID="txtLogin"></asp:TextBox>
-                            </td>
-                            <td>
-                                <asp:RequiredFieldValidator ID="rfvEditLogin" runat="server" ErrorMessage="Chưa nhập tên đăng nhập" ControlToValidate="txtLogin" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mật khẩu</td>
-                            <td class="form-group">
-                                <asp:TextBox runat="server" CssClass="form-control txt-by-truc" TextMode="Password" ID="txtPassword"></asp:TextBox>
-                            </td>
-                            <td>
-                                <asp:RequiredFieldValidator ID="rfvEditPassword" runat="server" ErrorMessage="Chưa nhập mật khẩu" ControlToValidate="txtPassword" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nhập lại mật khẩu</td>
-                            <td class="form-group">
-                                <asp:TextBox runat="server" CssClass="form-control txt-by-truc" TextMode="Password" ID="txtRepassword"></asp:TextBox>
-                            </td>
-                            <td>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Chưa nhập lại mật khẩu" ControlToValidate="txtRepassword" Text="*" ForeColor="Red" ValidationGroup="Insert">
-                                </asp:RequiredFieldValidator>
-                        </tr>
-                        <tr>
-                            <td class="my-info__save">
-                                <asp:LinkButton runat="server" ID="lbtnTao" Text="Tạo" CssClass="txt-by-truc center" ValidationGroup="Insert" OnClick="lbtnTao_Click"></asp:LinkButton></td>
-                            <td>
-                                <asp:LinkButton runat="server" ID="lbtnHuy" Text="Hủy" CssClass="txt-by-truc center"></asp:LinkButton>
-                            </td>
-                        </tr>
-                    </table>
-                    <asp:ValidationSummary ID="ValidationSummary3" ValidationGroup="Insert" ForeColor="Red" runat="server" />
-                </div>
-            </div>
-        </asp:PlaceHolder>
-    </div>
+    </asp:PlaceHolder>
+</div>
 </asp:Content>

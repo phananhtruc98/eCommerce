@@ -19,11 +19,6 @@ namespace ShoesStore.BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public List<RcptSubDet> SelectedRowById(int RcptSubId)
-        {
-            return _dao.SelectedRowById(RcptSubId);
-        }
-
 // Hàm này lấy id của merchant đang đăng nhập bỏ vô RcptSubId
         public RcptSubDet GetMyRcptSubDet()
         {
@@ -32,24 +27,31 @@ namespace ShoesStore.BusinessLogicLayer
             return null; //xoa di
         }
 
+        public List<RcptSubDet> ListRcptBuyDet_SubContent()
+        {
+            var mer = MyLibrary.Mer_BUS.GetAll()
+                .FirstOrDefault(m => m.MerId == (MerchantSession.LoginMerchant as Mer)?.MerId);
+            //RcptBuy rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
+            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(m => m.MerId == mer.MerId).ToList();
+            return MyLibrary.RcptSubDet_BUS.GetAll().Where(m => rcptSub != null && rcptSub.Contains(m.RcptSub))
+                .ToList();
+            //return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && m.RcptBuyId == rcptBuy.RcptBuyId).ToList();
+        }
+
+        public List<RcptSubDet> SelectedRowById(int RcptSubId)
+        {
+            return _dao.SelectedRowById(RcptSubId);
+        }
+
         public string TotalPrice()
         {
             var rs = (from sd in MyLibrary.RcptSubDet_BUS.GetAll()
-                     join sb in MyLibrary.Sub_BUS.GetAll() on sd.SubId equals sb.SubId
-                     select new
-                     {
-                         Price = Int32.Parse(sb.Price) * sd.Quantity
-                     }).Sum(x=>x.Price);
+                join sb in MyLibrary.Sub_BUS.GetAll() on sd.SubId equals sb.SubId
+                select new
+                {
+                    Price = int.Parse(sb.Price) * sd.Quantity
+                }).Sum(x => x.Price);
             return rs.ToString();
-        }
-
-        public List<RcptSubDet> ListRcptBuyDet_SubContent()
-        {
-            var mer = MyLibrary.Mer_BUS.GetAll().FirstOrDefault(m => m.MerId == (MerchantSession.LoginMerchant as Mer)?.MerId);
-            //RcptBuy rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
-            var rcptSub = MyLibrary.RcptSub_BUS.GetAll().Where(m => m.MerId == mer.MerId).ToList();
-            return MyLibrary.RcptSubDet_BUS.GetAll().Where(m => rcptSub != null && rcptSub.Contains(m.RcptSub)).ToList();
-            //return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && m.RcptBuyId == rcptBuy.RcptBuyId).ToList();
         }
     }
 }

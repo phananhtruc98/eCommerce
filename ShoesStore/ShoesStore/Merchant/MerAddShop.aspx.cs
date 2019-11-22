@@ -1,32 +1,18 @@
-﻿using ShoesStore.BusinessLogicLayer;
-using ShoesStore.DataAccessLogicLayer;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.IO;
-using System.Web;
-using ShoesStore.MyExtensions;
+using ShoesStore.DataAccessLogicLayer;
+
 namespace ShoesStore.Merchant
 {
     public partial class MerAddShop : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-               
-            }
-        }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            var mer = (Mer)MerchantSession.LoginMerchant;
-            string desc = inputDesc.Text;
-            string shpname = inputShpName.Text;
-            string address = inputAddr.Text;
-            string phone = inputNum.Text;
+            var mer = (Mer) MerchantSession.LoginMerchant;
+            var desc = inputDesc.Text;
+            var shpname = inputShpName.Text;
+            var address = inputAddr.Text;
+            var phone = inputNum.Text;
 
 
             var shp1 = new Shp
@@ -34,7 +20,7 @@ namespace ShoesStore.Merchant
                 ShpId = mer.MerId,
                 MerId = mer.MerId,
                 ShpName = shpname,
-                DateStart =  DateTime.Now,
+                DateStart = DateTime.Now,
                 Active = true,
                 Desc = desc,
                 Address = address,
@@ -42,6 +28,13 @@ namespace ShoesStore.Merchant
             };
             MyLibrary.Shp_Bus.Insert(shp1);
             Response.Redirect("MerHome.aspx");
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+            }
         }
     }
 }

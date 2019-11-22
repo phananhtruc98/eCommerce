@@ -29,58 +29,58 @@
     <!-- .block-slideshow / end -->
     <!-- .-->
     <div class="block block-features block-features--layout--boxed">
-    <div class="container">
-        <div class="block-features__list">
-            <div class="block-features__item">
-                <div class="block-features__icon">
-                    <svg width="48px" height="48px">
-                        <use href="images/sprite.svg#fi-free-delivery-48"></use>
-                    </svg>
+        <div class="container">
+            <div class="block-features__list">
+                <div class="block-features__item">
+                    <div class="block-features__icon">
+                        <svg width="48px" height="48px">
+                            <use href="images/sprite.svg#fi-free-delivery-48"></use>
+                        </svg>
+                    </div>
+                    <div class="block-features__content">
+                        <div class="block-features__title"> Uy Tín</div>
+                        <div class="block-features__subtitle">Cùng hệ thống rating</div>
+                    </div>
                 </div>
-                <div class="block-features__content">
-                    <div class="block-features__title"> Uy Tín</div>
-                    <div class="block-features__subtitle">Cùng hệ thống rating</div>
+                <div class="block-features__divider"></div>
+                <div class="block-features__item">
+                    <div class="block-features__icon">
+                        <svg width="48px" height="48px">
+                            <use href="images/sprite.svg#fi-24-hours-48"></use>
+                        </svg>
+                    </div>
+                    <div class="block-features__content">
+                        <div class="block-features__title">Hỗ trợ 24/7</div>
+                        <div class="block-features__subtitle">Gọi chúng tôi bất cứ lúc nào</div>
+                    </div>
                 </div>
-            </div>
-            <div class="block-features__divider"></div>
-            <div class="block-features__item">
-                <div class="block-features__icon">
-                    <svg width="48px" height="48px">
-                        <use href="images/sprite.svg#fi-24-hours-48"></use>
-                    </svg>
+                <div class="block-features__divider"></div>
+                <div class="block-features__item">
+                    <div class="block-features__icon">
+                        <svg width="48px" height="48px">
+                            <use href="images/sprite.svg#fi-payment-security-48"></use>
+                        </svg>
+                    </div>
+                    <div class="block-features__content">
+                        <div class="block-features__title">100% An Toàn</div>
+                        <div class="block-features__subtitle">Sử dụng thanh toán Paypal</div>
+                    </div>
                 </div>
-                <div class="block-features__content">
-                    <div class="block-features__title">Hỗ trợ 24/7</div>
-                    <div class="block-features__subtitle">Gọi chúng tôi bất cứ lúc nào</div>
-                </div>
-            </div>
-            <div class="block-features__divider"></div>
-            <div class="block-features__item">
-                <div class="block-features__icon">
-                    <svg width="48px" height="48px">
-                        <use href="images/sprite.svg#fi-payment-security-48"></use>
-                    </svg>
-                </div>
-                <div class="block-features__content">
-                    <div class="block-features__title">100% An Toàn</div>
-                    <div class="block-features__subtitle">Sử dụng thanh toán Paypal</div>
-                </div>
-            </div>
-            <div class="block-features__divider"></div>
-            <div class="block-features__item">
-                <div class="block-features__icon">
-                    <svg width="48px" height="48px">
-                        <use href="images/sprite.svg#fi-tag-48"></use>
-                    </svg>
-                </div>
-                <div class="block-features__content">
-                    <div class="block-features__title">Giá Hấp Dẫn</div>
-                    <div class="block-features__subtitle">Cùng nhiều khuyến mãi hằng ngày</div>
+                <div class="block-features__divider"></div>
+                <div class="block-features__item">
+                    <div class="block-features__icon">
+                        <svg width="48px" height="48px">
+                            <use href="images/sprite.svg#fi-tag-48"></use>
+                        </svg>
+                    </div>
+                    <div class="block-features__content">
+                        <div class="block-features__title">Giá Hấp Dẫn</div>
+                        <div class="block-features__subtitle">Cùng nhiều khuyến mãi hằng ngày</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
     <!-- ./ end -->
     <!-- .block-products-carousel -->
     <uc1:UcProCarousel runat="server" id="ucProCarousel" PageSize="8"/>
@@ -94,7 +94,7 @@
             </div>
             <div class="block-products__body">
                 <div class="block-products__list">
-                    <uc1:UcPro runat="server" NumberPerRow="4" ID="ucPro" PageSize="8" />
+                    <uc1:UcPro runat="server" NumberPerRow="4" ID="ucPro" PageSize="8"/>
                 </div>
             </div>
             <div style="overflow: hidden;">
@@ -110,12 +110,12 @@
                 <div class="block-header__divider"></div>
             </div>
             <div class="block-categories__list pointer-event__none">
-                    <asp:Repeater runat="server" ID="rptPopularCategories" OnInit="rptPopularCategories_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProCat">
+                <asp:Repeater runat="server" ID="rptPopularCategories" OnInit="rptPopularCategories_Init" ItemType="ShoesStore.DataAccessLogicLayer.ProCat">
                     <ItemTemplate>
                         <div class="block-categories__item category-card category-card--layout--compact">
                             <div class="category-card__body">
                                 <div class="category-card__image">
-                                    <a href="/san-pham?catId=<%# Item.CatId%>">
+                                    <a href="/san-pham?catId=<%# Item.CatId %>">
                                         <img src="<%# MyLibrary.ProCatImgPath(Item) %>" alt="">
                                     </a>
                                 </div>
@@ -140,7 +140,7 @@
                         <ItemTemplate>
                             <div class="block-brands__item pointer-event__none">
                                 <a href="#">
-                                    <img src="images/logos/<%# Item.Img %>" alt="" style="height:150px">
+                                    <img src="images/logos/<%# Item.Img %>" alt="" style="height: 150px">
                                 </a>
                             </div>
                         </ItemTemplate>

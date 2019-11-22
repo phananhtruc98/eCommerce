@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Web;
 
-
 namespace Utilities
 {
     public class Thumbnail

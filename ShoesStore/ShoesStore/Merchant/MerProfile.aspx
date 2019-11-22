@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" Title="Trang Cá Nhân" MasterPageFile="~/Merchant/SiteMerchant.Master" AutoEventWireup="true" CodeBehind="MerProfile.aspx.cs" Inherits="ShoesStore.Merchant.MerProfile" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainPlaceHolder" runat="server">
-<!-- site__body -->
-<div class="row">
+    <!-- site__body -->
+    <div class="row">
         <div class="col-12">
             <h3>Hồ sơ của tôi</h3>
             <div class="float-left">Ảnh đại diện</div>
@@ -42,14 +42,14 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="my-info__save">
-                        
-                     <asp:LinkButton runat="server" ID="lblThaydoi" Text="Thay đổi thông tin" CssClass="txt-by-truc center" OnClick="lblThaydoi_Click"></asp:LinkButton>   
-                     <asp:LinkButton runat="server" ID="lbtnLuu" Text="Lưu" CssClass="txt-by-truc center" OnClick="lbtnLuu_Click" Visible="false"></asp:LinkButton>
+
+                        <asp:LinkButton runat="server" ID="lblThaydoi" Text="Thay đổi thông tin" CssClass="txt-by-truc center" OnClick="lblThaydoi_Click"></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="lbtnLuu" Text="Lưu" CssClass="txt-by-truc center" OnClick="lbtnLuu_Click" Visible="false"></asp:LinkButton>
                         <asp:LinkButton runat="server" ID="lbtnHuy" Text="Hủy" CssClass="txt-by-truc center margin__left" OnClick="lbtnHuy_Click" Visible="false"></asp:LinkButton>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
-<!-- site__body / end -->
+    <!-- site__body / end -->
 </asp:Content>

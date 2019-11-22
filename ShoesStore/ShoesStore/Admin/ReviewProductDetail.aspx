@@ -1,8 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ReviewProductDetail.aspx.cs" Inherits="ShoesStore.Admin.ReviewProductDetail" %>
-
-<%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
-<%@ Import Namespace="System.Text" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="btn btn-lg custom_bar">Chi tiết sản phẩm</div>
     <div class="container">
@@ -15,27 +12,32 @@
                                 <tr>
                                     <td>Cửa hàng </td>
                                     <td>
-                                        <asp:Label runat="server" ID="lbShpName"></asp:Label></td>
+                                        <asp:Label runat="server" ID="lbShpName"></asp:Label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Loại sản phẩm</td>
                                     <td>
-                                        <asp:Label runat="server" ID="lbCatName"></asp:Label></td>
+                                        <asp:Label runat="server" ID="lbCatName"></asp:Label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Thương hiệu</td>
                                     <td>
-                                        <asp:Label runat="server" ID="lbBrandName"></asp:Label></td>
+                                        <asp:Label runat="server" ID="lbBrandName"></asp:Label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Tên sản phẩm </td>
                                     <td>
-                                        <asp:Label runat="server" ID="lbProName"></asp:Label></td>
+                                        <asp:Label runat="server" ID="lbProName"></asp:Label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Giá</td>
                                     <td>
-                                        <asp:Label runat="server" ID="lbPrice"></asp:Label></td>
+                                        <asp:Label runat="server" ID="lbPrice"></asp:Label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Chi tiết số lượng</td>
@@ -48,17 +50,20 @@
                                                         <th>Màu sắc</th>
                                                         <th>Số lượng</th>
                                                     </tr>
-                                                    <tr id="itemPlaceholder" runat="server" />
+                                                    <tr id="itemPlaceholder" runat="server"/>
                                                 </table>
                                             </LayoutTemplate>
                                             <ItemTemplate>
                                                 <tr>
                                                     <td>
-                                                        <asp:Label runat="server" ID="lbSize" Text="<%# Item.ProSize.SizeName %>"></asp:Label></td>
+                                                        <asp:Label runat="server" ID="lbSize" Text="<%# Item.ProSize.SizeName %>"></asp:Label>
+                                                    </td>
                                                     <td>
-                                                        <asp:Label runat="server" ID="lbColor" Text="<%# Item.ProColor.ColorName %>"></asp:Label></td>
+                                                        <asp:Label runat="server" ID="lbColor" Text="<%# Item.ProColor.ColorName %>"></asp:Label>
+                                                    </td>
                                                     <td>
-                                                        <asp:Label runat="server" ID="lbQty" Text="<%# Item.Qty %>"></asp:Label></td>
+                                                        <asp:Label runat="server" ID="lbQty" Text="<%# Item.Qty %>"></asp:Label>
+                                                    </td>
                                                 </tr>
                                             </ItemTemplate>
                                         </asp:ListView>
@@ -67,7 +72,8 @@
                                 <tr>
                                     <td>Ảnh dại diện</td>
                                     <td>
-                                        <asp:Image CssClass="rounded"  runat="server" Style="width: 300px; height: 300px" ID="imgPrimary" /></td>
+                                        <asp:Image CssClass="rounded" runat="server" Style="height: 300px; width: 300px;" ID="imgPrimary"/>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -76,7 +82,7 @@
                                         <asp:ListView ID="lvImgSlide" ItemType="ShoesStore.DataAccessLogicLayer.ProSlide" runat="server">
                                             <ItemTemplate>
 
-                                                <img class="rounded" style="width: 100px; height: 100px" src="<%# MyLibrary.ProSlidePath(Item) %>" />
+                                                <img class="rounded" style="height: 100px; width: 100px;" src="<%# MyLibrary.ProSlidePath(Item) %>"/>
 
                                             </ItemTemplate>
                                         </asp:ListView>
@@ -85,12 +91,14 @@
                                 <tr>
                                     <td>Mổ tả ngắn gọn </td>
                                     <td style="white-space: normal">
-                                        <asp:Label runat="server" ID="lbDescShort"></asp:Label></td>
+                                        <asp:Label runat="server" ID="lbDescShort"></asp:Label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Mô tả chi tiết </td>
                                     <td style="white-space: normal">
-                                        <asp:Label runat="server" ID="lbDesc"></asp:Label></td>
+                                        <asp:Label runat="server" ID="lbDesc"></asp:Label>
+                                    </td>
                                 </tr>
                             </table>
                         </div>

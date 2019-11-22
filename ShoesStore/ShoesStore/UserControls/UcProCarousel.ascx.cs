@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Linq;
 using ShoesStore.MyExtensions;
+
 namespace ShoesStore.UserControls
 {
     public partial class UcProCarousel : UcPro
     {
         protected void featuredProducts_Init(object sender, EventArgs e)
         {
-
-
         }
 
 
@@ -17,12 +15,9 @@ namespace ShoesStore.UserControls
         {
             if (!IsPostBack)
             {
-
                 rptPro.DataSource = MyLibrary.Pro_BUS.GetAllActive().Shuffle(new Random());
                 rptPro.DataBind();
-
             }
-
         }
     }
 }

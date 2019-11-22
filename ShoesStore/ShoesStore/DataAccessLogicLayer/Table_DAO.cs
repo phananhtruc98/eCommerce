@@ -34,7 +34,7 @@ namespace ShoesStore.DataAccessLogicLayer
             {
                 // Your code...
                 // Could also be before try if you know the exception occurs in SaveChanges
-                
+
                 DataProvider.Instance.Set<T>().Add(obj);
                 DataProvider.Instance.SaveChanges();
             }

@@ -1,21 +1,32 @@
-﻿using ShoesStore.DataAccessLogicLayer;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.MyExtensions;
+
 namespace ShoesStore.Admin
 {
-    public partial class Overview_Profit_W : System.Web.UI.Page
+    public partial class Overview_Profit_W : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public void Calculate()
         {
-            if (!IsPostBack)
+            result.Visible = true;
+            var month = ddlMonth.SelectedValue;
+            var year = ddlYear.SelectedValue;
+            lbYearSelected.Text = year;
+            if (month == string.Empty)
             {
-                LoadDdlMonth(); LoadDdlYear();
-
+                lbMonthSelected.Text = "";
+                dontneed.Visible = false;
+                lblRcptSubCount.Text = QtyRcptSub(int.Parse(year)).ToString();
+                lblSumPrice.Text = SumPrice(int.Parse(year));
+            }
+            else
+            {
+                lbMonthSelected.Text = month;
+                dontneed.Visible = true;
+                lblRcptSubCount.Text = QtyRcptSub(int.Parse(month), int.Parse(year)).ToString();
+                lblSumPrice.Text = SumPrice(int.Parse(month), int.Parse(year));
             }
         }
 
@@ -23,13 +34,14 @@ namespace ShoesStore.Admin
         {
             Calculate();
         }
+
         public void LoadDdlMonth()
         {
             var rs = MyLibrary.RcptSub_BUS.GetAll().Select(x => x.Rcpt.DateAdd.Month.ToString()).Distinct().ToList();
             ddlMonth.DataSource = rs;
-            ddlMonth.Items.Insert(0, new ListItem("--Chọn tháng--", String.Empty));
+            ddlMonth.Items.Insert(0, new ListItem("--Chọn tháng--", string.Empty));
             ddlMonth.DataBind();
-            ddlMonth.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            ddlMonth.Items.Insert(0, new ListItem(string.Empty, string.Empty));
             ddlMonth.SelectedIndex = 0;
         }
 
@@ -40,33 +52,22 @@ namespace ShoesStore.Admin
             ddlYear.DataBind();
         }
 
-        public void Calculate()
+        protected void Page_Load(object sender, EventArgs e)
         {
-            result.Visible = true;
-            string month = ddlMonth.SelectedValue;
-            string year = ddlYear.SelectedValue;
-            lbYearSelected.Text = year;
-            if (month==String.Empty)
+            if (!IsPostBack)
             {
-                lbMonthSelected.Text = "";
-                dontneed.Visible = false;
-                lblRcptSubCount.Text = QtyRcptSub(Int32.Parse(year)).ToString();
-                lblSumPrice.Text = SumPrice(Int32.Parse(year));
-            }
-            else
-            {
-                lbMonthSelected.Text = month;
-                dontneed.Visible = true;
-                lblRcptSubCount.Text = QtyRcptSub(Int32.Parse(month), Int32.Parse(year)).ToString();
-                lblSumPrice.Text = SumPrice(Int32.Parse(month), Int32.Parse(year));
+                LoadDdlMonth();
+                LoadDdlYear();
             }
         }
 
         public int QtyRcptSub(int month, int year)
         {
-            var rs = MyLibrary.RcptSub_BUS.GetAll().Where(x => (x.Rcpt.DateAdd.Month == month) && (x.Rcpt.DateAdd.Year == year)).ToList();
+            var rs = MyLibrary.RcptSub_BUS.GetAll()
+                .Where(x => x.Rcpt.DateAdd.Month == month && x.Rcpt.DateAdd.Year == year).ToList();
             return rs.Count;
         }
+
         public int QtyRcptSub(int year)
         {
             var rs = MyLibrary.RcptSub_BUS.GetAll().Where(x => x.Rcpt.DateAdd.Year == year).ToList();
@@ -75,18 +76,18 @@ namespace ShoesStore.Admin
 
         public string SumPrice(int month, int year)
         {
-            var rs = MyLibrary.RcptSub_BUS.GetAll().Where(x => (x.Rcpt.DateAdd.Month == month) && (x.Rcpt.DateAdd.Year == year)).ToList();
+            var rs = MyLibrary.RcptSub_BUS.GetAll()
+                .Where(x => x.Rcpt.DateAdd.Month == month && x.Rcpt.DateAdd.Year == year).ToList();
             double sum = 0;
-            foreach(RcptSub item in rs)
+            foreach (var item in rs)
             {
                 double sumRcpt = 0;
-                List<RcptSubDet> subDets = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == item.RcptSubId).ToList();
-                foreach (RcptSubDet itemdet in subDets)
-                {
-                    sumRcpt = sumRcpt + (double.Parse(itemdet.Quantity.ToString()) * double.Parse(itemdet.Sub.Price));
-                }
+                var subDets = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == item.RcptSubId).ToList();
+                foreach (var itemdet in subDets)
+                    sumRcpt = sumRcpt + double.Parse(itemdet.Quantity.ToString()) * double.Parse(itemdet.Sub.Price);
                 sum = sum + sumRcpt;
             }
+
             return sum.ToFormatMoney();
         }
 
@@ -94,16 +95,15 @@ namespace ShoesStore.Admin
         {
             var rs = MyLibrary.RcptSub_BUS.GetAll().Where(x => x.Rcpt.DateAdd.Year == year).ToList();
             double sum = 0;
-            foreach (RcptSub item in rs)
+            foreach (var item in rs)
             {
                 double sumRcpt = 0;
-                List<RcptSubDet> subDets = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == item.RcptSubId).ToList();
-                foreach (RcptSubDet itemdet in subDets)
-                {
-                    sumRcpt = sumRcpt + (double.Parse(itemdet.Quantity.ToString()) * double.Parse(itemdet.Sub.Price));
-                }
+                var subDets = MyLibrary.RcptSubDet_BUS.GetAll().Where(x => x.RcptSubId == item.RcptSubId).ToList();
+                foreach (var itemdet in subDets)
+                    sumRcpt = sumRcpt + double.Parse(itemdet.Quantity.ToString()) * double.Parse(itemdet.Sub.Price);
                 sum = sum + sumRcpt;
             }
+
             return sum.ToFormatMoney();
         }
     }
