@@ -3,12 +3,13 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     Thống kê
     <div class="row">
-        <div class="col-12">
+        <div class="col-6">
             Chọn thời gian:
             <asp:DropDownList runat="server" ID="ddlMonth"></asp:DropDownList>
             <asp:DropDownList runat="server" ID="ddlYear"></asp:DropDownList>
             <asp:LinkButton runat="server" ID="lbtn" OnClick="lbtn_Click">Chọn</asp:LinkButton>
         </div>
+        <div class="col-6"><asp:LinkButton runat="server" ID="lbtnExcel" OnClick="lbtnExportExcel">Xuất file excel</asp:LinkButton></div>
     </div>
     <div class="row">
         <div class="col-12">

@@ -1,8 +1,14 @@
-﻿using System;
+﻿using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using OfficeOpenXml;
+using System;
+using System.Data;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using sd = System.Drawing;
@@ -93,7 +99,7 @@ namespace Utilities
             var hw = new HtmlTextWriter(tw);
             gv.RenderControl(hw);
             var htmlInfo = tw.ToString().Trim();
-            var xlsFileName = fileName + ".xls";
+            var xlsFileName = fileName + ".xlsx";
             var filePathName = filePath + xlsFileName;
             if (File.Exists(filePathName))
                 File.Delete(filePathName);
@@ -341,5 +347,27 @@ namespace Utilities
 
             return bmp;
         }
+        // Export excel
+        public void ExportExcel(DataTable datatemp,string SheetName)
+        {
+            ExcelPackage excel = new ExcelPackage();
+            var workSheet = excel.Workbook.Worksheets.Add(SheetName);
+            for (int i = 1; i < datatemp.Columns.Count + 1; i++)
+            {
+                workSheet.Cells[1, i].Style.Font.Bold = true;
+            }
+            workSheet.Cells[1, 1].LoadFromDataTable(datatemp, true);
+            HttpResponse response = HttpContext.Current.Response;
+            using (var memoryStream = new MemoryStream())
+            {
+                response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                response.AddHeader("content-disposition", "attachment;  filename=Overview.xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(response.OutputStream);
+                response.Flush();
+                response.End();
+            }
+        }
     }
+
 }
