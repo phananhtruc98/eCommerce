@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Data;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ShoesStore.MyExtensions;
-
+using Utilities;
 namespace ShoesStore.Admin
 {
     public partial class Overview_Profit_W : Page
@@ -105,6 +106,16 @@ namespace ShoesStore.Admin
             }
 
             return sum.ToFormatMoney();
+        }
+        public void lbtnExportExcel(object sender, EventArgs e)
+        {
+            FileHelper helper = new FileHelper();
+            DataTable table = new DataTable();
+            table.Columns.Add("Tổng hoá đơn");
+            table.Columns.Add("Tổng doanh thu");
+            table.Rows.Add(lblRcptSubCount.Text, lblSumPrice.Text);
+            table.AcceptChanges();
+            helper.ExportExcel(table, "Thống kê lợi nhuận của Webmaster");
         }
     }
 }

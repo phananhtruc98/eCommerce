@@ -361,7 +361,7 @@ namespace Utilities
             using (var memoryStream = new MemoryStream())
             {
                 response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                response.AddHeader("content-disposition", "attachment;  filename=Overview.xlsx");
+                response.AddHeader("content-disposition", "attachment;  filename="+SheetName+".xlsx");
                 excel.SaveAs(memoryStream);
                 memoryStream.WriteTo(response.OutputStream);
                 response.Flush();

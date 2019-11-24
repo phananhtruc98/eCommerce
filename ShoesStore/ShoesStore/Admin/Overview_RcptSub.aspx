@@ -6,15 +6,18 @@
             <div class="col-12">Thống kê thu chi của Merchant</div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-4">
                 Chọn cửa hàng:
                 <asp:DropDownList runat="server" ID="ddlShpName" AutoPostBack="True" OnSelectedIndexChanged="ddlShpName_SelectedIndexChanged"></asp:DropDownList>
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 Chọn thời gian:
                 <asp:DropDownList runat="server" AutoPostBack="True" ID="ddlMonth"></asp:DropDownList>
                 <asp:DropDownList runat="server" AutoPostBack="True" ID="ddlYear"></asp:DropDownList>
                 <asp:LinkButton runat="server" ID="lbtn" OnClick="lbtn_Click">Chọn</asp:LinkButton>
+            </div>
+            <div class="col-4">
+                <asp:LinkButton runat="server" ID="ExportExcel" OnClick="lbtnExportExcel">Xuất file excel</asp:LinkButton>
             </div>
         </div>
         <div runat="server" id="name" class="row">

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Admin {
-    
-    
-    public partial class Overview_RcptSub {
-        
+namespace ShoesStore.Admin
+{
+
+
+    public partial class Overview_RcptSub
+    {
+
         /// <summary>
         /// ddlShpName control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlShpName;
-        
+
         /// <summary>
         /// ddlMonth control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
-        
+
         /// <summary>
         /// ddlYear control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlYear;
-        
+
         /// <summary>
         /// lbtn control.
         /// </summary>
@@ -47,7 +49,16 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtn;
-        
+
+        /// <summary>
+        /// ExportExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ExportExcel;
+
         /// <summary>
         /// name control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl name;
-        
+
         /// <summary>
         /// lvMerProfit control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvMerProfit;
-        
+
         /// <summary>
         /// date control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl date;
-        
+
         /// <summary>
         /// lvDate control.
         /// </summary>

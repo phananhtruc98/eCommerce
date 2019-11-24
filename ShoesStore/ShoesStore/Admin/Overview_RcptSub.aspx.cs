@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Data;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilities;
 
 namespace ShoesStore.Admin
 {
@@ -103,5 +105,22 @@ namespace ShoesStore.Admin
                 LoadLv();
             }
         }
+
+        public void lbtnExportExcel(object sender, EventArgs e)
+        {
+            FileHelper helper = new FileHelper();
+            var rs = MyLibrary.Shp_Bus.GetAll().ToList();
+            DataTable table = new DataTable();
+            table.Columns.Add("Mã cửa hàng");
+            table.Columns.Add("Tên cửa hàng");
+            table.Columns.Add("Tổng thu");
+            table.Columns.Add("Tổng chi");
+            foreach (var item in rs)
+            {
+                table.Rows.Add(item.ShpId, item.ShpName, MyLibrary.SumIn(item), MyLibrary.SumOut(item));
+            }
+            table.AcceptChanges();
+            helper.ExportExcel(table, "Thống kê thu chi của Merchant");
+        }
     }
-}
+}   
