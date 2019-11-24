@@ -36,6 +36,7 @@ namespace ShoesStore.Admin
             {
                 lbEmpty.Visible = true;
             }
+            lvNeedToActive.DataBind();
         }
 
         public void LoadTotalInfo()

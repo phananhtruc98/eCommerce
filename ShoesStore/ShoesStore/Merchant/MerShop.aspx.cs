@@ -36,7 +36,8 @@ namespace ShoesStore.Merchant
         {
             //var mer = (Mer)MerchantSession.LoginMerchant;
             //var usr1 = MyLibrary.Usr_BUS.GetAll().FirstOrDefault(m => m.UsrId == mer.MerId);
-            var shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.ShpId == _shpView?.ShpId);
+
+            var shp = MyLibrary.Shp_Bus.GetAll() != null ? MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.ShpId == _shpView?.ShpId) : null;
             if (shp == null) return;
             //these code below cannot be reached if shp is null
             lblShpName.Text = shp.ShpName;
@@ -56,7 +57,7 @@ namespace ShoesStore.Merchant
 
                 // Từ ShpName lấy ra đối tượng Shp //Có hàm trong Shp_BUS
                 var ShpId = _shpView?.ShpId;
-                UcCusCmt.Shp = MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.ShpId == ShpId);
+                UcCusCmt.Shp = MyLibrary.Shp_Bus.GetAll() != null?MyLibrary.Shp_Bus.GetAll().FirstOrDefault(m => m.ShpId == ShpId):null;
                 if (ShpId != null)
                 {
                     ucPro.ShpId = ShpId.Value;

@@ -32,7 +32,7 @@ namespace ShoesStore.Customer
         private void BindlvChoLayHang(int CusId)
         {
             var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == CusId);
-            var rs1 = rs.Where(m => m.RcptBuySta.Any(n => n.RcptBuyStaDet.Any(b => b.RcptBuyStaStep.StepId == 4)
+            var rs1 = rs.Where(m => m.RcptBuySta.Any(n => n.RcptBuyStaDet.Any(b => b.StepId == 4)
                                                           && !n.RcptBuyStaDet.Any(v => new[] { 6, 7, 8, 9, 10 }.Contains(v.StepId))));
             //var rs1 = from r in rs
             //          join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
@@ -56,7 +56,7 @@ namespace ShoesStore.Customer
         private void BindlvChoThanhToan(int CusId)
         {
             var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == CusId);
-            var rs1 = rs.Where(m => m.RcptBuySta.Any(n => n.RcptBuyStaDet.Any(b => b.RcptBuyStaStep.StepId == 1)
+            var rs1 = rs.Where(m => m.RcptBuySta.Any(n => n.RcptBuyStaDet.Any(b => b.StepId == 1)
              && !n.RcptBuyStaDet.Any(v => new[] { 4, 6, 7, 8, 9, 10 }.Contains(v.StepId))));
             //var rs1 = from r in rs
             //          join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId
@@ -98,7 +98,7 @@ namespace ShoesStore.Customer
         private void BindlvDaHuy(int CusId)
         {
             var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == CusId);
-            var rs1 = rs.Where(m => m.RcptBuySta.Any(n => n.RcptBuyStaDet.Any(b => new[] { 8, 9, 10 }.Contains(b.RcptBuyStaStep.StepId))));
+            var rs1 = rs.Where(m => m.RcptBuySta.Any(n => n.RcptBuyStaDet.Any(b => new[] { 8, 9, 10 }.Contains(b.StepId))));
             if (rs1.Count() != 0)
             {
                 lvDaHuy.DataSource = rs1;
@@ -117,7 +117,7 @@ namespace ShoesStore.Customer
         private void BindlvDangGiao(int CusId)
         {
             var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == CusId);
-            var rs1 = rs.Where(m => m.RcptBuySta.Any(n => n.RcptBuyStaDet.Any(b => b.RcptBuyStaStep.StepId == 6)
+            var rs1 = rs.Where(m => m.RcptBuySta.Any(n => n.RcptBuyStaDet.Any(b => b.StepId == 6)
                                                           && !n.RcptBuyStaDet.Any(v => new[] { 7, 8, 9, 10 }.Contains(v.StepId))));
             //var rs1 = from r in rs
             //          join s in MyLibrary.RcptBuyStaDet_BUS.GetAll() on r.RcptBuyId equals s.RcptBuyId

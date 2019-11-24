@@ -91,7 +91,7 @@ namespace ShoesStore.Merchant
             avaimgstr = usr1.Avatar;
             lblEmail.Text = usr1.Email;
             lblPhone.Text = usr1.Phone;
-            avaimg.Attributes["src"] = "/Admin/images/avatar/" + usr1.Avatar;
+            avaimg.Attributes["src"] = "/Admin/images/avatar/" + ((usr1.Avatar == null) ? "avatar-4.jpg" : usr1.Avatar);
         }
 
         protected void Page_Load(object sender, EventArgs e)
