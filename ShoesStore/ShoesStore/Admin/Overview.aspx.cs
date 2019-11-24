@@ -26,9 +26,7 @@ namespace ShoesStore.Admin
             }
             else if (ddlMonth.Text != "" && ddlYear.Text != "")
             {
-                lvShp.Visible = false;
-                lvShp2.Visible = true;
-                LoadLvShp2();
+                LoadLvShp2(int.Parse(ddlMonth.SelectedValue), int.Parse(ddlYear.SelectedValue));
             }
         }
 
@@ -66,11 +64,11 @@ namespace ShoesStore.Admin
             ddlYear.DataBind();
         }
 
-        public void LoadLvShp2()
+        public void LoadLvShp2(int month, int year)
         {
-            var rs = MyLibrary.Shp_Bus.GetAll().ToList();
-            lvShp2.DataSource = rs;
-            lvShp2.DataBind();
+            var rs = MyLibrary.Shp_Bus.GetAll().ToList().Where(x => x.RcptBuy.Any(m => m.Rcpt.DateAdd.Month == month && m.Rcpt.DateAdd.Year == year));
+            lvShp.DataSource = rs;
+            lvShp.DataBind();
         }
 
         public void LoadShp()
