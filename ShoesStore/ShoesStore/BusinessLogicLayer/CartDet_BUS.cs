@@ -23,7 +23,7 @@ namespace ShoesStore.BusinessLogicLayer
                 var cart = _cartBus.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
                 if (cart == null && cus != null)
                 {
-                    cart = new Cart {CusId = cus.CusId};
+                    cart = new Cart { CusId = cus.CusId };
                     _cartBus.Insert(cart);
                     cart = _cartBus.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
                 }
@@ -44,7 +44,9 @@ namespace ShoesStore.BusinessLogicLayer
 
         public int ListCartPreviewNumber()
         {
-            return ListCartPreview().GroupBy(m => new {m.ProDet.Pro.ShpId, m.ProDet.Pro.ProId}).Count();
+            if (ListCartPreview() != null && ListCartPreview().Count > 0)
+                return ListCartPreview().GroupBy(m => new { m.ProDet.Pro.ShpId, m.ProDet.Pro.ProId }).Count();
+            return 0;
         }
 
         public override void SetActive(CartDet obj)

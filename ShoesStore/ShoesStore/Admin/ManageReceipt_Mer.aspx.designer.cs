@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Admin {
-    
-    
-    public partial class ManageReceipt_Mer {
-        
+namespace ShoesStore.Admin
+{
+
+
+    public partial class ManageReceipt_Mer
+    {
+
         /// <summary>
         /// ddlPropFilter control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPropFilter;
-        
+
         /// <summary>
         /// datepicker control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText datepicker;
-        
+
         /// <summary>
         /// lbtnTim control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnTim;
-        
+
         /// <summary>
         /// ddlPropFilterDet control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPropFilterDet;
-        
+
         /// <summary>
         /// txtTimKiem control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTimKiem;
-        
+
         /// <summary>
         /// btnTimKiem control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnTimKiem;
-        
+
         /// <summary>
         /// SortList control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList SortList;
-        
+
         /// <summary>
         /// DirectionList control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DirectionList;
-        
+
         /// <summary>
         /// lbtnSort control.
         /// </summary>
@@ -92,7 +94,25 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnSort;
-        
+
+        /// <summary>
+        /// drlChartType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drlChartType;
+
+        /// <summary>
+        /// Chart1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
+
         /// <summary>
         /// lvRcptSub control.
         /// </summary>
@@ -101,7 +121,7 @@ namespace ShoesStore.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvRcptSub;
-        
+
         /// <summary>
         /// DataPager1 control.
         /// </summary>

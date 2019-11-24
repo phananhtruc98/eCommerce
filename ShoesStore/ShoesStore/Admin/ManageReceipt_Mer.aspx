@@ -1,4 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="ManageReceipt_Mer.aspx.cs" Inherits="ShoesStore.Admin.ManageReceipt_Mer" %>
+
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <%@ Import Namespace="ShoesStore" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -52,8 +54,12 @@
             </div>
         </div>
         <div class="row">
-            <asp:Chart runat="server">
-                <series><asp:Series Name="Series1">
+            Chọn kiểu biểu đồ: 
+            <asp:DropDownList ID="drlChartType" AutoPostBack="true" runat="server" Height="100%"
+                              OnSelectedIndexChanged="drlChartType_OnSelectedIndexChanged">
+            </asp:DropDownList>
+            <asp:Chart ID="Chart1" runat="server">
+                <series><asp:Series Name="Series1" ChartArea="ChartArea1" ChartType="Line">
                     <Points>
                         <asp:DataPoint AxisLabel="Mark" YValues="800" />
                         <asp:DataPoint AxisLabel="Steve" YValues="900" />
@@ -63,9 +69,9 @@
                     </Points>
                 </asp:Series></series>
                 <chartareas><asp:ChartArea Name="ChartArea1">
-                    <AxisX Title="Student Name">
+                    <AxisX Title="Tháng">
                     </AxisX>
-                    <AxisY Title="Total Marks">
+                    <AxisY Title="Doanh thu">
                     </AxisY>
                 </asp:ChartArea></chartareas>
             </asp:Chart>

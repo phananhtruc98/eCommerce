@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
+using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
 using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
@@ -174,7 +175,7 @@ namespace ShoesStore.Admin
             items.Add(new ListItem("Ngày đặt hàng", "DateAdd"));
             items.Add(new ListItem("Cửa hàng", "ShpName"));
             items.Add(new ListItem("Khách hàng", "CusName"));
-            items.Sort(delegate(ListItem item1, ListItem item2) { return item1.Text.CompareTo(item2.Text); });
+            items.Sort(delegate (ListItem item1, ListItem item2) { return item1.Text.CompareTo(item2.Text); });
             ddlPropFilter.Items.AddRange(items.ToArray());
         }
 
@@ -234,16 +235,18 @@ namespace ShoesStore.Admin
             {
                 LoadLvSub();
                 LoadDdlPropFilter();
+                GetChartData();
+                GetChartTypes();
             }
         }
 
         public void TimKiem(string search_key)
         {
             var rs = (from a in MyLibrary.RcptSub_BUS.GetAll()
-                where a.Rcpt.Usr.UsrName.ToString().ContainsEx(search_key)
-                      || a.RcptSubId.ToString().ContainsEx(search_key)
-                      || a.Mer.Shp.Select(x => x.ShpName).FirstOrDefault().ToString().ContainsEx(search_key)
-                select a).ToList();
+                      where a.Rcpt.Usr.UsrName.ToString().ContainsEx(search_key)
+                            || a.RcptSubId.ToString().ContainsEx(search_key)
+                            || a.Mer.Shp.Select(x => x.ShpName).FirstOrDefault().ToString().ContainsEx(search_key)
+                      select a).ToList();
             if (rs.Count != 0)
             {
                 lvRcptSub.DataSource = rs;
@@ -447,5 +450,31 @@ namespace ShoesStore.Admin
         //            gvRcptSub.DataSource = rs;
         //            gvRcptSub.DataBind();
         //        }
+        private void GetChartData()
+        {
+            string search_key = txtTimKiem.Text.UnSign().ToLower();
+            var rs = (from a in MyLibrary.RcptSub_BUS.GetAll()
+                      where a.Rcpt.Usr.UsrName.ToString().ContainsEx(search_key)
+                            || a.RcptSubId.ToString().ContainsEx(search_key)
+                            || a.Mer.Shp.Select(x => x.ShpName).FirstOrDefault().ToString().ContainsEx(search_key)
+                      select a).ToList();
+
+            Series series = Chart1.Series["Series1"];
+
+        }
+        private void GetChartTypes()
+        {
+            foreach (int chartType in Enum.GetValues(typeof(SeriesChartType)))
+            {
+                ListItem li = new ListItem(Enum.GetName(typeof(SeriesChartType),
+                    chartType), chartType.ToString());
+                drlChartType.Items.Add(li);
+            }
+        }
+        protected void drlChartType_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Chart1.Series["Series1"].ChartType = (SeriesChartType)Enum.Parse(
+                typeof(SeriesChartType), drlChartType.SelectedValue);
+        }
     }
 }
