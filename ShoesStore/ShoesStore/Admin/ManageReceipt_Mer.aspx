@@ -52,6 +52,23 @@
             </div>
         </div>
         <div class="row">
+            <asp:Chart runat="server">
+                <series><asp:Series Name="Series1">
+                    <Points>
+                        <asp:DataPoint AxisLabel="Mark" YValues="800" />
+                        <asp:DataPoint AxisLabel="Steve" YValues="900" />
+                        <asp:DataPoint AxisLabel="John" YValues="700" />
+                        <asp:DataPoint AxisLabel="Mary" YValues="900" />
+                        <asp:DataPoint AxisLabel="Ben" YValues="600" />
+                    </Points>
+                </asp:Series></series>
+                <chartareas><asp:ChartArea Name="ChartArea1">
+                    <AxisX Title="Student Name">
+                    </AxisX>
+                    <AxisY Title="Total Marks">
+                    </AxisY>
+                </asp:ChartArea></chartareas>
+            </asp:Chart>
             <asp:ListView runat="server" OnItemDataBound="lvRcptSub_ItemDataBound" OnPagePropertiesChanging="lvRcptSub_PagePropertiesChanging" AllowPaging="true" ItemType="ShoesStore.DataAccessLogicLayer.RcptSub" OnItemCommand="lvRcptSub_ItemCommand" OnSelectedIndexChanged="lvRcptSub_SelectedIndexChanged" ID="lvRcptSub">
                 <LayoutTemplate>
                     <table class="table table-border">

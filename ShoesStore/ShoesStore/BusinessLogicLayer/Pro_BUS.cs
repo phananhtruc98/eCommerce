@@ -18,7 +18,9 @@ namespace ShoesStore.BusinessLogicLayer
 
         public List<Pro> GetAllActive()
         {
-            return GetAll().Where(m => m.Active == true && m.ProDet.Count != 0).ToList();
+            if (GetAll() != null)
+                return GetAll().Where(m => m.Active == true && m.ProDet.Count != 0).ToList();
+            return null;
         }
 
         public List<ProColor> GetAvailableColors(Pro obj)
