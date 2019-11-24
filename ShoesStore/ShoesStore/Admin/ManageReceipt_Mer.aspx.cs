@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
+using EO.WebBrowser.DOM;
 using ShoesStore.BusinessLogicLayer;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.MyExtensions;
@@ -237,6 +241,7 @@ namespace ShoesStore.Admin
                 LoadDdlPropFilter();
                 GetChartData();
                 GetChartTypes();
+                Chart1.Series["Series1"].ChartType = SeriesChartType.Column;
             }
         }
 
@@ -460,6 +465,16 @@ namespace ShoesStore.Admin
                       select a).ToList();
 
             Series series = Chart1.Series["Series1"];
+            var uniqueMonthYear = rs.Select(m => m.Rcpt.DateAdd.Date).OrderBy(m => m).Distinct();
+            foreach (var u in uniqueMonthYear)
+            {
+                double money = 0;
+                foreach (var r in rs.Where(m => m.Rcpt.DateAdd.Date == u))
+                {
+                    money += MyLibrary.SumRcptSubPrice(r);
+                }
+                series.Points.AddXY(u.ToShortDateString(), money);
+            }
 
         }
         private void GetChartTypes()
@@ -473,8 +488,23 @@ namespace ShoesStore.Admin
         }
         protected void drlChartType_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Chart1.Series["Series1"].ChartType = (SeriesChartType)Enum.Parse(
+            GetChartData();
+            Chart1.Series["Series1"].ChartType = (SeriesChartType)Enum.Parse(
                 typeof(SeriesChartType), drlChartType.SelectedValue);
+        }
+        protected void btnExportJpg_OnServerClick(object sender, EventArgs e)
+        {
+            
+                try
+                {
+                    Chart1.SaveImage(HttpContext.Current.Request.PhysicalApplicationPath + "\\chart.jpg", ChartImageFormat.Jpeg);
+                    
+                }
+                catch (Exception Ơ)
+                {
+                    
+                    throw;
+                }
         }
     }
 }
