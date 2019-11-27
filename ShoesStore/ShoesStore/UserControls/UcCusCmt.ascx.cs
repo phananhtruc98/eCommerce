@@ -56,15 +56,15 @@ namespace ShoesStore.UserControls
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var hdfRcptBuyId = (HiddenField) e.Item.FindControl("hdfRcptBuyId");
+                var hdfRcptBuyId = (HiddenField)e.Item.FindControl("hdfRcptBuyId");
                 var rcptBuy = MyLibrary.RcptBuy_BUS.GetAll()
                     .FirstOrDefault(m => m.RcptBuyId == int.Parse(hdfRcptBuyId.Value));
-
-                var MessageFrom = (Label) e.Item.FindControl("MessageFrom");
-                var PointFrom = (Label) e.Item.FindControl("PointFrom");
+                var lbNguoiDanhGia = (Label)e.Item.FindControl("lbNguoiDanhGia");
+                var MessageFrom = (Label)e.Item.FindControl("MessageFrom");
+                var PointFrom = (Label)e.Item.FindControl("PointFrom");
 
                 MessageFrom.Text = ObjCmt == ObjCmt.CusCmt ? rcptBuy?.CusMessage : rcptBuy?.MerMessage;
-
+                lbNguoiDanhGia.Text = ObjCmt == ObjCmt.CusCmt ? rcptBuy.Cus.Usr.Email : rcptBuy.Shp.ShpName;
                 PointFrom.Text = ObjCmt == ObjCmt.CusCmt ? rcptBuy.CusPoint == null ? "" :
                     MyLibrary.DrawStar(rcptBuy.CusPoint.Value)
                     : rcptBuy.MerPoint == null ? "" : MyLibrary.DrawStar(rcptBuy.MerPoint.Value);

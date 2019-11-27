@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Merchant {
-    
-    
-    public partial class DisableProduct {
-        
+namespace ShoesStore.Merchant
+{
+
+
+    public partial class DisableProduct
+    {
+
         /// <summary>
         /// lvPro control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvPro;
-        
+
         /// <summary>
         /// DataPager1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataPager DataPager1;
-        
+
         /// <summary>
         /// lbEmpty control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEmpty;
-        
+
         /// <summary>
         /// lbEmpty2 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEmpty2;
-        
+
         /// <summary>
         /// lvOutofStock control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvOutofStock;
-        
+
         /// <summary>
         /// DataPager2 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataPager DataPager2;
-        
+
         /// <summary>
         /// lbtnIsOutOfStock control.
         /// </summary>

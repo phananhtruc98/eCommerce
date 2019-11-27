@@ -22,7 +22,7 @@
                     </h6>
                     <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblDateStart"></asp:Label>
                     <p> </p>
-                    <h6>Mô Tả Về Shop : </h6>
+                    <h6 ID="lbMoTa" runat="server">Mô Tả Về Shop : </h6>
                     <p>
                         <asp:Label runat="server" CssClass="form-control-lg txt-by-truc" ID="lblDesc"></asp:Label>
                     </p>

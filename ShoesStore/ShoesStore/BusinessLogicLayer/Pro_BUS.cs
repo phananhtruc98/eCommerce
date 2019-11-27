@@ -19,7 +19,7 @@ namespace ShoesStore.BusinessLogicLayer
         public List<Pro> GetAllActive()
         {
             if (GetAll() != null)
-                return GetAll().Where(m => m.Active == true && m.ProDet.Count != 0).ToList();
+                return GetAll().Where(m => m.Active == true && m.ProDet.Count != 0&& !m.IsOutOfStock.Value).ToList();
             return null;
         }
 

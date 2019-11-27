@@ -7,7 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.DataAccessLogicLayer
+using ShoesStore.DataAccessLogicLayer;
+
+namespace ShoesStore
 {
     using System;
     using System.Data.Entity;
@@ -28,18 +30,9 @@ namespace ShoesStore.DataAccessLogicLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Adv> Adv { get; set; }
         public DbSet<Cart> Cart { get; set; }
         public DbSet<CartDet> CartDet { get; set; }
-        public DbSet<Chat> Chat { get; set; }
-        public DbSet<ChatBox> ChatBox { get; set; }
-        public DbSet<Config> Config { get; set; }
-        public DbSet<Country> Country { get; set; }
-        public DbSet<Coupon> Coupon { get; set; }
         public DbSet<Cus> Cus { get; set; }
-        public DbSet<District> District { get; set; }
-        public DbSet<Log> Log { get; set; }
-        public DbSet<LogType> LogType { get; set; }
         public DbSet<Mer> Mer { get; set; }
         public DbSet<Mstr> Mstr { get; set; }
         public DbSet<MstrDet> MstrDet { get; set; }
@@ -52,7 +45,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<ProSize> ProSize { get; set; }
         public DbSet<ProSlide> ProSlide { get; set; }
         public DbSet<ProSlideImg> ProSlideImg { get; set; }
-        public DbSet<Province> Province { get; set; }
         public DbSet<Rcpt> Rcpt { get; set; }
         public DbSet<RcptBuy> RcptBuy { get; set; }
         public DbSet<RcptBuyDet> RcptBuyDet { get; set; }
@@ -65,7 +57,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public DbSet<Sub> Sub { get; set; }
         public DbSet<Usr> Usr { get; set; }
         public DbSet<UsrAct> UsrAct { get; set; }
-        public DbSet<Ward> Ward { get; set; }
         public DbSet<WebInfo> WebInfo { get; set; }
         public DbSet<WebSlide> WebSlide { get; set; }
     

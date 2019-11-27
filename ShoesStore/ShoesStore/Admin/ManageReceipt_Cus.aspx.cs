@@ -45,13 +45,9 @@ namespace ShoesStore.Admin
                         Subprice = int.Parse(p.Price) * d.Quantity
                     }
                 ).ToList();
-            //gvRcptBuyDet.DataSource = src;
-            //total = src.Sum(m => Convert.ToInt32(m.Subprice));
-            //sumprice2.Text = total.ToString("#,##0");
-            //gvRcptBuyDet.DataBind();
+          
         }
 
-        // Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
@@ -265,9 +261,6 @@ namespace ShoesStore.Admin
         {
             if (e.Item.ItemType == ListViewItemType.DataItem)
             {
-                //Label lbRcptBuyId = (Label)e.Item.FindControl("lbRcptId");
-                //var rs = MyLibrary.RcptBuy_BUS.GetAll().Where(x => x.RcptBuyId == Int32.Parse((lbRcptBuyId.Text))).FirstOrDefault();
-                //lstViewTemp.Add(rs);
             }
         }
 

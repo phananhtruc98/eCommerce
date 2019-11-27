@@ -53,7 +53,6 @@ namespace ShoesStore.Admin
         protected void btnTiep_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 1;
-            //ddtMerName_SelectedIndexChanged(sender, e);
             SetShpInfo(int.Parse(ddtMerName.SelectedValue));
         }
 
@@ -95,9 +94,6 @@ namespace ShoesStore.Admin
             lbTongNgayMua.Text = ngay.ToString();
             lbTongTien.Text = tien.ToFormatMoney();
         }
-
-
-        // View 1
         public void LoadTableSub()
         {
             lvSub.DataSource = MyLibrary.Sub_BUS.GetAll();

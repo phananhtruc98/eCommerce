@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Merchant {
-    
-    
-    public partial class MerShop {
-        
+namespace ShoesStore.Merchant
+{
+
+
+    public partial class MerShop
+    {
+
         /// <summary>
         /// lblShpName control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblShpName;
-        
+
         /// <summary>
         /// lblDateStart control.
         /// </summary>
@@ -29,7 +31,16 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDateStart;
-        
+
+        /// <summary>
+        /// lbMoTa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbMoTa;
+
         /// <summary>
         /// lblDesc control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDesc;
-        
+
         /// <summary>
         /// ucPro control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::ShoesStore.UserControls.UcPro ucPro;
-        
+
         /// <summary>
         /// UcCusCmt control.
         /// </summary>

@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin/Admin.Master" CodeBehind="Default.aspx.cs" Inherits="ShoesStore.Admin.Admin1" %>
+
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -21,7 +22,7 @@
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i>65% lower growth
+                            <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i>Tốt
                         </p>
                     </div>
                 </div>
@@ -43,7 +44,7 @@
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i>Product-wise sales
+                            <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i>Tốt
                         </p>
                     </div>
                 </div>
@@ -65,7 +66,7 @@
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i>Weekly Sales
+                            <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i>Tốt
                         </p>
                     </div>
                 </div>
@@ -87,7 +88,7 @@
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-reload mr-1" aria-hidden="true"></i>Product-wise sales
+                            <i class="mdi mdi-reload mr-1" aria-hidden="true"></i>Tốt
                         </p>
                     </div>
                 </div>
@@ -112,7 +113,7 @@
                                             <th>Gía</th>
                                             <th>Kích hoạt</th>
                                         </tr>
-                                        <tr id="itemPlaceholder" runat="server"/>
+                                        <tr id="itemPlaceholder" runat="server" />
                                     </table>
                                 </LayoutTemplate>
 
@@ -124,14 +125,14 @@
                                             </asp:LinkButton>
                                         </td>
                                         <td>
-                                            <asp:HiddenField ID="hdfShpId" runat="server" Value="<%# Item.ShpId %>"/>
+                                            <asp:HiddenField ID="hdfShpId" runat="server" Value="<%# Item.ShpId %>" />
                                             <asp:Label runat="server" ID="lbShpName" Text="<%# Item.Shp.ShpName %>"></asp:Label>
                                         </td>
                                         <td>
                                             <asp:Label runat="server" ID="lbProName" Text="<%# Item.ProName %>"></asp:Label>
                                         </td>
                                         <td>
-                                            <img class="img-listview-pro rounded" src="<%# MyLibrary.ProImgPath(Item) %>"/>
+                                            <img class="img-listview-pro rounded" src="<%# MyLibrary.ProImgPath(Item) %>" />
                                         </td>
                                         <td>
                                             <asp:Label runat="server" ID="lbCatName" Text="<%# Item.ProCat.CatName %>"></asp:Label>
@@ -149,13 +150,13 @@
                                 </ItemTemplate>
                             </asp:ListView>
                             <asp:DataPager ID="DataPager1" runat="server" PageSize="5"
-                                           PagedControlID="lvNeedToActive">
+                                PagedControlID="lvNeedToActive">
                                 <Fields>
                                     <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True"
-                                                                ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước"/>
-                                    <asp:NumericPagerField/>
+                                        ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
+                                    <asp:NumericPagerField />
                                     <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True"
-                                                                ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước"/>
+                                        ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
                                 </Fields>
                             </asp:DataPager>
                             <asp:Label runat="server" ID="lbEmpty" Text="Không có sản phẩm cần duyệt" Visible="false"></asp:Label>
@@ -170,25 +171,28 @@
                     <div class="card-body">
                         <h5 class="card-title mb-4">Bình luận gần đây</h5>
                         <asp:Label ID="lbEmpty2" runat="server" Text="Không có nhận xét nào" Visible="false"></asp:Label>
-                        <asp:ListView ID="lvCmt" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuyDet" runat="server">
+                        <asp:ListView ID="lvCmt" ItemType="ShoesStore.DataAccessLogicLayer.RcptBuy" runat="server">
                             <LayoutTemplate>
                                 <table class="table">
                                     <tr>
+                                        <th>Mã đơn</th>
                                         <th>Tên cửa hàng</th>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Màu</th>
-                                        <%--  <th>Kích cỡ</th>
-                                        <th>Nhận xét</th>
-                                        <th>Đánh giá</th>--%>
+                                        <th>Người mua đánh giá</th>
+                                        <th>Người mua bình luận</th>
+                                        <th>Người bán đánh giá</th>
+                                        <th>Người bán bình luận</th>
                                     </tr>
-                                    <tr id="itemPlaceholder" runat="server"/>
+                                    <tr id="itemPlaceholder" runat="server" />
                                 </table>
                             </LayoutTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%# Item.ProDet.ProId %></td>
-                                    <td><%# Item.ProDet.Pro.ProName %></td>
-                                    <td><%#MyLibrary.DrawStar(MyLibrary.Pro_BUS.AverageStar(Item.ProDet.Pro)) %></td>
+                                    <td><%# Item.RcptBuyId %></td>
+                                    <td><%# Item.Shp.ShpName %></td>
+                                    <td><%#MyLibrary.DrawStar(Item.CusPoint??0) %></td>
+                                    <td><%#Item.CusMessage%></td>
+                                    <td><%#MyLibrary.DrawStar(Item.MerPoint??0) %></td>
+                                    <td><%#Item.MerMessage%></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:ListView>

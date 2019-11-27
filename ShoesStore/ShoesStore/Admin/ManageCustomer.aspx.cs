@@ -23,13 +23,6 @@ namespace ShoesStore.Admin
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
-
-        //protected void gvCustomer_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    lvCus.PageIndex = e.NewPageIndex;
-        //    BindDataGridView();
-        //}
-
         protected void lvCus_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             if (e.CommandName == "Detail")

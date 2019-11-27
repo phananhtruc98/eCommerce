@@ -65,7 +65,7 @@ namespace ShoesStore.BusinessLogicLayer
             //RcptBuy rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().FirstOrDefault(m => cus != null && m.CusId == cus.CusId);
             var rcptBuy = MyLibrary.RcptBuy_BUS.GetAll().Where(m => m.CusId == cus.CusId).ToList();
             return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && rcptBuy.Contains(m.RcptBuy))
-                .GroupBy(m => m.ProId).Select(x => x.FirstOrDefault())
+                .GroupBy(m => new { m.RcptBuyId, m.ProId }).Select(x => x.FirstOrDefault())
                 .ToList();
             //return MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => rcptBuy != null && m.RcptBuyId == rcptBuy.RcptBuyId).ToList();
         }

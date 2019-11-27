@@ -91,6 +91,7 @@ namespace ShoesStore.Merchant
                 pro.PriceAfter = lbPriceAfter.Text;
                 MyLibrary.Pro_BUS.Update(pro);
                 lstProSelected.Remove(pro);
+                LoadLvPro();
             }
             else if (e.CommandName == "Check")
             {

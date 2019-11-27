@@ -16,7 +16,6 @@ namespace ShoesStore.DataAccessLogicLayer
     {
         public Shp()
         {
-            this.ChatBox = new HashSet<ChatBox>();
             this.Pro = new HashSet<Pro>();
             this.RcptBuy = new HashSet<RcptBuy>();
         }
@@ -30,7 +29,6 @@ namespace ShoesStore.DataAccessLogicLayer
         public string Address { get; set; }
         public string Phone { get; set; }
     
-        public virtual ICollection<ChatBox> ChatBox { get; set; }
         public virtual Mer Mer { get; set; }
         public virtual ICollection<Pro> Pro { get; set; }
         public virtual ICollection<RcptBuy> RcptBuy { get; set; }

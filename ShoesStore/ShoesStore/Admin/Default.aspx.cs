@@ -10,7 +10,7 @@ namespace ShoesStore.Admin
     {
         public void BindDataListview()
         {
-            var rs1 = MyLibrary.RcptBuyDet_BUS.GetAll().Where(x => x.Cmt != null).ToList();
+            var rs1 = MyLibrary.RcptBuy_BUS.GetAll().Where(x => !String.IsNullOrEmpty(x.CusMessage) || !String.IsNullOrEmpty(x.MerMessage)).ToList();
             if (rs1.Count() == 0)
             {
                 lbEmpty2.Visible = true;
@@ -25,8 +25,8 @@ namespace ShoesStore.Admin
         public void LoadLvNeedToActive()
         {
             var rs = (from p in MyLibrary.Pro_BUS.GetAll()
-                where p.Active == false
-                select p).ToList();
+                      where p.Active == false
+                      select p).ToList();
             if (rs.Count != 0)
             {
                 lvNeedToActive.DataSource = rs;
@@ -50,7 +50,7 @@ namespace ShoesStore.Admin
         protected void lvNeedToActive_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             var ProId = int.Parse(e.CommandArgument.ToString());
-            var ShpIdhdf = (HiddenField) e.Item.FindControl("hdfShpId");
+            var ShpIdhdf = (HiddenField)e.Item.FindControl("hdfShpId");
             var ShpId = int.Parse(ShpIdhdf.Value);
             if (e.CommandName == "Submit")
             {

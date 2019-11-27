@@ -19,7 +19,6 @@ namespace ShoesStore.DataAccessLogicLayer
             this.ProDet = new HashSet<ProDet>();
             this.ProSlide = new HashSet<ProSlide>();
             this.ProSlideImg = new HashSet<ProSlideImg>();
-            this.Coupon = new HashSet<Coupon>();
         }
     
         public int ShpId { get; set; }
@@ -43,6 +42,5 @@ namespace ShoesStore.DataAccessLogicLayer
         public virtual ICollection<ProSlide> ProSlide { get; set; }
         public virtual ICollection<ProSlideImg> ProSlideImg { get; set; }
         public virtual Shp Shp { get; set; }
-        public virtual ICollection<Coupon> Coupon { get; set; }
     }
 }

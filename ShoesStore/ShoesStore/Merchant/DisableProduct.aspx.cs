@@ -16,24 +16,25 @@ namespace ShoesStore.Merchant
             foreach (var pro in lsOutOfStock)
             {
                 var rs = MyLibrary.Pro_BUS.GetAll().Where(x => x.ProId == pro.ProId).FirstOrDefault();
-                rs.IsOutOfStock = true;
+                rs.IsOutOfStock = !rs.IsOutOfStock;
                 MyLibrary.Pro_BUS.Update(rs);
             }
 
             MyLibrary.Show("Cập nhật thành công!");
             LoadLvPro();
-            lsOutOfStock.Clear();
             LoadOutofStockPro();
+            lsOutOfStock.Clear();
+            
         }
 
         public void LoadLvPro()
         {
-            var mer = (Mer) MerchantSession.LoginMerchant;
+            var mer = (Mer)MerchantSession.LoginMerchant;
             var ShpId = MyLibrary.Shp_Bus.GetAll().Where(x => x.MerId == mer.MerId).Select(x => x.ShpId)
                 .FirstOrDefault();
             var rs = (from p in MyLibrary.Pro_BUS.GetAll()
-                where p.IsOutOfStock == null && p.ShpId == ShpId
-                select p).ToList();
+                      where p.ShpId == ShpId
+                      select p).ToList();
             if (rs.Count != 0)
             {
                 lvPro.DataSource = rs;
@@ -61,7 +62,7 @@ namespace ShoesStore.Merchant
         protected void lvOutofStock_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             var ProId = int.Parse(e.CommandArgument.ToString());
-            var ShpIdhdf = (HiddenField) e.Item.FindControl("hdfShpId");
+            var ShpIdhdf = (HiddenField)e.Item.FindControl("hdfShpId");
             var ShpId = int.Parse(ShpIdhdf.Value);
         }
 
@@ -74,14 +75,14 @@ namespace ShoesStore.Merchant
         protected void lvPro_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             var ProId = int.Parse(e.CommandArgument.ToString());
-            var ShpIdhdf = (HiddenField) e.Item.FindControl("hdfShpId");
+            var ShpIdhdf = (HiddenField)e.Item.FindControl("hdfShpId");
             var ShpId = int.Parse(ShpIdhdf.Value);
             if (e.CommandName == "Submit")
             {
                 lbtnIsOutOfStock.Visible = true;
                 var rs = (from p in MyLibrary.Pro_BUS.GetAll()
-                    where p.ProId == ProId && p.ShpId == ShpId && p.Active == true
-                    select p).FirstOrDefault();
+                          where p.ProId == ProId && p.ShpId == ShpId && p.Active == true
+                          select p).FirstOrDefault();
                 if (lsOutOfStock.Contains(rs))
                 {
                     MyLibrary.Show("Sản phẩm này đã được chọn");

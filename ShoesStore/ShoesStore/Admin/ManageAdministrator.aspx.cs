@@ -42,22 +42,11 @@ namespace ShoesStore.Admin
         protected void btnCreateUser_Click(object sender, EventArgs e)
         {
             CreateAdministrator();
-        }
-
-        // Btn Tìm kiếm 
+        } 
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
             TimKiem(txtTimKiem.Text.UnSign().ToLower());
         }
-
-        //Phân trang
-        //protected void gvAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    gvAdmin.PageIndex = e.NewPageIndex;
-        //    BindDataGridView();
-        //}
-
-        // Hiển thị Thêm quản trị viên (Chỉ có chức vụ admin mới thấy được)
         public void CreateAdministrator()
         {
             var mstr = (Mstr) AdminSession.LoginAdmin;
@@ -144,133 +133,6 @@ namespace ShoesStore.Admin
                 BindDataGridViewMstrRole();
             }
         }
-
-        // Ràng buộc + thêm xóa sửa
-        //protected void gvAdmin_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    if (e.CommandName == "EditRow")
-        //    {
-        //        var rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
-        //        gvAdmin.EditIndex = rowIndex;
-        //        BindDataGridView();
-        //    }
-        //    else if (e.CommandName == "DeleteRow")
-        //    {
-        //        var mstrDetDel = mstrDet_bus.GetAll()
-        //            .FirstOrDefault(m => m.MstrId == Convert.ToInt32(e.CommandArgument));
-        //        var mstrDel = mstr.GetAll().FirstOrDefault(m => m.MstrId == Convert.ToInt32(e.CommandArgument));
-        //        var usrDel = (from c in usr.GetAll()
-        //                      where c.UsrId == Convert.ToInt32(e.CommandArgument)
-        //                      select c).FirstOrDefault();
-        //        mstrDet_bus.Delete(mstrDetDel);
-        //        mstr.Delete(mstrDel);
-        //        usr.Delete(usrDel);
-        //        BindDataGridView();
-        //    }
-        //    else if (e.CommandName == "CancelUpdate")
-        //    {
-        //        gvAdmin.EditIndex = -1;
-        //        BindDataGridView();
-        //    }
-        //    else if (e.CommandName == "UpdateRow")
-        //    {
-        //        var rowIndex = ((GridViewRow)((LinkButton)e.CommandSource).NamingContainer).RowIndex;
-        //        var file = (FileUpload)gvAdmin.Rows[rowIndex].FindControl("fuploadEdit");
-        //        var UsrName = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditUsrName")).Text;
-        //        var Login = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditLogin")).Text;
-        //        var Phone = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditPhone")).Text;
-        //        var Password = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditPassword")).Text;
-        //        //var RoleId = ((Label)gvAdmin.Rows[rowIndex].FindControl("RoleID_Present")).Text;
-        //        var Address = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditAddress")).Text;
-        //        var Email = ((TextBox)gvAdmin.Rows[rowIndex].FindControl("EditEmail")).Text;
-        //        var LoginOld = ((HiddenField)gvAdmin.Rows[rowIndex].FindControl("LoginOld")).Value;
-        //        var PasswordOld = ((HiddenField)gvAdmin.Rows[rowIndex].FindControl("PasswordOld")).Value;
-        //        var Active = ((CheckBox)gvAdmin.Rows[rowIndex].FindControl("EditActive")).Checked;
-        //        var Avatar = "";
-        //        var avaold = (HiddenField)gvAdmin.Rows[rowIndex].FindControl("EditAvatar");
-        //        var AvatarOld = "";
-        //        if (avaold == null)
-        //            AvatarOld = "";
-        //        else
-        //            AvatarOld = avaold.Value;
-        //        if (file.HasFile)
-        //        {
-        //            var fname = file.FileName;
-        //            var fpath = Server.MapPath("/Admin/Images/avatar/");
-        //            fpath = fpath + @"/" + file.FileName;
-        //            var getext = Path.GetExtension(file.PostedFile.FileName);
-        //            var filename = Path.GetFileNameWithoutExtension(file.PostedFile.FileName);
-        //            var strFilePath = filename + getext;
-        //            Avatar = strFilePath;
-        //            if (getext != ".JPEG" && getext != ".jpeg" && getext != ".JPG" && getext != ".jpg" &&
-        //                getext != ".png" && getext != ".tif" && getext != ".tiff")
-        //            {
-        //                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Chọn ảnh!!')",
-        //                    true);
-        //                return;
-        //            }
-
-        //            file.SaveAs(Server.MapPath(@"~/Admin/Images/avatar/" + strFilePath));
-        //            ViewState["fname"] = fname;
-        //            ViewState["fPath"] = @"~/Admin/Images/avatar/" + strFilePath;
-        //        }
-        //        else if (Avatar == AvatarOld)
-        //        {
-        //            Avatar = AvatarOld;
-        //        }
-        //        else if (Avatar == "")
-        //        {
-        //            Avatar = "default.jpg";
-        //        }
-
-        //        // kiểm tra password nếu thay đổi thì mới encrypt
-        //        if (Password != PasswordOld) Password = EncryptHelper.Encrypt(Password);
-        //        // kiểm tra tồn tại login trùng thì ko được update
-        //        if (Login != LoginOld)
-        //            if (IsExists(Login))
-        //            {
-        //                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Bị trùng')",
-        //                    true);
-        //                return;
-        //            }
-
-        //        // update vô Usr trước
-        //        var result = (from c in usr.GetAll()
-        //                      where c.UsrId == Convert.ToInt32(e.CommandArgument)
-        //                      select c).FirstOrDefault();
-        //        if (result != null)
-        //        {
-        //            result.Password = Password;
-        //            result.UsrName = UsrName;
-        //            result.Address = Address;
-        //            result.Login = Login;
-        //            result.Email = Email;
-        //            result.Phone = Phone;
-        //            result.DateEdit = DateTime.Now;
-        //            result.Active = Active;
-        //            result.Avatar = Avatar;
-        //            usr.Update(result);
-        //        }
-
-        //        // Update vô MstrDet
-        //        //var mstrdet = (from c in mstrDet_bus.GetAll()
-        //        //               where c.MstrId == Convert.ToInt32(e.CommandArgument)
-        //        //                     && c.RoleId == int.Parse(RoleId)
-        //        //               select c).FirstOrDefault();
-        //        //if (mstrdet != null)
-        //        //{
-        //        //    mstrdet.AddBy = Master.UsrId1;
-        //        //    mstrDet_bus.Update(mstrdet);
-        //        //}
-
-        //        gvAdmin.EditIndex = -1;
-        //        BindDataGridView();
-        //        Response.Redirect(Request.RawUrl);
-        //        ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "alert('Thành công')", true);
-        //    }
-        //}
-
-        // Kiểm tra tên đăng nhặp tồn tại
         public bool IsExists(string Login)
         {
             var kq = true;

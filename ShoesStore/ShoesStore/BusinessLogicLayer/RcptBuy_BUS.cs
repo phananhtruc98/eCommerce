@@ -84,10 +84,6 @@ namespace ShoesStore.BusinessLogicLayer
             return tmp;
         }
 
-        /// <summary>
-        ///     Reduce all RcptBuy's ProDet's Qty
-        /// </summary>
-        /// <param name="rcptBuy"></param>
         public void ReduceProQtyOfRcptBuy(RcptBuy rcptBuy)
         {
             foreach (var rcptBuyDet in rcptBuy.RcptBuyDet) MyLibrary.ProDet_BUS.ReduceProDetQty(rcptBuyDet.ProDet);
@@ -109,12 +105,17 @@ namespace ShoesStore.BusinessLogicLayer
 
         public double SumPrice(RcptBuy rcptBuy)
         {
-            return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.PriceWhenBuy));
+            return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.PriceWhenBuy) * m.Quantity.Value);
         }
 
         public double SumPriceNoDiscount(RcptBuy rcptBuy)
         {
-            return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.ProDet.Pro.Price));
+            return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.ProDet.Pro.Price) * m.Quantity.Value);
+        }
+
+        public double SumPriceWhenBuy(RcptBuy rcptBuy)
+        {
+            return rcptBuy.RcptBuyDet.Sum(m => Convert.ToInt32(m.PriceWhenBuy) * m.Quantity.Value);
         }
     }
 }

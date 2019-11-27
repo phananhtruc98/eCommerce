@@ -12,10 +12,10 @@
                 <asp:DropDownList runat="server" ID="ddlPropFilter" AutoPostBack="True" OnSelectedIndexChanged="ddlPropFilter_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div class="col-4">
-                <input type="text" runat="server" visible="false" clientidmode="Static" id="datepicker"/>
+                <input type="text" runat="server" visible="false" clientidmode="Static" id="datepicker" />
                 <script type="text/javascript">
 
-                    $(document).ready(function() {
+                    $(document).ready(function () {
 
                         $("#datepicker").datepicker($.datepicker.regional["vi"]);
                     });
@@ -27,24 +27,24 @@
             </div>
             <div class="col-5">
                 <asp:TextBox runat="server" placeholder="Gõ vào đây..." ID="txtTimKiem"></asp:TextBox>
-                <asp:Button runat="server" ID="btnTimKiem" Text="Tìm" CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click"/>
+                <asp:Button runat="server" ID="btnTimKiem" Text="Tìm" CssClass="btn btn-inverse-dark" OnClick="btnTimKiem_Click" />
             </div>
         </div>
         <div class="row">
             <div class="col-3">
                 Sắp xếp:
                 <asp:DropDownList runat="server" ID="SortList">
-                    <asp:ListItem Value="RcptSubId" Text="Mã hóa đơn" Selected="True"/>
-                    <asp:ListItem Value="DateAdd" Text="Ngày đặt hàng"/>
-                    <asp:ListItem Value="ShpName" Text="Cửa hàng"/>
-                    <asp:ListItem Value="SumDay" Text="Tổng ngày"/>
-                    <asp:ListItem Value="SumPrice" Text="Tổng tiền"/>
+                    <asp:ListItem Value="RcptSubId" Text="Mã hóa đơn" Selected="True" />
+                    <asp:ListItem Value="DateAdd" Text="Ngày đặt hàng" />
+                    <asp:ListItem Value="ShpName" Text="Cửa hàng" />
+                    <asp:ListItem Value="SumDay" Text="Tổng ngày" />
+                    <asp:ListItem Value="SumPrice" Text="Tổng tiền" />
                 </asp:DropDownList>
             </div>
             <div class="col-2">
                 <asp:DropDownList runat="server" ID="DirectionList">
-                    <asp:ListItem Value="ASC" Text="Tăng dần" Selected="True"/>
-                    <asp:ListItem Value="DESC" Text="Giảm dần"/>
+                    <asp:ListItem Value="ASC" Text="Tăng dần" Selected="True" />
+                    <asp:ListItem Value="DESC" Text="Giảm dần" />
                 </asp:DropDownList>
             </div>
             <div class="col-7">
@@ -56,25 +56,27 @@
         <div class="row">
             Chọn kiểu biểu đồ: 
             <asp:DropDownList ID="drlChartType" AutoPostBack="true" runat="server" Height="100%"
-                              OnSelectedIndexChanged="drlChartType_OnSelectedIndexChanged">
+                OnSelectedIndexChanged="drlChartType_OnSelectedIndexChanged">
             </asp:DropDownList>
             <asp:Chart ID="Chart1" runat="server">
-                <series><asp:Series Name="Series1" ChartArea="ChartArea1" ChartType="Line">
-                    <Points>
-                        <asp:DataPoint AxisLabel="Mark" YValues="800" />
-                        <asp:DataPoint AxisLabel="Steve" YValues="900" />
-                        <asp:DataPoint AxisLabel="John" YValues="700" />
-                        <asp:DataPoint AxisLabel="Mary" YValues="900" />
-                        <asp:DataPoint AxisLabel="Ben" YValues="600" />
-                    </Points>
-                </asp:Series></series>
-                <chartareas><asp:ChartArea Name="ChartArea1">
-                    <AxisX Title="Tháng">
-                    </AxisX>
-                    <AxisY Title="Doanh thu">
-                    </AxisY>
-                </asp:ChartArea></chartareas>
+                <Series>
+                    <asp:Series Name="Series1" ChartArea="ChartArea1" ChartType="Line"
+                        ToolTip="Doanh thu của #VALX là #VALY">
+                        <Points>
+                        </Points>
+                    </asp:Series>
+                </Series>
+                <ChartAreas>
+                    <asp:ChartArea Name="ChartArea1">
+                        <AxisX Title="Tháng">
+                        </AxisX>
+                        <AxisY Title="Doanh thu">
+                        </AxisY>
+                        <Area3DStyle Enable3D="True" />
+                    </asp:ChartArea>
+                </ChartAreas>
             </asp:Chart>
+            Click chuột phải và chọn <b>(save image as)</b> để lưu biểu đồ
             <asp:ListView runat="server" OnItemDataBound="lvRcptSub_ItemDataBound" OnPagePropertiesChanging="lvRcptSub_PagePropertiesChanging" AllowPaging="true" ItemType="ShoesStore.DataAccessLogicLayer.RcptSub" OnItemCommand="lvRcptSub_ItemCommand" OnSelectedIndexChanged="lvRcptSub_SelectedIndexChanged" ID="lvRcptSub">
                 <LayoutTemplate>
                     <table class="table table-border">
@@ -86,7 +88,7 @@
                             <td>Tổng ngày</td>
                             <td>Tổng tiền</td>
                         </tr>
-                        <tr id="itemPlaceholder" runat="server"/>
+                        <tr id="itemPlaceholder" runat="server" />
                     </table>
                 </LayoutTemplate>
                 <ItemTemplate>
@@ -116,13 +118,13 @@
                 </ItemTemplate>
             </asp:ListView>
             <asp:DataPager ID="DataPager1" runat="server" PageSize="5"
-                           PagedControlID="lvRcptSub">
+                PagedControlID="lvRcptSub">
                 <Fields>
                     <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="True"
-                                                ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước"/>
-                    <asp:NumericPagerField/>
+                        ShowNextPageButton="False" ShowPreviousPageButton="true" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
+                    <asp:NumericPagerField />
                     <asp:NextPreviousPagerField ButtonType="Link" ShowLastPageButton="True"
-                                                ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước"/>
+                        ShowNextPageButton="true" ShowPreviousPageButton="False" FirstPageText="Đầu" LastPageText="Cuối" NextPageText="Kế" PreviousPageText="Trước" />
                 </Fields>
             </asp:DataPager>
         </div>

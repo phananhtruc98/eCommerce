@@ -24,7 +24,7 @@
                         </table>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <tr>
+                        <tr style='<%# Item.IsOutOfStock.Value ? "color:red" : "" %>'>
                             <td>
                                 <asp:LinkButton runat="server" ID="lbtnDetail" CommandName="Sel" CommandArgument="<%# Item.ProId %>" CssClass="btn btn-icons btn-rounded btn-outline-warning">
                                     <i class="fas fa-info"></i>
@@ -82,13 +82,13 @@
                                 <th>Ảnh</th>
                                 <th>Loại sản phẩm</th>
                                 <th>Thương hiệu</th>
-                                <th>Gía</th>
+                                <th>Giá</th>
                             </tr>
                             <tr id="itemPlaceholder" runat="server"/>
                         </table>
                     </LayoutTemplate>
                     <ItemTemplate>
-                        <tr>
+                        <tr style='<%# Item.IsOutOfStock.Value ? "color:red" : "" %>'>
                             <td>
                                 <asp:HiddenField ID="hdfShpId" runat="server" Value="<%# Item.ShpId %>"/>
                                 <asp:Label runat="server" ID="lbShpName" Text="<%# Item.Shp.ShpName %>"></asp:Label>
@@ -125,7 +125,7 @@
             </div>
         </div>
         <div>
-            <asp:LinkButton runat="server" CssClass="btn btn-primary" ID="lbtnIsOutOfStock" OnClick="lbtnIsOutOfStock_Click" Text="Hết hàng" Visible="false"></asp:LinkButton>
+            <asp:LinkButton runat="server" CssClass="btn btn-primary" ID="lbtnIsOutOfStock" OnClick="lbtnIsOutOfStock_Click" Text="Cập nhật" Visible="false"></asp:LinkButton>
         </div>
     </div>
 </asp:Content>

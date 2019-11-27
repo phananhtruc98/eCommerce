@@ -22,28 +22,16 @@ namespace ShoesStore.Customer
                     return _proDetView;
                 }
 
-                return (Pro) ViewState["_proDetView"];
+                return (Pro)ViewState["_proDetView"];
             }
             set => ViewState["_proDetView"] = value;
         }
-
-        //private void Bind_ProSizes()
-        //{
-        //    rptProSize.DataSource = MyLibrary.ProDet_BUS.GetAll()
-        //        .Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId).DistinctBy(m => m.SizeId);
-        //    rptProSize.DataBind();
-        //}
-
-        //private void Bind_ProColors()
-        //{
-        //    rptProColor.DataSource = MyLibrary.ProDet_BUS.GetAll()
-        //        .Where(m => m.ShpId == _proDetView.ShpId && m.ProId == _proDetView.ProId).DistinctBy(m => m.ColorId);
-        //    rptProColor.DataBind();
-        //}
-
         private void Bind_CusReview()
         {
             rptCusReview.DataSource = MyLibrary.RcptBuyDet_BUS.GetProComments(_proDetView);
+            if (MyLibrary.RcptBuyDet_BUS.GetProComments(_proDetView) != null && MyLibrary.RcptBuyDet_BUS.GetProComments(_proDetView).Count() > 0)
+                lbNhanXet.Visible = false;
+            else lbNhanXet.Visible = true;
             rptCusReview.DataBind();
         }
 
@@ -74,9 +62,9 @@ namespace ShoesStore.Customer
 
             foreach (RepeaterItem pd in rptProDet.Items)
             {
-                var hdfSizeId = (HiddenField) pd.FindControl("hdfSizeId");
-                var hdfColorId = (HiddenField) pd.FindControl("hdfColorId");
-                var txtQty = (TextBox) pd.FindControl("txtQty");
+                var hdfSizeId = (HiddenField)pd.FindControl("hdfSizeId");
+                var hdfColorId = (HiddenField)pd.FindControl("hdfColorId");
+                var txtQty = (TextBox)pd.FindControl("txtQty");
                 var qty = txtQty.Text != "" ? Convert.ToInt32(txtQty.Text) : 0;
                 if (txtQty.Text != "" && qty > 0)
                 {
@@ -117,53 +105,6 @@ namespace ShoesStore.Customer
             Master.LoadCartPreview();
             if (!atLeastOneCheck) MyLibrary.Show("Bạn cần chọn ít nhất 1 sản phẩm");
         }
-
-        //protected void rptProColor_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        //{
-        //    try
-        //    {
-        //        if ((e.Item.ItemType == ListItemType.AlternatingItem) | (e.Item.ItemType == ListItemType.Item))
-        //        {
-        //            if (e.Item.ItemIndex == 0)
-        //                ((RadioButton)e.Item.FindControl("rdbColor")).Checked = true;
-        //            ((RadioButton)e.Item.FindControl("rdbColor")).Visible = true;
-        //            ((RadioButton)e.Item.FindControl("rdbColor")).GroupName = "Color";
-        //            var radioColor = (RadioButton)e.Item.FindControl("rdbColor");
-        //            var scriptColor = "setExclusiveRadioButton('rptProColor.*Color', this)";
-        //            radioColor.Attributes.Add("onclick", scriptColor);
-        //        }
-
-        //        // put the proper client-side handler for RadioButton
-        //    }
-        //    catch (Exception)
-        //    {
-        //        // ignored
-        //    }
-        //}
-
-        //protected void rptProSize_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        //{
-        //    try
-        //    {
-        //        if ((e.Item.ItemType == ListItemType.AlternatingItem) | (e.Item.ItemType == ListItemType.Item))
-        //        {
-        //            if (e.Item.ItemIndex == 0)
-        //                ((RadioButton)e.Item.FindControl("rdbSize")).Checked = true;
-        //            ((RadioButton)e.Item.FindControl("rdbSize")).Visible = true;
-        //            ((RadioButton)e.Item.FindControl("rdbSize")).GroupName = "Size";
-        //        }
-
-        //        // put the proper client-side handler for RadioButton
-        //        var radioSize = (RadioButton)e.Item.FindControl("rdbSize");
-        //        var scriptSize = "setExclusiveRadioButton('rptProSize.*Size', this)";
-        //        radioSize.Attributes.Add("onclick", scriptSize);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        // ignored
-        //    }
-        //}
-
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
             var rcptBuyDetNotCommented =
@@ -217,10 +158,9 @@ namespace ShoesStore.Customer
             {
                 BindData();
                 CollectUrl();
+                if (_proDetView.IsOutOfStock.Value) Response.Redirect("~");
                 Bind_Slides();
                 Bind_CusReview();
-                //Bind_ProColors();
-                //Bind_ProSizes();
             }
         }
 
@@ -234,10 +174,6 @@ namespace ShoesStore.Customer
         {
             rptProDet.DataSource = MyLibrary.ProDet_BUS.GetAllBy(_proDetView.ShpId, _proDetView.ProId);
             rptProDet.DataBind();
-        }
-
-        protected void rptProSize_Init(object sender, EventArgs e)
-        {
         }
     }
 }

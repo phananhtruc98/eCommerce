@@ -17,14 +17,12 @@ namespace ShoesStore.DataAccessLogicLayer
         public Cus()
         {
             this.Cart = new HashSet<Cart>();
-            this.ChatBox = new HashSet<ChatBox>();
             this.RcptBuy = new HashSet<RcptBuy>();
         }
     
         public int CusId { get; set; }
     
         public virtual ICollection<Cart> Cart { get; set; }
-        public virtual ICollection<ChatBox> ChatBox { get; set; }
         public virtual Usr Usr { get; set; }
         public virtual ICollection<RcptBuy> RcptBuy { get; set; }
     }

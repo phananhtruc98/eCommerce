@@ -6,7 +6,10 @@
         <table class="table table-bordered">
         <tr>
             <th>
-                <asp:Label runat="server" ID="CmtFrom"></asp:Label>
+                Người đánh giá
+            </th>
+            <th>
+                Đánh giá
             </th>
             <th>
                 Điểm
@@ -16,6 +19,9 @@
     <ItemTemplate>
         <asp:HiddenField runat="server" ID="hdfRcptBuyId" Value="<%# Item.RcptBuyId %>"/>
         <tr>
+            <td>
+                <asp:Label runat="server" ID="lbNguoiDanhGia"></asp:Label>
+            </td>
             <td>
                 <asp:Label runat="server" ID="MessageFrom"></asp:Label>
             </td>
