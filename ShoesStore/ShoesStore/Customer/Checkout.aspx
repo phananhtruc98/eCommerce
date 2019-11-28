@@ -136,7 +136,7 @@
                                     <tfoot class="checkout__totals-footer">
                                     <tr>
                                         <th>Tổng</th>
-                                        <td><%#MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount() ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount().ToFormatMoney(), MyLibrary.CartDet_BUS.SumCartDetPrice()) : MyLibrary.CartDet_BUS.SumCartDetPrice() %></td>
+                                        <td><%#MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount() ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount(), MyLibrary.CartDet_BUS.SumCartDetPrice()) : MyLibrary.CartDet_BUS.SumCartDetPrice() %></td>
                                     </tr>
                                     </tfoot>
                                 </table>

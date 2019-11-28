@@ -48,7 +48,7 @@ namespace ShoesStore.Customer
 
             ltrSumAll.Text =
                 MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount()
-                    ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount().ToFormatMoney(),
+                    ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount(),
                         MyLibrary.CartDet_BUS.SumCartDetPrice())
                     : MyLibrary.CartDet_BUS.SumCartDetPrice();
         }

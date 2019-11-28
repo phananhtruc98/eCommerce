@@ -385,7 +385,7 @@
                                         <tr>
 
                                             <th>Tổng tiền sản phẩm</th>
-                                            <td><%= MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount() ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount().ToFormatMoney(), MyLibrary.CartDet_BUS.SumCartDetPrice()) : MyLibrary.CartDet_BUS.SumCartDetPrice() %></td>
+                                            <td><%= MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount() ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount(), MyLibrary.CartDet_BUS.SumCartDetPrice()) : MyLibrary.CartDet_BUS.SumCartDetPrice() %></td>
                                         </tr>
                                         <%-- <tr>
                                                                 <th>Phí giao hàng</th>

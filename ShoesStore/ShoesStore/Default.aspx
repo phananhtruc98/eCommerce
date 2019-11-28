@@ -39,7 +39,7 @@
                         </svg>
                     </div>
                     <div class="block-features__content">
-                        <div class="block-features__title"> Uy Tín</div>
+                        <div class="block-features__title"> Uy tín</div>
                         <div class="block-features__subtitle">Cùng hệ thống rating</div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                         </svg>
                     </div>
                     <div class="block-features__content">
-                        <div class="block-features__title">100% An Toàn</div>
+                        <div class="block-features__title">100% An toàn</div>
                         <div class="block-features__subtitle">Sử dụng thanh toán Paypal</div>
                     </div>
                 </div>
@@ -75,8 +75,8 @@
                         </svg>
                     </div>
                     <div class="block-features__content">
-                        <div class="block-features__title">Giá Hấp Dẫn</div>
-                        <div class="block-features__subtitle">Cùng nhiều khuyến mãi hằng ngày</div>
+                        <div class="block-features__title">Giá hấp dẫn</div>
+                        <div class="block-features__subtitle">Cùng nhiều khuyến mãi</div>
                     </div>
                 </div>
             </div>

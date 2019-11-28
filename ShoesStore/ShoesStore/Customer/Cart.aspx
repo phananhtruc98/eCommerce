@@ -146,7 +146,7 @@ $25.00
                                 <tr>
                                     <th>Tổng</th>
                                     <td>
-                                        <asp:Literal runat="server" ID="ltrSumAll" Text="<%# MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount() ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount().ToFormatMoney(), MyLibrary.CartDet_BUS.SumCartDetPrice()) : MyLibrary.CartDet_BUS.SumCartDetPrice() %>"/>
+                                        <asp:Literal runat="server" ID="ltrSumAll" Text="<%# MyLibrary.CartDet_BUS.SumCartDetPrice() != MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount() ? MyLibrary.GetPriceFormat(MyLibrary.CartDet_BUS.SumCartDetPriceNoDiscount(), MyLibrary.CartDet_BUS.SumCartDetPrice()) : MyLibrary.CartDet_BUS.SumCartDetPrice() %>"/>
                                     </td>
                                 </tr>
                                 </tfoot>

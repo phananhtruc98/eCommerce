@@ -199,9 +199,7 @@ namespace ShoesStore.Merchant
             //Product List
             Paragraph products = doc.InsertParagraph();
             products.LineSpacing = 14f;
-            var rcptTemp = MyLibrary.RcptBuy_BUS.ListRcptBuyPreview_Shop(int.Parse(rcptOrder), CusIdTemp);
-            var rcptDetailList = rcptTemp.Select(x => x.RcptBuyDet).FirstOrDefault();
-            var productList = rcptDetailList.Select(x => x.ProDet).ToList();
+            var rcptDetailList = MyLibrary.RcptBuyDet_BUS.GetAll().Where(m => m.RcptBuyId == int.Parse(rcptOrder)).ToList();
             Xceed.Document.NET.Table tblProducts = doc.InsertTable(rcptDetailList.Count + 1, 6);
             tblProducts.Rows[0].Cells[0].Paragraphs.First().Append("Tên sản phẩm").Bold();
             tblProducts.Rows[0].Cells[1].Paragraphs.First().Append("Màu").Bold();
@@ -209,22 +207,22 @@ namespace ShoesStore.Merchant
             tblProducts.Rows[0].Cells[3].Paragraphs.First().Append("Số lượng").Bold();
             tblProducts.Rows[0].Cells[4].Paragraphs.First().Append("Đơn giá").Bold();
             tblProducts.Rows[0].Cells[5].Paragraphs.First().Append("Giá").Bold();
-            int sumPrice = 0; 
-            for (int i = 1; i <= rcptDetailList.Count; i++)
+            int sumPrice = 0;
+            for (int i = 0; i < rcptDetailList.Count; i++)
             {
-                tblProducts.Rows[i].Cells[0].Paragraphs.First().Append(productList[i - 1].Pro.ProName);
-                tblProducts.Rows[i].Cells[1].Paragraphs.First().Append(productList[i - 1].ProColor.ColorName);
-                tblProducts.Rows[i].Cells[2].Paragraphs.First().Append(productList[i - 1].ProSize.SizeName);
-                var qty = productList[i - 1].RcptBuyDet.Select(m => m.Quantity).FirstOrDefault();
-                var price = productList[i - 1].RcptBuyDet.Select(m => m.PriceWhenBuy).FirstOrDefault();
+                tblProducts.Rows[i + 1].Cells[0].Paragraphs.First().Append(rcptDetailList[i].ProDet.Pro.ProName);
+                tblProducts.Rows[i + 1].Cells[1].Paragraphs.First().Append(rcptDetailList[i].ProDet.ProColor.ColorName);
+                tblProducts.Rows[i + 1].Cells[2].Paragraphs.First().Append(rcptDetailList[i].ProDet.ProSize.SizeName);
+                var qty = rcptDetailList[i].Quantity;
+                var price = rcptDetailList[i].PriceWhenBuy;
                 int priceEachProduct = qty.Value * int.Parse(price);
-                tblProducts.Rows[i].Cells[3].Paragraphs.First().Append(productList[i - 1].RcptBuyDet.Select(m => m.Quantity).FirstOrDefault().ToString());
-                tblProducts.Rows[i].Cells[4].Paragraphs.First().Append(productList[i - 1].RcptBuyDet.Select(m => m.PriceWhenBuy).FirstOrDefault().ToString());
-                tblProducts.Rows[i].Cells[5].Paragraphs.First().Append(priceEachProduct.ToString());
+                tblProducts.Rows[i + 1].Cells[3].Paragraphs.First().Append(qty.ToString());
+                tblProducts.Rows[i + 1].Cells[4].Paragraphs.First().Append(price.ToFormatMoney());
+                tblProducts.Rows[i + 1].Cells[5].Paragraphs.First().Append(priceEachProduct.ToFormatMoney());
                 sumPrice = sumPrice + priceEachProduct;
             }
             Paragraph totalPrice = doc.InsertParagraph();
-            totalPrice.Append("Tổng: "+sumPrice.ToString()).Font(new Font("Times New Roman")).FontSize(20).Bold().Alignment = Alignment.right;
+            totalPrice.Append("Tổng: " + sumPrice.ToFormatMoney()).Font(new Font("Times New Roman")).FontSize(20).Bold().Alignment = Alignment.right;
 
             // Save to the output directory:
             doc.Save();
