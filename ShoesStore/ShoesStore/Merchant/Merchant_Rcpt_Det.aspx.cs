@@ -250,9 +250,9 @@ namespace ShoesStore.Merchant
             Response.Write(pdfDoc);
             Response.End();
         }
-        //public override void VerifyRenderingInServerForm(Control control)
-        //{
-            
-        //}
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            return;
+        }
     }
 }
