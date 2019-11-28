@@ -45,8 +45,8 @@ namespace ShoesStore.BusinessLogicLayer
 
         public static int GetTotalPro(object catId)
         {
-            return new ProCat_BUS().GetAll().FirstOrDefault(m => catId != null && m.CatId == (int) catId).Pro
-                .Where(m => m.Active == true && m.ProDet.Count != 0).Count();
+            return new ProCat_BUS().GetAll().FirstOrDefault(m => catId != null && m.CatId == (int)catId).Pro
+                .Where(m => m.Active == true && m.ProDet.Count != 0 && !m.IsOutOfStock.Value).Count();
         }
 
         public void SetActive()

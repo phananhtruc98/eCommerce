@@ -729,7 +729,8 @@
             const openedClass = $(element).data("collapse-opened-class");
 
             $("[data-collapse-trigger]", collapse).on("click",
-                function() {
+                function () {
+                    debugger
                     const item = $(this).closest("[data-collapse-item]");
                     const content = item.children("[data-collapse-content]");
                     const itemParents = item.parents();

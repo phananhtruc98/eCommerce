@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Trang chủ" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShoesStore.Default" %>
 <%@ Import Namespace="ShoesStore" %>
+<%@ Import Namespace="ShoesStore.BusinessLogicLayer" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <%@ Register Src="~/UserControls/UcPro.ascx" TagPrefix="uc1" TagName="UcPro" %>
 <%@ Register Src="~/UserControls/UcProCarousel.ascx" TagPrefix="uc1" TagName="UcProCarousel" %>
@@ -123,7 +124,7 @@
                                     <div class="category-card__name">
                                         <a href="#"><%#Eval("CatName") %></a>
                                     </div>
-                                    <div class="category-card__products"><%#Eval("Pro.Count") %> Sản phẩm</div>
+                                    <div class="category-card__products"><%#ProCat_BUS.GetTotalPro(Item.CatId) %> Sản phẩm</div>
                                 </div>
                             </div>
                         </div>

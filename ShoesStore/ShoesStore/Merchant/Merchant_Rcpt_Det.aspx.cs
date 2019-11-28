@@ -155,7 +155,7 @@ namespace ShoesStore.Merchant
             dateadd = d.ToString();
             CusIdTemp = z.CusId;
             // Modify to suit your machine:
-            string path = @"C:\Users\ADMIN\Desktop\";
+            string path = Server.MapPath("~");
             string fileName = path + "HD" + rcptOrder + ".docx";
             // Create a document in memory:
             var doc = DocX.Create(fileName);
