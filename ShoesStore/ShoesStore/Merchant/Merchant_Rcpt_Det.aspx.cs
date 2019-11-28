@@ -5,11 +5,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Xceed.Document.NET;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 using ShoesStore.DataAccessLogicLayer;
 using ShoesStore.MyExtensions;
-using Xceed.Document.NET;
 using Xceed.Words.NET;
 using ListItemType = System.Web.UI.WebControls.ListItemType;
+using Paragraph = Xceed.Document.NET.Paragraph;
+using Font = Xceed.Document.NET.Font;
+using Document = iTextSharp.text.Document;
 
 namespace ShoesStore.Merchant
 {
@@ -141,6 +147,7 @@ namespace ShoesStore.Merchant
         protected void btnPrintRcpt_OnClick(object sender, EventArgs e)
         {
             CreateWordFile();
+            CreatePdf();
         }
 
         public void CreateWordFile()
@@ -181,13 +188,6 @@ namespace ShoesStore.Merchant
                 .Append("Số điện thoại: " + lbPhone.Text).Font(new Font("Times New Roman")).FontSize(16);
             merchantInfo.AppendLine("-------------------------");
 
-            //Xceed.Document.NET.Table tblMerchant = doc.InsertTable(1, 2);
-            //tblMerchant.Rows[0].Cells[0].Paragraphs.First().Append("Thông tin cửa hàng").Font(new Font("Times New Roman")).FontSize(16).Bold().Alignment = Alignment.center;
-            //tblMerchant.Rows[0].Cells[1].Paragraphs.First().Append("Tên KH: " + lbCusName.Text).Font(new Font("Times New Roman")).FontSize(16).AppendLine()
-            //    .Append("Địa chỉ KH: " + lbAddressCus.Text).Font(new Font("Times New Roman")).FontSize(16).AppendLine()
-            //    .Append("Số điện thoại: " + lbPhoneCus.Text).Font(new Font("Times New Roman")).FontSize(16).AppendLine()
-            //    .Append("Email: " + lbEmail.Text).Font(new Font("Times New Roman")).FontSize(16).AppendLine();
-
             //Customer info
             Paragraph cusInfo = doc.InsertParagraph();
             cusInfo.LineSpacing = 14f;
@@ -226,9 +226,33 @@ namespace ShoesStore.Merchant
 
             // Save to the output directory:
             doc.Save();
-
+            // Parse Word to Pdf
             // Open in Word:
             Process.Start("WINWORD.EXE", fileName);
         }
+        public void CreatePdf()
+        {
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=print.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            panelPdf.RenderControl(hw);
+            StringReader sr = new StringReader(sw.ToString());
+            Document pdfDoc = new Document(PageSize.A4,10f,10f,100f,10f);
+            HTMLWorker htmlParser = new HTMLWorker(pdfDoc);
+            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+            pdfDoc.Open();
+            htmlParser.Parse(sr);
+            pdfDoc.Close();
+            Response.Write(pdfDoc);
+            Response.End();
+        }
+        //public override void VerifyRenderingInServerForm(Control control)
+        //{
+            
+        //}
     }
 }
