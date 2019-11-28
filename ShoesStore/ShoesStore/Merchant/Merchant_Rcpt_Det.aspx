@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Merchant/SiteMerchant.Master" CodeBehind="Merchant_Rcpt_Det.aspx.cs" Inherits="ShoesStore.Merchant.Merchant_Rcpt_Det" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" MasterPageFile="~/Merchant/SiteMerchant.Master" CodeBehind="Merchant_Rcpt_Det.aspx.cs" Inherits="ShoesStore.Merchant.Merchant_Rcpt_Det" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <div class="row" runat="server" visible="false" id="rowRcptBuyDet">
         <asp:Label runat="server" Text="Chi tiết đơn hàng" ID="Label1" CssClass="h3" Visible="false"></asp:Label>
@@ -8,8 +9,11 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th colspan="7">
+                    <th colspan="5">
                         <asp:Label ID="lbRcptBuyId" runat="server"></asp:Label>
+                    </th>
+                    <th>
+                        <asp:Button runat="server" ID="btnPrintRcpt" Text="In hoá đơn" OnClick="btnPrintRcpt_OnClick" CssClass="btn btn-primary btn-md"/>
                     </th>
                 </tr>
                 <tr>
