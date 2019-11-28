@@ -16,6 +16,8 @@ using ListItemType = System.Web.UI.WebControls.ListItemType;
 using Paragraph = Xceed.Document.NET.Paragraph;
 using Font = Xceed.Document.NET.Font;
 using Document = iTextSharp.text.Document;
+using iTextSharp.tool.xml;
+using Image = Xceed.Document.NET.Image;
 
 namespace ShoesStore.Merchant
 {
@@ -147,7 +149,6 @@ namespace ShoesStore.Merchant
         protected void btnPrintRcpt_OnClick(object sender, EventArgs e)
         {
             CreateWordFile();
-            CreatePdf();
         }
 
         public void CreateWordFile()
@@ -166,10 +167,19 @@ namespace ShoesStore.Merchant
             string fileName = path + "HD" + rcptOrder + ".docx";
             // Create a document in memory:
             var doc = DocX.Create(fileName);
+            var myImageFullPath = Server.MapPath("~") + "Admin/images/logo2.png";
+            // Add an image into the document. 
+            Image image = doc.AddImage(myImageFullPath);
+
+            // Create a picture (A custom view of an Image).
+            Picture picture = image.CreatePicture();
+            picture.Height = 200;
+            picture.Width = 400;
             Paragraph headLineText = doc.InsertParagraph();
-            headLineText.Append("SHUZ")
-                .Font(new Font("Times New Roman")).FontSize(32).Bold();
-            headLineText.Alignment = Alignment.center;
+            headLineText
+                .AppendPicture(picture);
+            headLineText.Alignment = Alignment.center;           
+            headLineText.AppendLine("237 An Dương Vương P8 Q5 TPHCM Hotline: 0705401302").Font(new Font("Times New Roman"));
             headLineText.AppendLine("-------------------------");
             // Insert a paragrpah:
             //Receipt info
@@ -227,32 +237,20 @@ namespace ShoesStore.Merchant
             // Save to the output directory:
             doc.Save();
             // Parse Word to Pdf
+            string fileNamePdf = path + "HD" + rcptOrder + ".pdf";
+            DOCtoPDF(fileName, fileNamePdf);
             // Open in Word:
-            Process.Start("WINWORD.EXE", fileName);
+            //Process.Start("WINWORD.EXE", fileNamePdf);
+            Process.Start(fileNamePdf);
         }
-        public void CreatePdf()
+        public static void DOCtoPDF(string docFullPath, string pdfFullPath)
         {
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=print.pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
+            var wordDocument = appWord.Documents.Open(docFullPath);
 
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-
-            panelPdf.RenderControl(hw);
-            StringReader sr = new StringReader(sw.ToString());
-            Document pdfDoc = new Document(PageSize.A4,10f,10f,100f,10f);
-            HTMLWorker htmlParser = new HTMLWorker(pdfDoc);
-            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-            pdfDoc.Open();
-            htmlParser.Parse(sr);
-            pdfDoc.Close();
-            Response.Write(pdfDoc);
-            Response.End();
-        }
-        public override void VerifyRenderingInServerForm(Control control)
-        {
-            return;
+            wordDocument.SaveAs2(pdfFullPath, Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
+            wordDocument.Close();
+            appWord.Quit();
         }
     }
 }

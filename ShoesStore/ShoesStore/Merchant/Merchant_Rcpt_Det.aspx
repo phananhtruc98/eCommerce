@@ -68,7 +68,7 @@
                                     <tr>
                                         <td>
                                             <a href="<%# MyLibrary.ProDetUrl(Item.ProDet.Pro) %>">
-                                                <img style="height: 200px; width: 200px;" src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="">
+                                                <img style="height: 200px; width: 200px;" src="<%# MyLibrary.ProImgPath(Item.ProDet.Pro) %>" alt="" />
                                             </a>
                                         </td>
                                         <td><%# Item.ProDet.Pro.ProName %></td>
