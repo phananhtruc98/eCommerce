@@ -1,35 +1,39 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Merchant/SiteMerchant.Master" CodeBehind="Merchant_Rcpt_Det.aspx.cs" Inherits="ShoesStore.Merchant.Merchant_Rcpt_Det" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" MasterPageFile="~/Merchant/SiteMerchant.Master" CodeBehind="Merchant_Rcpt_Det.aspx.cs" Inherits="ShoesStore.Merchant.Merchant_Rcpt_Det" %>
 <%@ Import Namespace="ShoesStore.MyExtensions" %>
 <%@ Import Namespace="ShoesStore" %>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainPlaceHolder" runat="server">
     <div class="row" runat="server" visible="false" id="rowRcptBuyDet">
         <asp:Label runat="server" Text="Chi tiết đơn hàng" ID="Label1" CssClass="h3" Visible="false"></asp:Label>
         <div class="col-12">
             <table class="table">
                 <thead>
-                    <tr>
-                        <th colspan="7">
-                            <asp:Label ID="lbRcptBuyId" runat="server"></asp:Label>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th colspan="7">
-                            <asp:Label ID="lbRcptBuyDate" runat="server"></asp:Label>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th colspan="7">
-                            <asp:Label ID="lbRcptBuySta" runat="server"></asp:Label>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>Thông tin cửa hàng: </td>
-                        <td colspan="6">Tên cửa hàng:
-                        <asp:Label ID="lbShpName" runat="server"></asp:Label><br />
-                            Địa chỉ:
-                        <asp:Label ID="lbAddress" runat="server"></asp:Label><br />
-                            Số điện thoại:
+                <tr>
+                    <th colspan="5">
+                        <asp:Label ID="lbRcptBuyId" runat="server"></asp:Label>
+                    </th>
+                    <th>
+                        <asp:Button runat="server" ID="btnPrintRcpt" Text="In hoá đơn" OnClick="btnPrintRcpt_OnClick" CssClass="btn btn-primary btn-md"/>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="7">
+                        <asp:Label ID="lbRcptBuyDate" runat="server"></asp:Label>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="7">
+                        <asp:Label ID="lbRcptBuySta" runat="server"></asp:Label>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Thông tin cửa hàng: </td>
+                    <td colspan="6">
+                        Tên cửa hàng:
+                        <asp:Label ID="lbShpName" runat="server"></asp:Label><br/>
+                        Địa chỉ:
+                        <asp:Label ID="lbAddress" runat="server"></asp:Label><br/>
+                        Số điện thoại:
                         <asp:Label ID="lbPhone" runat="server"></asp:Label>
                         </td>
                     </tr>

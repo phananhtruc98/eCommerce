@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Merchant {
-    
-    
-    public partial class Merchant_Rcpt_Det {
-        
+namespace ShoesStore.Merchant
+{
+
+
+    public partial class Merchant_Rcpt_Det
+    {
+
         /// <summary>
         /// rowRcptBuyDet control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl rowRcptBuyDet;
-        
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// lbRcptBuyId control.
         /// </summary>
@@ -38,7 +40,16 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbRcptBuyId;
-        
+
+        /// <summary>
+        /// btnPrintRcpt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPrintRcpt;
+
         /// <summary>
         /// lbRcptBuyDate control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbRcptBuyDate;
-        
+
         /// <summary>
         /// lbRcptBuySta control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbRcptBuySta;
-        
+
         /// <summary>
         /// lbShpName control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbShpName;
-        
+
         /// <summary>
         /// lbAddress control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbAddress;
-        
+
         /// <summary>
         /// lbPhone control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPhone;
-        
+
         /// <summary>
         /// lbCusName control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCusName;
-        
+
         /// <summary>
         /// lbAddressCus control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbAddressCus;
-        
+
         /// <summary>
         /// lbPhoneCus control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPhoneCus;
-        
+
         /// <summary>
         /// lbEmail control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbEmail;
-        
+
         /// <summary>
         /// rptRcptShp control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptRcptShp;
-        
+
         /// <summary>
         /// DivWriteComment control.
         /// </summary>
@@ -137,7 +148,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel DivWriteComment;
-        
+
         /// <summary>
         /// review_stars control.
         /// </summary>
@@ -146,7 +157,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList review_stars;
-        
+
         /// <summary>
         /// review_text control.
         /// </summary>
@@ -155,7 +166,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox review_text;
-        
+
         /// <summary>
         /// btnSubmit control.
         /// </summary>
