@@ -79,7 +79,7 @@ namespace ShoesStore.BusinessLogicLayer
             foreach (var sub in merSubs)
             {
                 var startDate = sub.Rcpt.DateAdd;
-                var endDate = startDate.AddDays(sub.RcptSubDet.Sum(rcptSubDet => rcptSubDet.Sub.DurDay));
+                var endDate = startDate.AddDays(sub.RcptSubDet.Sum(rcptSubDet => rcptSubDet.Sub.DurDay)*sub.RcptSubDet.Select(rcptSubDet => rcptSubDet.Quantity.Value).FirstOrDefault());
                 var tup = new Tuple<DateTime, DateTime>(startDate, endDate);
                 BuyHistory.Add(tup);
             }

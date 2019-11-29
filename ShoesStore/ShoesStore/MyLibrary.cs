@@ -19,16 +19,16 @@ namespace ShoesStore
     public partial class MyLibrary : Page
     {
         private static readonly string MoneyPrefix = "";
-        private static readonly string proPath = System.Web.HttpContext.Current.Server.MapPath("~") + "images/products";
-        private static readonly string proCatPath = System.Web.HttpContext.Current.Server.MapPath("~") + "images/categories";
+        private static readonly string proPath = "/images/products";
+        private static readonly string proCatPath = "/images/categories";
         private static readonly string proDetUrl = "/san-pham/";
-        private static readonly string slidePath = System.Web.HttpContext.Current.Server.MapPath("~") + "images/slides";
+        private static readonly string slidePath = "/images/slides";
         private static readonly string cusPath = System.Web.HttpContext.Current.Server.MapPath("~") + "images/usrs/cus";
         private static readonly string merPath = System.Web.HttpContext.Current.Server.MapPath("~") + "images/usrs/mer";
         private static readonly string usrPath = System.Web.HttpContext.Current.Server.MapPath("~") + "images/usrs";
         private static readonly string _noImg = System.Web.HttpContext.Current.Server.MapPath("~") +   "images/no_img.png";
         private static readonly string _noAvatar = System.Web.HttpContext.Current.Server.MapPath("~") + "images/avatar/no_img.jpg";
-        private static readonly string adminPath = System.Web.HttpContext.Current.Server.MapPath("~") + "admin/images/avatar";
+        private static readonly string adminPath = "/admin/images/avatar";
         public static string LogDirectoryPath = Environment.CurrentDirectory;
 
         public static SortDirection SortDirection

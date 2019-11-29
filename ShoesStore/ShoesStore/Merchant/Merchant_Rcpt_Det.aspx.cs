@@ -165,6 +165,8 @@ namespace ShoesStore.Merchant
             // Modify to suit your machine:
             string path = Server.MapPath("~");
             string fileName = path + "HD" + rcptOrder + ".docx";
+            //Check if file exists
+            if (File.Exists(fileName)) File.Delete(fileName);
             // Create a document in memory:
             var doc = DocX.Create(fileName);
             var myImageFullPath = Server.MapPath("~") + "Admin/images/logo2.png";
@@ -238,13 +240,14 @@ namespace ShoesStore.Merchant
             doc.Save();
             // Parse Word to Pdf
             string fileNamePdf = path + "HD" + rcptOrder + ".pdf";
-            DOCtoPDF(fileName, fileNamePdf);
+            //DOCtoPDF(fileName, fileNamePdf);
             // Open in Word:
             //Process.Start("WINWORD.EXE", fileNamePdf);
-            Process.Start(fileNamePdf);
+            Process.Start(fileName);
         }
         public static void DOCtoPDF(string docFullPath, string pdfFullPath)
         {
+            if (File.Exists(pdfFullPath)) File.Delete(pdfFullPath);
             Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
             var wordDocument = appWord.Documents.Open(docFullPath);
 

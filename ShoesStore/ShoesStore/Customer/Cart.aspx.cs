@@ -98,7 +98,7 @@ namespace ShoesStore.Customer
             foreach (RepeaterItem rptProduct in rptShp.Items)
             {
                 var ltrObjSumPrice = (Literal) rptProduct.FindControl("ltrObjSumPrice");
-                sumShpPro += Convert.ToDecimal(ltrObjSumPrice.Text);
+                sumShpPro += Convert.ToDecimal(ltrObjSumPrice.Text.Substring(1));
             }
 
             return sumShpPro.ToString();
@@ -127,7 +127,7 @@ namespace ShoesStore.Customer
             foreach (RepeaterItem rptParentItem in rptParent.Items)
             {
                 var ltrSumPerShp = (Literal) rptParentItem.FindControl("ltrSumPerShp");
-                sumPerShp += Convert.ToDecimal(ltrSumPerShp.Text.Replace(",", ""));
+                sumPerShp += Convert.ToDecimal(ltrSumPerShp.Text.Substring(1).Replace(",", ""));
             }
 
             var rptCartDetShpSum = (Literal) rptParent.FindControlInFooter("rptCartDetShp_Sum");
