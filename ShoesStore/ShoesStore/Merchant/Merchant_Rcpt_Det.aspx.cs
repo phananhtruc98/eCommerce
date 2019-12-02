@@ -240,7 +240,7 @@ namespace ShoesStore.Merchant
             doc.Save();
             // Parse Word to Pdf
             string fileNamePdf = path + "HD" + rcptOrder + ".pdf";
-            //DOCtoPDF(fileName, fileNamePdf);
+            DOCtoPDF(fileName, fileNamePdf);
             // Open in Word:
             //Process.Start("WINWORD.EXE", fileNamePdf);
             Process.Start(fileName);

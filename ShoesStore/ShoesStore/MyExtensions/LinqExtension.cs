@@ -29,6 +29,7 @@ namespace ShoesStore.MyExtensions
 
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rng)
         {
+            if (source == null) yield return default(T);
             var elements = source.ToArray();
             for (var i = elements.Length - 1; i >= 0; i--)
             {

@@ -1,4 +1,8 @@
 ﻿------Merchant-----------
+thanh toan paypal de mua goi sub
+username:toilati123vn-buyer@gmail.com
+password:12345678
+
 --2 tài khoản để test
 
 merchantA - 123	- id: 11
