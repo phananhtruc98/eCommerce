@@ -133,7 +133,7 @@ namespace ShoesStore.Merchant
                 login1 = merUsr.Login;
                 password1 = merUsr.Password;
                 var avaImg = Avatar;
-                Label1.Text = "Chào " + UsrName;
+                Label1.Text = "Xin chào " + UsrName;
             }
             else
             {
@@ -162,14 +162,12 @@ namespace ShoesStore.Merchant
 
         protected void rptProBrand_Init(object sender, EventArgs e)
         {
-            rptProBrand.DataSource = MyLibrary.ProBrand_BUS.GetAll().ToList();
-            rptProBrand.DataBind();
+      
         }
 
         public void rptProCat_Init(object sender, EventArgs e)
         {
-            rptProCat.DataSource = MyLibrary.ProCat_BUS.GetAll();
-            rptProCat.DataBind();
+        
         }
     }
 }

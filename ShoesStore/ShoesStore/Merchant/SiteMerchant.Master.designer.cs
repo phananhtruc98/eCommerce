@@ -7,29 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Merchant {
-    
-    
-    public partial class SiteMerchant {
-        
-        /// <summary>
-        /// rptProCat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProCat;
-        
-        /// <summary>
-        /// rptProBrand control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProBrand;
-        
+namespace ShoesStore.Merchant
+{
+
+
+    public partial class SiteMerchant
+    {
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -38,7 +22,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// LinkButton1 control.
         /// </summary>
@@ -46,8 +30,8 @@ namespace ShoesStore.Merchant {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
-        
+        protected global::System.Web.UI.WebControls.Button LinkButton1;
+
         /// <summary>
         /// dropdown control.
         /// </summary>
@@ -56,7 +40,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dropdown;
-        
+
         /// <summary>
         /// createshop control.
         /// </summary>
@@ -65,7 +49,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl createshop;
-        
+
         /// <summary>
         /// MainPlaceHolder control.
         /// </summary>
