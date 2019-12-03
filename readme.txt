@@ -1,8 +1,13 @@
 ﻿------Merchant-----------
-thanh toan paypal de mua goi sub
+Tài khoản thanh toán paypal để mua gói sub
 username:toilati123vn-buyer@gmail.com
 password:12345678
+-------------------------
+admin:truc | 123
+merchant: doanhien | 123
+customer: quangdanh | 123
 
+-------------------------
 --2 tài khoản để test
 
 merchantA - 123	- id: 11
@@ -21,9 +26,7 @@ merchant7 - 123 - id 20
 merchant8 - 123 - id 21
 
 ------Customer-----------
-
 customerX - 123 - id 22
-
 customerY - 123 - id 23
 
 --8 tài khoản phụ
