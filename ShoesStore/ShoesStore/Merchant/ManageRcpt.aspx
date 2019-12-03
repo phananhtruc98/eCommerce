@@ -58,13 +58,7 @@
                         </ItemTemplate>
 
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Tên Shop">
-                        <ItemTemplate>
-                            <asp:Label runat="server" ID="shpname" Text='<%# Eval("ShpName") %>' />
-                        </ItemTemplate>
-
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Ngày thêm">
+                   <asp:TemplateField HeaderText="Ngày thêm">
                         <ItemTemplate>
                             <%# Eval("DateAdd") %>
                         </ItemTemplate>
@@ -250,7 +244,7 @@
             </div>
             <br />
             <div id="statistic">
-                <h2>Thống kê doanh thu của cửa hàng</h2>
+                <h2>Thống kê doanh thu của cửa hàng</h2> <asp:LinkButton ID="lbtnExportExcel" runat="server" OnClick="lbtnExportExcel_Click">Xuất file excel</asp:LinkButton>
             <asp:GridView ID="incomeStatistic" PageSize="5" CssClass="table table-responsive table-striped" runat="server" HtmlEncode="true" AutoGenerateColumns="False" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowDataBound="incomeStatistic_RowDataBound" ShowFooter="True">
             <Columns>
                     <asp:TemplateField HeaderText="STT">
@@ -264,11 +258,6 @@
                     <asp:TemplateField HeaderText="Sản phẩm">
                         <ItemTemplate>
                             <%# Eval("ProName") %>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Ngày thêm">
-                        <ItemTemplate>
-                            <%# Eval("DateAdd") %>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Đơn giá">

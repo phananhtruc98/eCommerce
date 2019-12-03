@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ShoesStore.Merchant {
-    
-    
-    public partial class ManageRcpt {
-        
+namespace ShoesStore.Merchant
+{
+
+
+    public partial class ManageRcpt
+    {
+
         /// <summary>
         /// ddlPropFilter control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPropFilter;
-        
+
         /// <summary>
         /// datepicker control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText datepicker;
-        
+
         /// <summary>
         /// lbtnTim control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnTim;
-        
+
         /// <summary>
         /// ddlPropFilterDet control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPropFilterDet;
-        
+
         /// <summary>
         /// txtTimKiem control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTimKiem;
-        
+
         /// <summary>
         /// btnTimKiem control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnTimKiem;
-        
+
         /// <summary>
         /// gvRcptBuy control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRcptBuy;
-        
+
         /// <summary>
         /// ValidationRcptSubId control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationRcptSubId;
-        
+
         /// <summary>
         /// cthd control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl cthd;
-        
+
         /// <summary>
         /// gvRcptBuyDet control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRcptBuyDet;
-        
+
         /// <summary>
         /// sumprice control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl sumprice;
-        
+
         /// <summary>
         /// sumprice2 control.
         /// </summary>
@@ -119,7 +121,16 @@ namespace ShoesStore.Merchant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label sumprice2;
-        
+
+        /// <summary>
+        /// lbtnExportExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnExportExcel;
+
         /// <summary>
         /// incomeStatistic control.
         /// </summary>
