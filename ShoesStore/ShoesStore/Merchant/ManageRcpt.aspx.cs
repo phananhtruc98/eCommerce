@@ -666,7 +666,7 @@ namespace ShoesStore.Merchant
             foreach (var item in rs)
             {
                 table.Rows.Add(
-                    orderNumber,
+                    ++orderNumber,
                     item.ProName,
                     item.PriceWhenBuy,
                     item.Quantity,
