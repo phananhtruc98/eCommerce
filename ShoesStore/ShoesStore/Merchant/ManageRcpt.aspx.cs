@@ -89,7 +89,74 @@ namespace ShoesStore.Merchant
             sumprice2.Text = total.ToString("#,##0");
             gvRcptBuyDet.DataBind();
         }
+        // Load bảng thống kê
+        private void BindGridViewIncomeStatistic()
+        {
+            incomeStatistic.Visible = true;
+            var rs = (
+                    from r in rcpt.GetAll()
+                    join rb in rcptBuy.GetAll() on r.RcptId equals rb.RcptBuyId
+                    join rbd in rcptBuyDet.GetAll() on rb.RcptBuyId equals rbd.RcptBuyId
+                    join rbsd in rcptbuystadet.GetAll() on r.RcptId equals rbsd.RcptBuyId
+                    join p in pro.GetAll() on rbd.ProId equals p.ProId
+                    join s in shp.GetAll() on rbd.ShpId equals s.ShpId
+                    where r.UsrAdd == MerchantSession.LoginMer?.MerId && rbsd.StepId == (rcptbuystadet.GetAll().Where(a=>a.RcptBuyId == r.RcptId).OrderByDescending(x => x.StepId).First().StepId) && (rcptbuystadet.GetAll().Where(a => a.RcptBuyId == r.RcptId).OrderByDescending(x => x.StepId).First().StepId)==7
+                    select new
+                    {
+                        s.ShpName,
+                        p.ProName,
+                        r.DateAdd,
+                        rbd.PriceWhenBuy,
+                        rbd.Quantity,
+                        Subprice = int.Parse(rbd.PriceWhenBuy) * rbd.Quantity
+                    }
+                    ).ToList();
+            List<ProductDTO> products = new List<ProductDTO>();
+            int orderNumber = 0;
+            foreach (var item in rs)
+            {
+                ProductDTO pro = new ProductDTO(item.ShpName,item.ProName,item.DateAdd,item.PriceWhenBuy,item.Quantity,item.Subprice, orderNumber+1);
+                products.Add(pro);
+                orderNumber++;
+            }
+            List<ProductDTO> productsfilter = new List<ProductDTO>();
+            foreach(ProductDTO pro in products)
+            {
+                if(productsfilter.Any(x=>x.ProName==pro.ProName && x.ShpName == pro.ShpName)){
+                    productsfilter.Where(x => x.ProName == pro.ProName && x.ShpName == pro.ShpName).FirstOrDefault().Quantity =
+                        productsfilter.Where(x => x.ProName == pro.ProName && x.ShpName == pro.ShpName).FirstOrDefault().Quantity + pro.Quantity;
+                    productsfilter.Where(x => x.ProName == pro.ProName && x.ShpName == pro.ShpName).FirstOrDefault().Subprice =
+                        productsfilter.Where(x => x.ProName == pro.ProName && x.ShpName == pro.ShpName).FirstOrDefault().Subprice + pro.Subprice;
+                }
+                else
+                {
+                    productsfilter.Add(pro);
+                }
+            }
+            incomeStatistic.DataSource = productsfilter;
+            incomeStatistic.DataBind();
+        }
+        public class ProductDTO
+        {
+            public ProductDTO(string shpName, string proName, DateTime dateAdd, string priceWhenBuy, int? quantity, int? subprice, int orderNumber)
+            {
+                ShpName = shpName;
+                ProName = proName;
+                DateAdd = dateAdd;
+                PriceWhenBuy = priceWhenBuy;
+                Quantity = quantity;
+                Subprice = subprice;
+                OrderNumber = orderNumber;
+            }
 
+            public string ShpName { get; set; }
+            public string ProName { get; set; }
+            public DateTime DateAdd { get; set; }
+            public string PriceWhenBuy { get; set; }
+            public int? Quantity { get; set; }
+            public int? Subprice { get; set; }
+            public int OrderNumber { get; set; }
+        }
         //Tìm kiếm
         protected void btnTimKiem_Click(object sender, EventArgs e)
         {
@@ -371,8 +438,7 @@ namespace ShoesStore.Merchant
                     RowSpan = 2;
                 }
             }
-        }
-
+        }       
         protected void lbtnTim_Click(object sender, EventArgs e)
         {
             var s = Convert.ToDateTime(datepicker.Value);
@@ -493,6 +559,7 @@ namespace ShoesStore.Merchant
                 cthd.Visible = false;
                 sumprice.Visible = false;
                 BindGridViewgvRcptBuy();
+                BindGridViewIncomeStatistic();
             }
         }
         /*
@@ -535,6 +602,31 @@ namespace ShoesStore.Merchant
                 };
             gvRcptBuy.DataSource = rs.DistinctBy(i => i.RcptBuyId).ToList();
             gvRcptBuy.DataBind();
+        }
+
+        int totalQuantity = 0;
+        int totalSubprice = 0;
+        protected void incomeStatistic_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            // Loop thru each data row and compute total unit price and quantity sold
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                totalQuantity += Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Quantity"));
+                totalSubprice += Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Subprice").ToString());
+            }
+            // Display totals in the gridview footer
+            else if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                e.Row.Cells[3].Text = "Tổng";
+                e.Row.Cells[3].Font.Bold = true;
+
+                e.Row.Cells[4].Text = totalQuantity.ToString();
+                e.Row.Cells[4].Font.Bold = true;
+
+                e.Row.Cells[5].Text = totalSubprice.ToString().ToFormatMoney();
+                e.Row.Cells[5].Font.Bold = true;
+            }
+            totalSubprice.ToString().ToFormatMoney();
         }
 
         //protected void Datagrid1_SortCommand(object source, DataGridSortCommandEventArgs e)
