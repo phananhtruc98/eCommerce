@@ -243,7 +243,7 @@ namespace ShoesStore.Merchant
             DOCtoPDF(fileName, fileNamePdf);
             // Open in Word:
             //Process.Start("WINWORD.EXE", fileNamePdf);
-            Process.Start(fileName);
+            Process.Start(fileNamePdf);
         }
         public static void DOCtoPDF(string docFullPath, string pdfFullPath)
         {

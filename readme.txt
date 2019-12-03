@@ -1,4 +1,12 @@
-﻿------Merchant-----------
+﻿Thông tin thành viên
+Nguyễn Doãn Hiên - 3116410037 - toilati123vn@gmail.com
+Nguyễn Đăng Khôi - 3116410063
+Trần Quang Danh - 3116410010
+Nguyễn Phúc Thịnh - 3116410121
+Phan Anh Trúc - 3116410131
+
+
+------Merchant-----------
 Tài khoản thanh toán paypal để mua gói sub
 username:toilati123vn-buyer@gmail.com
 password:12345678

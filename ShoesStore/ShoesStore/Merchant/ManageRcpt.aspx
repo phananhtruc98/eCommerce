@@ -19,7 +19,7 @@
 
                     $(document).ready(function () {
 
-                        $("[id*='datepicker'").datepicker($.datepicker.regional["vi"]);
+                            $("[id*='datepicker'").datepicker($.datepicker.regional["vi"]);
                     });
 
 
