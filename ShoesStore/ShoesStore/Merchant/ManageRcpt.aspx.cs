@@ -440,12 +440,33 @@ namespace ShoesStore.Merchant
                 }
             }
         }       
-        protected void lbtnTim_Click(object sender, EventArgs e)
+        protected void lbtnTim_Click(object sender, EventArgs ev)
         {
-            var s = Convert.ToDateTime(datepicker.Value);
-            var date = s.ToString("dd/MM/yyyy");
-            gvRcptBuy.DataSource = MyLibrary.RcptBuy_BUS.GetAll()
-                .Where(x => x.Rcpt.DateAdd.ToString("dd/MM/yyyy") == date).ToList();
+            var date = Convert.ToDateTime(datepicker.Value).ToString("dd/MM/yyyy");
+            var src1 = from r in MyLibrary.Rcpt_BUS.GetAll()
+                       join b in rcptBuy.GetAll() on r.RcptId equals b.RcptBuyId
+                       join i in MyLibrary.Usr_BUS.GetAll() on b.CusId equals i.UsrId
+                       join s in shp.GetAll() on b.ShpId equals s.ShpId
+                       join z in mer.GetAll() on s.MerId equals z.MerId
+                       join t in rcptbuystadet.GetAll() on b.RcptBuyId equals t.RcptBuyId
+                       join e in rcptbuystastep.GetAll() on t.StepId equals e.StepId
+                       where z.MerId == MerchantSession.LoginMer?.MerId
+                       select new
+                       {
+                           b.RcptBuyId,
+                           r.DateAdd,
+                           r.DateEdit,
+                           r.UsrAdd,
+                           r.UsrEdit,
+                           i.UsrName,
+                           i.UsrId,
+                           s.ShpName,
+                           z.MerId,
+                           e.StepId,
+                           e.StepCont
+                       };
+            gvRcptBuy.DataSource = src1.DistinctBy(i => i.RcptBuyId).Where(x => x.DateAdd.ToString("dd/MM/yyyy") == date).ToList();
+                
             gvRcptBuy.DataBind();
         }
 
